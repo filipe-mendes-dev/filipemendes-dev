@@ -1,0 +1,32 @@
+.root {
+}
+
+.projectsList {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.projectsListItem {
+  transition: transform var(--transition), border-color var(--transition);
+}
+
+.projectsListItem:hover {
+  transform: translateY(-2px);
+  border-color: rgb(93 112 82 / 40%);
+}
+
+.projectsHeaderRow {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+
+@media (min-width: 44rem) {
+  .projectsHeaderRow {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+}

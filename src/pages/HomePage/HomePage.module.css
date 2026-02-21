@@ -1,0 +1,90 @@
+.root {
+}
+
+.heroSection {
+  padding-top: var(--space-5);
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.heroPhotoFrame {
+  margin: 0;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-tint);
+  max-width: 24rem;
+}
+
+.heroPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 4 / 5;
+}
+
+.heroCopy {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.heroKicker {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: var(--font-size-caption);
+  color: var(--moss);
+  font-weight: 700;
+}
+
+.heroRole {
+  font-size: var(--font-size-body-lg);
+  color: var(--ink);
+}
+
+.heroSummary {
+  max-width: 66ch;
+}
+
+.heroNow {
+  padding-top: var(--space-2);
+  border-top: var(--line-strong) solid var(--line);
+  color: var(--ink);
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.projectPreviewGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+@media (min-width: 62rem) {
+  .heroSection {
+    padding-top: var(--font-size-body-xl);
+  }
+
+  .heroGrid,
+  .projectPreviewGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .heroGrid {
+    grid-template-columns: minmax(14rem, 24rem) minmax(0, 1fr);
+    gap: clamp(1.25rem, 4vw, 3rem);
+  }
+
+  .heroPhotoFrame {
+    max-width: none;
+    min-height: 20rem;
+  }
+}

@@ -1,0 +1,78 @@
+.root {
+}
+
+.projectDetailHeader {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 1fr;
+}
+
+.projectLogo {
+  width: 3.25rem;
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+  border: var(--line-strong) solid var(--line);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  background: rgb(93 112 82 / 10%);
+  color: var(--ink);
+}
+
+.projectDetailLinks,
+.storeBadgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.storeBadge {
+  background: var(--surface-inverse);
+  color: var(--ink-inverse);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  padding: 0.45rem 0.8rem;
+  font-size: var(--font-size-sm);
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+.storeBadge:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+.galleryItem {
+  margin: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: var(--line-strong) solid var(--line);
+  background: var(--ink-inverse);
+}
+
+.galleryItem img {
+  aspect-ratio: 16 / 10;
+  width: 100%;
+  object-fit: cover;
+}
+
+.backLink {
+  display: inline-block;
+  margin-top: var(--space-3);
+}
+
+@media (min-width: 62rem) {
+  .projectDetailHeader {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .galleryGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

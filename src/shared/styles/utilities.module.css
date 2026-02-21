@@ -1,0 +1,106 @@
+.root {
+}
+
+.stoneSurface {
+  background: var(--stone);
+}
+
+.cardEyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: var(--font-size-caption);
+  color: var(--moss);
+  font-weight: 700;
+}
+
+.textLink {
+  color: var(--moss);
+  text-decoration-color: rgb(93 112 82 / 55%);
+  text-underline-offset: 0.3rem;
+  transition: color var(--transition), transform var(--transition), text-decoration-color var(--transition);
+}
+
+.textLink:hover {
+  color: var(--moss);
+  transform: translateY(-2px);
+}
+
+.projectStoryGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+.projectStoryGrid dt {
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+}
+
+.stackList {
+  list-style: none;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.listTitle {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.listMeta {
+  font-size: var(--font-size-body);
+  color: rgb(44 44 36 / 70%);
+}
+
+.chipList {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.chipList li {
+  border-radius: var(--radius-pill);
+  border: var(--line-strong) solid var(--line);
+  padding: 0.35rem 0.75rem;
+  background: rgb(253 252 248 / 82%);
+  color: var(--ink);
+}
+
+.button {
+  text-decoration: none;
+  border-radius: var(--radius-pill);
+  padding: 0.6rem 1rem;
+  border: var(--line-strong) solid transparent;
+  font-weight: 600;
+  transition: background-color var(--transition), color var(--transition), transform var(--transition), border-color var(--transition);
+}
+
+.buttonPrimary {
+  background: var(--moss);
+  color: var(--ink-inverse);
+}
+
+.buttonPrimary:hover {
+  background: var(--moss-strong);
+  transform: translateY(-2px);
+}
+
+.buttonSecondary {
+  border-color: var(--line);
+  color: var(--ink);
+  background: rgb(253 252 248 / 85%);
+}
+
+.buttonSecondary:hover {
+  border-color: var(--moss);
+  color: var(--moss);
+  transform: translateY(-2px);
+}
+
+@media (min-width: 62rem) {
+  .projectStoryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

@@ -1,0 +1,8 @@
+.root {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background: rgb(253 252 248 / 95%);
+  padding: clamp(1rem, 2vw, 1.5rem);
+  display: grid;
+  gap: var(--space-3);
+}

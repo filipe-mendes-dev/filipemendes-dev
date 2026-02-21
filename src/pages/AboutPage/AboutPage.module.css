@@ -1,0 +1,14 @@
+.root {
+}
+
+.dossierGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+@media (min-width: 62rem) {
+  .dossierGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

@@ -1,0 +1,259 @@
+export interface NavigationItem {
+  label: string;
+  href: string;
+}
+
+export interface ActionLink {
+  label: string;
+  href: string;
+  variant: 'primary' | 'secondary' | 'ghost';
+}
+
+export interface HeroContent {
+  name: string;
+  role: string;
+  summary: string;
+  now: string;
+  photoAlt: string;
+  photoUrl: string;
+  actions: ActionLink[];
+}
+
+export interface ProjectNarrative {
+  problem: string;
+  approach: string;
+  stack: string;
+  outcome: string;
+}
+
+export interface ProjectStoreLinks {
+  appStore?: string;
+  googlePlay?: string;
+}
+
+export interface ProjectScreenshot {
+  alt: string;
+  url: string;
+}
+
+export interface ProjectDetailLink {
+  label: string;
+  href: string;
+}
+
+export interface ProjectDetail {
+  slug: string;
+  name: string;
+  logoText: string;
+  category: string;
+  description: string;
+  positioning: string;
+  narrative: ProjectNarrative;
+  isMobileApp: boolean;
+  storeLinks?: ProjectStoreLinks;
+  screenshots: ProjectScreenshot[];
+  keyFeatures: string[];
+  architecture: string[];
+  techStack: string[];
+  links: ProjectDetailLink[];
+}
+
+export interface ExperienceItem {
+  role: string;
+  company: string;
+  period: string;
+  summary: string;
+}
+
+export interface AboutContent {
+  profile: string;
+  experience: ExperienceItem[];
+  projects: string[];
+  skills: string[];
+  education: string[];
+  principles: string[];
+}
+
+export interface ContactContent {
+  intro: string;
+  email: string;
+  availability: string;
+  socials: SocialLink[];
+}
+
+export interface SocialLink {
+  label: string;
+  href: string;
+}
+
+export interface PortfolioContent {
+  siteTitle: string;
+  descriptor: string;
+  navigation: NavigationItem[];
+  hero: HeroContent;
+  projects: ProjectDetail[];
+  about: AboutContent;
+  contact: ContactContent;
+}
+
+export const portfolio: PortfolioContent = {
+  siteTitle: 'Filipe Mendes',
+  descriptor: 'Frontend Engineer - Systems & AI',
+  navigation: [
+    { label: 'Home', href: '/' },
+    { label: 'Projects', href: '/projects' },
+    { label: 'About', href: '/about' },
+    { label: 'Contact', href: '/contact' },
+  ],
+  hero: {
+    name: 'Filipe Mendes',
+    role: 'Systems-minded frontend engineer building product interfaces with AI-aware architecture.',
+    summary:
+      'I design and ship interface systems that connect product strategy, robust frontend foundations, and practical AI capabilities. My work focuses on clarity, maintainability, and measurable outcomes.',
+    now: 'Now: leading frontend architecture and AI-assisted product delivery.',
+    photoAlt: 'Portrait of Filipe Mendes',
+    photoUrl:
+      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=80',
+    actions: [
+      { label: 'View Projects', href: '/projects', variant: 'primary' },
+      { label: 'Contact', href: '/contact', variant: 'secondary' },
+    ],
+  },
+  projects: [
+    {
+      slug: 'atlas-mobile',
+      name: 'Atlas Mobile',
+      logoText: 'AT',
+      category: 'Mobile Product',
+      description:
+        'A field operations app that helps distributed teams capture tasks, sync updates, and close work loops from mobile devices.',
+      positioning: 'Positioning: reliable mobile workflows for operational teams with low-friction data entry.',
+      narrative: {
+        problem:
+          'Field teams were losing context between job sites and office systems, causing delays and duplicated follow-ups.',
+        approach:
+          'Built an offline-first mobile experience with predictable task flows, tight API contracts, and audit-friendly state transitions.',
+        stack: 'React Native, TypeScript, TanStack Query, Node.js APIs, PostgreSQL, CI/CD via GitHub Actions.',
+        outcome:
+          'Reduced task completion time by 28% and improved same-day reporting consistency across teams.',
+      },
+      isMobileApp: true,
+      storeLinks: {
+        appStore: 'https://apps.apple.com/',
+        googlePlay: 'https://play.google.com/store',
+      },
+      screenshots: [
+        {
+          alt: 'Atlas Mobile dashboard view',
+          url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+        },
+        {
+          alt: 'Atlas Mobile task board',
+          url: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=1200&q=80',
+        },
+        {
+          alt: 'Atlas Mobile activity logs',
+          url: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
+        },
+      ],
+      keyFeatures: [
+        'Offline draft capture with conflict-safe sync',
+        'Role-based task queues and escalation controls',
+        'Structured notes with attachment pipelines',
+      ],
+      architecture: [
+        'Client state split between local cache and validated server snapshots',
+        'Queue-based sync worker with retry windows and observability events',
+        'Design system tokens shared between product surfaces for consistency',
+      ],
+      techStack: ['React Native', 'TypeScript', 'TanStack Query', 'Node.js', 'PostgreSQL'],
+      links: [
+        { label: 'GitHub', href: 'https://github.com/' },
+        { label: 'Product Docs', href: 'https://example.com/docs' },
+      ],
+    },
+    {
+      slug: 'forge-web',
+      name: 'Forge Web Console',
+      logoText: 'FG',
+      category: 'Web Product',
+      description:
+        'A control console for product teams to monitor releases, inspect behavior, and coordinate response across environments.',
+      positioning: 'Positioning: operational clarity for product and engineering teams running high-change systems.',
+      narrative: {
+        problem:
+          'Teams lacked a shared source of truth for release health and incident context during rapid deployment cycles.',
+        approach:
+          'Designed a calm information architecture with deterministic status surfaces and explicit ownership pathways.',
+        stack: 'React, TypeScript, Vite, CSS Modules, GraphQL, feature-flag pipeline integrations.',
+        outcome:
+          'Cut mean time to identify release regressions and improved cross-team incident handoff quality.',
+      },
+      isMobileApp: false,
+      screenshots: [
+        {
+          alt: 'Forge release overview',
+          url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
+        },
+        {
+          alt: 'Forge diagnostics table',
+          url: 'https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1200&q=80',
+        },
+      ],
+      keyFeatures: [
+        'Environment health panels with drill-down context',
+        'Release annotations mapped to deployment windows',
+        'Ownership routing for technical response workflows',
+      ],
+      architecture: [
+        'Composable frontend modules backed by typed GraphQL contracts',
+        'Server-side normalization to reduce client-side branching complexity',
+        'Observability hooks for tracing product behavior changes',
+      ],
+      techStack: ['React', 'TypeScript', 'Vite', 'GraphQL', 'Node.js'],
+      links: [
+        { label: 'Live Product', href: 'https://example.com' },
+        { label: 'GitHub', href: 'https://github.com/' },
+      ],
+    },
+  ],
+  about: {
+    profile:
+      'I work at the intersection of product design, frontend systems, and AI-enabled delivery. I optimize for resilient architectures and practical interfaces that remain clear under real-world constraints.',
+    experience: [
+      {
+        role: 'Senior Frontend Engineer',
+        company: 'Product Systems Studio',
+        period: '2022 - Present',
+        summary: 'Lead architecture for multi-surface products, with focus on design systems and AI-assisted workflows.',
+      },
+      {
+        role: 'Frontend Engineer',
+        company: 'Platform Team',
+        period: '2019 - 2022',
+        summary: 'Built shared UI primitives and delivery pipelines for customer-facing product lines.',
+      },
+    ],
+    projects: [
+      'Productized portfolio domain for engineering showcases and live applications.',
+      'Internal architecture playbooks for design-to-code consistency.',
+    ],
+    skills: ['TypeScript', 'React', 'UI Architecture', 'Design Systems', 'Product Strategy', 'Applied AI'],
+    education: ['B.Sc. in Computer Engineering', 'Advanced coursework in Human-Computer Interaction'],
+    principles: [
+      'Clarity over novelty in interface decisions',
+      'Small systems that scale by composition',
+      'Product outcomes tied to technical decisions',
+    ],
+  },
+  contact: {
+    intro:
+      'I collaborate on product platforms, frontend architecture, and AI-aware interface systems. If you are building software that needs both craft and rigor, let us talk.',
+    email: 'hello@example.com',
+    availability: 'Available for select consulting and product collaboration engagements.',
+    socials: [
+      { label: 'GitHub', href: 'https://github.com/' },
+      { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
+    ],
+  },
+};

@@ -1,0 +1,21 @@
+.root {
+}
+
+.contactPanel {
+  max-width: 52rem;
+}
+
+.contactLinks {
+  list-style: none;
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+@media (min-width: 44rem) {
+  .contactLinks {
+    gap: var(--space-4);
+    flex-wrap: nowrap;
+  }
+}
