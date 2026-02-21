@@ -93,15 +93,15 @@
 }
 
 .windowDots span:nth-child(1) {
-  background: color-mix(in srgb, var(--moss-strong) 76%, #f55f56 24%);
+  background: color-mix(in srgb, var(--moss-strong) 76%, var(--signal-red) 24%);
 }
 
 .windowDots span:nth-child(2) {
-  background: color-mix(in srgb, var(--moss) 68%, #f7be31 32%);
+  background: color-mix(in srgb, var(--moss) 68%, var(--signal-yellow) 32%);
 }
 
 .windowDots span:nth-child(3) {
-  background: color-mix(in srgb, var(--moss) 70%, #28c941 30%);
+  background: color-mix(in srgb, var(--moss) 70%, var(--signal-green) 30%);
 }
 
 .heroPhoto {

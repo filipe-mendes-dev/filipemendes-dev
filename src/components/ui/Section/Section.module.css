@@ -11,7 +11,7 @@
 }
 
 .header h2 {
-  font-size: clamp(1.7rem, 3.4vw, 2.35rem);
+  font-size: var(--font-size-title);
   letter-spacing: 0.01em;
   line-height: 1.05;
   position: relative;
@@ -32,7 +32,7 @@
 .subtitle {
   max-width: 62ch;
   color: var(--ink-muted);
-  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
+  font-size: var(--font-size-lead);
 }
 
 @media (min-width: 44rem) {

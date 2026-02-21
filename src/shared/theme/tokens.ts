@@ -21,6 +21,11 @@ export interface ThemeTokens {
   'hero-contact-bg': string;
   'accent-soft': string;
   'moss-faint': string;
+  'signal-red': string;
+  'signal-yellow': string;
+  'signal-green': string;
+  'sun-accent': string;
+  'moon-accent': string;
   'texture-dot': string;
   'texture-opacity': string;
   'moss': string;
@@ -39,6 +44,11 @@ export interface ThemeTokens {
   'font-size-body': string;
   'font-size-body-lg': string;
   'font-size-body-xl': string;
+  'font-size-heading-sm': string;
+  'font-size-heading-md': string;
+  'font-size-heading-lg': string;
+  'font-size-title': string;
+  'font-size-lead': string;
   'font-display': string;
   'font-body': string;
   'font-mono': string;
@@ -68,6 +78,11 @@ const commonThemeTokens: Pick<
   | 'font-size-body'
   | 'font-size-body-lg'
   | 'font-size-body-xl'
+  | 'font-size-heading-sm'
+  | 'font-size-heading-md'
+  | 'font-size-heading-lg'
+  | 'font-size-title'
+  | 'font-size-lead'
   | 'font-display'
   | 'font-body'
   | 'font-mono'
@@ -89,10 +104,15 @@ const commonThemeTokens: Pick<
   'radius-xl': '1.25rem',
   'radius-2xl': '1.5rem',
   'font-size-caption': '0.75rem',
-  'font-size-sm': '0.85rem',
-  'font-size-body': '0.9rem',
-  'font-size-body-lg': 'clamp(1.1rem, 2vw, 1.35rem)',
-  'font-size-body-xl': 'clamp(2rem, 4vw, 4rem)',
+  'font-size-sm': '0.875rem',
+  'font-size-body': 'clamp(0.95rem, 0.92rem + 0.15vw, 1rem)',
+  'font-size-body-lg': 'clamp(1.1rem, 1.03rem + 0.45vw, 1.35rem)',
+  'font-size-body-xl': 'clamp(2rem, 1.5rem + 2.5vw, 4rem)',
+  'font-size-heading-sm': 'clamp(1.02rem, 0.95rem + 0.2vw, 1.16rem)',
+  'font-size-heading-md': 'clamp(1.05rem, 0.96rem + 0.2vw, 1.2rem)',
+  'font-size-heading-lg': 'clamp(1.2rem, 1.1rem + 0.3vw, 1.35rem)',
+  'font-size-title': 'clamp(1.7rem, 3.4vw, 2.35rem)',
+  'font-size-lead': 'clamp(1rem, 0.96rem + 0.2vw, 1.1rem)',
   'font-display': '"Space Grotesk", "Segoe UI", sans-serif',
   'font-body': '"Manrope", "Segoe UI", sans-serif',
   'font-mono': '"IBM Plex Mono", "SFMono-Regular", monospace',
@@ -130,6 +150,11 @@ export const themeTokenSets: Record<ThemeName, ThemeTokens> = {
     'hero-contact-bg': '#ecece9',
     'accent-soft': 'rgb(79 121 184 / 24%)',
     'moss-faint': 'rgb(79 121 184 / 12%)',
+    'signal-red': '#f47f7c',
+    'signal-yellow': '#f0ba4a',
+    'signal-green': '#51b96b',
+    'sun-accent': '#f0b35f',
+    'moon-accent': '#8eafe7',
     'texture-dot': 'rgb(0 0 0 / 15%)',
     'texture-opacity': '0.012',
     moss: '#4F79B8',
@@ -162,6 +187,11 @@ export const themeTokenSets: Record<ThemeName, ThemeTokens> = {
     'hero-contact-bg': '#121214',
     'accent-soft': 'rgb(120 166 233 / 30%)',
     'moss-faint': 'rgb(120 166 233 / 18%)',
+    'signal-red': '#e1908d',
+    'signal-yellow': '#d8b060',
+    'signal-green': '#72bf86',
+    'sun-accent': '#f3c47b',
+    'moon-accent': '#a6c0ef',
     'texture-dot': 'rgb(255 255 255 / 18%)',
     'texture-opacity': '0.012',
     moss: '#78A6E9',

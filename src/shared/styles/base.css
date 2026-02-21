@@ -1,14 +1,17 @@
 html {
   scroll-behavior: smooth;
+  text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
   font-family: var(--font-body);
+  font-size: var(--font-size-body);
   color: var(--ink);
   background: var(--paper);
   line-height: 1.65;
   text-rendering: optimizeLegibility;
+  overflow-wrap: break-word;
 }
 
 body::before {
@@ -29,11 +32,22 @@ img {
 }
 
 a {
-  color: inherit;
+  color: var(--moss);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.2em;
+  transition: color var(--transition), text-decoration-color var(--transition);
+}
+
+a:hover {
+  color: var(--moss-strong);
+  text-decoration-color: color-mix(in srgb, var(--moss) 52%, transparent);
 }
 
 a:focus-visible,
-button:focus-visible {
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
   outline: 2px solid var(--moss);
   outline-offset: 3px;
 }
