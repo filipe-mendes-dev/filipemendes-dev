@@ -1,8 +1,14 @@
 .root {
 }
 
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
 .contactPanel {
-  max-width: 52rem;
+  max-width: 48rem;
 }
 
 .contactLinks {
@@ -11,9 +17,89 @@
   gap: var(--space-3);
   flex-wrap: wrap;
   align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.socialIcon {
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+}
+
+.formPanel {
+  max-width: 40rem;
+}
+
+.formTitle {
+  font-size: clamp(1.2rem, 1.1rem + 0.3vw, 1.35rem);
+}
+
+.contactForm {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.fieldLabel {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-muted);
+}
+
+.fieldInput {
+  width: 100%;
+  border: var(--line-strong) solid var(--line);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--paper-raised) 90%, var(--code-bg));
+  color: var(--ink);
+  font: inherit;
+  padding: 0.7rem 0.8rem;
+}
+
+.fieldInput:focus-visible {
+  border-color: var(--moss);
+  outline: 2px solid color-mix(in srgb, var(--moss) 30%, transparent);
+  outline-offset: 1px;
+}
+
+.formButton {
+  width: fit-content;
+  border: var(--line-strong) solid transparent;
+  border-radius: var(--radius-pill);
+  background: var(--moss);
+  color: var(--ink-inverse);
+  font-family: var(--font-display);
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  padding: 0.56rem 0.95rem;
+  cursor: pointer;
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+.formButton:hover {
+  background: var(--moss-strong);
+  transform: translateY(-1px);
 }
 
 @media (min-width: 44rem) {
+  .contactGrid {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    align-items: start;
+  }
+
   .contactLinks {
     gap: var(--space-4);
     flex-wrap: nowrap;

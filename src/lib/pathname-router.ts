@@ -1,8 +1,16 @@
 import { useEffect, useMemo, useState } from 'react';
 
+import { getSectionFromHash, getSectionFromPath, type SectionId } from '../shared/navigation/sections';
+
 export interface RouteMatch {
-  page: 'home' | 'projects' | 'about' | 'contact' | 'project-detail' | 'not-found';
+  page: 'landing' | 'project-detail' | 'not-found';
+  sectionId?: SectionId;
   projectSlug?: string;
+}
+
+export interface RouterLocation {
+  pathname: string;
+  hash: string;
 }
 
 const normalizePath = (rawPath: string): string => {
@@ -17,23 +25,16 @@ const normalizePath = (rawPath: string): string => {
   return rawPath;
 };
 
-const parsePath = (pathname: string): RouteMatch => {
+const parsePath = (pathname: string, hash: string): RouteMatch => {
   const path = normalizePath(pathname);
+  const sectionFromPath = getSectionFromPath(path);
+  const sectionFromHash = getSectionFromHash(hash);
 
-  if (path === '/') {
-    return { page: 'home' };
-  }
-
-  if (path === '/projects') {
-    return { page: 'projects' };
-  }
-
-  if (path === '/about') {
-    return { page: 'about' };
-  }
-
-  if (path === '/contact') {
-    return { page: 'contact' };
+  if (sectionFromPath !== undefined) {
+    return {
+      page: 'landing',
+      sectionId: sectionFromHash ?? sectionFromPath,
+    };
   }
 
   if (path.startsWith('/projects/')) {
@@ -50,14 +51,28 @@ const parsePath = (pathname: string): RouteMatch => {
   return { page: 'not-found' };
 };
 
-const getCurrentPath = (): string => normalizePath(window.location.pathname);
+const getCurrentLocation = (): RouterLocation => {
+  return {
+    pathname: normalizePath(window.location.pathname),
+    hash: window.location.hash,
+  };
+};
+
+const getNormalizedHref = (href: string): RouterLocation => {
+  const url = new URL(href, window.location.origin);
+
+  return {
+    pathname: normalizePath(url.pathname),
+    hash: url.hash,
+  };
+};
 
 export const usePathnameRouter = () => {
-  const [pathname, setPathname] = useState<string>(() => getCurrentPath());
+  const [location, setLocation] = useState<RouterLocation>(() => getCurrentLocation());
 
   useEffect(() => {
     const onPopState = (): void => {
-      setPathname(getCurrentPath());
+      setLocation(getCurrentLocation());
     };
 
     window.addEventListener('popstate', onPopState);
@@ -68,20 +83,22 @@ export const usePathnameRouter = () => {
   }, []);
 
   const navigate = (href: string): void => {
-    const normalizedHref = normalizePath(href);
+    const normalizedHref = getNormalizedHref(href);
 
-    if (normalizedHref === pathname) {
+    if (normalizedHref.pathname === location.pathname && normalizedHref.hash === location.hash) {
       return;
     }
 
-    window.history.pushState({}, '', normalizedHref);
-    setPathname(normalizedHref);
+    window.history.pushState({}, '', `${normalizedHref.pathname}${normalizedHref.hash}`);
+    setLocation(normalizedHref);
   };
 
-  const route = useMemo(() => parsePath(pathname), [pathname]);
+  const route = useMemo(() => parsePath(location.pathname, location.hash), [location.hash, location.pathname]);
 
   return {
-    pathname,
+    pathname: location.pathname,
+    hash: location.hash,
+    currentHref: `${location.pathname}${location.hash}`,
     route,
     navigate,
   };

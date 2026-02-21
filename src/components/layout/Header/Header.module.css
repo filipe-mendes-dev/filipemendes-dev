@@ -3,26 +3,57 @@
   position: sticky;
   top: 0;
   backdrop-filter: blur(4px);
-  background: rgb(253 252 248 / 90%);
+  background: var(--header-bg);
   border-bottom: var(--line-strong) solid var(--line);
   z-index: 30;
 }
 
 .headerInner {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr;
   align-items: center;
-  justify-content: space-between;
   gap: var(--space-3);
   min-height: 3.75rem;
   padding-block: var(--space-2);
 }
 
 .siteMark {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: var(--font-display);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
+  font-size: clamp(1.06rem, 0.98rem + 0.25vw, 1.2rem);
   text-decoration: none;
+  transition: color var(--transition), transform var(--transition);
+  justify-self: start;
+}
+
+.siteMark:hover {
+  color: var(--moss);
+  transform: translateY(-1px);
+}
+
+.siteMarkPrompt {
+  font-family: var(--font-mono);
+  font-size: 1.12rem;
+  color: var(--moss);
+}
+
+.siteMarkText {
+  letter-spacing: 0.02em;
+}
+
+.siteMarkSrOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
 .siteNavList {
@@ -31,31 +62,145 @@
   gap: var(--space-3);
   flex-wrap: wrap;
   align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 .siteNavLink {
+  display: inline-block;
+  position: relative;
   text-decoration: none;
   color: var(--ink-soft);
-  transition: color var(--transition), transform var(--transition);
+  transition:
+    color var(--transition),
+    transform 260ms ease;
+}
+
+.siteNavLink::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.32rem;
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--moss) 85%, transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .siteNavLink:hover {
   color: var(--moss);
-  transform: translateY(-2px);
+  transform: none;
+}
+
+.siteNavLink:hover::after {
+  transform: scaleX(1);
 }
 
 .siteNavLink[aria-current='page'] {
   color: var(--ink);
-  text-decoration: underline;
-  text-underline-offset: 0.35rem;
-  text-decoration-color: var(--moss);
+}
+
+.siteNavLink[aria-current='page']::after {
+  transform: scaleX(1);
+}
+
+.themeToggle {
+  display: grid;
+  place-items: center;
+  width: 2.45rem;
+  aspect-ratio: 1;
+  border-radius: var(--radius-pill);
+  border: var(--line-strong) solid var(--line);
+  background:
+    radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--paper-raised) 88%, transparent) 0%, transparent 65%),
+    color-mix(in srgb, var(--button-secondary-bg) 75%, transparent);
+  color: var(--ink);
+  padding: 0;
+  cursor: pointer;
+  transition:
+    border-color var(--transition),
+    background-color var(--transition),
+    box-shadow 320ms ease,
+    transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.themeToggle:hover {
+  border-color: var(--moss);
+  background: color-mix(in srgb, var(--code-bg) 64%, transparent);
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--moss) 14%, transparent);
+}
+
+.themeIconWrap {
+  position: relative;
+  width: 1.22rem;
+  height: 1.22rem;
+  display: grid;
+  place-items: center;
+  transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.themeIconSun,
+.themeIconMoon {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  font-size: 0.95rem;
+  line-height: 1;
+  transition:
+    opacity 260ms ease,
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 260ms ease;
+}
+
+.themeIconSun {
+  opacity: 0;
+  transform: rotate(56deg) scale(0.5);
+  filter: blur(3px);
+  color: color-mix(in srgb, #ffb347 78%, var(--moss) 22%);
+}
+
+.themeIconMoon {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+  color: #9cb8ff;
+}
+
+.themeToggleDark .themeIconSun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+  filter: blur(0);
+}
+
+.themeToggleDark .themeIconMoon {
+  opacity: 0;
+  transform: scale(0.52);
+  filter: blur(3px);
+}
+
+.themeToggleDark .themeIconWrap {
+  transform: rotate(-190deg);
 }
 
 @media (min-width: 44rem) {
   .headerInner {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     min-height: 4.25rem;
-    flex-wrap: nowrap;
     padding-block: 0;
+  }
+
+  .headerInner nav {
+    justify-self: center;
+  }
+
+  .themeToggle {
+    justify-self: end;
   }
 
   .siteNavList {

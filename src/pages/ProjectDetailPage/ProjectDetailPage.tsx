@@ -8,6 +8,12 @@ import su from '../../shared/styles/utilities.module.css';
 import type { ProjectDetailPageProps } from './ProjectDetailPage.interfaces';
 import st from './ProjectDetailPage.module.css';
 
+const ExternalLinkIcon = (): ReactElement => (
+  <svg viewBox="0 0 24 24" aria-hidden="true" className={st.externalIcon}>
+    <path fill="currentColor" d="M14 3h7v7h-2V6.41l-8.3 8.3-1.4-1.42 8.29-8.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z" />
+  </svg>
+);
+
 export const ProjectDetailPage = ({ project, navigate }: ProjectDetailPageProps): ReactElement => {
   return (
     <div className={st.root}>
@@ -21,8 +27,9 @@ export const ProjectDetailPage = ({ project, navigate }: ProjectDetailPageProps)
             <p>{project.description}</p>
             <div className={st.projectDetailLinks}>
               {project.links.map((link) => (
-                <a key={link.label} href={link.href} className={su.textLink} target="_blank" rel="noreferrer">
+                <a key={link.label} href={link.href} className={`${su.textLink} ${st.linkWithIcon}`} target="_blank" rel="noreferrer">
                   {link.label}
+                  <ExternalLinkIcon />
                 </a>
               ))}
             </div>
@@ -87,7 +94,7 @@ export const ProjectDetailPage = ({ project, navigate }: ProjectDetailPageProps)
               <li key={item}>{item}</li>
             ))}
           </ul>
-          <AppLink href="/projects" navigate={navigate} className={`${su.textLink} ${st.backLink}`}>
+          <AppLink href="/#projects" navigate={navigate} className={`${su.textLink} ${st.backLink}`}>
             Back to Projects
           </AppLink>
         </Container>

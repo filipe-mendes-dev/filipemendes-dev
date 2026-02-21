@@ -1,16 +1,36 @@
-import type { ReactElement } from 'react';
+import { type ReactElement, useEffect, useState } from 'react';
 
 import st from './App.module.css';
 import { Footer } from './components/layout/Footer';
 import { Header } from './components/layout/Header';
 import { portfolio } from './data/portfolio';
 import { usePathnameRouter } from './lib/pathname-router';
-import { AboutPage } from './pages/AboutPage';
-import { ContactPage } from './pages/ContactPage';
-import { HomePage } from './pages/HomePage';
+import { LandingPage } from './pages/LandingPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { ProjectDetailPage } from './pages/ProjectDetailPage';
-import { ProjectsPage } from './pages/ProjectsPage';
+import type { SectionId } from './shared/navigation/sections';
+import { applyThemeTokens } from './shared/theme/applyThemeTokens';
+import { type ThemeName, themeTokenSets } from './shared/theme/tokens';
+
+const themeStorageKey = 'portfolio-theme';
+
+const getInitialTheme = (): ThemeName => {
+  if (typeof window === 'undefined') {
+    return 'light';
+  }
+
+  const persistedTheme = window.localStorage.getItem(themeStorageKey);
+
+  if (persistedTheme === 'light' || persistedTheme === 'dark') {
+    return persistedTheme;
+  }
+
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+};
+
+const getSafeSection = (sectionId: SectionId | undefined): SectionId => {
+  return sectionId ?? 'home';
+};
 
 const getSocialLink = (label: string): string => {
   const socialLink = portfolio.contact.socials.find((item) => item.label.toLowerCase() === label.toLowerCase());
@@ -19,18 +39,20 @@ const getSocialLink = (label: string): string => {
 };
 
 export const App = (): ReactElement => {
-  const { pathname, route, navigate } = usePathnameRouter();
+  const { currentHref, pathname, route, navigate } = usePathnameRouter();
+  const [theme, setTheme] = useState<ThemeName>(() => getInitialTheme());
+  const activeSection = route.page === 'landing' ? getSafeSection(route.sectionId) : undefined;
+
+  useEffect(() => {
+    applyThemeTokens(themeTokenSets[theme]);
+    document.documentElement.setAttribute('data-theme', theme);
+    window.localStorage.setItem(themeStorageKey, theme);
+  }, [theme]);
 
   const page = (() => {
     switch (route.page) {
-      case 'home':
-        return <HomePage content={portfolio} navigate={navigate} />;
-      case 'projects':
-        return <ProjectsPage content={portfolio} navigate={navigate} />;
-      case 'about':
-        return <AboutPage content={portfolio} />;
-      case 'contact':
-        return <ContactPage content={portfolio} />;
+      case 'landing':
+        return <LandingPage content={portfolio} navigate={navigate} activeSection={getSafeSection(route.sectionId)} />;
       case 'project-detail': {
         const project = portfolio.projects.find((item) => item.slug === route.projectSlug);
 
@@ -47,13 +69,22 @@ export const App = (): ReactElement => {
 
   return (
     <div className={`${st.root} ${st.siteShell}`}>
-      <Header siteTitle={portfolio.siteTitle} navigation={portfolio.navigation} pathname={pathname} navigate={navigate} />
+      <Header
+        siteTitle={portfolio.siteTitle}
+        navigation={portfolio.navigation}
+        pathname={pathname}
+        currentHref={currentHref}
+        navigate={navigate}
+        theme={theme}
+        onThemeToggle={() => {
+          setTheme((currentTheme) => (currentTheme === 'light' ? 'dark' : 'light'));
+        }}
+        {...(activeSection !== undefined ? { activeSection } : {})}
+      />
       <main>{page}</main>
       <Footer
         name={portfolio.siteTitle}
         descriptor={portfolio.descriptor}
-        navigation={portfolio.navigation}
-        navigate={navigate}
         githubUrl={getSocialLink('GitHub')}
         linkedInUrl={getSocialLink('LinkedIn')}
       />

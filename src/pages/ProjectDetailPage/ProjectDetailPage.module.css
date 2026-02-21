@@ -15,7 +15,7 @@
   display: grid;
   place-items: center;
   font-weight: 700;
-  background: rgb(93 112 82 / 10%);
+  background: var(--moss-faint);
   color: var(--ink);
 }
 
@@ -25,6 +25,18 @@
   flex-wrap: wrap;
   gap: var(--space-3);
   align-items: center;
+}
+
+.linkWithIcon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.externalIcon {
+  width: 0.85rem;
+  height: 0.85rem;
+  flex: none;
 }
 
 .storeBadge {
@@ -53,7 +65,7 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: var(--line-strong) solid var(--line);
-  background: var(--ink-inverse);
+  background: var(--paper-raised);
 }
 
 .galleryItem img {

@@ -1,6 +1,10 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  font-family: 'Nunito', 'Quicksand', 'Segoe UI', sans-serif;
+  font-family: var(--font-body);
   color: var(--ink);
   background: var(--paper);
   line-height: 1.65;
@@ -11,10 +15,10 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: radial-gradient(circle at 1px 1px, rgb(0 0 0 / 18%) 1px, transparent 0);
+  background-image: radial-gradient(circle at 1px 1px, var(--texture-dot) 1px, transparent 0);
   background-size: 3px 3px;
   mix-blend-mode: multiply;
-  opacity: 0.03;
+  opacity: var(--texture-opacity);
   pointer-events: none;
   z-index: 10;
 }
@@ -40,7 +44,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Fraunces', Georgia, serif;
+  font-family: var(--font-display);
   line-height: 1.15;
   color: var(--ink);
   margin: 0;

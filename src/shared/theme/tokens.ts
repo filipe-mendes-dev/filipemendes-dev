@@ -1,10 +1,28 @@
 export interface ThemeTokens {
   'paper': string;
+  'paper-raised': string;
+  'card-bg': string;
+  'code-bg': string;
+  'code-border': string;
+  'code-ink': string;
   'ink': string;
   'ink-soft': string;
+  'ink-muted': string;
   'ink-inverse': string;
   'surface-inverse': string;
   'stone': string;
+  'chip-bg': string;
+  'button-secondary-bg': string;
+  'header-bg': string;
+  'footer-bg': string;
+  'hero-home-bg': string;
+  'hero-projects-bg': string;
+  'hero-about-bg': string;
+  'hero-contact-bg': string;
+  'accent-soft': string;
+  'moss-faint': string;
+  'texture-dot': string;
+  'texture-opacity': string;
   'moss': string;
   'moss-strong': string;
   'clay': string;
@@ -21,6 +39,9 @@ export interface ThemeTokens {
   'font-size-body': string;
   'font-size-body-lg': string;
   'font-size-body-xl': string;
+  'font-display': string;
+  'font-body': string;
+  'font-mono': string;
   'space-1': string;
   'space-2': string;
   'space-3': string;
@@ -32,17 +53,34 @@ export interface ThemeTokens {
   'transition': string;
 }
 
-export const themeTokens: ThemeTokens = {
-  paper: '#fdfcf8',
-  ink: '#2c2c24',
-  'ink-soft': '#444438',
-  'ink-inverse': '#ffffff',
-  'surface-inverse': '#111111',
-  stone: 'rgb(240 235 229 / 68%)',
-  moss: '#5d7052',
-  'moss-strong': '#4c5d43',
-  clay: '#c18c5d',
-  line: 'rgb(44 44 36 / 14%)',
+export type ThemeName = 'light' | 'dark';
+
+const commonThemeTokens: Pick<
+  ThemeTokens,
+  | 'radius-lg'
+  | 'radius-md'
+  | 'radius-sm'
+  | 'radius-pill'
+  | 'radius-xl'
+  | 'radius-2xl'
+  | 'font-size-caption'
+  | 'font-size-sm'
+  | 'font-size-body'
+  | 'font-size-body-lg'
+  | 'font-size-body-xl'
+  | 'font-display'
+  | 'font-body'
+  | 'font-mono'
+  | 'space-1'
+  | 'space-2'
+  | 'space-3'
+  | 'space-4'
+  | 'space-5'
+  | 'space-6'
+  | 'container'
+  | 'line-strong'
+  | 'transition'
+> = {
   'line-strong': '1px',
   'radius-lg': '1rem',
   'radius-md': '0.9rem',
@@ -55,6 +93,9 @@ export const themeTokens: ThemeTokens = {
   'font-size-body': '0.9rem',
   'font-size-body-lg': 'clamp(1.1rem, 2vw, 1.35rem)',
   'font-size-body-xl': 'clamp(2rem, 4vw, 4rem)',
+  'font-display': '"Space Grotesk", "Segoe UI", sans-serif',
+  'font-body': '"Manrope", "Segoe UI", sans-serif',
+  'font-mono': '"IBM Plex Mono", "SFMono-Regular", monospace',
   'space-1': '0.5rem',
   'space-2': '0.75rem',
   'space-3': '1rem',
@@ -62,6 +103,74 @@ export const themeTokens: ThemeTokens = {
   'space-5': '2rem',
   'space-6': 'clamp(2.5rem, 5vw, 4rem)',
   container: 'min(100% - 2rem, 72rem)',
-  'shadow-tint': '0 20px 40px rgb(93 112 82 / 8%)',
   transition: '240ms ease',
 };
+
+export const themeTokenSets: Record<ThemeName, ThemeTokens> = {
+  light: {
+    paper: '#f5f5f3',
+    'paper-raised': '#ffffff',
+    'card-bg': 'rgb(255 255 255 / 94%)',
+    'code-bg': '#eef3fb',
+    'code-border': 'rgb(79 121 184 / 36%)',
+    'code-ink': '#2f4f82',
+    ink: '#23272A',
+    'ink-soft': '#3b4044',
+    'ink-muted': 'rgb(35 39 42 / 70%)',
+    'ink-inverse': '#ffffff',
+    'surface-inverse': '#111111',
+    stone: '#ecece9',
+    'chip-bg': '#f2f2ef',
+    'button-secondary-bg': '#f1f1ee',
+    'header-bg': 'rgb(250 250 248 / 92%)',
+    'footer-bg': '#e2e2df',
+    'hero-home-bg': '#f5f5f3',
+    'hero-projects-bg': '#ecece9',
+    'hero-about-bg': '#f5f5f3',
+    'hero-contact-bg': '#ecece9',
+    'accent-soft': 'rgb(79 121 184 / 24%)',
+    'moss-faint': 'rgb(79 121 184 / 12%)',
+    'texture-dot': 'rgb(0 0 0 / 15%)',
+    'texture-opacity': '0.012',
+    moss: '#4F79B8',
+    'moss-strong': '#355F9F',
+    clay: '#A9C1E5',
+    line: 'rgb(35 39 42 / 14%)',
+    'shadow-tint': '0 20px 40px rgb(35 39 42 / 8%)',
+    ...commonThemeTokens,
+  },
+  dark: {
+    paper: '#050505',
+    'paper-raised': '#111111',
+    'card-bg': '#1a1b1f',
+    'code-bg': '#121827',
+    'code-border': 'rgb(120 166 233 / 42%)',
+    'code-ink': '#a6c7f5',
+    ink: '#F6F3EB',
+    'ink-soft': '#E5DCCF',
+    'ink-muted': 'rgb(229 220 207 / 76%)',
+    'ink-inverse': '#050505',
+    'surface-inverse': '#F6F3EB',
+    stone: '#151517',
+    'chip-bg': '#1d1d21',
+    'button-secondary-bg': '#232328',
+    'header-bg': 'rgb(34 35 39 / 90%)',
+    'footer-bg': '#000000',
+    'hero-home-bg': '#0b0b0c',
+    'hero-projects-bg': '#121214',
+    'hero-about-bg': '#0b0b0c',
+    'hero-contact-bg': '#121214',
+    'accent-soft': 'rgb(120 166 233 / 30%)',
+    'moss-faint': 'rgb(120 166 233 / 18%)',
+    'texture-dot': 'rgb(255 255 255 / 18%)',
+    'texture-opacity': '0.012',
+    moss: '#78A6E9',
+    'moss-strong': '#97BDF2',
+    clay: '#B6CCEE',
+    line: 'rgb(234 236 240 / 20%)',
+    'shadow-tint': '0 20px 40px rgb(0 0 0 / 30%)',
+    ...commonThemeTokens,
+  },
+};
+
+export const themeTokens: ThemeTokens = themeTokenSets.light;

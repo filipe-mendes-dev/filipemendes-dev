@@ -15,7 +15,7 @@
 
 .textLink {
   color: var(--moss);
-  text-decoration-color: rgb(93 112 82 / 55%);
+  text-decoration-color: var(--accent-soft);
   text-underline-offset: 0.3rem;
   transition: color var(--transition), transform var(--transition), text-decoration-color var(--transition);
 }
@@ -50,7 +50,7 @@
 
 .listMeta {
   font-size: var(--font-size-body);
-  color: rgb(44 44 36 / 70%);
+  color: var(--ink-muted);
 }
 
 .chipList {
@@ -64,39 +64,48 @@
   border-radius: var(--radius-pill);
   border: var(--line-strong) solid var(--line);
   padding: 0.35rem 0.75rem;
-  background: rgb(253 252 248 / 82%);
+  background: var(--chip-bg);
   color: var(--ink);
 }
 
 .button {
   text-decoration: none;
   border-radius: var(--radius-pill);
-  padding: 0.6rem 1rem;
-  border: var(--line-strong) solid transparent;
+  padding: 0.62rem 1rem;
+  border: var(--line-strong) solid color-mix(in srgb, var(--line) 78%, transparent);
   font-weight: 600;
-  transition: background-color var(--transition), color var(--transition), transform var(--transition), border-color var(--transition);
+  box-shadow: 0 6px 14px color-mix(in srgb, var(--moss) 10%, transparent);
+  transition:
+    background-color var(--transition),
+    color var(--transition),
+    transform var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
 }
 
 .buttonPrimary {
-  background: var(--moss);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--moss) 90%, #ffffff 10%) 0%, var(--moss-strong) 100%);
   color: var(--ink-inverse);
+  border-color: color-mix(in srgb, var(--moss) 70%, var(--line));
 }
 
 .buttonPrimary:hover {
-  background: var(--moss-strong);
-  transform: translateY(-2px);
+  background: linear-gradient(135deg, var(--moss) 0%, color-mix(in srgb, var(--moss-strong) 88%, #000000 12%) 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px color-mix(in srgb, var(--moss) 20%, transparent);
 }
 
 .buttonSecondary {
-  border-color: var(--line);
+  border-color: var(--code-border);
   color: var(--ink);
-  background: rgb(253 252 248 / 85%);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--code-bg) 82%, var(--paper-raised)) 0%, var(--button-secondary-bg) 100%);
 }
 
 .buttonSecondary:hover {
   border-color: var(--moss);
   color: var(--moss);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px color-mix(in srgb, var(--moss) 14%, transparent);
 }
 
 @media (min-width: 62rem) {

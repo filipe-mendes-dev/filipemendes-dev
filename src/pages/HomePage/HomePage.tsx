@@ -24,37 +24,50 @@ export const HomePage = ({ content, navigate }: HomePageProps): ReactElement => 
   return (
     <div className={st.root}>
       <Section className={st.heroSection}>
-        <Container className={st.heroGrid}>
-          <figure className={st.heroPhotoFrame}>
-            <img src={content.hero.photoUrl} alt={content.hero.photoAlt} className={st.heroPhoto} />
-          </figure>
+        <Container>
+          <div className={st.heroWindow}>
+            <div className={st.windowDots} aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </div>
+            <div className={st.heroGrid}>
+              <figure className={st.heroPhotoFrame}>
+                <img src={content.hero.photoUrl} alt={content.hero.photoAlt} className={st.heroPhoto} />
+              </figure>
 
-          <div className={st.heroCopy}>
-            <p className={st.heroKicker}>Engineering Portfolio</p>
-            <h1>{content.hero.name}</h1>
-            <p className={st.heroRole}>{content.hero.role}</p>
-            <p className={st.heroSummary}>{content.hero.summary}</p>
-            <p className={st.heroNow}>{content.hero.now}</p>
-            <div className={st.heroActions}>
-              {content.hero.actions.map((action) => (
-                <AppLink key={action.label} href={action.href} navigate={navigate} className={getActionClassName(action)}>
-                  {action.label}
-                </AppLink>
-              ))}
+              <div className={st.heroCopy}>
+                <p className={st.heroKicker}>Engineering Portfolio</p>
+                <h1>{content.hero.name}</h1>
+                <p className={st.heroCommand} aria-label="$ pnpm ship --frontend --product">
+                  <span className={st.heroPrompt}>$</span>
+                  <span className={st.heroCommandText}>pnpm ship --frontend --product</span>
+                </p>
+                <p className={st.heroRole}>{content.hero.role}</p>
+                <p className={st.heroSummary}>{content.hero.summary}</p>
+                <p className={st.heroNow}>{content.hero.now}</p>
+                <div className={st.heroActions}>
+                  {content.hero.actions.map((action) => (
+                    <AppLink key={action.label} href={action.href} navigate={navigate} className={getActionClassName(action)}>
+                      {action.label}
+                    </AppLink>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </Container>
       </Section>
 
       <Section
-        className={su.stoneSurface}
-        title="Selected Work"
-        subtitle="Focused product systems with clear implementation narratives."
+        className={st.featuredProjectsSection}
+        title="Featured Projects"
+        subtitle="A quick overview of representative product work before the full projects section."
       >
         <Container>
           <div className={st.projectPreviewGrid}>
             {content.projects.map((project) => (
-              <PosterBlock key={project.slug}>
+              <PosterBlock key={project.slug} className={st.featuredCard}>
                 <p className={su.cardEyebrow}>{project.category}</p>
                 <h3>{project.name}</h3>
                 <p>{project.description}</p>

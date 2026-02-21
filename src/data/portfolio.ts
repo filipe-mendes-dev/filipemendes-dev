@@ -100,10 +100,10 @@ export const portfolio: PortfolioContent = {
   siteTitle: 'Filipe Mendes',
   descriptor: 'Frontend Engineer - Systems & AI',
   navigation: [
-    { label: 'Home', href: '/' },
-    { label: 'Projects', href: '/projects' },
-    { label: 'About', href: '/about' },
-    { label: 'Contact', href: '/contact' },
+    { label: 'Home', href: '/#home' },
+    { label: 'Projects', href: '/#projects' },
+    { label: 'About', href: '/#about' },
+    { label: 'Contact', href: '/#contact' },
   ],
   hero: {
     name: 'Filipe Mendes',
@@ -115,8 +115,8 @@ export const portfolio: PortfolioContent = {
     photoUrl:
       'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=80',
     actions: [
-      { label: 'View Projects', href: '/projects', variant: 'primary' },
-      { label: 'Contact', href: '/contact', variant: 'secondary' },
+      { label: 'View Projects', href: '/#projects', variant: 'primary' },
+      { label: 'Contact', href: '/#contact', variant: 'secondary' },
     ],
   },
   projects: [
