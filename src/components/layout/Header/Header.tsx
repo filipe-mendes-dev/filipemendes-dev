@@ -1,4 +1,4 @@
-import { type ReactElement, useEffect, useMemo, useRef } from 'react';
+import { type ReactElement, useLayoutEffect, useMemo, useRef } from 'react';
 
 import { AppLink } from '../../navigation/AppLink';
 import { Container } from '../../ui/Container';
@@ -20,7 +20,7 @@ export const Header = ({
   const homeLinkAriaCurrent = pathname === '/' && activeSection === 'home' ? { ariaCurrent: 'page' as const } : {};
   const themeToggleLabel = theme === 'light' ? 'Activate dark theme' : 'Activate light theme';
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (headerRef.current === null) {
       return;
     }

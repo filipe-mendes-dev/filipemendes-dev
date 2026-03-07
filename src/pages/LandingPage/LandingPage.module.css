@@ -1,9 +1,10 @@
 .root {
   display: grid;
+  --landing-scroll-spacing: var(--space-3);
 }
 
 .rootSection {
-  scroll-margin-top: calc(var(--header-offset, 4.5rem) + var(--space-3));
+  scroll-margin-top: calc(var(--header-offset, 4.5rem) + var(--landing-scroll-spacing));
   border-bottom: var(--line-strong) solid var(--line);
   position: relative;
   overflow: hidden;
@@ -115,16 +116,19 @@
 }
 
 .revealSection {
-  opacity: 0;
-  transform: translateY(10px) scale(0.996);
-  filter: blur(2px);
   transition:
     opacity 560ms ease,
     transform 620ms ease,
     filter 520ms ease;
 }
 
-.revealSection[data-visible='true'] {
+.revealSection[data-reveal='pending'] {
+  opacity: 0;
+  transform: translateY(10px) scale(0.996);
+  filter: blur(2px);
+}
+
+.revealSection[data-reveal='visible'] {
   opacity: 1;
   transform: translateY(0);
   filter: blur(0);
