@@ -79,7 +79,12 @@ export const Header = ({
 
               return (
                 <li key={item.href}>
-                  <AppLink href={item.href} navigate={navigate} className={st.siteNavLink} {...linkAriaCurrent}>
+                  <AppLink
+                    href={item.href}
+                    navigate={navigate}
+                    className={st.siteNavLink}
+                    {...linkAriaCurrent}
+                  >
                     {item.label}
                   </AppLink>
                 </li>
@@ -89,7 +94,7 @@ export const Header = ({
         </nav>
         <button
           type="button"
-          className={`${st.themeToggle} ${theme === 'dark' ? st.themeToggleDark : st.themeToggleLight}`}
+          className={`${st.themeToggle} ${theme === 'dark' ? st.themeToggleDark : ''}`}
           onClick={onThemeToggle}
           aria-label={`Switch to ${nextThemeLabel} theme`}
         >

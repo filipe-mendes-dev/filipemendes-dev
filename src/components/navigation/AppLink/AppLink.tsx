@@ -6,13 +6,31 @@ const isModifiedEvent = (event: MouseEvent<HTMLAnchorElement>): boolean => {
   return event.metaKey || event.altKey || event.ctrlKey || event.shiftKey;
 };
 
-export const AppLink = ({ href, navigate, className, children, ariaCurrent }: AppLinkProps): ReactElement => {
-  const onClick = (event: MouseEvent<HTMLAnchorElement>): void => {
+const isExternalHref = (href: string): boolean => {
+  return href.startsWith('//') || /^[a-z][a-z\d+\-.]*:/i.test(href);
+};
+
+const shouldUseBrowserNavigation = (href: string, target: AppLinkProps['target']): boolean => {
+  if (target !== undefined && target !== '_self') {
+    return true;
+  }
+
+  return isExternalHref(href);
+};
+
+export const AppLink = ({ href, navigate, className, children, ariaCurrent, target, rel, onClick: onAnchorClick }: AppLinkProps): ReactElement => {
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>): void => {
+    onAnchorClick?.(event);
+
+    if (event.defaultPrevented) {
+      return;
+    }
+
     if (isModifiedEvent(event) || event.button !== 0) {
       return;
     }
 
-    if (href.startsWith('http://') || href.startsWith('https://') || href.startsWith('mailto:')) {
+    if (shouldUseBrowserNavigation(href, target) || navigate === undefined) {
       return;
     }
 
@@ -21,7 +39,7 @@ export const AppLink = ({ href, navigate, className, children, ariaCurrent }: Ap
   };
 
   return (
-    <a href={href} className={className} onClick={onClick} aria-current={ariaCurrent}>
+    <a href={href} className={className} onClick={handleClick} aria-current={ariaCurrent} target={target} rel={rel}>
       {children}
     </a>
   );
