@@ -16,6 +16,8 @@
   display: grid;
   gap: 0.32rem;
   max-width: 36rem;
+  width: 100%;
+  min-width: 0;
   padding-block: 0.45rem;
   padding-left: 0.85rem;
   border-left: 2px solid color-mix(in srgb, var(--moss) 30%, transparent);
@@ -52,6 +54,7 @@
 .footerSocialList {
   list-style: none;
   display: flex;
+  width: 100%;
   gap: var(--space-3);
   flex-wrap: wrap;
   align-items: center;
@@ -59,19 +62,42 @@
   padding: 0;
 }
 
+.footerSocialList li {
+  flex: 1 1 10rem;
+}
+
 .footerLink {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.4rem;
+  min-width: 0;
+  padding: 0.7rem 0.9rem;
+  border: var(--line-strong) solid color-mix(in srgb, var(--line) 92%, transparent);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--paper-raised) 72%, transparent);
   text-decoration: none;
+  width: 100%;
   color: var(--ink-soft);
-  transition: color var(--transition), transform var(--transition), opacity var(--transition);
+  transition:
+    color var(--transition),
+    transform var(--transition),
+    opacity var(--transition),
+    border-color var(--transition),
+    background-color var(--transition);
 }
 
 .footerLink:hover {
   color: var(--moss);
   transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--moss) 45%, var(--line));
+  background: color-mix(in srgb, var(--button-secondary-bg) 78%, transparent);
   opacity: 1;
+}
+
+.footerLink:focus-visible {
+  outline: 2px solid var(--moss);
+  outline-offset: 3px;
 }
 
 .socialIcon {
@@ -84,10 +110,16 @@
   .footerInner {
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
   }
 
   .footerSocialList {
     gap: var(--space-4);
     flex-wrap: nowrap;
+    width: auto;
+  }
+
+  .footerSocialList li {
+    flex: none;
   }
 }

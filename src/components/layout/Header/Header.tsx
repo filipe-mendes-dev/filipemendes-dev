@@ -18,7 +18,7 @@ export const Header = ({
 }: HeaderProps): ReactElement => {
   const headerRef = useRef<HTMLElement>(null);
   const homeLinkAriaCurrent = pathname === '/' && activeSection === 'home' ? { ariaCurrent: 'page' as const } : {};
-  const nextThemeLabel = theme === 'light' ? 'dark' : 'light';
+  const themeToggleLabel = theme === 'light' ? 'Activate dark theme' : 'Activate light theme';
 
   useEffect(() => {
     if (headerRef.current === null) {
@@ -53,9 +53,10 @@ export const Header = ({
     return navigation.reduce<Record<string, boolean>>((accumulator, item) => {
       const sectionFromHref = getSectionFromHref(item.href);
       const isCurrentSection = sectionFromHref !== undefined && activeSection === sectionFromHref;
-      const isCurrentPath = currentHref === item.href || pathname.startsWith(`${item.href}/`);
+      const isProjectDetailMatch = sectionFromHref === 'projects' && pathname.startsWith('/projects/');
+      const isCurrentPath = currentHref === item.href;
 
-      accumulator[item.href] = isCurrentSection || isCurrentPath;
+      accumulator[item.href] = isCurrentSection || isProjectDetailMatch || isCurrentPath;
 
       return accumulator;
     }, {});
@@ -71,7 +72,7 @@ export const Header = ({
           <span className={st.siteMarkText}>filipemendes.dev</span>
           <span className={st.siteMarkSrOnly}>{siteTitle}</span>
         </AppLink>
-        <nav aria-label="Primary">
+        <nav aria-label="Primary" className={st.headerNav}>
           <ul className={st.siteNavList}>
             {navigation.map((item) => {
               const isCurrent = linkStatusMap[item.href];
@@ -96,7 +97,9 @@ export const Header = ({
           type="button"
           className={`${st.themeToggle} ${theme === 'dark' ? st.themeToggleDark : ''}`}
           onClick={onThemeToggle}
-          aria-label={`Switch to ${nextThemeLabel} theme`}
+          aria-label={themeToggleLabel}
+          aria-pressed={theme === 'dark'}
+          title={themeToggleLabel}
         >
           <span className={st.themeIconWrap} aria-hidden="true">
             <svg viewBox="0 0 24 24" className={st.themeIconSun}>
