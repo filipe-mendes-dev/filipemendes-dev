@@ -15,6 +15,7 @@ You are working in a frontend web project. Follow these rules strictly.
 - Never use `any`.
 - Prefer `unknown` plus narrowing when needed.
 - Prefer interfaces over type aliases unless there is a concrete reason.
+- For optional props/fields, use `prop?: T` only. Do not use `prop?: T | undefined`.
 - Enable strict type checking and keep it passing.
 - Do not weaken strict compiler settings to make code pass.
 - Fix types instead of bypassing them.
