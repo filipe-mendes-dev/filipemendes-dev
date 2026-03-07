@@ -50,14 +50,15 @@
   grid-template-columns: 1fr;
   gap: var(--space-4);
   align-items: start;
-  padding: clamp(1rem, 2.6vw, 1.6rem);
+  padding: clamp(1rem, 3vw, 1.75rem);
 }
 
 .heroPhotoFrame {
+  position: relative;
   margin: 0;
   border-radius: var(--radius-xl);
   overflow: hidden;
-  width: min(100%, 8.75rem);
+  width: clamp(7rem, 28vw, 9.25rem);
   border: var(--line-strong) solid color-mix(in srgb, var(--code-border) 68%, var(--line));
   background: linear-gradient(145deg, color-mix(in srgb, var(--code-bg) 78%, var(--paper-raised)) 0%, var(--paper-raised) 80%);
   box-shadow:
@@ -113,7 +114,9 @@
 
 .heroCopy {
   display: grid;
-  gap: var(--space-3);
+  gap: clamp(var(--space-3), 2vw, var(--space-4));
+  min-width: 0;
+  align-content: start;
 }
 
 .heroCopy > * {
@@ -158,9 +161,29 @@
   font-weight: 700;
 }
 
+.heroIntro {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.heroIntro h1 {
+  max-width: 13ch;
+  text-wrap: balance;
+}
+
+.heroBody {
+  display: grid;
+  gap: var(--space-2);
+  width: 100%;
+  max-width: 68ch;
+}
+
 .heroRole {
   font-size: var(--font-size-body-lg);
   color: var(--ink);
+  max-width: 34ch;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
 }
 
 .heroCommand {
@@ -175,6 +198,7 @@
   border-radius: var(--radius-sm);
   padding: 0.4rem 0.65rem;
   width: fit-content;
+  max-width: 100%;
 }
 
 .heroPrompt {
@@ -195,19 +219,86 @@
 
 .heroSummary {
   max-width: 66ch;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
 }
 
 .heroNow {
   padding-top: var(--space-2);
   border-top: var(--line-strong) solid var(--line);
   color: var(--ink);
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
 }
 
 .heroActions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2);
+  align-items: stretch;
+  width: min(100%, 30rem);
+  max-width: 30rem;
+}
+
+.heroActionLink {
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (min-width: 34.75rem) {
+  .heroActions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: min(100%, 30rem);
+    max-width: 30rem;
+  }
+}
+
+@media (min-width: 44rem) {
+  .heroGrid {
+    grid-template-columns: minmax(8.5rem, 10rem) minmax(0, 1fr);
+    gap: clamp(1rem, 3vw, 2rem);
+  }
+
+  .heroPhotoFrame {
+    width: 100%;
+  }
+
+  .heroCopy {
+    width: 100%;
+  }
+
+  .heroIntro h1 {
+    max-width: none;
+  }
+
+  .heroBody {
+    max-width: none;
+  }
+
+  .heroRole {
+    max-width: 30ch;
+  }
+
+  .heroSummary,
+  .heroNow {
+    max-width: 100%;
+  }
+
+  .heroActions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: start;
+    width: min(100%, 30rem);
+    max-width: 30rem;
+  }
+
+  .heroActionLink {
+    min-width: 0;
+  }
 }
 
 .featuredProjectsSection {
@@ -220,11 +311,16 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-4);
+  align-items: stretch;
 }
 
 .featuredCard {
   position: relative;
   overflow: hidden;
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  align-content: start;
   transition:
     transform 360ms ease,
     border-color 260ms ease,
@@ -253,6 +349,35 @@
   transform: translateX(-110%);
   transition: transform 620ms ease;
   pointer-events: none;
+}
+
+.featuredCardHeader {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.featuredCardHeader h3 {
+  max-width: 18ch;
+  text-wrap: balance;
+}
+
+.featuredDescription {
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+.featuredNarrative {
+  align-content: start;
+}
+
+.featuredNarrative dd {
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+.featuredLink {
+  margin-top: var(--space-1);
+  width: fit-content;
 }
 
 .featuredCard:hover {
@@ -346,19 +471,40 @@
     padding-top: var(--font-size-body-xl);
   }
 
-  .heroGrid,
-  .projectPreviewGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .heroGrid {
-    grid-template-columns: minmax(9rem, 11rem) minmax(0, 1fr);
-    gap: clamp(1.25rem, 4vw, 3rem);
+    grid-template-columns: minmax(9rem, 11rem) minmax(0, 1.45fr);
+    gap: clamp(1.5rem, 4vw, 3.5rem);
     padding: clamp(1.35rem, 2.6vw, 2rem);
   }
 
   .heroPhotoFrame {
-    width: 11rem;
+    width: 100%;
+  }
+
+  .heroBody {
+    max-width: min(74ch, 100%);
+  }
+
+  .heroSummary {
+    max-width: min(72ch, 100%);
+  }
+
+  .heroActions {
+    grid-template-columns: repeat(2, minmax(0, max-content));
+    justify-content: start;
+    width: auto;
+    max-width: none;
+  }
+
+  .heroActionLink {
+    width: auto;
+    min-width: 10.5rem;
+  }
+}
+
+@media (min-width: 72rem) {
+  .projectPreviewGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

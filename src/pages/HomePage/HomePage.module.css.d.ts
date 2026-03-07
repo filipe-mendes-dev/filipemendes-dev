@@ -1,11 +1,18 @@
 declare const styles: {
   readonly 'featuredCard': string;
+  readonly 'featuredCardHeader': string;
+  readonly 'featuredDescription': string;
+  readonly 'featuredLink': string;
+  readonly 'featuredNarrative': string;
   readonly 'featuredProjectsSection': string;
+  readonly 'heroActionLink': string;
   readonly 'heroActions': string;
+  readonly 'heroBody': string;
   readonly 'heroCommand': string;
   readonly 'heroCommandText': string;
   readonly 'heroCopy': string;
   readonly 'heroGrid': string;
+  readonly 'heroIntro': string;
   readonly 'heroKicker': string;
   readonly 'heroNow': string;
   readonly 'heroPhoto': string;
