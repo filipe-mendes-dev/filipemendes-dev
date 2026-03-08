@@ -1,6 +1,6 @@
 declare const styles: {
-  readonly 'headerNav': string;
   readonly 'headerInner': string;
+  readonly 'headerNav': string;
   readonly 'root': string;
   readonly 'siteHeader': string;
   readonly 'siteMark': string;

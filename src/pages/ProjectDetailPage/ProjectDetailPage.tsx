@@ -1,66 +1,108 @@
 import type { ReactElement } from 'react';
 
+import { AppStoreIcon, BackIcon, ExternalLinkIcon, GooglePlayIcon } from '../../components/icons';
 import { AppLink } from '../../components/navigation/AppLink';
+import { Container } from '../../components/ui/Container';
 import { PosterBlock } from '../../components/ui/PosterBlock';
 import { Section } from '../../components/ui/Section';
 import su from '../../shared/styles/utilities.module.css';
 import type { ProjectDetailPageProps } from './ProjectDetailPage.interfaces';
 import st from './ProjectDetailPage.module.css';
 
-const ExternalLinkIcon = (): ReactElement => (
-  <svg viewBox="0 0 24 24" aria-hidden="true" className={st.externalIcon}>
-    <path fill="currentColor" d="M14 3h7v7h-2V6.41l-8.3 8.3-1.4-1.42 8.29-8.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z" />
-  </svg>
-);
+interface StoreBadgeProps {
+  href: string;
+  icon: ReactElement;
+  overline: string;
+  label: string;
+  className: string;
+}
+
+const StoreBadge = ({ href, icon, overline, label, className }: StoreBadgeProps): ReactElement => {
+  return (
+    <a href={href} className={`${st.storeBadge} ${className}`} target="_blank" rel="noreferrer">
+      {icon}
+      <span className={st.storeBadgeText}>
+        <span className={st.storeBadgeOverline}>{overline}</span>
+        <span className={st.storeBadgeLabel}>{label}</span>
+      </span>
+    </a>
+  );
+};
 
 export const ProjectDetailPage = ({ project, navigate }: ProjectDetailPageProps): ReactElement => {
   return (
     <div className={st.root}>
-      <Section title={project.name} subtitle={project.positioning} containerClassName={st.projectDetailHeader}>
-        <div className={st.projectLogo} aria-hidden="true">
-          {project.logoText}
-        </div>
-        <div>
-          <p className={su.cardEyebrow}>{project.category}</p>
-          <p>{project.description}</p>
-          <div className={st.projectDetailLinks}>
-            {project.links.map((link) => (
-              <a key={link.label} href={link.href} className={`${su.textLink} ${st.linkWithIcon}`} target="_blank" rel="noreferrer">
-                {link.label}
-                <ExternalLinkIcon />
-              </a>
-            ))}
-          </div>
-          {project.isMobileApp && project.storeLinks !== undefined && (
-            <div className={st.storeBadgeRow} aria-label="Mobile app stores">
-              {project.storeLinks.appStore !== undefined && (
-                <a href={project.storeLinks.appStore} className={st.storeBadge} target="_blank" rel="noreferrer">
-                  Download on App Store
-                </a>
-              )}
-              {project.storeLinks.googlePlay !== undefined && (
-                <a href={project.storeLinks.googlePlay} className={st.storeBadge} target="_blank" rel="noreferrer">
-                  Get it on Google Play
-                </a>
-              )}
-            </div>
-          )}
-        </div>
-      </Section>
+      <section className={`${st.detailSection} ${st.heroSection}`}>
+        <Container className={st.heroInner}>
+          <AppLink href="/#projects" navigate={navigate} className={st.backLink}>
+            <BackIcon className={st.backIcon} />
+            <span>Back to Projects</span>
+          </AppLink>
 
-      <Section title="Screenshot Gallery" className={su.stoneSurface}>
+          <header className={st.heroHeader}>
+            <div className={st.heroTitleRow}>
+              <div className={st.projectLogo} aria-hidden="true">
+                {project.logoText}
+              </div>
+              <div className={st.projectHeaderIntro}>
+                <p className={st.projectCategory}>{project.category}</p>
+                <h1 className={st.projectTitle}>{project.name}</h1>
+              </div>
+            </div>
+            <div className={st.projectHeaderContent}>
+              <p className={st.projectPositioning}>{project.positioning}</p>
+              <p className={st.projectDescription}>{project.description}</p>
+            </div>
+          </header>
+
+          <div className={st.heroActions}>
+            {project.isMobileApp && project.storeLinks !== undefined && (
+              <div className={st.storeBadgeRow} aria-label="Mobile app stores">
+                {project.storeLinks.appStore !== undefined && (
+                  <StoreBadge
+                    href={project.storeLinks.appStore}
+                    icon={<AppStoreIcon className={st.storeIcon} />}
+                    overline="Download on the"
+                    label="App Store"
+                    className={st.storeBadgeApple}
+                  />
+                )}
+                {project.storeLinks.googlePlay !== undefined && (
+                  <StoreBadge
+                    href={project.storeLinks.googlePlay}
+                    icon={<GooglePlayIcon className={st.storeIcon} />}
+                    overline="Get it on"
+                    label="Google Play"
+                    className={st.storeBadgeGoogle}
+                  />
+                )}
+              </div>
+            )}
+            <div className={st.projectDetailLinks}>
+              {project.links.map((link) => (
+                <a key={link.label} href={link.href} className={`${st.linkWithIcon} ${st.metaLink}`} target="_blank" rel="noreferrer">
+                  <span>{link.label}</span>
+                  <ExternalLinkIcon className={st.externalIcon} />
+                </a>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <Section title="Screenshot Gallery" className={`${st.detailSection} ${st.gallerySection}`}>
         <div className={st.galleryGrid}>
           {project.screenshots.map((shot) => (
             <figure key={shot.url} className={st.galleryItem}>
-              <img src={shot.url} alt={shot.alt} loading="lazy" />
+              <img src={shot.url} alt={shot.alt} loading="lazy" width="1200" height="750" />
             </figure>
           ))}
         </div>
       </Section>
 
-      <Section title="Key Features">
-        <PosterBlock>
-          <ul className={su.stackList}>
+      <Section title="Key Features" className={`${st.detailSection} ${st.featuresSection}`}>
+        <PosterBlock className={st.detailPanel}>
+          <ul className={`${su.stackList} ${st.detailList}`}>
             {project.keyFeatures.map((feature) => (
               <li key={feature}>{feature}</li>
             ))}
@@ -68,9 +110,9 @@ export const ProjectDetailPage = ({ project, navigate }: ProjectDetailPageProps)
         </PosterBlock>
       </Section>
 
-      <Section title="Architecture">
-        <PosterBlock>
-          <ul className={su.stackList}>
+      <Section title="Architecture" className={`${st.detailSection} ${st.architectureSection}`}>
+        <PosterBlock className={st.detailPanel}>
+          <ul className={`${su.stackList} ${st.detailList}`}>
             {project.architecture.map((item) => (
               <li key={item}>{item}</li>
             ))}
@@ -78,15 +120,14 @@ export const ProjectDetailPage = ({ project, navigate }: ProjectDetailPageProps)
         </PosterBlock>
       </Section>
 
-      <Section title="Tech Stack">
-        <ul className={su.chipList} aria-label="Project technologies">
-          {project.techStack.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-        <AppLink href="/#projects" navigate={navigate} className={`${su.textLink} ${st.backLink}`}>
-          Back to Projects
-        </AppLink>
+      <Section title="Tech Stack" className={`${st.detailSection} ${st.stackSection}`}>
+        <div className={st.stackSectionContent}>
+          <ul className={su.chipList} aria-label="Project technologies">
+            {project.techStack.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
       </Section>
     </div>
   );

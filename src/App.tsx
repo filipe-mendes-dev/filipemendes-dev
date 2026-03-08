@@ -42,6 +42,13 @@ export const App = (): ReactElement => {
   const { currentHref, pathname, route, navigate } = usePathnameRouter();
   const [theme, setTheme] = useState<ThemeName>(() => getInitialTheme());
   const activeSection = route.page === 'landing' ? getSafeSection(route.sectionId) : undefined;
+  const footerAction =
+    route.page === 'project-detail'
+      ? {
+          actionHref: '/#projects',
+          actionLabel: 'Back to Projects',
+        }
+      : {};
 
   useEffect(() => {
     applyThemeTokens(themeTokenSets[theme]);
@@ -87,6 +94,8 @@ export const App = (): ReactElement => {
         descriptor={portfolio.descriptor}
         githubUrl={getSocialLink('GitHub')}
         linkedInUrl={getSocialLink('LinkedIn')}
+        navigate={navigate}
+        {...footerAction}
       />
     </div>
   );

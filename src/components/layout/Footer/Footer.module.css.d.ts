@@ -1,5 +1,8 @@
 declare const styles: {
+  readonly 'footerAction': string;
+  readonly 'footerActionIcon': string;
   readonly 'footerBrand': string;
+  readonly 'footerBrandColumn': string;
   readonly 'footerDescriptor': string;
   readonly 'footerInner': string;
   readonly 'footerLink': string;

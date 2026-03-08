@@ -1,22 +1,198 @@
 .root {
+  display: grid;
 }
 
-.projectDetailHeader {
+.detailSection {
+  border-bottom: var(--line-strong) solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+
+.detailSection::before,
+.detailSection::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.82;
+}
+
+.detailSection > * {
+  position: relative;
+  z-index: 1;
+}
+
+.heroSection {
+  background:
+    radial-gradient(circle at 90% 18%, color-mix(in srgb, var(--moss) 10%, transparent) 0%, transparent 38%),
+    linear-gradient(180deg, var(--hero-projects-bg) 0%, color-mix(in srgb, var(--paper-raised) 72%, var(--hero-projects-bg)) 100%);
+}
+
+.heroSection::before {
+  inset: 0;
+  background-image: linear-gradient(to bottom, color-mix(in srgb, var(--line) 40%, transparent) 1px, transparent 1px);
+  background-size: 100% 38px;
+  opacity: 0.16;
+}
+
+.heroSection::after {
+  width: 13rem;
+  height: 13rem;
+  right: -4rem;
+  top: -5rem;
+  border-radius: 1rem;
+  transform: rotate(18deg);
+  background: color-mix(in srgb, var(--code-bg) 62%, transparent);
+}
+
+.gallerySection {
+  background:
+    radial-gradient(circle at 14% 82%, color-mix(in srgb, var(--moss) 10%, transparent) 0%, transparent 38%),
+    var(--hero-about-bg);
+}
+
+.gallerySection::before {
+  inset: 0;
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--line) 30%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--line) 22%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.08;
+}
+
+.gallerySection::after {
+  width: 12rem;
+  height: 12rem;
+  top: -4rem;
+  left: 55%;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--code-border) 28%, transparent) 0%, transparent 72%);
+}
+
+.featuresSection,
+.stackSection {
+  background:
+    linear-gradient(130deg, color-mix(in srgb, var(--code-bg) 22%, transparent) 0%, transparent 36%),
+    var(--hero-contact-bg);
+}
+
+.featuresSection::before,
+.stackSection::before {
+  inset: 0;
+  background-image: linear-gradient(to right, color-mix(in srgb, var(--line) 20%, transparent) 1px, transparent 1px);
+  background-size: 34px 100%;
+  opacity: 0.1;
+}
+
+.featuresSection::after,
+.stackSection::after {
+  width: 12rem;
+  height: 12rem;
+  right: -4.5rem;
+  bottom: -5rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--moss-faint) 88%, transparent) 0%, transparent 70%);
+}
+
+.architectureSection {
+  background:
+    radial-gradient(circle at 8% 12%, color-mix(in srgb, var(--moss) 11%, transparent) 0%, transparent 44%),
+    var(--hero-home-bg);
+}
+
+.architectureSection::before {
+  inset: 0;
+  background-image: linear-gradient(to right, color-mix(in srgb, var(--code-border) 12%, transparent) 1px, transparent 1px);
+  background-size: 42px 100%;
+  opacity: 0.12;
+}
+
+.architectureSection::after {
+  width: 16rem;
+  height: 16rem;
+  top: -6rem;
+  right: -6rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--code-ink) 18%, transparent) 0%, transparent 70%);
+}
+
+.heroInner {
   display: grid;
   gap: var(--space-4);
-  grid-template-columns: 1fr;
+  width: var(--container);
+  margin-inline: auto;
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-5);
+}
+
+.heroHeader {
+  display: grid;
+  gap: var(--space-3);
+  align-items: start;
+}
+
+.heroTitleRow {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-3);
+  align-items: start;
 }
 
 .projectLogo {
-  width: 3.25rem;
-  aspect-ratio: 1;
-  border-radius: var(--radius-md);
-  border: var(--line-strong) solid var(--line);
+  width: 4rem;
+  height: 4rem;
+  border-radius: var(--radius-sm);
+  border: var(--line-strong) solid color-mix(in srgb, var(--code-border) 68%, var(--line));
   display: grid;
   place-items: center;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-body-lg);
   font-weight: 700;
-  background: var(--moss-faint);
+  letter-spacing: 0.04em;
+  background: color-mix(in srgb, var(--code-bg) 82%, var(--paper-raised));
   color: var(--ink);
+}
+
+.projectHeaderContent {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.projectHeaderIntro {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.projectCategory {
+  font-size: var(--font-size-body-sm);
+  font-weight: 600;
+  color: var(--moss);
+  line-height: 1.3;
+}
+
+.projectTitle {
+  font-size: clamp(1.9rem, 2.2vw, 2.35rem);
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+}
+
+.projectPositioning {
+  max-width: 62ch;
+  color: var(--ink-muted);
+  font-size: var(--font-size-lead);
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+.projectDescription {
+  max-width: 72ch;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+.heroActions {
+  display: grid;
+  gap: var(--space-3);
 }
 
 .projectDetailLinks,
@@ -25,6 +201,14 @@
   flex-wrap: wrap;
   gap: var(--space-3);
   align-items: center;
+}
+
+.metaLink {
+  min-height: 2.75rem;
+  padding: 0.5rem 0;
+  color: var(--moss);
+  text-decoration-color: var(--accent-soft);
+  text-underline-offset: 0.3rem;
 }
 
 .linkWithIcon {
@@ -40,18 +224,51 @@
 }
 
 .storeBadge {
-  background: var(--surface-inverse);
-  color: var(--ink-inverse);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 3rem;
+  min-width: 12.5rem;
   text-decoration: none;
   border-radius: var(--radius-sm);
-  padding: 0.45rem 0.8rem;
-  font-size: var(--font-size-sm);
-  transition: transform var(--transition), opacity var(--transition);
+  border: var(--line-strong) solid color-mix(in srgb, var(--line) 86%, transparent);
+  padding: 0.55rem 0.85rem;
+  transition: background-color var(--transition), border-color var(--transition), color var(--transition);
 }
 
-.storeBadge:hover {
-  transform: translateY(-2px);
-  opacity: 0.9;
+.storeBadgeApple {
+  background: #111;
+  color: #fff;
+  border-color: color-mix(in srgb, #fff 16%, #111);
+}
+
+.storeBadgeGoogle {
+  background: #1a1a1a;
+  color: #fff;
+  border-color: color-mix(in srgb, #fff 12%, #1a1a1a);
+}
+
+.storeBadgeText {
+  display: grid;
+  gap: 0.08rem;
+}
+
+.storeBadgeOverline {
+  font-size: 0.68rem;
+  line-height: 1.1;
+  opacity: 0.82;
+}
+
+.storeBadgeLabel {
+  font-size: var(--font-size-body-sm);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.storeIcon {
+  width: 1.4rem;
+  height: 1.4rem;
+  flex: none;
 }
 
 .galleryGrid {
@@ -62,29 +279,96 @@
 
 .galleryItem {
   margin: 0;
-  border-radius: var(--radius-lg);
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-md);
   overflow: hidden;
   border: var(--line-strong) solid var(--line);
   background: var(--paper-raised);
 }
 
 .galleryItem img {
-  aspect-ratio: 16 / 10;
+  display: block;
   width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
+.detailPanel {
+  background: color-mix(in srgb, var(--card-bg) 94%, transparent);
+  border-color: color-mix(in srgb, var(--line) 88%, transparent);
+}
+
+.detailList li {
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+.stackSectionContent {
+  display: grid;
+  gap: var(--space-4);
+}
+
 .backLink {
-  display: inline-block;
-  margin-top: var(--space-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: fit-content;
+  min-height: 2.75rem;
+  color: var(--ink);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  border: var(--line-strong) solid color-mix(in srgb, var(--line) 88%, transparent);
+  background: color-mix(in srgb, var(--paper-raised) 86%, transparent);
+  padding: 0.55rem 0.85rem;
+  transition: background-color var(--transition), border-color var(--transition), color var(--transition);
+  margin-bottom: var(--space-2);
+}
+
+.backIcon {
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+}
+
+.backLink:hover {
+  color: var(--ink);
+  border-color: var(--code-border);
+}
+
+.backLink:focus-visible,
+.storeBadge:focus-visible,
+.metaLink:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--moss) 70%, transparent);
+  outline-offset: 2px;
 }
 
 @media (min-width: 62rem) {
-  .projectDetailHeader {
-    grid-template-columns: auto minmax(0, 1fr);
+  .heroInner {
+    padding-top: var(--space-5);
+    padding-bottom: var(--space-6);
+  }
+
+  .heroActions {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .projectTitle {
+    font-size: 2.25rem;
+  }
+
+  .storeBadgeRow {
+    justify-content: flex-start;
   }
 
   .galleryGrid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .detailSection::before,
+  .detailSection::after {
+    display: none;
   }
 }
