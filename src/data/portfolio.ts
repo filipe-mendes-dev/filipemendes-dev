@@ -65,12 +65,25 @@ export interface ExperienceItem {
   summary: string;
 }
 
+export interface EducationItem {
+  title: string;
+  period?: string;
+  details?: string;
+}
+
+export interface PublicationItem {
+  title: string;
+  venue?: string;
+  year?: string;
+  href?: string;
+}
+
 export interface AboutContent {
   profile: string;
   experience: ExperienceItem[];
-  projects: string[];
   skills: string[];
-  education: string[];
+  education: EducationItem[];
+  publications: PublicationItem[];
   principles: string[];
 }
 
@@ -102,7 +115,7 @@ export const portfolio: PortfolioContent = {
   navigation: [
     { label: 'Home', href: '/#home' },
     { label: 'Projects', href: '/#projects' },
-    { label: 'About', href: '/#about' },
+    { label: 'About Me', href: '/#about' },
     { label: 'Contact', href: '/#contact' },
   ],
   hero: {
@@ -234,12 +247,31 @@ export const portfolio: PortfolioContent = {
         summary: 'Built shared UI primitives and delivery pipelines for customer-facing product lines.',
       },
     ],
-    projects: [
-      'Productized portfolio domain for engineering showcases and live applications.',
-      'Internal architecture playbooks for design-to-code consistency.',
-    ],
     skills: ['TypeScript', 'React', 'UI Architecture', 'Design Systems', 'Product Strategy', 'Applied AI'],
-    education: ['B.Sc. in Computer Engineering', 'Advanced coursework in Human-Computer Interaction'],
+    education: [
+      {
+        title: 'B.Sc. in Computer Engineering',
+        period: '2015 - 2018',
+      },
+      {
+        title: 'Advanced coursework in Human-Computer Interaction',
+        period: '2018',
+      },
+    ],
+    publications: [
+      {
+        title: 'Designing Maintainable Frontend Systems for Multi-Surface Products',
+        venue: 'UI Engineering Notes',
+        year: '2023',
+        href: 'https://example.com/publications/frontend-systems',
+      },
+      {
+        title: 'Practical AI Workflows in Product Interface Delivery',
+        venue: 'Applied Product Systems Review',
+        year: '2024',
+        href: 'https://example.com/publications/ai-workflows',
+      },
+    ],
     principles: [
       'Clarity over novelty in interface decisions',
       'Small systems that scale by composition',

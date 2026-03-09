@@ -1,17 +1,94 @@
 .root {
 }
 
-.dossierGrid {
+.layout {
   display: grid;
-  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+.introBlock {
+  display: grid;
+  gap: var(--space-2);
+  max-width: 54rem;
+}
+
+.introEyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-body-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--moss);
+}
+
+.journeyPanel {
+  display: grid;
+  gap: var(--space-2);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.journeyHeader {
+  display: grid;
+  gap: 0.4rem;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.experienceColumn {
+  min-width: 0;
+}
+
+.supportRail {
+  display: grid;
   gap: var(--space-4);
 }
 
-.titleWithIcon {
+.supportSection {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+  padding-top: var(--space-2);
+  border-top: var(--line-strong) solid color-mix(in srgb, var(--line) 72%, transparent);
+}
+
+.educationSection,
+.publicationSection {
+  gap: var(--space-2);
+}
+
+.cardLead {
+  max-width: 52ch;
+  font-size: clamp(1.08rem, 1.4vw, 1.28rem);
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+.titleWithIcon,
+.subsectionTitle {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  font-size: var(--font-size-heading-sm);
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+.titleWithIcon {
+  font-size: var(--font-size-body-lg);
+  line-height: 1.35;
+  color: var(--ink);
+  padding-bottom: 0.35rem;
+}
+
+.subsectionTitle {
+  font-size: var(--font-size-body-lg);
+  font-family: var(--font-display);
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  padding-bottom: 0.35rem;
 }
 
 .cardIcon {
@@ -21,8 +98,162 @@
   flex: none;
 }
 
-@media (min-width: 62rem) {
-  .dossierGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+.detailList {
+  gap: var(--space-3);
+}
+
+.detailEntry {
+  position: relative;
+  display: grid;
+  gap: 0.4rem;
+  padding-left: calc(var(--space-4) + 0.45rem);
+  min-width: 0;
+}
+
+.detailEntry::before {
+  content: '';
+  position: absolute;
+  top: 0.45rem;
+  left: 0.35rem;
+  bottom: 0.45rem;
+  width: 1px;
+  background: color-mix(in srgb, var(--line) 84%, transparent);
+}
+
+.detailEntry::after {
+  content: '';
+  position: absolute;
+  top: 0.45rem;
+  left: 0.13rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--moss) 0%, var(--clay) 100%);
+  box-shadow: 0 0 0 0.18rem var(--moss-faint);
+}
+
+.detailHeading {
+  display: grid;
+  gap: 0.12rem;
+}
+
+.detailTitle {
+  line-height: 1.45;
+}
+
+.detailCompany {
+  color: var(--ink);
+  line-height: 1.5;
+  font-size: var(--font-size-body-sm);
+}
+
+.detailMeta {
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+}
+
+.detailCopy {
+  line-height: 1.72;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.educationList,
+.publicationList {
+  gap: var(--space-3);
+}
+
+.educationEntry,
+.publicationEntry {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.educationHeading {
+  display: grid;
+  gap: 0.18rem;
+}
+
+.educationTitle {
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.educationPeriod,
+.publicationMeta {
+  color: var(--ink-muted);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+}
+
+.educationDetails {
+  color: var(--ink-soft);
+  line-height: 1.66;
+}
+
+.publicationLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: fit-content;
+  max-width: 100%;
+  color: var(--ink);
+  text-decoration-color: color-mix(in srgb, var(--moss) 34%, transparent);
+}
+
+.publicationIcon {
+  width: 0.9rem;
+  height: 0.9rem;
+  flex: none;
+}
+
+@media (min-width: 48rem) {
+  .journeyPanel {
+    padding: clamp(0.9rem, 1.35vw, 1.2rem);
+    border: 1px solid color-mix(in srgb, var(--line) 22%, transparent);
+    border-radius: calc(var(--radius-xl) * 0.68);
+    background: color-mix(in srgb, var(--card-bg) 44%, transparent);
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 10%, transparent),
+      0 0 0 1px color-mix(in srgb, var(--moss) 4%, transparent),
+      0 20px 48px color-mix(in srgb, var(--code-bg) 6%, transparent);
+  }
+
+  .supportRail {
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    align-items: start;
+  }
+
+  .supportSection {
+    padding-top: 0;
+    padding-left: var(--space-3);
+    border-top: 0;
+    border-left: var(--line-strong) solid color-mix(in srgb, var(--line) 72%, transparent);
+  }
+}
+
+@media (max-width: 30rem) {
+  .layout {
+    gap: var(--space-4);
+  }
+
+  .cardLead {
+    font-size: var(--font-size-body);
+    line-height: 1.68;
+  }
+
+  .detailEntry {
+    padding-left: calc(var(--space-3) + 0.45rem);
+  }
+
+  .detailTitle,
+  .detailCompany,
+  .detailMeta,
+  .educationTitle,
+  .educationDetails,
+  .subsectionTitle,
+  .publicationMeta,
+  .detailCopy {
+    overflow-wrap: anywhere;
   }
 }

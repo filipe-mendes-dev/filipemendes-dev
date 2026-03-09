@@ -8,6 +8,7 @@ export {
   GooglePlayIcon,
   LinkedInIcon,
   MoonIcon,
+  PublicationsIcon,
   PrinciplesIcon,
   ProfileIcon,
   ProjectsIcon,
