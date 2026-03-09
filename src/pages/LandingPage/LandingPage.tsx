@@ -91,6 +91,23 @@ const getTrackedSection = (sectionElements: Record<SectionId, HTMLElement>): Sec
   return currentSection;
 };
 
+const revealSectionsBetween = (sectionElements: Record<SectionId, HTMLElement>, startTop: number, endTop: number): void => {
+  const lowerBound = Math.min(startTop, endTop);
+  const upperBound = Math.max(startTop, endTop);
+  const orderedSections = (Object.entries(sectionElements) as [SectionId, HTMLElement][])
+    .sort(([, leftElement], [, rightElement]) => leftElement.offsetTop - rightElement.offsetTop);
+
+  orderedSections.forEach(([, sectionElement]) => {
+    const sectionTop = getSectionTargetTop(sectionElement);
+
+    if (sectionTop < lowerBound || sectionTop > upperBound) {
+      return;
+    }
+
+    revealSection(sectionElement);
+  });
+};
+
 export const LandingPage = ({
   content,
   navigate,
@@ -105,6 +122,7 @@ export const LandingPage = ({
   const contactRef = useRef<HTMLElement>(null);
   const hasHandledInitialSectionScrollRef = useRef(false);
   const pendingSectionRef = useRef<SectionId | null>(null);
+  const initialActiveSectionRef = useRef(activeSection);
 
   const sectionRefs = useMemo(
     () => ({
@@ -134,7 +152,7 @@ export const LandingPage = ({
     }
 
     sectionElements.forEach((element) => {
-      if (element.id === activeSection) {
+      if (element.id === initialActiveSectionRef.current) {
         revealSection(element);
 
         return;
@@ -151,7 +169,7 @@ export const LandingPage = ({
 
       hideSectionUntilReveal(element);
     });
-  }, [activeSection, sectionRefs]);
+  }, [sectionRefs]);
 
   useEffect(() => {
     const sectionElements = Object.values(sectionRefs)
@@ -194,8 +212,9 @@ export const LandingPage = ({
 
   useEffect(() => {
     const targetElement = sectionRefs[requestedSection].current;
+    const sectionElements = getSectionElements(sectionRefs);
 
-    if (targetElement === null) {
+    if (targetElement === null || sectionElements === null) {
       return;
     }
 
@@ -209,6 +228,7 @@ export const LandingPage = ({
     if (hasMeaningfulScrollDelta && shouldSmoothScroll) {
       pendingSectionRef.current = requestedSection;
       onActiveSectionChange(requestedSection);
+      revealSectionsBetween(sectionElements, window.scrollY, targetTop);
     } else if (!hasMeaningfulScrollDelta) {
       pendingSectionRef.current = null;
       onActiveSectionChange(requestedSection);
