@@ -217,7 +217,7 @@
 }
 
 .projectDetailLinks,
-.storeBadgeRow {
+.storeLinkRow {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
@@ -244,52 +244,20 @@
   flex: none;
 }
 
-.storeBadge {
+.storeBadgeLink {
   display: inline-flex;
   align-items: center;
-  gap: 0.7rem;
-  min-height: 3rem;
-  min-width: 12.5rem;
-  text-decoration: none;
-  border-radius: var(--radius-sm);
-  border: var(--line-strong) solid color-mix(in srgb, var(--line) 86%, transparent);
-  padding: 0.55rem 0.85rem;
-  transition: background-color var(--transition), border-color var(--transition), color var(--transition);
+  min-height: 2.75rem;
+  width: fit-content;
+  border-radius: calc(var(--radius-sm) * 0.6);
 }
 
-.storeBadgeApple {
-  background: #111;
-  color: #fff;
-  border-color: color-mix(in srgb, #fff 16%, #111);
-}
-
-.storeBadgeGoogle {
-  background: #1a1a1a;
-  color: #fff;
-  border-color: color-mix(in srgb, #fff 12%, #1a1a1a);
-}
-
-.storeBadgeText {
-  display: grid;
-  gap: 0.08rem;
-}
-
-.storeBadgeOverline {
-  font-size: 0.68rem;
-  line-height: 1.1;
-  opacity: 0.82;
-}
-
-.storeBadgeLabel {
-  font-size: var(--font-size-body-sm);
-  font-weight: 600;
-  line-height: 1.2;
-}
-
-.storeIcon {
-  width: 1.4rem;
-  height: 1.4rem;
-  flex: none;
+.storeBadgeImage {
+  display: block;
+  height: 2.75rem;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 .galleryGrid {
@@ -355,7 +323,7 @@
 }
 
 .backLink:focus-visible,
-.storeBadge:focus-visible,
+.storeBadgeLink:focus-visible,
 .metaLink:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--moss) 70%, transparent);
   outline-offset: 2px;
@@ -377,7 +345,7 @@
     max-width: 4.4rem;
   }
 
-  .storeBadgeRow {
+  .storeLinkRow {
     justify-content: flex-start;
   }
 

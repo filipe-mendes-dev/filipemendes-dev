@@ -1,33 +1,15 @@
 import type { ReactElement } from 'react';
 
-import { AppStoreIcon, BackIcon, ExternalLinkIcon, GooglePlayIcon } from '../../components/icons';
+import { BackIcon, ExternalLinkIcon } from '../../components/icons';
 import { AppLink } from '../../components/navigation/AppLink';
 import { Container } from '../../components/ui/Container';
 import { Section } from '../../components/ui/Section';
 import su from '../../shared/styles/utilities.module.css';
+import appStoreBadgeBlack from '../../assets/store-badges/app-store-badge-black.svg';
+import googlePlayBadge from '../../assets/store-badges/google-play-badge.svg';
 import { DetailBulletList } from './components/DetailBulletList';
 import type { ProjectDetailPageProps } from './ProjectDetailPage.interfaces';
 import st from './ProjectDetailPage.module.css';
-
-interface StoreBadgeProps {
-  href: string;
-  icon: ReactElement;
-  overline: string;
-  label: string;
-  className: string;
-}
-
-const StoreBadge = ({ href, icon, overline, label, className }: StoreBadgeProps): ReactElement => {
-  return (
-    <a href={href} className={`${st.storeBadge} ${className}`} target="_blank" rel="noreferrer">
-      {icon}
-      <span className={st.storeBadgeText}>
-        <span className={st.storeBadgeOverline}>{overline}</span>
-        <span className={st.storeBadgeLabel}>{label}</span>
-      </span>
-    </a>
-  );
-};
 
 export const ProjectDetailPage = ({ project, navigate }: ProjectDetailPageProps): ReactElement => {
   return (
@@ -57,24 +39,28 @@ export const ProjectDetailPage = ({ project, navigate }: ProjectDetailPageProps)
 
           <div className={st.heroActions}>
             {project.isMobileApp && project.storeLinks !== undefined && (
-              <div className={st.storeBadgeRow} aria-label="Mobile app stores">
+              <div className={st.storeLinkRow} aria-label="Mobile app stores">
                 {project.storeLinks.appStore !== undefined && (
-                  <StoreBadge
+                  <a
                     href={project.storeLinks.appStore}
-                    icon={<AppStoreIcon className={st.storeIcon} />}
-                    overline="Download on the"
-                    label="App Store"
-                    className={st.storeBadgeApple}
-                  />
+                    className={st.storeBadgeLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Download on the App Store"
+                  >
+                    <img src={appStoreBadgeBlack} alt="Download on the App Store" className={st.storeBadgeImage} />
+                  </a>
                 )}
                 {project.storeLinks.googlePlay !== undefined && (
-                  <StoreBadge
+                  <a
                     href={project.storeLinks.googlePlay}
-                    icon={<GooglePlayIcon className={st.storeIcon} />}
-                    overline="Get it on"
-                    label="Google Play"
-                    className={st.storeBadgeGoogle}
-                  />
+                    className={st.storeBadgeLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Get it on Google Play"
+                  >
+                    <img src={googlePlayBadge} alt="Get it on Google Play" className={st.storeBadgeImage} />
+                  </a>
                 )}
               </div>
             )}

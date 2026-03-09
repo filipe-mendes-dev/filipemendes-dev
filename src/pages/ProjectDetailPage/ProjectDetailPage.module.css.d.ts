@@ -27,14 +27,9 @@ declare const styles: {
   readonly 'root': string;
   readonly 'stackSection': string;
   readonly 'stackSectionContent': string;
-  readonly 'storeBadge': string;
-  readonly 'storeBadgeApple': string;
-  readonly 'storeBadgeGoogle': string;
-  readonly 'storeBadgeLabel': string;
-  readonly 'storeBadgeOverline': string;
-  readonly 'storeBadgeRow': string;
-  readonly 'storeBadgeText': string;
-  readonly 'storeIcon': string;
+  readonly 'storeBadgeImage': string;
+  readonly 'storeBadgeLink': string;
+  readonly 'storeLinkRow': string;
 };
 
 export default styles;
