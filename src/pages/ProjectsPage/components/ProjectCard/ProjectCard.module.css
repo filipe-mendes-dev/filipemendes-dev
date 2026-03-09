@@ -119,7 +119,9 @@
     color: var(--moss);
     font-size: var(--font-size-sm);
     font-weight: 500;
-    text-decoration: none;
+    text-decoration-line: underline;
+    text-decoration-color: color-mix(in srgb, var(--moss) 36%, transparent);
+    text-underline-offset: 0.28rem;
 }
 
 .linkIcon {
