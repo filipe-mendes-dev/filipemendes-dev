@@ -6,6 +6,7 @@ import { HomePage } from '../HomePage';
 import { ProjectsPage } from '../ProjectsPage';
 import type { LandingPageProps } from './LandingPage.interfaces';
 import st from './LandingPage.module.css';
+import type { SectionId } from '../../shared/navigation/sections';
 
 const revealVisibleValue = 'visible';
 const revealPendingValue = 'pending';
@@ -48,12 +49,62 @@ const scrollToSection = (sectionElement: HTMLElement, shouldReduceMotion: boolea
   });
 };
 
-export const LandingPage = ({ content, navigate, activeSection }: LandingPageProps): ReactElement => {
+const getSectionTargetTop = (sectionElement: HTMLElement): number => {
+  const sectionTop = sectionElement.getBoundingClientRect().top + window.scrollY;
+
+  return Math.max(sectionTop - getScrollOffset(), 0);
+};
+
+const getSectionElements = (
+  sectionRefs: Record<SectionId, { current: HTMLElement | null }>,
+): Record<SectionId, HTMLElement> | null => {
+  const homeElement = sectionRefs.home.current;
+  const projectsElement = sectionRefs.projects.current;
+  const aboutElement = sectionRefs.about.current;
+  const contactElement = sectionRefs.contact.current;
+
+  if (homeElement === null || projectsElement === null || aboutElement === null || contactElement === null) {
+    return null;
+  }
+
+  return {
+    home: homeElement,
+    projects: projectsElement,
+    about: aboutElement,
+    contact: contactElement,
+  };
+};
+
+const getTrackedSection = (sectionElements: Record<SectionId, HTMLElement>): SectionId => {
+  const activationLine = window.scrollY + getScrollOffset() + window.innerHeight * 0.2;
+  const orderedSections = (Object.entries(sectionElements) as [SectionId, HTMLElement][])
+    .sort(([, leftElement], [, rightElement]) => leftElement.offsetTop - rightElement.offsetTop);
+
+  let currentSection: SectionId = 'home';
+
+  orderedSections.forEach(([sectionId, sectionElement]) => {
+    if (sectionElement.offsetTop <= activationLine) {
+      currentSection = sectionId;
+    }
+  });
+
+  return currentSection;
+};
+
+export const LandingPage = ({
+  content,
+  navigate,
+  activeSection,
+  requestedSection,
+  requestedSectionKey,
+  onActiveSectionChange,
+}: LandingPageProps): ReactElement => {
   const homeRef = useRef<HTMLElement>(null);
   const projectsRef = useRef<HTMLElement>(null);
   const aboutRef = useRef<HTMLElement>(null);
   const contactRef = useRef<HTMLElement>(null);
   const hasHandledInitialSectionScrollRef = useRef(false);
+  const pendingSectionRef = useRef<SectionId | null>(null);
 
   const sectionRefs = useMemo(
     () => ({
@@ -142,7 +193,7 @@ export const LandingPage = ({ content, navigate, activeSection }: LandingPagePro
   }, [sectionRefs]);
 
   useEffect(() => {
-    const targetElement = sectionRefs[activeSection].current;
+    const targetElement = sectionRefs[requestedSection].current;
 
     if (targetElement === null) {
       return;
@@ -152,10 +203,72 @@ export const LandingPage = ({ content, navigate, activeSection }: LandingPagePro
 
     const prefersReducedMotion = getPrefersReducedMotion();
     const shouldSmoothScroll = hasHandledInitialSectionScrollRef.current && !prefersReducedMotion;
+    const targetTop = getSectionTargetTop(targetElement);
+    const hasMeaningfulScrollDelta = Math.abs(window.scrollY - targetTop) > 2;
+
+    if (hasMeaningfulScrollDelta && shouldSmoothScroll) {
+      pendingSectionRef.current = requestedSection;
+      onActiveSectionChange(requestedSection);
+    } else if (!hasMeaningfulScrollDelta) {
+      pendingSectionRef.current = null;
+      onActiveSectionChange(requestedSection);
+    }
 
     scrollToSection(targetElement, !shouldSmoothScroll);
     hasHandledInitialSectionScrollRef.current = true;
-  }, [activeSection, sectionRefs]);
+  }, [onActiveSectionChange, requestedSection, requestedSectionKey, sectionRefs]);
+
+  useEffect(() => {
+    const sectionElements = getSectionElements(sectionRefs);
+
+    if (sectionElements === null) {
+      return;
+    }
+
+    let frameId = 0;
+
+    const syncActiveSection = (): void => {
+      frameId = 0;
+      const pendingSection = pendingSectionRef.current;
+
+      if (pendingSection !== null) {
+        const pendingElement = sectionElements[pendingSection];
+        const pendingTargetTop = getSectionTargetTop(pendingElement);
+        const hasReachedPendingTarget = Math.abs(window.scrollY - pendingTargetTop) <= 2;
+
+        onActiveSectionChange(pendingSection);
+
+        if (hasReachedPendingTarget) {
+          pendingSectionRef.current = null;
+        }
+
+        return;
+      }
+
+      onActiveSectionChange(getTrackedSection(sectionElements));
+    };
+
+    const requestSync = (): void => {
+      if (frameId !== 0) {
+        return;
+      }
+
+      frameId = window.requestAnimationFrame(syncActiveSection);
+    };
+
+    requestSync();
+    window.addEventListener('scroll', requestSync, { passive: true });
+    window.addEventListener('resize', requestSync);
+
+    return () => {
+      window.removeEventListener('scroll', requestSync);
+      window.removeEventListener('resize', requestSync);
+
+      if (frameId !== 0) {
+        window.cancelAnimationFrame(frameId);
+      }
+    };
+  }, [onActiveSectionChange, sectionRefs]);
 
   return (
     <div className={st.root}>

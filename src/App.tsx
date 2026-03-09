@@ -41,7 +41,8 @@ const getSocialLink = (label: string): string => {
 export const App = (): ReactElement => {
   const { currentHref, pathname, route, navigate } = usePathnameRouter();
   const [theme, setTheme] = useState<ThemeName>(() => getInitialTheme());
-  const activeSection = route.page === 'landing' ? getSafeSection(route.sectionId) : undefined;
+  const [visibleSection, setVisibleSection] = useState<SectionId>(() => getSafeSection(route.sectionId));
+  const activeSection = route.page === 'landing' ? visibleSection : undefined;
   const footerAction =
     route.page === 'project-detail'
       ? {
@@ -59,7 +60,16 @@ export const App = (): ReactElement => {
   const page = (() => {
     switch (route.page) {
       case 'landing':
-        return <LandingPage content={portfolio} navigate={navigate} activeSection={getSafeSection(route.sectionId)} />;
+        return (
+          <LandingPage
+            content={portfolio}
+            navigate={navigate}
+            activeSection={getSafeSection(route.sectionId)}
+            requestedSection={getSafeSection(route.sectionId)}
+            requestedSectionKey={currentHref}
+            onActiveSectionChange={setVisibleSection}
+          />
+        );
       case 'project-detail': {
         const project = portfolio.projects.find((item) => item.slug === route.projectSlug);
 

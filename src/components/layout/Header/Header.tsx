@@ -53,11 +53,18 @@ export const Header = ({
   const linkStatusMap = useMemo(() => {
     return navigation.reduce<Record<string, boolean>>((accumulator, item) => {
       const sectionFromHref = getSectionFromHref(item.href);
-      const isCurrentSection = sectionFromHref !== undefined && activeSection === sectionFromHref;
+      const isLandingSection = pathname === '/' && activeSection !== undefined;
+
+      if (isLandingSection) {
+        accumulator[item.href] = sectionFromHref !== undefined && activeSection === sectionFromHref;
+
+        return accumulator;
+      }
+
       const isProjectDetailMatch = sectionFromHref === 'projects' && pathname.startsWith('/projects/');
       const isCurrentPath = currentHref === item.href;
 
-      accumulator[item.href] = isCurrentSection || isProjectDetailMatch || isCurrentPath;
+      accumulator[item.href] = isProjectDetailMatch || isCurrentPath;
 
       return accumulator;
     }, {});
