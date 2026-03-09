@@ -2,9 +2,8 @@ declare const styles: {
   readonly 'architectureSection': string;
   readonly 'backIcon': string;
   readonly 'backLink': string;
-  readonly 'detailList': string;
-  readonly 'detailPanel': string;
   readonly 'detailSection': string;
+  readonly 'detailSectionContent': string;
   readonly 'externalIcon': string;
   readonly 'featuresSection': string;
   readonly 'galleryGrid': string;

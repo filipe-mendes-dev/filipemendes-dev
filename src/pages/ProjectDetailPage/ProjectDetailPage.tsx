@@ -3,9 +3,9 @@ import type { ReactElement } from 'react';
 import { AppStoreIcon, BackIcon, ExternalLinkIcon, GooglePlayIcon } from '../../components/icons';
 import { AppLink } from '../../components/navigation/AppLink';
 import { Container } from '../../components/ui/Container';
-import { PosterBlock } from '../../components/ui/PosterBlock';
 import { Section } from '../../components/ui/Section';
 import su from '../../shared/styles/utilities.module.css';
+import { DetailBulletList } from './components/DetailBulletList';
 import type { ProjectDetailPageProps } from './ProjectDetailPage.interfaces';
 import st from './ProjectDetailPage.module.css';
 
@@ -101,23 +101,15 @@ export const ProjectDetailPage = ({ project, navigate }: ProjectDetailPageProps)
       </Section>
 
       <Section title="Key Features" className={`${st.detailSection} ${st.featuresSection}`}>
-        <PosterBlock className={st.detailPanel}>
-          <ul className={`${su.stackList} ${st.detailList}`}>
-            {project.keyFeatures.map((feature) => (
-              <li key={feature}>{feature}</li>
-            ))}
-          </ul>
-        </PosterBlock>
+        <div className={st.detailSectionContent}>
+          <DetailBulletList items={project.keyFeatures} />
+        </div>
       </Section>
 
       <Section title="Architecture" className={`${st.detailSection} ${st.architectureSection}`}>
-        <PosterBlock className={st.detailPanel}>
-          <ul className={`${su.stackList} ${st.detailList}`}>
-            {project.architecture.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </PosterBlock>
+        <div className={st.detailSectionContent}>
+          <DetailBulletList items={project.architecture} />
+        </div>
       </Section>
 
       <Section title="Tech Stack" className={`${st.detailSection} ${st.stackSection}`}>

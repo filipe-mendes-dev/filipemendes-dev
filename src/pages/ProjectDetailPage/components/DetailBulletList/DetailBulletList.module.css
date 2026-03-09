@@ -1,0 +1,36 @@
+.root {
+  display: grid;
+}
+
+.list {
+  gap: var(--space-4);
+}
+
+.item {
+  position: relative;
+  display: grid;
+  gap: 0.35rem;
+  padding-left: calc(var(--space-3) + 0.55rem);
+  min-width: 0;
+}
+
+.item::before {
+  content: '';
+  position: absolute;
+  top: 0.42rem;
+  left: 0;
+  width: 0.46rem;
+  height: 0.46rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--moss) 0%, var(--clay) 100%);
+  box-shadow: 0 0 0 0.16rem var(--moss-faint);
+}
+
+.copy {
+  margin: 0;
+  font-size: var(--font-size-body);
+  line-height: 1.68;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}

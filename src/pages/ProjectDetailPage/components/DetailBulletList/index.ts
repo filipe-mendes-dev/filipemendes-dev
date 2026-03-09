@@ -1,0 +1,1 @@
+export { DetailBulletList } from './DetailBulletList';
