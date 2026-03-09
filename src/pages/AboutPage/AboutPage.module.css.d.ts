@@ -1,13 +1,6 @@
 declare const styles: {
-  readonly 'cardIcon': string;
   readonly 'cardLead': string;
-  readonly 'detailCompany': string;
-  readonly 'detailCopy': string;
   readonly 'detailEntry': string;
-  readonly 'detailHeading': string;
-  readonly 'detailList': string;
-  readonly 'detailMeta': string;
-  readonly 'detailTitle': string;
   readonly 'educationDetails': string;
   readonly 'educationEntry': string;
   readonly 'educationHeading': string;
@@ -15,10 +8,8 @@ declare const styles: {
   readonly 'educationPeriod': string;
   readonly 'educationSection': string;
   readonly 'educationTitle': string;
-  readonly 'experienceColumn': string;
   readonly 'introBlock': string;
   readonly 'introEyebrow': string;
-  readonly 'journeyHeader': string;
   readonly 'journeyPanel': string;
   readonly 'layout': string;
   readonly 'publicationEntry': string;
@@ -28,10 +19,8 @@ declare const styles: {
   readonly 'publicationMeta': string;
   readonly 'publicationSection': string;
   readonly 'root': string;
-  readonly 'subsectionTitle': string;
   readonly 'supportRail': string;
   readonly 'supportSection': string;
-  readonly 'titleWithIcon': string;
 };
 
 export default styles;

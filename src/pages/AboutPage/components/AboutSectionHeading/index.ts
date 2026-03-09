@@ -1,0 +1,1 @@
+export { AboutSectionHeading } from './AboutSectionHeading';

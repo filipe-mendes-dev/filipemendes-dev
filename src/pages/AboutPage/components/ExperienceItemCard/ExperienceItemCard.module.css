@@ -1,0 +1,68 @@
+.root {
+    position: relative;
+    display: grid;
+    gap: 0.4rem;
+    padding-left: calc(var(--space-4) + 0.45rem);
+    min-width: 0;
+}
+
+.root::before {
+    content: '';
+    position: absolute;
+    top: 0.45rem;
+    left: 0.35rem;
+    bottom: 0.45rem;
+    width: 1px;
+    background: color-mix(in srgb, var(--line) 84%, transparent);
+}
+
+.root::after {
+    content: '';
+    position: absolute;
+    top: 0.45rem;
+    left: 0.13rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--moss) 0%, var(--clay) 100%);
+    box-shadow: 0 0 0 0.18rem var(--moss-faint);
+}
+
+.heading {
+    display: grid;
+    gap: 0.12rem;
+}
+
+.title {
+    line-height: 1.45;
+}
+
+.company {
+    color: var(--ink);
+    line-height: 1.5;
+    font-size: var(--font-size-body-sm);
+}
+
+.meta {
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+.copy {
+    line-height: 1.72;
+    color: var(--ink-soft);
+    text-wrap: pretty;
+}
+
+@media (max-width: 30rem) {
+    .root {
+        padding-left: calc(var(--space-3) + 0.95rem);
+    }
+
+    .title,
+    .company,
+    .meta,
+    .copy {
+        overflow-wrap: anywhere;
+    }
+}

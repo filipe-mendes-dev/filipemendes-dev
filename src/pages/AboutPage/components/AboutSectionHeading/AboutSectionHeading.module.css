@@ -1,0 +1,27 @@
+.root {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin: 0;
+  line-height: 1.35;
+  color: var(--ink);
+  padding-bottom: 0.35rem;
+}
+
+.primary {
+  font-size: var(--font-size-body-lg);
+}
+
+.secondary {
+  font-size: var(--font-size-body-lg);
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+}
+
+.icon {
+  width: 1.05rem;
+  height: 1.05rem;
+  color: var(--moss);
+  flex: none;
+}

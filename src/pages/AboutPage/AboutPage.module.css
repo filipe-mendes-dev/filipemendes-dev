@@ -30,17 +30,6 @@
   box-shadow: none;
 }
 
-.journeyHeader {
-  display: grid;
-  gap: 0.4rem;
-  padding-bottom: 0;
-  border-bottom: 0;
-}
-
-.experienceColumn {
-  min-width: 0;
-}
-
 .supportRail {
   display: grid;
   gap: var(--space-4);
@@ -64,98 +53,6 @@
   font-size: clamp(1.08rem, 1.4vw, 1.28rem);
   line-height: 1.7;
   color: var(--ink-soft);
-}
-
-.titleWithIcon,
-.subsectionTitle {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-  margin: 0;
-}
-
-.titleWithIcon {
-  font-size: var(--font-size-body-lg);
-  line-height: 1.35;
-  color: var(--ink);
-  padding-bottom: 0.35rem;
-}
-
-.subsectionTitle {
-  font-size: var(--font-size-body-lg);
-  font-family: var(--font-display);
-  line-height: 1.35;
-  letter-spacing: 0.01em;
-  color: var(--ink);
-  padding-bottom: 0.35rem;
-}
-
-.cardIcon {
-  width: 1.05rem;
-  height: 1.05rem;
-  color: var(--moss);
-  flex: none;
-}
-
-.detailList {
-  gap: var(--space-3);
-}
-
-.detailEntry {
-  position: relative;
-  display: grid;
-  gap: 0.4rem;
-  padding-left: calc(var(--space-4) + 0.45rem);
-  min-width: 0;
-}
-
-.detailEntry::before {
-  content: '';
-  position: absolute;
-  top: 0.45rem;
-  left: 0.35rem;
-  bottom: 0.45rem;
-  width: 1px;
-  background: color-mix(in srgb, var(--line) 84%, transparent);
-}
-
-.detailEntry::after {
-  content: '';
-  position: absolute;
-  top: 0.45rem;
-  left: 0.13rem;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--moss) 0%, var(--clay) 100%);
-  box-shadow: 0 0 0 0.18rem var(--moss-faint);
-}
-
-.detailHeading {
-  display: grid;
-  gap: 0.12rem;
-}
-
-.detailTitle {
-  line-height: 1.45;
-}
-
-.detailCompany {
-  color: var(--ink);
-  line-height: 1.5;
-  font-size: var(--font-size-body-sm);
-}
-
-.detailMeta {
-  font-size: var(--font-size-sm);
-  line-height: 1.5;
-}
-
-.detailCopy {
-  line-height: 1.72;
-  color: var(--ink-soft);
-  text-wrap: pretty;
 }
 
 .educationList,
@@ -246,14 +143,10 @@
     padding-left: calc(var(--space-3) + 0.45rem);
   }
 
-  .detailTitle,
-  .detailCompany,
-  .detailMeta,
   .educationTitle,
   .educationDetails,
-  .subsectionTitle,
   .publicationMeta,
-  .detailCopy {
+  .publicationLink {
     overflow-wrap: anywhere;
   }
 }
