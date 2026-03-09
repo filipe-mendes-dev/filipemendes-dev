@@ -1,5 +1,4 @@
 declare const styles: {
-  readonly 'projectsList': string;
   readonly 'root': string;
 };
 

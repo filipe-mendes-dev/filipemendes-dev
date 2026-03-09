@@ -1,0 +1,51 @@
+.root {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.item {
+  display: grid;
+  gap: 0.35rem;
+  align-content: start;
+  padding-left: var(--space-3);
+  border-left: 1px solid color-mix(in srgb, var(--line) 58%, transparent);
+}
+
+.label {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-caption);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--moss);
+  line-height: 1.4;
+}
+
+.value {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+@media (max-width: 47.99rem) {
+  .item {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+
+@media (min-width: 48rem) {
+  .root {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(var(--space-3), 3vw, var(--space-5));
+    row-gap: var(--space-3);
+  }
+
+  .item {
+    min-height: 100%;
+    padding-left: 0;
+    border-left: 0;
+  }
+}
