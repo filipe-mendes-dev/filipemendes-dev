@@ -30,7 +30,7 @@
 .header h2 {
   font-size: var(--font-size-title);
   letter-spacing: 0.01em;
-  line-height: 1.05;
+  line-height: var(--line-height-title);
   position: relative;
   padding-bottom: 0.55rem;
 }

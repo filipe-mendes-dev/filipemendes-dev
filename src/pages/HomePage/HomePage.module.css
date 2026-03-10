@@ -166,8 +166,10 @@
   gap: var(--space-2);
 }
 
-.heroIntro h1 {
+.heroTitle {
   max-width: 13ch;
+  line-height: var(--line-height-display);
+  padding-bottom: 0.08em;
   text-wrap: balance;
 }
 
@@ -192,6 +194,7 @@
   gap: 0.28rem;
   font-family: var(--font-mono);
   font-size: var(--font-size-sm);
+  line-height: 1.35;
   color: var(--code-ink);
   background: var(--code-bg);
   border: var(--line-strong) solid var(--code-border);

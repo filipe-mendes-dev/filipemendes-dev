@@ -56,7 +56,7 @@
 .panelTitle {
     margin: 0;
     font-size: clamp(1.3rem, 1.65vw, 1.55rem);
-    line-height: 1.08;
+    line-height: var(--line-height-title);
 }
 
 .panelCopy {

@@ -49,6 +49,10 @@ export interface ThemeTokens {
   'font-size-heading-lg': string;
   'font-size-title': string;
   'font-size-lead': string;
+  'line-height-body': string;
+  'line-height-heading': string;
+  'line-height-title': string;
+  'line-height-display': string;
   'font-display': string;
   'font-body': string;
   'font-mono': string;
@@ -83,6 +87,10 @@ const commonThemeTokens: Pick<
   | 'font-size-heading-lg'
   | 'font-size-title'
   | 'font-size-lead'
+  | 'line-height-body'
+  | 'line-height-heading'
+  | 'line-height-title'
+  | 'line-height-display'
   | 'font-display'
   | 'font-body'
   | 'font-mono'
@@ -113,6 +121,10 @@ const commonThemeTokens: Pick<
   'font-size-heading-lg': 'clamp(1.2rem, 1.1rem + 0.3vw, 1.35rem)',
   'font-size-title': 'clamp(1.7rem, 3.4vw, 2.35rem)',
   'font-size-lead': 'clamp(1rem, 0.96rem + 0.2vw, 1.1rem)',
+  'line-height-body': '1.65',
+  'line-height-heading': '1.2',
+  'line-height-title': '1.14',
+  'line-height-display': '1.16',
   'font-display': '"Space Grotesk", "Segoe UI", sans-serif',
   'font-body': '"Manrope", "Segoe UI", sans-serif',
   'font-mono': '"IBM Plex Mono", "SFMono-Regular", monospace',

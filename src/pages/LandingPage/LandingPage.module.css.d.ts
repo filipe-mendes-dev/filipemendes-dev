@@ -3,7 +3,6 @@ declare const styles: {
   readonly 'contactSection': string;
   readonly 'homeSection': string;
   readonly 'projectsSection': string;
-  readonly 'revealSection': string;
   readonly 'root': string;
   readonly 'rootSection': string;
 };

@@ -1,10 +1,5 @@
 declare const styles: {
   readonly 'featuredCard': string;
-  readonly 'featuredCardHeader': string;
-  readonly 'featuredDescription': string;
-  readonly 'featuredLink': string;
-  readonly 'featuredNarrative': string;
-  readonly 'featuredProjectsSection': string;
   readonly 'heroActionLink': string;
   readonly 'heroActions': string;
   readonly 'heroBody': string;
@@ -21,8 +16,8 @@ declare const styles: {
   readonly 'heroRole': string;
   readonly 'heroSection': string;
   readonly 'heroSummary': string;
+  readonly 'heroTitle': string;
   readonly 'heroWindow': string;
-  readonly 'projectPreviewGrid': string;
   readonly 'root': string;
   readonly 'windowDots': string;
 };

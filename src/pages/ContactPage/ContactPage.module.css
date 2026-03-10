@@ -53,7 +53,7 @@
 .supportTitle {
   margin: 0;
   font-size: clamp(1.16rem, 1.5vw, 1.38rem);
-  line-height: 1.15;
+  line-height: var(--line-height-heading);
 }
 
 .supportBody {
@@ -101,7 +101,7 @@
 .formTitle {
   margin: 0;
   font-size: clamp(1.35rem, 1.7vw, 1.7rem);
-  line-height: 1.08;
+  line-height: var(--line-height-title);
 }
 
 .contactForm {

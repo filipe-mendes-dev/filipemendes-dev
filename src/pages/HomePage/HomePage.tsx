@@ -36,7 +36,7 @@ export const HomePage = ({ content, navigate, onSectionRequest, revealRef }: Hom
             <div className={st.heroCopy}>
               <div className={st.heroIntro}>
                 <p className={st.heroKicker}>Engineering Portfolio</p>
-                <h1>{content.hero.name}</h1>
+                <h1 className={st.heroTitle}>{content.hero.name}</h1>
                 <p className={st.heroCommand} aria-label="$ pnpm ship --frontend --product">
                   <span className={st.heroPrompt}>$</span>
                   <span className={st.heroCommandText}>pnpm ship --frontend --product</span>

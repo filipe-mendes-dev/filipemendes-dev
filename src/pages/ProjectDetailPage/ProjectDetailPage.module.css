@@ -191,7 +191,7 @@
   margin: 0;
   max-width: 18ch;
   font-size: clamp(1.5rem, 1.34rem + 0.72vw, 1.95rem);
-  line-height: 1.08;
+  line-height: var(--line-height-title);
   letter-spacing: -0.015em;
   text-wrap: balance;
 }
