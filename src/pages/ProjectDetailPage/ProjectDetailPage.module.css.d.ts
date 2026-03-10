@@ -4,7 +4,6 @@ declare const styles: {
   readonly 'backLink': string;
   readonly 'detailSection': string;
   readonly 'detailSectionContent': string;
-  readonly 'externalIcon': string;
   readonly 'featuresSection': string;
   readonly 'galleryGrid': string;
   readonly 'galleryItem': string;
@@ -14,7 +13,6 @@ declare const styles: {
   readonly 'heroInner': string;
   readonly 'heroSection': string;
   readonly 'heroTitleRow': string;
-  readonly 'linkWithIcon': string;
   readonly 'metaLink': string;
   readonly 'projectCategory': string;
   readonly 'projectDescription': string;

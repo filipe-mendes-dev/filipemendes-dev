@@ -6,7 +6,6 @@ declare const styles: {
   readonly 'heading': string;
   readonly 'lead': string;
   readonly 'link': string;
-  readonly 'linkIcon': string;
   readonly 'marker': string;
   readonly 'root': string;
   readonly 'title': string;

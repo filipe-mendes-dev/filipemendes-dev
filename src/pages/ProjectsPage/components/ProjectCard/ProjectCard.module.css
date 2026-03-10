@@ -112,30 +112,9 @@
 }
 
 .link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    width: fit-content;
     color: var(--moss);
     font-size: var(--font-size-sm);
     font-weight: 500;
-    text-decoration-line: underline;
-    text-decoration-color: color-mix(in srgb, var(--moss) 36%, transparent);
-    text-underline-offset: 0.28rem;
-}
-
-.linkIcon {
-    width: 0.9rem;
-    height: 0.9rem;
-    min-width: 0.9rem;
-    min-height: 0.9rem;
-    flex: none;
-    transition: opacity var(--transition);
-    opacity: 0.72;
-}
-
-.link:hover .linkIcon {
-    opacity: 1;
 }
 
 @media (min-width: 44rem) {

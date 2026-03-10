@@ -1,0 +1,55 @@
+.root {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    width: fit-content;
+    max-width: 100%;
+    min-height: 2.75rem;
+    padding: 0.5rem 0;
+    color: var(--moss);
+    text-decoration-line: underline;
+    text-decoration-color: var(--accent-soft);
+    text-underline-offset: 0.3rem;
+    transition: color var(--transition), text-decoration-color var(--transition);
+}
+
+.root:hover {
+    color: var(--moss-strong);
+    text-decoration-color: color-mix(
+        in srgb,
+        var(--moss-strong) 64%,
+        transparent
+    );
+}
+
+.root:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--moss) 70%, transparent);
+    outline-offset: 2px;
+}
+
+.label {
+    overflow-wrap: anywhere;
+}
+
+.leadingIcon,
+.trailingIcon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    color: currentColor;
+}
+
+.leadingIcon > svg,
+.leadingIcon > img {
+    width: 1rem;
+    height: 1rem;
+    flex: none;
+}
+
+.trailingIcon > svg,
+.trailingIcon > img {
+    width: 0.85rem;
+    height: 0.85rem;
+    flex: none;
+}

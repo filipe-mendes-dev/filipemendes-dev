@@ -225,23 +225,7 @@
 }
 
 .metaLink {
-  min-height: 2.75rem;
-  padding: 0.5rem 0;
   color: var(--moss);
-  text-decoration-color: var(--accent-soft);
-  text-underline-offset: 0.3rem;
-}
-
-.linkWithIcon {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-}
-
-.externalIcon {
-  width: 0.85rem;
-  height: 0.85rem;
-  flex: none;
 }
 
 .storeBadgeLink {
@@ -323,8 +307,7 @@
 }
 
 .backLink:focus-visible,
-.storeBadgeLink:focus-visible,
-.metaLink:focus-visible {
+.storeBadgeLink:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--moss) 70%, transparent);
   outline-offset: 2px;
 }

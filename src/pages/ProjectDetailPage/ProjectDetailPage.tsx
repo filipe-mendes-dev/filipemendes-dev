@@ -2,6 +2,7 @@ import type { ReactElement } from 'react';
 
 import { BackIcon, ExternalLinkIcon } from '../../components/icons';
 import { AppLink } from '../../components/navigation/AppLink';
+import { TextActionLink } from '../../components/navigation/TextActionLink';
 import { Container } from '../../components/ui/Container';
 import { Section } from '../../components/ui/Section';
 import su from '../../shared/styles/utilities.module.css';
@@ -66,10 +67,16 @@ export const ProjectDetailPage = ({ project, navigate }: ProjectDetailPageProps)
             )}
             <div className={st.projectDetailLinks}>
               {project.links.map((link) => (
-                <a key={link.label} href={link.href} className={`${st.linkWithIcon} ${st.metaLink}`} target="_blank" rel="noreferrer">
-                  <span>{link.label}</span>
-                  <ExternalLinkIcon className={st.externalIcon} />
-                </a>
+                <TextActionLink
+                  key={link.label}
+                  href={link.href}
+                  className={st.metaLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  trailingIcon={<ExternalLinkIcon />}
+                >
+                  {link.label}
+                </TextActionLink>
               ))}
             </div>
           </div>

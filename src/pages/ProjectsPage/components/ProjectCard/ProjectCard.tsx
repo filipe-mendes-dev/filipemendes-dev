@@ -1,7 +1,7 @@
 import type { ReactElement } from 'react';
 
-import { AppLink } from '../../../../components/navigation/AppLink';
 import { ExternalLinkIcon } from '../../../../components/icons';
+import { TextActionLink } from '../../../../components/navigation/TextActionLink';
 import { SoftSurface } from '../../../../components/ui/SoftSurface';
 import { ProjectNarrativeList } from '../ProjectNarrativeList';
 import type { ProjectCardProps } from './ProjectCard.interfaces';
@@ -26,10 +26,9 @@ export const ProjectCard = ({ navigate, project }: ProjectCardProps): ReactEleme
       <p className={st.description}>{project.description}</p>
 
       <div className={st.actions}>
-        <AppLink href={`/projects/${project.slug}`} navigate={navigate} className={st.link}>
-          <span>View Product Details</span>
-          <ExternalLinkIcon className={st.linkIcon} />
-        </AppLink>
+        <TextActionLink href={`/projects/${project.slug}`} navigate={navigate} className={st.link} trailingIcon={<ExternalLinkIcon />}>
+          View Product Details
+        </TextActionLink>
       </div>
 
       <ProjectNarrativeList narrative={project.narrative} />
