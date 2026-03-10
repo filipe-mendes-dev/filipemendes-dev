@@ -1,7 +1,6 @@
 import type { ReactElement } from 'react';
 
 import { AppLink } from '../../components/navigation/AppLink';
-import { PosterBlock } from '../../components/ui/PosterBlock';
 import { Section } from '../../components/ui/Section';
 import type { ActionLink } from '../../data/portfolio';
 import su from '../../shared/styles/utilities.module.css';
@@ -57,41 +56,6 @@ export const HomePage = ({ content, navigate }: HomePageProps): ReactElement => 
               </div>
             </div>
           </div>
-        </div>
-      </Section>
-
-      <Section className={st.featuredProjectsSection} title="Featured Projects" subtitle="A quick overview of representative product work before the full projects section.">
-        <div className={st.projectPreviewGrid}>
-          {content.projects.map((project) => (
-            <PosterBlock key={project.slug} className={st.featuredCard}>
-              <div className={st.featuredCardHeader}>
-                <p className={su.cardEyebrow}>{project.category}</p>
-                <h3>{project.name}</h3>
-                <p className={st.featuredDescription}>{project.description}</p>
-              </div>
-              <dl className={`${su.projectStoryGrid} ${st.featuredNarrative}`}>
-                <div>
-                  <dt>Problem</dt>
-                  <dd>{project.narrative.problem}</dd>
-                </div>
-                <div>
-                  <dt>Approach</dt>
-                  <dd>{project.narrative.approach}</dd>
-                </div>
-                <div>
-                  <dt>Stack</dt>
-                  <dd>{project.narrative.stack}</dd>
-                </div>
-                <div>
-                  <dt>Outcome</dt>
-                  <dd>{project.narrative.outcome}</dd>
-                </div>
-              </dl>
-              <AppLink href={`/projects/${project.slug}`} navigate={navigate} className={`${su.textLink} ${st.featuredLink}`}>
-                Open Product Page
-              </AppLink>
-            </PosterBlock>
-          ))}
         </div>
       </Section>
     </div>

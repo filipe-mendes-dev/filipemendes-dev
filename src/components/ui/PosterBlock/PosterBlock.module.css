@@ -1,8 +1,0 @@
-.root {
-  border: 1px solid var(--line);
-  border-radius: var(--radius-xl);
-  background: var(--card-bg);
-  padding: clamp(1rem, 2vw, 1.5rem);
-  display: grid;
-  gap: var(--space-3);
-}

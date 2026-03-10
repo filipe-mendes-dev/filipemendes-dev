@@ -301,95 +301,6 @@
   }
 }
 
-.featuredProjectsSection {
-  background: linear-gradient(180deg, var(--paper-raised) 0%, var(--stone) 100%);
-  border-top: var(--line-strong) solid var(--line);
-  border-bottom: var(--line-strong) solid var(--line);
-}
-
-.projectPreviewGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-4);
-  align-items: stretch;
-}
-
-.featuredCard {
-  position: relative;
-  overflow: hidden;
-  height: 100%;
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
-  align-content: start;
-  transition:
-    transform 360ms ease,
-    border-color 260ms ease,
-    box-shadow 360ms ease;
-}
-
-.featuredCard::before {
-  content: '> product-log';
-  display: block;
-  font-family: var(--font-mono);
-  font-size: var(--font-size-caption);
-  color: var(--code-ink);
-  background: linear-gradient(90deg, var(--code-bg) 0%, transparent 100%);
-  border: var(--line-strong) solid var(--code-border);
-  border-radius: var(--radius-sm);
-  padding: 0.35rem 0.55rem;
-  width: fit-content;
-  margin-bottom: var(--space-2);
-}
-
-.featuredCard::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(105deg, transparent 22%, color-mix(in srgb, var(--moss) 12%, transparent) 50%, transparent 78%);
-  transform: translateX(-110%);
-  transition: transform 620ms ease;
-  pointer-events: none;
-}
-
-.featuredCardHeader {
-  display: grid;
-  gap: var(--space-2);
-}
-
-.featuredCardHeader h3 {
-  max-width: 18ch;
-  text-wrap: balance;
-}
-
-.featuredDescription {
-  overflow-wrap: anywhere;
-  text-wrap: pretty;
-}
-
-.featuredNarrative {
-  align-content: start;
-}
-
-.featuredNarrative dd {
-  overflow-wrap: anywhere;
-  text-wrap: pretty;
-}
-
-.featuredLink {
-  margin-top: var(--space-1);
-  width: fit-content;
-}
-
-.featuredCard:hover {
-  transform: translateY(-4px);
-  border-color: var(--code-border);
-  box-shadow: 0 12px 28px color-mix(in srgb, var(--moss) 14%, transparent);
-}
-
-.featuredCard:hover::after {
-  transform: translateX(110%);
-}
-
 @keyframes frameEnter {
   from {
     opacity: 0;
@@ -502,16 +413,9 @@
   }
 }
 
-@media (min-width: 72rem) {
-  .projectPreviewGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .heroWindow,
-  .heroCopy > *,
-  .featuredCard {
+  .heroCopy > * {
     animation: none;
     transition: none;
     transform: none;
