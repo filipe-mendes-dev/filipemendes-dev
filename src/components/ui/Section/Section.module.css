@@ -1,5 +1,5 @@
 .root {
-  padding-block: var(--space-5);
+  padding-block: var(--section-padding-y);
 }
 
 .header {
@@ -42,7 +42,7 @@
   bottom: 0;
   width: 3.8rem;
   height: 2px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: color-mix(in srgb, var(--moss) 75%, transparent);
   transform: scaleX(1);
   transform-origin: left;
@@ -59,7 +59,7 @@
 }
 
 .subtitle {
-  max-width: 62ch;
+  max-width: var(--content-max-readable);
   color: var(--ink-muted);
   font-size: var(--font-size-lead);
   transition:
@@ -67,9 +67,9 @@
     transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@media (min-width: 44rem) {
+@media (min-width: 48rem) {
   .root {
-    padding-block: var(--space-6);
+    padding-block: var(--section-padding-y-lg);
   }
 }
 

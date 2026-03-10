@@ -40,7 +40,7 @@
   height: 13rem;
   right: -4rem;
   top: -5rem;
-  border-radius: 1rem;
+  border-radius: var(--radius-lg);
   transform: rotate(18deg);
   background: color-mix(in srgb, var(--code-bg) 62%, transparent);
 }
@@ -137,7 +137,7 @@
   gap: var(--space-2);
   align-items: stretch;
   width: fit-content;
-  max-width: min(100%, 34rem);
+  max-width: min(100%, var(--content-max-wide));
 }
 
 .projectLogo {
@@ -189,7 +189,7 @@
 
 .projectTitle {
   margin: 0;
-  max-width: 18ch;
+  max-width: var(--content-max-narrow);
   font-size: clamp(1.5rem, 1.34rem + 0.72vw, 1.95rem);
   line-height: var(--line-height-title);
   letter-spacing: -0.015em;
@@ -197,7 +197,7 @@
 }
 
 .projectPositioning {
-  max-width: 56ch;
+  max-width: var(--content-max-readable);
   color: var(--ink-muted);
   font-size: clamp(1rem, 1.4vw, 1.12rem);
   line-height: 1.66;
@@ -206,7 +206,7 @@
 }
 
 .projectDescription {
-  max-width: 72ch;
+  max-width: var(--content-max-readable);
   overflow-wrap: anywhere;
   text-wrap: pretty;
 }
@@ -231,14 +231,14 @@
 .storeBadgeLink {
   display: inline-flex;
   align-items: center;
-  min-height: 2.75rem;
+  min-height: var(--control-height-md);
   width: fit-content;
   border-radius: calc(var(--radius-sm) * 0.6);
 }
 
 .storeBadgeImage {
   display: block;
-  height: 2.75rem;
+  height: var(--control-height-md);
   width: auto;
   max-width: 100%;
   object-fit: contain;
@@ -269,7 +269,7 @@
 .detailSectionContent {
   display: grid;
   gap: var(--space-1);
-  max-width: 54rem;
+  max-width: var(--content-max-wide);
   padding-left: var(--space-3);
   border-left: var(--line-strong) solid color-mix(in srgb, var(--line) 72%, transparent);
 }
@@ -284,7 +284,7 @@
   align-items: center;
   gap: 0.55rem;
   width: fit-content;
-  min-height: 2.75rem;
+  min-height: var(--control-height-md);
   color: var(--ink);
   text-decoration: none;
   border-radius: var(--radius-sm);
@@ -296,8 +296,8 @@
 }
 
 .backIcon {
-  width: 1rem;
-  height: 1rem;
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
   flex: none;
 }
 
@@ -312,7 +312,7 @@
   outline-offset: 2px;
 }
 
-@media (min-width: 62rem) {
+@media (min-width: 64rem) {
   .heroInner {
     padding-top: var(--space-5);
     padding-bottom: var(--space-6);

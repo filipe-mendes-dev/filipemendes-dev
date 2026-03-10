@@ -41,6 +41,7 @@ export interface ThemeTokens {
   'radius-2xl': string;
   'font-size-caption': string;
   'font-size-sm': string;
+  'font-size-body-sm': string;
   'font-size-body': string;
   'font-size-body-lg': string;
   'font-size-body-xl': string;
@@ -63,6 +64,18 @@ export interface ThemeTokens {
   'space-5': string;
   'space-6': string;
   'container': string;
+  'content-max-narrow': string;
+  'content-max-readable': string;
+  'content-max-wide': string;
+  'section-padding-y': string;
+  'section-padding-y-lg': string;
+  'panel-padding': string;
+  'panel-padding-compact': string;
+  'control-height-md': string;
+  'control-height-lg': string;
+  'icon-size-sm': string;
+  'icon-size-md': string;
+  'header-offset': string;
   'shadow-tint': string;
   'transition': string;
 }
@@ -79,6 +92,7 @@ const commonThemeTokens: Pick<
   | 'radius-2xl'
   | 'font-size-caption'
   | 'font-size-sm'
+  | 'font-size-body-sm'
   | 'font-size-body'
   | 'font-size-body-lg'
   | 'font-size-body-xl'
@@ -101,6 +115,18 @@ const commonThemeTokens: Pick<
   | 'space-5'
   | 'space-6'
   | 'container'
+  | 'content-max-narrow'
+  | 'content-max-readable'
+  | 'content-max-wide'
+  | 'section-padding-y'
+  | 'section-padding-y-lg'
+  | 'panel-padding'
+  | 'panel-padding-compact'
+  | 'control-height-md'
+  | 'control-height-lg'
+  | 'icon-size-sm'
+  | 'icon-size-md'
+  | 'header-offset'
   | 'line-strong'
   | 'transition'
 > = {
@@ -113,6 +139,7 @@ const commonThemeTokens: Pick<
   'radius-2xl': '1.5rem',
   'font-size-caption': '0.75rem',
   'font-size-sm': '0.875rem',
+  'font-size-body-sm': '0.8125rem',
   'font-size-body': 'clamp(0.95rem, 0.92rem + 0.15vw, 1rem)',
   'font-size-body-lg': 'clamp(1.1rem, 1.03rem + 0.45vw, 1.35rem)',
   'font-size-body-xl': 'clamp(2rem, 1.5rem + 2.5vw, 4rem)',
@@ -135,6 +162,18 @@ const commonThemeTokens: Pick<
   'space-5': '2rem',
   'space-6': 'clamp(2.5rem, 5vw, 4rem)',
   container: 'min(100% - clamp(2rem, 6vw, 4.5rem), 72rem)',
+  'content-max-narrow': '34ch',
+  'content-max-readable': '62ch',
+  'content-max-wide': '54rem',
+  'section-padding-y': 'var(--space-5)',
+  'section-padding-y-lg': 'var(--space-6)',
+  'panel-padding': 'clamp(1rem, 1.6vw, 1.25rem)',
+  'panel-padding-compact': 'clamp(0.85rem, 1.35vw, 1rem)',
+  'control-height-md': '2.75rem',
+  'control-height-lg': '2.85rem',
+  'icon-size-sm': '1rem',
+  'icon-size-md': '1.25rem',
+  'header-offset': '4.5rem',
   transition: '240ms ease',
 };
 

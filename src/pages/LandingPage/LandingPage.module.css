@@ -64,7 +64,7 @@
   height: 13rem;
   bottom: -5rem;
   left: -4rem;
-  border-radius: 1rem;
+  border-radius: var(--radius-lg);
   transform: rotate(18deg);
   background: color-mix(in srgb, var(--code-bg) 62%, transparent);
 }

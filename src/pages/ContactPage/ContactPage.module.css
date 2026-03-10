@@ -17,7 +17,7 @@
   display: grid;
   gap: var(--space-2);
   align-content: start;
-  max-width: 50rem;
+  max-width: var(--content-max-wide);
 }
 
 .eyebrow {
@@ -31,7 +31,7 @@
 
 .intro {
   margin: 0;
-  max-width: 34ch;
+  max-width: var(--content-max-narrow);
   font-size: clamp(1.08rem, 1.4vw, 1.24rem);
   line-height: 1.68;
   color: var(--ink-soft);
@@ -58,7 +58,7 @@
 
 .supportBody {
   margin: 0;
-  max-width: 34ch;
+  max-width: var(--content-max-narrow);
   color: var(--ink-muted);
   line-height: 1.62;
 }
@@ -83,8 +83,8 @@
 }
 
 .socialIcon {
-  width: 1rem;
-  height: 1rem;
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
   flex: none;
 }
 
@@ -95,7 +95,7 @@
 .formHeader {
   display: grid;
   gap: var(--space-1);
-  max-width: 40rem;
+  max-width: var(--content-max-wide);
 }
 
 .formTitle {
@@ -125,13 +125,14 @@
 .fieldInput {
   width: 100%;
   min-width: 0;
+  min-height: var(--control-height-md);
   border: var(--line-strong) solid color-mix(in srgb, var(--line) 86%, transparent);
   border-radius: calc(var(--radius-md) * 0.9);
   background: color-mix(in srgb, var(--paper-raised) 92%, var(--code-bg));
   color: var(--ink);
   font: inherit;
   line-height: 1.5;
-  padding: 0.85rem 0.95rem;
+  padding: var(--panel-padding-compact);
   transition:
     border-color var(--transition),
     background-color var(--transition),
@@ -164,7 +165,7 @@
 
 .formButton {
   width: fit-content;
-  min-height: 2.85rem;
+  min-height: var(--control-height-lg);
   border: var(--line-strong) solid transparent;
   border-radius: var(--radius-pill);
   background: var(--moss);
@@ -220,7 +221,7 @@
   }
 
   .fieldInput {
-    padding: 0.8rem 0.85rem;
+    padding: var(--panel-padding-compact);
   }
 
   .formButton {
