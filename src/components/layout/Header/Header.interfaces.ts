@@ -9,6 +9,7 @@ export interface HeaderProps {
   currentHref: string;
   activeSection?: SectionId;
   navigate: (href: string) => void;
+  onSectionRequest: (sectionId: SectionId, href: string) => void;
   theme: ThemeName;
   onThemeToggle: () => void;
 }

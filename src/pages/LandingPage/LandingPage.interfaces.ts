@@ -7,5 +7,6 @@ export interface LandingPageProps {
   activeSection: SectionId;
   requestedSection: SectionId;
   requestedSectionKey: string;
+  onSectionRequest: (sectionId: SectionId) => void;
   onActiveSectionChange: (sectionId: SectionId) => void;
 }

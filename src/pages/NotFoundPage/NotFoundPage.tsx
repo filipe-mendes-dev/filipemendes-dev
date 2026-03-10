@@ -25,7 +25,7 @@ export const NotFoundPage = ({ navigate }: NotFoundPageProps): ReactElement => {
               <AppLink href="/" navigate={navigate} className={st.primaryAction}>
                 Return Home
               </AppLink>
-              <TextActionLink href="/#projects" navigate={navigate} className={st.secondaryAction}>
+              <TextActionLink href="/" navigate={navigate} className={st.secondaryAction}>
                 Browse Projects
               </TextActionLink>
             </div>

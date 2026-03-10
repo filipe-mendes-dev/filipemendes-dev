@@ -1,9 +1,8 @@
-import { type ReactElement, useLayoutEffect, useMemo, useRef } from 'react';
+import { type MouseEvent, type ReactElement, useLayoutEffect, useMemo, useRef } from 'react';
 
 import { MoonIcon, SunIcon } from '../../icons';
 import { AppLink } from '../../navigation/AppLink';
 import { Container } from '../../ui/Container';
-import { getSectionFromHref } from '../../../shared/navigation/sections';
 import type { HeaderProps } from './Header.interfaces';
 import st from './Header.module.css';
 
@@ -14,6 +13,7 @@ export const Header = ({
   currentHref,
   activeSection,
   navigate,
+  onSectionRequest,
   theme,
   onThemeToggle,
 }: HeaderProps): ReactElement => {
@@ -52,19 +52,18 @@ export const Header = ({
 
   const linkStatusMap = useMemo(() => {
     return navigation.reduce<Record<string, boolean>>((accumulator, item) => {
-      const sectionFromHref = getSectionFromHref(item.href);
       const isLandingSection = pathname === '/' && activeSection !== undefined;
 
       if (isLandingSection) {
-        accumulator[item.href] = sectionFromHref !== undefined && activeSection === sectionFromHref;
+        accumulator[item.label] = item.sectionId !== undefined && activeSection === item.sectionId;
 
         return accumulator;
       }
 
-      const isProjectDetailMatch = sectionFromHref === 'projects' && pathname.startsWith('/projects/');
+      const isProjectDetailMatch = item.sectionId === 'projects' && pathname.startsWith('/projects/');
       const isCurrentPath = currentHref === item.href;
 
-      accumulator[item.href] = isProjectDetailMatch || isCurrentPath;
+      accumulator[item.label] = isProjectDetailMatch || isCurrentPath;
 
       return accumulator;
     }, {});
@@ -83,7 +82,8 @@ export const Header = ({
         <nav aria-label="Primary" className={st.headerNav}>
           <ul className={st.siteNavList}>
             {navigation.map((item) => {
-              const isCurrent = linkStatusMap[item.href];
+              const sectionId = item.sectionId;
+              const isCurrent = linkStatusMap[item.label];
               const linkAriaCurrent = isCurrent ? { ariaCurrent: 'page' as const } : {};
 
               return (
@@ -92,6 +92,14 @@ export const Header = ({
                     href={item.href}
                     navigate={navigate}
                     className={st.siteNavLink}
+                    {...(sectionId === undefined
+                      ? {}
+                      : {
+                          onClick: (event: MouseEvent<HTMLAnchorElement>): void => {
+                            event.preventDefault();
+                            onSectionRequest(sectionId, item.href);
+                          },
+                        })}
                     {...linkAriaCurrent}
                   >
                     {item.label}

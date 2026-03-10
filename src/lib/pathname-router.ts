@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 
-import { getSectionFromHash, getSectionFromPath, type SectionId } from '../shared/navigation/sections';
+import type { SectionId } from '../shared/navigation/sections';
 
 export interface RouteMatch {
   page: 'landing' | 'project-detail' | 'not-found';
@@ -25,15 +25,13 @@ const normalizePath = (rawPath: string): string => {
   return rawPath;
 };
 
-const parsePath = (pathname: string, hash: string): RouteMatch => {
+const parsePath = (pathname: string, _hash: string): RouteMatch => {
   const path = normalizePath(pathname);
-  const sectionFromPath = getSectionFromPath(path);
-  const sectionFromHash = getSectionFromHash(hash);
 
-  if (sectionFromPath !== undefined) {
+  if (path === '/') {
     return {
       page: 'landing',
-      sectionId: sectionFromHash ?? sectionFromPath,
+      sectionId: 'home',
     };
   }
 

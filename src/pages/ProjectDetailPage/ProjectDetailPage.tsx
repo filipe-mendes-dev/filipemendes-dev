@@ -17,9 +17,9 @@ export const ProjectDetailPage = ({ project, navigate }: ProjectDetailPageProps)
     <div className={st.root}>
       <section className={`${st.detailSection} ${st.heroSection}`}>
         <Container className={st.heroInner}>
-          <AppLink href="/#projects" navigate={navigate} className={st.backLink}>
+          <AppLink href="/" navigate={navigate} className={st.backLink}>
             <BackIcon className={st.backIcon} />
-            <span>Back to Projects</span>
+            <span>Go back</span>
           </AppLink>
 
           <header className={st.heroHeader}>

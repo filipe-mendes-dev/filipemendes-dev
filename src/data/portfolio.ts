@@ -1,11 +1,15 @@
+import type { SectionId } from '../shared/navigation/sections';
+
 export interface NavigationItem {
   label: string;
   href: string;
+  sectionId?: SectionId;
 }
 
 export interface ActionLink {
   label: string;
   href: string;
+  sectionId?: SectionId;
   variant: 'primary' | 'secondary' | 'ghost';
 }
 
@@ -113,10 +117,10 @@ export const portfolio: PortfolioContent = {
   siteTitle: 'Filipe Mendes',
   descriptor: 'Frontend Engineer - Systems & AI',
   navigation: [
-    { label: 'Home', href: '/#home' },
-    { label: 'Projects', href: '/#projects' },
-    { label: 'About Me', href: '/#about' },
-    { label: 'Contact', href: '/#contact' },
+    { label: 'Home', href: '/', sectionId: 'home' },
+    { label: 'Projects', href: '/', sectionId: 'projects' },
+    { label: 'About Me', href: '/', sectionId: 'about' },
+    { label: 'Contact', href: '/', sectionId: 'contact' },
   ],
   hero: {
     name: 'Filipe Mendes',
@@ -128,8 +132,8 @@ export const portfolio: PortfolioContent = {
     photoUrl:
       'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=80',
     actions: [
-      { label: 'View Projects', href: '/#projects', variant: 'primary' },
-      { label: 'Contact', href: '/#contact', variant: 'secondary' },
+      { label: 'View Projects', href: '/', sectionId: 'projects', variant: 'primary' },
+      { label: 'Contact', href: '/', sectionId: 'contact', variant: 'secondary' },
     ],
   },
   projects: [

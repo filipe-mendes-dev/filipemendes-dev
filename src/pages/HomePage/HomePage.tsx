@@ -18,7 +18,7 @@ const getActionClassName = (action: ActionLink): string => {
   return `${su.button} ${variantClass} ${st.heroActionLink}`;
 };
 
-export const HomePage = ({ content, navigate }: HomePageProps): ReactElement => {
+export const HomePage = ({ content, navigate, onSectionRequest }: HomePageProps): ReactElement => {
   return (
     <div className={st.root}>
       <Section className={st.heroSection}>
@@ -48,11 +48,28 @@ export const HomePage = ({ content, navigate }: HomePageProps): ReactElement => 
                 <p className={st.heroNow}>{content.hero.now}</p>
               </div>
               <div className={st.heroActions}>
-                {content.hero.actions.map((action) => (
-                  <AppLink key={action.label} href={action.href} navigate={navigate} className={getActionClassName(action)}>
-                    {action.label}
-                  </AppLink>
-                ))}
+                {content.hero.actions.map((action) => {
+                  const sectionId = action.sectionId;
+
+                  return (
+                    <AppLink
+                      key={action.label}
+                      href={action.href}
+                      navigate={navigate}
+                      className={getActionClassName(action)}
+                      {...(sectionId === undefined
+                        ? {}
+                        : {
+                            onClick: (event) => {
+                              event.preventDefault();
+                              onSectionRequest(sectionId);
+                            },
+                          })}
+                    >
+                      {action.label}
+                    </AppLink>
+                  );
+                })}
               </div>
             </div>
           </div>

@@ -26,6 +26,12 @@ const getScrollOffset = (): number => {
   return safeHeaderOffset + safeScrollSpacing;
 };
 
+const getMaxScrollTop = (): number => {
+  const documentHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+
+  return Math.max(documentHeight - window.innerHeight, 0);
+};
+
 const revealSection = (sectionElement: HTMLElement): void => {
   sectionElement.dataset.reveal = revealVisibleValue;
 };
@@ -36,7 +42,7 @@ const hideSectionUntilReveal = (sectionElement: HTMLElement): void => {
 
 const scrollToSection = (sectionElement: HTMLElement, shouldReduceMotion: boolean): void => {
   const sectionTop = sectionElement.getBoundingClientRect().top + window.scrollY;
-  const targetTop = Math.max(sectionTop - getScrollOffset(), 0);
+  const targetTop = Math.min(Math.max(sectionTop - getScrollOffset(), 0), getMaxScrollTop());
   const hasMeaningfulScrollDelta = Math.abs(window.scrollY - targetTop) > 2;
 
   if (!hasMeaningfulScrollDelta) {
@@ -52,7 +58,7 @@ const scrollToSection = (sectionElement: HTMLElement, shouldReduceMotion: boolea
 const getSectionTargetTop = (sectionElement: HTMLElement): number => {
   const sectionTop = sectionElement.getBoundingClientRect().top + window.scrollY;
 
-  return Math.max(sectionTop - getScrollOffset(), 0);
+  return Math.min(Math.max(sectionTop - getScrollOffset(), 0), getMaxScrollTop());
 };
 
 const getSectionElements = (
@@ -114,6 +120,7 @@ export const LandingPage = ({
   activeSection,
   requestedSection,
   requestedSectionKey,
+  onSectionRequest,
   onActiveSectionChange,
 }: LandingPageProps): ReactElement => {
   const homeRef = useRef<HTMLElement>(null);
@@ -256,13 +263,13 @@ export const LandingPage = ({
         const pendingTargetTop = getSectionTargetTop(pendingElement);
         const hasReachedPendingTarget = Math.abs(window.scrollY - pendingTargetTop) <= 2;
 
-        onActiveSectionChange(pendingSection);
+        if (!hasReachedPendingTarget) {
+          onActiveSectionChange(pendingSection);
 
-        if (hasReachedPendingTarget) {
-          pendingSectionRef.current = null;
+          return;
         }
 
-        return;
+        pendingSectionRef.current = null;
       }
 
       onActiveSectionChange(getTrackedSection(sectionElements));
@@ -293,7 +300,7 @@ export const LandingPage = ({
   return (
     <div className={st.root}>
       <section id="home" ref={homeRef} className={`${st.rootSection} ${st.homeSection} ${st.revealSection}`} data-reveal={revealVisibleValue}>
-        <HomePage content={content} navigate={navigate} />
+        <HomePage content={content} navigate={navigate} onSectionRequest={onSectionRequest} />
       </section>
       <section
         id="projects"

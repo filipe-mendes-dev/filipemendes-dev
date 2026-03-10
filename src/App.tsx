@@ -42,12 +42,14 @@ export const App = (): ReactElement => {
   const { currentHref, pathname, route, navigate } = usePathnameRouter();
   const [theme, setTheme] = useState<ThemeName>(() => getInitialTheme());
   const [visibleSection, setVisibleSection] = useState<SectionId>(() => getSafeSection(route.sectionId));
+  const [requestedSection, setRequestedSection] = useState<SectionId>('home');
+  const [sectionRequestNonce, setSectionRequestNonce] = useState(0);
   const activeSection = route.page === 'landing' ? visibleSection : undefined;
   const footerAction =
     route.page === 'project-detail'
       ? {
-          actionHref: '/#projects',
-          actionLabel: 'Back to Projects',
+          actionHref: '/',
+          actionLabel: 'Go back',
         }
       : {};
 
@@ -57,16 +59,35 @@ export const App = (): ReactElement => {
     window.localStorage.setItem(themeStorageKey, theme);
   }, [theme]);
 
+  const handleNavigate = (href: string): void => {
+    if (href === '/') {
+      setRequestedSection('home');
+      setSectionRequestNonce((currentNonce) => currentNonce + 1);
+    }
+
+    navigate(href);
+  };
+
+  const handleSectionRequest = (sectionId: SectionId, href: string): void => {
+    setVisibleSection(sectionId);
+    setRequestedSection(sectionId);
+    setSectionRequestNonce((currentNonce) => currentNonce + 1);
+    navigate(href);
+  };
+
   const page = (() => {
     switch (route.page) {
       case 'landing':
         return (
           <LandingPage
             content={portfolio}
-            navigate={navigate}
-            activeSection={getSafeSection(route.sectionId)}
-            requestedSection={getSafeSection(route.sectionId)}
-            requestedSectionKey={currentHref}
+            navigate={handleNavigate}
+            activeSection={visibleSection}
+            requestedSection={requestedSection}
+            requestedSectionKey={`${currentHref}:${sectionRequestNonce}`}
+            onSectionRequest={(sectionId) => {
+              handleSectionRequest(sectionId, '/');
+            }}
             onActiveSectionChange={setVisibleSection}
           />
         );
@@ -77,10 +98,10 @@ export const App = (): ReactElement => {
           return <NotFoundPage navigate={navigate} />;
         }
 
-        return <ProjectDetailPage project={project} navigate={navigate} />;
-      }
+          return <ProjectDetailPage project={project} navigate={handleNavigate} />;
+        }
       default:
-        return <NotFoundPage navigate={navigate} />;
+        return <NotFoundPage navigate={handleNavigate} />;
     }
   })();
 
@@ -91,7 +112,8 @@ export const App = (): ReactElement => {
         navigation={portfolio.navigation}
         pathname={pathname}
         currentHref={currentHref}
-        navigate={navigate}
+        navigate={handleNavigate}
+        onSectionRequest={handleSectionRequest}
         theme={theme}
         onThemeToggle={() => {
           setTheme((currentTheme) => (currentTheme === 'light' ? 'dark' : 'light'));
@@ -104,7 +126,7 @@ export const App = (): ReactElement => {
         descriptor={portfolio.descriptor}
         githubUrl={getSocialLink('GitHub')}
         linkedInUrl={getSocialLink('LinkedIn')}
-        navigate={navigate}
+        navigate={handleNavigate}
         {...footerAction}
       />
     </div>

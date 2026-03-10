@@ -117,21 +117,18 @@
 
 .revealSection {
   transition:
-    opacity 560ms ease,
-    transform 620ms ease,
-    filter 520ms ease;
+    opacity 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .revealSection[data-reveal='pending'] {
   opacity: 0;
-  transform: translateY(10px) scale(0.996);
-  filter: blur(2px);
+  transform: translateY(8px);
 }
 
 .revealSection[data-reveal='visible'] {
   opacity: 1;
   transform: translateY(0);
-  filter: blur(0);
 }
 
 .rootSection:nth-child(1) {
@@ -154,7 +151,6 @@
   .revealSection {
     opacity: 1;
     transform: none;
-    filter: none;
     transition: none;
   }
 
