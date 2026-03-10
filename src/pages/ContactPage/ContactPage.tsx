@@ -21,11 +21,15 @@ const getSocialIcon = (label: string): ReactElement => {
   return <ExternalLinkIcon className={st.socialIcon} />;
 };
 
-export const ContactPage = ({ content }: ContactPageProps): ReactElement => {
+export const ContactPage = ({ content, revealRef, headerRevealRef }: ContactPageProps): ReactElement => {
   return (
     <div className={st.root}>
-      <Section title="Contact" subtitle="Open to focused product and architecture collaboration.">
-        <div className={st.contactGrid}>
+      <Section
+        title="Contact"
+        subtitle="Open to focused product and architecture collaboration."
+        {...(headerRevealRef === undefined ? {} : { headerRevealRef })}
+      >
+        <div ref={revealRef} className={st.contactGrid} data-landing-reveal="visible">
           <div className={st.supportRail}>
             <div className={st.introBlock}>
               <p className={st.eyebrow}>Direct Contact</p>

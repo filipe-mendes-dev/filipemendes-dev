@@ -18,11 +18,11 @@ const getActionClassName = (action: ActionLink): string => {
   return `${su.button} ${variantClass} ${st.heroActionLink}`;
 };
 
-export const HomePage = ({ content, navigate, onSectionRequest }: HomePageProps): ReactElement => {
+export const HomePage = ({ content, navigate, onSectionRequest, revealRef }: HomePageProps): ReactElement => {
   return (
     <div className={st.root}>
       <Section className={st.heroSection}>
-        <div className={st.heroWindow}>
+        <div ref={revealRef} className={st.heroWindow} data-landing-reveal="visible">
           <div className={st.windowDots} aria-hidden="true">
             <span />
             <span />

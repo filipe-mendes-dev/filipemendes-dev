@@ -8,11 +8,15 @@ import { ExperienceTimeline } from './components/ExperienceTimeline';
 import type { AboutPageProps } from './AboutPage.interfaces';
 import st from './AboutPage.module.css';
 
-export const AboutPage = ({ content }: AboutPageProps): ReactElement => {
+export const AboutPage = ({ content, revealRef, headerRevealRef }: AboutPageProps): ReactElement => {
   return (
     <div className={st.root}>
-      <Section title="About Me" subtitle="Profile, systems experience, education, and selected publications.">
-        <div className={st.layout}>
+      <Section
+        title="About Me"
+        subtitle="Profile, systems experience, education, and selected publications."
+        {...(headerRevealRef === undefined ? {} : { headerRevealRef })}
+      >
+        <div ref={revealRef} className={st.layout} data-landing-reveal="visible">
           <div className={st.introBlock}>
             <p className={st.introEyebrow}>Product systems perspective</p>
             <p className={st.cardLead}>{content.about.profile}</p>

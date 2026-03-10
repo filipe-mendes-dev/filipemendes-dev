@@ -12,6 +12,41 @@ const revealVisibleValue = 'visible';
 const revealPendingValue = 'pending';
 const scrollSpacingVar = '--landing-scroll-spacing';
 
+interface LandingRevealTiming {
+  threshold: number;
+  rootMargin: string;
+  initialViewportRatio: number;
+}
+
+const defaultRevealTiming: LandingRevealTiming = {
+  threshold: 0.52,
+  rootMargin: '0px 0px -2% 0px',
+  initialViewportRatio: 0.64,
+};
+
+const sectionRevealTiming: Record<SectionId, LandingRevealTiming> = {
+  home: {
+    threshold: 0.52,
+    rootMargin: '0px 0px -2% 0px',
+    initialViewportRatio: 0.64,
+  },
+  projects: {
+    threshold: 0.32,
+    rootMargin: '0px 0px -10% 0px',
+    initialViewportRatio: 0.78,
+  },
+  about: {
+    threshold: 0.5,
+    rootMargin: '0px 0px -2% 0px',
+    initialViewportRatio: 0.62,
+  },
+  contact: {
+    threshold: 0.54,
+    rootMargin: '0px 0px 0px 0px',
+    initialViewportRatio: 0.58,
+  },
+};
+
 const getPrefersReducedMotion = (): boolean => {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 };
@@ -33,11 +68,19 @@ const getMaxScrollTop = (): number => {
 };
 
 const revealSection = (sectionElement: HTMLElement): void => {
-  sectionElement.dataset.reveal = revealVisibleValue;
+  sectionElement.dataset.landingReveal = revealVisibleValue;
 };
 
 const hideSectionUntilReveal = (sectionElement: HTMLElement): void => {
-  sectionElement.dataset.reveal = revealPendingValue;
+  sectionElement.dataset.landingReveal = revealPendingValue;
+};
+
+const revealHeading = (headingElement: HTMLElement): void => {
+  headingElement.dataset.landingHeadingReveal = revealVisibleValue;
+};
+
+const hideHeadingUntilReveal = (headingElement: HTMLElement): void => {
+  headingElement.dataset.landingHeadingReveal = revealPendingValue;
 };
 
 const scrollToSection = (sectionElement: HTMLElement, shouldReduceMotion: boolean): void => {
@@ -81,6 +124,31 @@ const getSectionElements = (
   };
 };
 
+interface LandingRevealGroup {
+  content: HTMLDivElement | null;
+  header: HTMLElement | null;
+}
+
+const revealGroup = (revealGroup: LandingRevealGroup): void => {
+  if (revealGroup.header !== null) {
+    revealHeading(revealGroup.header);
+  }
+
+  if (revealGroup.content !== null) {
+    revealSection(revealGroup.content);
+  }
+};
+
+const hideRevealGroupUntilReveal = (revealGroup: LandingRevealGroup): void => {
+  if (revealGroup.header !== null) {
+    hideHeadingUntilReveal(revealGroup.header);
+  }
+
+  if (revealGroup.content !== null) {
+    hideSectionUntilReveal(revealGroup.content);
+  }
+};
+
 const getTrackedSection = (sectionElements: Record<SectionId, HTMLElement>): SectionId => {
   const activationLine = window.scrollY + getScrollOffset() + window.innerHeight * 0.2;
   const orderedSections = (Object.entries(sectionElements) as [SectionId, HTMLElement][])
@@ -97,20 +165,29 @@ const getTrackedSection = (sectionElements: Record<SectionId, HTMLElement>): Sec
   return currentSection;
 };
 
-const revealSectionsBetween = (sectionElements: Record<SectionId, HTMLElement>, startTop: number, endTop: number): void => {
+const revealGroupsBetween = (
+  sectionElements: Record<SectionId, HTMLElement>,
+  revealRefs: Record<SectionId, { current: HTMLDivElement | null }>,
+  headerRevealRefs: Record<SectionId, { current: HTMLElement | null } | null>,
+  startTop: number,
+  endTop: number,
+): void => {
   const lowerBound = Math.min(startTop, endTop);
   const upperBound = Math.max(startTop, endTop);
   const orderedSections = (Object.entries(sectionElements) as [SectionId, HTMLElement][])
     .sort(([, leftElement], [, rightElement]) => leftElement.offsetTop - rightElement.offsetTop);
 
-  orderedSections.forEach(([, sectionElement]) => {
+  orderedSections.forEach(([sectionId, sectionElement]) => {
     const sectionTop = getSectionTargetTop(sectionElement);
 
     if (sectionTop < lowerBound || sectionTop > upperBound) {
       return;
     }
 
-    revealSection(sectionElement);
+    revealGroup({
+      content: revealRefs[sectionId].current,
+      header: headerRevealRefs[sectionId]?.current ?? null,
+    });
   });
 };
 
@@ -127,6 +204,13 @@ export const LandingPage = ({
   const projectsRef = useRef<HTMLElement>(null);
   const aboutRef = useRef<HTMLElement>(null);
   const contactRef = useRef<HTMLElement>(null);
+  const homeRevealRef = useRef<HTMLDivElement>(null);
+  const projectsRevealRef = useRef<HTMLDivElement>(null);
+  const aboutRevealRef = useRef<HTMLDivElement>(null);
+  const contactRevealRef = useRef<HTMLDivElement>(null);
+  const projectsHeaderRevealRef = useRef<HTMLElement>(null);
+  const aboutHeaderRevealRef = useRef<HTMLElement>(null);
+  const contactHeaderRevealRef = useRef<HTMLElement>(null);
   const hasHandledInitialSectionScrollRef = useRef(false);
   const pendingSectionRef = useRef<SectionId | null>(null);
   const initialActiveSectionRef = useRef(activeSection);
@@ -141,91 +225,144 @@ export const LandingPage = ({
     [],
   );
 
-  useLayoutEffect(() => {
-    const sectionElements = Object.values(sectionRefs)
-      .map((sectionRef) => sectionRef.current)
-      .filter((element): element is HTMLElement => element !== null);
+  const revealRefs = useMemo(
+    () => ({
+      home: homeRevealRef,
+      projects: projectsRevealRef,
+      about: aboutRevealRef,
+      contact: contactRevealRef,
+    }),
+    [],
+  );
 
-    if (sectionElements.length === 0) {
+  const headerRevealRefs = useMemo(
+    () => ({
+      home: null,
+      projects: projectsHeaderRevealRef,
+      about: aboutHeaderRevealRef,
+      contact: contactHeaderRevealRef,
+    }),
+    [],
+  );
+
+  useLayoutEffect(() => {
+    const revealGroups = (Object.entries(revealRefs) as [SectionId, { current: HTMLDivElement | null }][]).map(
+      ([sectionId, revealRef]) => ({
+        sectionId,
+        revealGroup: {
+          content: revealRef.current,
+          header: headerRevealRefs[sectionId]?.current ?? null,
+        },
+      }),
+    );
+
+    if (revealGroups.every(({ revealGroup }) => revealGroup.content === null)) {
       return;
     }
 
     const prefersReducedMotion = getPrefersReducedMotion();
 
     if (prefersReducedMotion) {
-      sectionElements.forEach(revealSection);
+      revealGroups.forEach(({ revealGroup: group }) => {
+        revealGroup(group);
+      });
 
       return;
     }
 
-    sectionElements.forEach((element) => {
-      if (element.id === initialActiveSectionRef.current) {
-        revealSection(element);
+    revealGroups.forEach(({ sectionId, revealGroup: group }) => {
+      const { content } = group;
+
+      if (content === null) {
+        return;
+      }
+
+      if (sectionId === initialActiveSectionRef.current) {
+        revealGroup(group);
 
         return;
       }
 
-      const { top } = element.getBoundingClientRect();
-      const isAlreadyInView = top < window.innerHeight;
+      const { top } = content.getBoundingClientRect();
+      const timing = sectionRevealTiming[sectionId];
+      const isAlreadyInView = top < window.innerHeight * timing.initialViewportRatio;
 
       if (isAlreadyInView) {
-        revealSection(element);
+        revealGroup(group);
 
         return;
       }
 
-      hideSectionUntilReveal(element);
+      hideRevealGroupUntilReveal(group);
     });
-  }, [sectionRefs]);
+  }, [headerRevealRefs, revealRefs]);
 
   useEffect(() => {
-    const sectionElements = Object.values(sectionRefs)
-      .map((sectionRef) => sectionRef.current)
-      .filter((element): element is HTMLElement => element !== null);
+    const revealEntries = (Object.entries(revealRefs) as [SectionId, { current: HTMLDivElement | null }][]).map(
+      ([sectionId, revealRef]) => ({
+        sectionId,
+        content: revealRef.current,
+        timing: sectionRevealTiming[sectionId] ?? defaultRevealTiming,
+      }),
+    );
+    const revealElements = revealEntries
+      .map(({ content }) => content)
+      .filter((element): element is HTMLDivElement => element !== null);
 
-    if (sectionElements.length === 0 || getPrefersReducedMotion()) {
+    if (revealElements.length === 0 || getPrefersReducedMotion()) {
       return;
     }
 
-    const observer = new IntersectionObserver(
-      (entries, intersectionObserver) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          revealSection(entry.target as HTMLElement);
-          intersectionObserver.unobserve(entry.target);
-        });
-      },
-      {
-        threshold: 0.2,
-        rootMargin: `0px 0px -12% 0px`,
-      },
-    );
-
-    sectionElements.forEach((element) => {
-      if (element.dataset.reveal !== revealPendingValue) {
-        return;
+    const observers = revealEntries.map(({ content, sectionId, timing }) => {
+      if (content?.dataset.landingReveal !== revealPendingValue) {
+        return null;
       }
 
-      observer.observe(element);
+      const observer = new IntersectionObserver(
+        (entries, intersectionObserver) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+            revealGroup({
+              content,
+              header: headerRevealRefs[sectionId]?.current ?? null,
+            });
+            intersectionObserver.unobserve(entry.target);
+          });
+        },
+        {
+          threshold: timing.threshold,
+          rootMargin: timing.rootMargin,
+        },
+      );
+
+      observer.observe(content);
+
+      return observer;
     });
 
     return () => {
-      observer.disconnect();
+      observers.forEach((observer) => {
+        observer?.disconnect();
+      });
     };
-  }, [sectionRefs]);
+  }, [headerRevealRefs, revealRefs]);
 
   useEffect(() => {
     const targetElement = sectionRefs[requestedSection].current;
+    const targetRevealElement = revealRefs[requestedSection].current;
     const sectionElements = getSectionElements(sectionRefs);
 
-    if (targetElement === null || sectionElements === null) {
-      return;
+    if (targetElement === null || targetRevealElement === null || sectionElements === null) {
+        return;
     }
 
-    revealSection(targetElement);
+    revealGroup({
+      content: targetRevealElement,
+      header: headerRevealRefs[requestedSection]?.current ?? null,
+    });
 
     const prefersReducedMotion = getPrefersReducedMotion();
     const shouldSmoothScroll = hasHandledInitialSectionScrollRef.current && !prefersReducedMotion;
@@ -235,7 +372,7 @@ export const LandingPage = ({
     if (hasMeaningfulScrollDelta && shouldSmoothScroll) {
       pendingSectionRef.current = requestedSection;
       onActiveSectionChange(requestedSection);
-      revealSectionsBetween(sectionElements, window.scrollY, targetTop);
+      revealGroupsBetween(sectionElements, revealRefs, headerRevealRefs, window.scrollY, targetTop);
     } else if (!hasMeaningfulScrollDelta) {
       pendingSectionRef.current = null;
       onActiveSectionChange(requestedSection);
@@ -243,7 +380,7 @@ export const LandingPage = ({
 
     scrollToSection(targetElement, !shouldSmoothScroll);
     hasHandledInitialSectionScrollRef.current = true;
-  }, [onActiveSectionChange, requestedSection, requestedSectionKey, sectionRefs]);
+  }, [headerRevealRefs, onActiveSectionChange, requestedSection, requestedSectionKey, revealRefs, sectionRefs]);
 
   useEffect(() => {
     const sectionElements = getSectionElements(sectionRefs);
@@ -299,27 +436,25 @@ export const LandingPage = ({
 
   return (
     <div className={st.root}>
-      <section id="home" ref={homeRef} className={`${st.rootSection} ${st.homeSection} ${st.revealSection}`} data-reveal={revealVisibleValue}>
-        <HomePage content={content} navigate={navigate} onSectionRequest={onSectionRequest} />
+      <section id="home" ref={homeRef} className={`${st.rootSection} ${st.homeSection}`}>
+        <HomePage content={content} navigate={navigate} onSectionRequest={onSectionRequest} revealRef={homeRevealRef} />
       </section>
       <section
         id="projects"
         ref={projectsRef}
-        className={`${st.rootSection} ${st.projectsSection} ${st.revealSection}`}
-        data-reveal={revealVisibleValue}
+        className={`${st.rootSection} ${st.projectsSection}`}
       >
-        <ProjectsPage content={content} navigate={navigate} />
+        <ProjectsPage content={content} navigate={navigate} revealRef={projectsRevealRef} headerRevealRef={projectsHeaderRevealRef} />
       </section>
-      <section id="about" ref={aboutRef} className={`${st.rootSection} ${st.aboutSection} ${st.revealSection}`} data-reveal={revealVisibleValue}>
-        <AboutPage content={content} />
+      <section id="about" ref={aboutRef} className={`${st.rootSection} ${st.aboutSection}`}>
+        <AboutPage content={content} revealRef={aboutRevealRef} headerRevealRef={aboutHeaderRevealRef} />
       </section>
       <section
         id="contact"
         ref={contactRef}
-        className={`${st.rootSection} ${st.contactSection} ${st.revealSection}`}
-        data-reveal={revealVisibleValue}
+        className={`${st.rootSection} ${st.contactSection}`}
       >
-        <ContactPage content={content} />
+        <ContactPage content={content} revealRef={contactRevealRef} headerRevealRef={contactHeaderRevealRef} />
       </section>
     </div>
   );
