@@ -1,5 +1,132 @@
 .root {
+    display: grid;
+    min-height: 100%;
+    align-content: center;
+}
+
+.layout {
+    display: grid;
+    justify-items: start;
+    width: 100%;
+}
+
+.introBlock {
+    display: grid;
+    gap: var(--space-4);
+    width: min(100%, 56rem);
+}
+
+.eyebrow {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-body-sm);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--moss);
+}
+
+.lead {
+    margin: 0;
+    max-width: 36ch;
+    font-size: clamp(1.12rem, 1.45vw, 1.28rem);
+    line-height: 1.7;
+    color: var(--ink-soft);
 }
 
 .panel {
+    gap: var(--space-4);
+    width: 100%;
+    max-width: 44rem;
+}
+
+.panelHeader {
+    display: grid;
+    gap: var(--space-2);
+}
+
+.panelEyebrow {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-caption);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+}
+
+.panelTitle {
+    margin: 0;
+    font-size: clamp(1.3rem, 1.65vw, 1.55rem);
+    line-height: 1.08;
+}
+
+.panelCopy {
+    margin: 0;
+    max-width: 38ch;
+    color: var(--ink-muted);
+    line-height: 1.62;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    align-items: center;
+}
+
+.primaryAction {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.85rem;
+    width: fit-content;
+    padding: 0.7rem 1.05rem;
+    border: var(--line-strong) solid transparent;
+    border-radius: var(--radius-pill);
+    background: var(--moss);
+    color: var(--ink-inverse);
+    font-family: var(--font-display);
+    font-size: var(--font-size-body);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color var(--transition), transform var(--transition),
+        box-shadow var(--transition);
+}
+
+.primaryAction:hover {
+    background: var(--moss-strong);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px
+        color-mix(in srgb, var(--moss-faint) 22%, transparent);
+}
+
+.primaryAction:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--moss) 30%, transparent);
+    outline-offset: 2px;
+}
+
+.secondaryAction {
+    color: var(--moss);
+}
+
+@media (min-width: 48rem) {
+    .root > header,
+    .root > div {
+        box-sizing: border-box;
+        padding-inline-start: clamp(var(--space-2), 3vw, var(--space-5));
+    }
+}
+
+@media (max-width: 30rem) {
+    .lead {
+        font-size: var(--font-size-body-lg);
+        max-width: 22ch;
+    }
+
+    .actions {
+        gap: var(--space-2);
+    }
+
+    .primaryAction {
+        width: 100%;
+    }
 }

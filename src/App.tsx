@@ -98,7 +98,7 @@ export const App = (): ReactElement => {
         }}
         {...(activeSection !== undefined ? { activeSection } : {})}
       />
-      <main>{page}</main>
+      <main className={st.main}>{page}</main>
       <Footer
         name={portfolio.siteTitle}
         descriptor={portfolio.descriptor}
