@@ -122,7 +122,7 @@ const commonThemeTokens: Pick<
   'space-4': '1.5rem',
   'space-5': '2rem',
   'space-6': 'clamp(2.5rem, 5vw, 4rem)',
-  container: 'min(100% - 2rem, 72rem)',
+  container: 'min(100% - clamp(2rem, 6vw, 4.5rem), 72rem)',
   transition: '240ms ease',
 };
 
