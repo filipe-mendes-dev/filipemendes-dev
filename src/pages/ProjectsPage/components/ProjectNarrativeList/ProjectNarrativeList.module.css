@@ -7,8 +7,6 @@
   display: grid;
   gap: 0.35rem;
   align-content: start;
-  padding-left: var(--space-3);
-  border-left: 1px solid color-mix(in srgb, var(--line) 58%, transparent);
 }
 
 .label {
@@ -29,13 +27,6 @@
   text-wrap: pretty;
 }
 
-@media (max-width: 47.99rem) {
-  .item {
-    padding-left: 0;
-    border-left: 0;
-  }
-}
-
 @media (min-width: 48rem) {
   .root {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -45,7 +36,5 @@
 
   .item {
     min-height: 100%;
-    padding-left: 0;
-    border-left: 0;
   }
 }

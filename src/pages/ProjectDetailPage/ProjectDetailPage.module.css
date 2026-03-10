@@ -137,15 +137,15 @@
   gap: var(--space-2);
   align-items: stretch;
   width: fit-content;
-  max-width: min(100%, var(--content-max-wide));
+  max-width: min(100%, 25rem);
 }
 
 .projectLogo {
   align-self: stretch;
   height: auto;
   aspect-ratio: 1;
-  min-width: 3.75rem;
-  max-width: 4.25rem;
+  min-width: 3.35rem;
+  max-width: 3.75rem;
   border-radius: calc(var(--radius-md) * 0.92);
   border: var(--line-strong) solid color-mix(in srgb, var(--code-border) 44%, transparent);
   display: grid;
@@ -270,8 +270,8 @@
   display: grid;
   gap: var(--space-1);
   max-width: var(--content-max-wide);
-  padding-left: var(--space-3);
-  border-left: var(--line-strong) solid color-mix(in srgb, var(--line) 72%, transparent);
+  padding-left: 0;
+  border-left: 0;
 }
 
 .stackSectionContent {
@@ -312,6 +312,22 @@
   outline-offset: 2px;
 }
 
+@media (min-width: 48rem) {
+  .heroTitleRow {
+    max-width: min(100%, var(--content-max-wide));
+  }
+
+  .projectLogo {
+    min-width: 3.75rem;
+    max-width: 4.25rem;
+  }
+
+  .detailSectionContent {
+    padding-left: var(--space-3);
+    border-left: var(--line-strong) solid color-mix(in srgb, var(--line) 72%, transparent);
+  }
+}
+
 @media (min-width: 64rem) {
   .heroInner {
     padding-top: var(--space-5);
@@ -334,23 +350,6 @@
 
   .galleryGrid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 47.99rem) {
-  .heroTitleRow {
-    gap: var(--space-2);
-    max-width: min(100%, 25rem);
-  }
-
-  .projectLogo {
-    min-width: 3.35rem;
-    max-width: 3.75rem;
-  }
-
-  .detailSectionContent {
-    padding-left: 0;
-    border-left: 0;
   }
 }
 
