@@ -35,7 +35,7 @@
   gap: 0.55rem;
   width: fit-content;
   min-height: var(--control-height-md);
-  padding: 0.5rem 0.85rem;
+  padding: var(--control-padding-md);
   border: var(--line-strong) solid color-mix(in srgb, var(--line) 88%, transparent);
   border-radius: var(--radius-sm);
   background: color-mix(in srgb, var(--paper-raised) 80%, transparent);

@@ -79,7 +79,7 @@
     justify-content: center;
     min-height: var(--control-height-lg);
     width: fit-content;
-    padding: 0.7rem 1.05rem;
+    padding: var(--control-padding-lg);
     border: var(--line-strong) solid transparent;
     border-radius: var(--radius-pill);
     background: var(--moss);

@@ -4,7 +4,7 @@
     gap: 0.35rem;
     width: fit-content;
     max-width: 100%;
-    min-height: 2.75rem;
+    min-height: var(--control-height-md);
     padding: 0.5rem 0;
     color: var(--moss);
     text-decoration-line: underline;
@@ -42,14 +42,14 @@
 
 .leadingIcon > svg,
 .leadingIcon > img {
-    width: 1rem;
-    height: 1rem;
+    width: var(--icon-size-sm);
+    height: var(--icon-size-sm);
     flex: none;
 }
 
 .trailingIcon > svg,
 .trailingIcon > img {
-    width: 0.85rem;
-    height: 0.85rem;
+    width: var(--icon-size-xs);
+    height: var(--icon-size-xs);
     flex: none;
 }

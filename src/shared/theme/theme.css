@@ -75,7 +75,10 @@
   --panel-padding-compact: clamp(0.85rem, 1.35vw, 1rem);
   --control-height-md: 2.75rem;
   --control-height-lg: 2.85rem;
+  --control-padding-md: 0.55rem 0.85rem;
+  --control-padding-lg: 0.7rem 1.05rem;
   --icon-size-sm: 1rem;
+  --icon-size-xs: 0.85rem;
   --icon-size-md: 1.25rem;
   --header-offset: 4.5rem;
   --shadow-tint: 0 20px 40px rgb(35 39 42 / 8%);

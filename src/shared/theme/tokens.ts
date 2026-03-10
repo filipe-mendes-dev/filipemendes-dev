@@ -73,7 +73,10 @@ export interface ThemeTokens {
   'panel-padding-compact': string;
   'control-height-md': string;
   'control-height-lg': string;
+  'control-padding-md': string;
+  'control-padding-lg': string;
   'icon-size-sm': string;
+  'icon-size-xs': string;
   'icon-size-md': string;
   'header-offset': string;
   'shadow-tint': string;
@@ -124,7 +127,10 @@ const commonThemeTokens: Pick<
   | 'panel-padding-compact'
   | 'control-height-md'
   | 'control-height-lg'
+  | 'control-padding-md'
+  | 'control-padding-lg'
   | 'icon-size-sm'
+  | 'icon-size-xs'
   | 'icon-size-md'
   | 'header-offset'
   | 'line-strong'
@@ -171,7 +177,10 @@ const commonThemeTokens: Pick<
   'panel-padding-compact': 'clamp(0.85rem, 1.35vw, 1rem)',
   'control-height-md': '2.75rem',
   'control-height-lg': '2.85rem',
+  'control-padding-md': '0.55rem 0.85rem',
+  'control-padding-lg': '0.7rem 1.05rem',
   'icon-size-sm': '1rem',
+  'icon-size-xs': '0.85rem',
   'icon-size-md': '1.25rem',
   'header-offset': '4.5rem',
   transition: '240ms ease',
