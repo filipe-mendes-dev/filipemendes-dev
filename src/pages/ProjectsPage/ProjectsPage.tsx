@@ -1,5 +1,6 @@
 import type { ReactElement } from 'react';
 
+import { RevealItem } from '../../components/ui/RevealItem';
 import { Section } from '../../components/ui/Section';
 import { ProjectCard } from './components/ProjectCard';
 import type { ProjectsPageProps } from './ProjectsPage.interfaces';
@@ -14,8 +15,10 @@ export const ProjectsPage = ({ content, navigate, revealRef, headerRevealRef }: 
         {...(headerRevealRef === undefined ? {} : { headerRevealRef })}
       >
         <div ref={revealRef} className={st.projectsList} data-landing-reveal="visible">
-          {content.projects.map((project) => (
-            <ProjectCard key={project.slug} navigate={navigate} project={project} />
+          {content.projects.map((project, index) => (
+            <RevealItem key={project.slug} index={index}>
+              <ProjectCard navigate={navigate} project={project} />
+            </RevealItem>
           ))}
         </div>
       </Section>
