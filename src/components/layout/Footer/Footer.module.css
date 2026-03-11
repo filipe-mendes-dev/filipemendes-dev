@@ -1,7 +1,10 @@
 .root,
 .siteFooter {
   border-top: var(--line-strong) solid var(--line);
-  background: var(--footer-bg);
+  background:
+    radial-gradient(circle at 80% 0%, color-mix(in srgb, var(--moss) 2%, transparent) 0%, transparent 22%),
+    linear-gradient(180deg, color-mix(in srgb, var(--paper-raised) 5%, transparent) 0%, transparent 40%),
+    var(--footer-bg);
   padding-block: var(--space-5);
 }
 
@@ -113,7 +116,7 @@
   padding: 0.7rem 0.9rem;
   border: var(--line-strong) solid color-mix(in srgb, var(--line) 92%, transparent);
   border-radius: var(--radius-pill);
-  background: color-mix(in srgb, var(--paper-raised) 72%, transparent);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--paper-raised) 76%, transparent) 0%, color-mix(in srgb, var(--card-bg) 68%, transparent) 100%);
   text-decoration: none;
   width: 100%;
   color: var(--ink-soft);
