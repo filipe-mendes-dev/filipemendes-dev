@@ -101,6 +101,8 @@ You are working in a frontend web project. Follow these rules strictly.
 ## 11) Theme and typography boundary
 
 -   Keep a typed token source in `src/shared/theme/tokens.ts`.
+-   Prefer centralized motion tokens/config for shared interaction and animation behavior.
+-   Avoid duplicating semantically related motion values across component and page files; derive them from one source of truth when they represent the same behavior.
 -   Mirror tokens into CSS custom properties (`:root { --... }`) through bootstrap wiring (`src/shared/theme/applyThemeTokens.ts`).
 -   Do not hardcode raw colors or typography sizes in components.
 -   Prefer semantic typography primitives for shared UI when adding new reusable components.
