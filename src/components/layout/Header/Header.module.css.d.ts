@@ -1,6 +1,14 @@
 declare const styles: {
+  readonly 'desktopThemeToggle': string;
   readonly 'headerInner': string;
   readonly 'headerNav': string;
+  readonly 'headerNavInner': string;
+  readonly 'headerNavOpen': string;
+  readonly 'menuToggle': string;
+  readonly 'menuToggleBars': string;
+  readonly 'mobileMenuFooter': string;
+  readonly 'mobileMenuLabel': string;
+  readonly 'mobileThemeToggle': string;
   readonly 'root': string;
   readonly 'siteHeader': string;
   readonly 'siteMark': string;

@@ -1,4 +1,13 @@
-import { type MouseEvent, type ReactElement, useLayoutEffect, useMemo, useRef } from 'react';
+import {
+  type MouseEvent,
+  type ReactElement,
+  useEffect,
+  useId,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import { MoonIcon, SunIcon } from '../../icons';
 import { AppLink } from '../../navigation/AppLink';
@@ -18,8 +27,12 @@ export const Header = ({
   onThemeToggle,
 }: HeaderProps): ReactElement => {
   const headerRef = useRef<HTMLElement>(null);
+  const mobileNavRef = useRef<HTMLElement>(null);
+  const mobileNavId = useId();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const homeLinkAriaCurrent = pathname === '/' && activeSection === 'home' ? { ariaCurrent: 'page' as const } : {};
   const themeToggleLabel = theme === 'light' ? 'Activate dark theme' : 'Activate light theme';
+  const mobileMenuLabel = isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu';
 
   useLayoutEffect(() => {
     if (headerRef.current === null) {
@@ -50,6 +63,35 @@ export const Header = ({
     };
   }, []);
 
+  useEffect(() => {
+    if (!isMobileMenuOpen) {
+      return;
+    }
+
+    const handlePointerDown = (event: PointerEvent): void => {
+      const target = event.target;
+
+      if (!(target instanceof Node)) {
+        return;
+      }
+
+      const isInsideHeader = headerRef.current?.contains(target) ?? false;
+      const isInsideMobileNav = mobileNavRef.current?.contains(target) ?? false;
+
+      if (isInsideHeader || isInsideMobileNav) {
+        return;
+      }
+
+      setIsMobileMenuOpen(false);
+    };
+
+    document.addEventListener('pointerdown', handlePointerDown);
+
+    return () => {
+      document.removeEventListener('pointerdown', handlePointerDown);
+    };
+  }, [isMobileMenuOpen]);
+
   const linkStatusMap = useMemo(() => {
     return navigation.reduce<Record<string, boolean>>((accumulator, item) => {
       const isLandingSection = pathname === '/' && activeSection !== undefined;
@@ -79,7 +121,43 @@ export const Header = ({
           <span className={st.siteMarkText}>filipemendes.dev</span>
           <span className={st.siteMarkSrOnly}>{siteTitle}</span>
         </AppLink>
-        <nav aria-label="Primary" className={st.headerNav}>
+        <button
+          type="button"
+          className={st.menuToggle}
+          aria-expanded={isMobileMenuOpen}
+          aria-controls={mobileNavId}
+          aria-label={mobileMenuLabel}
+          onClick={() => {
+            setIsMobileMenuOpen((currentValue) => !currentValue);
+          }}
+        >
+          <span className={st.menuToggleBars} aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </span>
+        </button>
+        <button
+          type="button"
+          className={`${st.themeToggle} ${st.desktopThemeToggle} ${theme === 'dark' ? st.themeToggleDark : ''}`}
+          onClick={onThemeToggle}
+          aria-label={themeToggleLabel}
+          aria-pressed={theme === 'dark'}
+          title={themeToggleLabel}
+        >
+          <span className={st.themeIconWrap} aria-hidden="true">
+            <SunIcon className={st.themeIconSun} />
+            <MoonIcon className={st.themeIconMoon} />
+          </span>
+        </button>
+      </Container>
+      <nav
+        ref={mobileNavRef}
+        id={mobileNavId}
+        aria-label="Primary"
+        className={`${st.headerNav} ${isMobileMenuOpen ? st.headerNavOpen : ''}`}
+      >
+        <div className={st.headerNavInner}>
           <ul className={st.siteNavList}>
             {navigation.map((item) => {
               const sectionId = item.sectionId;
@@ -92,14 +170,16 @@ export const Header = ({
                     href={item.href}
                     navigate={navigate}
                     className={st.siteNavLink}
-                    {...(sectionId === undefined
-                      ? {}
-                      : {
-                          onClick: (event: MouseEvent<HTMLAnchorElement>): void => {
-                            event.preventDefault();
-                            onSectionRequest(sectionId, item.href);
-                          },
-                        })}
+                    onClick={(event: MouseEvent<HTMLAnchorElement>): void => {
+                      setIsMobileMenuOpen(false);
+
+                      if (sectionId === undefined) {
+                        return;
+                      }
+
+                      event.preventDefault();
+                      onSectionRequest(sectionId, item.href);
+                    }}
                     {...linkAriaCurrent}
                   >
                     {item.label}
@@ -108,21 +188,24 @@ export const Header = ({
               );
             })}
           </ul>
-        </nav>
-        <button
-          type="button"
-          className={`${st.themeToggle} ${theme === 'dark' ? st.themeToggleDark : ''}`}
-          onClick={onThemeToggle}
-          aria-label={themeToggleLabel}
-          aria-pressed={theme === 'dark'}
-          title={themeToggleLabel}
-        >
-          <span className={st.themeIconWrap} aria-hidden="true">
-            <SunIcon className={st.themeIconSun} />
-            <MoonIcon className={st.themeIconMoon} />
-          </span>
-        </button>
-      </Container>
+          <div className={st.mobileMenuFooter}>
+            <span className={st.mobileMenuLabel}>Theme</span>
+            <button
+              type="button"
+              className={`${st.themeToggle} ${st.mobileThemeToggle} ${theme === 'dark' ? st.themeToggleDark : ''}`}
+              onClick={onThemeToggle}
+              aria-label={themeToggleLabel}
+              aria-pressed={theme === 'dark'}
+              title={themeToggleLabel}
+            >
+              <span className={st.themeIconWrap} aria-hidden="true">
+                <SunIcon className={st.themeIconSun} />
+                <MoonIcon className={st.themeIconMoon} />
+              </span>
+            </button>
+          </div>
+        </div>
+      </nav>
     </header>
   );
 };
