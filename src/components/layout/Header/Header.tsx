@@ -1,5 +1,6 @@
 import {
-  type MouseEvent,
+  type CSSProperties,
+  type MouseEventHandler,
   type ReactElement,
   useEffect,
   useId,
@@ -11,6 +12,7 @@ import {
 import type { NavigationItem } from '../../../data/portfolio';
 import { AppLink } from '../../navigation/AppLink';
 import { Container } from '../../ui/Container';
+import { HeaderNavList } from './HeaderNavList';
 import type { HeaderProps } from './Header.interfaces';
 import { ThemeToggle } from './ThemeToggle';
 import st from './Header.module.css';
@@ -35,6 +37,28 @@ export const Header = ({
   const mobileMenuLabel = isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu';
   const getNavigationKey = (item: NavigationItem): string => {
     return item.sectionId ?? `${item.href}:${item.label}`;
+  };
+  const getDesktopNavItemOnClick = (item: NavigationItem): MouseEventHandler<HTMLAnchorElement> => {
+    return (event): void => {
+      if (item.sectionId === undefined) {
+        return;
+      }
+
+      event.preventDefault();
+      onSectionRequest(item.sectionId, item.href);
+    };
+  };
+  const getMobileNavItemOnClick = (item: NavigationItem): MouseEventHandler<HTMLAnchorElement> => {
+    return (event): void => {
+      setIsMobileMenuOpen(false);
+
+      if (item.sectionId === undefined) {
+        return;
+      }
+
+      event.preventDefault();
+      onSectionRequest(item.sectionId, item.href);
+    };
   };
   const isNavigationItemCurrent = (item: NavigationItem): boolean => {
     const isLandingSection = pathname === '/' && activeSection !== undefined;
@@ -70,11 +94,9 @@ export const Header = ({
     });
 
     observer.observe(headerRef.current);
-    window.addEventListener('resize', syncHeaderOffset);
 
     return () => {
       observer.disconnect();
-      window.removeEventListener('resize', syncHeaderOffset);
     };
   }, []);
 
@@ -107,6 +129,12 @@ export const Header = ({
     };
   }, [isMobileMenuOpen]);
 
+  const getMobileNavItemStyle = (index: number): CSSProperties => {
+    return {
+      transitionDelay: `${90 + index * 40}ms`,
+    };
+  };
+
   return (
     <header ref={headerRef} className={`${st.root} ${st.siteHeader}`}>
       <Container className={st.headerInner}>
@@ -118,34 +146,15 @@ export const Header = ({
           <span className={st.siteMarkSrOnly}>{siteTitle}</span>
         </AppLink>
         <nav aria-label="Primary" className={st.desktopNav}>
-          <ul className={`${st.siteNavList} ${st.desktopSiteNavList}`}>
-            {navigation.map((item) => {
-              const sectionId = item.sectionId;
-              const isCurrent = isNavigationItemCurrent(item);
-              const linkAriaCurrent = isCurrent ? { ariaCurrent: 'page' as const } : {};
-
-              return (
-                <li key={getNavigationKey(item)}>
-                  <AppLink
-                    href={item.href}
-                    navigate={navigate}
-                    className={st.siteNavLink}
-                    onClick={(event: MouseEvent<HTMLAnchorElement>): void => {
-                      if (sectionId === undefined) {
-                        return;
-                      }
-
-                      event.preventDefault();
-                      onSectionRequest(sectionId, item.href);
-                    }}
-                    {...linkAriaCurrent}
-                  >
-                    {item.label}
-                  </AppLink>
-                </li>
-              );
-            })}
-          </ul>
+          <HeaderNavList
+            items={navigation}
+            listClassName={`${st.siteNavList} ${st.desktopSiteNavList}`}
+            linkClassName={st.siteNavLink}
+            navigate={navigate}
+            getItemKey={getNavigationKey}
+            isItemCurrent={isNavigationItemCurrent}
+            getItemOnClick={getDesktopNavItemOnClick}
+          />
         </nav>
         <button
           type="button"
@@ -178,36 +187,16 @@ export const Header = ({
         className={`${st.headerNav} ${isMobileMenuOpen ? st.headerNavOpen : ''}`}
       >
         <div className={st.headerNavInner}>
-          <ul className={st.siteNavList}>
-            {navigation.map((item) => {
-              const sectionId = item.sectionId;
-              const isCurrent = isNavigationItemCurrent(item);
-              const linkAriaCurrent = isCurrent ? { ariaCurrent: 'page' as const } : {};
-
-              return (
-                <li key={getNavigationKey(item)}>
-                  <AppLink
-                    href={item.href}
-                    navigate={navigate}
-                    className={st.siteNavLink}
-                    onClick={(event: MouseEvent<HTMLAnchorElement>): void => {
-                      setIsMobileMenuOpen(false);
-
-                      if (sectionId === undefined) {
-                        return;
-                      }
-
-                      event.preventDefault();
-                      onSectionRequest(sectionId, item.href);
-                    }}
-                    {...linkAriaCurrent}
-                  >
-                    {item.label}
-                  </AppLink>
-                </li>
-              );
-            })}
-          </ul>
+          <HeaderNavList
+            items={navigation}
+            listClassName={st.siteNavList}
+            linkClassName={st.siteNavLink}
+            navigate={navigate}
+            getItemKey={getNavigationKey}
+            isItemCurrent={isNavigationItemCurrent}
+            getItemOnClick={getMobileNavItemOnClick}
+            getItemStyle={getMobileNavItemStyle}
+          />
           <div className={st.mobileMenuFooter}>
             <span className={st.mobileMenuLabel}>Theme</span>
             <ThemeToggle
