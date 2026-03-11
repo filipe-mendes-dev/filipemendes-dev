@@ -1,4 +1,6 @@
 declare const styles: {
+  readonly 'desktopNav': string;
+  readonly 'desktopSiteNavList': string;
   readonly 'desktopThemeToggle': string;
   readonly 'headerInner': string;
   readonly 'headerNav': string;
@@ -17,11 +19,6 @@ declare const styles: {
   readonly 'siteMarkText': string;
   readonly 'siteNavLink': string;
   readonly 'siteNavList': string;
-  readonly 'themeIconMoon': string;
-  readonly 'themeIconSun': string;
-  readonly 'themeIconWrap': string;
-  readonly 'themeToggle': string;
-  readonly 'themeToggleDark': string;
 };
 
 export default styles;

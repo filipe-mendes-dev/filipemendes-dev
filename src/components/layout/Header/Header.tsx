@@ -4,15 +4,15 @@ import {
   useEffect,
   useId,
   useLayoutEffect,
-  useMemo,
   useRef,
   useState,
 } from 'react';
 
-import { MoonIcon, SunIcon } from '../../icons';
+import type { NavigationItem } from '../../../data/portfolio';
 import { AppLink } from '../../navigation/AppLink';
 import { Container } from '../../ui/Container';
 import type { HeaderProps } from './Header.interfaces';
+import { ThemeToggle } from './ThemeToggle';
 import st from './Header.module.css';
 
 export const Header = ({
@@ -33,6 +33,21 @@ export const Header = ({
   const homeLinkAriaCurrent = pathname === '/' && activeSection === 'home' ? { ariaCurrent: 'page' as const } : {};
   const themeToggleLabel = theme === 'light' ? 'Activate dark theme' : 'Activate light theme';
   const mobileMenuLabel = isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu';
+  const getNavigationKey = (item: NavigationItem): string => {
+    return item.sectionId ?? `${item.href}:${item.label}`;
+  };
+  const isNavigationItemCurrent = (item: NavigationItem): boolean => {
+    const isLandingSection = pathname === '/' && activeSection !== undefined;
+
+    if (isLandingSection) {
+      return item.sectionId !== undefined && activeSection === item.sectionId;
+    }
+
+    const isProjectDetailMatch = item.sectionId === 'projects' && pathname.startsWith('/projects/');
+    const isCurrentPath = currentHref === item.href;
+
+    return isProjectDetailMatch || isCurrentPath;
+  };
 
   useLayoutEffect(() => {
     if (headerRef.current === null) {
@@ -92,25 +107,6 @@ export const Header = ({
     };
   }, [isMobileMenuOpen]);
 
-  const linkStatusMap = useMemo(() => {
-    return navigation.reduce<Record<string, boolean>>((accumulator, item) => {
-      const isLandingSection = pathname === '/' && activeSection !== undefined;
-
-      if (isLandingSection) {
-        accumulator[item.label] = item.sectionId !== undefined && activeSection === item.sectionId;
-
-        return accumulator;
-      }
-
-      const isProjectDetailMatch = item.sectionId === 'projects' && pathname.startsWith('/projects/');
-      const isCurrentPath = currentHref === item.href;
-
-      accumulator[item.label] = isProjectDetailMatch || isCurrentPath;
-
-      return accumulator;
-    }, {});
-  }, [activeSection, currentHref, navigation, pathname]);
-
   return (
     <header ref={headerRef} className={`${st.root} ${st.siteHeader}`}>
       <Container className={st.headerInner}>
@@ -121,6 +117,36 @@ export const Header = ({
           <span className={st.siteMarkText}>filipemendes.dev</span>
           <span className={st.siteMarkSrOnly}>{siteTitle}</span>
         </AppLink>
+        <nav aria-label="Primary" className={st.desktopNav}>
+          <ul className={`${st.siteNavList} ${st.desktopSiteNavList}`}>
+            {navigation.map((item) => {
+              const sectionId = item.sectionId;
+              const isCurrent = isNavigationItemCurrent(item);
+              const linkAriaCurrent = isCurrent ? { ariaCurrent: 'page' as const } : {};
+
+              return (
+                <li key={getNavigationKey(item)}>
+                  <AppLink
+                    href={item.href}
+                    navigate={navigate}
+                    className={st.siteNavLink}
+                    onClick={(event: MouseEvent<HTMLAnchorElement>): void => {
+                      if (sectionId === undefined) {
+                        return;
+                      }
+
+                      event.preventDefault();
+                      onSectionRequest(sectionId, item.href);
+                    }}
+                    {...linkAriaCurrent}
+                  >
+                    {item.label}
+                  </AppLink>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
         <button
           type="button"
           className={st.menuToggle}
@@ -137,19 +163,13 @@ export const Header = ({
             <span />
           </span>
         </button>
-        <button
-          type="button"
-          className={`${st.themeToggle} ${st.desktopThemeToggle} ${theme === 'dark' ? st.themeToggleDark : ''}`}
-          onClick={onThemeToggle}
-          aria-label={themeToggleLabel}
-          aria-pressed={theme === 'dark'}
-          title={themeToggleLabel}
-        >
-          <span className={st.themeIconWrap} aria-hidden="true">
-            <SunIcon className={st.themeIconSun} />
-            <MoonIcon className={st.themeIconMoon} />
-          </span>
-        </button>
+        <div className={st.desktopThemeToggle}>
+          <ThemeToggle
+            theme={theme}
+            label={themeToggleLabel}
+            onToggle={onThemeToggle}
+          />
+        </div>
       </Container>
       <nav
         ref={mobileNavRef}
@@ -161,11 +181,11 @@ export const Header = ({
           <ul className={st.siteNavList}>
             {navigation.map((item) => {
               const sectionId = item.sectionId;
-              const isCurrent = linkStatusMap[item.label];
+              const isCurrent = isNavigationItemCurrent(item);
               const linkAriaCurrent = isCurrent ? { ariaCurrent: 'page' as const } : {};
 
               return (
-                <li key={item.href}>
+                <li key={getNavigationKey(item)}>
                   <AppLink
                     href={item.href}
                     navigate={navigate}
@@ -190,19 +210,13 @@ export const Header = ({
           </ul>
           <div className={st.mobileMenuFooter}>
             <span className={st.mobileMenuLabel}>Theme</span>
-            <button
-              type="button"
-              className={`${st.themeToggle} ${st.mobileThemeToggle} ${theme === 'dark' ? st.themeToggleDark : ''}`}
-              onClick={onThemeToggle}
-              aria-label={themeToggleLabel}
-              aria-pressed={theme === 'dark'}
-              title={themeToggleLabel}
-            >
-              <span className={st.themeIconWrap} aria-hidden="true">
-                <SunIcon className={st.themeIconSun} />
-                <MoonIcon className={st.themeIconMoon} />
-              </span>
-            </button>
+            <ThemeToggle
+              theme={theme}
+              label={themeToggleLabel}
+              onToggle={onThemeToggle}
+              className={st.mobileThemeToggle}
+              size="compact"
+            />
           </div>
         </div>
       </nav>
