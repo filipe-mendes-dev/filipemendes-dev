@@ -1,13 +1,47 @@
 .root {
   display: grid;
   --landing-scroll-spacing: var(--space-3);
+  position: relative;
+  isolation: isolate;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--paper-raised) 18%, var(--paper)) 0%,
+      var(--paper) 52%,
+      color-mix(in srgb, var(--stone) 24%, var(--paper)) 100%
+    );
+}
+
+.root::before,
+.root::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.root::before {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--line) 16%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--line) 12%, transparent) 1px, transparent 1px);
+  background-size: 44px 44px;
+  opacity: 0.08;
+}
+
+.root::after {
+  background:
+    radial-gradient(circle at 14% 10%, color-mix(in srgb, var(--moss) 10%, transparent) 0%, transparent 26%),
+    radial-gradient(circle at 86% 68%, color-mix(in srgb, var(--code-ink) 8%, transparent) 0%, transparent 24%);
+  opacity: 0.9;
 }
 
 .rootSection {
   scroll-margin-top: calc(var(--header-offset, 4.5rem) + var(--landing-scroll-spacing));
-  border-bottom: var(--line-strong) solid var(--line);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  z-index: 1;
+  padding-block: clamp(0.5rem, 1.2vw, 0.9rem);
 }
 
 .rootSection::before,
@@ -16,7 +50,68 @@
   position: absolute;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.85;
+}
+
+.rootSection::before {
+  display: none;
+}
+
+.rootSection + .rootSection::before {
+  display: block;
+  top: 0;
+  left: max(1.5rem, calc(50% - 34rem));
+  right: max(1.5rem, calc(50% - 34rem));
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--moss) 18%, transparent) 12%,
+    color-mix(in srgb, var(--moss) 28%, color-mix(in srgb, var(--line) 18%, transparent)) 50%,
+    color-mix(in srgb, var(--moss) 18%, transparent) 88%,
+    transparent 100%
+  );
+  opacity: 0;
+  clip-path: inset(0 50% 0 50%);
+  will-change: clip-path, opacity;
+  transition:
+    clip-path 880ms cubic-bezier(0.22, 1.2, 0.32, 1),
+    opacity 560ms ease-in-out;
+}
+
+.rootSection::after {
+  inset: auto auto auto 0;
+  width: clamp(12rem, 24vw, 18rem);
+  height: clamp(12rem, 24vw, 18rem);
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--moss) 7%, transparent) 0%, transparent 72%);
+  opacity: 0.75;
+}
+
+.homeSection::after {
+  top: 1rem;
+  left: max(1rem, calc(50% - 34rem));
+}
+
+.projectsSection::after {
+  top: 6rem;
+  left: calc(100% - clamp(13rem, 22vw, 17rem));
+}
+
+.aboutSection::after {
+  top: auto;
+  bottom: 2rem;
+  left: max(1rem, calc(50% - 30rem));
+}
+
+.contactSection::after {
+  top: auto;
+  bottom: 0;
+  left: calc(100% - clamp(14rem, 24vw, 18rem));
+}
+
+.rootSection + .rootSection:has([data-landing-reveal='visible'])::before {
+  opacity: 0.9;
+  clip-path: inset(0 0 0 0);
 }
 
 .rootSection > * {
@@ -24,106 +119,15 @@
   z-index: 1;
 }
 
-.homeSection {
-  background:
-    radial-gradient(circle at 8% 12%, color-mix(in srgb, var(--moss) 11%, transparent) 0%, transparent 44%),
-    var(--hero-home-bg);
-}
-
-.homeSection::before {
-  inset: 0;
-  background-image: linear-gradient(to right, color-mix(in srgb, var(--code-border) 12%, transparent) 1px, transparent 1px);
-  background-size: 42px 100%;
-  opacity: 0.14;
-}
-
-.homeSection::after {
-  width: 16rem;
-  height: 16rem;
-  top: -6rem;
-  right: -6rem;
-  border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--code-ink) 18%, transparent) 0%, transparent 70%);
-}
-
-.projectsSection {
-  background:
-    radial-gradient(circle at 90% 22%, color-mix(in srgb, var(--moss) 10%, transparent) 0%, transparent 40%),
-    linear-gradient(180deg, var(--hero-projects-bg) 0%, color-mix(in srgb, var(--paper-raised) 72%, var(--hero-projects-bg)) 100%);
-}
-
-.projectsSection::before {
-  inset: 0;
-  background-image: linear-gradient(to bottom, color-mix(in srgb, var(--line) 42%, transparent) 1px, transparent 1px);
-  background-size: 100% 38px;
-  opacity: 0.18;
-}
-
-.projectsSection::after {
-  width: 13rem;
-  height: 13rem;
-  bottom: -5rem;
-  left: -4rem;
-  border-radius: var(--radius-lg);
-  transform: rotate(18deg);
-  background: color-mix(in srgb, var(--code-bg) 62%, transparent);
-}
-
-.aboutSection {
-  background:
-    radial-gradient(circle at 14% 82%, color-mix(in srgb, var(--moss) 10%, transparent) 0%, transparent 38%),
-    var(--hero-about-bg);
-}
-
-.aboutSection::before {
-  inset: 0;
-  background-image:
-    linear-gradient(to right, color-mix(in srgb, var(--line) 30%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in srgb, var(--line) 22%, transparent) 1px, transparent 1px);
-  background-size: 48px 48px;
-  opacity: 0.09;
-}
-
-.aboutSection::after {
-  width: 12rem;
-  height: 12rem;
-  top: -4rem;
-  left: 55%;
-  border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--code-border) 28%, transparent) 0%, transparent 72%);
-}
-
-.contactSection {
-  background:
-    linear-gradient(130deg, color-mix(in srgb, var(--code-bg) 24%, transparent) 0%, transparent 38%),
-    var(--hero-contact-bg);
-}
-
-.contactSection::before {
-  inset: 0;
-  background-image: linear-gradient(to right, color-mix(in srgb, var(--line) 20%, transparent) 1px, transparent 1px);
-  background-size: 34px 100%;
-  opacity: 0.12;
-}
-
-.contactSection::after {
-  width: 12rem;
-  height: 12rem;
-  right: -4.5rem;
-  bottom: -5rem;
-  border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--moss-faint) 88%, transparent) 0%, transparent 70%);
-}
-
 [data-landing-reveal] {
   transition:
-    opacity 420ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 420ms cubic-bezier(0.22, 1, 0.36, 1) 190ms,
+    transform 520ms cubic-bezier(0.22, 1, 0.36, 1) 190ms;
 }
 
 [data-landing-reveal='pending'] {
   opacity: 0;
-  transform: translateY(8px);
+  transform: translateY(12px);
 }
 
 [data-landing-reveal='visible'] {
@@ -131,15 +135,37 @@
   transform: translateY(0);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  [data-landing-reveal] {
-    opacity: 1;
-    transform: none;
-    transition: none;
+@media (min-width: 64rem) {
+  .root {
+    --timeline-line-left: calc(50% - 32rem);
   }
 
-  .rootSection::before,
-  .rootSection::after {
-    display: none;
+  .root::before {
+    background-image:
+      linear-gradient(to right, color-mix(in srgb, var(--line) 14%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--line) 10%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--line) 58%, transparent), color-mix(in srgb, var(--line) 18%, transparent));
+    background-size: 44px 44px, 44px 44px, 1px 100%;
+    background-position: 0 0, 0 0, var(--timeline-line-left) 0;
+    background-repeat: repeat, repeat, no-repeat;
+  }
+
+  .rootSection {
+    padding-left: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .rootSection + .rootSection::before {
+    left: max(calc(var(--timeline-line-left) + 1.5rem), calc(50% - 28rem));
+    right: max(2rem, calc(50% - 34rem));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rootSection + .rootSection::before,
+  [data-landing-reveal] {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    transform: none;
+    transition: none;
   }
 }
