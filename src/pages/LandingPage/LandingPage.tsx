@@ -17,14 +17,20 @@ const getPrefersReducedMotion = (): boolean => {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 };
 
-const getScrollOffset = (): number => {
+const getHeaderOffset = (): number => {
   const rootStyles = window.getComputedStyle(document.documentElement);
   const headerOffsetValue = Number.parseFloat(rootStyles.getPropertyValue('--header-offset'));
-  const scrollSpacingValue = Number.parseFloat(rootStyles.getPropertyValue(scrollSpacingVar));
   const safeHeaderOffset = Number.isFinite(headerOffsetValue) ? headerOffsetValue : 72;
+
+  return safeHeaderOffset;
+};
+
+const getActiveSectionOffset = (): number => {
+  const rootStyles = window.getComputedStyle(document.documentElement);
+  const scrollSpacingValue = Number.parseFloat(rootStyles.getPropertyValue(scrollSpacingVar));
   const safeScrollSpacing = Number.isFinite(scrollSpacingValue) ? scrollSpacingValue : 16;
 
-  return safeHeaderOffset + safeScrollSpacing;
+  return getHeaderOffset() + safeScrollSpacing;
 };
 
 const getMaxScrollTop = (): number => {
@@ -51,7 +57,7 @@ const hideHeadingUntilReveal = (headingElement: HTMLElement): void => {
 
 const scrollToSection = (sectionElement: HTMLElement, shouldReduceMotion: boolean): void => {
   const sectionTop = sectionElement.getBoundingClientRect().top + window.scrollY;
-  const targetTop = Math.min(Math.max(sectionTop - getScrollOffset(), 0), getMaxScrollTop());
+  const targetTop = Math.min(Math.max(sectionTop - getHeaderOffset(), 0), getMaxScrollTop());
   const hasMeaningfulScrollDelta = Math.abs(window.scrollY - targetTop) > 2;
 
   if (!hasMeaningfulScrollDelta) {
@@ -67,7 +73,7 @@ const scrollToSection = (sectionElement: HTMLElement, shouldReduceMotion: boolea
 const getSectionTargetTop = (sectionElement: HTMLElement): number => {
   const sectionTop = sectionElement.getBoundingClientRect().top + window.scrollY;
 
-  return Math.min(Math.max(sectionTop - getScrollOffset(), 0), getMaxScrollTop());
+  return Math.min(Math.max(sectionTop - getHeaderOffset(), 0), getMaxScrollTop());
 };
 
 const getSectionElements = (
@@ -122,7 +128,7 @@ const isTriggerWithinRevealEntry = (triggerElement: HTMLElement): boolean => {
 };
 
 const getTrackedSection = (sectionElements: Record<SectionId, HTMLElement>): SectionId => {
-  const activationLine = window.scrollY + getScrollOffset() + window.innerHeight * landingPageMotion.activeSectionViewportRatio;
+  const activationLine = window.scrollY + getActiveSectionOffset() + window.innerHeight * landingPageMotion.activeSectionViewportRatio;
   const orderedSections = (Object.entries(sectionElements) as [SectionId, HTMLElement][])
     .sort(([, leftElement], [, rightElement]) => leftElement.offsetTop - rightElement.offsetTop);
 
@@ -143,6 +149,7 @@ const revealGroupsBetween = (
   headerRevealRefs: Record<SectionId, { current: HTMLElement | null } | null>,
   startTop: number,
   endTop: number,
+  excludedSectionId?: SectionId,
 ): void => {
   const lowerBound = Math.min(startTop, endTop);
   const upperBound = Math.max(startTop, endTop);
@@ -150,6 +157,10 @@ const revealGroupsBetween = (
     .sort(([, leftElement], [, rightElement]) => leftElement.offsetTop - rightElement.offsetTop);
 
   orderedSections.forEach(([sectionId, sectionElement]) => {
+    if (sectionId === excludedSectionId) {
+      return;
+    }
+
     const sectionTop = getSectionTargetTop(sectionElement);
 
     if (sectionTop < lowerBound || sectionTop > upperBound) {
@@ -185,6 +196,7 @@ export const LandingPage = ({
   const contactHeaderRevealRef = useRef<HTMLElement>(null);
   const hasHandledInitialSectionScrollRef = useRef(false);
   const pendingSectionRef = useRef<SectionId | null>(null);
+  const pendingRevealSectionRef = useRef<SectionId | null>(null);
   const initialActiveSectionRef = useRef(activeSection);
 
   const sectionRefs = useMemo(
@@ -340,13 +352,8 @@ export const LandingPage = ({
     const sectionElements = getSectionElements(sectionRefs);
 
     if (targetElement === null || targetRevealElement === null || sectionElements === null) {
-        return;
+      return;
     }
-
-    revealGroup({
-      content: targetRevealElement,
-      header: headerRevealRefs[requestedSection]?.current ?? null,
-    });
 
     const prefersReducedMotion = getPrefersReducedMotion();
     const shouldSmoothScroll = hasHandledInitialSectionScrollRef.current && !prefersReducedMotion;
@@ -355,10 +362,23 @@ export const LandingPage = ({
 
     if (hasMeaningfulScrollDelta && shouldSmoothScroll) {
       pendingSectionRef.current = requestedSection;
+      pendingRevealSectionRef.current = requestedSection;
       onActiveSectionChange(requestedSection);
-      revealGroupsBetween(sectionElements, revealRefs, headerRevealRefs, window.scrollY, targetTop);
+      revealGroupsBetween(sectionElements, revealRefs, headerRevealRefs, window.scrollY, targetTop, requestedSection);
     } else if (!hasMeaningfulScrollDelta) {
       pendingSectionRef.current = null;
+      pendingRevealSectionRef.current = null;
+      revealGroup({
+        content: targetRevealElement,
+        header: headerRevealRefs[requestedSection]?.current ?? null,
+      });
+      onActiveSectionChange(requestedSection);
+    } else {
+      pendingRevealSectionRef.current = null;
+      revealGroup({
+        content: targetRevealElement,
+        header: headerRevealRefs[requestedSection]?.current ?? null,
+      });
       onActiveSectionChange(requestedSection);
     }
 
@@ -378,6 +398,22 @@ export const LandingPage = ({
     const syncActiveSection = (): void => {
       frameId = 0;
       const pendingSection = pendingSectionRef.current;
+      const pendingRevealSection = pendingRevealSectionRef.current;
+
+      if (pendingRevealSection !== null) {
+        const pendingRevealElement = sectionElements[pendingRevealSection];
+        const pendingRevealTargetTop = getSectionTargetTop(pendingRevealElement);
+        const revealDistance = Math.max(window.innerHeight * 0.18, 96);
+        const isNearPendingRevealTarget = Math.abs(window.scrollY - pendingRevealTargetTop) <= revealDistance;
+
+        if (isNearPendingRevealTarget) {
+          revealGroup({
+            content: revealRefs[pendingRevealSection].current,
+            header: headerRevealRefs[pendingRevealSection]?.current ?? null,
+          });
+          pendingRevealSectionRef.current = null;
+        }
+      }
 
       if (pendingSection !== null) {
         const pendingElement = sectionElements[pendingSection];
@@ -416,7 +452,7 @@ export const LandingPage = ({
         window.cancelAnimationFrame(frameId);
       }
     };
-  }, [onActiveSectionChange, sectionRefs]);
+  }, [headerRevealRefs, onActiveSectionChange, revealRefs, sectionRefs]);
 
   return (
     <div className={st.root}>
