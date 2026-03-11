@@ -7,13 +7,11 @@ import { ProjectsPage } from '../ProjectsPage';
 import type { LandingPageProps } from './LandingPage.interfaces';
 import st from './LandingPage.module.css';
 import type { SectionId } from '../../shared/navigation/sections';
+import { landingPageMotion, landingPageRevealRootMargin } from '../../shared/theme/motion';
 
 const revealVisibleValue = 'visible';
 const revealPendingValue = 'pending';
 const scrollSpacingVar = '--landing-scroll-spacing';
-const revealEntryThreshold = 0.01;
-const revealEntryViewportRatio = 0.65;
-const revealEntryRootMargin = '0px 0px -35% 0px';
 
 const getPrefersReducedMotion = (): boolean => {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -120,11 +118,11 @@ const hideRevealGroupUntilReveal = (revealGroup: LandingRevealGroup): void => {
 const isTriggerWithinRevealEntry = (triggerElement: HTMLElement): boolean => {
   const { top } = triggerElement.getBoundingClientRect();
 
-  return top < window.innerHeight * revealEntryViewportRatio;
+  return top < window.innerHeight * landingPageMotion.revealEntryViewportRatio;
 };
 
 const getTrackedSection = (sectionElements: Record<SectionId, HTMLElement>): SectionId => {
-  const activationLine = window.scrollY + getScrollOffset() + window.innerHeight * 0.2;
+  const activationLine = window.scrollY + getScrollOffset() + window.innerHeight * landingPageMotion.activeSectionViewportRatio;
   const orderedSections = (Object.entries(sectionElements) as [SectionId, HTMLElement][])
     .sort(([, leftElement], [, rightElement]) => leftElement.offsetTop - rightElement.offsetTop);
 
@@ -319,8 +317,8 @@ export const LandingPage = ({
           });
         },
         {
-          threshold: revealEntryThreshold,
-          rootMargin: revealEntryRootMargin,
+          threshold: landingPageMotion.revealEntryThreshold,
+          rootMargin: landingPageRevealRootMargin,
         },
       );
 
