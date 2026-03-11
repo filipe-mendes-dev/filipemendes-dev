@@ -11,41 +11,9 @@ import type { SectionId } from '../../shared/navigation/sections';
 const revealVisibleValue = 'visible';
 const revealPendingValue = 'pending';
 const scrollSpacingVar = '--landing-scroll-spacing';
-
-interface LandingRevealTiming {
-  threshold: number;
-  rootMargin: string;
-  initialViewportRatio: number;
-}
-
-const defaultRevealTiming: LandingRevealTiming = {
-  threshold: 0.52,
-  rootMargin: '0px 0px -2% 0px',
-  initialViewportRatio: 0.64,
-};
-
-const sectionRevealTiming: Record<SectionId, LandingRevealTiming> = {
-  home: {
-    threshold: 0.52,
-    rootMargin: '0px 0px -2% 0px',
-    initialViewportRatio: 0.64,
-  },
-  projects: {
-    threshold: 0.32,
-    rootMargin: '0px 0px -10% 0px',
-    initialViewportRatio: 0.78,
-  },
-  about: {
-    threshold: 0.5,
-    rootMargin: '0px 0px -2% 0px',
-    initialViewportRatio: 0.62,
-  },
-  contact: {
-    threshold: 0.54,
-    rootMargin: '0px 0px 0px 0px',
-    initialViewportRatio: 0.58,
-  },
-};
+const revealEntryThreshold = 0.01;
+const revealEntryViewportRatio = 0.65;
+const revealEntryRootMargin = '0px 0px -35% 0px';
 
 const getPrefersReducedMotion = (): boolean => {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -149,6 +117,12 @@ const hideRevealGroupUntilReveal = (revealGroup: LandingRevealGroup): void => {
   }
 };
 
+const isTriggerWithinRevealEntry = (triggerElement: HTMLElement): boolean => {
+  const { top } = triggerElement.getBoundingClientRect();
+
+  return top < window.innerHeight * revealEntryViewportRatio;
+};
+
 const getTrackedSection = (sectionElements: Record<SectionId, HTMLElement>): SectionId => {
   const activationLine = window.scrollY + getScrollOffset() + window.innerHeight * 0.2;
   const orderedSections = (Object.entries(sectionElements) as [SectionId, HTMLElement][])
@@ -245,6 +219,16 @@ export const LandingPage = ({
     [],
   );
 
+  const revealTriggerRefs = useMemo(
+    () => ({
+      home: homeRef,
+      projects: projectsHeaderRevealRef,
+      about: aboutHeaderRevealRef,
+      contact: contactHeaderRevealRef,
+    }),
+    [],
+  );
+
   useLayoutEffect(() => {
     const revealGroups = (Object.entries(revealRefs) as [SectionId, { current: HTMLDivElement | null }][]).map(
       ([sectionId, revealRef]) => ({
@@ -283,11 +267,9 @@ export const LandingPage = ({
         return;
       }
 
-      const { top } = content.getBoundingClientRect();
-      const timing = sectionRevealTiming[sectionId];
-      const isAlreadyInView = top < window.innerHeight * timing.initialViewportRatio;
+      const triggerElement = revealTriggerRefs[sectionId].current;
 
-      if (isAlreadyInView) {
+      if (triggerElement !== null && isTriggerWithinRevealEntry(triggerElement)) {
         revealGroup(group);
 
         return;
@@ -295,14 +277,14 @@ export const LandingPage = ({
 
       hideRevealGroupUntilReveal(group);
     });
-  }, [headerRevealRefs, revealRefs]);
+  }, [headerRevealRefs, revealRefs, revealTriggerRefs]);
 
   useEffect(() => {
     const revealEntries = (Object.entries(revealRefs) as [SectionId, { current: HTMLDivElement | null }][]).map(
       ([sectionId, revealRef]) => ({
         sectionId,
         content: revealRef.current,
-        timing: sectionRevealTiming[sectionId] ?? defaultRevealTiming,
+        trigger: revealTriggerRefs[sectionId].current,
       }),
     );
     const revealElements = revealEntries
@@ -313,8 +295,12 @@ export const LandingPage = ({
       return;
     }
 
-    const observers = revealEntries.map(({ content, sectionId, timing }) => {
+    const observers = revealEntries.map(({ content, sectionId, trigger }) => {
       if (content?.dataset.landingReveal !== revealPendingValue) {
+        return null;
+      }
+
+      if (trigger === null) {
         return null;
       }
 
@@ -333,12 +319,12 @@ export const LandingPage = ({
           });
         },
         {
-          threshold: timing.threshold,
-          rootMargin: timing.rootMargin,
+          threshold: revealEntryThreshold,
+          rootMargin: revealEntryRootMargin,
         },
       );
 
-      observer.observe(content);
+      observer.observe(trigger);
 
       return observer;
     });
@@ -348,7 +334,7 @@ export const LandingPage = ({
         observer?.disconnect();
       });
     };
-  }, [headerRevealRefs, revealRefs]);
+  }, [headerRevealRefs, revealRefs, revealTriggerRefs]);
 
   useEffect(() => {
     const targetElement = sectionRefs[requestedSection].current;
