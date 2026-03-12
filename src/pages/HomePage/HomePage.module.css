@@ -59,6 +59,7 @@
   border-radius: var(--radius-xl);
   overflow: hidden;
   width: clamp(7rem, 28vw, 9.25rem);
+  aspect-ratio: 4 / 5;
   border: var(--line-strong) solid color-mix(in srgb, var(--code-border) 68%, var(--line));
   background: linear-gradient(145deg, color-mix(in srgb, var(--code-bg) 78%, var(--paper-raised)) 0%, var(--paper-raised) 80%);
   box-shadow:
@@ -109,7 +110,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  aspect-ratio: 4 / 5;
+  object-position: center center;
+  transform: scale(1.18);
 }
 
 .heroCopy {

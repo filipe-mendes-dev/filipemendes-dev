@@ -115,7 +115,7 @@ export interface PortfolioContent {
 
 export const portfolio: PortfolioContent = {
   siteTitle: 'Filipe Mendes',
-  descriptor: 'Frontend Engineer - Systems & AI',
+  descriptor: 'Software Developer',
   navigation: [
     { label: 'Home', href: '/', sectionId: 'home' },
     { label: 'Projects', href: '/', sectionId: 'projects' },
@@ -124,13 +124,12 @@ export const portfolio: PortfolioContent = {
   ],
   hero: {
     name: 'Filipe Mendes',
-    role: 'Systems-minded frontend engineer building product interfaces with AI-aware architecture.',
+    role: 'Frontend and mobile software developer with experience across React, React Native, TypeScript, GraphQL, and applied machine learning.',
     summary:
-      'I design and ship interface systems that connect product strategy, robust frontend foundations, and practical AI capabilities. My work focuses on clarity, maintainability, and measurable outcomes.',
-    now: 'Now: leading frontend architecture and AI-assisted product delivery.',
-    photoAlt: 'Portrait of Filipe Mendes',
-    photoUrl:
-      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=80',
+      'I enjoy solving complex problems efficiently, learning quickly, and adapting fast to new domains. My recent work spans frontend web platforms, mobile banking apps, and computer vision research.',
+    now: 'Based in Madeira, Portugal.',
+    photoAlt: 'Portrait of Filipe Mendes from CV',
+    photoUrl: '/images/filipe-mendes-cv-photo.png',
     actions: [
       { label: 'View Projects', href: '/', sectionId: 'projects', variant: 'primary' },
       { label: 'Contact', href: '/', sectionId: 'contact', variant: 'secondary' },
@@ -138,158 +137,182 @@ export const portfolio: PortfolioContent = {
   },
   projects: [
     {
-      slug: 'atlas-mobile',
-      name: 'Atlas Mobile',
-      logoText: 'AT',
-      category: 'Mobile Product',
+      slug: 'acin-web-platform',
+      name: 'ACIN Web Platform',
+      logoText: 'AC',
+      category: 'Frontend Platform',
       description:
-        'A field operations app that helps distributed teams capture tasks, sync updates, and close work loops from mobile devices.',
-      positioning: 'Positioning: reliable mobile workflows for operational teams with low-friction data entry.',
+        'Web platform development work focused on responsive React interfaces, GraphQL integration, and native-like behavior on the web.',
+      positioning: 'Positioning: frontend platform work delivered as a Front-End Developer at ACIN group.',
       narrative: {
         problem:
-          'Field teams were losing context between job sites and office systems, causing delays and duplicated follow-ups.',
+          'The platform needed modern frontend delivery with responsive behavior, API integration, and dependable test coverage.',
         approach:
-          'Built an offline-first mobile experience with predictable task flows, tight API contracts, and audit-friendly state transitions.',
-        stack: 'React Native, TypeScript, TanStack Query, Node.js APIs, PostgreSQL, CI/CD via GitHub Actions.',
+          'Built the product using React and TypeScript, integrated GraphQL data flows, worked in a Docker-based setup with Vite and Yarn, and covered flows with Vitest and Playwright.',
+        stack: 'React, TypeScript, GraphQL, Capacitor, Docker, Vite, Yarn, Vitest, Playwright.',
         outcome:
-          'Reduced task completion time by 28% and improved same-day reporting consistency across teams.',
-      },
-      isMobileApp: true,
-      storeLinks: {
-        appStore: 'https://apps.apple.com/',
-        googlePlay: 'https://play.google.com/store',
-      },
-      screenshots: [
-        {
-          alt: 'Atlas Mobile dashboard view',
-          url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
-        },
-        {
-          alt: 'Atlas Mobile task board',
-          url: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=1200&q=80',
-        },
-        {
-          alt: 'Atlas Mobile activity logs',
-          url: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
-        },
-      ],
-      keyFeatures: [
-        'Offline draft capture with conflict-safe sync',
-        'Role-based task queues and escalation controls',
-        'Structured notes with attachment pipelines',
-      ],
-      architecture: [
-        'Client state split between local cache and validated server snapshots',
-        'Queue-based sync worker with retry windows and observability events',
-        'Design system tokens shared between product surfaces for consistency',
-      ],
-      techStack: ['React Native', 'TypeScript', 'TanStack Query', 'Node.js', 'PostgreSQL'],
-      links: [
-        { label: 'GitHub', href: 'https://github.com/' },
-        { label: 'Product Docs', href: 'https://example.com/docs' },
-      ],
-    },
-    {
-      slug: 'forge-web',
-      name: 'Forge Web Console',
-      logoText: 'FG',
-      category: 'Web Product',
-      description:
-        'A control console for product teams to monitor releases, inspect behavior, and coordinate response across environments.',
-      positioning: 'Positioning: operational clarity for product and engineering teams running high-change systems.',
-      narrative: {
-        problem:
-          'Teams lacked a shared source of truth for release health and incident context during rapid deployment cycles.',
-        approach:
-          'Designed a calm information architecture with deterministic status surfaces and explicit ownership pathways.',
-        stack: 'React, TypeScript, Vite, CSS Modules, GraphQL, feature-flag pipeline integrations.',
-        outcome:
-          'Cut mean time to identify release regressions and improved cross-team incident handoff quality.',
+          'Shipped production frontend work for ACIN group from October 2023 to July 2025 with a strong focus on responsiveness and delivery quality.',
       },
       isMobileApp: false,
-      screenshots: [
-        {
-          alt: 'Forge release overview',
-          url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
-        },
-        {
-          alt: 'Forge diagnostics table',
-          url: 'https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1200&q=80',
-        },
-      ],
+      screenshots: [],
       keyFeatures: [
-        'Environment health panels with drill-down context',
-        'Release annotations mapped to deployment windows',
-        'Ownership routing for technical response workflows',
+        'Responsive layouts with native-like behavior via Capacitor',
+        'GraphQL API integration for platform data',
+        'Unit and E2E testing with Vitest and Playwright',
       ],
       architecture: [
-        'Composable frontend modules backed by typed GraphQL contracts',
-        'Server-side normalization to reduce client-side branching complexity',
-        'Observability hooks for tracing product behavior changes',
+        'Component-based React frontend written in TypeScript',
+        'Docker-based development environment using Vite and Yarn',
+        'Testing workflow covering units and end-to-end browser journeys',
       ],
-      techStack: ['React', 'TypeScript', 'Vite', 'GraphQL', 'Node.js'],
-      links: [
-        { label: 'Live Product', href: 'https://example.com' },
-        { label: 'GitHub', href: 'https://github.com/' },
+      techStack: ['React', 'TypeScript', 'GraphQL', 'Capacitor', 'Docker', 'Vite', 'Yarn', 'Vitest', 'Playwright'],
+      links: [],
+    },
+    {
+      slug: 'nearsoft-mobile-apps',
+      name: 'Nearsoft Mobile Banking Apps',
+      logoText: 'NS',
+      category: 'Mobile Development',
+      description:
+        'Mobile banking app development centered on React Native, TypeScript, Redux, REST integrations, and reusable UI components.',
+      positioning: 'Positioning: mobile product work delivered as a Mobile Developer at Nearsoft.',
+      narrative: {
+        problem:
+          'The apps required reliable mobile delivery, shared component reuse, and coordination across iOS and Android native workflows.',
+        approach:
+          'Built mobile banking experiences with React Native, TypeScript, and Redux, integrated REST APIs, and worked with Xcode and Android Studio for native development.',
+        stack: 'React Native, TypeScript, Redux, REST APIs, Xcode, Android Studio.',
+        outcome:
+          'Delivered cross-platform banking app features, contributed to a shared internal component library, and supported the onboarding of a summer intern.',
+      },
+      isMobileApp: true,
+      screenshots: [],
+      keyFeatures: [
+        'Mobile banking flows built with React Native and Redux',
+        'REST API integration across app features',
+        'Shared internal component library reused across apps',
       ],
+      architecture: [
+        'TypeScript-first React Native codebase for cross-platform delivery',
+        'Native development workflow using Xcode and Android Studio',
+        'Shared UI foundation designed for reuse across multiple mobile apps',
+      ],
+      techStack: ['React Native', 'TypeScript', 'Redux', 'REST APIs', 'Xcode', 'Android Studio'],
+      links: [],
+    },
+    {
+      slug: 'inov-infrared-detection',
+      name: 'INOV Infrared Detection Research',
+      logoText: 'IN',
+      category: 'Applied Machine Learning',
+      description:
+        'Research and engineering work on real-time infrared image classification using EfficientDet, TensorFlow, and OpenCV.',
+      positioning: 'Positioning: computer vision and data pipeline work delivered as a Software Engineer at INOV.',
+      narrative: {
+        problem:
+          'The project needed real-time detection of vehicles, people, and deer from infrared video surveillance data.',
+        approach:
+          'Developed EfficientDet-based detection solutions, collected and labeled infrared footage, tuned training parameters, and organized a real-world data acquisition event.',
+        stack: 'Python, TensorFlow, OpenCV, EfficientDet.',
+        outcome:
+          'Produced research that was published and presented at the 2022 International Conference on Electrical, Computer and Energy Technologies.',
+      },
+      isMobileApp: false,
+      screenshots: [],
+      keyFeatures: [
+        'Real-time detection for vehicles, people, and deer',
+        'Infrared footage collection and labeling for training',
+        'Conference publication and presentation based on the work',
+      ],
+      architecture: [
+        'EfficientDet neural network model adapted for infrared image classification',
+        'Training workflow supported by curated and labeled thermal datasets',
+        'Computer vision pipeline implemented with TensorFlow and OpenCV',
+      ],
+      techStack: ['Python', 'TensorFlow', 'OpenCV', 'EfficientDet'],
+      links: [{ label: 'Conference Publication', href: 'https://doi.org/10.1109/ICECET55527.2022.9872921' }],
     },
   ],
   about: {
     profile:
-      'I work at the intersection of product design, frontend systems, and AI-enabled delivery. I optimize for resilient architectures and practical interfaces that remain clear under real-world constraints.',
+      'I have a keen eye for detail and enjoy solving complex challenges efficiently. My background combines frontend web development, mobile app delivery, and machine learning research, shaped by a fast-learning and adaptable approach.',
     experience: [
       {
-        role: 'Senior Frontend Engineer',
-        company: 'Product Systems Studio',
-        period: '2022 - Present',
-        summary: 'Lead architecture for multi-surface products, with focus on design systems and AI-assisted workflows.',
+        role: 'Front-End Developer',
+        company: 'ACIN group',
+        period: 'Oct 2023 - Jul 2025',
+        summary:
+          'Built web platform features with React and TypeScript, implemented responsive layouts with Capacitor, integrated GraphQL APIs, and worked with Vitest and Playwright.',
       },
       {
-        role: 'Frontend Engineer',
-        company: 'Platform Team',
-        period: '2019 - 2022',
-        summary: 'Built shared UI primitives and delivery pipelines for customer-facing product lines.',
+        role: 'Mobile Developer',
+        company: 'Nearsoft',
+        period: 'Jan 2023 - Sep 2023',
+        summary:
+          'Developed mobile banking apps with React Native, TypeScript, and Redux, integrated REST APIs, and contributed to a shared internal component library.',
+      },
+      {
+        role: 'Software Engineer',
+        company: 'INOV',
+        period: 'Mar 2021 - Feb 2022',
+        summary:
+          'Developed real-time detection solutions with EfficientDet, collected and labeled infrared data, and published the resulting research at an international conference.',
       },
     ],
-    skills: ['TypeScript', 'React', 'UI Architecture', 'Design Systems', 'Product Strategy', 'Applied AI'],
+    skills: [
+      'JavaScript',
+      'TypeScript',
+      'React',
+      'React Native',
+      'Redux',
+      'Python',
+      'GraphQL',
+      'REST APIs',
+      'Docker',
+      'Vite',
+      'Yarn',
+      'Vitest',
+      'Playwright',
+      'TensorFlow',
+      'OpenCV',
+      'GitLab',
+      'SCRUM',
+    ],
     education: [
       {
-        title: 'B.Sc. in Computer Engineering',
-        period: '2015 - 2018',
-      },
-      {
-        title: 'Advanced coursework in Human-Computer Interaction',
-        period: '2018',
+        title: 'MSc in Engineering Physics',
+        period: 'Sep 2015 - Jan 2021',
+        details:
+          'Instituto Superior Tecnico - IST. Thesis on applying neural networks to radiation source localization, which marked the transition into software development and strengthened skills in machine learning, data analysis, and technical problem-solving.',
       },
     ],
     publications: [
       {
-        title: 'Designing Maintainable Frontend Systems for Multi-Surface Products',
-        venue: 'UI Engineering Notes',
-        year: '2023',
-        href: 'https://example.com/publications/frontend-systems',
+        title: 'Radioactive hot-spot localisation and identification using deep learning',
+        venue: 'Journal of Radiological Protection',
+        year: '2021',
+        href: 'https://doi.org/10.1088/1361-6498/ac1a5c',
       },
       {
-        title: 'Practical AI Workflows in Product Interface Delivery',
-        venue: 'Applied Product Systems Review',
-        year: '2024',
-        href: 'https://example.com/publications/ai-workflows',
+        title: 'Study on the Application of EfficientDet to Real-Time Classification of Infrared Images from Video Surveillance',
+        venue: '2022 International Conference on Electrical, Computer and Energy Technologies (ICECET)',
+        year: '2022',
+        href: 'https://doi.org/10.1109/ICECET55527.2022.9872921',
       },
     ],
     principles: [
-      'Clarity over novelty in interface decisions',
-      'Small systems that scale by composition',
-      'Product outcomes tied to technical decisions',
+      'Solve problems efficiently instead of only working harder',
+      'Learn quickly and think critically when the domain changes',
+      'Adapt fast and keep systems running smoothly',
     ],
   },
   contact: {
     intro:
-      'I collaborate on product platforms, frontend architecture, and AI-aware interface systems. If you are building software that needs both craft and rigor, let us talk.',
-    email: 'hello@example.com',
-    availability: 'Available for select consulting and product collaboration engagements.',
+      'I work across frontend web platforms, mobile applications, and machine learning systems. The best way to reach me is by email or LinkedIn.',
+    email: 'mendes.filipe.dev@gmail.com',
+    availability: 'Based in Madeira, Portugal.',
     socials: [
-      { label: 'GitHub', href: 'https://github.com/' },
-      { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
+      { label: 'LinkedIn', href: 'https://linkedin.com/in/mendes-filipe-dev' },
     ],
   },
 };
