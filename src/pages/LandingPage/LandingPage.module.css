@@ -129,7 +129,7 @@
     left: calc(100% - clamp(14rem, 24vw, 18rem));
 }
 
-.rootSection + .rootSection:has([data-landing-reveal='visible'])::before {
+.rootSection + .rootSection[data-landing-separator-reveal='visible']::before {
     opacity: 0.9;
     clip-path: inset(0 0 0 0);
 }
@@ -141,8 +141,8 @@
 
 [data-landing-reveal] {
     --landing-body-ease: cubic-bezier(0.2, 0.9, 0.24, 1);
-    transition: opacity 500ms var(--landing-body-ease) 140ms,
-        transform 620ms var(--landing-body-ease) 140ms;
+    transition: opacity 500ms var(--landing-body-ease) 120ms,
+        transform 620ms var(--landing-body-ease) 120ms;
 }
 
 [data-landing-reveal='pending'] {

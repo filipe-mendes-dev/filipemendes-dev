@@ -1,4 +1,4 @@
-import { type ReactElement, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
+import { type ReactElement, useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 
 import { AboutPage } from '../AboutPage';
 import { ContactPage } from '../ContactPage';
@@ -12,6 +12,7 @@ import { landingPageMotion, landingPageRevealRootMargin } from '../../shared/the
 const revealVisibleValue = 'visible';
 const revealPendingValue = 'pending';
 const scrollSpacingVar = '--landing-scroll-spacing';
+const separatorLeadInDelayMs = 320;
 
 const getPrefersReducedMotion = (): boolean => {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -45,6 +46,22 @@ const revealSection = (sectionElement: HTMLElement): void => {
 
 const hideSectionUntilReveal = (sectionElement: HTMLElement): void => {
   sectionElement.dataset.landingReveal = revealPendingValue;
+};
+
+const revealSeparator = (sectionElement: HTMLElement | null | undefined): void => {
+  if (sectionElement == null) {
+    return;
+  }
+
+  sectionElement.dataset.landingSeparatorReveal = revealVisibleValue;
+};
+
+const hideSeparatorUntilReveal = (sectionElement: HTMLElement | null | undefined): void => {
+  if (sectionElement == null) {
+    return;
+  }
+
+  sectionElement.dataset.landingSeparatorReveal = revealPendingValue;
 };
 
 const revealHeading = (headingElement: HTMLElement): void => {
@@ -99,9 +116,10 @@ const getSectionElements = (
 interface LandingRevealGroup {
   content: HTMLDivElement | null;
   header: HTMLElement | null;
+  separator: HTMLElement | null;
 }
 
-const revealGroup = (revealGroup: LandingRevealGroup): void => {
+const revealContentGroup = (revealGroup: LandingRevealGroup): void => {
   if (revealGroup.header !== null) {
     revealHeading(revealGroup.header);
   }
@@ -111,7 +129,19 @@ const revealGroup = (revealGroup: LandingRevealGroup): void => {
   }
 };
 
+const revealGroup = (revealGroup: LandingRevealGroup): void => {
+  if (revealGroup.separator !== null) {
+    revealSeparator(revealGroup.separator);
+  }
+
+  revealContentGroup(revealGroup);
+};
+
 const hideRevealGroupUntilReveal = (revealGroup: LandingRevealGroup): void => {
+  if (revealGroup.separator !== null) {
+    hideSeparatorUntilReveal(revealGroup.separator);
+  }
+
   if (revealGroup.header !== null) {
     hideHeadingUntilReveal(revealGroup.header);
   }
@@ -170,6 +200,7 @@ const revealGroupsBetween = (
     revealGroup({
       content: revealRefs[sectionId].current,
       header: headerRevealRefs[sectionId]?.current ?? null,
+      separator: sectionElement,
     });
   });
 };
@@ -198,6 +229,12 @@ export const LandingPage = ({
   const pendingSectionRef = useRef<SectionId | null>(null);
   const pendingRevealSectionRef = useRef<SectionId | null>(null);
   const initialActiveSectionRef = useRef(activeSection);
+  const revealDelayTimeoutsRef = useRef<Record<SectionId, number | null>>({
+    home: null,
+    projects: null,
+    about: null,
+    contact: null,
+  });
 
   const sectionRefs = useMemo(
     () => ({
@@ -239,6 +276,53 @@ export const LandingPage = ({
     [],
   );
 
+  const getRevealGroup = useCallback((sectionId: SectionId): LandingRevealGroup => ({
+    content: revealRefs[sectionId].current,
+    header: headerRevealRefs[sectionId]?.current ?? null,
+    separator: sectionRefs[sectionId].current,
+  }), [headerRevealRefs, revealRefs, sectionRefs]);
+
+  const clearScheduledReveal = useCallback((sectionId: SectionId): void => {
+    const timeoutId = revealDelayTimeoutsRef.current[sectionId];
+
+    if (timeoutId === null) {
+      return;
+    }
+
+    window.clearTimeout(timeoutId);
+    revealDelayTimeoutsRef.current[sectionId] = null;
+  }, []);
+
+  const scheduleRevealGroup = useCallback((sectionId: SectionId, shouldStageContent: boolean): void => {
+    const revealGroup = getRevealGroup(sectionId);
+
+    clearScheduledReveal(sectionId);
+
+    if (revealGroup.separator !== null) {
+      revealSeparator(revealGroup.separator);
+    }
+
+    const isContentPending = revealGroup.content?.dataset.landingReveal === revealPendingValue;
+    const isHeaderPending = revealGroup.header?.dataset.landingHeadingReveal === revealPendingValue;
+    const shouldDelayContent = shouldStageContent && (isContentPending || isHeaderPending);
+
+    if (!shouldDelayContent || getPrefersReducedMotion()) {
+      revealContentGroup(revealGroup);
+
+      return;
+    }
+
+    revealDelayTimeoutsRef.current[sectionId] = window.setTimeout(() => {
+      revealContentGroup(revealGroup);
+      revealDelayTimeoutsRef.current[sectionId] = null;
+    }, separatorLeadInDelayMs);
+  }, [clearScheduledReveal, getRevealGroup]);
+
+  const hideRevealGroup = useCallback((sectionId: SectionId): void => {
+    clearScheduledReveal(sectionId);
+    hideRevealGroupUntilReveal(getRevealGroup(sectionId));
+  }, [clearScheduledReveal, getRevealGroup]);
+
   useLayoutEffect(() => {
     const revealGroups = (Object.entries(revealRefs) as [SectionId, { current: HTMLDivElement | null }][]).map(
       ([sectionId, revealRef]) => ({
@@ -246,6 +330,7 @@ export const LandingPage = ({
         revealGroup: {
           content: revealRef.current,
           header: headerRevealRefs[sectionId]?.current ?? null,
+          separator: sectionRefs[sectionId].current,
         },
       }),
     );
@@ -257,8 +342,8 @@ export const LandingPage = ({
     const prefersReducedMotion = getPrefersReducedMotion();
 
     if (prefersReducedMotion) {
-      revealGroups.forEach(({ revealGroup: group }) => {
-        revealGroup(group);
+      revealGroups.forEach(({ sectionId }) => {
+        scheduleRevealGroup(sectionId, false);
       });
 
       return;
@@ -272,7 +357,7 @@ export const LandingPage = ({
       }
 
       if (sectionId === initialActiveSectionRef.current) {
-        revealGroup(group);
+        scheduleRevealGroup(sectionId, false);
 
         return;
       }
@@ -280,14 +365,14 @@ export const LandingPage = ({
       const triggerElement = revealTriggerRefs[sectionId].current;
 
       if (triggerElement !== null && isTriggerWithinRevealEntry(triggerElement)) {
-        revealGroup(group);
+        scheduleRevealGroup(sectionId, false);
 
         return;
       }
 
-      hideRevealGroupUntilReveal(group);
+      hideRevealGroup(sectionId);
     });
-  }, [headerRevealRefs, revealRefs, revealTriggerRefs]);
+  }, [headerRevealRefs, hideRevealGroup, revealRefs, revealTriggerRefs, scheduleRevealGroup, sectionRefs]);
 
   useEffect(() => {
     const revealEntries = (Object.entries(revealRefs) as [SectionId, { current: HTMLDivElement | null }][]).map(
@@ -321,10 +406,7 @@ export const LandingPage = ({
               return;
             }
 
-            revealGroup({
-              content,
-              header: headerRevealRefs[sectionId]?.current ?? null,
-            });
+            scheduleRevealGroup(sectionId, true);
             intersectionObserver.unobserve(entry.target);
           });
         },
@@ -344,14 +426,13 @@ export const LandingPage = ({
         observer?.disconnect();
       });
     };
-  }, [headerRevealRefs, revealRefs, revealTriggerRefs]);
+  }, [headerRevealRefs, revealRefs, revealTriggerRefs, scheduleRevealGroup]);
 
   useEffect(() => {
     const targetElement = sectionRefs[requestedSection].current;
-    const targetRevealElement = revealRefs[requestedSection].current;
     const sectionElements = getSectionElements(sectionRefs);
 
-    if (targetElement === null || targetRevealElement === null || sectionElements === null) {
+    if (targetElement === null || revealRefs[requestedSection].current === null || sectionElements === null) {
       return;
     }
 
@@ -368,23 +449,17 @@ export const LandingPage = ({
     } else if (!hasMeaningfulScrollDelta) {
       pendingSectionRef.current = null;
       pendingRevealSectionRef.current = null;
-      revealGroup({
-        content: targetRevealElement,
-        header: headerRevealRefs[requestedSection]?.current ?? null,
-      });
+      scheduleRevealGroup(requestedSection, false);
       onActiveSectionChange(requestedSection);
     } else {
       pendingRevealSectionRef.current = null;
-      revealGroup({
-        content: targetRevealElement,
-        header: headerRevealRefs[requestedSection]?.current ?? null,
-      });
+      scheduleRevealGroup(requestedSection, false);
       onActiveSectionChange(requestedSection);
     }
 
     scrollToSection(targetElement, !shouldSmoothScroll);
     hasHandledInitialSectionScrollRef.current = true;
-  }, [headerRevealRefs, onActiveSectionChange, requestedSection, requestedSectionKey, revealRefs, sectionRefs]);
+  }, [headerRevealRefs, onActiveSectionChange, requestedSection, requestedSectionKey, revealRefs, scheduleRevealGroup, sectionRefs]);
 
   useEffect(() => {
     const sectionElements = getSectionElements(sectionRefs);
@@ -407,10 +482,7 @@ export const LandingPage = ({
         const isNearPendingRevealTarget = Math.abs(window.scrollY - pendingRevealTargetTop) <= revealDistance;
 
         if (isNearPendingRevealTarget) {
-          revealGroup({
-            content: revealRefs[pendingRevealSection].current,
-            header: headerRevealRefs[pendingRevealSection]?.current ?? null,
-          });
+          scheduleRevealGroup(pendingRevealSection, true);
           pendingRevealSectionRef.current = null;
         }
       }
@@ -452,7 +524,19 @@ export const LandingPage = ({
         window.cancelAnimationFrame(frameId);
       }
     };
-  }, [headerRevealRefs, onActiveSectionChange, revealRefs, sectionRefs]);
+  }, [headerRevealRefs, onActiveSectionChange, revealRefs, scheduleRevealGroup, sectionRefs]);
+
+  useEffect(() => {
+    const revealDelayTimeouts = revealDelayTimeoutsRef.current;
+
+    return () => {
+      Object.values(revealDelayTimeouts).forEach((timeoutId) => {
+        if (timeoutId !== null) {
+          window.clearTimeout(timeoutId);
+        }
+      });
+    };
+  }, []);
 
   return (
     <div className={st.root}>
