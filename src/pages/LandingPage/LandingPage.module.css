@@ -90,8 +90,8 @@
     opacity: 0;
     will-change: left, right, opacity;
     transition:
-        left var(--motion-duration-2xl) var(--motion-ease-emphasized),
-        right var(--motion-duration-2xl) var(--motion-ease-emphasized),
+        left var(--motion-duration-4xl) var(--motion-ease-emphasized),
+        right var(--motion-duration-4xl) var(--motion-ease-emphasized),
         opacity var(--motion-duration-sm) ease-out;
 }
 
@@ -143,8 +143,8 @@
 
 [data-landing-reveal] {
     transition:
-        opacity var(--motion-duration-lg) var(--motion-ease-standard) var(--motion-duration-xs),
-        transform var(--motion-duration-xl) var(--motion-ease-standard) var(--motion-duration-xs);
+        opacity var(--motion-duration-2xl) var(--motion-ease-standard) var(--motion-duration-xs),
+        transform var(--motion-duration-3xl) var(--motion-ease-standard) var(--motion-duration-xs);
 }
 
 [data-landing-reveal='pending'] {

@@ -88,8 +88,9 @@ export interface ThemeTokens {
   'motion-duration-lg': string;
   'motion-duration-xl': string;
   'motion-duration-2xl': string;
+  'motion-duration-3xl': string;
+  'motion-duration-4xl': string;
   'motion-stagger-sm': string;
-  'motion-stagger-md': string;
   'motion-ease-standard': string;
   'motion-ease-emphasized': string;
 }
@@ -153,8 +154,9 @@ const commonThemeTokens: Pick<
   | 'motion-duration-lg'
   | 'motion-duration-xl'
   | 'motion-duration-2xl'
+  | 'motion-duration-3xl'
+  | 'motion-duration-4xl'
   | 'motion-stagger-sm'
-  | 'motion-stagger-md'
   | 'motion-ease-standard'
   | 'motion-ease-emphasized'
 > = {
@@ -210,11 +212,12 @@ const commonThemeTokens: Pick<
   'motion-duration-xs': '120ms',
   'motion-duration-sm': '180ms',
   'motion-duration-md': '240ms',
-  'motion-duration-lg': '480ms',
-  'motion-duration-xl': '600ms',
-  'motion-duration-2xl': '840ms',
+  'motion-duration-lg': '300ms',
+  'motion-duration-xl': '360ms',
+  'motion-duration-2xl': '480ms',
+  'motion-duration-3xl': '600ms',
+  'motion-duration-4xl': '840ms',
   'motion-stagger-sm': '60ms',
-  'motion-stagger-md': '120ms',
   'motion-ease-standard': 'cubic-bezier(0.2, 0.9, 0.24, 1)',
   'motion-ease-emphasized': 'cubic-bezier(0.22, 1, 0.36, 1)',
 };

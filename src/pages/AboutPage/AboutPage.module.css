@@ -11,8 +11,8 @@
   opacity: 0;
   transform: translate3d(0, 1rem, 0);
   transition:
-    opacity var(--motion-duration-lg) var(--motion-ease-standard),
-    transform var(--motion-duration-xl) var(--motion-ease-standard);
+    opacity var(--motion-duration-2xl) var(--motion-ease-standard),
+    transform var(--motion-duration-3xl) var(--motion-ease-standard);
   transition-delay: calc(
     var(--motion-duration-sm) + (var(--reveal-index, 0) * var(--motion-stagger-sm))
   );
@@ -57,8 +57,8 @@
   opacity: 0;
   transform: translate3d(0, 0.8rem, 0);
   transition:
-    opacity var(--motion-duration-lg) var(--motion-ease-standard),
-    transform var(--motion-duration-xl) var(--motion-ease-standard);
+    opacity var(--motion-duration-2xl) var(--motion-ease-standard),
+    transform var(--motion-duration-3xl) var(--motion-ease-standard);
   transition-delay: calc(
     var(--motion-duration-sm) + (var(--reveal-index, 0) * var(--motion-stagger-sm))
   );
