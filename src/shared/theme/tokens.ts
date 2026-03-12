@@ -81,6 +81,17 @@ export interface ThemeTokens {
   'header-offset': string;
   'shadow-tint': string;
   'transition': string;
+  'motion-unit': string;
+  'motion-duration-xs': string;
+  'motion-duration-sm': string;
+  'motion-duration-md': string;
+  'motion-duration-lg': string;
+  'motion-duration-xl': string;
+  'motion-duration-2xl': string;
+  'motion-stagger-sm': string;
+  'motion-stagger-md': string;
+  'motion-ease-standard': string;
+  'motion-ease-emphasized': string;
 }
 
 export type ThemeName = 'light' | 'dark';
@@ -135,6 +146,17 @@ const commonThemeTokens: Pick<
   | 'header-offset'
   | 'line-strong'
   | 'transition'
+  | 'motion-unit'
+  | 'motion-duration-xs'
+  | 'motion-duration-sm'
+  | 'motion-duration-md'
+  | 'motion-duration-lg'
+  | 'motion-duration-xl'
+  | 'motion-duration-2xl'
+  | 'motion-stagger-sm'
+  | 'motion-stagger-md'
+  | 'motion-ease-standard'
+  | 'motion-ease-emphasized'
 > = {
   'line-strong': '1px',
   'radius-lg': '1rem',
@@ -184,6 +206,17 @@ const commonThemeTokens: Pick<
   'icon-size-md': '1.25rem',
   'header-offset': '4.5rem',
   transition: '240ms ease',
+  'motion-unit': '60ms',
+  'motion-duration-xs': '120ms',
+  'motion-duration-sm': '180ms',
+  'motion-duration-md': '240ms',
+  'motion-duration-lg': '480ms',
+  'motion-duration-xl': '600ms',
+  'motion-duration-2xl': '840ms',
+  'motion-stagger-sm': '60ms',
+  'motion-stagger-md': '120ms',
+  'motion-ease-standard': 'cubic-bezier(0.2, 0.9, 0.24, 1)',
+  'motion-ease-emphasized': 'cubic-bezier(0.22, 1, 0.36, 1)',
 };
 
 export const themeTokenSets: Record<ThemeName, ThemeTokens> = {

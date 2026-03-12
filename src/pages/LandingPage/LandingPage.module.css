@@ -71,8 +71,8 @@
 .rootSection + .rootSection::before {
     display: block;
     top: 0;
-    left: max(1.5rem, calc(50% - 34rem));
-    right: max(1.5rem, calc(50% - 34rem));
+    left: 50%;
+    right: 50%;
     height: 1px;
     background: linear-gradient(
         90deg,
@@ -80,7 +80,7 @@
         color-mix(in srgb, var(--moss) 18%, transparent) 12%,
         color-mix(
                 in srgb,
-                var(--moss) 28%,
+                var(--moss) 34%,
                 color-mix(in srgb, var(--line) 18%, transparent)
             )
             50%,
@@ -88,10 +88,11 @@
         transparent 100%
     );
     opacity: 0;
-    clip-path: inset(0 50% 0 50%);
-    will-change: clip-path, opacity;
-    transition: clip-path 880ms cubic-bezier(0.22, 1.2, 0.32, 1),
-        opacity 560ms ease-in-out;
+    will-change: left, right, opacity;
+    transition:
+        left var(--motion-duration-2xl) var(--motion-ease-emphasized),
+        right var(--motion-duration-2xl) var(--motion-ease-emphasized),
+        opacity var(--motion-duration-sm) ease-out;
 }
 
 .rootSection::after {
@@ -130,8 +131,9 @@
 }
 
 .rootSection + .rootSection[data-landing-separator-reveal='visible']::before {
-    opacity: 0.9;
-    clip-path: inset(0 0 0 0);
+    left: max(1.5rem, calc(50% - 34rem));
+    right: max(1.5rem, calc(50% - 34rem));
+    opacity: 0.92;
 }
 
 .rootSection > * {
@@ -140,9 +142,9 @@
 }
 
 [data-landing-reveal] {
-    --landing-body-ease: cubic-bezier(0.2, 0.9, 0.24, 1);
-    transition: opacity 500ms var(--landing-body-ease) 120ms,
-        transform 620ms var(--landing-body-ease) 120ms;
+    transition:
+        opacity var(--motion-duration-lg) var(--motion-ease-standard) var(--motion-duration-xs),
+        transform var(--motion-duration-xl) var(--motion-ease-standard) var(--motion-duration-xs);
 }
 
 [data-landing-reveal='pending'] {
@@ -159,8 +161,8 @@
     .rootSection + .rootSection::before,
     [data-landing-reveal] {
         opacity: 1;
-        clip-path: inset(0 0 0 0);
-        transform: none;
+        left: max(1.5rem, calc(50% - 34rem));
+        right: max(1.5rem, calc(50% - 34rem));
         transition: none;
     }
 }
