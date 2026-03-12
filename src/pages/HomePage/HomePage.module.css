@@ -2,437 +2,392 @@
 }
 
 .heroSection {
-  padding-top: var(--space-5);
-  position: relative;
-  overflow: hidden;
-}
-
-.heroSection::before,
-.heroSection::after {
-  content: '';
-  position: absolute;
-  border-radius: var(--radius-pill);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.heroSection::before {
-  width: 22rem;
-  height: 22rem;
-  top: -10rem;
-  left: -6rem;
-  background: radial-gradient(circle, color-mix(in srgb, var(--moss) 4%, transparent) 0%, transparent 68%);
-  animation: driftFloatA 18s ease-in-out infinite;
-}
-
-.heroSection::after {
-  width: 20rem;
-  height: 20rem;
-  bottom: -10rem;
-  right: -5rem;
-  background: radial-gradient(circle, color-mix(in srgb, var(--code-ink) 4%, transparent) 0%, transparent 70%);
-  animation: driftFloatB 20s ease-in-out infinite;
+    padding-top: var(--space-5);
+    position: relative;
 }
 
 .heroWindow {
-  position: relative;
-  z-index: 1;
-  border-radius: var(--radius-xl);
-  border: var(--line-strong) solid var(--line);
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--paper-raised) 96%, transparent) 0%, color-mix(in srgb, var(--card-bg) 92%, transparent) 100%);
-  overflow: hidden;
-  box-shadow: var(--shadow-tint);
-  animation: frameEnter 620ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    position: relative;
+    z-index: 1;
+    border-radius: var(--radius-xl);
+    border: var(--line-strong) solid var(--line);
+    background: color-mix(in srgb, var(--paper-raised) 90%, var(--paper));
+    overflow: hidden;
+    box-shadow: var(--shadow-tint);
+    animation: frameEnter 620ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 .heroGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-4);
-  align-items: start;
-  padding: clamp(1rem, 3vw, 1.75rem);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    align-items: start;
+    padding: clamp(1rem, 3vw, 1.75rem);
 }
 
 .heroPhotoFrame {
-  position: relative;
-  margin: 0;
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  width: clamp(7rem, 28vw, 9.25rem);
-  border: var(--line-strong) solid color-mix(in srgb, var(--code-border) 68%, var(--line));
-  background: linear-gradient(145deg, color-mix(in srgb, var(--code-bg) 78%, var(--paper-raised)) 0%, var(--paper-raised) 80%);
-  box-shadow:
-    inset 0 0 0 1px color-mix(in srgb, var(--paper-raised) 72%, transparent),
-    0 14px 28px color-mix(in srgb, var(--moss) 4%, transparent);
+    position: relative;
+    margin: 0;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    width: clamp(7rem, 28vw, 9.25rem);
+    border: var(--line-strong) solid
+        color-mix(in srgb, var(--code-border) 68%, var(--line));
+    background: linear-gradient(
+        145deg,
+        color-mix(in srgb, var(--code-bg) 78%, var(--paper-raised)) 0%,
+        var(--paper-raised) 80%
+    );
+    box-shadow: inset 0 0 0 1px
+            color-mix(in srgb, var(--paper-raised) 72%, transparent),
+        0 14px 28px color-mix(in srgb, var(--moss) 4%, transparent);
 }
 
 .heroPhotoFrame::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  border: 1px dashed color-mix(in srgb, var(--code-border) 55%, transparent);
-  pointer-events: none;
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px dashed color-mix(in srgb, var(--code-border) 55%, transparent);
+    pointer-events: none;
 }
 
 .windowDots {
-  height: 1.8rem;
-  border-bottom: var(--line-strong) solid var(--line);
-  background: linear-gradient(180deg, var(--code-bg) 0%, color-mix(in srgb, var(--paper-raised) 78%, transparent) 100%);
-  display: flex;
-  align-items: center;
-  gap: 0.38rem;
-  padding-inline: 0.62rem;
+    height: 1.8rem;
+    border-bottom: var(--line-strong) solid var(--line);
+    background: linear-gradient(
+        180deg,
+        var(--code-bg) 0%,
+        color-mix(in srgb, var(--paper-raised) 78%, transparent) 100%
+    );
+    display: flex;
+    align-items: center;
+    gap: 0.38rem;
+    padding-inline: 0.62rem;
 }
 
 .windowDots span {
-  width: 0.52rem;
-  height: 0.52rem;
-  border-radius: 50%;
-  background: var(--moss-faint);
-  border: var(--line-strong) solid var(--code-border);
+    width: 0.52rem;
+    height: 0.52rem;
+    border-radius: 50%;
+    background: var(--moss-faint);
+    border: var(--line-strong) solid var(--code-border);
 }
 
 .windowDots span:nth-child(1) {
-  background: color-mix(in srgb, var(--moss-strong) 76%, var(--signal-red) 24%);
+    background: color-mix(
+        in srgb,
+        var(--moss-strong) 76%,
+        var(--signal-red) 24%
+    );
 }
 
 .windowDots span:nth-child(2) {
-  background: color-mix(in srgb, var(--moss) 68%, var(--signal-yellow) 32%);
+    background: color-mix(in srgb, var(--moss) 68%, var(--signal-yellow) 32%);
 }
 
 .windowDots span:nth-child(3) {
-  background: color-mix(in srgb, var(--moss) 70%, var(--signal-green) 30%);
+    background: color-mix(in srgb, var(--moss) 70%, var(--signal-green) 30%);
 }
 
 .heroPhoto {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  aspect-ratio: 4 / 5;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 4 / 5;
 }
 
 .heroCopy {
-  display: grid;
-  gap: clamp(var(--space-3), 2vw, var(--space-4));
-  min-width: 0;
-  align-content: start;
+    display: grid;
+    gap: clamp(var(--space-3), 2vw, var(--space-4));
+    min-width: 0;
+    align-content: start;
 }
 
 .heroCopy > * {
-  opacity: 0;
-  transform: translateY(8px);
-  animation: contentReveal 520ms ease both;
+    opacity: 0;
+    transform: translateY(8px);
+    animation: contentReveal 520ms ease both;
 }
 
 .heroCopy > *:nth-child(1) {
-  animation-delay: 90ms;
+    animation-delay: 90ms;
 }
 
 .heroCopy > *:nth-child(2) {
-  animation-delay: 140ms;
+    animation-delay: 140ms;
 }
 
 .heroCopy > *:nth-child(3) {
-  animation-delay: 190ms;
+    animation-delay: 190ms;
 }
 
 .heroCopy > *:nth-child(4) {
-  animation-delay: 240ms;
+    animation-delay: 240ms;
 }
 
 .heroCopy > *:nth-child(5) {
-  animation-delay: 290ms;
+    animation-delay: 290ms;
 }
 
 .heroCopy > *:nth-child(6) {
-  animation-delay: 340ms;
+    animation-delay: 340ms;
 }
 
 .heroCopy > *:nth-child(7) {
-  animation-delay: 390ms;
+    animation-delay: 390ms;
 }
 
 .heroKicker {
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: var(--font-size-caption);
-  color: var(--moss);
-  font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: var(--font-size-caption);
+    color: var(--moss);
+    font-weight: 700;
 }
 
 .heroIntro {
-  display: grid;
-  gap: var(--space-2);
+    display: grid;
+    gap: var(--space-2);
 }
 
 .heroTitle {
-  max-width: 13ch;
-  line-height: var(--line-height-display);
-  padding-bottom: 0.08em;
-  text-wrap: balance;
+    max-width: 13ch;
+    line-height: var(--line-height-display);
+    padding-bottom: 0.08em;
+    text-wrap: balance;
 }
 
 .heroBody {
-  display: grid;
-  gap: var(--space-2);
-  width: 100%;
-  max-width: var(--content-max-readable);
+    display: grid;
+    gap: var(--space-2);
+    width: 100%;
+    max-width: var(--content-max-readable);
 }
 
 .heroRole {
-  font-size: var(--font-size-body-lg);
-  color: var(--ink);
-  max-width: var(--content-max-narrow);
-  overflow-wrap: anywhere;
-  text-wrap: pretty;
+    font-size: var(--font-size-body-lg);
+    color: var(--ink);
+    max-width: var(--content-max-narrow);
+    overflow-wrap: anywhere;
+    text-wrap: pretty;
 }
 
 .heroCommand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.28rem;
-  font-family: var(--font-mono);
-  font-size: var(--font-size-sm);
-  line-height: 1.35;
-  color: var(--code-ink);
-  background: var(--code-bg);
-  border: var(--line-strong) solid var(--code-border);
-  border-radius: var(--radius-sm);
-  padding: 0.4rem 0.65rem;
-  width: fit-content;
-  max-width: 100%;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.28rem;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    line-height: 1.35;
+    color: var(--code-ink);
+    background: var(--code-bg);
+    border: var(--line-strong) solid var(--code-border);
+    border-radius: var(--radius-sm);
+    padding: 0.4rem 0.65rem;
+    width: fit-content;
+    max-width: 100%;
 }
 
 .heroPrompt {
-  color: var(--moss-strong);
-  font-weight: 700;
+    color: var(--moss-strong);
+    font-weight: 700;
 }
 
 .heroCommandText {
-  display: inline-block;
-  width: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 2px solid var(--moss);
-  animation:
-    commandTyping 2100ms steps(30, end) 620ms forwards,
-    commandCaret 850ms step-end 8 620ms forwards;
+    display: inline-block;
+    width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid var(--moss);
+    animation: commandTyping 2100ms steps(30, end) 620ms forwards,
+        commandCaret 850ms step-end 8 620ms forwards;
 }
 
 .heroSummary {
-  max-width: var(--content-max-readable);
-  overflow-wrap: anywhere;
-  text-wrap: pretty;
+    max-width: var(--content-max-readable);
+    overflow-wrap: anywhere;
+    text-wrap: pretty;
 }
 
 .heroNow {
-  padding-top: var(--space-2);
-  border-top: var(--line-strong) solid var(--line);
-  color: var(--ink);
-  overflow-wrap: anywhere;
-  text-wrap: pretty;
+    padding-top: var(--space-2);
+    border-top: var(--line-strong) solid var(--line);
+    color: var(--ink);
+    overflow-wrap: anywhere;
+    text-wrap: pretty;
 }
 
 .heroActions {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-2);
-  align-items: stretch;
-  width: min(100%, 30rem);
-  max-width: 30rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+    align-items: stretch;
+    width: min(100%, 30rem);
+    max-width: 30rem;
 }
 
 .heroActionLink {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-width: 0;
-  text-align: center;
-  white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+    text-align: center;
+    white-space: nowrap;
 }
 
 @media (min-width: 36rem) {
-  .heroActions {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    width: min(100%, 30rem);
-    max-width: 30rem;
-  }
+    .heroActions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: min(100%, 30rem);
+        max-width: 30rem;
+    }
 }
 
 @media (min-width: 48rem) {
-  .heroGrid {
-    grid-template-columns: minmax(8.5rem, 10rem) minmax(0, 1fr);
-    gap: clamp(1rem, 3vw, 2rem);
-  }
+    .heroGrid {
+        grid-template-columns: minmax(8.5rem, 10rem) minmax(0, 1fr);
+        gap: clamp(1rem, 3vw, 2rem);
+    }
 
-  .heroPhotoFrame {
-    width: 100%;
-  }
+    .heroPhotoFrame {
+        width: 100%;
+    }
 
-  .heroCopy {
-    width: 100%;
-  }
+    .heroCopy {
+        width: 100%;
+    }
 
-  .heroIntro h1 {
-    max-width: none;
-  }
+    .heroIntro h1 {
+        max-width: none;
+    }
 
-  .heroBody {
-    max-width: none;
-  }
+    .heroBody {
+        max-width: none;
+    }
 
-  .heroRole {
-    max-width: 30ch;
-  }
+    .heroRole {
+        max-width: 30ch;
+    }
 
-  .heroSummary,
-  .heroNow {
-    max-width: 100%;
-  }
+    .heroSummary,
+    .heroNow {
+        max-width: 100%;
+    }
 
-  .heroActions {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    justify-content: start;
-    width: min(100%, 30rem);
-    max-width: 30rem;
-  }
+    .heroActions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        justify-content: start;
+        width: min(100%, 30rem);
+        max-width: 30rem;
+    }
 
-  .heroActionLink {
-    min-width: 0;
-  }
+    .heroActionLink {
+        min-width: 0;
+    }
 }
 
 @keyframes frameEnter {
-  from {
-    opacity: 0;
-    transform: translateY(10px) scale(0.985);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.985);
+    }
 
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes driftFloatA {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  50% {
-    transform: translate3d(1.25rem, 1rem, 0);
-  }
-
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes driftFloatB {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  50% {
-    transform: translate3d(-1.4rem, -0.9rem, 0);
-  }
-
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 @keyframes contentReveal {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes commandTyping {
-  from {
-    width: 0;
-  }
+    from {
+        width: 0;
+    }
 
-  to {
-    width: 30ch;
-  }
+    to {
+        width: 30ch;
+    }
 }
 
 @keyframes commandCaret {
-  0% {
-    border-right-color: var(--moss);
-  }
+    0% {
+        border-right-color: var(--moss);
+    }
 
-  50% {
-    border-right-color: transparent;
-  }
+    50% {
+        border-right-color: transparent;
+    }
 
-  100% {
-    border-right-color: transparent;
-  }
+    100% {
+        border-right-color: transparent;
+    }
 }
 
 @media (min-width: 64rem) {
-  .heroSection {
-    padding-top: var(--font-size-body-xl);
-  }
+    .heroSection {
+        padding-top: var(--font-size-body-xl);
+    }
 
-  .heroGrid {
-    grid-template-columns: minmax(9rem, 11rem) minmax(0, 1.45fr);
-    gap: clamp(1.5rem, 4vw, 3.5rem);
-    padding: clamp(1.35rem, 2.6vw, 2rem);
-  }
+    .heroGrid {
+        grid-template-columns: minmax(9rem, 11rem) minmax(0, 1.45fr);
+        gap: clamp(1.5rem, 4vw, 3.5rem);
+        padding: clamp(1.35rem, 2.6vw, 2rem);
+    }
 
-  .heroPhotoFrame {
-    width: 100%;
-  }
+    .heroPhotoFrame {
+        width: 100%;
+    }
 
-  .heroBody {
-    max-width: min(74ch, 100%);
-  }
+    .heroBody {
+        max-width: min(74ch, 100%);
+    }
 
-  .heroSummary {
-    max-width: min(72ch, 100%);
-  }
+    .heroSummary {
+        max-width: min(72ch, 100%);
+    }
 
-  .heroActions {
-    grid-template-columns: repeat(2, minmax(0, max-content));
-    justify-content: start;
-    width: auto;
-    max-width: none;
-  }
+    .heroActions {
+        grid-template-columns: repeat(2, minmax(0, max-content));
+        justify-content: start;
+        width: auto;
+        max-width: none;
+    }
 
-  .heroActionLink {
-    width: auto;
-    min-width: 10.5rem;
-  }
+    .heroActionLink {
+        width: auto;
+        min-width: 10.5rem;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .heroWindow,
-  .heroCopy > * {
-    animation: none;
-    transition: none;
-    transform: none;
-  }
+    .heroWindow,
+    .heroCopy > * {
+        animation: none;
+        transition: none;
+        transform: none;
+    }
 
-  .heroSection::before,
-  .heroSection::after {
-    display: none;
-  }
+    .heroSection::before,
+    .heroSection::after {
+        display: none;
+    }
 
-  .heroCommandText {
-    width: auto;
-    border-right: none;
-    animation: none;
-  }
+    .heroCommandText {
+        width: auto;
+        border-right: none;
+        animation: none;
+    }
 }

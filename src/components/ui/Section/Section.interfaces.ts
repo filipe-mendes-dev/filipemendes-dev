@@ -9,4 +9,5 @@ export interface SectionProps {
   containerClassName?: string;
   contained?: boolean;
   headerRevealRef?: Ref<HTMLElement>;
+  sectionRef?: Ref<HTMLElement>;
 }

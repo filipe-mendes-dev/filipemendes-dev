@@ -4,7 +4,6 @@ declare const styles: {
   readonly 'homeSection': string;
   readonly 'projectsSection': string;
   readonly 'root': string;
-  readonly 'rootSection': string;
 };
 
 export default styles;
