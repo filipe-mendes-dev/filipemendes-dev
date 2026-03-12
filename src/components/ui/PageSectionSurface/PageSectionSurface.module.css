@@ -1,8 +1,6 @@
 .root {
   display: grid;
   --landing-scroll-spacing: var(--space-3);
-  --page-surface-shift-x: 0px;
-  --page-surface-shift-y: 0px;
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -46,26 +44,42 @@
 
 .root::after {
   background:
-    linear-gradient(
-      115deg,
-      transparent 22%,
-      color-mix(in srgb, var(--paper-raised) 36%, transparent) 42%,
-      color-mix(in srgb, var(--moss) 8%, transparent) 50%,
-      transparent 62%
-    ),
-    radial-gradient(circle at 16% 12%, color-mix(in srgb, var(--moss) 9%, transparent) 0%, transparent 28%),
-    radial-gradient(circle at 84% 70%, color-mix(in srgb, var(--code-ink) 12%, transparent) 0%, transparent 28%),
-    radial-gradient(circle at 52% 34%, color-mix(in srgb, var(--paper-raised) 28%, transparent) 0%, transparent 20%);
-  opacity: 1;
-  transform: translate3d(var(--page-surface-shift-x), var(--page-surface-shift-y), 0);
-  will-change: transform;
-  animation: surfaceAmbientDrift 18s ease-in-out infinite alternate;
+    radial-gradient(circle at 18% 14%, color-mix(in srgb, var(--moss) 13%, transparent) 0%, transparent 15%),
+    radial-gradient(circle at 82% 68%, color-mix(in srgb, var(--moss-strong) 12%, transparent) 0%, transparent 13%),
+    radial-gradient(circle at 50% 36%, color-mix(in srgb, var(--moss-strong) 10%, transparent) 0%, transparent 10%);
+  opacity: 0.9;
+  transform: translate3d(0, 0, 0);
+  will-change: transform, opacity;
+  animation:
+    surfaceAmbientDrift 5.5s ease-in-out infinite alternate,
+    surfaceAmbientGlow 7s ease-in-out infinite alternate;
   background-size:
-    100% 100%,
     100% 100%,
     100% 100%,
     100% 100%;
   background-repeat: no-repeat;
+}
+
+.ambientRay {
+  position: absolute;
+  inset: -2rem;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    linear-gradient(
+      115deg,
+      transparent 22%,
+      color-mix(in srgb, var(--paper-raised) 42%, transparent) 40%,
+      color-mix(in srgb, var(--moss) 12%, transparent) 49%,
+      color-mix(in srgb, var(--paper-raised) 16%, transparent) 57%,
+      transparent 70%
+    );
+  opacity: 0.46;
+  transform: translate3d(0, 0, 0);
+  will-change: opacity, transform;
+  animation:
+    surfaceRayBreath 3.2s ease-in-out infinite alternate,
+    surfaceRayDrift 4.8s ease-in-out infinite alternate;
 }
 
 .section {
@@ -150,6 +164,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .ambientRay,
   .root::after,
   .section + .section::before,
   [data-landing-reveal] {
@@ -164,21 +179,55 @@
 
 @keyframes surfaceAmbientDrift {
   0% {
-    transform: translate3d(var(--page-surface-shift-x), var(--page-surface-shift-y), 0);
+    transform: translate3d(0, 0, 0);
   }
 
   50% {
     transform: translate3d(
-      calc(var(--page-surface-shift-x) + 14px),
-      calc(var(--page-surface-shift-y) - 16px),
+      50px,
+      -46px,
       0
     );
   }
 
   100% {
     transform: translate3d(
-      calc(var(--page-surface-shift-x) - 10px),
-      calc(var(--page-surface-shift-y) + 14px),
+      -40px,
+      36px,
+      0
+    );
+  }
+}
+
+@keyframes surfaceAmbientGlow {
+  0% {
+    opacity: 0.66;
+  }
+
+  100% {
+    opacity: 0.94;
+  }
+}
+
+@keyframes surfaceRayBreath {
+  0% {
+    opacity: 0.26;
+  }
+
+  100% {
+    opacity: 0.68;
+  }
+}
+
+@keyframes surfaceRayDrift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(
+      -30px,
+      24px,
       0
     );
   }
