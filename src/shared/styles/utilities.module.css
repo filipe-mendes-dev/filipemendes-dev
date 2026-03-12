@@ -78,12 +78,10 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 14px color-mix(in srgb, var(--moss) 10%, transparent);
   transition:
     background-color var(--transition),
     color var(--transition),
-    border-color var(--transition),
-    box-shadow var(--transition);
+    border-color var(--transition);
 }
 
 .buttonPrimary {
@@ -96,7 +94,6 @@
   background: linear-gradient(135deg, var(--moss) 0%, color-mix(in srgb, var(--moss-strong) 88%, var(--surface-inverse) 12%) 100%);
   color: var(--ink-inverse);
   border-color: color-mix(in srgb, var(--moss-strong) 82%, var(--line));
-  box-shadow: 0 10px 20px color-mix(in srgb, var(--moss) 20%, transparent);
 }
 
 .buttonSecondary {
@@ -108,7 +105,6 @@
 .buttonSecondary:hover {
   border-color: var(--moss);
   color: var(--moss);
-  box-shadow: 0 10px 20px color-mix(in srgb, var(--moss) 14%, transparent);
 }
 
 @media (min-width: 64rem) {
