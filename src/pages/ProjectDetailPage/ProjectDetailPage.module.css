@@ -1,128 +1,39 @@
 .root {
-  display: grid;
-}
-
-.detailSection {
-  border-bottom: var(--line-strong) solid var(--line);
-  position: relative;
-  overflow: hidden;
-}
-
-.detailSection::before,
-.detailSection::after {
-  content: '';
-  position: absolute;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.82;
-}
-
-.detailSection > * {
-  position: relative;
-  z-index: 1;
-}
-
-.heroSection {
-  background:
-    radial-gradient(circle at 90% 18%, color-mix(in srgb, var(--moss) 10%, transparent) 0%, transparent 38%),
-    linear-gradient(180deg, var(--hero-projects-bg) 0%, color-mix(in srgb, var(--paper-raised) 72%, var(--hero-projects-bg)) 100%);
-}
-
-.heroSection::before {
-  inset: 0;
-  background-image: linear-gradient(to bottom, color-mix(in srgb, var(--line) 40%, transparent) 1px, transparent 1px);
-  background-size: 100% 38px;
-  opacity: 0.16;
 }
 
 .heroSection::after {
-  width: 13rem;
-  height: 13rem;
-  right: -4rem;
-  top: -5rem;
-  border-radius: var(--radius-lg);
-  transform: rotate(18deg);
-  background: color-mix(in srgb, var(--code-bg) 62%, transparent);
-}
-
-.gallerySection {
-  background:
-    radial-gradient(circle at 14% 82%, color-mix(in srgb, var(--moss) 10%, transparent) 0%, transparent 38%),
-    var(--hero-about-bg);
-}
-
-.gallerySection::before {
-  inset: 0;
-  background-image:
-    linear-gradient(to right, color-mix(in srgb, var(--line) 30%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in srgb, var(--line) 22%, transparent) 1px, transparent 1px);
-  background-size: 48px 48px;
-  opacity: 0.08;
+  top: 1rem;
+  left: max(1rem, calc(50% - 34rem));
 }
 
 .gallerySection::after {
-  width: 12rem;
-  height: 12rem;
-  top: -4rem;
-  left: 55%;
-  border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--code-border) 28%, transparent) 0%, transparent 72%);
+  top: 4rem;
+  left: calc(100% - clamp(13rem, 22vw, 17rem));
 }
 
-.featuresSection,
-.stackSection {
-  background:
-    linear-gradient(130deg, color-mix(in srgb, var(--code-bg) 22%, transparent) 0%, transparent 36%),
-    var(--hero-contact-bg);
+.featuresSection::after {
+  top: auto;
+  bottom: 2rem;
+  left: max(1rem, calc(50% - 30rem));
 }
 
-.featuresSection::before,
-.stackSection::before {
-  inset: 0;
-  background-image: linear-gradient(to right, color-mix(in srgb, var(--line) 20%, transparent) 1px, transparent 1px);
-  background-size: 34px 100%;
-  opacity: 0.1;
-}
-
-.featuresSection::after,
+.architectureSection::after,
 .stackSection::after {
-  width: 12rem;
-  height: 12rem;
-  right: -4.5rem;
-  bottom: -5rem;
-  border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--moss-faint) 88%, transparent) 0%, transparent 70%);
-}
-
-.architectureSection {
-  background:
-    radial-gradient(circle at 8% 12%, color-mix(in srgb, var(--moss) 11%, transparent) 0%, transparent 44%),
-    var(--hero-home-bg);
-}
-
-.architectureSection::before {
-  inset: 0;
-  background-image: linear-gradient(to right, color-mix(in srgb, var(--code-border) 12%, transparent) 1px, transparent 1px);
-  background-size: 42px 100%;
-  opacity: 0.12;
-}
-
-.architectureSection::after {
-  width: 16rem;
-  height: 16rem;
-  top: -6rem;
-  right: -6rem;
-  border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--code-ink) 18%, transparent) 0%, transparent 70%);
+  top: auto;
+  bottom: 0;
+  left: calc(100% - clamp(14rem, 24vw, 18rem));
 }
 
 .heroInner {
-  display: grid;
-  gap: var(--space-4);
   width: var(--container);
   margin-inline: auto;
   padding-top: var(--space-4);
   padding-bottom: var(--space-5);
+}
+
+.heroReveal {
+  display: grid;
+  gap: var(--space-4);
 }
 
 .heroHeader {
@@ -350,12 +261,5 @@
 
   .galleryGrid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .detailSection::before,
-  .detailSection::after {
-    display: none;
   }
 }

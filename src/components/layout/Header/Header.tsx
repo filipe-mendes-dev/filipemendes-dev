@@ -17,6 +17,13 @@ import type { HeaderProps } from './Header.interfaces';
 import { ThemeToggle } from './ThemeToggle';
 import st from './Header.module.css';
 
+const getMotionDurationMs = (cssVariableName: string, fallbackValue: number): number => {
+  const rootStyles = window.getComputedStyle(document.documentElement);
+  const durationValue = Number.parseFloat(rootStyles.getPropertyValue(cssVariableName));
+
+  return Number.isFinite(durationValue) ? durationValue : fallbackValue;
+};
+
 export const Header = ({
   siteTitle,
   navigation,
@@ -130,8 +137,11 @@ export const Header = ({
   }, [isMobileMenuOpen]);
 
   const getMobileNavItemStyle = (index: number): CSSProperties => {
+    const initialDelay = getMotionDurationMs('--motion-duration-xs', 120);
+    const staggerStep = getMotionDurationMs('--motion-stagger-sm', 60);
+
     return {
-      transitionDelay: `${90 + index * 40}ms`,
+      transitionDelay: `${initialDelay + index * staggerStep}ms`,
     };
   };
 

@@ -14,8 +14,8 @@
   transition:
     border-color var(--transition),
     background-color var(--transition),
-    box-shadow 320ms ease,
-    transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow var(--motion-duration-lg) var(--motion-ease-standard),
+    transform var(--motion-duration-xl) var(--motion-ease-emphasized);
 }
 
 .compact {
@@ -45,7 +45,7 @@
   height: var(--icon-size-md);
   display: grid;
   place-items: center;
-  transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform var(--motion-duration-2xl) var(--motion-ease-emphasized);
 }
 
 .iconSun,
@@ -59,9 +59,9 @@
   font-size: var(--font-size-body);
   line-height: 1;
   transition:
-    opacity 260ms ease,
-    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
-    filter 260ms ease;
+    opacity var(--motion-duration-md) var(--motion-ease-standard),
+    transform var(--motion-duration-xl) var(--motion-ease-emphasized),
+    filter var(--motion-duration-md) var(--motion-ease-standard);
 }
 
 .iconSun {

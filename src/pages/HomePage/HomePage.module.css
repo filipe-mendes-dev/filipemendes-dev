@@ -4,34 +4,6 @@
 .heroSection {
   padding-top: var(--space-5);
   position: relative;
-  overflow: hidden;
-}
-
-.heroSection::before,
-.heroSection::after {
-  content: '';
-  position: absolute;
-  border-radius: var(--radius-pill);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.heroSection::before {
-  width: 22rem;
-  height: 22rem;
-  top: -10rem;
-  left: -6rem;
-  background: radial-gradient(circle, color-mix(in srgb, var(--moss) 16%, transparent) 0%, transparent 68%);
-  animation: driftFloatA 18s ease-in-out infinite;
-}
-
-.heroSection::after {
-  width: 20rem;
-  height: 20rem;
-  bottom: -10rem;
-  right: -5rem;
-  background: radial-gradient(circle, color-mix(in srgb, var(--code-ink) 12%, transparent) 0%, transparent 70%);
-  animation: driftFloatB 20s ease-in-out infinite;
 }
 
 .heroWindow {
@@ -39,7 +11,7 @@
   z-index: 1;
   border-radius: var(--radius-xl);
   border: var(--line-strong) solid var(--line);
-  background: color-mix(in srgb, var(--paper-raised) 94%, transparent);
+  background: color-mix(in srgb, var(--paper-raised) 90%, var(--paper));
   overflow: hidden;
   box-shadow: var(--shadow-tint);
   animation: frameEnter 620ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
@@ -313,34 +285,6 @@
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes driftFloatA {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  50% {
-    transform: translate3d(1.25rem, 1rem, 0);
-  }
-
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes driftFloatB {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  50% {
-    transform: translate3d(-1.4rem, -0.9rem, 0);
-  }
-
-  100% {
-    transform: translate3d(0, 0, 0);
   }
 }
 
