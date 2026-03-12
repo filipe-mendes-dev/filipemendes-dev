@@ -1,13 +1,17 @@
 .root {
   display: grid;
   --landing-scroll-spacing: var(--space-3);
+  --page-surface-shift-x: 0px;
+  --page-surface-shift-y: 0px;
   position: relative;
   isolation: isolate;
+  overflow: hidden;
   background: linear-gradient(
     180deg,
-    color-mix(in srgb, var(--paper-raised) 18%, var(--paper)) 0%,
-    var(--paper) 52%,
-    color-mix(in srgb, var(--stone) 24%, var(--paper)) 100%
+    color-mix(in srgb, var(--paper-raised) 32%, var(--paper)) 0%,
+    color-mix(in srgb, var(--paper-raised) 12%, var(--paper)) 30%,
+    var(--paper) 54%,
+    color-mix(in srgb, var(--stone) 34%, var(--paper)) 100%
   );
 }
 
@@ -15,24 +19,53 @@
 .root::after {
   content: '';
   position: absolute;
-  inset: 0;
+  inset: -2rem;
   pointer-events: none;
   z-index: 0;
 }
 
 .root::before {
   background-image:
-    linear-gradient(to right, color-mix(in srgb, var(--line) 16%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in srgb, var(--line) 12%, transparent) 1px, transparent 1px);
-  background-size: 44px 44px;
-  opacity: 0.08;
+    linear-gradient(to right, color-mix(in srgb, var(--moss) 12%, transparent) 1px, transparent 1px),
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--code-ink) 11%, color-mix(in srgb, var(--moss) 6%, transparent)) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--code-ink) 9%, color-mix(in srgb, var(--moss) 4%, transparent)) 1px,
+      transparent 1px
+    );
+  background-size:
+    160px 100%,
+    44px 44px,
+    44px 44px;
+  opacity: 0.16;
 }
 
 .root::after {
   background:
-    radial-gradient(circle at 14% 10%, color-mix(in srgb, var(--moss) 10%, transparent) 0%, transparent 26%),
-    radial-gradient(circle at 86% 68%, color-mix(in srgb, var(--code-ink) 8%, transparent) 0%, transparent 24%);
-  opacity: 0.9;
+    linear-gradient(
+      115deg,
+      transparent 22%,
+      color-mix(in srgb, var(--paper-raised) 36%, transparent) 42%,
+      color-mix(in srgb, var(--moss) 8%, transparent) 50%,
+      transparent 62%
+    ),
+    radial-gradient(circle at 16% 12%, color-mix(in srgb, var(--moss) 9%, transparent) 0%, transparent 28%),
+    radial-gradient(circle at 84% 70%, color-mix(in srgb, var(--code-ink) 12%, transparent) 0%, transparent 28%),
+    radial-gradient(circle at 52% 34%, color-mix(in srgb, var(--paper-raised) 28%, transparent) 0%, transparent 20%);
+  opacity: 1;
+  transform: translate3d(var(--page-surface-shift-x), var(--page-surface-shift-y), 0);
+  will-change: transform;
+  animation: surfaceAmbientDrift 18s ease-in-out infinite alternate;
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%;
+  background-repeat: no-repeat;
 }
 
 .section {
@@ -117,11 +150,36 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .root::after,
   .section + .section::before,
   [data-landing-reveal] {
     opacity: 1;
     left: max(1.5rem, calc(50% - 34rem));
     right: max(1.5rem, calc(50% - 34rem));
     transition: none;
+    animation: none;
+    transform: none;
+  }
+}
+
+@keyframes surfaceAmbientDrift {
+  0% {
+    transform: translate3d(var(--page-surface-shift-x), var(--page-surface-shift-y), 0);
+  }
+
+  50% {
+    transform: translate3d(
+      calc(var(--page-surface-shift-x) + 14px),
+      calc(var(--page-surface-shift-y) - 16px),
+      0
+    );
+  }
+
+  100% {
+    transform: translate3d(
+      calc(var(--page-surface-shift-x) - 10px),
+      calc(var(--page-surface-shift-y) + 14px),
+      0
+    );
   }
 }
