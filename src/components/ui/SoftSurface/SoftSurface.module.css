@@ -4,11 +4,22 @@
   padding: var(--panel-padding);
   border: 1px solid color-mix(in srgb, var(--line) 22%, transparent);
   border-radius: calc(var(--radius-xl) * 0.68);
-  background: color-mix(in srgb, var(--card-bg) 44%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--paper-raised) 26%, transparent) 0%, color-mix(in srgb, var(--card-bg) 56%, transparent) 100%);
   box-shadow:
     inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 10%, transparent),
-    0 0 0 1px color-mix(in srgb, var(--moss) 4%, transparent),
-    0 20px 48px color-mix(in srgb, var(--code-bg) 6%, transparent);
+    0 0 0 1px color-mix(in srgb, var(--moss) 1%, transparent),
+    0 20px 48px color-mix(in srgb, var(--code-bg) 4%, transparent);
+}
+
+:global([data-theme='light']) .root {
+  border-color: color-mix(in srgb, var(--line) 46%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--paper-raised) 94%, transparent) 0%, color-mix(in srgb, var(--card-bg) 88%, transparent) 100%);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 72%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--paper-raised) 65%, transparent),
+    0 16px 36px color-mix(in srgb, var(--ink) 5%, transparent);
 }
 
 @media (max-width: 30rem) {

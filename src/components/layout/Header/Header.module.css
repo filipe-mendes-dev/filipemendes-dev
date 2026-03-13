@@ -2,14 +2,19 @@
 .siteHeader {
     position: sticky;
     top: 0;
-    backdrop-filter: blur(4px);
-    background: var(--header-bg);
     z-index: 30;
-    isolation: isolate;
+}
+
+.headerBar {
+    backdrop-filter: blur(12px) saturate(140%);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+    background: var(--header-bg);
 }
 
 .headerInner {
     position: relative;
+    width: var(--container);
+    margin-inline: auto;
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
@@ -75,6 +80,8 @@
     right: 0;
     width: 100%;
     border-radius: 0;
+    backdrop-filter: blur(12px) saturate(140%);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
     background: var(--header-bg);
     border-inline: 0;
     border-bottom: 0;
@@ -84,8 +91,7 @@
     pointer-events: none;
     clip-path: inset(0 0 100% 0);
     will-change: opacity, clip-path;
-    transition:
-        opacity var(--motion-duration-lg) var(--motion-ease-standard),
+    transition: opacity var(--motion-duration-lg) var(--motion-ease-standard),
         clip-path var(--motion-duration-xl) var(--motion-ease-emphasized),
         visibility 0ms linear var(--motion-duration-xl);
 }
@@ -95,13 +101,14 @@
     visibility: visible;
     pointer-events: auto;
     clip-path: inset(0 0 0 0);
-    transition:
-        opacity var(--motion-duration-lg) var(--motion-ease-standard),
+    transition: opacity var(--motion-duration-lg) var(--motion-ease-standard),
         clip-path var(--motion-duration-xl) var(--motion-ease-emphasized),
         visibility 0ms linear 0ms;
 }
 
 .headerNavInner {
+    width: 100%;
+    box-sizing: border-box;
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: stretch;
@@ -126,8 +133,7 @@
 .mobileMenuFooter {
     opacity: 0;
     transform: translateY(-0.35rem);
-    transition:
-        opacity var(--motion-duration-md) var(--motion-ease-standard),
+    transition: opacity var(--motion-duration-md) var(--motion-ease-standard),
         transform var(--motion-duration-xl) var(--motion-ease-emphasized);
 }
 
@@ -151,8 +157,7 @@
     padding-block: 0.2rem 0.45rem;
     white-space: nowrap;
     text-align: left;
-    transition:
-        color var(--transition),
+    transition: color var(--transition),
         transform var(--motion-duration-md) var(--motion-ease-standard);
 }
 
@@ -167,7 +172,8 @@
     background: color-mix(in srgb, var(--moss) 85%, transparent);
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform var(--motion-duration-lg) var(--motion-ease-emphasized);
+    transition: transform var(--motion-duration-lg)
+        var(--motion-ease-emphasized);
 }
 
 .siteNavLink:hover {
@@ -205,8 +211,7 @@
     padding: 0;
     cursor: pointer;
     justify-self: end;
-    transition:
-        border-color var(--transition),
+    transition: border-color var(--transition),
         background-color var(--transition),
         box-shadow var(--motion-duration-lg) var(--motion-ease-standard),
         transform var(--motion-duration-xl) var(--motion-ease-emphasized);
@@ -215,6 +220,28 @@
 .menuToggle:hover {
     background: color-mix(in srgb, var(--code-bg) 42%, transparent);
     box-shadow: none;
+}
+
+:global([data-theme='light']) .root,
+:global([data-theme='light']) .siteHeader {
+    border-bottom: 0;
+    box-shadow: none;
+}
+
+:global([data-theme='light']) .headerBar {
+    border-bottom: var(--line-strong) solid
+        color-mix(in srgb, var(--line) 82%, transparent);
+    box-shadow: inset 0 1px 0
+            color-mix(in srgb, var(--paper-raised) 72%, transparent),
+        0 10px 30px color-mix(in srgb, var(--ink) 4%, transparent);
+}
+
+:global([data-theme='light']) .menuToggle {
+    background: transparent;
+}
+
+:global([data-theme='light']) .menuToggle:hover {
+    background: transparent;
 }
 
 .menuToggleBars {

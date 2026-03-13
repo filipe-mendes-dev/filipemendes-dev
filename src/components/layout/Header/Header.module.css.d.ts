@@ -2,6 +2,7 @@ declare const styles: {
   readonly 'desktopNav': string;
   readonly 'desktopSiteNavList': string;
   readonly 'desktopThemeToggle': string;
+  readonly 'headerBar': string;
   readonly 'headerInner': string;
   readonly 'headerNav': string;
   readonly 'headerNavInner': string;
