@@ -1,5 +1,4 @@
 declare const styles: {
-  readonly 'featuredCard': string;
   readonly 'heroActionLink': string;
   readonly 'heroActions': string;
   readonly 'heroBody': string;
@@ -9,6 +8,7 @@ declare const styles: {
   readonly 'heroGrid': string;
   readonly 'heroIntro': string;
   readonly 'heroKicker': string;
+  readonly 'heroMediaColumn': string;
   readonly 'heroNow': string;
   readonly 'heroPhoto': string;
   readonly 'heroPhotoFrame': string;
@@ -18,8 +18,9 @@ declare const styles: {
   readonly 'heroSummary': string;
   readonly 'heroTitle': string;
   readonly 'heroWindow': string;
+  readonly 'heroWindowBar': string;
   readonly 'root': string;
-  readonly 'windowDots': string;
+  readonly 'windowControls': string;
 };
 
 export default styles;

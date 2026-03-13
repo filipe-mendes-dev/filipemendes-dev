@@ -23,15 +23,19 @@ export const HomePage = ({ content, navigate, onSectionRequest, revealRef }: Hom
     <div className={st.root}>
       <Section className={st.heroSection}>
         <div ref={revealRef} className={st.heroWindow} data-landing-reveal="visible">
-          <div className={st.windowDots} aria-hidden="true">
-            <span />
-            <span />
-            <span />
+          <div className={st.heroWindowBar} aria-hidden="true">
+            <div className={st.windowControls}>
+              <span />
+              <span />
+              <span />
+            </div>
           </div>
           <div className={st.heroGrid}>
-            <figure className={st.heroPhotoFrame}>
-              <img src={content.hero.photoUrl} alt={content.hero.photoAlt} className={st.heroPhoto} />
-            </figure>
+            <div className={st.heroMediaColumn}>
+              <figure className={st.heroPhotoFrame}>
+                <img src={content.hero.photoUrl} alt={content.hero.photoAlt} className={st.heroPhoto} />
+              </figure>
+            </div>
 
             <div className={st.heroCopy}>
               <div className={st.heroIntro}>
