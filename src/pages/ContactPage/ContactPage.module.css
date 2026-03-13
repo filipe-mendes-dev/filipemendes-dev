@@ -219,25 +219,9 @@
 
 .formButton {
     width: fit-content;
-    min-height: var(--control-height-lg);
-    border: var(--line-strong) solid transparent;
-    border-radius: var(--radius-pill);
-    background: var(--moss);
-    color: var(--ink-inverse);
     font-family: var(--font-display);
     font-size: var(--font-size-body);
-    font-weight: 600;
     padding: var(--control-padding-lg);
-    cursor: pointer;
-    transition: background-color var(--transition), transform var(--transition),
-        box-shadow var(--transition);
-}
-
-.formButton:hover {
-    background: var(--moss-strong);
-    transform: translateY(-1px);
-    box-shadow: 0 10px 24px
-        color-mix(in srgb, var(--moss-faint) 22%, transparent);
 }
 
 .formButton:focus-visible {

@@ -5,6 +5,7 @@ import { TextActionLink } from '../../components/navigation/TextActionLink';
 import { RevealItem } from '../../components/ui/RevealItem';
 import { Section } from '../../components/ui/Section';
 import { SoftSurface } from '../../components/ui/SoftSurface';
+import su from '../../shared/styles/utilities.module.css';
 import type { ContactPageProps } from './ContactPage.interfaces';
 import st from './ContactPage.module.css';
 
@@ -93,7 +94,7 @@ export const ContactPage = ({ content, revealRef, headerRevealRef }: ContactPage
                   </div>
                 </RevealItem>
                 <RevealItem index={3} role="form-field">
-                  <button type="submit" className={st.formButton}>
+                  <button type="submit" className={`${su.button} ${su.buttonPrimary} ${st.formButton}`}>
                     Open Email Draft
                   </button>
                 </RevealItem>

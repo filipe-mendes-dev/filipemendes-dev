@@ -1,11 +1,14 @@
-.root,
-.siteFooter {
+.root {
   border-top: var(--line-strong) solid var(--line);
+  background: var(--footer-bg);
+  padding-block: var(--space-5);
+}
+
+:global([data-theme='dark']) .root {
   background:
     radial-gradient(circle at 80% 0%, color-mix(in srgb, var(--moss) 2%, transparent) 0%, transparent 22%),
     linear-gradient(180deg, color-mix(in srgb, var(--paper-raised) 5%, transparent) 0%, transparent 40%),
     var(--footer-bg);
-  padding-block: var(--space-5);
 }
 
 .footerInner {
@@ -39,24 +42,14 @@
   width: fit-content;
   min-height: var(--control-height-md);
   padding: var(--control-padding-md);
-  border: var(--line-strong) solid color-mix(in srgb, var(--line) 88%, transparent);
   border-radius: var(--radius-sm);
-  background: color-mix(in srgb, var(--paper-raised) 80%, transparent);
-  color: var(--ink);
-  text-decoration: none;
   margin-bottom: var(--space-2);
-  transition: background-color var(--transition), border-color var(--transition), color var(--transition);
 }
 
 .footerActionIcon {
   width: var(--icon-size-sm);
   height: var(--icon-size-sm);
   flex: none;
-}
-
-.footerAction:hover {
-  color: var(--ink);
-  border-color: var(--code-border);
 }
 
 .footerAction:focus-visible {
@@ -116,24 +109,21 @@
   padding: 0.7rem 0.9rem;
   border: var(--line-strong) solid color-mix(in srgb, var(--line) 92%, transparent);
   border-radius: var(--radius-pill);
-  background: linear-gradient(180deg, color-mix(in srgb, var(--paper-raised) 76%, transparent) 0%, color-mix(in srgb, var(--card-bg) 68%, transparent) 100%);
+  background: color-mix(in srgb, var(--paper-raised) 86%, var(--footer-bg));
   text-decoration: none;
   width: 100%;
   color: var(--ink-soft);
+  font-weight: 500;
   transition:
-    color var(--transition),
-    transform var(--transition),
-    opacity var(--transition),
-    border-color var(--transition),
-    background-color var(--transition);
+    color var(--motion-duration-lg) var(--motion-ease-standard),
+    border-color var(--motion-duration-lg) var(--motion-ease-standard),
+    background var(--motion-duration-lg) var(--motion-ease-standard);
 }
 
 .footerLink:hover {
   color: var(--moss);
-  transform: translateY(-2px);
-  border-color: color-mix(in srgb, var(--moss) 45%, var(--line));
-  background: color-mix(in srgb, var(--button-secondary-bg) 78%, transparent);
-  opacity: 1;
+  border-color: color-mix(in srgb, var(--moss) 42%, var(--line));
+  background: color-mix(in srgb, var(--paper-raised) 96%, var(--footer-bg));
 }
 
 .footerLink:focus-visible {
