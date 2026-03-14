@@ -10,8 +10,7 @@
     position: relative;
     z-index: 1;
     overflow: hidden;
-    border: var(--line-strong) solid
-        color-mix(in srgb, var(--line) 44%, transparent);
+    border: var(--line-strong) solid color-mix(in srgb, var(--line) 44%, transparent);
     border-radius: calc(var(--radius-2xl) + 0.1rem);
     background: linear-gradient(
         180deg,
@@ -19,8 +18,7 @@
         color-mix(in srgb, var(--card-bg) 92%, transparent) 40%,
         color-mix(in srgb, var(--paper) 98%, transparent) 100%
     );
-    box-shadow: inset 0 1px 0
-            color-mix(in srgb, var(--paper-raised) 82%, transparent),
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 82%, transparent),
         inset 0 -1px 0 color-mix(in srgb, var(--line) 8%, transparent),
         0 10px 20px color-mix(in srgb, var(--ink) 4%, transparent),
         0 0 0 1px color-mix(in srgb, var(--paper-raised) 22%, transparent);
@@ -77,15 +75,13 @@
     align-items: center;
     min-height: 1.9rem;
     padding-inline: clamp(0.8rem, 2vw, 1rem);
-    border-bottom: var(--line-strong) solid
-        color-mix(in srgb, var(--line) 82%, transparent);
+    border-bottom: var(--line-strong) solid color-mix(in srgb, var(--line) 82%, transparent);
     background: linear-gradient(
         180deg,
         color-mix(in srgb, var(--code-bg) 84%, var(--paper-raised)) 0%,
         color-mix(in srgb, var(--code-bg) 64%, var(--paper-raised)) 100%
     );
-    box-shadow: inset 0 1px 0
-            color-mix(in srgb, var(--paper-raised) 36%, transparent),
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 36%, transparent),
         inset 0 -1px 0 color-mix(in srgb, var(--paper-raised) 44%, transparent);
 }
 
@@ -108,8 +104,7 @@
         color-mix(in srgb, var(--paper) 80%, var(--code-bg)) 0%,
         color-mix(in srgb, var(--paper) 68%, var(--code-bg)) 100%
     );
-    box-shadow: inset 0 1px 0
-            color-mix(in srgb, var(--paper-raised) 12%, transparent),
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 12%, transparent),
         inset 0 -1px 0 color-mix(in srgb, var(--paper-raised) 18%, transparent);
 }
 
@@ -122,8 +117,7 @@
         color-mix(in srgb, var(--card-bg) 58%, transparent) 58%,
         color-mix(in srgb, var(--paper) 42%, transparent) 100%
     );
-    box-shadow: inset 0 1px 0
-            color-mix(in srgb, var(--paper-raised) 14%, transparent),
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 14%, transparent),
         inset 0 -1px 0 color-mix(in srgb, var(--line) 8%, transparent),
         0 10px 20px color-mix(in srgb, rgb(0 0 0) 18%, transparent),
         0 0 0 1px color-mix(in srgb, var(--paper-raised) 6%, transparent);
@@ -147,8 +141,7 @@
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 50%;
-    border: var(--line-strong) solid
-        color-mix(in srgb, var(--ink) 12%, transparent);
+    border: var(--line-strong) solid color-mix(in srgb, var(--ink) 12%, transparent);
 }
 
 .windowControls span:nth-child(1) {
@@ -226,8 +219,7 @@
     width: min(100%, clamp(7.25rem, 20vw, 9.5rem));
     margin: 0;
     padding: 0.42rem;
-    border: var(--line-strong) solid
-        color-mix(in srgb, var(--code-border) 68%, var(--line));
+    border: var(--line-strong) solid color-mix(in srgb, var(--code-border) 68%, var(--line));
     border-radius: calc(var(--radius-2xl) * 0.95);
     overflow: hidden;
     background: linear-gradient(
@@ -235,8 +227,7 @@
         color-mix(in srgb, var(--code-bg) 82%, var(--paper-raised)) 0%,
         color-mix(in srgb, var(--paper-raised) 96%, transparent) 100%
     );
-    box-shadow: inset 0 1px 0
-            color-mix(in srgb, var(--paper-raised) 68%, transparent),
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 68%, transparent),
         inset 0 0 0 1px color-mix(in srgb, var(--paper-raised) 20%, transparent);
 }
 
@@ -246,11 +237,7 @@
     inset: 0.42rem;
     border-radius: calc(var(--radius-xl) * 0.96);
     border: 1px solid color-mix(in srgb, var(--code-border) 38%, transparent);
-    background: linear-gradient(
-            180deg,
-            color-mix(in srgb, var(--paper-raised) 14%, transparent) 0%,
-            transparent 20%
-        ),
+    background: linear-gradient(180deg, color-mix(in srgb, var(--paper-raised) 14%, transparent) 0%, transparent 20%),
         repeating-linear-gradient(
             90deg,
             transparent 0,
@@ -322,16 +309,14 @@
     width: 100%;
     max-width: none;
     padding: 0.48rem 0.72rem;
-    border: var(--line-strong) solid
-        color-mix(in srgb, var(--code-border) 84%, transparent);
+    border: var(--line-strong) solid color-mix(in srgb, var(--code-border) 84%, transparent);
     border-radius: calc(var(--radius-sm) * 1.04);
     background: linear-gradient(
         180deg,
         color-mix(in srgb, var(--paper-raised) 82%, transparent) 0%,
         color-mix(in srgb, var(--code-bg) 94%, var(--paper-raised)) 100%
     );
-    box-shadow: inset 0 1px 0
-            color-mix(in srgb, var(--paper-raised) 72%, transparent),
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 72%, transparent),
         0 1px 0 color-mix(in srgb, var(--paper) 12%, transparent);
     font-family: var(--font-mono);
     font-size: var(--font-size-sm);
@@ -341,41 +326,11 @@
 }
 
 .heroCommand::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        110deg,
-        transparent 12%,
-        color-mix(in srgb, var(--paper-raised) 32%, transparent) 46%,
-        transparent 78%
-    );
-    opacity: 0;
-    transform: translateX(-120%);
-}
-
-.heroCommandTyping::after {
-    animation: heroCommandSweep 940ms var(--motion-ease-emphasized) both;
-}
-
-.heroCommandTyped .heroCommandText {
-    max-width: 100%;
-}
-
-.heroCommandTyped .heroCommandText::after {
     content: none;
 }
 
-.heroCommandExecuted {
-    animation: heroCommandExecute 180ms var(--motion-ease-standard) both;
-}
-
-.heroCommandExecuted .heroCommandText {
-    max-width: 100%;
-}
-
-.heroCommandExecuted .heroCommandText::after {
-    content: none;
+.heroCommandExecuting {
+    animation: heroCommandConfirm var(--motion-duration-md) var(--motion-ease-emphasized) both;
 }
 
 :global([data-theme='dark']) .heroCommand {
@@ -398,23 +353,15 @@
     min-width: 0;
     white-space: nowrap;
     overflow: hidden;
-    max-width: 0;
+    max-width: 100%;
+    will-change: clip-path, opacity;
 }
 
-.heroCommandTyping .heroCommandText {
-    animation: heroTypeRevealWidth 940ms steps(30, end) both;
-}
-
-.heroCommandText::after {
-    content: '_';
-    display: inline-block;
+.heroCommandCursor {
+    flex: 0 0 auto;
     margin-left: 0.05em;
     color: color-mix(in srgb, var(--moss) 82%, var(--paper-raised));
-    opacity: 0;
-}
-
-.heroCommandTyping .heroCommandText::after {
-    animation: heroTypingCursor 940ms step-end both;
+    will-change: opacity;
 }
 
 .heroTerminalMeasure {
@@ -431,6 +378,12 @@
 
 .heroCommandMeasureText {
     display: inline-block;
+    white-space: nowrap;
+}
+
+.heroCommandMeasureCursor {
+    display: inline-block;
+    margin-left: 0.05em;
     white-space: nowrap;
 }
 
@@ -459,8 +412,7 @@
 .heroNow {
     max-width: var(--content-max-readable);
     padding-top: var(--space-2);
-    border-top: var(--line-strong) solid
-        color-mix(in srgb, var(--line) 82%, transparent);
+    border-top: var(--line-strong) solid color-mix(in srgb, var(--line) 82%, transparent);
     color: var(--ink);
     overflow-wrap: anywhere;
     text-wrap: pretty;
@@ -598,7 +550,6 @@
     .heroWindow,
     .heroWindow::after,
     .heroWindowStage,
-    .heroTerminalLine,
     .heroWindowBody,
     .heroWindowBodyInner,
     .heroMediaColumn,
@@ -611,6 +562,10 @@
         transform: none;
     }
 
+    .heroTerminalLine {
+        opacity: 0;
+    }
+
     .heroWindowBody {
         max-height: none;
     }
@@ -619,9 +574,8 @@
         max-width: none;
     }
 
-    .heroCommandText::after {
-        content: none;
-        animation: none;
+    .heroCommandCursor {
+        opacity: 0;
     }
 }
 
@@ -653,75 +607,38 @@
     }
 }
 
-@keyframes heroTypeRevealWidth {
-    from {
-        max-width: 0;
-    }
-
-    to {
-        max-width: 100%;
-    }
-}
-
-@keyframes heroCommandExecute {
+@keyframes heroCommandConfirm {
     0% {
-        transform: translateY(0);
         border-color: color-mix(in srgb, var(--code-border) 84%, transparent);
+        background: linear-gradient(
+            180deg,
+            color-mix(in srgb, var(--paper-raised) 82%, transparent) 0%,
+            color-mix(in srgb, var(--code-bg) 94%, var(--paper-raised)) 100%
+        );
+        box-shadow: inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 72%, transparent),
+            0 1px 0 color-mix(in srgb, var(--paper) 12%, transparent);
     }
 
-    55% {
-        transform: translateY(1px);
-        border-color: color-mix(in srgb, var(--moss) 44%, var(--code-border));
+    45% {
+        border-color: color-mix(in srgb, var(--moss) 72%, var(--code-border));
+        background: linear-gradient(
+            180deg,
+            color-mix(in srgb, var(--moss) 14%, var(--paper-raised)) 0%,
+            color-mix(in srgb, var(--moss) 10%, var(--code-bg)) 100%
+        );
+        box-shadow: inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 72%, transparent),
+            0 0 0 1px color-mix(in srgb, var(--moss) 26%, transparent),
+            0 0 1.1rem color-mix(in srgb, var(--moss) 18%, transparent);
     }
 
     100% {
-        transform: translateY(0);
         border-color: color-mix(in srgb, var(--code-border) 84%, transparent);
-    }
-}
-
-@keyframes heroTypingCursor {
-    from {
-        opacity: 0;
-    }
-
-    8% {
-        opacity: 1;
-    }
-
-    24% {
-        opacity: 0.2;
-    }
-
-    40% {
-        opacity: 1;
-    }
-
-    56% {
-        opacity: 0.2;
-    }
-
-    72% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-    }
-}
-
-@keyframes heroCommandSweep {
-    0% {
-        opacity: 0;
-        transform: translateX(-120%);
-    }
-
-    35% {
-        opacity: 0.78;
-    }
-
-    100% {
-        opacity: 0;
-        transform: translateX(125%);
+        background: linear-gradient(
+            180deg,
+            color-mix(in srgb, var(--paper-raised) 82%, transparent) 0%,
+            color-mix(in srgb, var(--code-bg) 94%, var(--paper-raised)) 100%
+        );
+        box-shadow: inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 72%, transparent),
+            0 1px 0 color-mix(in srgb, var(--paper) 12%, transparent);
     }
 }

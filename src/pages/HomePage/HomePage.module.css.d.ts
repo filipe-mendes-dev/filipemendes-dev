@@ -3,12 +3,12 @@ declare const styles: {
   readonly 'heroActions': string;
   readonly 'heroBody': string;
   readonly 'heroCommand': string;
-  readonly 'heroCommandExecuted': string;
+  readonly 'heroCommandCursor': string;
+  readonly 'heroCommandExecuting': string;
   readonly 'heroCommandMeasure': string;
+  readonly 'heroCommandMeasureCursor': string;
   readonly 'heroCommandMeasureText': string;
   readonly 'heroCommandText': string;
-  readonly 'heroCommandTyped': string;
-  readonly 'heroCommandTyping': string;
   readonly 'heroCopy': string;
   readonly 'heroGrid': string;
   readonly 'heroIntro': string;
