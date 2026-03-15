@@ -6,166 +6,11 @@
     padding-top: var(--space-5);
 }
 
-.heroWindow {
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-    border: var(--line-strong) solid color-mix(in srgb, var(--line) 44%, transparent);
-    border-radius: calc(var(--radius-2xl) + 0.1rem);
-    background: linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--paper-raised) 98%, transparent) 0%,
-        color-mix(in srgb, var(--card-bg) 92%, transparent) 40%,
-        color-mix(in srgb, var(--paper) 98%, transparent) 100%
-    );
-    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 82%, transparent),
-        inset 0 -1px 0 color-mix(in srgb, var(--line) 8%, transparent),
-        0 10px 20px color-mix(in srgb, var(--ink) 4%, transparent),
-        0 0 0 1px color-mix(in srgb, var(--paper-raised) 22%, transparent);
-    animation: heroWindowEnter 920ms var(--motion-ease-emphasized) both;
-}
-
-:global([data-theme='light']) .heroWindow {
-    border-color: color-mix(in srgb, var(--line) 68%, transparent);
-}
-
 .heroWindowStage {
     position: relative;
     display: grid;
     align-content: start;
     min-height: clamp(24rem, 52vw, 34rem);
-}
-
-.heroWindow::before,
-.heroWindow::after {
-    content: '';
-    position: absolute;
-    pointer-events: none;
-}
-
-.heroWindow::before {
-    inset: 0;
-    background: linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--paper-raised) 48%, transparent) 0%,
-        color-mix(in srgb, var(--paper-raised) 10%, transparent) 18%,
-        transparent 38%
-    );
-    opacity: 0.54;
-}
-
-.heroWindow::after {
-    inset: -22%;
-    background: linear-gradient(
-        108deg,
-        transparent 34%,
-        color-mix(in srgb, var(--paper-raised) 34%, transparent) 48%,
-        color-mix(in srgb, var(--paper-raised) 16%, transparent) 53%,
-        transparent 72%
-    );
-    opacity: 0;
-    transform: translate3d(-18%, 0, 0) rotate(-7deg);
-    animation: heroSpecularSweep 1120ms var(--motion-ease-emphasized) 220ms both;
-}
-
-.heroWindowBar {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    min-height: 1.9rem;
-    padding-inline: clamp(0.8rem, 2vw, 1rem);
-    border-bottom: var(--line-strong) solid color-mix(in srgb, var(--line) 82%, transparent);
-    background: linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--code-bg) 84%, var(--paper-raised)) 0%,
-        color-mix(in srgb, var(--code-bg) 64%, var(--paper-raised)) 100%
-    );
-    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 36%, transparent),
-        inset 0 -1px 0 color-mix(in srgb, var(--paper-raised) 44%, transparent);
-}
-
-:global([data-theme='dark']) .heroWindowBar {
-    border-bottom-color: color-mix(in srgb, var(--line) 34%, transparent);
-}
-
-:global([data-theme='light']) .heroWindowBar {
-    border-bottom-color: color-mix(in srgb, var(--line) 54%, transparent);
-    background: linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--code-bg) 96%, var(--paper-raised)) 0%,
-        color-mix(in srgb, var(--code-bg) 82%, var(--paper-raised)) 100%
-    );
-}
-
-:global([data-theme='dark']) .heroWindowBar {
-    background: linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--paper) 80%, var(--code-bg)) 0%,
-        color-mix(in srgb, var(--paper) 68%, var(--code-bg)) 100%
-    );
-    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 12%, transparent),
-        inset 0 -1px 0 color-mix(in srgb, var(--paper-raised) 18%, transparent);
-}
-
-:global([data-theme='dark']) .heroWindow {
-    backdrop-filter: blur(14px) saturate(120%);
-    -webkit-backdrop-filter: blur(14px) saturate(120%);
-    background: linear-gradient(
-        160deg,
-        color-mix(in srgb, var(--code-bg) 78%, transparent) 0%,
-        color-mix(in srgb, var(--card-bg) 58%, transparent) 58%,
-        color-mix(in srgb, var(--paper) 42%, transparent) 100%
-    );
-    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 14%, transparent),
-        inset 0 -1px 0 color-mix(in srgb, var(--line) 8%, transparent),
-        0 10px 20px color-mix(in srgb, rgb(0 0 0) 18%, transparent),
-        0 0 0 1px color-mix(in srgb, var(--paper-raised) 6%, transparent);
-}
-
-:global([data-theme='dark']) .heroWindow::before {
-    opacity: 0.2;
-}
-
-:global([data-theme='dark']) .heroWindow::after {
-    display: none;
-}
-
-.windowControls {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.38rem;
-}
-
-.windowControls span {
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 50%;
-    border: var(--line-strong) solid color-mix(in srgb, var(--ink) 12%, transparent);
-}
-
-.windowControls span:nth-child(1) {
-    background: linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--signal-red) 92%, var(--paper-raised) 8%) 0%,
-        color-mix(in srgb, var(--signal-red) 68%, var(--moss) 32%) 100%
-    );
-}
-
-.windowControls span:nth-child(2) {
-    background: linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--signal-yellow) 90%, var(--paper-raised) 10%) 0%,
-        color-mix(in srgb, var(--signal-yellow) 70%, var(--moss) 30%) 100%
-    );
-}
-
-.windowControls span:nth-child(3) {
-    background: linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--signal-green) 92%, var(--paper-raised) 8%) 0%,
-        color-mix(in srgb, var(--signal-green) 72%, var(--moss) 28%) 100%
-    );
 }
 
 .heroGrid {
@@ -176,31 +21,6 @@
     gap: var(--space-4);
     align-items: start;
     padding: clamp(1rem, 3vw, 1.8rem);
-}
-
-.heroWindowBody {
-    overflow: hidden;
-}
-
-.heroWindowBodyInner {
-    overflow: hidden;
-}
-
-.heroWindowBodyContent {
-    min-height: clamp(22rem, 48vw, 31rem);
-}
-
-.heroTerminalLine {
-    position: absolute;
-    top: calc(1.9rem + clamp(1rem, 3vw, 1.8rem));
-    left: clamp(1rem, 3vw, 1.8rem);
-    z-index: 2;
-    max-width: calc(100% - (clamp(1rem, 3vw, 1.8rem) * 2));
-    pointer-events: none;
-    opacity: 0;
-    transform: translateY(-10px);
-    transform-origin: left center;
-    will-change: width, opacity, transform;
 }
 
 .heroMediaColumn {
@@ -301,92 +121,6 @@
     text-wrap: balance;
 }
 
-.heroCommand {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    width: 100%;
-    max-width: none;
-    padding: 0.48rem 0.72rem;
-    border: var(--line-strong) solid color-mix(in srgb, var(--code-border) 84%, transparent);
-    border-radius: calc(var(--radius-sm) * 1.04);
-    background: linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--paper-raised) 82%, transparent) 0%,
-        color-mix(in srgb, var(--code-bg) 94%, var(--paper-raised)) 100%
-    );
-    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 72%, transparent),
-        0 1px 0 color-mix(in srgb, var(--paper) 12%, transparent);
-    font-family: var(--font-mono);
-    font-size: var(--font-size-sm);
-    line-height: 1.35;
-    color: var(--code-ink);
-    overflow: hidden;
-}
-
-.heroCommand::after {
-    content: none;
-}
-
-.heroCommandExecuting {
-    animation: heroCommandConfirm var(--motion-duration-md) var(--motion-ease-emphasized) both;
-}
-
-:global([data-theme='dark']) .heroCommand {
-    border-color: color-mix(in srgb, var(--moss) 34%, var(--line));
-    background: linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--paper-raised) 20%, var(--code-bg)) 0%,
-        color-mix(in srgb, var(--paper-raised) 10%, var(--code-bg)) 100%
-    );
-}
-
-.heroPrompt {
-    color: var(--moss-strong);
-    font-weight: 700;
-}
-
-.heroCommandText {
-    display: inline-block;
-    flex: 1 1 auto;
-    min-width: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    max-width: 100%;
-    will-change: clip-path, opacity;
-}
-
-.heroCommandCursor {
-    flex: 0 0 auto;
-    margin-left: 0.05em;
-    color: color-mix(in srgb, var(--moss) 82%, var(--paper-raised));
-    will-change: opacity;
-}
-
-.heroTerminalMeasure {
-    position: absolute;
-    inset: auto auto 0 0;
-    visibility: hidden;
-    pointer-events: none;
-    white-space: nowrap;
-}
-
-.heroCommandMeasure {
-    width: auto;
-}
-
-.heroCommandMeasureText {
-    display: inline-block;
-    white-space: nowrap;
-}
-
-.heroCommandMeasureCursor {
-    display: inline-block;
-    margin-left: 0.05em;
-    white-space: nowrap;
-}
-
 .heroBody {
     display: grid;
     gap: var(--space-2);
@@ -445,11 +179,6 @@
 }
 
 @media (min-width: 48rem) {
-    .heroTerminalLine {
-        top: calc(1.9rem + clamp(1rem, 3vw, 2.35rem));
-        left: clamp(1rem, 3vw, 2.35rem);
-    }
-
     .heroGrid {
         grid-template-columns: minmax(8.5rem, 11rem) minmax(0, 1fr);
         gap: clamp(1rem, 3vw, 2.35rem);
@@ -457,7 +186,6 @@
 
     .heroMediaColumn {
         place-items: start;
-        padding-top: 0.35rem;
     }
 
     .heroPhotoFrame {
@@ -489,16 +217,6 @@
 @media (min-width: 64rem) {
     .heroSection {
         padding-top: var(--font-size-body-xl);
-    }
-
-    .heroWindowBar {
-        min-height: 2rem;
-        padding-inline: 1.05rem;
-    }
-
-    .heroTerminalLine {
-        top: calc(2rem + clamp(1.35rem, 2.6vw, 2rem));
-        left: clamp(1.35rem, 2.6vw, 2rem);
     }
 
     .heroGrid {
@@ -540,105 +258,14 @@
     .heroPhotoFrame::before {
         inset: 0.32rem;
     }
-
-    .heroCommandText {
-        max-width: 100%;
-    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .heroWindow,
-    .heroWindow::after,
     .heroWindowStage,
-    .heroWindowBody,
-    .heroWindowBodyInner,
     .heroMediaColumn,
-    .heroRevealItem,
-    .heroCommand::after,
-    .heroCommandText,
-    .heroCommand {
+    .heroRevealItem {
         animation: none;
         opacity: 1;
         transform: none;
-    }
-
-    .heroTerminalLine {
-        opacity: 0;
-    }
-
-    .heroWindowBody {
-        max-height: none;
-    }
-
-    .heroCommandText {
-        max-width: none;
-    }
-
-    .heroCommandCursor {
-        opacity: 0;
-    }
-}
-
-@keyframes heroWindowEnter {
-    from {
-        opacity: 0;
-        transform: translateY(18px) scale(0.978);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-@keyframes heroSpecularSweep {
-    0% {
-        opacity: 0;
-        transform: translate3d(-18%, 0, 0) rotate(-7deg);
-    }
-
-    45% {
-        opacity: 0.84;
-    }
-
-    100% {
-        opacity: 0;
-        transform: translate3d(20%, 0, 0) rotate(-7deg);
-    }
-}
-
-@keyframes heroCommandConfirm {
-    0% {
-        border-color: color-mix(in srgb, var(--code-border) 84%, transparent);
-        background: linear-gradient(
-            180deg,
-            color-mix(in srgb, var(--paper-raised) 82%, transparent) 0%,
-            color-mix(in srgb, var(--code-bg) 94%, var(--paper-raised)) 100%
-        );
-        box-shadow: inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 72%, transparent),
-            0 1px 0 color-mix(in srgb, var(--paper) 12%, transparent);
-    }
-
-    45% {
-        border-color: color-mix(in srgb, var(--moss) 72%, var(--code-border));
-        background: linear-gradient(
-            180deg,
-            color-mix(in srgb, var(--moss) 14%, var(--paper-raised)) 0%,
-            color-mix(in srgb, var(--moss) 10%, var(--code-bg)) 100%
-        );
-        box-shadow: inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 72%, transparent),
-            0 0 0 1px color-mix(in srgb, var(--moss) 26%, transparent),
-            0 0 1.1rem color-mix(in srgb, var(--moss) 18%, transparent);
-    }
-
-    100% {
-        border-color: color-mix(in srgb, var(--code-border) 84%, transparent);
-        background: linear-gradient(
-            180deg,
-            color-mix(in srgb, var(--paper-raised) 82%, transparent) 0%,
-            color-mix(in srgb, var(--code-bg) 94%, var(--paper-raised)) 100%
-        );
-        box-shadow: inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 72%, transparent),
-            0 1px 0 color-mix(in srgb, var(--paper) 12%, transparent);
     }
 }

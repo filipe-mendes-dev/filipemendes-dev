@@ -1,0 +1,145 @@
+.root {
+    display: contents;
+}
+
+.terminalLine {
+    position: absolute;
+    top: calc(1.9rem + clamp(1rem, 3vw, 1.8rem));
+    left: clamp(1rem, 3vw, 1.8rem);
+    z-index: 2;
+    max-width: calc(100% - (clamp(1rem, 3vw, 1.8rem) * 2));
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-10px);
+    transform-origin: left center;
+    will-change: width, opacity, transform;
+}
+
+.command {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.48rem 0.72rem;
+    border: var(--line-strong) solid color-mix(in srgb, var(--code-border) 84%, transparent);
+    border-radius: calc(var(--radius-sm) * 1.04);
+    background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--paper-raised) 82%, transparent) 0%,
+        color-mix(in srgb, var(--code-bg) 94%, var(--paper-raised)) 100%
+    );
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 72%, transparent),
+        0 1px 0 color-mix(in srgb, var(--paper) 12%, transparent);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    line-height: 1.35;
+    color: var(--code-ink);
+    overflow: hidden;
+}
+
+.command::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+        105deg,
+        transparent 22%,
+        color-mix(in srgb, var(--moss) 12%, transparent) 50%,
+        transparent 78%
+    );
+    transform: translateX(-115%);
+    pointer-events: none;
+    opacity: 0;
+}
+
+.commandExecuting::after {
+    animation: heroCommandSweep var(--motion-duration-3xl) linear both;
+}
+
+:global([data-theme='dark']) .command {
+    border-color: color-mix(in srgb, var(--moss) 34%, var(--line));
+    background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--paper-raised) 20%, var(--code-bg)) 0%,
+        color-mix(in srgb, var(--paper-raised) 10%, var(--code-bg)) 100%
+    );
+}
+
+.prompt {
+    color: var(--moss-strong);
+    font-weight: 700;
+}
+
+.commandText {
+    display: inline-block;
+    flex: 0 0 auto;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    will-change: width, opacity;
+}
+
+.commandCursor {
+    flex: 0 0 auto;
+    color: color-mix(in srgb, var(--moss) 82%, var(--paper-raised));
+    will-change: opacity;
+}
+
+@media (min-width: 48rem) {
+    .terminalLine {
+        top: calc(1.9rem + clamp(1rem, 3vw, 2.35rem));
+        left: clamp(1rem, 3vw, 2.35rem);
+    }
+}
+
+@media (min-width: 64rem) {
+    .terminalLine {
+        top: calc(2rem + clamp(1.35rem, 2.6vw, 2rem));
+        left: clamp(1.35rem, 2.6vw, 2rem);
+    }
+}
+
+@media (max-width: 30rem) {
+    .commandText {
+        max-width: calc(100vw - 10rem);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .command::after,
+    .commandText,
+    .command {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    .terminalLine {
+        opacity: 0;
+    }
+
+    .commandText {
+        max-width: none;
+    }
+
+    .commandCursor {
+        opacity: 0;
+    }
+}
+
+@keyframes heroCommandSweep {
+    0% {
+        opacity: 0;
+        transform: translateX(-115%);
+    }
+
+    18% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(115%);
+    }
+}
