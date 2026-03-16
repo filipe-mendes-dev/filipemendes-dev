@@ -7,7 +7,6 @@ declare const styles: {
   readonly 'listMeta': string;
   readonly 'listTitle': string;
   readonly 'projectStoryGrid': string;
-  readonly 'root': string;
   readonly 'stackList': string;
   readonly 'stoneSurface': string;
   readonly 'textLink': string;

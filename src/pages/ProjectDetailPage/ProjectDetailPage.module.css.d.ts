@@ -2,7 +2,6 @@ declare const styles: {
   readonly 'architectureSection': string;
   readonly 'backIcon': string;
   readonly 'backLink': string;
-  readonly 'detailSection': string;
   readonly 'detailSectionContent': string;
   readonly 'featuresSection': string;
   readonly 'galleryGrid': string;
@@ -11,6 +10,7 @@ declare const styles: {
   readonly 'heroActions': string;
   readonly 'heroHeader': string;
   readonly 'heroInner': string;
+  readonly 'heroReveal': string;
   readonly 'heroSection': string;
   readonly 'heroTitleRow': string;
   readonly 'metaLink': string;

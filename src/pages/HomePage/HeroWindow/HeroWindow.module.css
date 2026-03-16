@@ -1,0 +1,216 @@
+.root {
+    position: relative;
+    z-index: 1;
+    justify-self: stretch;
+    width: 100%;
+    overflow: hidden;
+    border: var(--line-strong) solid color-mix(in srgb, var(--line) 44%, transparent);
+    border-radius: calc(var(--radius-2xl) + 0.1rem);
+    background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--paper-raised) 98%, transparent) 0%,
+        color-mix(in srgb, var(--card-bg) 92%, transparent) 40%,
+        color-mix(in srgb, var(--paper) 98%, transparent) 100%
+    );
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 82%, transparent),
+        inset 0 -1px 0 color-mix(in srgb, var(--line) 8%, transparent),
+        0 10px 20px color-mix(in srgb, var(--ink) 4%, transparent),
+        0 0 0 1px color-mix(in srgb, var(--paper-raised) 22%, transparent);
+    animation: heroWindowEnter 920ms var(--motion-ease-emphasized) both;
+}
+
+:global([data-theme='light']) .root {
+    border-color: color-mix(in srgb, var(--line) 68%, transparent);
+}
+
+.root::before,
+.root::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+}
+
+.root::before {
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--paper-raised) 48%, transparent) 0%,
+        color-mix(in srgb, var(--paper-raised) 10%, transparent) 18%,
+        transparent 38%
+    );
+    opacity: 0.54;
+}
+
+.root::after {
+    inset: -22%;
+    background: linear-gradient(
+        108deg,
+        transparent 34%,
+        color-mix(in srgb, var(--paper-raised) 34%, transparent) 48%,
+        color-mix(in srgb, var(--paper-raised) 16%, transparent) 53%,
+        transparent 72%
+    );
+    opacity: 0;
+    transform: translate3d(-18%, 0, 0) rotate(-7deg);
+    animation: heroSpecularSweep 1120ms var(--motion-ease-emphasized) 220ms both;
+}
+
+.windowBar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    min-height: 1.9rem;
+    padding-inline: clamp(0.8rem, 2vw, 1rem);
+    border-bottom: var(--line-strong) solid color-mix(in srgb, var(--line) 82%, transparent);
+    background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--code-bg) 84%, var(--paper-raised)) 0%,
+        color-mix(in srgb, var(--code-bg) 64%, var(--paper-raised)) 100%
+    );
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 36%, transparent),
+        inset 0 -1px 0 color-mix(in srgb, var(--paper-raised) 44%, transparent);
+}
+
+:global([data-theme='dark']) .windowBar {
+    border-bottom-color: color-mix(in srgb, var(--line) 34%, transparent);
+    background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--paper) 80%, var(--code-bg)) 0%,
+        color-mix(in srgb, var(--paper) 68%, var(--code-bg)) 100%
+    );
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 12%, transparent),
+        inset 0 -1px 0 color-mix(in srgb, var(--paper-raised) 18%, transparent);
+}
+
+:global([data-theme='light']) .windowBar {
+    border-bottom-color: color-mix(in srgb, var(--line) 54%, transparent);
+    background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--code-bg) 96%, var(--paper-raised)) 0%,
+        color-mix(in srgb, var(--code-bg) 82%, var(--paper-raised)) 100%
+    );
+}
+
+:global([data-theme='dark']) .root {
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+    background: linear-gradient(
+        160deg,
+        color-mix(in srgb, var(--code-bg) 78%, transparent) 0%,
+        color-mix(in srgb, var(--card-bg) 58%, transparent) 58%,
+        color-mix(in srgb, var(--paper) 42%, transparent) 100%
+    );
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 14%, transparent),
+        inset 0 -1px 0 color-mix(in srgb, var(--line) 8%, transparent),
+        0 10px 20px color-mix(in srgb, rgb(0 0 0) 18%, transparent),
+        0 0 0 1px color-mix(in srgb, var(--paper-raised) 6%, transparent);
+}
+
+:global([data-theme='dark']) .root::before {
+    opacity: 0.2;
+}
+
+:global([data-theme='dark']) .root::after {
+    display: none;
+}
+
+.windowControls {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.38rem;
+}
+
+.windowControls span {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    border: var(--line-strong) solid color-mix(in srgb, var(--ink) 12%, transparent);
+}
+
+.windowControls span:nth-child(1) {
+    background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--signal-red) 92%, var(--paper-raised) 8%) 0%,
+        color-mix(in srgb, var(--signal-red) 68%, var(--moss) 32%) 100%
+    );
+}
+
+.windowControls span:nth-child(2) {
+    background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--signal-yellow) 90%, var(--paper-raised) 10%) 0%,
+        color-mix(in srgb, var(--signal-yellow) 70%, var(--moss) 30%) 100%
+    );
+}
+
+.windowControls span:nth-child(3) {
+    background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--signal-green) 92%, var(--paper-raised) 8%) 0%,
+        color-mix(in srgb, var(--signal-green) 72%, var(--moss) 28%) 100%
+    );
+}
+
+.windowBody {
+    overflow: hidden;
+}
+
+.windowBodyInner {
+    overflow: hidden;
+}
+
+.windowBodyContent {
+    min-height: clamp(22rem, 48vw, 31rem);
+}
+
+@media (min-width: 64rem) {
+    .windowBar {
+        min-height: 2rem;
+        padding-inline: 1.05rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .root,
+    .root::after {
+        animation: none;
+    }
+
+    .root {
+        transform: none;
+    }
+
+    .root::after {
+        opacity: 0;
+        transform: translate3d(-18%, 0, 0) rotate(-7deg);
+    }
+}
+
+@keyframes heroWindowEnter {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.978);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes heroSpecularSweep {
+    0% {
+        opacity: 0;
+        transform: translate3d(-18%, 0, 0) rotate(-7deg);
+    }
+
+    45% {
+        opacity: 0.84;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate3d(20%, 0, 0) rotate(-7deg);
+    }
+}

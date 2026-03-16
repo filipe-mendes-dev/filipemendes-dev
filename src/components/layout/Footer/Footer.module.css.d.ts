@@ -12,7 +12,6 @@ declare const styles: {
   readonly 'footerSocialList': string;
   readonly 'footerTag': string;
   readonly 'root': string;
-  readonly 'siteFooter': string;
   readonly 'socialIcon': string;
 };
 

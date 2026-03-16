@@ -1,149 +1,24 @@
 .root {
-  display: grid;
-  --landing-scroll-spacing: var(--space-3);
-}
-
-.rootSection {
-  scroll-margin-top: var(--header-offset, 4.5rem);
-  position: relative;
-  overflow: hidden;
-  box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--line) 26%, transparent);
-}
-
-.rootSection::before,
-.rootSection::after {
-  content: '';
-  position: absolute;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.48;
-  transition:
-    opacity 620ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.rootSection > * {
-  position: relative;
-  z-index: 1;
-}
-
-.homeSection {
-  background:
-    radial-gradient(circle at 8% 12%, color-mix(in srgb, var(--moss) 11%, transparent) 0%, transparent 44%),
-    var(--hero-home-bg);
-}
-
-.homeSection::before {
-  inset: 0;
-  background-image: linear-gradient(to right, color-mix(in srgb, var(--code-border) 12%, transparent) 1px, transparent 1px);
-  background-size: 42px 100%;
-  opacity: 0.14;
 }
 
 .homeSection::after {
-  width: 16rem;
-  height: 16rem;
-  top: -6rem;
-  right: -6rem;
-  border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--code-ink) 18%, transparent) 0%, transparent 70%);
-}
-
-.projectsSection {
-  background:
-    radial-gradient(circle at 90% 22%, color-mix(in srgb, var(--moss) 10%, transparent) 0%, transparent 40%),
-    linear-gradient(180deg, var(--hero-projects-bg) 0%, color-mix(in srgb, var(--paper-raised) 72%, var(--hero-projects-bg)) 100%);
-}
-
-.projectsSection::before {
-  inset: 0;
-  background-image: linear-gradient(to bottom, color-mix(in srgb, var(--line) 42%, transparent) 1px, transparent 1px);
-  background-size: 100% 38px;
-  opacity: 0.18;
+    top: 1rem;
+    left: max(1rem, calc(50% - 34rem));
 }
 
 .projectsSection::after {
-  width: 13rem;
-  height: 13rem;
-  bottom: -5rem;
-  left: -4rem;
-  border-radius: var(--radius-lg);
-  transform: rotate(18deg);
-  background: color-mix(in srgb, var(--code-bg) 62%, transparent);
-}
-
-.aboutSection {
-  background:
-    radial-gradient(circle at 14% 82%, color-mix(in srgb, var(--moss) 10%, transparent) 0%, transparent 38%),
-    var(--hero-about-bg);
-}
-
-.aboutSection::before {
-  inset: 0;
-  background-image:
-    linear-gradient(to right, color-mix(in srgb, var(--line) 30%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in srgb, var(--line) 22%, transparent) 1px, transparent 1px);
-  background-size: 48px 48px;
-  opacity: 0.09;
+    top: 6rem;
+    left: calc(100% - clamp(13rem, 22vw, 17rem));
 }
 
 .aboutSection::after {
-  width: 12rem;
-  height: 12rem;
-  top: -4rem;
-  left: 55%;
-  border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--code-border) 28%, transparent) 0%, transparent 72%);
-}
-
-.contactSection {
-  background:
-    linear-gradient(130deg, color-mix(in srgb, var(--code-bg) 24%, transparent) 0%, transparent 38%),
-    var(--hero-contact-bg);
-}
-
-.contactSection::before {
-  inset: 0;
-  background-image: linear-gradient(to right, color-mix(in srgb, var(--line) 20%, transparent) 1px, transparent 1px);
-  background-size: 34px 100%;
-  opacity: 0.12;
+    top: auto;
+    bottom: 2rem;
+    left: max(1rem, calc(50% - 30rem));
 }
 
 .contactSection::after {
-  width: 12rem;
-  height: 12rem;
-  right: -4.5rem;
-  bottom: -5rem;
-  border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--moss-faint) 88%, transparent) 0%, transparent 70%);
-}
-
-[data-landing-reveal] {
-  --landing-body-ease: cubic-bezier(0.2, 0.9, 0.24, 1);
-  transition:
-    opacity 500ms var(--landing-body-ease) 140ms,
-    transform 620ms var(--landing-body-ease) 140ms;
-}
-
-[data-landing-reveal='pending'] {
-  opacity: 0;
-  transform: translateY(10px);
-}
-
-[data-landing-reveal='visible'] {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  [data-landing-reveal] {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-
-  .rootSection::before,
-  .rootSection::after {
-    display: none;
-  }
+    top: auto;
+    bottom: 0;
+    left: calc(100% - clamp(14rem, 24vw, 18rem));
 }

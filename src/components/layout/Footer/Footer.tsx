@@ -3,6 +3,7 @@ import type { ReactElement } from 'react';
 import { BackIcon, GithubIcon, LinkedInIcon } from '../../icons';
 import { AppLink } from '../../navigation/AppLink';
 import { Container } from '../../ui/Container';
+import su from '../../../shared/styles/utilities.module.css';
 import type { FooterProps } from './Footer.interfaces';
 import st from './Footer.module.css';
 
@@ -16,9 +17,10 @@ export const Footer = ({
     linkedInUrl,
 }: FooterProps): ReactElement => {
     const currentYear = new Date().getFullYear();
+    const footerActionClassName = `${su.button} ${su.buttonSecondary} ${st.footerAction}`;
 
     return (
-        <footer className={`${st.root} ${st.siteFooter}`}>
+        <footer className={st.root}>
             <Container className={st.footerInner}>
                 <div className={st.footerBrandColumn}>
                     {actionHref !== undefined &&
@@ -27,7 +29,7 @@ export const Footer = ({
                             <AppLink
                                 href={actionHref}
                                 navigate={navigate}
-                                className={st.footerAction}
+                                className={footerActionClassName}
                             >
                                 <BackIcon className={st.footerActionIcon} />
                                 {actionLabel}
