@@ -38,33 +38,8 @@
 }
 
 .primaryAction {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: var(--control-height-md);
     width: fit-content;
     max-width: 100%;
-    padding: var(--control-padding-lg);
-    border: var(--line-strong) solid transparent;
-    border-radius: var(--radius-pill);
-    background: var(--moss);
-    color: var(--ink-inverse);
-    font-family: var(--font-display);
-    font-size: var(--font-size-body);
-    font-weight: 600;
-    text-decoration: none;
-    transition: background-color var(--transition), transform var(--transition), box-shadow var(--transition);
-}
-
-.primaryAction:hover {
-    background: var(--moss-strong);
-    transform: translateY(-1px);
-    box-shadow: 0 10px 24px color-mix(in srgb, var(--moss-faint) 22%, transparent);
-}
-
-.primaryAction:focus-visible {
-    outline: 2px solid color-mix(in srgb, var(--moss) 30%, transparent);
-    outline-offset: 2px;
 }
 
 @media (max-width: 30rem) {
