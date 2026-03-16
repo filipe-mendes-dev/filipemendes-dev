@@ -3,12 +3,14 @@ import { type ReactElement, useEffect, useState } from 'react';
 import st from './App.module.css';
 import { Footer } from './components/layout/Footer';
 import { Header } from './components/layout/Header';
+import { AppLink } from './components/navigation/AppLink';
 import { portfolio } from './data/portfolio';
 import { usePathnameRouter } from './lib/pathname-router';
 import { LandingPage } from './pages/LandingPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { ProjectDetailPage } from './pages/ProjectDetailPage';
 import type { SectionId } from './shared/navigation/sections';
+import su from './shared/styles/utilities.module.css';
 import { applyThemeTokens } from './shared/theme/applyThemeTokens';
 import { type ThemeName, themeTokenSets } from './shared/theme/tokens';
 
@@ -95,13 +97,29 @@ export const App = (): ReactElement => {
         const project = portfolio.projects.find((item) => item.slug === route.projectSlug);
 
         if (project === undefined) {
-          return <NotFoundPage navigate={navigate} />;
+          return (
+            <NotFoundPage
+              primaryAction={
+                <AppLink href="/" navigate={navigate} className={`${su.button} ${su.buttonPrimary}`}>
+                  Return Home
+                </AppLink>
+              }
+            />
+          );
         }
 
           return <ProjectDetailPage project={project} navigate={handleNavigate} />;
         }
       default:
-        return <NotFoundPage navigate={handleNavigate} />;
+        return (
+          <NotFoundPage
+            primaryAction={
+              <AppLink href="/" navigate={handleNavigate} className={`${su.button} ${su.buttonPrimary}`}>
+                Return Home
+              </AppLink>
+            }
+          />
+        );
     }
   })();
 

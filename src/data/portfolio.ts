@@ -328,3 +328,11 @@ export const portfolio: PortfolioContent = {
         socials: [{ label: 'LinkedIn', href: 'https://linkedin.com/in/mendes-filipe-dev' }],
     },
 };
+
+export const getProjectSlugs = (): string[] => {
+    return portfolio.projects.map((project) => project.slug);
+};
+
+export const getProjectBySlug = (slug: string): ProjectDetail | undefined => {
+    return portfolio.projects.find((project) => project.slug === slug);
+};

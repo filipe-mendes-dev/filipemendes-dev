@@ -14,6 +14,7 @@ declare const styles: {
   readonly 'heroSection': string;
   readonly 'heroTitleRow': string;
   readonly 'metaLink': string;
+  readonly 'metaLinkIcon': string;
   readonly 'projectCategory': string;
   readonly 'projectDescription': string;
   readonly 'projectDetailLinks': string;
@@ -25,7 +26,7 @@ declare const styles: {
   readonly 'root': string;
   readonly 'stackSection': string;
   readonly 'stackSectionContent': string;
-  readonly 'storeBadgeImage': string;
+  readonly 'storeBadgeIcon': string;
   readonly 'storeBadgeLink': string;
   readonly 'storeLinkRow': string;
 };

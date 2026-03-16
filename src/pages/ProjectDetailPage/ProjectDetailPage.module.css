@@ -136,23 +136,31 @@
 }
 
 .metaLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   color: var(--moss);
+}
+
+.metaLinkIcon {
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+  flex: none;
 }
 
 .storeBadgeLink {
   display: inline-flex;
   align-items: center;
+  gap: 0.55rem;
   min-height: var(--control-height-md);
   width: fit-content;
-  border-radius: calc(var(--radius-sm) * 0.6);
+  border-radius: var(--radius-pill);
 }
 
-.storeBadgeImage {
-  display: block;
-  height: var(--control-height-md);
-  width: auto;
-  max-width: 100%;
-  object-fit: contain;
+.storeBadgeIcon {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex: none;
 }
 
 .galleryGrid {

@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 export interface NotFoundPageProps {
-  navigate: (href: string) => void;
+  primaryAction: ReactNode;
 }
