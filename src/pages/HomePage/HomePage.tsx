@@ -106,6 +106,8 @@ export const HomePage = ({ content, navigate, onSectionRequest, revealRef }: Hom
                                     <img
                                         src={content.hero.photoUrl}
                                         alt={content.hero.photoAlt}
+                                        srcSet={content.hero.photoSrcSet}
+                                        sizes={content.hero.photoSizes}
                                         className={st.heroPhoto}
                                     />
                                 </figure>
