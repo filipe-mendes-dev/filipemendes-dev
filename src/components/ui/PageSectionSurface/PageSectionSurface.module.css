@@ -165,12 +165,22 @@
 
 @media (prefers-reduced-motion: reduce) {
   .ambientRay,
-  .root::after,
-  .section + .section::before,
-  [data-landing-reveal] {
-    opacity: 1;
+  .root::after {
+    opacity: 0;
+    animation: none;
+    transform: none;
+  }
+
+  .section + .section::before {
     left: max(1.5rem, calc(50% - 34rem));
     right: max(1.5rem, calc(50% - 34rem));
+    opacity: 0.92;
+    transition: none;
+    animation: none;
+  }
+
+  [data-landing-reveal] {
+    opacity: 1;
     transition: none;
     animation: none;
     transform: none;
