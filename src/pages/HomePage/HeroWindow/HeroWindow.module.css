@@ -1,6 +1,8 @@
 .root {
     position: relative;
     z-index: 1;
+    justify-self: stretch;
+    width: 100%;
     overflow: hidden;
     border: var(--line-strong) solid color-mix(in srgb, var(--line) 44%, transparent);
     border-radius: calc(var(--radius-2xl) + 0.1rem);
@@ -171,16 +173,17 @@
 
 @media (prefers-reduced-motion: reduce) {
     .root,
-    .root::after,
-    .windowBody,
-    .windowBodyInner {
+    .root::after {
         animation: none;
-        opacity: 1;
+    }
+
+    .root {
         transform: none;
     }
 
-    .windowBody {
-        max-height: none;
+    .root::after {
+        opacity: 0;
+        transform: translate3d(-18%, 0, 0) rotate(-7deg);
     }
 }
 

@@ -46,7 +46,7 @@ export const HeroWindow = ({
         isReducedMotionEnabled || isContentVisible ? expandedHeight ?? collapsedHeight : collapsedHeight;
 
     return (
-        <div ref={revealRef} className={st.root} data-landing-reveal="visible">
+        <div ref={revealRef} className={st.root}>
             <div className={st.windowBar} aria-hidden="true">
                 <div className={st.windowControls}>
                     <span />

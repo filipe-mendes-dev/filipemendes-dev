@@ -1,5 +1,5 @@
 import { motion, stagger, useReducedMotion, type Variants } from 'framer-motion';
-import { type ReactElement, useRef, useState } from 'react';
+import { type ReactElement, useEffect, useState } from 'react';
 
 import { AppLink } from '../../components/navigation/AppLink';
 import { Section } from '../../components/ui/Section';
@@ -26,19 +26,27 @@ const joinClassNames = (...classNames: (string | false | undefined)[]): string =
 
 export const HomePage = ({ content, navigate, onSectionRequest, revealRef }: HomePageProps): ReactElement => {
     const isReducedMotionEnabled = useReducedMotion() ?? false;
-    const hasCompletedSequenceRef = useRef<boolean>(false);
-    const [isTerminalVisible, setIsTerminalVisible] = useState<boolean>(!isReducedMotionEnabled);
-    const [isContentVisible, setIsContentVisible] = useState<boolean>(isReducedMotionEnabled);
+    const [hasIntroFinished, setHasIntroFinished] = useState<boolean>(isReducedMotionEnabled);
+    const isIntroComplete = isReducedMotionEnabled || hasIntroFinished;
+    const isTerminalVisible = !isReducedMotionEnabled && !isIntroComplete;
+    const isContentShown = isIntroComplete;
 
-    const isContentShown = isReducedMotionEnabled || isContentVisible;
-    const handleTerminalComplete = (): void => {
-        if (hasCompletedSequenceRef.current) {
+    useEffect(() => {
+        if (!isReducedMotionEnabled) {
             return;
         }
 
-        setIsTerminalVisible(false);
-        setIsContentVisible(true);
-        hasCompletedSequenceRef.current = true;
+        const timeoutId = window.setTimeout(() => {
+            setHasIntroFinished(true);
+        }, 0);
+
+        return () => {
+            window.clearTimeout(timeoutId);
+        };
+    }, [isReducedMotionEnabled]);
+
+    const handleTerminalComplete = (): void => {
+        setHasIntroFinished(true);
     };
     const revealItemVariants: Variants = {
         hidden: {
