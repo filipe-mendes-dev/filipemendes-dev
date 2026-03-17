@@ -1,9 +1,11 @@
-import { motion, stagger, useReducedMotion, type Variants } from 'framer-motion';
-import { type ReactElement, useEffect, useState } from 'react';
+'use client';
 
-import { AppLink } from '../../components/navigation/AppLink';
+import { motion, stagger, useReducedMotion, type Variants } from 'framer-motion';
+import { type MouseEvent, type ReactElement, useEffect, useState } from 'react';
+
 import { Section } from '../../components/ui/Section';
 import type { ActionLink } from '../../data/portfolio';
+import type { SectionId } from '../../shared/navigation/sections';
 import su from '../../shared/styles/utilities.module.css';
 import { HeroTerminal } from './HeroTerminal';
 import { HeroWindow } from './HeroWindow';
@@ -22,9 +24,13 @@ const getActionClassName = (action: ActionLink): string => {
     return `${su.button} ${variantClass} ${st.heroActionLink}`;
 };
 
+const getActionHref = (action: ActionLink): string => {
+    return action.sectionId === undefined ? action.href : `/#${action.sectionId}`;
+};
+
 const joinClassNames = (...classNames: (string | false | undefined)[]): string => classNames.filter(Boolean).join(' ');
 
-export const HomePage = ({ content, navigate, onSectionRequest, revealRef }: HomePageProps): ReactElement => {
+export const HomePage = ({ content, revealRef }: HomePageProps): ReactElement => {
     const isReducedMotionEnabled = useReducedMotion() ?? false;
     const [hasIntroFinished, setHasIntroFinished] = useState<boolean>(isReducedMotionEnabled);
     const isIntroComplete = isReducedMotionEnabled || hasIntroFinished;
@@ -48,6 +54,25 @@ export const HomePage = ({ content, navigate, onSectionRequest, revealRef }: Hom
     const handleTerminalComplete = (): void => {
         setHasIntroFinished(true);
     };
+
+    const handleSectionActionClick = (sectionTargetId: SectionId | undefined) => (event: MouseEvent<HTMLAnchorElement>): void => {
+        if (sectionTargetId === undefined) {
+            return;
+        }
+
+        const sectionElement = document.getElementById(sectionTargetId);
+
+        if (sectionElement === null) {
+            return;
+        }
+
+        event.preventDefault();
+        sectionElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+        });
+    };
+
     const revealItemVariants: Variants = {
         hidden: {
             opacity: 0,
@@ -90,7 +115,9 @@ export const HomePage = ({ content, navigate, onSectionRequest, revealRef }: Hom
 
     return (
         <div className={st.root}>
-            <Section className={st.heroSection}>
+            <Section
+                className={st.heroSection}
+            >
                 <div className={st.heroWindowStage}>
                     <HeroWindow isContentVisible={isContentShown} {...(revealRef === undefined ? {} : { revealRef })}>
                         {isTerminalVisible ? <HeroTerminal onComplete={handleTerminalComplete} /> : null}
@@ -147,25 +174,19 @@ export const HomePage = ({ content, navigate, onSectionRequest, revealRef }: Hom
                                     variants={revealItemVariants}
                                 >
                                     {content.hero.actions.map((action) => {
-                                        const sectionId = action.sectionId;
-
                                         return (
-                                            <AppLink
+                                            <a
                                                 key={action.label}
-                                                href={action.href}
-                                                navigate={navigate}
+                                                href={getActionHref(action)}
                                                 className={getActionClassName(action)}
-                                                {...(sectionId === undefined
+                                                {...(action.sectionId === undefined
                                                     ? {}
                                                     : {
-                                                          onClick: (event) => {
-                                                              event.preventDefault();
-                                                              onSectionRequest(sectionId);
-                                                          },
+                                                          onClick: handleSectionActionClick(action.sectionId),
                                                       })}
                                             >
                                                 {action.label}
-                                            </AppLink>
+                                            </a>
                                         );
                                     })}
                                 </motion.div>

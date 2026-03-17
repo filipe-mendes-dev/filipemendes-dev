@@ -2,7 +2,12 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { type ReactElement, useLayoutEffect, useRef, useState } from 'react';
 
 import st from './HeroWindow.module.css';
-import { emphasizedEase, getCollapsedHeight, heroMotionConfig } from '../heroMotion';
+import {
+    emphasizedEase,
+    getCollapsedHeight,
+    HERO_WINDOW_COLLAPSED_FALLBACK_PX,
+    heroMotionConfig,
+} from '../heroMotion';
 import type { HeroWindowProps } from './HeroWindow.interfaces';
 
 export const HeroWindow = ({
@@ -12,7 +17,7 @@ export const HeroWindow = ({
 }: HeroWindowProps): ReactElement => {
     const isReducedMotionEnabled = useReducedMotion() ?? false;
     const bodyContentRef = useRef<HTMLDivElement | null>(null);
-    const [collapsedHeight, setCollapsedHeight] = useState<number>(getCollapsedHeight);
+    const [collapsedHeight, setCollapsedHeight] = useState<number>(HERO_WINDOW_COLLAPSED_FALLBACK_PX);
     const [expandedHeight, setExpandedHeight] = useState<number | null>(null);
 
     useLayoutEffect(() => {

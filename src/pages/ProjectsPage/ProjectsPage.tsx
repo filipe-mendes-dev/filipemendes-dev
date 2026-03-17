@@ -6,7 +6,11 @@ import { ProjectCard } from './components/ProjectCard';
 import type { ProjectsPageProps } from './ProjectsPage.interfaces';
 import st from './ProjectsPage.module.css';
 
-export const ProjectsPage = ({ content, navigate, revealRef, headerRevealRef }: ProjectsPageProps): ReactElement => {
+export const ProjectsPage = ({
+  content,
+  revealRef,
+  headerRevealRef,
+}: ProjectsPageProps): ReactElement => {
   return (
     <div className={st.root}>
       <Section
@@ -17,7 +21,7 @@ export const ProjectsPage = ({ content, navigate, revealRef, headerRevealRef }: 
         <div ref={revealRef} className={st.projectsList} data-landing-reveal="visible">
           {content.projects.map((project, index) => (
             <RevealItem key={project.slug} index={index}>
-              <ProjectCard navigate={navigate} project={project} />
+              <ProjectCard project={project} />
             </RevealItem>
           ))}
         </div>

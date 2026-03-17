@@ -4,7 +4,7 @@ import type { PageSectionElementStore } from './usePageSectionReveal';
 import { landingPageMotion } from '../theme/motion';
 
 interface LandingPageSectionNavigationConfig {
-  contentElementsRef: PageSectionElementStore<Record<SectionId, HTMLDivElement | null>>;
+  contentElementsRef: PageSectionElementStore<Record<SectionId, HTMLElement | null>>;
   headerElementsRef: PageSectionElementStore<Record<SectionId, HTMLElement | null>>;
   onActiveSectionChange: (sectionId: SectionId) => void;
   requestedSection: SectionId;
@@ -102,7 +102,7 @@ const getTrackedSection = (sectionElements: Record<SectionId, HTMLElement>): Sec
 
 const revealGroupsBetween = (
   sectionElements: Record<SectionId, HTMLElement>,
-  contentElementsRef: PageSectionElementStore<Record<SectionId, HTMLDivElement | null>>,
+  contentElementsRef: PageSectionElementStore<Record<SectionId, HTMLElement | null>>,
   headerElementsRef: PageSectionElementStore<Record<SectionId, HTMLElement | null>>,
   scheduleReveal: (sectionId: SectionId, shouldStageContent: boolean) => void,
   startTop: number,
@@ -149,7 +149,7 @@ export const useLandingPageSectionNavigation = ({
     const targetElement = sectionElementsRef.current[requestedSection];
     const sectionElements = getSectionElements(sectionElementsRef);
 
-    if (targetElement === null || contentElementsRef.current[requestedSection] === null || sectionElements === null) {
+    if (targetElement === null || sectionElements === null) {
       return;
     }
 

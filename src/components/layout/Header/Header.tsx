@@ -16,7 +16,13 @@ import {
 } from 'react';
 
 import type { NavigationItem } from '../../../data/portfolio';
-import { type SectionId, sectionIds } from '../../../shared/navigation/sections';
+import { type SectionId } from '../../../shared/navigation/sections';
+import {
+  getLandingPageNavigationServerSnapshot,
+  getLandingPageNavigationSnapshot,
+  requestLandingPageSection,
+  subscribeToLandingPageNavigation,
+} from '../../../shared/page-sections/landingPageNavigationStore';
 import { HeaderNavList } from './HeaderNavList';
 import type { HeaderProps } from './Header.interfaces';
 import st from './Header.module.css';
@@ -57,35 +63,6 @@ const getSectionHref = (sectionId: SectionId): string => {
   return `/#${sectionId}`;
 };
 
-const getHeaderOffset = (headerElement: HTMLElement): number => {
-  return headerElement.offsetHeight;
-};
-
-const getActiveHomepageSection = (
-  headerElement: HTMLElement | null,
-): SectionId | undefined => {
-  if (headerElement === null) {
-    return undefined;
-  }
-
-  const activationLine =
-    window.scrollY +
-    getHeaderOffset(headerElement) +
-    window.innerHeight * 0.2;
-
-  let currentSection: SectionId = 'home';
-
-  sectionIds.forEach((sectionId) => {
-    const sectionElement = document.getElementById(sectionId);
-
-    if (sectionElement !== null && sectionElement.offsetTop <= activationLine) {
-      currentSection = sectionId;
-    }
-  });
-
-  return currentSection;
-};
-
 export const Header = ({
   siteTitle,
   navigation,
@@ -95,9 +72,17 @@ export const Header = ({
   const mobileNavRef = useRef<HTMLElement | null>(null);
   const mobileNavId = useId();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<SectionId | undefined>(
-    undefined,
+  const landingPageNavigation = useSyncExternalStore(
+    subscribeToLandingPageNavigation,
+    getLandingPageNavigationSnapshot,
+    getLandingPageNavigationServerSnapshot,
   );
+  const activeSection: SectionId | undefined =
+    pathname === '/'
+      ? landingPageNavigation.activeSection
+      : pathname.startsWith('/projects/')
+        ? 'projects'
+        : undefined;
   const theme = useSyncExternalStore(
     subscribeToTheme,
     getStoredTheme,
@@ -133,19 +118,15 @@ export const Header = ({
     sectionId: SectionId | undefined,
     event: MouseEvent<HTMLAnchorElement>,
   ): void => {
-    if (sectionId === undefined || pathname !== '/') {
+    if (sectionId === undefined) {
       return;
     }
 
-    const sectionElement = document.getElementById(sectionId);
+    requestLandingPageSection(sectionId);
 
-    if (sectionElement === null) {
-      return;
+    if (pathname === '/') {
+      event.preventDefault();
     }
-
-    event.preventDefault();
-    setActiveSection(sectionId);
-    sectionElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   const getDesktopNavItemOnClick = (
@@ -220,36 +201,6 @@ export const Header = ({
       observer.disconnect();
     };
   }, []);
-
-  useEffect(() => {
-    const headerElement = headerRef.current;
-
-    if (headerElement === null) {
-      return undefined;
-    }
-
-    const syncActiveSection = (): void => {
-      if (pathname === '/') {
-        setActiveSection(getActiveHomepageSection(headerElement));
-        return;
-      }
-
-      if (pathname.startsWith('/projects/')) {
-        setActiveSection('projects');
-        return;
-      }
-
-      setActiveSection(undefined);
-    };
-
-    window.addEventListener('scroll', syncActiveSection, { passive: true });
-    const frameId = window.requestAnimationFrame(syncActiveSection);
-
-    return () => {
-      window.removeEventListener('scroll', syncActiveSection);
-      window.cancelAnimationFrame(frameId);
-    };
-  }, [pathname]);
 
   useEffect(() => {
     if (!isMobileMenuOpen) {

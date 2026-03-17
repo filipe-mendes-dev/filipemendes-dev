@@ -11,8 +11,6 @@ import st from './AboutPage.module.css';
 
 export const AboutPage = ({
   content,
-  sectionClassName,
-  sectionId,
   revealRef,
   headerRevealRef,
 }: AboutPageProps): ReactElement => {
@@ -20,8 +18,7 @@ export const AboutPage = ({
     <Section
       title="About Me"
       subtitle="Profile, systems experience, education, and selected publications."
-      className={sectionClassName === undefined ? st.root : `${st.root} ${sectionClassName}`}
-      {...(sectionId === undefined ? {} : { id: sectionId })}
+      className={st.root}
       {...(headerRevealRef === undefined ? {} : { headerRevealRef })}
     >
       <div ref={revealRef} className={st.layout} data-landing-reveal="visible">

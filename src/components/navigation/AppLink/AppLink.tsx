@@ -1,3 +1,5 @@
+'use client';
+
 import type { MouseEvent, ReactElement } from 'react';
 
 import type { AppLinkProps } from './AppLink.interfaces';

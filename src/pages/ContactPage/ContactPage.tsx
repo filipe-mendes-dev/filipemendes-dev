@@ -23,7 +23,11 @@ const getSocialIcon = (label: string): ReactElement => {
   return <ExternalLinkIcon className={st.socialIcon} />;
 };
 
-export const ContactPage = ({ content, revealRef, headerRevealRef }: ContactPageProps): ReactElement => {
+export const ContactPage = ({
+  content,
+  revealRef,
+  headerRevealRef,
+}: ContactPageProps): ReactElement => {
   return (
     <div className={st.root}>
       <Section

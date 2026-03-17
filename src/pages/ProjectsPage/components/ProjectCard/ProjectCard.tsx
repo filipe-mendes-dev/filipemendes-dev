@@ -7,7 +7,7 @@ import { ProjectNarrativeList } from '../ProjectNarrativeList';
 import type { ProjectCardProps } from './ProjectCard.interfaces';
 import st from './ProjectCard.module.css';
 
-export const ProjectCard = ({ navigate, project }: ProjectCardProps): ReactElement => {
+export const ProjectCard = ({ project }: ProjectCardProps): ReactElement => {
   return (
     <SoftSurface className={st.root}>
       <div className={st.header}>
@@ -26,7 +26,7 @@ export const ProjectCard = ({ navigate, project }: ProjectCardProps): ReactEleme
       <p className={st.description}>{project.description}</p>
 
       <div className={st.actions}>
-        <TextActionLink href={`/projects/${project.slug}`} navigate={navigate} className={st.link} trailingIcon={<ExternalLinkIcon />}>
+        <TextActionLink href={`/projects/${project.slug}`} className={st.link} trailingIcon={<ExternalLinkIcon />}>
           View Product Details
         </TextActionLink>
       </div>
