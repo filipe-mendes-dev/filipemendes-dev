@@ -3,7 +3,6 @@ import type { ReactElement } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { HomepageHeader } from '../components/layout/HomepageHeader';
 import { ExternalLinkIcon, GithubIcon, LinkedInIcon } from '../components/icons';
 import { Container } from '../components/ui/Container';
 import { PageSectionSurface } from '../components/ui/PageSectionSurface';
@@ -83,9 +82,7 @@ const renderProjectCard = (project: ProjectDetail, index: number): ReactElement 
 
 const Page = (): ReactElement => {
   return (
-    <>
-      <HomepageHeader navigation={portfolio.navigation} siteTitle={portfolio.siteTitle} />
-      <PageSectionSurface className={landingSt.root}>
+    <PageSectionSurface className={landingSt.root}>
         <section id="home" className={`${surface.section} ${landingSt.homeSection} ${homeSt.heroSection}`}>
           <Container>
             <SoftSurface className={homeSt.heroWindowStage}>
@@ -246,7 +243,6 @@ const Page = (): ReactElement => {
           </div>
         </Section>
       </PageSectionSurface>
-    </>
   );
 };
 

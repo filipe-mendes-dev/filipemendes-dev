@@ -1,8 +1,6 @@
 import { type ReactElement, useEffect, useState } from 'react';
 
 import st from './App.module.css';
-import { Footer } from './components/layout/Footer';
-import { Header } from './components/layout/Header';
 import { AppLink } from './components/navigation/AppLink';
 import { portfolio } from './data/portfolio';
 import { usePathnameRouter } from './lib/pathname-router';
@@ -34,26 +32,12 @@ const getSafeSection = (sectionId: SectionId | undefined): SectionId => {
   return sectionId ?? 'home';
 };
 
-const getSocialLink = (label: string): string => {
-  const socialLink = portfolio.contact.socials.find((item) => item.label.toLowerCase() === label.toLowerCase());
-
-  return socialLink?.href ?? '#';
-};
-
 export const App = (): ReactElement => {
-  const { currentHref, pathname, route, navigate } = usePathnameRouter();
-  const [theme, setTheme] = useState<ThemeName>(() => getInitialTheme());
+  const { currentHref, route, navigate } = usePathnameRouter();
+  const [theme] = useState<ThemeName>(() => getInitialTheme());
   const [visibleSection, setVisibleSection] = useState<SectionId>(() => getSafeSection(route.sectionId));
   const [requestedSection, setRequestedSection] = useState<SectionId>('home');
   const [sectionRequestNonce, setSectionRequestNonce] = useState(0);
-  const activeSection = route.page === 'landing' ? visibleSection : undefined;
-  const footerAction =
-    route.page === 'project-detail'
-      ? {
-          actionHref: '/',
-          actionLabel: 'Go back',
-        }
-      : {};
 
   useEffect(() => {
     applyThemeTokens(themeTokenSets[theme]);
@@ -125,28 +109,7 @@ export const App = (): ReactElement => {
 
   return (
     <div className={`${st.root} ${st.siteShell}`}>
-      <Header
-        siteTitle={portfolio.siteTitle}
-        navigation={portfolio.navigation}
-        pathname={pathname}
-        currentHref={currentHref}
-        navigate={handleNavigate}
-        onSectionRequest={handleSectionRequest}
-        theme={theme}
-        onThemeToggle={() => {
-          setTheme((currentTheme) => (currentTheme === 'light' ? 'dark' : 'light'));
-        }}
-        {...(activeSection !== undefined ? { activeSection } : {})}
-      />
       <main className={st.main}>{page}</main>
-      <Footer
-        name={portfolio.siteTitle}
-        descriptor={portfolio.descriptor}
-        githubUrl={getSocialLink('GitHub')}
-        linkedInUrl={getSocialLink('LinkedIn')}
-        navigate={handleNavigate}
-        {...footerAction}
-      />
     </div>
   );
 };
