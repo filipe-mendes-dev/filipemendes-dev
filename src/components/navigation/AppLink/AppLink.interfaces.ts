@@ -2,7 +2,6 @@ import type { HTMLAttributeAnchorTarget, MouseEventHandler, ReactNode } from 're
 
 export interface AppLinkProps {
   href: string;
-  navigate?: (href: string) => void;
   className?: string;
   children: ReactNode;
   ariaCurrent?: 'page';
