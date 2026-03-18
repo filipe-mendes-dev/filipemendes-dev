@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { ReactElement } from 'react';
 
-import { NotFoundPage } from '../pages/NotFoundPage';
+import { NotFoundPage } from '../views/NotFoundPage';
 import su from '../shared/styles/utilities.module.css';
 
 const NotFound = (): ReactElement => {

@@ -8,7 +8,7 @@ import {
   portfolio,
   type ProjectDetail,
 } from '../../../data/portfolio';
-import { ProjectDetailPage } from '../../../pages/ProjectDetailPage';
+import { ProjectDetailPage } from '../../../views/ProjectDetailPage';
 
 interface ProjectDetailRouteParams {
   slug: string;
