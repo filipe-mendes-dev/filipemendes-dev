@@ -195,16 +195,21 @@ Browser-only responsibilities therefore include:
 
 Relevant code:
 
-- `src/app/layout.tsx` → `themeInitializationScript`
-- `src/shared/theme/useThemePreference.ts` → `getStoredTheme()`, `subscribeToTheme()`, `setThemePreference()`
-- `src/components/layout/Header/Header.tsx` → `useThemePreference()`
+- `src/app/layout.tsx` → `getThemeInitializationScript(...)`
+- `src/shared/theme/themeInitializationScript.ts` → `getThemeInitializationScript(...)`
+- `src/shared/theme/themePreference.ts` → `defaultThemePreference`, `getStoredThemePreference()`, `setStoredThemePreference()`
+- `src/components/layout/Header/Header.tsx` → `handleThemeToggle()`
+- `src/components/layout/Header/Header.tsx` → theme `useState(defaultThemePreference)`
+- `src/components/layout/Header/Header.tsx` → theme sync `useEffect(...)`
 - `src/shared/theme/theme.css` → live theme variable definitions
 
 Current behavior:
 
 - the server renders without user-specific localStorage knowledge
 - a `beforeInteractive` script sets `data-theme` before hydration
+- the bootstrap defaults to `dark` when no persisted theme exists
 - `theme.css` supplies the actual light and dark variable sets selected by `data-theme`
+- `Header.tsx` starts from the shared dark default, then syncs local state from the already-bootstrapped `data-theme` value after mount
 - `<html suppressHydrationWarning>` is used because the DOM may differ from the server snapshot by the time React hydrates
 
 ### Navigation hydration

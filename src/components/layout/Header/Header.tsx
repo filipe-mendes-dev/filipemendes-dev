@@ -23,7 +23,12 @@ import {
   requestLandingPageSection,
   subscribeToLandingPageNavigation,
 } from '../../../shared/page-sections/landingPageNavigationStore';
-import { useThemePreference } from '../../../shared/theme/useThemePreference';
+import {
+  defaultThemePreference,
+  getStoredThemePreference,
+  setStoredThemePreference,
+  type ThemeName,
+} from '../../../shared/theme/themePreference';
 import { HeaderNavList } from './HeaderNavList';
 import type { HeaderProps } from './Header.interfaces';
 import st from './Header.module.css';
@@ -42,6 +47,7 @@ export const Header = ({
   const mobileNavRef = useRef<HTMLElement | null>(null);
   const mobileNavId = useId();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<ThemeName>(defaultThemePreference);
   const landingPageNavigation = useSyncExternalStore(
     subscribeToLandingPageNavigation,
     getLandingPageNavigationSnapshot,
@@ -53,7 +59,6 @@ export const Header = ({
       : pathname.startsWith('/projects/')
         ? 'projects'
         : undefined;
-  const { theme, toggleTheme } = useThemePreference();
   const themeToggleLabel =
     theme === 'light' ? 'Activate dark theme' : 'Activate light theme';
   const mobileMenuLabel = isMobileMenuOpen
@@ -130,6 +135,13 @@ export const Header = ({
     };
   };
 
+  const handleThemeToggle = (): void => {
+    const nextTheme: ThemeName = theme === 'light' ? 'dark' : 'light';
+
+    setStoredThemePreference(nextTheme);
+    setTheme(nextTheme);
+  };
+
   useLayoutEffect(() => {
     if (headerRef.current === null) {
       return undefined;
@@ -157,6 +169,16 @@ export const Header = ({
 
     return () => {
       observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    const themeSyncFrame = window.requestAnimationFrame(() => {
+      setTheme(getStoredThemePreference());
+    });
+
+    return () => {
+      window.cancelAnimationFrame(themeSyncFrame);
     };
   }, []);
 
@@ -243,7 +265,7 @@ export const Header = ({
             <ThemeToggle
               theme={theme}
               label={themeToggleLabel}
-              onToggle={toggleTheme}
+              onToggle={handleThemeToggle}
             />
           </div>
         </div>
@@ -269,13 +291,13 @@ export const Header = ({
 
           <div className={st.mobileMenuFooter}>
             <span className={st.mobileMenuLabel}>Theme</span>
-            <ThemeToggle
-              theme={theme}
-              label={themeToggleLabel}
-              onToggle={toggleTheme}
-              className={st.mobileThemeToggle}
-              size="compact"
-            />
+          <ThemeToggle
+            theme={theme}
+            label={themeToggleLabel}
+            onToggle={handleThemeToggle}
+            className={st.mobileThemeToggle}
+            size="compact"
+          />
           </div>
         </div>
       </nav>
