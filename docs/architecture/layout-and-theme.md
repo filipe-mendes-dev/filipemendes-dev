@@ -78,9 +78,13 @@ The current theme system is based on:
 - `data-theme` on `<html>`
 - CSS variables in `src/shared/theme/theme.css`
 - persisted preference in `localStorage` under `portfolio-theme`
-- a client-side subscription model in `Header.tsx`
+- a client-side subscription model exposed through `src/shared/theme/useThemePreference.ts`
 
-At runtime, the DOM attribute is the source of truth for the active theme.
+At runtime:
+
+- `theme.css` is the source of truth for theme values
+- `data-theme` on `<html>` selects which CSS variable set is active
+- `useThemePreference.ts` owns theme selection state only
 
 ## Pre-Hydration Theme Bootstrap
 
@@ -88,6 +92,7 @@ Relevant code:
 
 - `src/app/layout.tsx` → `themeInitializationScript`
 - `src/app/layout.tsx` → `<Script id="theme-init" strategy="beforeInteractive">`
+- `src/shared/theme/useThemePreference.ts`
 
 Current behavior:
 
@@ -141,9 +146,10 @@ This means component styling does not need JavaScript theme branching. Component
 
 Relevant code:
 
-- `src/components/layout/Header/Header.tsx` → `getStoredTheme()`
-- `src/components/layout/Header/Header.tsx` → `subscribeToTheme()`
-- `src/components/layout/Header/Header.tsx` → `handleThemeToggle()`
+- `src/shared/theme/useThemePreference.ts` → `getStoredTheme()`
+- `src/shared/theme/useThemePreference.ts` → `subscribeToTheme()`
+- `src/shared/theme/useThemePreference.ts` → `setThemePreference()`
+- `src/components/layout/Header/Header.tsx` → `useThemePreference()`
 
 Current post-hydration behavior:
 
@@ -158,7 +164,7 @@ Current post-hydration behavior:
 
 Relevant code:
 
-- `src/components/layout/Header/Header.tsx` → `useSyncExternalStore(subscribeToTheme, getStoredTheme, getServerThemeSnapshot)`
+- `src/shared/theme/useThemePreference.ts` → `useSyncExternalStore(...)`
 
 The theme is stored outside React in:
 
@@ -190,7 +196,16 @@ Owned by `src/app/layout.tsx`:
 Owned by `src/components/layout/Header/Header.tsx`:
 
 - reflect the active theme in the shell UI
-- allow the user to change theme after hydration
+- provide the toggle control and label text
+
+### Shared hook phase
+
+Owned by `src/shared/theme/useThemePreference.ts`:
+
+- read the current theme from the DOM
+- subscribe to theme change events
+- keep `data-theme`, `localStorage`, and the custom event in sync
+- expose `theme` and `toggleTheme()` to client UI
 
 This split is correct because the two concerns happen at different lifecycle stages.
 
@@ -232,20 +247,19 @@ Relevant code:
 
 - `src/shared/theme/tokens.ts`
 - `src/shared/theme/theme.css`
-- `src/shared/theme/applyThemeTokens.ts`
 - `src/components/layout/Header/ThemeToggle/ThemeToggle.interfaces.ts`
 
 Current state:
 
-- `tokens.ts` defines a typed token contract and token sets
+- `tokens.ts` defines only `ThemeName`
 - `theme.css` defines the live CSS variable values used by the app
-- `applyThemeTokens.ts` exists but is not used by the current runtime
-- `ThemeToggle.interfaces.ts` imports `ThemeName` from `tokens.ts`, so the file is still active at the type level
+- `ThemeToggle.interfaces.ts` imports `ThemeName` from `tokens.ts`, so the file remains the small type source for theme naming
 
 Current conclusion:
 
-- `theme.css` is the active runtime theme source
-- `tokens.ts` currently acts as a typed contract and parallel token definition, not the active runtime theme application path
+- `theme.css` is the active runtime theme source of truth
+- TypeScript no longer contains parallel runtime token value sets
+- the remaining TypeScript theme layer exists only for theme naming and selection-state typing
 
 ## Summary
 
@@ -253,7 +267,9 @@ The current layout and theme design is structurally sound:
 
 - one root shell
 - one global theme attribute
+- CSS-owned theme values
 - pre-hydration theme bootstrap in the layout
-- post-hydration theme control in the shared header
+- post-hydration theme UI in the shared header
+- post-hydration theme storage mechanics in `useThemePreference()`
 
-The main issues are not correctness problems. They are coupling and duplication around token ownership, footer social extraction, and inline bootstrap placement.
+The main issues are not correctness problems. The remaining concerns are footer social extraction in the layout and the inline placement of the bootstrap script.

@@ -196,12 +196,15 @@ Browser-only responsibilities therefore include:
 Relevant code:
 
 - `src/app/layout.tsx` → `themeInitializationScript`
-- `src/components/layout/Header/Header.tsx` → `getStoredTheme()`, `subscribeToTheme()`, `handleThemeToggle()`
+- `src/shared/theme/useThemePreference.ts` → `getStoredTheme()`, `subscribeToTheme()`, `setThemePreference()`
+- `src/components/layout/Header/Header.tsx` → `useThemePreference()`
+- `src/shared/theme/theme.css` → live theme variable definitions
 
 Current behavior:
 
 - the server renders without user-specific localStorage knowledge
 - a `beforeInteractive` script sets `data-theme` before hydration
+- `theme.css` supplies the actual light and dark variable sets selected by `data-theme`
 - `<html suppressHydrationWarning>` is used because the DOM may differ from the server snapshot by the time React hydrates
 
 ### Navigation hydration

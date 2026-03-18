@@ -23,41 +23,11 @@ import {
   requestLandingPageSection,
   subscribeToLandingPageNavigation,
 } from '../../../shared/page-sections/landingPageNavigationStore';
+import { useThemePreference } from '../../../shared/theme/useThemePreference';
 import { HeaderNavList } from './HeaderNavList';
 import type { HeaderProps } from './Header.interfaces';
 import st from './Header.module.css';
 import { ThemeToggle } from './ThemeToggle';
-
-const themeStorageKey = 'portfolio-theme';
-const themeChangeEventName = 'portfolio-theme-change';
-
-const getStoredTheme = (): 'light' | 'dark' => {
-  const rootTheme = document.documentElement.getAttribute('data-theme');
-
-  if (rootTheme === 'light' || rootTheme === 'dark') {
-    return rootTheme;
-  }
-
-  return 'light';
-};
-
-const subscribeToTheme = (onStoreChange: () => void): (() => void) => {
-  const handleThemeChange = (): void => {
-    onStoreChange();
-  };
-
-  window.addEventListener(themeChangeEventName, handleThemeChange);
-  window.addEventListener('storage', handleThemeChange);
-
-  return () => {
-    window.removeEventListener(themeChangeEventName, handleThemeChange);
-    window.removeEventListener('storage', handleThemeChange);
-  };
-};
-
-const getServerThemeSnapshot = (): 'light' | 'dark' => {
-  return 'light';
-};
 
 const getSectionHref = (sectionId: SectionId): string => {
   return `/#${sectionId}`;
@@ -83,11 +53,7 @@ export const Header = ({
       : pathname.startsWith('/projects/')
         ? 'projects'
         : undefined;
-  const theme = useSyncExternalStore(
-    subscribeToTheme,
-    getStoredTheme,
-    getServerThemeSnapshot,
-  );
+  const { theme, toggleTheme } = useThemePreference();
   const themeToggleLabel =
     theme === 'light' ? 'Activate dark theme' : 'Activate light theme';
   const mobileMenuLabel = isMobileMenuOpen
@@ -104,14 +70,6 @@ export const Header = ({
 
   const getNavigationHref = (item: NavigationItem): string => {
     return item.sectionId === undefined ? item.href : getSectionHref(item.sectionId);
-  };
-
-  const handleThemeToggle = (): void => {
-    const nextTheme = theme === 'light' ? 'dark' : 'light';
-
-    document.documentElement.setAttribute('data-theme', nextTheme);
-    window.localStorage.setItem(themeStorageKey, nextTheme);
-    window.dispatchEvent(new Event(themeChangeEventName));
   };
 
   const handleSectionNavigation = (
@@ -285,7 +243,7 @@ export const Header = ({
             <ThemeToggle
               theme={theme}
               label={themeToggleLabel}
-              onToggle={handleThemeToggle}
+              onToggle={toggleTheme}
             />
           </div>
         </div>
@@ -314,7 +272,7 @@ export const Header = ({
             <ThemeToggle
               theme={theme}
               label={themeToggleLabel}
-              onToggle={handleThemeToggle}
+              onToggle={toggleTheme}
               className={st.mobileThemeToggle}
               size="compact"
             />

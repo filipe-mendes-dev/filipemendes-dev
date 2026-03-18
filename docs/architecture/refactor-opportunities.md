@@ -26,23 +26,7 @@ These items describe potential future changes. They are not current architecture
 
 ## Medium Priority
 
-### 3. Extract a dedicated theme hook
-
-- Current state: theme read/subscribe/toggle logic is implemented directly in `src/components/layout/Header/Header.tsx`.
-- Why it matters: theme behavior is conceptually one small external-store system, but its logic is still embedded in the shell component.
-- Possible improvement: introduce a dedicated hook such as `useThemePreference` to own `getStoredTheme()`, `subscribeToTheme()`, and toggle behavior.
-- Risk level: Low
-- Priority: Medium
-
-### 4. Decide which theme token layer is authoritative
-
-- Current state: `src/shared/theme/tokens.ts` defines a typed token contract and token sets, while `src/shared/theme/theme.css` provides the live CSS variable values. `src/shared/theme/applyThemeTokens.ts` is present but unused at runtime. `ThemeName` from `tokens.ts` is still used for typing in `src/components/layout/Header/ThemeToggle/ThemeToggle.interfaces.ts`.
-- Why it matters: duplicate token values create drift risk and make ownership unclear.
-- Possible improvement: either make CSS the explicit source of truth and trim unused runtime helpers, or wire the TypeScript token layer into actual runtime variable application.
-- Risk level: Medium
-- Priority: Medium
-
-### 5. Reduce client surface area on project detail pages
+### 3. Reduce client surface area on project detail pages
 
 - Current state: `src/app/projects/[slug]/page.tsx` is static-friendly, but `src/views/ProjectDetailPage/ProjectDetailPage.tsx` is fully client-side because reveal logic is embedded in the page view.
 - Why it matters: the page hydrates more UI than its content model requires.
@@ -50,7 +34,7 @@ These items describe potential future changes. They are not current architecture
 - Risk level: Medium
 - Priority: Medium
 
-### 6. Unify section navigation paths
+### 4. Unify section navigation paths
 
 - Current state: header links use the landing-page store and explicit offset-aware scrolling, while hero action links in `src/views/LandingPage/sections/HeroSection/HeroSection.tsx` call `scrollIntoView()` directly.
 - Why it matters: there are two code paths for the same section-navigation concept.
@@ -60,7 +44,7 @@ These items describe potential future changes. They are not current architecture
 
 ## Optional
 
-### 7. Revisit `AppLink`
+### 5. Revisit `AppLink`
 
 - Current state: `src/components/navigation/AppLink/AppLink.tsx` is marked `use client` but currently renders a plain anchor and does not itself use browser APIs.
 - Why it matters: this is a small abstraction with a client boundary that may be broader than necessary.
@@ -68,7 +52,7 @@ These items describe potential future changes. They are not current architecture
 - Risk level: Low
 - Priority: Optional
 
-### 8. Improve root metadata copy
+### 6. Improve root metadata copy
 
 - Current state: root metadata copy is currently minimal and static in `src/app/layout.tsx`.
 - Why it matters: the root description is now production-oriented, but it may still need future SEO/content refinement as the site evolves.
@@ -76,7 +60,7 @@ These items describe potential future changes. They are not current architecture
 - Risk level: Low
 - Priority: Optional
 
-### 9. Revisit build-time footer year behavior
+### 7. Revisit build-time footer year behavior
 
 - Current state: `src/components/layout/Footer/Footer.tsx` computes the year during render. On a static deployment, that year stays fixed until the site is rebuilt.
 - Why it matters: the displayed year can go stale on long-lived deployments.

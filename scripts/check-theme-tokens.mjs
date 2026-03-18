@@ -2,19 +2,8 @@ import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 
 const projectRoot = process.cwd();
-const themeTokensPath = path.join(projectRoot, 'src/shared/theme/tokens.ts');
 const themeCssPath = path.join(projectRoot, 'src/shared/theme/theme.css');
 const srcPath = path.join(projectRoot, 'src');
-
-const getThemeTokenKeys = (source) => {
-  const interfaceMatch = source.match(/export interface ThemeTokens\s*{([\s\S]*?)^}/m);
-
-  if (interfaceMatch === null) {
-    throw new Error('Could not find ThemeTokens interface.');
-  }
-
-  return [...interfaceMatch[1].matchAll(/'([^']+)': string;/g)].map((match) => match[1]);
-};
 
 const getCssVarKeys = (source) => {
   return [...source.matchAll(/--([a-z0-9-]+)\s*:/gi)].map((match) => match[1]);
@@ -49,11 +38,11 @@ const getMissingEntries = (left, right) => {
 
 const reportAndExit = (messages) => {
   if (messages.length === 0) {
-    console.log('Theme token audit passed.');
+    console.log('Theme CSS audit passed.');
     process.exit(0);
   }
 
-  console.error('Theme token audit failed:\n');
+  console.error('Theme CSS audit failed:\n');
 
   messages.forEach((message) => {
     console.error(`- ${message}`);
@@ -63,28 +52,13 @@ const reportAndExit = (messages) => {
 };
 
 const main = async () => {
-  const [themeTokensSource, themeCssSource, cssFiles] = await Promise.all([
-    readFile(themeTokensPath, 'utf8'),
+  const [themeCssSource, cssFiles] = await Promise.all([
     readFile(themeCssPath, 'utf8'),
     getCssFiles(srcPath),
   ]);
 
-  const themeTokenKeys = getThemeTokenKeys(themeTokensSource);
   const themeCssKeys = getCssVarKeys(themeCssSource);
-  const contractMessages = [];
-
-  const tokensMissingInCss = getMissingEntries(themeTokenKeys, themeCssKeys);
-  const cssMissingInTokens = getMissingEntries(themeCssKeys, themeTokenKeys);
-
-  if (tokensMissingInCss.length > 0) {
-    contractMessages.push(`Defined in ThemeTokens but missing in theme.css: ${tokensMissingInCss.join(', ')}`);
-  }
-
-  if (cssMissingInTokens.length > 0) {
-    contractMessages.push(`Defined in theme.css but missing in ThemeTokens: ${cssMissingInTokens.join(', ')}`);
-  }
-
-  const themeTokenSet = new Set(themeTokenKeys);
+  const themeTokenSet = new Set(themeCssKeys);
   const usageMessages = [];
 
   for (const cssFilePath of cssFiles) {
@@ -99,7 +73,7 @@ const main = async () => {
     }
   }
 
-  reportAndExit([...contractMessages, ...usageMessages]);
+  reportAndExit(usageMessages);
 };
 
 main().catch((error) => {
