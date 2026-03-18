@@ -1,13 +1,13 @@
 import type { ReactElement } from 'react';
 
-import { ExternalLinkIcon, GithubIcon, LinkedInIcon } from '../../components/icons';
-import { TextActionLink } from '../../components/navigation/TextActionLink';
-import { RevealItem } from '../../components/ui/RevealItem';
-import { Section } from '../../components/ui/Section';
-import { SoftSurface } from '../../components/ui/SoftSurface';
-import su from '../../shared/styles/utilities.module.css';
-import type { ContactPageProps } from './ContactPage.interfaces';
-import st from './ContactPage.module.css';
+import { ExternalLinkIcon, GithubIcon, LinkedInIcon } from '../../../../components/icons';
+import { TextActionLink } from '../../../../components/navigation/TextActionLink';
+import { RevealItem } from '../../../../components/ui/RevealItem';
+import { Section } from '../../../../components/ui/Section';
+import { SoftSurface } from '../../../../components/ui/SoftSurface';
+import su from '../../../../shared/styles/utilities.module.css';
+import type { ContactSectionProps } from './ContactSection.interfaces';
+import st from './ContactSection.module.css';
 
 const getSocialIcon = (label: string): ReactElement => {
   const normalizedLabel = label.toLowerCase();
@@ -23,12 +23,12 @@ const getSocialIcon = (label: string): ReactElement => {
   return <ExternalLinkIcon className={st.socialIcon} />;
 };
 
-export const ContactPage = ({
+export const ContactSection = ({
   content,
   initialRevealState = 'visible',
   revealRef,
   headerRevealRef,
-}: ContactPageProps): ReactElement => {
+}: ContactSectionProps): ReactElement => {
   return (
     <div className={st.root}>
       <Section

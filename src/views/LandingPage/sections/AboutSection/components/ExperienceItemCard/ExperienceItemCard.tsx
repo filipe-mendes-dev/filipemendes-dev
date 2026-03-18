@@ -1,6 +1,6 @@
 import type { ReactElement } from 'react';
 
-import su from '../../../../shared/styles/utilities.module.css';
+import su from '../../../../../../shared/styles/utilities.module.css';
 import type { ExperienceItemCardProps } from './ExperienceItemCard.interfaces';
 import st from './ExperienceItemCard.module.css';
 

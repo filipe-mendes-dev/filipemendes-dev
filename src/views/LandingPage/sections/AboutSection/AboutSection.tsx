@@ -1,20 +1,20 @@
 import type { ReactElement } from 'react';
 
-import { EducationIcon, ExternalLinkIcon, PublicationsIcon } from '../../components/icons';
-import { RevealItem } from '../../components/ui/RevealItem';
-import { Section } from '../../components/ui/Section';
-import su from '../../shared/styles/utilities.module.css';
+import { EducationIcon, ExternalLinkIcon, PublicationsIcon } from '../../../../components/icons';
+import { RevealItem } from '../../../../components/ui/RevealItem';
+import { Section } from '../../../../components/ui/Section';
+import su from '../../../../shared/styles/utilities.module.css';
 import { AboutSupportSection } from './components/AboutSupportSection';
 import { ExperienceTimeline } from './components/ExperienceTimeline';
-import type { AboutPageProps } from './AboutPage.interfaces';
-import st from './AboutPage.module.css';
+import type { AboutSectionProps } from './AboutSection.interfaces';
+import st from './AboutSection.module.css';
 
-export const AboutPage = ({
+export const AboutSection = ({
   content,
   initialRevealState = 'visible',
   revealRef,
   headerRevealRef,
-}: AboutPageProps): ReactElement => {
+}: AboutSectionProps): ReactElement => {
   return (
     <Section
       title="About Me"

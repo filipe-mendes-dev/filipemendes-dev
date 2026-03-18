@@ -1,7 +1,7 @@
 import type { ReactElement } from 'react';
 
-import { ExperienceIcon } from '../../../../components/icons';
-import su from '../../../../shared/styles/utilities.module.css';
+import { ExperienceIcon } from '../../../../../../components/icons';
+import su from '../../../../../../shared/styles/utilities.module.css';
 import { AboutSectionHeading } from '../AboutSectionHeading';
 import { ExperienceItemCard } from '../ExperienceItemCard';
 import type { ExperienceTimelineProps } from './ExperienceTimeline.interfaces';

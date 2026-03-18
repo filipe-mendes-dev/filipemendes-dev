@@ -1,17 +1,17 @@
 import type { ReactElement } from 'react';
 
-import { RevealItem } from '../../components/ui/RevealItem';
-import { Section } from '../../components/ui/Section';
+import { RevealItem } from '../../../../components/ui/RevealItem';
+import { Section } from '../../../../components/ui/Section';
 import { ProjectCard } from './components/ProjectCard';
-import type { ProjectsPageProps } from './ProjectsPage.interfaces';
-import st from './ProjectsPage.module.css';
+import type { ProjectsSectionProps } from './ProjectsSection.interfaces';
+import st from './ProjectsSection.module.css';
 
-export const ProjectsPage = ({
+export const ProjectsSection = ({
   content,
   initialRevealState = 'visible',
   revealRef,
   headerRevealRef,
-}: ProjectsPageProps): ReactElement => {
+}: ProjectsSectionProps): ReactElement => {
   return (
     <div className={st.root}>
       <Section

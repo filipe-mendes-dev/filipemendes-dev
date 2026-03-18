@@ -3,14 +3,14 @@
 import { motion, stagger, useReducedMotion, type Variants } from 'framer-motion';
 import { type MouseEvent, type ReactElement, useEffect, useState } from 'react';
 
-import { Section } from '../../components/ui/Section';
-import type { ActionLink } from '../../data/portfolio';
-import type { SectionId } from '../../shared/navigation/sections';
-import su from '../../shared/styles/utilities.module.css';
+import { Section } from '../../../../components/ui/Section';
+import type { ActionLink } from '../../../../data/portfolio';
+import type { SectionId } from '../../../../shared/navigation/sections';
+import su from '../../../../shared/styles/utilities.module.css';
 import { HeroTerminal } from './HeroTerminal';
 import { HeroWindow } from './HeroWindow';
-import type { HomePageProps } from './HomePage.interfaces';
-import st from './HomePage.module.css';
+import type { HeroSectionProps } from './HeroSection.interfaces';
+import st from './HeroSection.module.css';
 import { heroMotionConfig } from './heroMotion';
 
 const getActionClassName = (action: ActionLink): string => {
@@ -30,7 +30,7 @@ const getActionHref = (action: ActionLink): string => {
 
 const joinClassNames = (...classNames: (string | false | undefined)[]): string => classNames.filter(Boolean).join(' ');
 
-export const HomePage = ({ content, revealRef }: HomePageProps): ReactElement => {
+export const HeroSection = ({ content, revealRef }: HeroSectionProps): ReactElement => {
     const isReducedMotionEnabled = useReducedMotion() ?? false;
     const [hasIntroFinished, setHasIntroFinished] = useState<boolean>(isReducedMotionEnabled);
     const isIntroComplete = isReducedMotionEnabled || hasIntroFinished;

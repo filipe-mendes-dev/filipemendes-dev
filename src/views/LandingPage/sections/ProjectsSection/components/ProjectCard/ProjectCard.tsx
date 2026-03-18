@@ -1,8 +1,8 @@
 import type { ReactElement } from 'react';
 
-import { ExternalLinkIcon } from '../../../../components/icons';
-import { TextActionLink } from '../../../../components/navigation/TextActionLink';
-import { SoftSurface } from '../../../../components/ui/SoftSurface';
+import { ExternalLinkIcon } from '../../../../../../components/icons';
+import { TextActionLink } from '../../../../../../components/navigation/TextActionLink';
+import { SoftSurface } from '../../../../../../components/ui/SoftSurface';
 import { ProjectNarrativeList } from '../ProjectNarrativeList';
 import type { ProjectCardProps } from './ProjectCard.interfaces';
 import st from './ProjectCard.module.css';
