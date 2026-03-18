@@ -90,9 +90,6 @@ The current explicit client entry files are:
 - `src/views/LandingPage/sections/HeroSection/HeroSection.tsx`
 - `src/views/ProjectDetailPage/ProjectDetailPage.tsx`
 - `src/components/navigation/AppLink/AppLink.tsx`
-- `src/components/layout/HomepageHeader/HomepageHeader.tsx`
-
-`HomepageHeader.tsx` is not imported by the current route tree, but it is still a client component in the repository.
 
 ## Why each current client component is client
 
@@ -158,16 +155,6 @@ Why it is client:
 Could it be server instead:
 
 - yes, potentially; the current implementation renders a plain anchor and does not itself use browser APIs
-
-### `src/components/layout/HomepageHeader/HomepageHeader.tsx`
-
-Why it is client:
-
-- uses theme, scroll, and section-tracking logic similar to the shared header
-
-Could it be server instead:
-
-- no in its current form, but it is currently unused
 
 ## What Happens at Build Time
 
