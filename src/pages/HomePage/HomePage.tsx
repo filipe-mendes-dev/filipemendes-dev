@@ -114,7 +114,10 @@ export const HomePage = ({ content, revealRef }: HomePageProps): ReactElement =>
     };
 
     return (
-        <div className={st.root}>
+        <div
+            className={st.root}
+            data-landing-hero-intro-complete={isIntroComplete ? 'true' : 'false'}
+        >
             <Section
                 className={st.heroSection}
             >

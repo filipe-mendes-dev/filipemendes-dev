@@ -7,7 +7,6 @@ import { usePathnameRouter } from './lib/pathname-router';
 import { LandingPage } from './pages/LandingPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { ProjectDetailPage } from './pages/ProjectDetailPage';
-import type { SectionId } from './shared/navigation/sections';
 import su from './shared/styles/utilities.module.css';
 import { applyThemeTokens } from './shared/theme/applyThemeTokens';
 import { type ThemeName, themeTokenSets } from './shared/theme/tokens';
@@ -28,16 +27,9 @@ const getInitialTheme = (): ThemeName => {
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 };
 
-const getSafeSection = (sectionId: SectionId | undefined): SectionId => {
-  return sectionId ?? 'home';
-};
-
 export const App = (): ReactElement => {
-  const { currentHref, route, navigate } = usePathnameRouter();
+  const { route, navigate } = usePathnameRouter();
   const [theme] = useState<ThemeName>(() => getInitialTheme());
-  const [visibleSection, setVisibleSection] = useState<SectionId>(() => getSafeSection(route.sectionId));
-  const [requestedSection, setRequestedSection] = useState<SectionId>('home');
-  const [sectionRequestNonce, setSectionRequestNonce] = useState(0);
 
   useEffect(() => {
     applyThemeTokens(themeTokenSets[theme]);
@@ -46,37 +38,13 @@ export const App = (): ReactElement => {
   }, [theme]);
 
   const handleNavigate = (href: string): void => {
-    if (href === '/') {
-      setRequestedSection('home');
-      setSectionRequestNonce((currentNonce) => currentNonce + 1);
-    }
-
-    navigate(href);
-  };
-
-  const handleSectionRequest = (sectionId: SectionId, href: string): void => {
-    setVisibleSection(sectionId);
-    setRequestedSection(sectionId);
-    setSectionRequestNonce((currentNonce) => currentNonce + 1);
     navigate(href);
   };
 
   const page = (() => {
     switch (route.page) {
       case 'landing':
-        return (
-          <LandingPage
-            content={portfolio}
-            navigate={handleNavigate}
-            activeSection={visibleSection}
-            requestedSection={requestedSection}
-            requestedSectionKey={`${currentHref}:${sectionRequestNonce}`}
-            onSectionRequest={(sectionId) => {
-              handleSectionRequest(sectionId, '/');
-            }}
-            onActiveSectionChange={setVisibleSection}
-          />
-        );
+        return <LandingPage content={portfolio} />;
       case 'project-detail': {
         const project = portfolio.projects.find((item) => item.slug === route.projectSlug);
 
@@ -92,7 +60,7 @@ export const App = (): ReactElement => {
           );
         }
 
-          return <ProjectDetailPage project={project} navigate={handleNavigate} />;
+          return <ProjectDetailPage project={project} />;
         }
       default:
         return (

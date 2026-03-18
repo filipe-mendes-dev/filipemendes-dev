@@ -8,6 +8,7 @@ import st from './ProjectsPage.module.css';
 
 export const ProjectsPage = ({
   content,
+  initialRevealState = 'visible',
   revealRef,
   headerRevealRef,
 }: ProjectsPageProps): ReactElement => {
@@ -16,9 +17,14 @@ export const ProjectsPage = ({
       <Section
         title="Projects"
         subtitle="Each product is documented with a clear narrative from problem to measurable outcome."
+        initialHeadingRevealState={initialRevealState}
         {...(headerRevealRef === undefined ? {} : { headerRevealRef })}
       >
-        <div ref={revealRef} className={st.projectsList} data-landing-reveal="visible">
+        <div
+          ref={revealRef}
+          className={st.projectsList}
+          data-landing-reveal={initialRevealState}
+        >
           {content.projects.map((project, index) => (
             <RevealItem key={project.slug} index={index}>
               <ProjectCard project={project} />

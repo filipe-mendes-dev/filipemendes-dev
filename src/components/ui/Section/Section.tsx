@@ -11,6 +11,7 @@ export const Section = ({
   className,
   id,
   contained = true,
+  initialHeadingRevealState = 'visible',
   containerClassName,
   headerRevealRef,
   sectionRef,
@@ -26,7 +27,11 @@ export const Section = ({
   return (
     <section ref={sectionRef} id={id} className={sectionClasses}>
       {(title !== undefined || subtitle !== undefined) && (
-        <header ref={headerRevealRef} className={st.header} data-landing-heading-reveal="visible">
+        <header
+          ref={headerRevealRef}
+          className={st.header}
+          data-landing-heading-reveal={initialHeadingRevealState}
+        >
           {title !== undefined && <h2>{title}</h2>}
           {subtitle !== undefined && <p className={st.subtitle}>{subtitle}</p>}
         </header>

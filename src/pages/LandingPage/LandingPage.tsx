@@ -20,15 +20,15 @@ export const LandingPage = ({ content }: LandingPageProps): ReactElement => {
       </section>
 
       <section id="projects" className={`${surface.section} ${st.projectsSection}`}>
-        <ProjectsPage content={content} />
+        <ProjectsPage content={content} initialRevealState="pending" />
       </section>
 
       <section id="about" className={`${surface.section} ${st.aboutSection}`}>
-        <AboutPage content={content} />
+        <AboutPage content={content} initialRevealState="pending" />
       </section>
 
       <section id="contact" className={`${surface.section} ${st.contactSection}`}>
-        <ContactPage content={content} />
+        <ContactPage content={content} initialRevealState="pending" />
       </section>
     </PageSectionSurface>
   );

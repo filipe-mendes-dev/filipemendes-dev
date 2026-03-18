@@ -11,6 +11,7 @@ import st from './AboutPage.module.css';
 
 export const AboutPage = ({
   content,
+  initialRevealState = 'visible',
   revealRef,
   headerRevealRef,
 }: AboutPageProps): ReactElement => {
@@ -19,9 +20,14 @@ export const AboutPage = ({
       title="About Me"
       subtitle="Profile, systems experience, education, and selected publications."
       className={st.root}
+      initialHeadingRevealState={initialRevealState}
       {...(headerRevealRef === undefined ? {} : { headerRevealRef })}
     >
-      <div ref={revealRef} className={st.layout} data-landing-reveal="visible">
+      <div
+        ref={revealRef}
+        className={st.layout}
+        data-landing-reveal={initialRevealState}
+      >
         <RevealItem className={st.introBlock} index={0}>
           <p className={st.introEyebrow}>Product systems perspective</p>
           <p className={st.cardLead}>{content.about.profile}</p>
