@@ -1,10 +1,1 @@
-import type { ReactElement } from 'react';
-
-import { portfolio } from '../data/portfolio';
-import { LandingPage } from '../views/LandingPage';
-
-const Page = (): ReactElement => {
-  return <LandingPage content={portfolio} />;
-};
-
-export default Page;
+export { default } from '../views/LandingPage/LandingPage';

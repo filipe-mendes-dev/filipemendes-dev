@@ -2,15 +2,17 @@ import type { ReactElement } from 'react';
 
 import { PageSectionSurface } from '../../components/ui/PageSectionSurface';
 import surface from '../../components/ui/PageSectionSurface/PageSectionSurface.module.css';
+import { portfolio } from '../../data/portfolio';
 import { LandingPageRevealController } from './LandingPageRevealController';
-import type { LandingPageProps } from './LandingPage.interfaces';
 import { AboutSection } from './sections/AboutSection';
 import { ContactSection } from './sections/ContactSection';
 import { HeroSection } from './sections/HeroSection';
 import { ProjectsSection } from './sections/ProjectsSection';
 import st from './LandingPage.module.css';
 
-export const LandingPage = ({ content }: LandingPageProps): ReactElement => {
+const LandingPage = (): ReactElement => {
+  const content = portfolio;
+
   return (
     <PageSectionSurface className={st.root}>
       <LandingPageRevealController />
@@ -33,3 +35,5 @@ export const LandingPage = ({ content }: LandingPageProps): ReactElement => {
     </PageSectionSurface>
   );
 };
+
+export default LandingPage;

@@ -1,2 +1,1 @@
-export { NotFoundPage } from './NotFoundPage';
-export type { NotFoundPageProps } from './NotFoundPage.interfaces';
+export { default as NotFoundPage } from './NotFoundPage';
