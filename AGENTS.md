@@ -1,134 +1,205 @@
-# AGENTS.md — Website Starter Project Rules
+# AGENTS.md — Project Rules
 
-You are working in a frontend web project. Follow these rules strictly.
+You are working in a Next.js App Router frontend project.
 
-## 1) Communication and workflow
+Follow these rules strictly.
 
--   Prefer clarity and correctness over speed.
--   Keep changes small and scoped to the request.
--   Respond file-by-file.
--   If no changes are needed for a recently changed relevant file, respond exactly:
-    -   `no changes to the <file_name>`
+## 1) Workflow
 
-## 2) TypeScript rules
+- Keep changes small and scoped to the request.
+- Respond file-by-file.
+- Do not rewrite entire files unless explicitly requested.
+- If no changes are needed for a relevant file, respond exactly:
+  - `no changes to the <file_name>`
 
--   Never use `any`.
--   Prefer `unknown` plus narrowing when needed.
--   Prefer interfaces over type aliases unless there is a concrete reason.
--   For optional props/fields, use `prop?: T` only. Do not use `prop?: T | undefined`.
--   Enable strict type checking and keep it passing.
--   Do not weaken strict compiler settings to make code pass.
--   Fix types instead of bypassing them.
--   Keep public function inputs/outputs explicitly typed.
+## 2) Safety and scope
 
-## 3) React and UI rules
+- Do not modify unrelated logic.
+- Do not introduce new dependencies without clear justification.
+- If a broader refactor is needed, call it out explicitly before doing it.
 
--   Prefer arrow functions.
--   Keep components focused and composable.
--   Avoid hard-coded magic numbers and duplicated constants.
--   Support long text and small screens without layout breaks.
--   Keep all user-facing strings ready for i18n.
+## 3) TypeScript rules
 
-## 4) Styling rules
+- Never use `any`.
+- Prefer `unknown` plus narrowing when needed.
+- Prefer interfaces over type aliases unless there is a concrete reason.
+- For optional props/fields, use `prop?: T` only. Do not use `prop?: T | undefined`.
+- Keep public function inputs/outputs explicitly typed.
+- Do not weaken strict typing to make code pass.
 
--   Prefer design tokens (colors, spacing, typography) over raw values.
--   Avoid one-off inline style values when a reusable token/class is appropriate.
--   Keep accessibility contrast and focus states explicit.
--   Prefer mobile-first CSS (base for small screens, then `@media (min-width: ...)` enhancements).
--   Ensure layouts remain usable at 320px width.
--   Do not rely on hover-only interactions for critical behavior.
+## 4) React and UI rules
 
-## 5) State and data fetching
+- Prefer arrow functions.
+- Keep components focused and composable.
+- Avoid hard-coded magic numbers and duplicated constants.
+- Support long text and small screens without layout breaks.
 
--   Keep state minimal; derive values instead of duplicating state.
--   Place server-state in dedicated query/cache tools when available.
--   Avoid expensive computation in render paths.
+## 5) Styling and responsiveness rules
 
-## 6) Quality gates
+- Prefer mobile-first CSS (base styles first, then `@media (min-width: ...)` enhancements).
+- Ensure layouts remain usable at 320px width.
+- Keep focus states explicit and accessible.
+- Do not rely on hover-only interactions for critical behavior.
+- Avoid one-off inline style values when a reusable token/class is appropriate.
 
--   Preferred gate: run `check` then `build` as the canonical verification chain.
--   Required checks before finalizing:
-    -   `check`
-    -   `build`
--   If tests are present, also run:
-    -   `test`
--   Do not skip failing checks silently.
+## 6) Framework and routing
 
-## 7) Framework and tools
+- Framework: Next.js App Router + React + TypeScript.
+- Routing lives in `src/app`.
+- Route files must remain thin.
 
--   Framework: Vite + React + TypeScript (SPA).
--   Package manager: npm.
--   Styling: CSS/CSS Modules by default.
--   Linting: ESLint flat config with `typescript-eslint`.
--   Formatting: ESLint-only via `eslint . --fix`.
--   Tests and CI are optional and not enabled by default.
+Route files may:
 
-## 8) Git and commits
+- handle params
+- handle metadata
+- import views
+- pass data
 
--   Use Conventional Commits (`feat:`, `fix:`, `refactor:`, `chore:`, `docs:`, `test:`).
--   Keep commit messages specific and imperative.
+Route files must NOT:
 
-## 9) Safety and scope
+- contain page UI composition
+- contain styling
+- contain layout logic
 
--   Do not modify unrelated logic.
--   Prefer built-in tooling first; add packages only when needed.
--   Never add a new tool category (formatter, test runner, CI engine) unless explicitly requested in the decision block.
--   Do not add dependencies without clear justification.
--   If a broader refactor is needed, call it out explicitly before doing it.
+## 7) Layout responsibility
 
-## 10) Component structure conventions
+`layout.tsx` owns:
 
--   For non-trivial components (~40+ lines, meaningful props/types, meaningful styling, or reused components), use folder structure:
-    -   `ComponentName/index.ts`
-    -   `ComponentName/ComponentName.tsx`
-    -   `ComponentName/ComponentName.interfaces.ts`
-    -   `ComponentName/ComponentName.module.css` (when using CSS/CSS Modules)
--   Keep `*.interfaces.ts` for props/interfaces and local types only.
--   Keep `index.ts` as the public export surface.
--   Avoid exporting component internals by default.
+- `html` / `body`
+- global styles
+- shared shell (`Header`, `Footer`)
+- theme bootstrap logic
 
-## 10a) Page structure conventions
+`layout.tsx` must NOT:
 
--   Route pages must also live in folder-based structure under `src/pages`.
--   Use:
-    -   `PageName/index.ts`
-    -   `PageName/PageName.tsx`
-    -   `PageName/PageName.interfaces.ts` (when page has props or local page-only types)
-    -   `PageName/PageName.module.css`
--   Keep page-specific styling inside the page module CSS file.
--   Do not place page layout classes in global CSS.
+- contain route-specific UI
+- contain page-specific logic
+- duplicate logic from views
 
-## 11) Theme and typography boundary
+## 8) Server vs Client Component rules
 
--   Keep a typed token source in `src/shared/theme/tokens.ts`.
--   Prefer centralized motion tokens/config for shared interaction and animation behavior.
--   Avoid duplicating semantically related motion values across component and page files; derive them from one source of truth when they represent the same behavior.
--   Mirror tokens into CSS custom properties (`:root { --... }`) through bootstrap wiring (`src/shared/theme/applyThemeTokens.ts`).
--   Do not hardcode raw colors or typography sizes in components.
--   Prefer semantic typography primitives for shared UI when adding new reusable components.
--   Add future themes by toggling a theme class (example: `.theme-dark`) without rewriting component code.
+- Default to Server Components.
+- Only add `"use client"` when strictly necessary.
 
-## 12) Global CSS scope rules
+Use Client Components only for:
 
--   `src/shared/theme/theme.css` may contain: font imports and theme CSS variables only.
--   `src/shared/styles/reset.css` may contain: reset and normalization rules only.
--   `src/shared/styles/base.css` may contain: base element defaults (`html`, `body`, typography elements, links, focus-visible, reduced-motion).
--   Global CSS must not contain component/page layout classes (`.hero`, `.card`, `.footer`, `.projects-list`, etc).
--   Global CSS must not contain feature-specific selectors or deep descendant chains tied to app sections.
+- state (`useState`)
+- effects (`useEffect`)
+- browser APIs (`window`, `document`, `localStorage`)
+- event handlers
 
-## 13) CSS Modules ownership rules
+Never:
 
--   Component and page styling belongs in co-located `*.module.css` files.
--   Reusable visual utilities belong in shared module files (for example, `src/shared/styles/utilities.module.css`).
--   Component modules must use CSS variables from the theme layer (`var(--token-name)`), not raw values for core tokens.
--   Prefer local class names like `root`, `title`, `actions`, `meta`; avoid global naming semantics inside modules.
--   Every `*.module.css` file must include a `root` class.
--   Top-level JSX for each component/page should apply its module `root` class.
--   Do not use raw hex colors in component/page CSS Modules; define values in theme tokens and consume via `var(--...)`.
--   Do not hardcode font sizes in component/page CSS Modules; use typography tokens.
+- import server-only code into client components
+- move static or deterministic data access to the client
+- convert large trees to client components without reason
 
-## 14) Style import rules (Vite and Next)
+Keep client boundaries small.
 
--   Vite: import `src/shared/theme/theme.css`, `src/shared/styles/reset.css`, and `src/shared/styles/base.css` once in `src/main.tsx`.
--   Next.js: import equivalent global style entry once from `app/layout.tsx` (or via `app/globals.css`).
--   Do not import global style files inside leaf components.
+## 9) View vs Component ownership
+
+- `src/views`
+
+  - page-level composition
+  - orchestration of sections
+  - route-level UI structure
+
+- `src/components`
+  - reusable UI pieces
+  - isolated behavior
+  - no page-level orchestration
+
+Route files in `src/app` must import views, not compose page UI directly.
+
+## 10) Data and rendering boundaries
+
+- Static content (for example `portfolio.ts`) should be consumed in Server Components whenever possible.
+- Prefer passing data down via props.
+- Do not duplicate deterministic data access across server and client.
+
+## 11) Component structure conventions
+
+For non-trivial components, use folder structure:
+
+- `ComponentName/index.ts`
+- `ComponentName/ComponentName.tsx`
+- `ComponentName/ComponentName.interfaces.ts`
+- `ComponentName/ComponentName.module.css`
+
+Rules:
+
+- keep `*.interfaces.ts` for props/interfaces and local types only
+- keep `index.ts` as the public export surface
+- avoid exporting internals by default
+
+## 12) View structure conventions
+
+Views in `src/views` should also follow folder-based structure where appropriate:
+
+- `ViewName/index.ts`
+- `ViewName/ViewName.tsx`
+- `ViewName/ViewName.interfaces.ts` (if needed)
+- `ViewName/ViewName.module.css`
+
+Homepage sections nested under a view should use section-oriented naming, not route-oriented naming.
+
+## 13) Styling constraints
+
+- Use design tokens and CSS variables (`var(--...)`) for core values.
+- Do not use raw hex colors in component/view CSS Modules.
+- Do not hardcode typography values in component/view CSS Modules.
+- Prefer CSS Modules for component and view styling.
+
+## 14) Global CSS scope
+
+Global CSS is limited to:
+
+- theme variables
+- reset/normalization
+- base element rules
+
+Global CSS must NOT contain:
+
+- component styling
+- page/view layout styling
+- feature-specific selectors
+
+## 15) CSS Modules ownership rules
+
+- Every `*.module.css` file must include a `root` class.
+- Top-level JSX for each component/view should apply its module `root` class.
+- Reusable visual utilities may live in shared module files such as:
+  - `src/shared/styles/utilities.module.css`
+
+## 16) Theme and motion boundaries
+
+- Keep typed theme tokens in `src/shared/theme/tokens.ts`.
+- Prefer centralized motion tokens/config for shared motion behavior.
+- Avoid duplicating semantically related motion values across files.
+- Theme values should flow through CSS custom properties.
+
+## 17) Verification
+
+Before finalizing changes, run:
+
+- `check`
+- `build`
+
+If tests are present, also run:
+
+- `test`
+
+Do not ignore failing checks.
+
+## 18) Git and commits
+
+- Use Conventional Commits:
+
+  - `feat:`
+  - `fix:`
+  - `refactor:`
+  - `chore:`
+  - `docs:`
+  - `test:`
+
+- Keep commit messages specific and imperative.
