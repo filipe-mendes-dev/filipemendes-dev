@@ -34,7 +34,7 @@ interface PageSectionRevealGroup {
   separator: HTMLElement | null;
 }
 
-export interface PageSectionRevealOptions {
+interface PageSectionRevealOptions {
   mode?: 'immediate' | 'staged';
 }
 

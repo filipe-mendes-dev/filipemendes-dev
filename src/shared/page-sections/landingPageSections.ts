@@ -16,6 +16,11 @@ export interface LandingPageResolvedSectionElements {
   section: HTMLElement | null;
 }
 
+export interface OrderedLandingPageSectionElement {
+  element: HTMLElement;
+  sectionId: SectionId;
+}
+
 const landingPageSectionDefinitions: readonly LandingPageSectionDefinition[] = [
   {
     hasContentReveal: false,
@@ -98,31 +103,33 @@ export const resolveLandingPageSectionElements = (
   );
 };
 
-export const resolveLandingPageSectionRoots = (
+export const getLandingPageSectionElement = (
+  sectionId: SectionId,
   root: ParentNode = document,
-): Record<SectionId, HTMLElement | null> => {
-  return sectionIds.reduce<Record<SectionId, HTMLElement | null>>((result, sectionId) => {
-    result[sectionId] = root.querySelector<HTMLElement>(getSectionSelector(sectionId));
-
-    return result;
-  }, {} as Record<SectionId, HTMLElement | null>);
+): HTMLElement | null => {
+  return root.querySelector<HTMLElement>(getSectionSelector(sectionId));
 };
 
-export const resolveRequiredLandingPageSectionRoots = (
+export const getOrderedLandingPageSectionElements = (
   root: ParentNode = document,
-): Record<SectionId, HTMLElement> | null => {
-  const sectionRoots = resolveLandingPageSectionRoots(root);
-  const resolvedSectionRoots = {} as Record<SectionId, HTMLElement>;
+): OrderedLandingPageSectionElement[] => {
+  return sectionIds
+    .map((sectionId) => {
+      const element = getLandingPageSectionElement(sectionId, root);
 
-  for (const sectionId of sectionIds) {
-    const sectionRoot = sectionRoots[sectionId];
+      if (element === null) {
+        return null;
+      }
 
-    if (sectionRoot === null) {
-      return null;
-    }
-
-    resolvedSectionRoots[sectionId] = sectionRoot;
-  }
-
-  return resolvedSectionRoots;
+      return {
+        element,
+        sectionId,
+      };
+    })
+    .filter((section): section is OrderedLandingPageSectionElement => {
+      return section !== null;
+    })
+    .sort((leftSection, rightSection) => {
+      return leftSection.element.offsetTop - rightSection.element.offsetTop;
+    });
 };

@@ -68,12 +68,15 @@ This keeps the shell consistent when the user is inside a project detail page.
 Navigation state is split across four key pieces:
 
 - `src/views/LandingPage/LandingPage.tsx` → declares the landing-page section contract in markup
-- `src/views/LandingPage/LandingPageNavigationBinder.tsx` → subscribes to the landing-page navigation store and mounts the navigation hook
+- `src/views/LandingPage/LandingPageNavigationBinder.tsx` → subscribes to the landing-page navigation store and mounts the navigation controller
 - `src/components/layout/Header/Header.tsx` → initiates navigation requests
-- `src/shared/page-sections/landingPageNavigationStore.ts` → stores `activeSection`, transient `requestedSection`, and `requestKey`
+- `src/shared/page-sections/landingPageNavigationStore.ts` → stores `activeSection`, transient `requestedSection`, and optional `pendingTargetSection`
 - `src/shared/page-sections/landingPageSections.ts` → defines the section-resolution contract and shared section attributes
+- `src/shared/page-sections/landingPageScroll.ts` → owns target measurement, arrival checks, and scroll execution
+- `src/shared/page-sections/landingPageActiveSection.ts` → owns scroll-based active-section calculation
 - `src/views/LandingPage/LandingPageRevealGate/LandingPageRevealGate.tsx` → reveal-only binder that resolves reveal DOM nodes and enables section reveal after the hero intro delay
-- `src/shared/page-sections/useLandingPageSectionNavigation.ts` → performs section scrolling and active-section tracking, including temporary active-item pinning during in-progress smooth scroll
+- `src/shared/page-sections/useLandingPageNavigationController.ts` → consumes requests, performs scroll, and sets `pendingTargetSection` when smooth-scroll pinning is needed
+- `src/shared/page-sections/useLandingPageActiveSectionTracker.ts` → tracks active section during normal scroll and pins the target while `pendingTargetSection` is active
 - `src/shared/page-sections/usePageSectionReveal.ts` → owns viewport-driven reveal state and staged reveal timing
 
 This division is the core navigation architecture for the homepage.
@@ -84,6 +87,7 @@ Important model rules:
 - URL hash is not part of homepage section navigation
 - `requestedSection` is transient request state
 - `activeSection` is observational UI state derived from scroll behavior
+- `pendingTargetSection` is the only extra runtime state needed to support simple smooth-scroll pinning
 - reveal is viewport-driven and does not depend on navigation requests, progress, or phases
 - hero intro only gates whether later section reveal is enabled
 
@@ -109,13 +113,14 @@ At this point the header has requested a section, but it has not scrolled the pa
 Relevant code:
 
 - `LandingPageNavigationBinder.tsx` → `useSyncExternalStore(...)`
-- `LandingPageNavigationBinder.tsx` → `useLandingPageSectionNavigation(...)`
+- `LandingPageNavigationBinder.tsx` → `useLandingPageNavigationController(...)`
 
 Current behavior:
 
 - the navigation binder subscribes to the landing-page navigation store
 - `LandingPage.tsx` marks section roots inline with explicit landing-page section attributes
-- the navigation hook resolves section roots directly from that DOM contract
+- the navigation controller consumes `requestedSection`
+- the active-section tracker separately watches scroll and resize
 - the reveal gate separately resolves heading/content/section nodes for reveal
 - the reveal gate enables later section reveal after a delay derived from the hero intro motion config
 - navigation and reveal are now wired separately; neither binder mounts the other system
@@ -126,15 +131,17 @@ Relevant code:
 
 - `src/shared/page-sections/landingPageScroll.ts` → `getHeaderOffset()`
 - `src/shared/page-sections/landingPageScroll.ts` → `getSectionTargetTop()`
-- `useLandingPageSectionNavigation.ts` → `scrollToSection()`
+- `src/shared/page-sections/landingPageScroll.ts` → `scrollToTop()`
+- `src/shared/page-sections/useLandingPageNavigationController.ts`
 
 Current behavior:
 
 - the target section’s top position is measured
 - the current `--header-offset` value is subtracted
+- a scroll command is created from the measurement and desired behavior
 - scrolling uses `window.scrollTo({ top, behavior })`
 - reduced-motion users get `behavior: 'auto'`
-- once the request has been consumed by the landing-page hook, `requestedSection` is cleared from shared state
+- once the request has been consumed by the navigation controller, `requestedSection` is cleared from shared state
 
 This is the explicit offset-aware navigation path used by the shared header on the homepage.
 
@@ -142,14 +149,16 @@ This is the explicit offset-aware navigation path used by the shared header on t
 
 Relevant code:
 
-- `useLandingPageSectionNavigation.ts` → `getTrackedSection()`
-- `useLandingPageSectionNavigation.ts` → pending smooth-scroll target handling
+- `src/shared/page-sections/landingPageActiveSection.ts` → `getTrackedLandingPageSection()`
+- `src/shared/page-sections/useLandingPageActiveSectionTracker.ts`
 - `landingPageNavigationStore.ts` → `setLandingPageActiveSection()`
 
 Current behavior:
 
 - scroll and resize events schedule active-section recalculation
 - the current section is chosen from the ordered section list using an activation line
+- if `pendingTargetSection` exists, the tracker keeps the requested target pinned until arrival
+- once arrival is detected, the tracker clears `pendingTargetSection`
 - the store updates `activeSection`
 - the header re-renders with the new current item
 
@@ -205,13 +214,13 @@ Current behavior:
 
 Relevant code:
 
-- `LandingPageNavigationBinder.tsx` → `useLandingPageSectionNavigation(...)`
+- `LandingPageNavigationBinder.tsx` → `useLandingPageNavigationController(...)`
 - `landingPageNavigationStore.ts` → `clearLandingPageSectionRequest()`
 
 Current behavior:
 
 - on landing-page mount, the navigation binder reads the pending request from shared state
-- `useLandingPageSectionNavigation()` performs the same offset-aware scroll path as on the homepage
+- `useLandingPageNavigationController()` performs the same offset-aware scroll path as on the homepage
 - once that request is accepted, it is cleared so later visits to `/` do not inherit stale section intent
 
 ## Header Offset Publishing
@@ -228,10 +237,10 @@ Current behavior:
 
 Consumers of this value:
 
-- `src/shared/page-sections/useLandingPageSectionNavigation.ts` → explicit offset math
+- `src/shared/page-sections/landingPageScroll.ts` → explicit offset math
 - `src/components/ui/PageSectionSurface/PageSectionSurface.module.css` → `scroll-margin-top: var(--header-offset, 4.5rem)`
 
-The canonical homepage section-navigation path uses the explicit offset math in `useLandingPageSectionNavigation.ts`.
+The canonical homepage section-navigation path uses the explicit offset math in `landingPageScroll.ts`.
 
 ## Mobile Menu Behavior
 
@@ -296,13 +305,15 @@ Relevant code:
 - `Header.tsx`
 - `landingPageNavigationStore.ts`
 - `LandingPageNavigationBinder.tsx`
-- `useLandingPageSectionNavigation.ts`
+- `useLandingPageNavigationController.ts`
+- `useLandingPageActiveSectionTracker.ts`
 
 Behavior:
 
 - uses the store
 - uses explicit header-offset math
-- updates active section through scroll tracking
+- uses `pendingTargetSection` as the only extra state needed for smooth-scroll pinning
+- updates active section through a dedicated scroll tracker
 
 ### Hero action path
 
@@ -324,12 +335,13 @@ The hardest part of the current navigation architecture is the interaction betwe
 - `landingPageNavigationStore.ts`
 - `LandingPageNavigationBinder.tsx`
 - `LandingPageRevealGate.tsx`
-- `useLandingPageSectionNavigation.ts`
+- `useLandingPageNavigationController.ts`
+- `useLandingPageActiveSectionTracker.ts`
 - `usePageSectionReveal.ts`
 
 Why it is complex:
 
-- requested navigation and observed active state share one external store snapshot, even though they now have clearer roles
+- requested navigation, pending target state, and observed active state share one external store snapshot
 - landing-page section resolution still depends on DOM attributes, but that contract is now centralized in `landingPageSections.ts`
 - navigation and reveal are separate, but both still depend on the same section-level DOM contract
 
@@ -343,8 +355,9 @@ The current navigation model is consistent once its boundaries are clear:
 - each landing-page section owns the heading/content markers for its own reveal DOM
 - the header requests section changes and renders shell state
 - `landingPageSections.ts` owns how section roots, headings, and reveal content are identified
-- the landing-page controller owns DOM binding
-- the shared hook owns offset-aware scrolling and active-section tracking
+- the landing-page navigation binder mounts one request consumer and one tracker
+- the navigation controller owns request consumption and offset-aware scrolling
+- the active-section tracker owns normal scroll tracking and pending-target pinning
 - the hero section now uses the same request path as the header
 - URL hash is not part of homepage section navigation
 

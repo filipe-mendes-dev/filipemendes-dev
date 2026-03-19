@@ -7,9 +7,11 @@ import {
   getLandingPageNavigationServerSnapshot,
   getLandingPageNavigationSnapshot,
   setLandingPageActiveSection,
+  setLandingPagePendingTargetSection,
   subscribeToLandingPageNavigation,
 } from '../../shared/page-sections/landingPageNavigationStore';
-import { useLandingPageSectionNavigation } from '../../shared/page-sections/useLandingPageSectionNavigation';
+import { useLandingPageActiveSectionTracker } from '../../shared/page-sections/useLandingPageActiveSectionTracker';
+import { useLandingPageNavigationController } from '../../shared/page-sections/useLandingPageNavigationController';
 
 export const LandingPageNavigationBinder = (): ReactElement | null => {
   const navigationSnapshot = useSyncExternalStore(
@@ -18,10 +20,17 @@ export const LandingPageNavigationBinder = (): ReactElement | null => {
     getLandingPageNavigationServerSnapshot,
   );
 
-  useLandingPageSectionNavigation({
+  useLandingPageNavigationController({
     onActiveSectionChange: setLandingPageActiveSection,
+    onPendingTargetSectionChange: setLandingPagePendingTargetSection,
     onSectionRequestHandled: clearLandingPageSectionRequest,
     requestedSection: navigationSnapshot.requestedSection,
+  });
+
+  useLandingPageActiveSectionTracker({
+    onActiveSectionChange: setLandingPageActiveSection,
+    onPendingTargetSectionChange: setLandingPagePendingTargetSection,
+    pendingTargetSection: navigationSnapshot.pendingTargetSection,
   });
 
   return null;

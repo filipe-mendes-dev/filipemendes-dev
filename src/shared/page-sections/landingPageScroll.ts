@@ -1,10 +1,5 @@
 export const scrollArrivalTolerancePx = 2;
 
-export interface LandingPageSectionTargetMeasurement {
-  hasMeaningfulScrollDelta: boolean;
-  targetTop: number;
-}
-
 export const getHeaderOffset = (): number => {
   const rootStyles = window.getComputedStyle(document.documentElement);
   const headerOffsetValue = Number.parseFloat(rootStyles.getPropertyValue('--header-offset'));
@@ -25,14 +20,23 @@ export const getSectionTargetTop = (sectionElement: HTMLElement): number => {
   return Math.min(Math.max(sectionTop - getHeaderOffset(), 0), getMaxScrollTop());
 };
 
-export const measureSectionTarget = (
-  sectionElement: HTMLElement,
-): LandingPageSectionTargetMeasurement => {
-  const targetTop = getSectionTargetTop(sectionElement);
+export const hasReachedTarget = (targetTop: number): boolean => {
+  return Math.abs(window.scrollY - targetTop) <= scrollArrivalTolerancePx;
+};
 
-  return {
-    hasMeaningfulScrollDelta:
-      Math.abs(window.scrollY - targetTop) > scrollArrivalTolerancePx,
-    targetTop,
-  };
+export const scrollToTop = ({
+  shouldSmoothScroll,
+  targetTop,
+}: {
+  shouldSmoothScroll: boolean;
+  targetTop: number;
+}): void => {
+  if (hasReachedTarget(targetTop)) {
+    return;
+  }
+
+  window.scrollTo({
+    top: targetTop,
+    behavior: shouldSmoothScroll ? 'smooth' : 'auto',
+  });
 };

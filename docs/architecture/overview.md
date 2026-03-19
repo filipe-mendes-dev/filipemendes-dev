@@ -174,7 +174,7 @@ Example: homepage
 - `LandingPage.tsx` mounts separate client binders for navigation and reveal
 - those sections use reusable UI from `src/components`
 - each landing-page section receives a `sectionId` and applies its own heading/content contract markers
-- section navigation behavior comes from `src/shared/page-sections/useLandingPageSectionNavigation.ts`
+- section navigation behavior comes from `src/shared/page-sections/useLandingPageNavigationController.ts` and `src/shared/page-sections/useLandingPageActiveSectionTracker.ts`, backed by a minimal store with request intent, active section, and pending target state
 - reveal behavior comes from `src/shared/page-sections/usePageSectionReveal.ts` and is driven by viewport visibility, not navigation intent
 
 Example: project detail page

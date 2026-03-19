@@ -1,35 +1,33 @@
-import type { SectionId } from '../navigation/sections';
+import type { SectionId } from "../navigation/sections";
 
 export interface LandingPageNavigationSnapshot {
   activeSection: SectionId;
-  requestKey: number;
+  pendingTargetSection: SectionId | null;
   requestedSection: SectionId | null;
 }
 
 const defaultSnapshot: LandingPageNavigationSnapshot = {
-  activeSection: 'home',
-  requestKey: 0,
+  activeSection: "home",
+  pendingTargetSection: null,
   requestedSection: null,
 };
 
 let navigationSnapshot: LandingPageNavigationSnapshot = defaultSnapshot;
 const listeners = new Set<() => void>();
 
-const emitChange = (): void => {
+const setNavigationSnapshot = (
+  nextSnapshot: LandingPageNavigationSnapshot
+): void => {
+  navigationSnapshot = nextSnapshot;
+
+  //Emit change
   listeners.forEach((listener) => {
     listener();
   });
 };
 
-const setNavigationSnapshot = (
-  nextSnapshot: LandingPageNavigationSnapshot,
-): void => {
-  navigationSnapshot = nextSnapshot;
-  emitChange();
-};
-
 export const subscribeToLandingPageNavigation = (
-  listener: () => void,
+  listener: () => void
 ): (() => void) => {
   listeners.add(listener);
 
@@ -48,10 +46,10 @@ export const getLandingPageNavigationServerSnapshot =
     return defaultSnapshot;
   };
 
+// Actions
 export const requestLandingPageSection = (sectionId: SectionId): void => {
   setNavigationSnapshot({
     ...navigationSnapshot,
-    requestKey: navigationSnapshot.requestKey + 1,
     requestedSection: sectionId,
   });
 };
@@ -75,5 +73,18 @@ export const setLandingPageActiveSection = (sectionId: SectionId): void => {
   setNavigationSnapshot({
     ...navigationSnapshot,
     activeSection: sectionId,
+  });
+};
+
+export const setLandingPagePendingTargetSection = (
+  pendingTargetSection: SectionId | null
+): void => {
+  if (navigationSnapshot.pendingTargetSection === pendingTargetSection) {
+    return;
+  }
+
+  setNavigationSnapshot({
+    ...navigationSnapshot,
+    pendingTargetSection,
   });
 };

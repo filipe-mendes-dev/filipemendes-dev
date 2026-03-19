@@ -113,7 +113,8 @@ Could it be server instead:
 Why it is client:
 
 - uses `useSyncExternalStore`
-- mounts `useLandingPageSectionNavigation()`
+- mounts `useLandingPageNavigationController()`
+- mounts `useLandingPageActiveSectionTracker()`
 - consumes browser-only scroll state
 
 Could it be server instead:
