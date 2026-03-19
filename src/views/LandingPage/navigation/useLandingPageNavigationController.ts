@@ -9,10 +9,10 @@ import {
 } from './landingPageScroll';
 
 interface LandingPageNavigationControllerConfig {
-  onActiveSectionChange: (sectionId: SectionId) => void;
-  onPendingTargetSectionChange: (sectionId: SectionId | null) => void;
-  onSectionRequestHandled: () => void;
+  clearRequestedSection: () => void;
   requestedSection: SectionId | null;
+  setActiveSection: (sectionId: SectionId) => void;
+  setPendingTargetSection: (sectionId: SectionId | null) => void;
 }
 
 const getPrefersReducedMotion = (): boolean => {
@@ -20,10 +20,10 @@ const getPrefersReducedMotion = (): boolean => {
 };
 
 export const useLandingPageNavigationController = ({
-  onActiveSectionChange,
-  onPendingTargetSectionChange,
-  onSectionRequestHandled,
+  clearRequestedSection,
   requestedSection,
+  setActiveSection,
+  setPendingTargetSection,
 }: LandingPageNavigationControllerConfig): void => {
   const hasHandledFirstRequestRef = useRef(false);
 
@@ -44,8 +44,8 @@ export const useLandingPageNavigationController = ({
     const shouldPinTarget =
       shouldSmoothScroll && !hasReachedTarget(targetTop);
 
-    onActiveSectionChange(requestedSection);
-    onPendingTargetSectionChange(shouldPinTarget ? requestedSection : null);
+    setActiveSection(requestedSection);
+    setPendingTargetSection(shouldPinTarget ? requestedSection : null);
 
     scrollToTop({
       shouldSmoothScroll,
@@ -53,11 +53,11 @@ export const useLandingPageNavigationController = ({
     });
 
     hasHandledFirstRequestRef.current = true;
-    onSectionRequestHandled();
+    clearRequestedSection();
   }, [
-    onActiveSectionChange,
-    onPendingTargetSectionChange,
-    onSectionRequestHandled,
+    clearRequestedSection,
     requestedSection,
+    setActiveSection,
+    setPendingTargetSection,
   ]);
 };

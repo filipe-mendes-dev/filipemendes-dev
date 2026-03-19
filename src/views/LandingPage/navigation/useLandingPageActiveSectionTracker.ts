@@ -9,9 +9,9 @@ import {
 import { getHeaderOffset, getSectionTargetTop, hasReachedTarget } from './landingPageScroll';
 
 interface LandingPageActiveSectionTrackerConfig {
-  onActiveSectionChange: (sectionId: SectionId) => void;
-  onPendingTargetSectionChange: (sectionId: SectionId | null) => void;
   pendingTargetSection: SectionId | null;
+  setActiveSection: (sectionId: SectionId) => void;
+  setPendingTargetSection: (sectionId: SectionId | null) => void;
 }
 
 const scrollSpacingVar = '--landing-scroll-spacing';
@@ -45,9 +45,9 @@ const getObservedActiveSection = (): SectionId => {
 };
 
 export const useLandingPageActiveSectionTracker = ({
-  onActiveSectionChange,
-  onPendingTargetSectionChange,
   pendingTargetSection,
+  setActiveSection,
+  setPendingTargetSection,
 }: LandingPageActiveSectionTrackerConfig): void => {
   useEffect(() => {
     let frameId = 0;
@@ -61,23 +61,23 @@ export const useLandingPageActiveSectionTracker = ({
         );
 
         if (pendingTargetElement === null) {
-          onPendingTargetSectionChange(null);
+          setPendingTargetSection(null);
         } else {
           const pendingTargetTop = getSectionTargetTop(pendingTargetElement);
 
           if (!hasReachedTarget(pendingTargetTop)) {
             // Keep the requested section active while the smooth scroll is still moving.
-            onActiveSectionChange(pendingTargetSection);
+            setActiveSection(pendingTargetSection);
 
             return;
           }
 
-          onPendingTargetSectionChange(null);
+          setPendingTargetSection(null);
         }
       }
 
       // Once no target is pending, the active section comes from normal scroll position.
-      onActiveSectionChange(getObservedActiveSection());
+      setActiveSection(getObservedActiveSection());
     };
 
     const requestSync = (): void => {
@@ -101,8 +101,8 @@ export const useLandingPageActiveSectionTracker = ({
       }
     };
   }, [
-    onActiveSectionChange,
-    onPendingTargetSectionChange,
     pendingTargetSection,
+    setActiveSection,
+    setPendingTargetSection,
   ]);
 };

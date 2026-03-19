@@ -21,16 +21,16 @@ export const LandingPageNavigationBinder = (): ReactElement | null => {
   );
 
   useLandingPageNavigationController({
-    onActiveSectionChange: setLandingPageActiveSection,
-    onPendingTargetSectionChange: setLandingPagePendingTargetSection,
-    onSectionRequestHandled: clearLandingPageSectionRequest,
+    clearRequestedSection: clearLandingPageSectionRequest,
     requestedSection: navigationSnapshot.requestedSection,
+    setActiveSection: setLandingPageActiveSection,
+    setPendingTargetSection: setLandingPagePendingTargetSection,
   });
 
   useLandingPageActiveSectionTracker({
-    onActiveSectionChange: setLandingPageActiveSection,
-    onPendingTargetSectionChange: setLandingPagePendingTargetSection,
     pendingTargetSection: navigationSnapshot.pendingTargetSection,
+    setActiveSection: setLandingPageActiveSection,
+    setPendingTargetSection: setLandingPagePendingTargetSection,
   });
 
   return null;
