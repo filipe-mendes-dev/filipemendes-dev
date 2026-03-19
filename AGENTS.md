@@ -31,10 +31,14 @@ Follow these rules strictly.
 
 - Prefer arrow functions.
 - Keep components focused and composable.
+- Keep components easy to scan. A developer should be able to open a component and quickly understand what it renders.
+- If a component becomes long because of behavioral logic, state wiring, browser effects, or view-model preparation, move that logic into a dedicated hook or helper with a clear responsibility.
 - Avoid hard-coded magic numbers and duplicated constants.
 - Support long text and small screens without layout breaks.
 - Prefer direct optional prop passing over conditional object spreads in JSX when the prop type allows it.
 - Avoid helper functions that only return trivial prop/attribute bags for JSX; prefer explicit attributes when there are only a few values.
+- Prefer passing prepared render data to child components over passing many adapter callbacks.
+- Avoid indirection that does not improve readability. Inline one-use helpers unless they name an important concept.
 
 ## 5) Styling and responsiveness rules
 
