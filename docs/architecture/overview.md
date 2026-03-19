@@ -119,6 +119,7 @@ Current groups:
 Current responsibility:
 
 - shared section ID definitions in `src/shared/navigation/sections.ts`
+- landing-page section contract definitions in `src/shared/page-sections/landingPageSections.ts`
 - landing-page navigation store and scroll/reveal hooks in `src/shared/page-sections`
 - theme tokens and motion configuration in `src/shared/theme`
 - global styles and shared CSS utilities in `src/shared/styles`
@@ -169,8 +170,9 @@ Example: homepage
 
 - `src/app/page.tsx` re-exports `src/views/LandingPage/LandingPage.tsx`
 - `LandingPage.tsx` imports `portfolio` from `src/data/portfolio.ts`
-- `LandingPage.tsx` renders local sections under `src/views/LandingPage/sections`
+- `LandingPage.tsx` renders local sections under `src/views/LandingPage/sections` and declares the landing-page section roots inline
 - those sections use reusable UI from `src/components`
+- each landing-page section receives a `sectionId` and applies its own heading/content contract markers
 - reveal and section navigation behavior come from `src/shared/page-sections`
 
 Example: project detail page

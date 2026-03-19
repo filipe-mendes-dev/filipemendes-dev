@@ -114,7 +114,7 @@ export const HeroSection = ({ content, revealRef }: HeroSectionProps): ReactElem
                 className={st.heroSection}
             >
                 <div className={st.heroWindowStage}>
-                    <HeroWindow isContentVisible={isContentShown} {...(revealRef === undefined ? {} : { revealRef })}>
+                    <HeroWindow isContentVisible={isContentShown} revealRef={revealRef}>
                         {isTerminalVisible ? <HeroTerminal onComplete={handleTerminalComplete} /> : null}
                         <div className={st.heroGrid}>
                             <motion.div
@@ -174,11 +174,7 @@ export const HeroSection = ({ content, revealRef }: HeroSectionProps): ReactElem
                                                 key={action.label}
                                                 href={getActionHref(action)}
                                                 className={getActionClassName(action)}
-                                                {...(action.sectionId === undefined
-                                                    ? {}
-                                                    : {
-                                                          onClick: handleSectionActionClick(action.sectionId),
-                                                      })}
+                                                onClick={action.sectionId === undefined ? undefined : handleSectionActionClick(action.sectionId)}
                                             >
                                                 {action.label}
                                             </a>

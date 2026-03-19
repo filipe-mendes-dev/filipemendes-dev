@@ -26,6 +26,7 @@ const getSocialIcon = (label: string): ReactElement => {
 export const ContactSection = ({
   content,
   initialRevealState = 'visible',
+  sectionId,
   revealRef,
   headerRevealRef,
 }: ContactSectionProps): ReactElement => {
@@ -34,13 +35,15 @@ export const ContactSection = ({
       <Section
         title="Contact"
         subtitle="Open to focused product and architecture collaboration."
+        headerProps={{ 'data-landing-section-heading': sectionId }}
         initialHeadingRevealState={initialRevealState}
-        {...(headerRevealRef === undefined ? {} : { headerRevealRef })}
+        headerRevealRef={headerRevealRef}
       >
         <div
           ref={revealRef}
           className={st.contactGrid}
           data-landing-reveal={initialRevealState}
+          data-landing-section-content={sectionId}
         >
           <RevealItem className={st.supportRail} index={0}>
             <div className={st.introBlock}>

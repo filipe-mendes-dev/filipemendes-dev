@@ -17,20 +17,48 @@ const LandingPage = (): ReactElement => {
     <PageSectionSurface className={st.root}>
       <LandingPageRevealController />
 
-      <section id="home" className={`${surface.section} ${st.homeSection}`}>
+      <section
+        id="home"
+        data-landing-section="home"
+        className={`${surface.section} ${st.homeSection}`}
+      >
         <HeroSection content={content} />
       </section>
 
-      <section id="projects" className={`${surface.section} ${st.projectsSection}`}>
-        <ProjectsSection content={content} initialRevealState="pending" />
+      <section
+        id="projects"
+        data-landing-section="projects"
+        className={`${surface.section} ${st.projectsSection}`}
+      >
+        <ProjectsSection
+          content={content}
+          initialRevealState="pending"
+          sectionId="projects"
+        />
       </section>
 
-      <section id="about" className={`${surface.section} ${st.aboutSection}`}>
-        <AboutSection content={content} initialRevealState="pending" />
+      <section
+        id="about"
+        data-landing-section="about"
+        className={`${surface.section} ${st.aboutSection}`}
+      >
+        <AboutSection
+          content={content}
+          initialRevealState="pending"
+          sectionId="about"
+        />
       </section>
 
-      <section id="contact" className={`${surface.section} ${st.contactSection}`}>
-        <ContactSection content={content} initialRevealState="pending" />
+      <section
+        id="contact"
+        data-landing-section="contact"
+        className={`${surface.section} ${st.contactSection}`}
+      >
+        <ContactSection
+          content={content}
+          initialRevealState="pending"
+          sectionId="contact"
+        />
       </section>
     </PageSectionSurface>
   );

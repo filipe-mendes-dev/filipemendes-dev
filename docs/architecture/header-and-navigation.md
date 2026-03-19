@@ -67,8 +67,10 @@ This keeps the shell consistent when the user is inside a project detail page.
 
 Navigation state is split across four key pieces:
 
+- `src/views/LandingPage/LandingPage.tsx` → declares the landing-page section contract in markup
 - `src/components/layout/Header/Header.tsx` → initiates navigation requests
 - `src/shared/page-sections/landingPageNavigationStore.ts` → stores `activeSection`, transient `requestedSection`, and `requestKey`
+- `src/shared/page-sections/landingPageSections.ts` → defines the section-resolution contract and shared section attributes
 - `src/views/LandingPage/LandingPageRevealController/LandingPageRevealController.tsx` → binds the store to real DOM sections
 - `src/shared/page-sections/useLandingPageSectionNavigation.ts` → performs section scrolling and active-section tracking
 
@@ -108,7 +110,10 @@ Relevant code:
 Current behavior:
 
 - the controller subscribes to the landing-page navigation store
-- it resolves real DOM nodes for `home`, `projects`, `about`, and `contact`
+- `LandingPage.tsx` marks section roots inline with explicit landing-page section attributes
+- each landing-page section component receives its own `sectionId` and applies the matching heading/content attributes to the real reveal nodes
+- `landingPageSections.ts` owns the selectors and section capabilities for `home`, `projects`, `about`, and `contact`
+- the controller resolves real DOM nodes through `resolveLandingPageSectionElements()`
 - it passes those refs and the pending request into `useLandingPageSectionNavigation()`
 
 ### Step 3. Scroll is performed with header offset
@@ -302,7 +307,7 @@ The hardest part of the current navigation architecture is the interaction betwe
 Why it is complex:
 
 - requested navigation and observed active state share one external store snapshot, even though they now have clearer roles
-- the landing page controller discovers DOM nodes indirectly by ID and data attributes
+- landing-page section resolution still depends on DOM attributes, but that contract is now centralized in `landingPageSections.ts`
 - navigation and reveal behavior are connected through the same section-level orchestration
 
 The system is working, but this is the most behavior-dense part of the current app shell.
@@ -311,7 +316,10 @@ The system is working, but this is the most behavior-dense part of the current a
 
 The current navigation model is consistent once its boundaries are clear:
 
+- `LandingPage.tsx` owns which sections participate and exposes the section-root markers inline
+- each landing-page section owns the heading/content markers for its own reveal DOM
 - the header requests section changes and renders shell state
+- `landingPageSections.ts` owns how section roots, headings, and reveal content are identified
 - the landing-page controller owns DOM binding
 - the shared hook owns offset-aware scrolling and active-section tracking
 - the hero section now uses the same request path as the header

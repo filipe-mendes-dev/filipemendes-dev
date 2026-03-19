@@ -8,11 +8,11 @@ These items describe potential future changes. They are not current architecture
 
 ## High Priority
 
-### 1. Make landing-page navigation and reveal contracts more explicit
+### 1. Reduce controller-level DOM coordination further only if the current explicit contract becomes a bottleneck
 
-- Current state: homepage navigation behavior is split across `src/components/layout/Header/Header.tsx`, `src/shared/page-sections/landingPageNavigationStore.ts`, `src/views/LandingPage/LandingPageRevealController/LandingPageRevealController.tsx`, `src/shared/page-sections/useLandingPageSectionNavigation.ts`, and `src/shared/page-sections/usePageSectionReveal.ts`. The controller binds to DOM nodes by section ID and reveal-related data attributes.
-- Why it matters: this is the most behavior-dense part of the codebase and the easiest part to break when changing homepage structure.
-- Possible improvement: replace implicit DOM discovery with more explicit section/ref wiring, or formalize the contract with stronger inline documentation and narrower helper APIs.
+- Current state: homepage navigation behavior now uses an explicit section contract in `src/shared/page-sections/landingPageSections.ts`, with `src/views/LandingPage/LandingPage.tsx` declaring section roots inline and each landing-page section applying its own heading/content markers from `sectionId`. `src/views/LandingPage/LandingPageRevealController/LandingPageRevealController.tsx` resolves those elements through the shared contract instead of ad hoc DOM queries.
+- Why it matters: this is still the most behavior-dense part of the codebase, even though the current contract is clearer than before.
+- Possible improvement: if future changes justify it, move from explicit DOM resolution to explicit ref registration so the controller no longer needs to query the DOM at all.
 - Risk level: Medium
 - Priority: High
 

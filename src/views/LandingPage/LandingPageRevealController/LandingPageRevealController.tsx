@@ -16,6 +16,7 @@ import {
   setLandingPageActiveSection,
   subscribeToLandingPageNavigation,
 } from '../../../shared/page-sections/landingPageNavigationStore';
+import { resolveLandingPageSectionElements } from '../../../shared/page-sections/landingPageSections';
 import { useLandingPageSectionNavigation } from '../../../shared/page-sections/useLandingPageSectionNavigation';
 import { usePageSectionReveal } from '../../../shared/page-sections/usePageSectionReveal';
 import {
@@ -54,14 +55,14 @@ export const LandingPageRevealController = ({
     });
 
   useLayoutEffect(() => {
-    sectionIds.forEach((sectionId) => {
-      const sectionElement = document.getElementById(sectionId);
+    const resolvedSections = resolveLandingPageSectionElements();
 
-      sectionElementsRef.current[sectionId] = sectionElement;
-      headerElementsRef.current[sectionId] =
-        sectionElement?.querySelector<HTMLElement>('[data-landing-heading-reveal]') ?? null;
-      contentElementsRef.current[sectionId] =
-        sectionElement?.querySelector<HTMLElement>('[data-landing-reveal]') ?? null;
+    sectionIds.forEach((sectionId) => {
+      const resolvedSection = resolvedSections[sectionId];
+
+      sectionElementsRef.current[sectionId] = resolvedSection.section;
+      headerElementsRef.current[sectionId] = resolvedSection.header;
+      contentElementsRef.current[sectionId] = resolvedSection.content;
     });
     initializeRevealState();
   }, [contentElementsRef, headerElementsRef, initializeRevealState, sectionElementsRef]);

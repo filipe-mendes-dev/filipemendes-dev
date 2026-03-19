@@ -12,6 +12,7 @@ import st from './AboutSection.module.css';
 export const AboutSection = ({
   content,
   initialRevealState = 'visible',
+  sectionId,
   revealRef,
   headerRevealRef,
 }: AboutSectionProps): ReactElement => {
@@ -20,13 +21,15 @@ export const AboutSection = ({
       title="About Me"
       subtitle="Profile, systems experience, education, and selected publications."
       className={st.root}
+      headerProps={{ 'data-landing-section-heading': sectionId }}
       initialHeadingRevealState={initialRevealState}
-      {...(headerRevealRef === undefined ? {} : { headerRevealRef })}
+      headerRevealRef={headerRevealRef}
     >
       <div
         ref={revealRef}
         className={st.layout}
         data-landing-reveal={initialRevealState}
+        data-landing-section-content={sectionId}
       >
         <RevealItem className={st.introBlock} index={0}>
           <p className={st.introEyebrow}>Product systems perspective</p>

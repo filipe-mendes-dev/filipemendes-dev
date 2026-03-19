@@ -13,10 +13,15 @@ export const Section = ({
   contained = true,
   initialHeadingRevealState = 'visible',
   containerClassName,
+  headerProps,
   headerRevealRef,
   sectionRef,
 }: SectionProps): ReactElement => {
   const sectionClasses = className === undefined ? st.root : `${st.root} ${className}`;
+  const headerClassName =
+    headerProps?.className === undefined
+      ? st.header
+      : `${st.header} ${headerProps.className}`;
   const content =
     contained
       ? containerClassName === undefined
@@ -28,8 +33,9 @@ export const Section = ({
     <section ref={sectionRef} id={id} className={sectionClasses}>
       {(title !== undefined || subtitle !== undefined) && (
         <header
+          {...headerProps}
           ref={headerRevealRef}
-          className={st.header}
+          className={headerClassName}
           data-landing-heading-reveal={initialHeadingRevealState}
         >
           {title !== undefined && <h2>{title}</h2>}

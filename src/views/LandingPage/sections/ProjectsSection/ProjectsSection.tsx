@@ -9,6 +9,7 @@ import st from './ProjectsSection.module.css';
 export const ProjectsSection = ({
   content,
   initialRevealState = 'visible',
+  sectionId,
   revealRef,
   headerRevealRef,
 }: ProjectsSectionProps): ReactElement => {
@@ -17,13 +18,15 @@ export const ProjectsSection = ({
       <Section
         title="Projects"
         subtitle="Each product is documented with a clear narrative from problem to measurable outcome."
+        headerProps={{ 'data-landing-section-heading': sectionId }}
         initialHeadingRevealState={initialRevealState}
-        {...(headerRevealRef === undefined ? {} : { headerRevealRef })}
+        headerRevealRef={headerRevealRef}
       >
         <div
           ref={revealRef}
           className={st.projectsList}
           data-landing-reveal={initialRevealState}
+          data-landing-section-content={sectionId}
         >
           {content.projects.map((project, index) => (
             <RevealItem key={project.slug} index={index}>

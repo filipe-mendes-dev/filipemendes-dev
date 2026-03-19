@@ -49,9 +49,9 @@ const RootLayout = ({ children }: RootLayoutProps): ReactElement => {
         <main>{children}</main>
         <Footer
           descriptor={portfolio.descriptor}
+          githubUrl={githubUrl}
+          linkedInUrl={linkedInUrl}
           name={portfolio.siteTitle}
-          {...(githubUrl === undefined ? {} : { githubUrl })}
-          {...(linkedInUrl === undefined ? {} : { linkedInUrl })}
         />
       </body>
     </html>
