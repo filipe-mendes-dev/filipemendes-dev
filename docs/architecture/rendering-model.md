@@ -126,7 +126,7 @@ Why it is client:
 
 - uses Framer Motion
 - uses `useReducedMotion`, `useState`, and `useEffect`
-- handles direct section scrolling on hero actions
+- requests landing-page section navigation on hero actions
 - exposes the hero intro completion flag through a DOM data attribute
 
 Could it be server instead:
@@ -222,8 +222,10 @@ Relevant code:
 
 Current behavior:
 
-- the server snapshot for landing-page navigation starts at `home`
-- the client later syncs from the hash and scroll position
+- `activeSection` starts at `home` on the server snapshot
+- the server snapshot starts with no pending section request
+- the client later derives active section from scroll position
+- homepage section requests are consumed by the landing-page controller and then cleared
 - the header then renders the client-correct active section
 
 ### Motion hydration

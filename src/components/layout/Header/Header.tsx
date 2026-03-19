@@ -35,7 +35,8 @@ import st from './Header.module.css';
 import { ThemeToggle } from './ThemeToggle';
 
 const getSectionHref = (sectionId: SectionId): string => {
-  return `/#${sectionId}`;
+  void sectionId;
+  return '/';
 };
 
 export const Header = ({

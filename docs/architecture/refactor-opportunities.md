@@ -34,11 +34,11 @@ These items describe potential future changes. They are not current architecture
 - Risk level: Medium
 - Priority: Medium
 
-### 4. Unify section navigation paths
+### 4. Separate landing-page request state from observational UI state more explicitly
 
-- Current state: header links use the landing-page store and explicit offset-aware scrolling, while hero action links in `src/views/LandingPage/sections/HeroSection/HeroSection.tsx` call `scrollIntoView()` directly.
-- Why it matters: there are two code paths for the same section-navigation concept.
-- Possible improvement: route both header and hero section actions through one shared navigation helper or one shared section-navigation API.
+- Current state: homepage section navigation now uses one canonical store/controller path, but `src/shared/page-sections/landingPageNavigationStore.ts` still holds both transient request state and observational active state in the same external snapshot.
+- Why it matters: the behavior is simpler than before, but the store still carries two different responsibilities.
+- Possible improvement: keep the current canonical path, but consider splitting request intent and active-section observation into narrower APIs if future changes make the boundary harder to reason about.
 - Risk level: Medium
 - Priority: Medium
 

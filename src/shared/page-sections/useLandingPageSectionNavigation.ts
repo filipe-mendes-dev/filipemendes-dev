@@ -7,7 +7,8 @@ interface LandingPageSectionNavigationConfig {
   contentElementsRef: PageSectionElementStore<Record<SectionId, HTMLElement | null>>;
   headerElementsRef: PageSectionElementStore<Record<SectionId, HTMLElement | null>>;
   onActiveSectionChange: (sectionId: SectionId) => void;
-  requestedSection: SectionId;
+  onSectionRequestHandled: () => void;
+  requestedSection: SectionId | null;
   requestedSectionKey: string;
   scheduleReveal: (sectionId: SectionId, shouldStageContent: boolean) => void;
   sectionElementsRef: PageSectionElementStore<Record<SectionId, HTMLElement | null>>;
@@ -136,6 +137,7 @@ export const useLandingPageSectionNavigation = ({
   contentElementsRef,
   headerElementsRef,
   onActiveSectionChange,
+  onSectionRequestHandled,
   requestedSection,
   requestedSectionKey,
   scheduleReveal,
@@ -146,6 +148,10 @@ export const useLandingPageSectionNavigation = ({
   const pendingRevealSectionRef = useRef<SectionId | null>(null);
 
   useEffect(() => {
+    if (requestedSection === null) {
+      return;
+    }
+
     const targetElement = sectionElementsRef.current[requestedSection];
     const sectionElements = getSectionElements(sectionElementsRef);
 
@@ -184,10 +190,12 @@ export const useLandingPageSectionNavigation = ({
 
     scrollToSection(targetElement, !shouldSmoothScroll);
     hasHandledInitialSectionScrollRef.current = true;
+    onSectionRequestHandled();
   }, [
     contentElementsRef,
     headerElementsRef,
     onActiveSectionChange,
+    onSectionRequestHandled,
     requestedSection,
     requestedSectionKey,
     scheduleReveal,

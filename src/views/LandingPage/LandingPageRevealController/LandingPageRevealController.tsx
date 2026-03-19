@@ -10,11 +10,11 @@ import {
 
 import { sectionIds } from '../../../shared/navigation/sections';
 import {
+  clearLandingPageSectionRequest,
   getLandingPageNavigationServerSnapshot,
   getLandingPageNavigationSnapshot,
   setLandingPageActiveSection,
   subscribeToLandingPageNavigation,
-  syncLandingPageNavigationFromHash,
 } from '../../../shared/page-sections/landingPageNavigationStore';
 import { useLandingPageSectionNavigation } from '../../../shared/page-sections/useLandingPageSectionNavigation';
 import { usePageSectionReveal } from '../../../shared/page-sections/usePageSectionReveal';
@@ -52,10 +52,6 @@ export const LandingPageRevealController = ({
         home: 'section',
       },
     });
-
-  useLayoutEffect(() => {
-    syncLandingPageNavigationFromHash();
-  }, []);
 
   useLayoutEffect(() => {
     sectionIds.forEach((sectionId) => {
@@ -105,6 +101,7 @@ export const LandingPageRevealController = ({
     contentElementsRef,
     headerElementsRef,
     onActiveSectionChange: setLandingPageActiveSection,
+    onSectionRequestHandled: clearLandingPageSectionRequest,
     requestedSection: navigationSnapshot.requestedSection,
     requestedSectionKey: navigationSnapshot.requestKey.toString(),
     scheduleReveal,

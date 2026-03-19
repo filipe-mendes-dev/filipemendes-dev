@@ -6,6 +6,7 @@ import { type MouseEvent, type ReactElement, useEffect, useState } from 'react';
 import { Section } from '../../../../components/ui/Section';
 import type { ActionLink } from '../../../../data/portfolio';
 import type { SectionId } from '../../../../shared/navigation/sections';
+import { requestLandingPageSection } from '../../../../shared/page-sections/landingPageNavigationStore';
 import su from '../../../../shared/styles/utilities.module.css';
 import { HeroTerminal } from './HeroTerminal';
 import { HeroWindow } from './HeroWindow';
@@ -25,7 +26,7 @@ const getActionClassName = (action: ActionLink): string => {
 };
 
 const getActionHref = (action: ActionLink): string => {
-    return action.sectionId === undefined ? action.href : `/#${action.sectionId}`;
+    return action.href;
 };
 
 const joinClassNames = (...classNames: (string | false | undefined)[]): string => classNames.filter(Boolean).join(' ');
@@ -60,17 +61,8 @@ export const HeroSection = ({ content, revealRef }: HeroSectionProps): ReactElem
             return;
         }
 
-        const sectionElement = document.getElementById(sectionTargetId);
-
-        if (sectionElement === null) {
-            return;
-        }
-
         event.preventDefault();
-        sectionElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-        });
+        requestLandingPageSection(sectionTargetId);
     };
 
     const revealItemVariants: Variants = {

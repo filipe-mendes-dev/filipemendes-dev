@@ -68,11 +68,18 @@ This keeps the shell consistent when the user is inside a project detail page.
 Navigation state is split across four key pieces:
 
 - `src/components/layout/Header/Header.tsx` → initiates navigation requests
-- `src/shared/page-sections/landingPageNavigationStore.ts` → stores `activeSection`, `requestedSection`, and `requestKey`
+- `src/shared/page-sections/landingPageNavigationStore.ts` → stores `activeSection`, transient `requestedSection`, and `requestKey`
 - `src/views/LandingPage/LandingPageRevealController/LandingPageRevealController.tsx` → binds the store to real DOM sections
 - `src/shared/page-sections/useLandingPageSectionNavigation.ts` → performs section scrolling and active-section tracking
 
 This division is the core navigation architecture for the homepage.
+
+Important model rules:
+
+- homepage section navigation is fully app-controlled
+- URL hash is not part of homepage section navigation
+- `requestedSection` is transient request state
+- `activeSection` is observational UI state derived from scroll behavior
 
 ## Homepage Navigation Flow
 
@@ -87,7 +94,7 @@ Current behavior on `/`:
 
 1. A header link with `sectionId` is clicked.
 2. `Header.tsx` calls `requestLandingPageSection(sectionId)`.
-3. Because the current pathname is `/`, the header prevents default link navigation.
+3. Because the current pathname is `/`, the header prevents default link navigation and leaves the URL unchanged.
 
 At this point the header has requested a section, but it has not scrolled the page itself.
 
@@ -102,7 +109,7 @@ Current behavior:
 
 - the controller subscribes to the landing-page navigation store
 - it resolves real DOM nodes for `home`, `projects`, `about`, and `contact`
-- it passes those refs into `useLandingPageSectionNavigation()`
+- it passes those refs and the pending request into `useLandingPageSectionNavigation()`
 
 ### Step 3. Scroll is performed with header offset
 
@@ -118,6 +125,7 @@ Current behavior:
 - the current `--header-offset` value is subtracted
 - scrolling uses `window.scrollTo({ top, behavior })`
 - reduced-motion users get `behavior: 'auto'`
+- once the request has been consumed by the landing-page hook, `requestedSection` is cleared from shared state
 
 This is the explicit offset-aware navigation path used by the shared header on the homepage.
 
@@ -136,11 +144,13 @@ Current behavior:
 - the store updates `activeSection`
 - the header re-renders with the new current item
 
+`activeSection` is not the request source of truth. It remains the UI-facing state that reflects the current scroll result.
+
 ## Project-Page Navigation Flow
 
 The same header links behave differently when the current pathname starts with `/projects/`.
 
-### Step 1. Header still records the section request
+### Step 1. Header records the section request
 
 Relevant code:
 
@@ -151,8 +161,9 @@ Current behavior:
 
 - the store is updated with the requested landing-page section
 - default link navigation is not prevented, because `pathname !== '/'`
+- section links navigate to `/`, not `/#section`
 
-### Step 2. Route navigation to `/#section` proceeds
+### Step 2. Route navigation to `/` proceeds
 
 Relevant code:
 
@@ -160,21 +171,21 @@ Relevant code:
 
 Current behavior:
 
-- the link target remains `/#home`, `/#projects`, `/#about`, or `/#contact`
-- the browser navigates back to the homepage route with a hash
+- the link target is `/`
+- the browser navigates back to the homepage route without a hash
 
-### Step 3. Landing page syncs from hash and store
+### Step 3. Landing page consumes the pending request
 
 Relevant code:
 
-- `LandingPageRevealController.tsx` → `syncLandingPageNavigationFromHash()`
-- `landingPageNavigationStore.ts` → `syncLandingPageNavigationFromHash()`
+- `LandingPageRevealController.tsx` → `useLandingPageSectionNavigation(...)`
+- `landingPageNavigationStore.ts` → `clearLandingPageSectionRequest()`
 
 Current behavior:
 
-- on landing-page mount, the controller syncs navigation state from `window.location.hash`
-- if the store already requested the same section, duplicate reset is avoided
-- `useLandingPageSectionNavigation()` then performs the same offset-aware scroll path as on the homepage
+- on landing-page mount, the controller reads the pending request from shared state
+- `useLandingPageSectionNavigation()` performs the same offset-aware scroll path as on the homepage
+- once that request is accepted, it is cleared so later visits to `/` do not inherit stale section intent
 
 ## Header Offset Publishing
 
@@ -193,7 +204,7 @@ Consumers of this value:
 - `src/shared/page-sections/useLandingPageSectionNavigation.ts` → explicit offset math
 - `src/components/ui/PageSectionSurface/PageSectionSurface.module.css` → `scroll-margin-top: var(--header-offset, 4.5rem)`
 
-This is a good ownership boundary: the shell publishes its own size, and scrolling/layout logic consumes that size elsewhere.
+The canonical homepage section-navigation path uses the explicit offset math in `useLandingPageSectionNavigation.ts`.
 
 ## Mobile Menu Behavior
 
@@ -249,9 +260,9 @@ This is small, local, and appropriately placed in the header.
 
 ## Where Navigation Behavior Diverges
 
-There are currently two section-navigation implementations.
+Homepage section navigation now has one canonical implementation.
 
-### Header path
+### Canonical path
 
 Relevant code:
 
@@ -274,15 +285,9 @@ Relevant code:
 
 Behavior:
 
-- directly calls `sectionElement.scrollIntoView({ behavior: 'smooth', block: 'start' })`
-- does not go through the landing-page navigation store
-
-Why alignment still works:
-
-- homepage sections use the shared `surface.section` class in `LandingPage.tsx`
-- `PageSectionSurface.module.css` applies `scroll-margin-top: var(--header-offset, 4.5rem)` to `.section`
-
-This means hero actions still benefit from CSS-level offset alignment, but they do not participate in the same explicit JS scroll orchestration as the header path.
+- calls `requestLandingPageSection(sectionId)`
+- prevents default link navigation on the homepage
+- uses the same store-driven landing-page scroll path as the header
 
 ## Complexity Hotspot
 
@@ -296,7 +301,7 @@ The hardest part of the current navigation architecture is the interaction betwe
 
 Why it is complex:
 
-- requested navigation and observed active state share one external store
+- requested navigation and observed active state share one external store snapshot, even though they now have clearer roles
 - the landing page controller discovers DOM nodes indirectly by ID and data attributes
 - navigation and reveal behavior are connected through the same section-level orchestration
 
@@ -309,6 +314,7 @@ The current navigation model is consistent once its boundaries are clear:
 - the header requests section changes and renders shell state
 - the landing-page controller owns DOM binding
 - the shared hook owns offset-aware scrolling and active-section tracking
-- the hero section is the one place that bypasses the store and scrolls directly
+- the hero section now uses the same request path as the header
+- URL hash is not part of homepage section navigation
 
-That division makes the behavior predictable, but only after understanding which module owns each step.
+That division keeps homepage section navigation app-controlled and consistent across homepage and project-page entry points.
