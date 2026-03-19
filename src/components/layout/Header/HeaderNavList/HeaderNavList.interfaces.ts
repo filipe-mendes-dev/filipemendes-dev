@@ -1,14 +1,16 @@
 import type { CSSProperties, MouseEventHandler } from 'react';
 
-import type { NavigationItem } from '../../../../data/portfolio';
+export interface HeaderNavListItem {
+  href: string;
+  isActive: boolean;
+  key: string;
+  label: string;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
+  style?: CSSProperties;
+}
 
 export interface HeaderNavListProps {
-  items: NavigationItem[];
+  items: HeaderNavListItem[];
   listClassName?: string;
   linkClassName: string;
-  getItemKey: (item: NavigationItem) => string;
-  getItemHref: (item: NavigationItem) => string;
-  isItemCurrent: (item: NavigationItem) => boolean;
-  getItemOnClick: (item: NavigationItem) => MouseEventHandler<HTMLAnchorElement>;
-  getItemStyle?: (index: number) => CSSProperties | undefined;
 }

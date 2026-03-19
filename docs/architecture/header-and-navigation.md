@@ -8,6 +8,8 @@ This document explains the current shared header, landing-page navigation flow, 
 
 The shared header is implemented in `src/components/layout/Header/Header.tsx` and mounted by `src/app/layout.tsx`.
 
+`Header.tsx` now stays mostly presentational and delegates shell behavior into `src/components/layout/Header/useHeaderController.ts`.
+
 The header owns:
 
 - primary navigation rendering
@@ -39,7 +41,7 @@ Each item contains:
 Relevant code:
 
 - `src/data/portfolio.ts` → `NavigationItem`
-- `src/components/layout/Header/Header.tsx` → `getNavigationHref()`, `getNavigationKey()`
+- `src/components/layout/Header/useHeaderController.ts` → nav item preparation
 
 Section items are currently:
 
@@ -52,8 +54,8 @@ Section items are currently:
 
 Relevant code:
 
-- `src/components/layout/Header/Header.tsx` → `activeSection`
-- `src/components/layout/Header/Header.tsx` → `isNavigationItemCurrent()`
+- `src/components/layout/Header/useHeaderController.ts` → `activeSection`
+- `src/components/layout/Header/useHeaderController.ts` → current-item mapping
 
 Current rules:
 
@@ -69,11 +71,10 @@ Navigation state is split across four key pieces:
 
 - `src/views/LandingPage/LandingPage.tsx` → declares the landing-page section contract in markup
 - `src/views/LandingPage/LandingPageNavigationBinder.tsx` → subscribes to the landing-page navigation store and mounts the navigation controller
-- `src/components/layout/Header/Header.tsx` → initiates navigation requests
+- `src/components/layout/Header/useHeaderController.ts` → initiates navigation requests and prepares header nav items
 - `src/shared/page-sections/landingPageNavigationStore.ts` → stores `activeSection`, transient `requestedSection`, and optional `pendingTargetSection`
 - `src/shared/page-sections/landingPageSections.ts` → defines the section-resolution contract and shared section attributes
 - `src/shared/page-sections/landingPageScroll.ts` → owns target measurement, arrival checks, and scroll execution
-- `src/shared/page-sections/landingPageActiveSection.ts` → owns scroll-based active-section calculation
 - `src/views/LandingPage/LandingPageRevealGate/LandingPageRevealGate.tsx` → reveal-only binder that resolves reveal DOM nodes and enables section reveal after the hero intro delay
 - `src/shared/page-sections/useLandingPageNavigationController.ts` → consumes requests, performs scroll, and sets `pendingTargetSection` when smooth-scroll pinning is needed
 - `src/shared/page-sections/useLandingPageActiveSectionTracker.ts` → tracks active section during normal scroll and pins the target while `pendingTargetSection` is active
@@ -97,13 +98,13 @@ Important model rules:
 
 Relevant code:
 
-- `Header.tsx` → `handleSectionNavigation()`
+- `useHeaderController.ts` → `handleSectionNavigation()`
 - `landingPageNavigationStore.ts` → `requestLandingPageSection()`
 
 Current behavior on `/`:
 
 1. A header link with `sectionId` is clicked.
-2. `Header.tsx` calls `requestLandingPageSection(sectionId)`.
+2. `useHeaderController.ts` calls `requestLandingPageSection(sectionId)`.
 3. Because the current pathname is `/`, the header prevents default link navigation and leaves the URL unchanged.
 
 At this point the header has requested a section, but it has not scrolled the page itself.
@@ -149,7 +150,6 @@ This is the explicit offset-aware navigation path used by the shared header on t
 
 Relevant code:
 
-- `src/shared/page-sections/landingPageActiveSection.ts` → `getTrackedLandingPageSection()`
 - `src/shared/page-sections/useLandingPageActiveSectionTracker.ts`
 - `landingPageNavigationStore.ts` → `setLandingPageActiveSection()`
 
@@ -190,7 +190,7 @@ The same header links behave differently when the current pathname starts with `
 
 Relevant code:
 
-- `Header.tsx` → `handleSectionNavigation()`
+- `useHeaderController.ts` → `handleSectionNavigation()`
 - `landingPageNavigationStore.ts` → `requestLandingPageSection()`
 
 Current behavior:
@@ -227,8 +227,7 @@ Current behavior:
 
 Relevant code:
 
-- `Header.tsx` → `useLayoutEffect(...)`
-- `Header.tsx` → `syncHeaderOffset()`
+- `useHeaderController.ts` → header offset `useLayoutEffect(...)`
 
 Current behavior:
 
@@ -246,9 +245,9 @@ The canonical homepage section-navigation path uses the explicit offset math in 
 
 Relevant code:
 
-- `Header.tsx` → `isMobileMenuOpen`
-- `Header.tsx` → `getMobileNavItemOnClick()`
-- `Header.tsx` → document `pointerdown` effect
+- `useHeaderController.ts` → `isMobileMenuOpen`
+- `useHeaderController.ts` → prepared mobile nav items
+- `useHeaderController.ts` → document `pointerdown` effect
 
 Current behavior:
 
@@ -266,9 +265,9 @@ Relevant code:
 
 Current role:
 
-- render the list of nav items for both desktop and mobile
+- render precomputed nav items for both desktop and mobile
 - apply `aria-current`
-- accept per-item click handlers and optional styles
+- accept already-prepared hrefs, click handlers, and optional styles
 
 It does not own:
 

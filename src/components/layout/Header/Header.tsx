@@ -1,218 +1,35 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import {
-  type CSSProperties,
-  type MouseEvent,
-  type MouseEventHandler,
-  type ReactElement,
-  useEffect,
-  useId,
-  useLayoutEffect,
-  useRef,
-  useState,
-  useSyncExternalStore,
-} from 'react';
+import { type ReactElement } from 'react';
 
-import type { NavigationItem } from '../../../data/portfolio';
-import { type SectionId } from '../../../shared/navigation/sections';
-import {
-  getLandingPageNavigationServerSnapshot,
-  getLandingPageNavigationSnapshot,
-  requestLandingPageSection,
-  subscribeToLandingPageNavigation,
-} from '../../../shared/page-sections/landingPageNavigationStore';
-import {
-  defaultThemePreference,
-  getStoredThemePreference,
-  setStoredThemePreference,
-  type ThemeName,
-} from '../../../shared/theme/themePreference';
 import { HeaderNavList } from './HeaderNavList';
 import type { HeaderProps } from './Header.interfaces';
 import st from './Header.module.css';
 import { ThemeToggle } from './ThemeToggle';
-
-const getSectionHref = (sectionId: SectionId): string => {
-  void sectionId;
-  return '/';
-};
+import { useHeaderController } from './useHeaderController';
 
 export const Header = ({
   siteTitle,
   navigation,
 }: HeaderProps): ReactElement => {
-  const pathname = usePathname() ?? '/';
-  const headerRef = useRef<HTMLElement | null>(null);
-  const mobileNavRef = useRef<HTMLElement | null>(null);
-  const mobileNavId = useId();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [theme, setTheme] = useState<ThemeName>(defaultThemePreference);
-  const landingPageNavigation = useSyncExternalStore(
-    subscribeToLandingPageNavigation,
-    getLandingPageNavigationSnapshot,
-    getLandingPageNavigationServerSnapshot,
-  );
-  const activeSection: SectionId | undefined =
-    pathname === '/'
-      ? landingPageNavigation.activeSection
-      : pathname.startsWith('/projects/')
-        ? 'projects'
-        : undefined;
-  const themeToggleLabel =
-    theme === 'light' ? 'Activate dark theme' : 'Activate light theme';
-  const mobileMenuLabel = isMobileMenuOpen
-    ? 'Close navigation menu'
-    : 'Open navigation menu';
-  const homeLinkAriaCurrent =
-    pathname === '/' && activeSection === 'home'
-      ? { 'aria-current': 'page' as const }
-      : {};
-
-  const getNavigationKey = (item: NavigationItem): string => {
-    return item.sectionId ?? `${item.href}:${item.label}`;
-  };
-
-  const getNavigationHref = (item: NavigationItem): string => {
-    return item.sectionId === undefined ? item.href : getSectionHref(item.sectionId);
-  };
-
-  const handleSectionNavigation = (
-    sectionId: SectionId | undefined,
-    event: MouseEvent<HTMLAnchorElement>,
-  ): void => {
-    if (sectionId === undefined) {
-      return;
-    }
-
-    requestLandingPageSection(sectionId);
-
-    if (pathname === '/') {
-      event.preventDefault();
-    }
-  };
-
-  const getDesktopNavItemOnClick = (
-    item: NavigationItem,
-  ): MouseEventHandler<HTMLAnchorElement> => {
-    return (event): void => {
-      handleSectionNavigation(item.sectionId, event);
-    };
-  };
-
-  const getMobileNavItemOnClick = (
-    item: NavigationItem,
-  ): MouseEventHandler<HTMLAnchorElement> => {
-    return (event): void => {
-      setIsMobileMenuOpen(false);
-      handleSectionNavigation(item.sectionId, event);
-    };
-  };
-
-  const isNavigationItemCurrent = (item: NavigationItem): boolean => {
-    const isLandingSection =
-      pathname === '/' && activeSection !== undefined;
-
-    if (isLandingSection) {
-      return (
-        item.sectionId !== undefined && activeSection === item.sectionId
-      );
-    }
-
-    const isProjectDetailMatch =
-      item.sectionId === 'projects' && pathname.startsWith('/projects/');
-
-    if (isProjectDetailMatch) {
-      return true;
-    }
-
-    return item.sectionId === undefined && pathname === item.href;
-  };
-
-  const getMobileNavItemStyle = (index: number): CSSProperties => {
-    return {
-      transitionDelay: `calc(var(--motion-duration-xs) + ${index} * var(--motion-stagger-sm))`,
-    };
-  };
-
-  const handleThemeToggle = (): void => {
-    const nextTheme: ThemeName = theme === 'light' ? 'dark' : 'light';
-
-    setStoredThemePreference(nextTheme);
-    setTheme(nextTheme);
-  };
-
-  useLayoutEffect(() => {
-    if (headerRef.current === null) {
-      return undefined;
-    }
-
-    const root = document.documentElement;
-    const syncHeaderOffset = (): void => {
-      if (headerRef.current === null) {
-        return;
-      }
-
-      root.style.setProperty(
-        '--header-offset',
-        `${headerRef.current.offsetHeight}px`,
-      );
-    };
-
-    syncHeaderOffset();
-
-    const observer = new ResizeObserver(() => {
-      syncHeaderOffset();
-    });
-
-    observer.observe(headerRef.current);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
-    const themeSyncFrame = window.requestAnimationFrame(() => {
-      setTheme(getStoredThemePreference());
-    });
-
-    return () => {
-      window.cancelAnimationFrame(themeSyncFrame);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!isMobileMenuOpen) {
-      return undefined;
-    }
-
-    const handlePointerDown = (event: PointerEvent): void => {
-      const target = event.target;
-
-      if (!(target instanceof Node)) {
-        return;
-      }
-
-      const isInsideHeader = headerRef.current?.contains(target) ?? false;
-      const isInsideMobileNav = mobileNavRef.current?.contains(target) ?? false;
-
-      if (isInsideHeader || isInsideMobileNav) {
-        return;
-      }
-
-      setIsMobileMenuOpen(false);
-    };
-
-    document.addEventListener('pointerdown', handlePointerDown);
-
-    return () => {
-      document.removeEventListener('pointerdown', handlePointerDown);
-    };
-  }, [isMobileMenuOpen]);
-
-  const links = navigation;
+  const {
+    desktopNavItems,
+    handleHomeNavigation,
+    headerRef,
+    homeLinkAriaCurrent,
+    isMobileMenuOpen,
+    mobileMenuLabel,
+    mobileNavId,
+    mobileNavItems,
+    mobileNavRef,
+    theme,
+    themeToggleLabel,
+    toggleMobileMenu,
+    toggleTheme,
+  } = useHeaderController({
+    navigation,
+  });
 
   return (
     <header ref={headerRef} className={`${st.root} ${st.siteHeader}`}>
@@ -221,9 +38,7 @@ export const Header = ({
           <Link
             href="/"
             className={st.siteMark}
-            onClick={(event) => {
-              handleSectionNavigation('home', event);
-            }}
+            onClick={handleHomeNavigation}
             {...homeLinkAriaCurrent}
           >
             <span className={st.siteMarkPrompt} aria-hidden="true">
@@ -235,13 +50,9 @@ export const Header = ({
 
           <nav aria-label="Primary" className={st.desktopNav}>
             <HeaderNavList
-              items={links}
+              items={desktopNavItems}
               listClassName={`${st.siteNavList} ${st.desktopSiteNavList}`}
               linkClassName={st.siteNavLink}
-              getItemKey={getNavigationKey}
-              getItemHref={getNavigationHref}
-              isItemCurrent={isNavigationItemCurrent}
-              getItemOnClick={getDesktopNavItemOnClick}
             />
           </nav>
 
@@ -251,9 +62,7 @@ export const Header = ({
             aria-expanded={isMobileMenuOpen}
             aria-controls={mobileNavId}
             aria-label={mobileMenuLabel}
-            onClick={() => {
-              setIsMobileMenuOpen((currentValue) => !currentValue);
-            }}
+            onClick={toggleMobileMenu}
           >
             <span className={st.menuToggleBars} aria-hidden="true">
               <span />
@@ -266,7 +75,7 @@ export const Header = ({
             <ThemeToggle
               theme={theme}
               label={themeToggleLabel}
-              onToggle={handleThemeToggle}
+              onToggle={toggleTheme}
             />
           </div>
         </div>
@@ -280,25 +89,20 @@ export const Header = ({
       >
         <div className={st.headerNavInner}>
           <HeaderNavList
-            items={links}
+            items={mobileNavItems}
             listClassName={st.siteNavList}
             linkClassName={st.siteNavLink}
-            getItemKey={getNavigationKey}
-            getItemHref={getNavigationHref}
-            isItemCurrent={isNavigationItemCurrent}
-            getItemOnClick={getMobileNavItemOnClick}
-            getItemStyle={getMobileNavItemStyle}
           />
 
           <div className={st.mobileMenuFooter}>
             <span className={st.mobileMenuLabel}>Theme</span>
-          <ThemeToggle
-            theme={theme}
-            label={themeToggleLabel}
-            onToggle={handleThemeToggle}
-            className={st.mobileThemeToggle}
-            size="compact"
-          />
+            <ThemeToggle
+              theme={theme}
+              label={themeToggleLabel}
+              onToggle={toggleTheme}
+              className={st.mobileThemeToggle}
+              size="compact"
+            />
           </div>
         </div>
       </nav>

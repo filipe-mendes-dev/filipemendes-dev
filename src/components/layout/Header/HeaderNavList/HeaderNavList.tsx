@@ -7,26 +7,21 @@ export const HeaderNavList = ({
   items,
   listClassName,
   linkClassName,
-  getItemKey,
-  getItemHref,
-  isItemCurrent,
-  getItemOnClick,
-  getItemStyle,
 }: HeaderNavListProps): ReactElement => {
   return (
     <ul className={listClassName}>
-      {items.map((item, index) => {
+      {items.map((item) => {
         const linkAriaCurrent =
-          isItemCurrent(item)
+          item.isActive
             ? { 'aria-current': 'page' as const }
             : {};
 
         return (
-          <li key={getItemKey(item)} style={getItemStyle?.(index)}>
+          <li key={item.key} style={item.style}>
             <Link
-              href={getItemHref(item)}
+              href={item.href}
               className={linkClassName}
-              onClick={getItemOnClick(item)}
+              onClick={item.onClick}
               {...linkAriaCurrent}
             >
               {item.label}
