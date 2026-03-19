@@ -19,7 +19,7 @@ import {
   getLandingPageNavigationSnapshot,
   requestLandingPageSection,
   subscribeToLandingPageNavigation,
-} from '../../../shared/page-sections/landingPageNavigationStore';
+} from '../../../views/LandingPage/navigation/landingPageNavigationStore';
 import {
   defaultThemePreference,
   getStoredThemePreference,

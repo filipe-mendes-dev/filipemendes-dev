@@ -6,7 +6,7 @@ import { type MouseEvent, type ReactElement, useEffect, useState } from 'react';
 import { Section } from '../../../../components/ui/Section';
 import type { ActionLink } from '../../../../data/portfolio';
 import type { SectionId } from '../../../../shared/navigation/sections';
-import { requestLandingPageSection } from '../../../../shared/page-sections/landingPageNavigationStore';
+import { requestLandingPageSection } from '../../navigation/landingPageNavigationStore';
 import su from '../../../../shared/styles/utilities.module.css';
 import { HeroTerminal } from './HeroTerminal';
 import { HeroWindow } from './HeroWindow';

@@ -70,15 +70,15 @@ This keeps the shell consistent when the user is inside a project detail page.
 Navigation state is split across four key pieces:
 
 - `src/views/LandingPage/LandingPage.tsx` → declares the landing-page section contract in markup
-- `src/views/LandingPage/LandingPageNavigationBinder.tsx` → subscribes to the landing-page navigation store and mounts the navigation controller
+- `src/views/LandingPage/navigation/LandingPageNavigationBinder.tsx` → subscribes to the landing-page navigation store and mounts the navigation controller
 - `src/components/layout/Header/useHeaderController.ts` → initiates navigation requests and prepares header nav items
-- `src/shared/page-sections/landingPageNavigationStore.ts` → stores `activeSection`, transient `requestedSection`, and optional `pendingTargetSection`
-- `src/shared/page-sections/landingPageSections.ts` → defines the section-resolution contract and shared section attributes
-- `src/shared/page-sections/landingPageScroll.ts` → owns target measurement, arrival checks, and scroll execution
+- `src/views/LandingPage/navigation/landingPageNavigationStore.ts` → stores `activeSection`, transient `requestedSection`, and optional `pendingTargetSection`
+- `src/views/LandingPage/navigation/landingPageSections.ts` → defines the section-resolution contract and shared section attributes
+- `src/views/LandingPage/navigation/landingPageScroll.ts` → owns target measurement, arrival checks, and scroll execution
 - `src/views/LandingPage/LandingPageRevealGate/LandingPageRevealGate.tsx` → reveal-only binder that resolves reveal DOM nodes and enables section reveal after the hero intro delay
-- `src/shared/page-sections/useLandingPageNavigationController.ts` → consumes requests, performs scroll, and sets `pendingTargetSection` when smooth-scroll pinning is needed
-- `src/shared/page-sections/useLandingPageActiveSectionTracker.ts` → tracks active section during normal scroll and pins the target while `pendingTargetSection` is active
-- `src/shared/page-sections/usePageSectionReveal.ts` → owns viewport-driven reveal state and staged reveal timing
+- `src/views/LandingPage/navigation/useLandingPageNavigationController.ts` → consumes requests, performs scroll, and sets `pendingTargetSection` when smooth-scroll pinning is needed
+- `src/views/LandingPage/navigation/useLandingPageActiveSectionTracker.ts` → tracks active section during normal scroll and pins the target while `pendingTargetSection` is active
+- `src/shared/reveal/usePageSectionReveal.ts` → owns viewport-driven reveal state and staged reveal timing
 
 This division is the core navigation architecture for the homepage.
 
@@ -130,10 +130,10 @@ Current behavior:
 
 Relevant code:
 
-- `src/shared/page-sections/landingPageScroll.ts` → `getHeaderOffset()`
-- `src/shared/page-sections/landingPageScroll.ts` → `getSectionTargetTop()`
-- `src/shared/page-sections/landingPageScroll.ts` → `scrollToTop()`
-- `src/shared/page-sections/useLandingPageNavigationController.ts`
+- `src/views/LandingPage/navigation/landingPageScroll.ts` → `getHeaderOffset()`
+- `src/views/LandingPage/navigation/landingPageScroll.ts` → `getSectionTargetTop()`
+- `src/views/LandingPage/navigation/landingPageScroll.ts` → `scrollToTop()`
+- `src/views/LandingPage/navigation/useLandingPageNavigationController.ts`
 
 Current behavior:
 
@@ -150,7 +150,7 @@ This is the explicit offset-aware navigation path used by the shared header on t
 
 Relevant code:
 
-- `src/shared/page-sections/useLandingPageActiveSectionTracker.ts`
+- `src/views/LandingPage/navigation/useLandingPageActiveSectionTracker.ts`
 - `landingPageNavigationStore.ts` → `setLandingPageActiveSection()`
 
 Current behavior:
@@ -236,7 +236,7 @@ Current behavior:
 
 Consumers of this value:
 
-- `src/shared/page-sections/landingPageScroll.ts` → explicit offset math
+- `src/views/LandingPage/navigation/landingPageScroll.ts` → explicit offset math
 - `src/components/ui/PageSectionSurface/PageSectionSurface.module.css` → `scroll-margin-top: var(--header-offset, 4.5rem)`
 
 The canonical homepage section-navigation path uses the explicit offset math in `landingPageScroll.ts`.

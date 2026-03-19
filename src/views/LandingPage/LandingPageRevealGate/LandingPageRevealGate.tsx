@@ -8,12 +8,12 @@ import {
 } from 'react';
 
 import { sectionIds } from '../../../shared/navigation/sections';
-import { resolveLandingPageSectionElements } from '../../../shared/page-sections/landingPageSections';
-import { usePageSectionReveal } from '../../../shared/page-sections/usePageSectionReveal';
+import { usePageSectionReveal } from '../../../shared/reveal/usePageSectionReveal';
 import {
   landingPageMotion,
   landingPageRevealRootMargin,
 } from '../../../shared/theme/motion';
+import { resolveLandingPageSectionElements } from '../navigation/landingPageSections';
 import { heroIntroRevealGateDelayMs } from '../sections/HeroSection/heroMotion';
 import type { LandingPageRevealGateProps } from './LandingPageRevealGate.interfaces';
 

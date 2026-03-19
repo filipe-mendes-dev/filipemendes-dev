@@ -9,9 +9,9 @@ import {
   setLandingPageActiveSection,
   setLandingPagePendingTargetSection,
   subscribeToLandingPageNavigation,
-} from '../../shared/page-sections/landingPageNavigationStore';
-import { useLandingPageActiveSectionTracker } from '../../shared/page-sections/useLandingPageActiveSectionTracker';
-import { useLandingPageNavigationController } from '../../shared/page-sections/useLandingPageNavigationController';
+} from './landingPageNavigationStore';
+import { useLandingPageActiveSectionTracker } from './useLandingPageActiveSectionTracker';
+import { useLandingPageNavigationController } from './useLandingPageNavigationController';
 
 export const LandingPageNavigationBinder = (): ReactElement | null => {
   const navigationSnapshot = useSyncExternalStore(

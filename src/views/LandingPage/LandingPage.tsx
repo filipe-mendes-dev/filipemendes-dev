@@ -3,7 +3,7 @@ import type { ReactElement } from 'react';
 import { PageSectionSurface } from '../../components/ui/PageSectionSurface';
 import surface from '../../components/ui/PageSectionSurface/PageSectionSurface.module.css';
 import { portfolio } from '../../data/portfolio';
-import { LandingPageNavigationBinder } from './LandingPageNavigationBinder';
+import { LandingPageNavigationBinder } from './navigation/LandingPageNavigationBinder';
 import { LandingPageRevealGate } from './LandingPageRevealGate';
 import { AboutSection } from './sections/AboutSection';
 import { ContactSection } from './sections/ContactSection';

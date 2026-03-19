@@ -14,7 +14,7 @@ import { PageSectionSurface } from "../../components/ui/PageSectionSurface";
 import surface from "../../components/ui/PageSectionSurface/PageSectionSurface.module.css";
 import { Container } from "../../components/ui/Container";
 import { Section } from "../../components/ui/Section";
-import { usePageSectionReveal } from "../../shared/page-sections/usePageSectionReveal";
+import { usePageSectionReveal } from "../../shared/reveal/usePageSectionReveal";
 import su from "../../shared/styles/utilities.module.css";
 import {
   landingPageMotion,

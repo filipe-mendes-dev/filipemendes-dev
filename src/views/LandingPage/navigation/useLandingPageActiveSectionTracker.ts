@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
-import { type SectionId } from '../navigation/sections';
-import { landingPageMotion } from '../theme/motion';
+import { type SectionId } from '../../../shared/navigation/sections';
+import { landingPageMotion } from '../../../shared/theme/motion';
 import {
   getLandingPageSectionElement,
   getOrderedLandingPageSectionElements,

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-import { type SectionId } from '../navigation/sections';
+import { type SectionId } from '../../../shared/navigation/sections';
 import { getLandingPageSectionElement } from './landingPageSections';
 import {
   getSectionTargetTop,

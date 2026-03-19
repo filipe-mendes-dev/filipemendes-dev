@@ -10,7 +10,7 @@ These items describe potential future changes. They are not current architecture
 
 ### 1. Reduce reveal-binder DOM coordination further only if the current explicit contract becomes a bottleneck
 
-- Current state: homepage navigation and reveal are now decoupled. `src/shared/page-sections/useLandingPageNavigationController.ts` owns request consumption and scroll execution, `src/shared/page-sections/useLandingPageActiveSectionTracker.ts` owns scroll-based active-section tracking, `src/shared/page-sections/usePageSectionReveal.ts` owns viewport-driven reveal behavior, and `src/views/LandingPage/LandingPageRevealGate/LandingPageRevealGate.tsx` is a thin binder that resolves section elements and applies a simple post-hero reveal delay. The reveal gate still resolves section elements through the explicit DOM contract in `src/shared/page-sections/landingPageSections.ts`.
+- Current state: homepage navigation and reveal are now decoupled. `src/views/LandingPage/navigation/useLandingPageNavigationController.ts` owns request consumption and scroll execution, `src/views/LandingPage/navigation/useLandingPageActiveSectionTracker.ts` owns scroll-based active-section tracking, `src/shared/reveal/usePageSectionReveal.ts` owns viewport-driven reveal behavior, and `src/views/LandingPage/LandingPageRevealGate/LandingPageRevealGate.tsx` is a thin binder that resolves section elements and applies a simple post-hero reveal delay. The reveal gate still resolves section elements through the explicit DOM contract in `src/views/LandingPage/navigation/landingPageSections.ts`.
 - Why it matters: the old navigation-driven reveal choreography is gone, but the reveal gate still depends on DOM resolution and remains the integration point for landing-page reveal setup.
 - Possible improvement: if future changes justify it, move from explicit DOM resolution to explicit ref registration so the controller no longer needs to query the DOM at all.
 - Risk level: Medium
@@ -36,7 +36,7 @@ These items describe potential future changes. They are not current architecture
 
 ### 4. Revisit whether pending target state should stay in the shared external snapshot
 
-- Current state: homepage section navigation now keeps only transient request state, observational active state, and `pendingTargetSection` in `src/shared/page-sections/landingPageNavigationStore.ts`.
+- Current state: homepage section navigation now keeps only transient request state, observational active state, and `pendingTargetSection` in `src/views/LandingPage/navigation/landingPageNavigationStore.ts`.
 - Why it matters: the model is much simpler now, but the shared snapshot still combines request intent and UI-facing tracking state.
 - Possible improvement: keep the current architecture unless future UX changes require a more explicit controller state again.
 - Risk level: Medium

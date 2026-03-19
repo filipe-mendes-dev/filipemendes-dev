@@ -1,4 +1,4 @@
-import type { SectionId } from "../navigation/sections";
+import type { SectionId } from "../../../shared/navigation/sections";
 
 export interface LandingPageNavigationSnapshot {
   activeSection: SectionId;

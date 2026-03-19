@@ -86,7 +86,7 @@ Why they can stay server-side:
 The current explicit client entry files are:
 
 - `src/components/layout/Header/Header.tsx`
-- `src/views/LandingPage/LandingPageNavigationBinder.tsx`
+- `src/views/LandingPage/navigation/LandingPageNavigationBinder.tsx`
 - `src/views/LandingPage/LandingPageRevealGate/LandingPageRevealGate.tsx`
 - `src/views/LandingPage/sections/HeroSection/HeroSection.tsx`
 - `src/views/ProjectDetailPage/ProjectDetailPage.tsx`
@@ -108,7 +108,7 @@ Could it be server instead:
 
 - no, not in its current role, because it owns interactive shell behavior
 
-### `src/views/LandingPage/LandingPageNavigationBinder.tsx`
+### `src/views/LandingPage/navigation/LandingPageNavigationBinder.tsx`
 
 Why it is client:
 
@@ -229,8 +229,8 @@ Current behavior:
 
 Relevant code:
 
-- `src/shared/page-sections/landingPageNavigationStore.ts`
-- `src/views/LandingPage/LandingPageNavigationBinder.tsx`
+- `src/views/LandingPage/navigation/landingPageNavigationStore.ts`
+- `src/views/LandingPage/navigation/LandingPageNavigationBinder.tsx`
 - `src/components/layout/Header/Header.tsx`
 
 Current behavior:
@@ -246,7 +246,7 @@ Current behavior:
 Relevant code:
 
 - `src/views/LandingPage/sections/HeroSection/HeroSection.tsx`
-- `src/shared/page-sections/usePageSectionReveal.ts`
+- `src/shared/reveal/usePageSectionReveal.ts`
 
 Current behavior:
 
@@ -260,7 +260,7 @@ Current behavior:
 ### Confirmed current risks
 
 - Theme mismatch without the bootstrap script: the server cannot know `localStorage`, so `src/app/layout.tsx` must set `data-theme` early.
-- Active-nav mismatch on first paint: `landingPageNavigationStore.ts` starts from a default `home` snapshot and is corrected later in the browser.
+- Active-nav mismatch on first paint: `src/views/LandingPage/navigation/landingPageNavigationStore.ts` starts from a default `home` snapshot and is corrected later in the browser.
 - Larger-than-necessary hydrated subtree on project detail pages: `ProjectDetailPage.tsx` is fully client-side because reveal logic is inside the page view.
 
 ### Assumption — needs verification

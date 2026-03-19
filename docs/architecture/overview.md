@@ -112,15 +112,14 @@ What `src/components` does not own:
 Current groups:
 
 - `src/shared/navigation`
-- `src/shared/page-sections`
+- `src/shared/reveal`
 - `src/shared/styles`
 - `src/shared/theme`
 
 Current responsibility:
 
 - shared section ID definitions in `src/shared/navigation/sections.ts`
-- landing-page section contract definitions in `src/shared/page-sections/landingPageSections.ts`
-- landing-page navigation store and scroll/reveal hooks in `src/shared/page-sections`
+- shared reveal primitives in `src/shared/reveal`
 - theme tokens and motion configuration in `src/shared/theme`
 - global styles and shared CSS utilities in `src/shared/styles`
 
@@ -174,8 +173,8 @@ Example: homepage
 - `LandingPage.tsx` mounts separate client binders for navigation and reveal
 - those sections use reusable UI from `src/components`
 - each landing-page section receives a `sectionId` and applies its own heading/content contract markers
-- section navigation behavior comes from `src/shared/page-sections/useLandingPageNavigationController.ts` and `src/shared/page-sections/useLandingPageActiveSectionTracker.ts`, backed by a minimal store with request intent, active section, and pending target state
-- reveal behavior comes from `src/shared/page-sections/usePageSectionReveal.ts` and is driven by viewport visibility, not navigation intent
+- section navigation behavior comes from `src/views/LandingPage/navigation/useLandingPageNavigationController.ts` and `src/views/LandingPage/navigation/useLandingPageActiveSectionTracker.ts`, backed by a minimal store with request intent, active section, and pending target state
+- reveal behavior comes from `src/shared/reveal/usePageSectionReveal.ts` and is driven by viewport visibility, not navigation intent
 
 Example: project detail page
 

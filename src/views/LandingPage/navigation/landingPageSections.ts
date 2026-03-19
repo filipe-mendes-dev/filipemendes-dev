@@ -1,4 +1,4 @@
-import { type SectionId, sectionIds } from '../navigation/sections';
+import { type SectionId, sectionIds } from '../../../shared/navigation/sections';
 
 const sectionAttributeName = 'data-landing-section';
 const sectionHeadingAttributeName = 'data-landing-section-heading';
