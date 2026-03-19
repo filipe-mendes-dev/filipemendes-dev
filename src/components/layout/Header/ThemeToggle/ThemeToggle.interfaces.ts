@@ -1,4 +1,4 @@
-import type { ThemeName } from '../../../../shared/theme/tokens';
+import type { ThemeName } from '../../../../shared/theme/themePreference';
 
 export interface ThemeToggleProps {
   theme: ThemeName;

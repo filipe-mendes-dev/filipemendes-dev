@@ -147,18 +147,18 @@
   z-index: 1;
 }
 
-[data-landing-reveal] {
+.section [data-landing-reveal] {
   transition:
     opacity var(--motion-duration-2xl) var(--motion-ease-standard) var(--motion-duration-xs),
     transform var(--motion-duration-3xl) var(--motion-ease-standard) var(--motion-duration-xs);
 }
 
-[data-landing-reveal='pending'] {
+.section [data-landing-reveal='pending'] {
   opacity: 0;
   transform: translateY(10px);
 }
 
-[data-landing-reveal='visible'] {
+.section [data-landing-reveal='visible'] {
   opacity: 1;
   transform: translateY(0);
 }
@@ -179,7 +179,7 @@
     animation: none;
   }
 
-  [data-landing-reveal] {
+  .section [data-landing-reveal] {
     opacity: 1;
     transition: none;
     animation: none;

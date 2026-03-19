@@ -8,7 +8,6 @@ export const TextActionLink = ({
   href,
   children,
   className,
-  navigate,
   target,
   rel,
   leadingIcon,
@@ -18,7 +17,6 @@ export const TextActionLink = ({
   const linkProps = {
     href,
     className: rootClassName,
-    ...(navigate !== undefined ? { navigate } : {}),
     ...(target !== undefined ? { target } : {}),
     ...(rel !== undefined ? { rel } : {}),
   };

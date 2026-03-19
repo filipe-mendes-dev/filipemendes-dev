@@ -6,6 +6,7 @@ import {
 } from 'react';
 
 export interface PageSectionRevealConfig<TSectionId extends string> {
+  isRevealEnabled?: boolean;
   sectionIds: readonly TSectionId[];
   initialVisibleSectionId: TSectionId;
   revealRootMargin: string;
@@ -21,15 +22,16 @@ export interface PageSectionElementStore<TElement> {
 }
 
 export interface PageSectionRevealResult<TSectionId extends string> {
-  contentElementsRef: PageSectionElementStore<Record<TSectionId, HTMLDivElement | null>>;
+  contentElementsRef: PageSectionElementStore<Record<TSectionId, HTMLElement | null>>;
   headerElementsRef: PageSectionElementStore<Record<TSectionId, HTMLElement | null>>;
   sectionElementsRef: PageSectionElementStore<Record<TSectionId, HTMLElement | null>>;
+  initializeRevealState: () => void;
   scheduleReveal: (sectionId: TSectionId, shouldStageContent: boolean) => void;
   hideReveal: (sectionId: TSectionId) => void;
 }
 
 interface PageSectionRevealGroup {
-  content: HTMLDivElement | null;
+  content: HTMLElement | null;
   header: HTMLElement | null;
   separator: HTMLElement | null;
 }
@@ -104,7 +106,20 @@ const isTriggerWithinRevealEntry = (
   return top < window.innerHeight * revealEntryViewportRatio;
 };
 
+const isElementVisibleInViewport = (element: HTMLElement): boolean => {
+  const { bottom, top } = element.getBoundingClientRect();
+
+  return bottom > 0 && top < window.innerHeight;
+};
+
+const isSectionFullyVisibleInViewport = (sectionElement: HTMLElement): boolean => {
+  const { bottom, top } = sectionElement.getBoundingClientRect();
+
+  return top >= 0 && bottom <= window.innerHeight;
+};
+
 export const usePageSectionReveal = <TSectionId extends string>({
+  isRevealEnabled = true,
   sectionIds,
   initialVisibleSectionId,
   revealRootMargin,
@@ -115,7 +130,7 @@ export const usePageSectionReveal = <TSectionId extends string>({
   triggerBySectionId,
 }: PageSectionRevealConfig<TSectionId>): PageSectionRevealResult<TSectionId> => {
   const sectionElementsRef = useRef(createElementStore<TSectionId, HTMLElement>(sectionIds));
-  const contentElementsRef = useRef(createElementStore<TSectionId, HTMLDivElement>(sectionIds));
+  const contentElementsRef = useRef(createElementStore<TSectionId, HTMLElement>(sectionIds));
   const headerElementsRef = useRef(createElementStore<TSectionId, HTMLElement>(sectionIds));
   const revealDelayTimeoutsRef = useRef<Record<TSectionId, number | null>>(
     sectionIds.reduce<Record<TSectionId, number | null>>((result, sectionId) => {
@@ -198,13 +213,19 @@ export const usePageSectionReveal = <TSectionId extends string>({
     [clearScheduledReveal, getRevealGroup],
   );
 
-  useLayoutEffect(() => {
+  const initializeRevealState = useCallback((): void => {
     const prefersReducedMotion = getPrefersReducedMotion();
 
     sectionIds.forEach((sectionId) => {
       const content = contentElementsRef.current[sectionId];
 
       if (content === null) {
+        return;
+      }
+
+      if (!isRevealEnabled) {
+        hideReveal(sectionId);
+
         return;
       }
 
@@ -219,9 +240,9 @@ export const usePageSectionReveal = <TSectionId extends string>({
       if (
         revealVisibleInViewport &&
         triggerElement !== null &&
-        isTriggerWithinRevealEntry(triggerElement, revealEntryViewportRatio)
+        isElementVisibleInViewport(triggerElement)
       ) {
-        scheduleReveal(sectionId, false);
+        scheduleReveal(sectionId, true);
 
         return;
       }
@@ -233,14 +254,18 @@ export const usePageSectionReveal = <TSectionId extends string>({
     getTriggerElement,
     hideReveal,
     initialVisibleSectionId,
-    revealEntryViewportRatio,
+    isRevealEnabled,
     revealVisibleInViewport,
     scheduleReveal,
     sectionIds,
   ]);
 
+  useLayoutEffect(() => {
+    initializeRevealState();
+  }, [initializeRevealState]);
+
   useEffect(() => {
-    if (getPrefersReducedMotion()) {
+    if (!isRevealEnabled || getPrefersReducedMotion()) {
       return;
     }
 
@@ -282,9 +307,87 @@ export const usePageSectionReveal = <TSectionId extends string>({
   }, [
     contentElementsRef,
     getTriggerElement,
+    isRevealEnabled,
     revealEntryThreshold,
     revealRootMargin,
     scheduleReveal,
+    sectionIds,
+  ]);
+
+  useEffect(() => {
+    if (!isRevealEnabled || getPrefersReducedMotion()) {
+      return undefined;
+    }
+
+    let frameId = 0;
+    const resizeObserver =
+      typeof ResizeObserver === 'undefined'
+        ? null
+        : new ResizeObserver(() => {
+            requestSync();
+          });
+
+    const syncReachablePendingSections = (): void => {
+      frameId = 0;
+
+      sectionIds.forEach((sectionId) => {
+        const content = contentElementsRef.current[sectionId];
+
+        if (content?.dataset.landingReveal !== revealPendingValue) {
+          return;
+        }
+
+        const triggerElement = getTriggerElement(sectionId);
+        const sectionElement = sectionElementsRef.current[sectionId];
+
+        if (triggerElement === null || sectionElement === null) {
+          return;
+        }
+
+        if (
+          isTriggerWithinRevealEntry(triggerElement, revealEntryViewportRatio) ||
+          isSectionFullyVisibleInViewport(sectionElement)
+        ) {
+          scheduleReveal(sectionId, true);
+        }
+      });
+    };
+
+    const requestSync = (): void => {
+      if (frameId !== 0) {
+        return;
+      }
+
+      frameId = window.requestAnimationFrame(syncReachablePendingSections);
+    };
+
+    requestSync();
+    window.addEventListener('scroll', requestSync, { passive: true });
+    window.addEventListener('resize', requestSync);
+    sectionIds.forEach((sectionId) => {
+      const sectionElement = sectionElementsRef.current[sectionId];
+
+      if (sectionElement !== null) {
+        resizeObserver?.observe(sectionElement);
+      }
+    });
+
+    return () => {
+      window.removeEventListener('scroll', requestSync);
+      window.removeEventListener('resize', requestSync);
+      resizeObserver?.disconnect();
+
+      if (frameId !== 0) {
+        window.cancelAnimationFrame(frameId);
+      }
+    };
+  }, [
+    contentElementsRef,
+    getTriggerElement,
+    isRevealEnabled,
+    revealEntryViewportRatio,
+    scheduleReveal,
+    sectionElementsRef,
     sectionIds,
   ]);
 
@@ -305,6 +408,7 @@ export const usePageSectionReveal = <TSectionId extends string>({
   return {
     contentElementsRef,
     headerElementsRef,
+    initializeRevealState,
     sectionElementsRef,
     scheduleReveal,
     hideReveal,
