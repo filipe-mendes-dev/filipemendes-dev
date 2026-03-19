@@ -86,7 +86,8 @@ Why they can stay server-side:
 The current explicit client entry files are:
 
 - `src/components/layout/Header/Header.tsx`
-- `src/views/LandingPage/LandingPageRevealController/LandingPageRevealController.tsx`
+- `src/views/LandingPage/LandingPageNavigationBinder.tsx`
+- `src/views/LandingPage/LandingPageRevealGate/LandingPageRevealGate.tsx`
 - `src/views/LandingPage/sections/HeroSection/HeroSection.tsx`
 - `src/views/ProjectDetailPage/ProjectDetailPage.tsx`
 - `src/components/navigation/AppLink/AppLink.tsx`
@@ -107,18 +108,29 @@ Could it be server instead:
 
 - no, not in its current role, because it owns interactive shell behavior
 
-### `src/views/LandingPage/LandingPageRevealController/LandingPageRevealController.tsx`
+### `src/views/LandingPage/LandingPageNavigationBinder.tsx`
 
 Why it is client:
 
 - uses `useSyncExternalStore`
-- queries DOM nodes by section ID
-- uses `MutationObserver`
-- runs scroll/reveal hooks that depend on browser APIs
+- mounts `useLandingPageSectionNavigation()`
+- consumes browser-only scroll state
 
 Could it be server instead:
 
-- no, not in its current role, because it is purely a browser coordination layer
+- no, not in its current role, because it is a browser-only navigation binder
+
+### `src/views/LandingPage/LandingPageRevealGate/LandingPageRevealGate.tsx`
+
+Why it is client:
+
+- queries DOM nodes by section ID
+- runs browser-only reveal logic
+- enables reveal after a browser-side timeout derived from the hero intro motion config
+
+Could it be server instead:
+
+- no, not in its current role, because it binds real DOM nodes and browser-side reveal enablement
 
 ### `src/views/LandingPage/sections/HeroSection/HeroSection.tsx`
 
@@ -127,7 +139,6 @@ Why it is client:
 - uses Framer Motion
 - uses `useReducedMotion`, `useState`, and `useEffect`
 - requests landing-page section navigation on hero actions
-- exposes the hero intro completion flag through a DOM data attribute
 
 Could it be server instead:
 
@@ -175,7 +186,8 @@ After the initial HTML is delivered:
 
 - the theme bootstrap script in `src/app/layout.tsx` sets `data-theme`
 - `Header.tsx` hydrates and subscribes to theme and landing-page navigation state
-- `LandingPageRevealController.tsx` hydrates and connects store state to real section DOM nodes
+- `LandingPageNavigationBinder.tsx` hydrates and consumes pending section requests
+- `LandingPageRevealGate.tsx` hydrates and connects reveal state to real section DOM nodes
 - `HeroSection.tsx` hydrates and runs the intro motion sequence
 - `ProjectDetailPage.tsx` hydrates and activates reveal behavior for project sections
 
@@ -185,8 +197,8 @@ Browser-only responsibilities therefore include:
 - mobile menu interaction
 - header height measurement
 - active-section tracking
-- section scrolling orchestration
-- reveal orchestration
+- section scrolling and request consumption
+- viewport-driven reveal behavior
 - hero intro motion
 
 ## Hydration Behavior
@@ -217,7 +229,7 @@ Current behavior:
 Relevant code:
 
 - `src/shared/page-sections/landingPageNavigationStore.ts`
-- `src/views/LandingPage/LandingPageRevealController/LandingPageRevealController.tsx`
+- `src/views/LandingPage/LandingPageNavigationBinder.tsx`
 - `src/components/layout/Header/Header.tsx`
 
 Current behavior:
@@ -225,7 +237,7 @@ Current behavior:
 - `activeSection` starts at `home` on the server snapshot
 - the server snapshot starts with no pending section request
 - the client later derives active section from scroll position
-- homepage section requests are consumed by the landing-page controller and then cleared
+- homepage section requests are consumed by the landing-page navigation hook and then cleared
 - the header then renders the client-correct active section
 
 ### Motion hydration
@@ -240,6 +252,7 @@ Current behavior:
 - hero intro and reveal state are browser-derived
 - initial HTML is present before those client behaviors run
 - the visible timing and reveal state become accurate only after hydration and effects run
+- later section reveal is driven by viewport visibility, while the reveal gate only delays when that reveal system becomes active
 
 ## Concrete Hydration Risks
 

@@ -171,9 +171,11 @@ Example: homepage
 - `src/app/page.tsx` re-exports `src/views/LandingPage/LandingPage.tsx`
 - `LandingPage.tsx` imports `portfolio` from `src/data/portfolio.ts`
 - `LandingPage.tsx` renders local sections under `src/views/LandingPage/sections` and declares the landing-page section roots inline
+- `LandingPage.tsx` mounts separate client binders for navigation and reveal
 - those sections use reusable UI from `src/components`
 - each landing-page section receives a `sectionId` and applies its own heading/content contract markers
-- reveal and section navigation behavior come from `src/shared/page-sections`
+- section navigation behavior comes from `src/shared/page-sections/useLandingPageSectionNavigation.ts`
+- reveal behavior comes from `src/shared/page-sections/usePageSectionReveal.ts` and is driven by viewport visibility, not navigation intent
 
 Example: project detail page
 

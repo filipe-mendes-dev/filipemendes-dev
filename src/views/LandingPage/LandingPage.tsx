@@ -3,7 +3,8 @@ import type { ReactElement } from 'react';
 import { PageSectionSurface } from '../../components/ui/PageSectionSurface';
 import surface from '../../components/ui/PageSectionSurface/PageSectionSurface.module.css';
 import { portfolio } from '../../data/portfolio';
-import { LandingPageRevealController } from './LandingPageRevealController';
+import { LandingPageNavigationBinder } from './LandingPageNavigationBinder';
+import { LandingPageRevealGate } from './LandingPageRevealGate';
 import { AboutSection } from './sections/AboutSection';
 import { ContactSection } from './sections/ContactSection';
 import { HeroSection } from './sections/HeroSection';
@@ -15,7 +16,8 @@ const LandingPage = (): ReactElement => {
 
   return (
     <PageSectionSurface className={st.root}>
-      <LandingPageRevealController />
+      <LandingPageNavigationBinder />
+      <LandingPageRevealGate />
 
       <section
         id="home"

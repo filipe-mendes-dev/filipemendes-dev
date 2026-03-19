@@ -97,3 +97,32 @@ export const resolveLandingPageSectionElements = (
     {} as Record<SectionId, LandingPageResolvedSectionElements>,
   );
 };
+
+export const resolveLandingPageSectionRoots = (
+  root: ParentNode = document,
+): Record<SectionId, HTMLElement | null> => {
+  return sectionIds.reduce<Record<SectionId, HTMLElement | null>>((result, sectionId) => {
+    result[sectionId] = root.querySelector<HTMLElement>(getSectionSelector(sectionId));
+
+    return result;
+  }, {} as Record<SectionId, HTMLElement | null>);
+};
+
+export const resolveRequiredLandingPageSectionRoots = (
+  root: ParentNode = document,
+): Record<SectionId, HTMLElement> | null => {
+  const sectionRoots = resolveLandingPageSectionRoots(root);
+  const resolvedSectionRoots = {} as Record<SectionId, HTMLElement>;
+
+  for (const sectionId of sectionIds) {
+    const sectionRoot = sectionRoots[sectionId];
+
+    if (sectionRoot === null) {
+      return null;
+    }
+
+    resolvedSectionRoots[sectionId] = sectionRoot;
+  }
+
+  return resolvedSectionRoots;
+};

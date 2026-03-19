@@ -68,11 +68,13 @@ This keeps the shell consistent when the user is inside a project detail page.
 Navigation state is split across four key pieces:
 
 - `src/views/LandingPage/LandingPage.tsx` → declares the landing-page section contract in markup
+- `src/views/LandingPage/LandingPageNavigationBinder.tsx` → subscribes to the landing-page navigation store and mounts the navigation hook
 - `src/components/layout/Header/Header.tsx` → initiates navigation requests
 - `src/shared/page-sections/landingPageNavigationStore.ts` → stores `activeSection`, transient `requestedSection`, and `requestKey`
 - `src/shared/page-sections/landingPageSections.ts` → defines the section-resolution contract and shared section attributes
-- `src/views/LandingPage/LandingPageRevealController/LandingPageRevealController.tsx` → binds the store to real DOM sections
-- `src/shared/page-sections/useLandingPageSectionNavigation.ts` → performs section scrolling and active-section tracking
+- `src/views/LandingPage/LandingPageRevealGate/LandingPageRevealGate.tsx` → reveal-only binder that resolves reveal DOM nodes and enables section reveal after the hero intro delay
+- `src/shared/page-sections/useLandingPageSectionNavigation.ts` → performs section scrolling and active-section tracking, including temporary active-item pinning during in-progress smooth scroll
+- `src/shared/page-sections/usePageSectionReveal.ts` → owns viewport-driven reveal state and staged reveal timing
 
 This division is the core navigation architecture for the homepage.
 
@@ -82,6 +84,8 @@ Important model rules:
 - URL hash is not part of homepage section navigation
 - `requestedSection` is transient request state
 - `activeSection` is observational UI state derived from scroll behavior
+- reveal is viewport-driven and does not depend on navigation requests, progress, or phases
+- hero intro only gates whether later section reveal is enabled
 
 ## Homepage Navigation Flow
 
@@ -100,28 +104,28 @@ Current behavior on `/`:
 
 At this point the header has requested a section, but it has not scrolled the page itself.
 
-### Step 2. Landing page controller receives the request
+### Step 2. Landing-page navigation binder receives the request
 
 Relevant code:
 
-- `LandingPageRevealController.tsx` → `useSyncExternalStore(...)`
-- `LandingPageRevealController.tsx` → `useLandingPageSectionNavigation(...)`
+- `LandingPageNavigationBinder.tsx` → `useSyncExternalStore(...)`
+- `LandingPageNavigationBinder.tsx` → `useLandingPageSectionNavigation(...)`
 
 Current behavior:
 
-- the controller subscribes to the landing-page navigation store
+- the navigation binder subscribes to the landing-page navigation store
 - `LandingPage.tsx` marks section roots inline with explicit landing-page section attributes
-- each landing-page section component receives its own `sectionId` and applies the matching heading/content attributes to the real reveal nodes
-- `landingPageSections.ts` owns the selectors and section capabilities for `home`, `projects`, `about`, and `contact`
-- the controller resolves real DOM nodes through `resolveLandingPageSectionElements()`
-- it passes those refs and the pending request into `useLandingPageSectionNavigation()`
+- the navigation hook resolves section roots directly from that DOM contract
+- the reveal gate separately resolves heading/content/section nodes for reveal
+- the reveal gate enables later section reveal after a delay derived from the hero intro motion config
+- navigation and reveal are now wired separately; neither binder mounts the other system
 
 ### Step 3. Scroll is performed with header offset
 
 Relevant code:
 
-- `useLandingPageSectionNavigation.ts` → `getHeaderOffset()`
-- `useLandingPageSectionNavigation.ts` → `getSectionTargetTop()`
+- `src/shared/page-sections/landingPageScroll.ts` → `getHeaderOffset()`
+- `src/shared/page-sections/landingPageScroll.ts` → `getSectionTargetTop()`
 - `useLandingPageSectionNavigation.ts` → `scrollToSection()`
 
 Current behavior:
@@ -139,7 +143,7 @@ This is the explicit offset-aware navigation path used by the shared header on t
 Relevant code:
 
 - `useLandingPageSectionNavigation.ts` → `getTrackedSection()`
-- `useLandingPageSectionNavigation.ts` → `syncActiveSection()`
+- `useLandingPageSectionNavigation.ts` → pending smooth-scroll target handling
 - `landingPageNavigationStore.ts` → `setLandingPageActiveSection()`
 
 Current behavior:
@@ -150,6 +154,24 @@ Current behavior:
 - the header re-renders with the new current item
 
 `activeSection` is not the request source of truth. It remains the UI-facing state that reflects the current scroll result.
+
+### Step 5. Reveal happens from visibility, not navigation intent
+
+Relevant code:
+
+- `LandingPageRevealGate.tsx` → reveal gate timeout
+- `usePageSectionReveal.ts` → `initializeRevealState()`
+- `usePageSectionReveal.ts` → `IntersectionObserver` and reachable-section fallback checks
+
+Current behavior:
+
+- sections reveal when their trigger elements become visible enough in the viewport
+- the same reveal logic applies to manual scroll, wheel/touch scroll, smooth programmatic scroll, and cross-page return-to-section flows
+- staged heading/content timing still lives inside the reveal hook, but it is triggered by viewport visibility rather than by navigation phases
+- the hero section no longer exposes a DOM completion flag for reveal gating
+- no navigation-driven reveal choreography remains
+
+This keeps navigation focused on scroll mechanics, reveal focused on visibility-driven appearance, and hero intro as a separate readiness gate.
 
 ## Project-Page Navigation Flow
 
@@ -183,12 +205,12 @@ Current behavior:
 
 Relevant code:
 
-- `LandingPageRevealController.tsx` → `useLandingPageSectionNavigation(...)`
+- `LandingPageNavigationBinder.tsx` → `useLandingPageSectionNavigation(...)`
 - `landingPageNavigationStore.ts` → `clearLandingPageSectionRequest()`
 
 Current behavior:
 
-- on landing-page mount, the controller reads the pending request from shared state
+- on landing-page mount, the navigation binder reads the pending request from shared state
 - `useLandingPageSectionNavigation()` performs the same offset-aware scroll path as on the homepage
 - once that request is accepted, it is cleared so later visits to `/` do not inherit stale section intent
 
@@ -273,7 +295,7 @@ Relevant code:
 
 - `Header.tsx`
 - `landingPageNavigationStore.ts`
-- `LandingPageRevealController.tsx`
+- `LandingPageNavigationBinder.tsx`
 - `useLandingPageSectionNavigation.ts`
 
 Behavior:
@@ -300,7 +322,8 @@ The hardest part of the current navigation architecture is the interaction betwe
 
 - `Header.tsx`
 - `landingPageNavigationStore.ts`
-- `LandingPageRevealController.tsx`
+- `LandingPageNavigationBinder.tsx`
+- `LandingPageRevealGate.tsx`
 - `useLandingPageSectionNavigation.ts`
 - `usePageSectionReveal.ts`
 
@@ -308,7 +331,7 @@ Why it is complex:
 
 - requested navigation and observed active state share one external store snapshot, even though they now have clearer roles
 - landing-page section resolution still depends on DOM attributes, but that contract is now centralized in `landingPageSections.ts`
-- navigation and reveal behavior are connected through the same section-level orchestration
+- navigation and reveal are separate, but both still depend on the same section-level DOM contract
 
 The system is working, but this is the most behavior-dense part of the current app shell.
 

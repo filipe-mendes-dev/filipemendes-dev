@@ -106,10 +106,7 @@ export const HeroSection = ({ content, revealRef }: HeroSectionProps): ReactElem
     };
 
     return (
-        <div
-            className={st.root}
-            data-landing-hero-intro-complete={isIntroComplete ? 'true' : 'false'}
-        >
+        <div className={st.root}>
             <Section
                 className={st.heroSection}
             >

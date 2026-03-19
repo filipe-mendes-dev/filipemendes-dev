@@ -26,14 +26,16 @@ export interface PageSectionRevealResult<TSectionId extends string> {
   headerElementsRef: PageSectionElementStore<Record<TSectionId, HTMLElement | null>>;
   sectionElementsRef: PageSectionElementStore<Record<TSectionId, HTMLElement | null>>;
   initializeRevealState: () => void;
-  scheduleReveal: (sectionId: TSectionId, shouldStageContent: boolean) => void;
-  hideReveal: (sectionId: TSectionId) => void;
 }
 
 interface PageSectionRevealGroup {
   content: HTMLElement | null;
   header: HTMLElement | null;
   separator: HTMLElement | null;
+}
+
+export interface PageSectionRevealOptions {
+  mode?: 'immediate' | 'staged';
 }
 
 const revealVisibleValue = 'visible';
@@ -59,6 +61,27 @@ const createElementStore = <TSectionId extends string, TElement extends HTMLElem
 
     return result;
   }, {} as Record<TSectionId, TElement | null>);
+};
+
+const isTriggerWithinRevealEntry = (
+  triggerElement: HTMLElement,
+  revealEntryViewportRatio: number,
+): boolean => {
+  const { top } = triggerElement.getBoundingClientRect();
+
+  return top < window.innerHeight * revealEntryViewportRatio;
+};
+
+const isElementVisibleInViewport = (element: HTMLElement): boolean => {
+  const { bottom, top } = element.getBoundingClientRect();
+
+  return bottom > 0 && top < window.innerHeight;
+};
+
+const isSectionFullyVisibleInViewport = (sectionElement: HTMLElement): boolean => {
+  const { bottom, top } = sectionElement.getBoundingClientRect();
+
+  return top >= 0 && bottom <= window.innerHeight;
 };
 
 const revealContent = (element: HTMLElement | null): void => {
@@ -95,27 +118,6 @@ const hideSeparator = (element: HTMLElement | null): void => {
   if (element !== null) {
     element.dataset.landingSeparatorReveal = revealPendingValue;
   }
-};
-
-const isTriggerWithinRevealEntry = (
-  triggerElement: HTMLElement,
-  revealEntryViewportRatio: number,
-): boolean => {
-  const { top } = triggerElement.getBoundingClientRect();
-
-  return top < window.innerHeight * revealEntryViewportRatio;
-};
-
-const isElementVisibleInViewport = (element: HTMLElement): boolean => {
-  const { bottom, top } = element.getBoundingClientRect();
-
-  return bottom > 0 && top < window.innerHeight;
-};
-
-const isSectionFullyVisibleInViewport = (sectionElement: HTMLElement): boolean => {
-  const { bottom, top } = sectionElement.getBoundingClientRect();
-
-  return top >= 0 && bottom <= window.innerHeight;
 };
 
 export const usePageSectionReveal = <TSectionId extends string>({
@@ -176,16 +178,18 @@ export const usePageSectionReveal = <TSectionId extends string>({
     revealContent(revealGroup.content);
   }, []);
 
-  const scheduleReveal = useCallback(
-    (sectionId: TSectionId, shouldStageContent: boolean): void => {
+  const revealSection = useCallback(
+    (sectionId: TSectionId, options?: PageSectionRevealOptions): void => {
       const revealGroup = getRevealGroup(sectionId);
+      const revealMode = options?.mode ?? 'immediate';
 
       clearScheduledReveal(sectionId);
       revealSeparator(revealGroup.separator);
 
       const isContentPending = revealGroup.content?.dataset.landingReveal === revealPendingValue;
       const isHeaderPending = revealGroup.header?.dataset.landingHeadingReveal === revealPendingValue;
-      const shouldDelayContent = shouldStageContent && (isContentPending || isHeaderPending);
+      const shouldDelayContent =
+        revealMode === 'staged' && (isContentPending || isHeaderPending);
 
       if (!shouldDelayContent || getPrefersReducedMotion()) {
         revealContentGroup(revealGroup);
@@ -230,7 +234,7 @@ export const usePageSectionReveal = <TSectionId extends string>({
       }
 
       if (prefersReducedMotion || sectionId === initialVisibleSectionId) {
-        scheduleReveal(sectionId, false);
+        revealSection(sectionId);
 
         return;
       }
@@ -242,7 +246,9 @@ export const usePageSectionReveal = <TSectionId extends string>({
         triggerElement !== null &&
         isElementVisibleInViewport(triggerElement)
       ) {
-        scheduleReveal(sectionId, true);
+        revealSection(sectionId, {
+          mode: 'staged',
+        });
 
         return;
       }
@@ -256,7 +262,7 @@ export const usePageSectionReveal = <TSectionId extends string>({
     initialVisibleSectionId,
     isRevealEnabled,
     revealVisibleInViewport,
-    scheduleReveal,
+    revealSection,
     sectionIds,
   ]);
 
@@ -284,7 +290,9 @@ export const usePageSectionReveal = <TSectionId extends string>({
               return;
             }
 
-            scheduleReveal(sectionId, true);
+            revealSection(sectionId, {
+              mode: 'staged',
+            });
             intersectionObserver.unobserve(entry.target);
           });
         },
@@ -310,7 +318,7 @@ export const usePageSectionReveal = <TSectionId extends string>({
     isRevealEnabled,
     revealEntryThreshold,
     revealRootMargin,
-    scheduleReveal,
+    revealSection,
     sectionIds,
   ]);
 
@@ -344,11 +352,15 @@ export const usePageSectionReveal = <TSectionId extends string>({
           return;
         }
 
+        // Near the page end, a section can be fully visible before its trigger
+        // crosses the reveal threshold. Reveal it anyway.
         if (
           isTriggerWithinRevealEntry(triggerElement, revealEntryViewportRatio) ||
           isSectionFullyVisibleInViewport(sectionElement)
         ) {
-          scheduleReveal(sectionId, true);
+          revealSection(sectionId, {
+            mode: 'staged',
+          });
         }
       });
     };
@@ -358,6 +370,8 @@ export const usePageSectionReveal = <TSectionId extends string>({
         return;
       }
 
+      // Observer threshold alone can miss fully visible pending sections after
+      // scroll/resize, especially near the bottom of the page.
       frameId = window.requestAnimationFrame(syncReachablePendingSections);
     };
 
@@ -386,7 +400,7 @@ export const usePageSectionReveal = <TSectionId extends string>({
     getTriggerElement,
     isRevealEnabled,
     revealEntryViewportRatio,
-    scheduleReveal,
+    revealSection,
     sectionElementsRef,
     sectionIds,
   ]);
@@ -410,7 +424,5 @@ export const usePageSectionReveal = <TSectionId extends string>({
     headerElementsRef,
     initializeRevealState,
     sectionElementsRef,
-    scheduleReveal,
-    hideReveal,
   };
 };

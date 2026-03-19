@@ -8,10 +8,10 @@ These items describe potential future changes. They are not current architecture
 
 ## High Priority
 
-### 1. Reduce controller-level DOM coordination further only if the current explicit contract becomes a bottleneck
+### 1. Reduce reveal-binder DOM coordination further only if the current explicit contract becomes a bottleneck
 
-- Current state: homepage navigation behavior now uses an explicit section contract in `src/shared/page-sections/landingPageSections.ts`, with `src/views/LandingPage/LandingPage.tsx` declaring section roots inline and each landing-page section applying its own heading/content markers from `sectionId`. `src/views/LandingPage/LandingPageRevealController/LandingPageRevealController.tsx` resolves those elements through the shared contract instead of ad hoc DOM queries.
-- Why it matters: this is still the most behavior-dense part of the codebase, even though the current contract is clearer than before.
+- Current state: homepage navigation and reveal are now decoupled. `src/shared/page-sections/useLandingPageSectionNavigation.ts` owns section targeting and active-section tracking, `src/shared/page-sections/usePageSectionReveal.ts` owns viewport-driven reveal behavior, and `src/views/LandingPage/LandingPageRevealGate/LandingPageRevealGate.tsx` is a thin binder that resolves section elements and applies a simple post-hero reveal delay. The reveal gate still resolves section elements through the explicit DOM contract in `src/shared/page-sections/landingPageSections.ts`.
+- Why it matters: the old navigation-driven reveal choreography is gone, but the reveal gate still depends on DOM resolution and remains the integration point for landing-page reveal setup.
 - Possible improvement: if future changes justify it, move from explicit DOM resolution to explicit ref registration so the controller no longer needs to query the DOM at all.
 - Risk level: Medium
 - Priority: High
@@ -82,6 +82,6 @@ These areas currently have clear value and should not be changed without a speci
 
 The current codebase does not need a broad refactor to function well. The most meaningful improvements are about reducing ambiguity:
 
-- make homepage navigation/reveal behavior easier to reason about
+- keep homepage navigation and reveal ownership explicit and narrow
 - keep shell-level architecture simple and explicit
 - clarify source-of-truth ownership for theme logic and tokens

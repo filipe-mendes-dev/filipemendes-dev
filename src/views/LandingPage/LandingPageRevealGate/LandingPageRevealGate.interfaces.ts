@@ -1,5 +1,5 @@
 import type { SectionId } from '../../../shared/navigation/sections';
 
-export interface LandingPageRevealControllerProps {
+export interface LandingPageRevealGateProps {
   initialVisibleSectionId?: SectionId;
 }
