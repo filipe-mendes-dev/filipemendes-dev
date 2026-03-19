@@ -33,6 +33,8 @@ Follow these rules strictly.
 - Keep components focused and composable.
 - Avoid hard-coded magic numbers and duplicated constants.
 - Support long text and small screens without layout breaks.
+- Prefer direct optional prop passing over conditional object spreads in JSX.
+- Avoid helper functions that only return trivial prop/attribute bags for JSX; prefer explicit attributes when there are only a few values.
 
 ## 5) Styling and responsiveness rules
 
