@@ -1,7 +1,7 @@
 "use client";
 
 import { type ReactElement, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 import { useSectionRevealMotion } from "../../../shared/motion/useSectionRevealMotion";
 import surface from "../PageSectionSurface/PageSectionSurface.module.css";
@@ -25,10 +25,7 @@ export const Section = ({
 }: SectionProps): ReactElement => {
   const revealMotion = useSectionRevealMotion();
   const sectionRef = useRef<HTMLElement | null>(null);
-  const isInView = useInView(sectionRef, revealMotion.viewport);
   const isRevealManaged = isRevealEnabled !== undefined;
-  const animationState =
-    isRevealEnabled === true && isInView ? "visible" : "hidden";
   const sectionClasses = joinClassNames(
     st.root,
     isRevealManaged ? surface.section : undefined,
@@ -38,13 +35,14 @@ export const Section = ({
 
   return (
     <motion.section
-      animate={isRevealManaged ? animationState : undefined}
       className={sectionClasses}
       data-landing-section={id}
       id={id}
       initial={isRevealManaged ? "hidden" : false}
       ref={sectionRef}
       variants={isRevealManaged ? revealMotion.sectionVariants : undefined}
+      whileInView={isRevealEnabled === true ? "visible" : "hidden"}
+      viewport={revealMotion.viewport}
     >
       {isRevealManaged && (
         <motion.div

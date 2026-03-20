@@ -2,9 +2,9 @@
 
 import {
   stagger,
-  type UseInViewOptions,
   useReducedMotion,
   type Variants,
+  type ViewportOptions,
 } from "framer-motion";
 
 import {
@@ -18,7 +18,7 @@ import {
 } from "../theme/motion";
 
 type SectionRevealViewport = Required<
-  Pick<UseInViewOptions, "amount" | "margin" | "once">
+  Pick<ViewportOptions, "amount" | "margin" | "once">
 >;
 
 export interface SectionRevealMotion {
@@ -175,9 +175,7 @@ export const useSectionRevealMotion = (): SectionRevealMotion => {
     },
     viewport: {
       amount: landingPageMotion.revealEntryThreshold,
-      margin: landingPageRevealRootMargin as NonNullable<
-        UseInViewOptions["margin"]
-      >,
+      margin: landingPageRevealRootMargin,
       once: true,
     },
   };
