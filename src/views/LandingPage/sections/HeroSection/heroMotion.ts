@@ -1,6 +1,6 @@
 import { motionDurationMs, motionEase } from "../../../../shared/theme/motion";
 
-export interface HeroMotionConfig {
+interface HeroMotionConfig {
   afterWindow: number;
   terminalEnter: number;
   beforeTyping: number;

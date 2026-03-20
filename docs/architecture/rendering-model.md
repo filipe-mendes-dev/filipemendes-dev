@@ -87,7 +87,7 @@ The current explicit client entry files are:
 
 - `src/components/layout/Header/Header.tsx`
 - `src/views/LandingPage/navigation/LandingPageNavigationBinder.tsx`
-- `src/views/LandingPage/LandingPageRevealGate/LandingPageRevealGate.tsx`
+- `src/views/LandingPage/LandingPage.tsx`
 - `src/views/LandingPage/sections/HeroSection/HeroSection.tsx`
 - `src/views/ProjectDetailPage/ProjectDetailPage.tsx`
 - `src/components/navigation/AppLink/AppLink.tsx`
@@ -121,17 +121,17 @@ Could it be server instead:
 
 - no, not in its current role, because it is a browser-only navigation binder
 
-### `src/views/LandingPage/LandingPageRevealGate/LandingPageRevealGate.tsx`
+### `src/views/LandingPage/LandingPage.tsx`
 
 Why it is client:
 
-- queries DOM nodes by section ID
-- runs browser-only reveal logic
-- enables reveal after a browser-side timeout derived from the hero intro motion config
+- uses `useLandingPageRevealEnabled()`
+- mounts the landing-page navigation binder
+- passes browser-controlled reveal enablement into reveal-managed sections
 
 Could it be server instead:
 
-- no, not in its current role, because it binds real DOM nodes and browser-side reveal enablement
+- not in its current role, because it coordinates browser-only reveal enablement and client-side navigation binding
 
 ### `src/views/LandingPage/sections/HeroSection/HeroSection.tsx`
 
@@ -149,13 +149,13 @@ Could it be server instead:
 
 Why it is client:
 
-- uses `usePageSectionReveal()`
-- stores section/header/content refs through callbacks
-- relies on browser-side reveal orchestration
+- uses Framer Motion directly
+- uses `useSectionRevealMotion()`
+- relies on browser-side in-view reveal behavior through `Section`
 
 Could it be server instead:
 
-- partially, yes; the page content itself is static-friendly, but the current reveal implementation keeps the view on the client
+- partially, yes; the page content itself is static-friendly, but the current motion/reveal implementation keeps the view on the client
 
 ### `src/components/navigation/AppLink/AppLink.tsx`
 
@@ -188,9 +188,9 @@ After the initial HTML is delivered:
 - the theme bootstrap script in `src/app/layout.tsx` sets `data-theme`
 - `Header.tsx` hydrates and subscribes to theme and landing-page navigation state
 - `LandingPageNavigationBinder.tsx` hydrates and consumes pending section requests
-- `LandingPageRevealGate.tsx` hydrates and connects reveal state to real section DOM nodes
+- `LandingPage.tsx` hydrates and enables landing-page section reveal after the hero intro gate
 - `HeroSection.tsx` hydrates and runs the intro motion sequence
-- `ProjectDetailPage.tsx` hydrates and activates reveal behavior for project sections
+- `ProjectDetailPage.tsx` hydrates and activates motion-driven reveal behavior for project sections
 
 Browser-only responsibilities therefore include:
 
@@ -246,7 +246,9 @@ Current behavior:
 Relevant code:
 
 - `src/views/LandingPage/sections/HeroSection/HeroSection.tsx`
-- `src/shared/reveal/usePageSectionReveal.ts`
+- `src/views/LandingPage/useLandingPageRevealEnabled/useLandingPageRevealEnabled.tsx`
+- `src/components/ui/Section/Section.tsx`
+- `src/shared/motion/useSectionRevealMotion.ts`
 
 Current behavior:
 

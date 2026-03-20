@@ -2,7 +2,7 @@ import { type SectionId, sectionIds } from '../../../shared/navigation/sections'
 
 const sectionAttributeName = 'data-landing-section';
 
-export interface OrderedLandingPageSectionElement {
+interface OrderedLandingPageSectionElement {
   element: HTMLElement;
   sectionId: SectionId;
 }

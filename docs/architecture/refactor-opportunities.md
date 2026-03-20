@@ -10,9 +10,9 @@ These items describe potential future changes. They are not current architecture
 
 ### 1. Reduce reveal-binder DOM coordination further only if the current explicit contract becomes a bottleneck
 
-- Current state: homepage navigation and reveal are now decoupled. `src/views/LandingPage/navigation/useLandingPageNavigationController.ts` owns request consumption and scroll execution, `src/views/LandingPage/navigation/useLandingPageActiveSectionTracker.ts` owns scroll-based active-section tracking, `src/shared/reveal/usePageSectionReveal.ts` owns viewport-driven reveal behavior, and `src/views/LandingPage/LandingPageRevealGate/LandingPageRevealGate.tsx` is a thin binder that resolves section elements and applies a simple post-hero reveal delay. The reveal gate still resolves section elements through the explicit DOM contract in `src/views/LandingPage/navigation/landingPageSections.ts`.
-- Why it matters: the old navigation-driven reveal choreography is gone, but the reveal gate still depends on DOM resolution and remains the integration point for landing-page reveal setup.
-- Possible improvement: if future changes justify it, move from explicit DOM resolution to explicit ref registration so the controller no longer needs to query the DOM at all.
+- Current state: homepage navigation and reveal are now decoupled. `src/views/LandingPage/navigation/useLandingPageNavigationController.ts` owns request consumption and scroll execution, `src/views/LandingPage/navigation/useLandingPageActiveSectionTracker.ts` owns scroll-based active-section tracking, `src/views/LandingPage/useLandingPageRevealEnabled/useLandingPageRevealEnabled.tsx` owns the post-hero reveal gate, and reveal-managed sections use `src/components/ui/Section/Section.tsx` with `src/shared/motion/useSectionRevealMotion.ts`.
+- Why it matters: the old navigation-driven reveal choreography is gone, but reveal is still coordinated through a page-level enablement flag and shared section motion primitives.
+- Possible improvement: keep the current model unless later UX requirements justify a more explicit page-level reveal controller again.
 - Risk level: Medium
 - Priority: High
 

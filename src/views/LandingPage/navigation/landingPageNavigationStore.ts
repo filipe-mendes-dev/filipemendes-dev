@@ -1,6 +1,6 @@
 import type { SectionId } from "../../../shared/navigation/sections";
 
-export interface LandingPageNavigationSnapshot {
+interface LandingPageNavigationSnapshot {
   activeSection: SectionId;
   pendingTargetSection: SectionId | null;
   requestedSection: SectionId | null;

@@ -6,7 +6,7 @@ import {
   motionStaggerMs,
 } from "../../../shared/theme/motion";
 
-export interface HeaderMotionConfig {
+interface HeaderMotionConfig {
   desktopNavStaggerSeconds: number;
   desktopThemeToggleDelaySteps: number;
   enterOffsetPx: number;
