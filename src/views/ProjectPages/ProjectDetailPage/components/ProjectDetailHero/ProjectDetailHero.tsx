@@ -1,29 +1,27 @@
-'use client';
+import type { ReactElement } from "react";
 
-import type { ReactElement } from 'react';
-
-import Link from 'next/link';
+import Link from "next/link";
 
 import {
   AppStoreIcon,
   BackIcon,
   ExternalLinkIcon,
   GooglePlayIcon,
-} from '../../../../../components/icons';
-import { Container } from '../../../../../components/ui/Container';
-import surface from '../../../../../components/ui/PageSectionSurface/PageSectionSurface.module.css';
-import su from '../../../../../shared/styles/utilities.module.css';
-import type { ProjectDetailHeroProps } from './ProjectDetailHero.interfaces';
-import st from './ProjectDetailHero.module.css';
+} from "../../../../../components/icons";
+import { Container } from "../../../../../components/ui/Container";
+import surface from "../../../../../components/ui/PageSectionSurface/PageSectionSurface.module.css";
+import su from "../../../../../shared/styles/utilities.module.css";
+import type { ProjectDetailHeroProps } from "./ProjectDetailHero.interfaces";
+import st from "./ProjectDetailHero.module.css";
 
-const hasStoreLinks = (hero: ProjectDetailHeroProps['hero']): boolean => {
+const hasStoreLinks = (hero: ProjectDetailHeroProps["hero"]): boolean => {
   return (
     hero.storeLinks?.appStore !== undefined ||
     hero.storeLinks?.googlePlay !== undefined
   );
 };
 
-const hasProjectActions = (hero: ProjectDetailHeroProps['hero']): boolean => {
+const hasProjectActions = (hero: ProjectDetailHeroProps["hero"]): boolean => {
   return hasStoreLinks(hero) || hero.links.length > 0;
 };
 
