@@ -16,7 +16,6 @@ declare const styles: {
   readonly 'siteHeader': string;
   readonly 'siteMark': string;
   readonly 'siteMarkPrompt': string;
-  readonly 'siteMarkSrOnly': string;
   readonly 'siteMarkText': string;
   readonly 'siteNavLink': string;
   readonly 'siteNavList': string;

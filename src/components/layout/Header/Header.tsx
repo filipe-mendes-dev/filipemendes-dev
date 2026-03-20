@@ -149,6 +149,7 @@ export const Header = ({
           <Link
             href="/"
             className={st.siteMark}
+            aria-label={siteTitle}
             onClick={handleHomeNavigation}
             {...homeLinkAriaCurrent}
           >
@@ -156,7 +157,6 @@ export const Header = ({
               {"</>"}
             </span>
             <span className={st.siteMarkText}>filipemendes.dev</span>
-            <span className={st.siteMarkSrOnly}>{siteTitle}</span>
           </Link>
 
           <nav aria-label="Primary" className={st.desktopNav}>
