@@ -121,7 +121,7 @@
   width: min(calc(100% - 3rem), 68rem);
   height: 1px;
   margin-inline: auto;
-  transform-origin: left center;
+  transform-origin: center;
   background: linear-gradient(
     90deg,
     transparent 0%,
