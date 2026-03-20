@@ -86,7 +86,8 @@ Why they can stay server-side:
 The current explicit client entry files are:
 
 - `src/components/layout/Header/Header.tsx`
-- `src/views/LandingPage/LandingPageRevealController/LandingPageRevealController.tsx`
+- `src/views/LandingPage/navigation/LandingPageNavigationBinder.tsx`
+- `src/views/LandingPage/LandingPage.tsx`
 - `src/views/LandingPage/sections/HeroSection/HeroSection.tsx`
 - `src/views/ProjectDetailPage/ProjectDetailPage.tsx`
 - `src/components/navigation/AppLink/AppLink.tsx`
@@ -107,18 +108,30 @@ Could it be server instead:
 
 - no, not in its current role, because it owns interactive shell behavior
 
-### `src/views/LandingPage/LandingPageRevealController/LandingPageRevealController.tsx`
+### `src/views/LandingPage/navigation/LandingPageNavigationBinder.tsx`
 
 Why it is client:
 
 - uses `useSyncExternalStore`
-- queries DOM nodes by section ID
-- uses `MutationObserver`
-- runs scroll/reveal hooks that depend on browser APIs
+- mounts `useLandingPageNavigationController()`
+- mounts `useLandingPageActiveSectionTracker()`
+- consumes browser-only scroll state
 
 Could it be server instead:
 
-- no, not in its current role, because it is purely a browser coordination layer
+- no, not in its current role, because it is a browser-only navigation binder
+
+### `src/views/LandingPage/LandingPage.tsx`
+
+Why it is client:
+
+- uses `useLandingPageRevealEnabled()`
+- mounts the landing-page navigation binder
+- passes browser-controlled reveal enablement into reveal-managed sections
+
+Could it be server instead:
+
+- not in its current role, because it coordinates browser-only reveal enablement and client-side navigation binding
 
 ### `src/views/LandingPage/sections/HeroSection/HeroSection.tsx`
 
@@ -126,8 +139,7 @@ Why it is client:
 
 - uses Framer Motion
 - uses `useReducedMotion`, `useState`, and `useEffect`
-- handles direct section scrolling on hero actions
-- exposes the hero intro completion flag through a DOM data attribute
+- requests landing-page section navigation on hero actions
 
 Could it be server instead:
 
@@ -137,13 +149,13 @@ Could it be server instead:
 
 Why it is client:
 
-- uses `usePageSectionReveal()`
-- stores section/header/content refs through callbacks
-- relies on browser-side reveal orchestration
+- uses Framer Motion directly
+- uses `useSectionRevealMotion()`
+- relies on browser-side in-view reveal behavior through `Section`
 
 Could it be server instead:
 
-- partially, yes; the page content itself is static-friendly, but the current reveal implementation keeps the view on the client
+- partially, yes; the page content itself is static-friendly, but the current motion/reveal implementation keeps the view on the client
 
 ### `src/components/navigation/AppLink/AppLink.tsx`
 
@@ -175,9 +187,10 @@ After the initial HTML is delivered:
 
 - the theme bootstrap script in `src/app/layout.tsx` sets `data-theme`
 - `Header.tsx` hydrates and subscribes to theme and landing-page navigation state
-- `LandingPageRevealController.tsx` hydrates and connects store state to real section DOM nodes
+- `LandingPageNavigationBinder.tsx` hydrates and consumes pending section requests
+- `LandingPage.tsx` hydrates and enables landing-page section reveal after the hero intro gate
 - `HeroSection.tsx` hydrates and runs the intro motion sequence
-- `ProjectDetailPage.tsx` hydrates and activates reveal behavior for project sections
+- `ProjectDetailPage.tsx` hydrates and activates motion-driven reveal behavior for project sections
 
 Browser-only responsibilities therefore include:
 
@@ -185,8 +198,8 @@ Browser-only responsibilities therefore include:
 - mobile menu interaction
 - header height measurement
 - active-section tracking
-- section scrolling orchestration
-- reveal orchestration
+- section scrolling and request consumption
+- viewport-driven reveal behavior
 - hero intro motion
 
 ## Hydration Behavior
@@ -216,14 +229,16 @@ Current behavior:
 
 Relevant code:
 
-- `src/shared/page-sections/landingPageNavigationStore.ts`
-- `src/views/LandingPage/LandingPageRevealController/LandingPageRevealController.tsx`
+- `src/views/LandingPage/navigation/landingPageNavigationStore.ts`
+- `src/views/LandingPage/navigation/LandingPageNavigationBinder.tsx`
 - `src/components/layout/Header/Header.tsx`
 
 Current behavior:
 
-- the server snapshot for landing-page navigation starts at `home`
-- the client later syncs from the hash and scroll position
+- `activeSection` starts at `home` on the server snapshot
+- the server snapshot starts with no pending section request
+- the client later derives active section from scroll position
+- homepage section requests are consumed by the landing-page navigation hook and then cleared
 - the header then renders the client-correct active section
 
 ### Motion hydration
@@ -231,20 +246,23 @@ Current behavior:
 Relevant code:
 
 - `src/views/LandingPage/sections/HeroSection/HeroSection.tsx`
-- `src/shared/page-sections/usePageSectionReveal.ts`
+- `src/views/LandingPage/useLandingPageRevealEnabled/useLandingPageRevealEnabled.tsx`
+- `src/components/ui/Section/Section.tsx`
+- `src/shared/motion/useSectionRevealMotion.ts`
 
 Current behavior:
 
 - hero intro and reveal state are browser-derived
 - initial HTML is present before those client behaviors run
 - the visible timing and reveal state become accurate only after hydration and effects run
+- later section reveal is driven by viewport visibility, while the reveal gate only delays when that reveal system becomes active
 
 ## Concrete Hydration Risks
 
 ### Confirmed current risks
 
 - Theme mismatch without the bootstrap script: the server cannot know `localStorage`, so `src/app/layout.tsx` must set `data-theme` early.
-- Active-nav mismatch on first paint: `landingPageNavigationStore.ts` starts from a default `home` snapshot and is corrected later in the browser.
+- Active-nav mismatch on first paint: `src/views/LandingPage/navigation/landingPageNavigationStore.ts` starts from a default `home` snapshot and is corrected later in the browser.
 - Larger-than-necessary hydrated subtree on project detail pages: `ProjectDetailPage.tsx` is fully client-side because reveal logic is inside the page view.
 
 ### Assumption — needs verification

@@ -7,23 +7,6 @@
     gap: var(--space-5);
 }
 
-.contactGrid > [data-reveal-item] {
-    --reveal-index: 0;
-    opacity: 0;
-    transform: translate3d(0, 0.95rem, 0);
-    transition: opacity var(--motion-duration-2xl) var(--motion-ease-standard),
-        transform var(--motion-duration-3xl) var(--motion-ease-standard);
-    transition-delay: calc(
-        var(--motion-duration-sm) +
-            (var(--reveal-index, 0) * var(--motion-stagger-sm))
-    );
-}
-
-.contactGrid[data-landing-reveal='visible'] > [data-reveal-item] {
-    opacity: 1;
-    transform: none;
-}
-
 .supportRail {
     display: grid;
     gap: var(--space-4);
@@ -57,25 +40,6 @@
 .supportSections {
     display: grid;
     gap: var(--space-3);
-}
-
-.supportSections > [data-reveal-item] {
-    --reveal-index: 0;
-    opacity: 0;
-    transform: translate3d(-0.45rem, 0.7rem, 0);
-    transition: opacity var(--motion-duration-2xl) var(--motion-ease-standard),
-        transform var(--motion-duration-3xl) var(--motion-ease-standard);
-    transition-delay: calc(
-        var(--motion-duration-sm) +
-            (var(--reveal-index, 0) * var(--motion-stagger-sm))
-    );
-}
-
-.contactGrid[data-landing-reveal='visible']
-    .supportSections
-    > [data-reveal-item] {
-    opacity: 1;
-    transform: none;
 }
 
 .supportSection {
@@ -144,23 +108,6 @@
 .contactForm {
     display: grid;
     gap: var(--space-3);
-}
-
-.contactForm > [data-reveal-item] {
-    --reveal-index: 0;
-    opacity: 0;
-    transform: translate3d(0, 0.7rem, 0);
-    transition: opacity var(--motion-duration-2xl) var(--motion-ease-standard),
-        transform var(--motion-duration-3xl) var(--motion-ease-standard);
-    transition-delay: calc(
-        var(--motion-duration-sm) +
-            (var(--reveal-index, 0) * var(--motion-stagger-sm))
-    );
-}
-
-.contactGrid[data-landing-reveal='visible'] .contactForm > [data-reveal-item] {
-    opacity: 1;
-    transform: none;
 }
 
 .field {
@@ -265,15 +212,5 @@
     .formButton {
         width: 100%;
         justify-content: center;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .contactGrid > [data-reveal-item],
-    .supportSections > [data-reveal-item],
-    .contactForm > [data-reveal-item] {
-        opacity: 1;
-        transform: none;
-        transition: none;
     }
 }

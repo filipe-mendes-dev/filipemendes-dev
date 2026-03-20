@@ -5,28 +5,3 @@
   display: grid;
   gap: var(--space-4);
 }
-
-.projectsList > [data-reveal-item] {
-  --reveal-index: 0;
-  opacity: 0;
-  transform: translate3d(0, 1rem, 0);
-  transition:
-    opacity var(--motion-duration-2xl) var(--motion-ease-standard),
-    transform var(--motion-duration-3xl) var(--motion-ease-standard);
-  transition-delay: calc(
-    var(--motion-duration-sm) + (var(--reveal-index, 0) * var(--motion-stagger-sm))
-  );
-}
-
-.projectsList[data-landing-reveal='visible'] > [data-reveal-item] {
-  opacity: 1;
-  transform: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .projectsList > [data-reveal-item] {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}

@@ -1,217 +1,144 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import Link from "next/link";
+import { type ReactElement } from "react";
 import {
-  type CSSProperties,
-  type MouseEvent,
-  type MouseEventHandler,
-  type ReactElement,
-  useEffect,
-  useId,
-  useLayoutEffect,
-  useRef,
-  useState,
-  useSyncExternalStore,
-} from 'react';
+  motion,
+  stagger,
+  useReducedMotion,
+  type Variants,
+} from "framer-motion";
 
-import type { NavigationItem } from '../../../data/portfolio';
-import { type SectionId } from '../../../shared/navigation/sections';
-import {
-  getLandingPageNavigationServerSnapshot,
-  getLandingPageNavigationSnapshot,
-  requestLandingPageSection,
-  subscribeToLandingPageNavigation,
-} from '../../../shared/page-sections/landingPageNavigationStore';
-import {
-  defaultThemePreference,
-  getStoredThemePreference,
-  setStoredThemePreference,
-  type ThemeName,
-} from '../../../shared/theme/themePreference';
-import { HeaderNavList } from './HeaderNavList';
-import type { HeaderProps } from './Header.interfaces';
-import st from './Header.module.css';
-import { ThemeToggle } from './ThemeToggle';
-
-const getSectionHref = (sectionId: SectionId): string => {
-  return `/#${sectionId}`;
-};
+import { HeaderNavList } from "./HeaderNavList";
+import type { HeaderProps } from "./Header.interfaces";
+import { headerMotionConfig } from "./headerMotion";
+import st from "./Header.module.css";
+import { ThemeToggle } from "./ThemeToggle";
+import { useHeaderController } from "./useHeaderController";
+import { heroIntroRevealGateDelayMs } from "../../../views/LandingPage/sections/HeroSection/heroMotion";
 
 export const Header = ({
   siteTitle,
   navigation,
 }: HeaderProps): ReactElement => {
-  const pathname = usePathname() ?? '/';
-  const headerRef = useRef<HTMLElement | null>(null);
-  const mobileNavRef = useRef<HTMLElement | null>(null);
-  const mobileNavId = useId();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [theme, setTheme] = useState<ThemeName>(defaultThemePreference);
-  const landingPageNavigation = useSyncExternalStore(
-    subscribeToLandingPageNavigation,
-    getLandingPageNavigationSnapshot,
-    getLandingPageNavigationServerSnapshot,
-  );
-  const activeSection: SectionId | undefined =
-    pathname === '/'
-      ? landingPageNavigation.activeSection
-      : pathname.startsWith('/projects/')
-        ? 'projects'
-        : undefined;
-  const themeToggleLabel =
-    theme === 'light' ? 'Activate dark theme' : 'Activate light theme';
-  const mobileMenuLabel = isMobileMenuOpen
-    ? 'Close navigation menu'
-    : 'Open navigation menu';
-  const homeLinkAriaCurrent =
-    pathname === '/' && activeSection === 'home'
-      ? { 'aria-current': 'page' as const }
-      : {};
-
-  const getNavigationKey = (item: NavigationItem): string => {
-    return item.sectionId ?? `${item.href}:${item.label}`;
+  const {
+    desktopNavItems,
+    handleHomeNavigation,
+    headerRef,
+    homeLinkAriaCurrent,
+    isLandingPage,
+    isMobileMenuOpen,
+    mobileMenuLabel,
+    mobileNavId,
+    mobileNavItems,
+    mobileNavRef,
+    theme,
+    themeToggleLabel,
+    toggleMobileMenu,
+    toggleTheme,
+  } = useHeaderController({
+    navigation,
+  });
+  const isReducedMotionEnabled = useReducedMotion() ?? false;
+  const headerRevealDelaySeconds =
+    isLandingPage && !isReducedMotionEnabled
+      ? heroIntroRevealGateDelayMs / 1000
+      : 0;
+  const desktopThemeToggleDelaySeconds =
+    headerRevealDelaySeconds +
+    headerMotionConfig.desktopNavStaggerSeconds *
+      headerMotionConfig.desktopThemeToggleDelaySteps;
+  const desktopNavVariants: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        delayChildren: isReducedMotionEnabled
+          ? 0
+          : stagger(headerMotionConfig.desktopNavStaggerSeconds, {
+              startDelay: headerRevealDelaySeconds,
+            }),
+      },
+    },
+  };
+  const desktopNavItemVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      x: isReducedMotionEnabled ? 0 : -headerMotionConfig.enterOffsetPx,
+      pointerEvents: "none",
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      pointerEvents: "auto",
+      transition: {
+        duration: isReducedMotionEnabled
+          ? 0
+          : headerMotionConfig.itemDurationSeconds,
+        ease: headerMotionConfig.itemEase,
+      },
+    },
   };
 
-  const getNavigationHref = (item: NavigationItem): string => {
-    return item.sectionId === undefined ? item.href : getSectionHref(item.sectionId);
+  const desktopThemeToggleVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      pointerEvents: "none",
+      x: isReducedMotionEnabled ? 0 : -headerMotionConfig.enterOffsetPx,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      pointerEvents: "auto",
+      transition: {
+        duration: isReducedMotionEnabled
+          ? 0
+          : headerMotionConfig.themeToggleDurationSeconds,
+        delay: desktopThemeToggleDelaySeconds,
+        ease: headerMotionConfig.itemEase,
+      },
+    },
   };
 
-  const handleSectionNavigation = (
-    sectionId: SectionId | undefined,
-    event: MouseEvent<HTMLAnchorElement>,
-  ): void => {
-    if (sectionId === undefined) {
-      return;
-    }
-
-    requestLandingPageSection(sectionId);
-
-    if (pathname === '/') {
-      event.preventDefault();
-    }
+  const menuToggleVariants: Variants = {
+    hidden: {
+      pointerEvents: "none",
+    },
+    visible: {
+      pointerEvents: "auto",
+      transition: {
+        delayChildren: isReducedMotionEnabled
+          ? 0
+          : stagger(headerMotionConfig.mobileMenuStaggerSeconds, {
+              startDelay: headerRevealDelaySeconds,
+              from: "last",
+            }),
+      },
+    },
   };
 
-  const getDesktopNavItemOnClick = (
-    item: NavigationItem,
-  ): MouseEventHandler<HTMLAnchorElement> => {
-    return (event): void => {
-      handleSectionNavigation(item.sectionId, event);
-    };
+  const spanVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      y: -headerMotionConfig.enterOffsetPx,
+      scaleX: headerMotionConfig.hiddenScaleX,
+      pointerEvents: "none",
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+      scaleX: 1,
+      pointerEvents: "auto",
+      transition: {
+        duration: isReducedMotionEnabled
+          ? 0
+          : headerMotionConfig.menuBarDurationSeconds,
+        ease: headerMotionConfig.menuBarEase,
+      },
+    },
   };
 
-  const getMobileNavItemOnClick = (
-    item: NavigationItem,
-  ): MouseEventHandler<HTMLAnchorElement> => {
-    return (event): void => {
-      setIsMobileMenuOpen(false);
-      handleSectionNavigation(item.sectionId, event);
-    };
-  };
-
-  const isNavigationItemCurrent = (item: NavigationItem): boolean => {
-    const isLandingSection =
-      pathname === '/' && activeSection !== undefined;
-
-    if (isLandingSection) {
-      return (
-        item.sectionId !== undefined && activeSection === item.sectionId
-      );
-    }
-
-    const isProjectDetailMatch =
-      item.sectionId === 'projects' && pathname.startsWith('/projects/');
-
-    if (isProjectDetailMatch) {
-      return true;
-    }
-
-    return item.sectionId === undefined && pathname === item.href;
-  };
-
-  const getMobileNavItemStyle = (index: number): CSSProperties => {
-    return {
-      transitionDelay: `calc(var(--motion-duration-xs) + ${index} * var(--motion-stagger-sm))`,
-    };
-  };
-
-  const handleThemeToggle = (): void => {
-    const nextTheme: ThemeName = theme === 'light' ? 'dark' : 'light';
-
-    setStoredThemePreference(nextTheme);
-    setTheme(nextTheme);
-  };
-
-  useLayoutEffect(() => {
-    if (headerRef.current === null) {
-      return undefined;
-    }
-
-    const root = document.documentElement;
-    const syncHeaderOffset = (): void => {
-      if (headerRef.current === null) {
-        return;
-      }
-
-      root.style.setProperty(
-        '--header-offset',
-        `${headerRef.current.offsetHeight}px`,
-      );
-    };
-
-    syncHeaderOffset();
-
-    const observer = new ResizeObserver(() => {
-      syncHeaderOffset();
-    });
-
-    observer.observe(headerRef.current);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
-    const themeSyncFrame = window.requestAnimationFrame(() => {
-      setTheme(getStoredThemePreference());
-    });
-
-    return () => {
-      window.cancelAnimationFrame(themeSyncFrame);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!isMobileMenuOpen) {
-      return undefined;
-    }
-
-    const handlePointerDown = (event: PointerEvent): void => {
-      const target = event.target;
-
-      if (!(target instanceof Node)) {
-        return;
-      }
-
-      const isInsideHeader = headerRef.current?.contains(target) ?? false;
-      const isInsideMobileNav = mobileNavRef.current?.contains(target) ?? false;
-
-      if (isInsideHeader || isInsideMobileNav) {
-        return;
-      }
-
-      setIsMobileMenuOpen(false);
-    };
-
-    document.addEventListener('pointerdown', handlePointerDown);
-
-    return () => {
-      document.removeEventListener('pointerdown', handlePointerDown);
-    };
-  }, [isMobileMenuOpen]);
-
-  const links = navigation;
+  const headerRevealInitial = isLandingPage ? "hidden" : false;
+  const headerRevealAnimate = isLandingPage ? "visible" : undefined;
 
   return (
     <header ref={headerRef} className={`${st.root} ${st.siteHeader}`}>
@@ -220,54 +147,77 @@ export const Header = ({
           <Link
             href="/"
             className={st.siteMark}
-            onClick={(event) => {
-              handleSectionNavigation('home', event);
-            }}
+            onClick={handleHomeNavigation}
             {...homeLinkAriaCurrent}
           >
             <span className={st.siteMarkPrompt} aria-hidden="true">
-              {'</>'}
+              {"</>"}
             </span>
             <span className={st.siteMarkText}>filipemendes.dev</span>
             <span className={st.siteMarkSrOnly}>{siteTitle}</span>
           </Link>
 
           <nav aria-label="Primary" className={st.desktopNav}>
-            <HeaderNavList
-              items={links}
-              listClassName={`${st.siteNavList} ${st.desktopSiteNavList}`}
-              linkClassName={st.siteNavLink}
-              getItemKey={getNavigationKey}
-              getItemHref={getNavigationHref}
-              isItemCurrent={isNavigationItemCurrent}
-              getItemOnClick={getDesktopNavItemOnClick}
-            />
+            <motion.ul
+              animate={headerRevealAnimate}
+              className={`${st.siteNavList} ${st.desktopSiteNavList}`}
+              initial={headerRevealInitial}
+              variants={desktopNavVariants}
+            >
+              {desktopNavItems.map((item) => {
+                const linkAriaCurrent = item.isActive
+                  ? { "aria-current": "page" as const }
+                  : {};
+
+                return (
+                  <motion.li key={item.key} variants={desktopNavItemVariants}>
+                    <Link
+                      href={item.href}
+                      className={st.siteNavLink}
+                      onClick={item.onClick}
+                      {...linkAriaCurrent}
+                    >
+                      {item.label}
+                    </Link>
+                  </motion.li>
+                );
+              })}
+            </motion.ul>
           </nav>
 
-          <button
+          <motion.div
+            className={st.desktopThemeToggle}
+            variants={desktopThemeToggleVariants}
+            initial={headerRevealInitial}
+            animate={headerRevealAnimate}
+          >
+            <ThemeToggle
+              theme={theme}
+              label={themeToggleLabel}
+              onToggle={toggleTheme}
+            />
+          </motion.div>
+
+          <motion.button
+            animate={headerRevealAnimate}
             type="button"
             className={st.menuToggle}
             aria-expanded={isMobileMenuOpen}
             aria-controls={mobileNavId}
             aria-label={mobileMenuLabel}
-            onClick={() => {
-              setIsMobileMenuOpen((currentValue) => !currentValue);
-            }}
+            initial={headerRevealInitial}
+            onClick={toggleMobileMenu}
           >
-            <span className={st.menuToggleBars} aria-hidden="true">
-              <span />
-              <span />
-              <span />
-            </span>
-          </button>
-
-          <div className={st.desktopThemeToggle}>
-            <ThemeToggle
-              theme={theme}
-              label={themeToggleLabel}
-              onToggle={handleThemeToggle}
-            />
-          </div>
+            <motion.span
+              className={st.menuToggleBars}
+              aria-hidden="true"
+              variants={menuToggleVariants}
+            >
+              <motion.span variants={spanVariants} />
+              <motion.span variants={spanVariants} />
+              <motion.span variants={spanVariants} />
+            </motion.span>
+          </motion.button>
         </div>
       </div>
 
@@ -275,29 +225,26 @@ export const Header = ({
         ref={mobileNavRef}
         id={mobileNavId}
         aria-label="Primary"
-        className={`${st.headerNav} ${isMobileMenuOpen ? st.headerNavOpen : ''}`}
+        className={`${st.headerNav} ${
+          isMobileMenuOpen ? st.headerNavOpen : ""
+        }`}
       >
         <div className={st.headerNavInner}>
           <HeaderNavList
-            items={links}
+            items={mobileNavItems}
             listClassName={st.siteNavList}
             linkClassName={st.siteNavLink}
-            getItemKey={getNavigationKey}
-            getItemHref={getNavigationHref}
-            isItemCurrent={isNavigationItemCurrent}
-            getItemOnClick={getMobileNavItemOnClick}
-            getItemStyle={getMobileNavItemStyle}
           />
 
           <div className={st.mobileMenuFooter}>
             <span className={st.mobileMenuLabel}>Theme</span>
-          <ThemeToggle
-            theme={theme}
-            label={themeToggleLabel}
-            onToggle={handleThemeToggle}
-            className={st.mobileThemeToggle}
-            size="compact"
-          />
+            <ThemeToggle
+              theme={theme}
+              label={themeToggleLabel}
+              onToggle={toggleTheme}
+              className={st.mobileThemeToggle}
+              size="compact"
+            />
           </div>
         </div>
       </nav>

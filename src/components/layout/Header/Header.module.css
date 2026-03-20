@@ -91,8 +91,7 @@
   pointer-events: none;
   clip-path: inset(0 0 100% 0);
   will-change: opacity, clip-path;
-  transition:
-    opacity var(--motion-duration-lg) var(--motion-ease-standard),
+  transition: opacity var(--motion-duration-lg) var(--motion-ease-standard),
     clip-path var(--motion-duration-xl) var(--motion-ease-emphasized),
     visibility 0ms linear var(--motion-duration-xl);
 }
@@ -102,8 +101,7 @@
   visibility: visible;
   pointer-events: auto;
   clip-path: inset(0 0 0 0);
-  transition:
-    opacity var(--motion-duration-lg) var(--motion-ease-standard),
+  transition: opacity var(--motion-duration-lg) var(--motion-ease-standard),
     clip-path var(--motion-duration-xl) var(--motion-ease-emphasized),
     visibility 0ms linear 0ms;
 }
@@ -135,8 +133,7 @@
 .mobileMenuFooter {
   opacity: 0;
   transform: translateY(-0.35rem);
-  transition:
-    opacity var(--motion-duration-md) var(--motion-ease-standard),
+  transition: opacity var(--motion-duration-md) var(--motion-ease-standard),
     transform var(--motion-duration-xl) var(--motion-ease-emphasized);
 }
 
@@ -160,13 +157,12 @@
   padding-block: 0.2rem 0.45rem;
   white-space: nowrap;
   text-align: left;
-  transition:
-    color var(--transition),
+  transition: color var(--transition),
     transform var(--motion-duration-md) var(--motion-ease-standard);
 }
 
 .siteNavLink::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   bottom: 0;
@@ -176,8 +172,7 @@
   background: color-mix(in srgb, var(--moss) 85%, transparent);
   transform: scaleX(0);
   transform-origin: left;
-  transition:
-    transform var(--motion-duration-lg) var(--motion-ease-emphasized);
+  transition: transform var(--motion-duration-lg) var(--motion-ease-emphasized);
 }
 
 .siteNavLink:hover {
@@ -186,11 +181,11 @@
 }
 
 .siteNavLink:hover::after,
-.siteNavLink[aria-current='page']::after {
+.siteNavLink[aria-current="page"]::after {
   transform: scaleX(1);
 }
 
-.siteNavLink[aria-current='page'] {
+.siteNavLink[aria-current="page"] {
   color: var(--ink);
 }
 
@@ -212,9 +207,7 @@
   padding: 0;
   cursor: pointer;
   justify-self: end;
-  transition:
-    border-color var(--transition),
-    background-color var(--transition),
+  transition: border-color var(--transition), background-color var(--transition),
     box-shadow var(--motion-duration-lg) var(--motion-ease-standard),
     transform var(--motion-duration-xl) var(--motion-ease-emphasized);
 }
@@ -224,25 +217,25 @@
   box-shadow: none;
 }
 
-:global([data-theme='light']) .root,
-:global([data-theme='light']) .siteHeader {
+:global([data-theme="light"]) .root,
+:global([data-theme="light"]) .siteHeader {
   border-bottom: 0;
   box-shadow: none;
 }
 
-:global([data-theme='light']) .headerBar {
+:global([data-theme="light"]) .headerBar {
   border-bottom: var(--line-strong) solid
     color-mix(in srgb, var(--line) 82%, transparent);
-  box-shadow:
-    inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 72%, transparent),
+  box-shadow: inset 0 1px 0
+      color-mix(in srgb, var(--paper-raised) 72%, transparent),
     0 10px 30px color-mix(in srgb, var(--ink) 4%, transparent);
 }
 
-:global([data-theme='light']) .menuToggle {
+:global([data-theme="light"]) .menuToggle {
   background: transparent;
 }
 
-:global([data-theme='light']) .menuToggle:hover {
+:global([data-theme="light"]) .menuToggle:hover {
   background: transparent;
 }
 
@@ -257,6 +250,7 @@
   height: 2px;
   border-radius: var(--radius-pill);
   background: currentColor;
+  transform-origin: center;
 }
 
 .desktopThemeToggle {

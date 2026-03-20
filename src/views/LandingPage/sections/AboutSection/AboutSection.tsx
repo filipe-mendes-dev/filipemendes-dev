@@ -1,44 +1,41 @@
+'use client';
+
 import type { ReactElement } from 'react';
+import { motion } from 'framer-motion';
 
 import { EducationIcon, ExternalLinkIcon, PublicationsIcon } from '../../../../components/icons';
-import { RevealItem } from '../../../../components/ui/RevealItem';
 import { Section } from '../../../../components/ui/Section';
+import { useSectionRevealMotion } from '../../../../shared/motion/useSectionRevealMotion';
 import su from '../../../../shared/styles/utilities.module.css';
 import { AboutSupportSection } from './components/AboutSupportSection';
 import { ExperienceTimeline } from './components/ExperienceTimeline';
 import type { AboutSectionProps } from './AboutSection.interfaces';
 import st from './AboutSection.module.css';
 
-export const AboutSection = ({
-  content,
-  initialRevealState = 'visible',
-  revealRef,
-  headerRevealRef,
-}: AboutSectionProps): ReactElement => {
+export const AboutSection = ({ content, isRevealEnabled }: AboutSectionProps): ReactElement => {
+  const revealMotion = useSectionRevealMotion();
+
   return (
     <Section
-      title="About Me"
-      subtitle="Profile, systems experience, education, and selected publications."
       className={st.root}
-      initialHeadingRevealState={initialRevealState}
-      {...(headerRevealRef === undefined ? {} : { headerRevealRef })}
+      contentClassName={st.layout}
+      id="about"
+      isRevealEnabled={isRevealEnabled}
+      subtitle="Profile, systems experience, education, and selected publications."
+      title="About Me"
     >
-      <div
-        ref={revealRef}
-        className={st.layout}
-        data-landing-reveal={initialRevealState}
-      >
-        <RevealItem className={st.introBlock} index={0}>
-          <p className={st.introEyebrow}>Product systems perspective</p>
-          <p className={st.cardLead}>{content.about.profile}</p>
-        </RevealItem>
+      <motion.div className={st.introBlock} variants={revealMotion.itemVariants}>
+        <p className={st.introEyebrow}>Product systems perspective</p>
+        <p className={st.cardLead}>{content.about.profile}</p>
+      </motion.div>
 
-        <RevealItem index={1}>
-          <ExperienceTimeline className={st.journeyPanel} items={content.about.experience} />
-        </RevealItem>
+      <motion.div variants={revealMotion.itemVariants}>
+        <ExperienceTimeline className={st.journeyPanel} items={content.about.experience} />
+      </motion.div>
 
-        <RevealItem className={st.supportRail} index={2}>
-          <RevealItem index={0} role="support">
+      <motion.div variants={revealMotion.itemVariants}>
+        <motion.div className={st.supportRail} variants={revealMotion.nestedGroupVariants}>
+          <motion.div variants={revealMotion.itemVariants}>
             <AboutSupportSection className={`${st.supportSection} ${st.educationSection}`} icon={EducationIcon} title="Education">
               <ul className={`${su.stackList} ${st.educationList}`}>
                 {content.about.education.map((entry) => (
@@ -52,10 +49,10 @@ export const AboutSection = ({
                 ))}
               </ul>
             </AboutSupportSection>
-          </RevealItem>
+          </motion.div>
 
           {content.about.publications.length > 0 && (
-            <RevealItem index={1} role="support">
+            <motion.div variants={revealMotion.itemVariants}>
               <AboutSupportSection
                 className={`${st.supportSection} ${st.publicationSection}`}
                 icon={PublicationsIcon}
@@ -81,10 +78,10 @@ export const AboutSection = ({
                   ))}
                 </ul>
               </AboutSupportSection>
-            </RevealItem>
+            </motion.div>
           )}
-        </RevealItem>
-      </div>
+        </motion.div>
+      </motion.div>
     </Section>
   );
 };

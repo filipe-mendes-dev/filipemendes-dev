@@ -1,7 +1,6 @@
-import type { ReactNode, Ref } from 'react';
+import type { ReactNode } from 'react';
 
 export interface HeroWindowProps {
-    children: ReactNode;
-    isContentVisible: boolean;
-    revealRef?: Ref<HTMLDivElement>;
+  children: ReactNode;
+  isContentVisible: boolean;
 }

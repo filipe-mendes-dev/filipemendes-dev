@@ -8,11 +8,11 @@ These items describe potential future changes. They are not current architecture
 
 ## High Priority
 
-### 1. Make landing-page navigation and reveal contracts more explicit
+### 1. Reduce reveal-binder DOM coordination further only if the current explicit contract becomes a bottleneck
 
-- Current state: homepage navigation behavior is split across `src/components/layout/Header/Header.tsx`, `src/shared/page-sections/landingPageNavigationStore.ts`, `src/views/LandingPage/LandingPageRevealController/LandingPageRevealController.tsx`, `src/shared/page-sections/useLandingPageSectionNavigation.ts`, and `src/shared/page-sections/usePageSectionReveal.ts`. The controller binds to DOM nodes by section ID and reveal-related data attributes.
-- Why it matters: this is the most behavior-dense part of the codebase and the easiest part to break when changing homepage structure.
-- Possible improvement: replace implicit DOM discovery with more explicit section/ref wiring, or formalize the contract with stronger inline documentation and narrower helper APIs.
+- Current state: homepage navigation and reveal are now decoupled. `src/views/LandingPage/navigation/useLandingPageNavigationController.ts` owns request consumption and scroll execution, `src/views/LandingPage/navigation/useLandingPageActiveSectionTracker.ts` owns scroll-based active-section tracking, `src/views/LandingPage/useLandingPageRevealEnabled/useLandingPageRevealEnabled.tsx` owns the post-hero reveal gate, and reveal-managed sections use `src/components/ui/Section/Section.tsx` with `src/shared/motion/useSectionRevealMotion.ts`.
+- Why it matters: the old navigation-driven reveal choreography is gone, but reveal is still coordinated through a page-level enablement flag and shared section motion primitives.
+- Possible improvement: keep the current model unless later UX requirements justify a more explicit page-level reveal controller again.
 - Risk level: Medium
 - Priority: High
 
@@ -34,11 +34,11 @@ These items describe potential future changes. They are not current architecture
 - Risk level: Medium
 - Priority: Medium
 
-### 4. Unify section navigation paths
+### 4. Revisit whether pending target state should stay in the shared external snapshot
 
-- Current state: header links use the landing-page store and explicit offset-aware scrolling, while hero action links in `src/views/LandingPage/sections/HeroSection/HeroSection.tsx` call `scrollIntoView()` directly.
-- Why it matters: there are two code paths for the same section-navigation concept.
-- Possible improvement: route both header and hero section actions through one shared navigation helper or one shared section-navigation API.
+- Current state: homepage section navigation now keeps only transient request state, observational active state, and `pendingTargetSection` in `src/views/LandingPage/navigation/landingPageNavigationStore.ts`.
+- Why it matters: the model is much simpler now, but the shared snapshot still combines request intent and UI-facing tracking state.
+- Possible improvement: keep the current architecture unless future UX changes require a more explicit controller state again.
 - Risk level: Medium
 - Priority: Medium
 
@@ -82,6 +82,6 @@ These areas currently have clear value and should not be changed without a speci
 
 The current codebase does not need a broad refactor to function well. The most meaningful improvements are about reducing ambiguity:
 
-- make homepage navigation/reveal behavior easier to reason about
+- keep homepage navigation and reveal ownership explicit and narrow
 - keep shell-level architecture simple and explicit
 - clarify source-of-truth ownership for theme logic and tokens

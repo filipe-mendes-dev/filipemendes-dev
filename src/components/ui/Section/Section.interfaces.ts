@@ -1,18 +1,11 @@
-import type { ReactNode, Ref } from 'react';
-
-export interface SectionRevealState {
-  value: 'pending' | 'visible';
-}
+import type { ReactNode } from 'react';
 
 export interface SectionProps {
   children: ReactNode;
   title?: string;
   subtitle?: string;
   className?: string;
+  contentClassName?: string;
   id?: string;
-  containerClassName?: string;
-  contained?: boolean;
-  initialHeadingRevealState?: SectionRevealState['value'];
-  headerRevealRef?: Ref<HTMLElement>;
-  sectionRef?: Ref<HTMLElement>;
+  isRevealEnabled?: boolean;
 }

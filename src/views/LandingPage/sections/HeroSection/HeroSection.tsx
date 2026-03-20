@@ -3,9 +3,11 @@
 import { motion, stagger, useReducedMotion, type Variants } from 'framer-motion';
 import { type MouseEvent, type ReactElement, useEffect, useState } from 'react';
 
+import surface from '../../../../components/ui/PageSectionSurface/PageSectionSurface.module.css';
 import { Section } from '../../../../components/ui/Section';
 import type { ActionLink } from '../../../../data/portfolio';
 import type { SectionId } from '../../../../shared/navigation/sections';
+import { requestLandingPageSection } from '../../navigation/landingPageNavigationStore';
 import su from '../../../../shared/styles/utilities.module.css';
 import { HeroTerminal } from './HeroTerminal';
 import { HeroWindow } from './HeroWindow';
@@ -25,12 +27,12 @@ const getActionClassName = (action: ActionLink): string => {
 };
 
 const getActionHref = (action: ActionLink): string => {
-    return action.sectionId === undefined ? action.href : `/#${action.sectionId}`;
+    return action.href;
 };
 
 const joinClassNames = (...classNames: (string | false | undefined)[]): string => classNames.filter(Boolean).join(' ');
 
-export const HeroSection = ({ content, revealRef }: HeroSectionProps): ReactElement => {
+export const HeroSection = ({ content }: HeroSectionProps): ReactElement => {
     const isReducedMotionEnabled = useReducedMotion() ?? false;
     const [hasIntroFinished, setHasIntroFinished] = useState<boolean>(isReducedMotionEnabled);
     const isIntroComplete = isReducedMotionEnabled || hasIntroFinished;
@@ -60,17 +62,8 @@ export const HeroSection = ({ content, revealRef }: HeroSectionProps): ReactElem
             return;
         }
 
-        const sectionElement = document.getElementById(sectionTargetId);
-
-        if (sectionElement === null) {
-            return;
-        }
-
         event.preventDefault();
-        sectionElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-        });
+        requestLandingPageSection(sectionTargetId);
     };
 
     const revealItemVariants: Variants = {
@@ -114,15 +107,13 @@ export const HeroSection = ({ content, revealRef }: HeroSectionProps): ReactElem
     };
 
     return (
-        <div
-            className={st.root}
-            data-landing-hero-intro-complete={isIntroComplete ? 'true' : 'false'}
-        >
+        <div className={st.root}>
             <Section
-                className={st.heroSection}
+                className={`${surface.section} ${st.heroSection}`}
+                id="home"
             >
                 <div className={st.heroWindowStage}>
-                    <HeroWindow isContentVisible={isContentShown} {...(revealRef === undefined ? {} : { revealRef })}>
+                    <HeroWindow isContentVisible={isContentShown}>
                         {isTerminalVisible ? <HeroTerminal onComplete={handleTerminalComplete} /> : null}
                         <div className={st.heroGrid}>
                             <motion.div
@@ -182,11 +173,7 @@ export const HeroSection = ({ content, revealRef }: HeroSectionProps): ReactElem
                                                 key={action.label}
                                                 href={getActionHref(action)}
                                                 className={getActionClassName(action)}
-                                                {...(action.sectionId === undefined
-                                                    ? {}
-                                                    : {
-                                                          onClick: handleSectionActionClick(action.sectionId),
-                                                      })}
+                                                onClick={action.sectionId === undefined ? undefined : handleSectionActionClick(action.sectionId)}
                                             >
                                                 {action.label}
                                             </a>
