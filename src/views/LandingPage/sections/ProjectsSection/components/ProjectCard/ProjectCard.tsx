@@ -26,7 +26,7 @@ export const ProjectCard = ({ project }: ProjectCardProps): ReactElement => {
       <p className={st.description}>{project.description}</p>
 
       <div className={st.actions}>
-        <TextActionLink href={`/projects/${project.slug}`} className={st.link} trailingIcon={<ExternalLinkIcon />}>
+        <TextActionLink href={project.href} className={st.link} trailingIcon={<ExternalLinkIcon />}>
           View Product Details
         </TextActionLink>
       </div>

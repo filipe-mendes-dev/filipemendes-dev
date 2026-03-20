@@ -1,0 +1,24 @@
+export interface ProjectDetailStoreLinks {
+  appStore?: string;
+  googlePlay?: string;
+}
+
+export interface ProjectDetailHeroLink {
+  label: string;
+  href: string;
+}
+
+export interface ProjectDetailHeroData {
+  name: string;
+  logoText: string;
+  category: string;
+  positioning: string;
+  description: string;
+  isMobileApp: boolean;
+  storeLinks?: ProjectDetailStoreLinks;
+  links: ProjectDetailHeroLink[];
+}
+
+export interface ProjectDetailHeroProps {
+  hero: ProjectDetailHeroData;
+}

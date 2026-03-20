@@ -9,30 +9,28 @@ import {
   BackIcon,
   ExternalLinkIcon,
   GooglePlayIcon,
-} from '../../../../components/icons';
-import { Container } from '../../../../components/ui/Container';
-import surface from '../../../../components/ui/PageSectionSurface/PageSectionSurface.module.css';
-import su from '../../../../shared/styles/utilities.module.css';
+} from '../../../../../components/icons';
+import { Container } from '../../../../../components/ui/Container';
+import surface from '../../../../../components/ui/PageSectionSurface/PageSectionSurface.module.css';
+import su from '../../../../../shared/styles/utilities.module.css';
 import type { ProjectDetailHeroProps } from './ProjectDetailHero.interfaces';
 import st from './ProjectDetailHero.module.css';
 
-const hasStoreLinks = (project: ProjectDetailHeroProps['project']): boolean => {
+const hasStoreLinks = (hero: ProjectDetailHeroProps['hero']): boolean => {
   return (
-    project.storeLinks?.appStore !== undefined ||
-    project.storeLinks?.googlePlay !== undefined
+    hero.storeLinks?.appStore !== undefined ||
+    hero.storeLinks?.googlePlay !== undefined
   );
 };
 
-const hasProjectActions = (
-  project: ProjectDetailHeroProps['project'],
-): boolean => {
-  return hasStoreLinks(project) || project.links.length > 0;
+const hasProjectActions = (hero: ProjectDetailHeroProps['hero']): boolean => {
+  return hasStoreLinks(hero) || hero.links.length > 0;
 };
 
 export const ProjectDetailHero = ({
-  project,
+  hero,
 }: ProjectDetailHeroProps): ReactElement => {
-  const storeLinks = project.storeLinks;
+  const storeLinks = hero.storeLinks;
 
   return (
     <section className={`${surface.section} ${st.root}`}>
@@ -46,22 +44,22 @@ export const ProjectDetailHero = ({
           <header className={st.heroHeader}>
             <div className={st.heroTitleRow}>
               <div className={st.projectLogo} aria-hidden="true">
-                {project.logoText}
+                {hero.logoText}
               </div>
               <div className={st.projectHeaderIntro}>
-                <p className={st.projectCategory}>{project.category}</p>
-                <h1 className={st.projectTitle}>{project.name}</h1>
+                <p className={st.projectCategory}>{hero.category}</p>
+                <h1 className={st.projectTitle}>{hero.name}</h1>
               </div>
             </div>
             <div className={st.projectHeaderContent}>
-              <p className={st.projectPositioning}>{project.positioning}</p>
-              <p className={st.projectDescription}>{project.description}</p>
+              <p className={st.projectPositioning}>{hero.positioning}</p>
+              <p className={st.projectDescription}>{hero.description}</p>
             </div>
           </header>
 
-          {hasProjectActions(project) && (
+          {hasProjectActions(hero) && (
             <div className={st.heroActions}>
-              {project.isMobileApp && hasStoreLinks(project) && (
+              {hero.isMobileApp && hasStoreLinks(hero) && (
                 <div className={st.storeLinkRow} aria-label="Mobile app stores">
                   {storeLinks?.appStore !== undefined && (
                     <a
@@ -89,9 +87,9 @@ export const ProjectDetailHero = ({
                   )}
                 </div>
               )}
-              {project.links.length > 0 && (
+              {hero.links.length > 0 && (
                 <div className={st.projectDetailLinks}>
-                  {project.links.map((link) => (
+                  {hero.links.map((link) => (
                     <a
                       key={link.label}
                       href={link.href}
