@@ -1,0 +1,25 @@
+declare const styles: {
+  readonly 'backIcon': string;
+  readonly 'backLink': string;
+  readonly 'heroActions': string;
+  readonly 'heroHeader': string;
+  readonly 'heroInner': string;
+  readonly 'heroReveal': string;
+  readonly 'heroTitleRow': string;
+  readonly 'metaLink': string;
+  readonly 'metaLinkIcon': string;
+  readonly 'projectCategory': string;
+  readonly 'projectDescription': string;
+  readonly 'projectDetailLinks': string;
+  readonly 'projectHeaderContent': string;
+  readonly 'projectHeaderIntro': string;
+  readonly 'projectLogo': string;
+  readonly 'projectPositioning': string;
+  readonly 'projectTitle': string;
+  readonly 'root': string;
+  readonly 'storeBadgeIcon': string;
+  readonly 'storeBadgeLink': string;
+  readonly 'storeLinkRow': string;
+};
+
+export default styles;

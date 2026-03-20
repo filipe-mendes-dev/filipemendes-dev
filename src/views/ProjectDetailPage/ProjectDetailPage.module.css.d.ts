@@ -1,34 +1,13 @@
 declare const styles: {
   readonly 'architectureSection': string;
-  readonly 'backIcon': string;
-  readonly 'backLink': string;
   readonly 'detailSectionContent': string;
   readonly 'featuresSection': string;
   readonly 'galleryGrid': string;
   readonly 'galleryItem': string;
   readonly 'gallerySection': string;
-  readonly 'heroActions': string;
-  readonly 'heroHeader': string;
-  readonly 'heroInner': string;
-  readonly 'heroReveal': string;
-  readonly 'heroSection': string;
-  readonly 'heroTitleRow': string;
-  readonly 'metaLink': string;
-  readonly 'metaLinkIcon': string;
-  readonly 'projectCategory': string;
-  readonly 'projectDescription': string;
-  readonly 'projectDetailLinks': string;
-  readonly 'projectHeaderContent': string;
-  readonly 'projectHeaderIntro': string;
-  readonly 'projectLogo': string;
-  readonly 'projectPositioning': string;
-  readonly 'projectTitle': string;
   readonly 'root': string;
   readonly 'stackSection': string;
   readonly 'stackSectionContent': string;
-  readonly 'storeBadgeIcon': string;
-  readonly 'storeBadgeLink': string;
-  readonly 'storeLinkRow': string;
 };
 
 export default styles;
