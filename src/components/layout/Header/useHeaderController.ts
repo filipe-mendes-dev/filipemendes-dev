@@ -21,14 +21,13 @@ import {
   subscribeToLandingPageNavigation,
 } from '../../../views/LandingPage/navigation/landingPageNavigationStore';
 import {
-  defaultThemePreference,
-  getStoredThemePreference,
   setStoredThemePreference,
   type ThemeName,
 } from '../../../shared/theme/themePreference';
 import type { HeaderNavListItem } from './HeaderNavList/HeaderNavList.interfaces';
 
 interface HeaderControllerConfig {
+  initialTheme: ThemeName;
   navigation: NavigationItem[];
 }
 
@@ -71,6 +70,7 @@ const getMobileNavItemStyle = (index: number): CSSProperties => {
 };
 
 export const useHeaderController = ({
+  initialTheme,
   navigation,
 }: HeaderControllerConfig): HeaderControllerResult => {
   const pathname = usePathname() ?? '/';
@@ -78,7 +78,7 @@ export const useHeaderController = ({
   const mobileNavRef = useRef<HTMLElement | null>(null);
   const mobileNavId = useId();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [theme, setTheme] = useState<ThemeName>(defaultThemePreference);
+  const [theme, setTheme] = useState<ThemeName>(initialTheme);
   const landingPageNavigation = useSyncExternalStore(
     subscribeToLandingPageNavigation,
     getLandingPageNavigationSnapshot,
@@ -213,16 +213,6 @@ export const useHeaderController = ({
 
     return () => {
       observer.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
-    const themeSyncFrame = window.requestAnimationFrame(() => {
-      setTheme(getStoredThemePreference());
-    });
-
-    return () => {
-      window.cancelAnimationFrame(themeSyncFrame);
     };
   }, []);
 

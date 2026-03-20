@@ -185,8 +185,9 @@ There is no remote data dependency in the current build path.
 
 After the initial HTML is delivered:
 
-- the theme bootstrap script in `src/app/layout.tsx` sets `data-theme`
-- `Header.tsx` hydrates and subscribes to theme and landing-page navigation state
+- the server-rendered `<html data-theme="...">` already reflects the cookie-backed theme
+- the theme bootstrap script in `src/app/layout.tsx` normalizes client persistence against that rendered theme
+- `Header.tsx` hydrates with the same initial theme and subscribes to landing-page navigation state
 - `LandingPageNavigationBinder.tsx` hydrates and consumes pending section requests
 - `LandingPage.tsx` hydrates and enables landing-page section reveal after the hero intro gate
 - `HeroSection.tsx` hydrates and runs the intro motion sequence
@@ -209,21 +210,21 @@ Browser-only responsibilities therefore include:
 Relevant code:
 
 - `src/app/layout.tsx` → `getThemeInitializationScript(...)`
+- `src/app/layout.tsx` → `cookies()` and `<html data-theme={initialTheme}>`
 - `src/shared/theme/themeInitializationScript.ts` → `getThemeInitializationScript(...)`
 - `src/shared/theme/themePreference.ts` → `defaultThemePreference`, `getStoredThemePreference()`, `setStoredThemePreference()`
-- `src/components/layout/Header/Header.tsx` → `handleThemeToggle()`
-- `src/components/layout/Header/Header.tsx` → theme `useState(defaultThemePreference)`
-- `src/components/layout/Header/Header.tsx` → theme sync `useEffect(...)`
+- `src/components/layout/Header/useHeaderController.ts` → theme `useState(initialTheme)`
+- `src/components/layout/Header/useHeaderController.ts` → `toggleTheme()`
 - `src/shared/theme/theme.css` → live theme variable definitions
 
 Current behavior:
 
-- the server renders without user-specific localStorage knowledge
-- a `beforeInteractive` script sets `data-theme` before hydration
+- the server reads the `portfolio-theme` cookie and renders the matching `data-theme` value on `<html>`
+- a `beforeInteractive` script re-applies that theme on the client and syncs `localStorage`
 - the bootstrap defaults to `dark` when no persisted theme exists
 - `theme.css` supplies the actual light and dark variable sets selected by `data-theme`
-- `Header.tsx` starts from the shared dark default, then syncs local state from the already-bootstrapped `data-theme` value after mount
-- `<html suppressHydrationWarning>` is used because the DOM may differ from the server snapshot by the time React hydrates
+- `Header.tsx` starts from the same server-provided initial theme used by the layout
+- the old root-level hydration mismatch from theme bootstrap is removed because server and client start from the same theme value
 
 ### Navigation hydration
 
@@ -261,9 +262,12 @@ Current behavior:
 
 ### Confirmed current risks
 
-- Theme mismatch without the bootstrap script: the server cannot know `localStorage`, so `src/app/layout.tsx` must set `data-theme` early.
 - Active-nav mismatch on first paint: `src/views/LandingPage/navigation/landingPageNavigationStore.ts` starts from a default `home` snapshot and is corrected later in the browser.
 - Larger-than-necessary hydrated subtree on project detail pages: `ProjectDetailPage.tsx` is fully client-side because reveal logic is inside the page view.
+
+### Theme tradeoff introduced by the current fix
+
+- Theme-aware rendering now depends on request cookies in `src/app/layout.tsx`, so routes beneath that layout are server-rendered on demand instead of fully static.
 
 ### Assumption — needs verification
 

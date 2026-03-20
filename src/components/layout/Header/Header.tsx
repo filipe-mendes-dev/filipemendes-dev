@@ -18,6 +18,7 @@ import { useHeaderController } from "./useHeaderController";
 import { heroIntroRevealGateDelayMs } from "../../../views/LandingPage/sections/HeroSection/heroMotion";
 
 export const Header = ({
+  initialTheme,
   siteTitle,
   navigation,
 }: HeaderProps): ReactElement => {
@@ -37,6 +38,7 @@ export const Header = ({
     toggleMobileMenu,
     toggleTheme,
   } = useHeaderController({
+    initialTheme,
     navigation,
   });
   const isReducedMotionEnabled = useReducedMotion() ?? false;
