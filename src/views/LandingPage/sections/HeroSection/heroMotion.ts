@@ -51,7 +51,7 @@ export const emphasizedEase = motionEase.heroEmphasized;
 const COLLAPSED_HEIGHT_MIN_REM = 6.75;
 const COLLAPSED_HEIGHT_MAX_REM = 8.75;
 const COLLAPSED_HEIGHT_VIEWPORT_RATIO = 0.12;
-export const HERO_WINDOW_COLLAPSED_FALLBACK_PX = 160;
+export const HERO_WINDOW_COLLAPSED_FALLBACK_PX = COLLAPSED_HEIGHT_MAX_REM * 16;
 
 const getRootFontSize = (): number => {
   if (typeof window === "undefined") {
