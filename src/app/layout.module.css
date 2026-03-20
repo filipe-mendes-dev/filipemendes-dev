@@ -1,0 +1,16 @@
+.body {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.main > * {
+  flex: 1;
+  min-height: 100%;
+}

@@ -10,6 +10,7 @@ import { defaultThemePreference, themeStorageKey } from '../shared/theme/themePr
 import '../shared/theme/theme.css';
 import '../shared/styles/reset.css';
 import '../shared/styles/base.css';
+import st from './layout.module.css';
 
 export const metadata: Metadata = {
   title: 'Filipe Mendes',
@@ -38,7 +39,7 @@ const RootLayout = ({ children }: RootLayoutProps): ReactElement => {
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
+      <body className={st.body}>
         <Script id="theme-init" strategy="beforeInteractive">
           {themeInitializationScript}
         </Script>
@@ -46,7 +47,7 @@ const RootLayout = ({ children }: RootLayoutProps): ReactElement => {
           navigation={portfolio.navigation}
           siteTitle={portfolio.siteTitle}
         />
-        <main>{children}</main>
+        <main className={st.main}>{children}</main>
         <Footer
           descriptor={portfolio.descriptor}
           githubUrl={githubUrl}
