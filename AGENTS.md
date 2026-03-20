@@ -122,6 +122,7 @@ Route files in `src/app` must import views, not compose page UI directly.
 - Static content (for example `portfolio.ts`) should be consumed in Server Components whenever possible.
 - Prefer passing data down via props.
 - Do not duplicate deterministic data access across server and client.
+- Do not add `suppressHydrationWarning` just to silence hydration issues. Fix the actual server/client mismatch instead.
 
 ## 11) Component structure conventions
 
