@@ -39,6 +39,7 @@ interface HeaderControllerResult {
   homeLinkAriaCurrent: {
     'aria-current'?: 'page';
   };
+  isLandingPage: boolean;
   isMobileMenuOpen: boolean;
   mobileMenuLabel: string;
   mobileNavId: string;
@@ -89,6 +90,7 @@ export const useHeaderController = ({
       : pathname.startsWith('/projects/')
         ? 'projects'
         : undefined;
+  const isLandingPage = pathname === '/';
   const themeToggleLabel =
     theme === 'light' ? 'Activate dark theme' : 'Activate light theme';
   const mobileMenuLabel = isMobileMenuOpen
@@ -258,6 +260,7 @@ export const useHeaderController = ({
     handleHomeNavigation,
     headerRef,
     homeLinkAriaCurrent,
+    isLandingPage,
     isMobileMenuOpen,
     mobileMenuLabel,
     mobileNavId,

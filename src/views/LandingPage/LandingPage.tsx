@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import type { ReactElement } from 'react';
+import type { ReactElement } from "react";
 
-import { PageSectionSurface } from '../../components/ui/PageSectionSurface';
-import { portfolio } from '../../data/portfolio';
-import { LandingPageNavigationBinder } from './navigation/LandingPageNavigationBinder';
-import { useLandingPageRevealEnabled } from './LandingPageRevealGate';
-import { AboutSection } from './sections/AboutSection';
-import { ContactSection } from './sections/ContactSection';
-import { HeroSection } from './sections/HeroSection';
-import { ProjectsSection } from './sections/ProjectsSection';
-import st from './LandingPage.module.css';
+import { PageSectionSurface } from "../../components/ui/PageSectionSurface";
+import { portfolio } from "../../data/portfolio";
+import { LandingPageNavigationBinder } from "./navigation/LandingPageNavigationBinder";
+import { useLandingPageRevealEnabled } from "./useLandingPageRevealEnabled";
+import { AboutSection } from "./sections/AboutSection";
+import { ContactSection } from "./sections/ContactSection";
+import { HeroSection } from "./sections/HeroSection";
+import { ProjectsSection } from "./sections/ProjectsSection";
+import st from "./LandingPage.module.css";
 
 const LandingPage = (): ReactElement => {
   const content = portfolio;

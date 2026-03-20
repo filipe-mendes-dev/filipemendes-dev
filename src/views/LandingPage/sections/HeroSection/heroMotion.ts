@@ -30,8 +30,6 @@ export const heroMotionConfig: HeroMotionConfig = {
   mediaEnter: 360,
 };
 
-const heroRevealItemCount = 4;
-
 export const heroIntroRevealGateDelayMs =
   heroMotionConfig.beforeTyping +
   heroMotionConfig.typing +
@@ -43,7 +41,7 @@ export const heroIntroRevealGateDelayMs =
     heroMotionConfig.mediaEnter,
     heroMotionConfig.contentDelayFromGrowStart +
       heroMotionConfig.contentEnter +
-      heroMotionConfig.contentStagger * (heroRevealItemCount - 1)
+      heroMotionConfig.contentStagger
   );
 
 export const emphasizedEase = [0.16, 1, 0.3, 1] as const;
