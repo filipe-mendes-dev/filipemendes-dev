@@ -1,3 +1,5 @@
+import { motionDurationMs, motionEase } from "../../../../shared/theme/motion";
+
 export interface HeroMotionConfig {
   afterWindow: number;
   terminalEnter: number;
@@ -15,19 +17,19 @@ export interface HeroMotionConfig {
 }
 
 export const heroMotionConfig: HeroMotionConfig = {
-  afterWindow: 120,
-  terminalEnter: 240,
-  beforeTyping: 360,
+  afterWindow: motionDurationMs.fast,
+  terminalEnter: motionDurationMs.medium,
+  beforeTyping: motionDurationMs.slow,
   typing: 600,
   beforeExecute: 0,
   execute: 600,
-  terminalExit: 240,
+  terminalExit: motionDurationMs.medium,
   beforeExpand: 0,
-  grow: 480,
+  grow: motionDurationMs.slower,
   contentDelayFromGrowStart: 0,
-  contentStagger: 120,
-  contentEnter: 360,
-  mediaEnter: 360,
+  contentStagger: motionDurationMs.fast,
+  contentEnter: motionDurationMs.slow,
+  mediaEnter: motionDurationMs.slow,
 };
 
 export const heroIntroRevealGateDelayMs =
@@ -44,7 +46,7 @@ export const heroIntroRevealGateDelayMs =
       heroMotionConfig.contentStagger
   );
 
-export const emphasizedEase = [0.16, 1, 0.3, 1] as const;
+export const emphasizedEase = motionEase.heroEmphasized;
 
 const COLLAPSED_HEIGHT_MIN_REM = 6.75;
 const COLLAPSED_HEIGHT_MAX_REM = 8.75;

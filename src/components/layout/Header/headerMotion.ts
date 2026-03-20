@@ -1,3 +1,11 @@
+import {
+  motionDurationMs,
+  motionEase,
+  motionOffsetPx,
+  motionScale,
+  motionStaggerMs,
+} from "../../../shared/theme/motion";
+
 export interface HeaderMotionConfig {
   desktopNavStaggerSeconds: number;
   desktopThemeToggleDelaySteps: number;
@@ -12,14 +20,15 @@ export interface HeaderMotionConfig {
 }
 
 export const headerMotionConfig: HeaderMotionConfig = {
-  desktopNavStaggerSeconds: 0.08,
+  desktopNavStaggerSeconds: motionStaggerMs.tight / 1000,
   desktopThemeToggleDelaySteps: 4,
-  enterOffsetPx: 8,
-  hiddenScaleX: 0.24,
-  itemDurationSeconds: 0.28,
-  itemEase: [0.2, 0.9, 0.24, 1],
-  menuBarDurationSeconds: 0.12,
+  enterOffsetPx: motionOffsetPx.menu,
+  hiddenScaleX: motionScale.collapsedReveal,
+  itemDurationSeconds:
+    (motionDurationMs.themeToggle + motionDurationMs.medium) / 1000,
+  itemEase: motionEase.standard,
+  menuBarDurationSeconds: motionDurationMs.fast / 1000,
   menuBarEase: "easeIn",
-  mobileMenuStaggerSeconds: 0.12,
-  themeToggleDurationSeconds: 0.08,
+  mobileMenuStaggerSeconds: motionStaggerMs.header / 1000,
+  themeToggleDurationSeconds: motionDurationMs.themeToggle / 1000,
 };

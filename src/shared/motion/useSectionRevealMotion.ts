@@ -10,6 +10,11 @@ import {
 import {
   landingPageMotion,
   landingPageRevealRootMargin,
+  motionDurationMs,
+  motionEase,
+  motionOffsetPx,
+  motionScale,
+  motionStaggerMs,
 } from "../theme/motion";
 
 type SectionRevealViewport = Required<
@@ -28,24 +33,21 @@ export interface SectionRevealMotion {
   viewport: SectionRevealViewport;
 }
 
-const emphasizedEase = [0.22, 1, 0.36, 1] as const;
-const standardEase = [0.2, 0.9, 0.24, 1] as const;
+const dividerDurationMs = motionDurationMs.divider;
+const itemDurationMs = motionDurationMs.slower;
+const underlineDurationMs = motionDurationMs.slow;
 
-const dividerDurationMs = 840;
-const itemDurationMs = 480;
-const underlineDurationMs = 360;
+const groupOffsetPx = motionOffsetPx.header;
+const itemOffsetPx = motionOffsetPx.item;
+const nestedOffsetPx = motionOffsetPx.nested;
+const hiddenUnderlineScale = motionScale.collapsedReveal;
 
-const groupOffsetPx = 12;
-const itemOffsetPx = 14;
-const nestedOffsetPx = 10;
-const hiddenUnderlineScale = 0.24;
-
-const sectionStaggerMs = 180;
-const headerStaggerMs = 120;
-const titleStaggerMs = 120;
-const contentStaggerMs = 90;
-const nestedStaggerMs = 70;
-const nestedStartDelayMs = 60;
+const sectionStaggerMs = motionStaggerMs.section;
+const headerStaggerMs = motionStaggerMs.header;
+const titleStaggerMs = motionStaggerMs.header;
+const contentStaggerMs = motionStaggerMs.compact;
+const nestedStaggerMs = motionStaggerMs.tight;
+const nestedStartDelayMs = motionDurationMs.fast / 2;
 
 const toSeconds = (durationMs: number): number => {
   return durationMs / 1000;
@@ -80,7 +82,7 @@ export const useSectionRevealMotion = (): SectionRevealMotion => {
         scaleX: 1,
         transition: {
           duration: isReducedMotionEnabled ? 0 : toSeconds(dividerDurationMs),
-          ease: emphasizedEase,
+          ease: motionEase.emphasized,
         },
       },
     },
@@ -109,7 +111,7 @@ export const useSectionRevealMotion = (): SectionRevealMotion => {
         y: 0,
         transition: {
           duration: isReducedMotionEnabled ? 0 : toSeconds(itemDurationMs),
-          ease: standardEase,
+          ease: motionEase.standard,
         },
       },
     },
@@ -123,7 +125,7 @@ export const useSectionRevealMotion = (): SectionRevealMotion => {
         y: 0,
         transition: {
           duration: isReducedMotionEnabled ? 0 : toSeconds(itemDurationMs),
-          ease: standardEase,
+          ease: motionEase.standard,
           delayChildren: isReducedMotionEnabled
             ? 0
             : stagger(toSeconds(nestedStaggerMs), {
@@ -167,7 +169,7 @@ export const useSectionRevealMotion = (): SectionRevealMotion => {
         scaleX: 1,
         transition: {
           duration: isReducedMotionEnabled ? 0 : toSeconds(underlineDurationMs),
-          ease: emphasizedEase,
+          ease: motionEase.emphasized,
         },
       },
     },
