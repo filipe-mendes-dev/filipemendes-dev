@@ -13,7 +13,7 @@ It owns:
 - the root HTML structure
 - global CSS imports
 - root metadata
-- pre-hydration theme initialization
+- request-aware theme initialization
 - shared shell mounting for `Header` and `Footer`
 - the main route content slot through `<main>{children}</main>`
 
@@ -77,7 +77,8 @@ The current theme system is based on:
 
 - `data-theme` on `<html>`
 - CSS variables in `src/shared/theme/theme.css`
-- persisted preference in `localStorage` under `portfolio-theme`
+- persisted preference in a `portfolio-theme` cookie
+- mirrored client persistence in `localStorage` under `portfolio-theme`
 - small shared theme helpers in `src/shared/theme/themePreference.ts`
 - a small client-side local-state bridge inside `src/components/layout/Header/Header.tsx`
 
@@ -86,12 +87,14 @@ At runtime:
 - `theme.css` is the source of truth for theme values
 - `data-theme` on `<html>` selects which CSS variable set is active
 - `themePreference.ts` owns low-level theme read/write helpers
-- `Header.tsx` owns the post-hydration theme selection state used by the toggle UI
+- `layout.tsx` owns the server-side initial theme selection from cookies
+- `Header.tsx` owns the hydrated toggle UI state using that initial theme
 
-## Pre-Hydration Theme Bootstrap
+## Server Theme Initialization
 
 Relevant code:
 
+- `src/app/layout.tsx` → `cookies()` and `<html data-theme={initialTheme}>`
 - `src/app/layout.tsx` → `getThemeInitializationScript(...)`
 - `src/app/layout.tsx` → `<Script id="theme-init" strategy="beforeInteractive">`
 - `src/shared/theme/themeInitializationScript.ts` → `getThemeInitializationScript(...)`
@@ -100,39 +103,33 @@ Relevant code:
 
 Current behavior:
 
-1. Read `portfolio-theme` from `localStorage`.
-2. If the stored value is `light` or `dark`, use it.
+1. Read `portfolio-theme` from the request cookie in `src/app/layout.tsx`.
+2. If the cookie value is `light` or `dark`, use it.
 3. Otherwise default to `dark`.
-4. Set `document.documentElement.setAttribute('data-theme', theme)`.
-5. If reading storage fails, fall back to `dark`.
+4. Render `<html data-theme={initialTheme}>` from the server.
+5. Run the inline bootstrap script before hydration to keep the client DOM and `localStorage` aligned with the resolved theme.
 
 Why this lives in the layout:
 
-- it must run before the shared shell hydrates
+- it must run before the first paint and before the shared shell hydrates
 - it affects global document styling, not one isolated component
-- the layout now imports a shared script generator instead of embedding the raw script body inline
+- the layout is the only place with access to both request cookies and the root `<html>` element
 
 ## Why `Script` Is Used
 
-The layout uses `next/script` with `strategy="beforeInteractive"` so the theme attribute is set before React hydration.
+The layout still uses `next/script` with `strategy="beforeInteractive"` so client-side state is normalized before React hydration.
+
+Current script responsibilities:
+
+- read the theme cookie first
+- fall back to `localStorage` if needed
+- re-apply `data-theme` on `document.documentElement`
+- sync `localStorage` to the resolved theme value
 
 Without that step:
 
-- the server output would start from the default theme only
-- the browser could paint the wrong theme first
-- the page could visibly switch theme after hydration
-
-## Why `suppressHydrationWarning` Is Used
-
-The layout renders:
-
-- `<html lang="en" suppressHydrationWarning>`
-
-This is justified because:
-
-- the server cannot know the user’s persisted theme
-- the theme bootstrap mutates the DOM before hydration
-- React would otherwise warn on a known intentional mismatch
+- a stale `localStorage` value could drift from the cookie-backed server state
+- first-load client state could diverge from the DOM theme selected by the server
 
 ## Runtime Theme Styling
 
@@ -154,17 +151,17 @@ Relevant code:
 - `src/shared/theme/themePreference.ts` → `getStoredThemePreference()`
 - `src/shared/theme/themePreference.ts` → `setStoredThemePreference()`
 - `src/shared/theme/themePreference.ts` → `defaultThemePreference`
-- `src/components/layout/Header/Header.tsx` → `handleThemeToggle()`
-- `src/components/layout/Header/Header.tsx` → `useState(defaultThemePreference)`
-- `src/components/layout/Header/Header.tsx` → theme sync `useEffect(...)`
+- `src/app/layout.tsx` → `initialTheme`
+- `src/components/layout/Header/useHeaderController.ts` → `useState(initialTheme)`
+- `src/components/layout/Header/useHeaderController.ts` → `toggleTheme()`
 
 Current post-hydration behavior:
 
-- start from the shared default theme in React state
-- read the current bootstrapped theme from `document.documentElement` after mount
+- start from the server-provided `initialTheme` in React state
 - expose that value to the `ThemeToggle`
 - on toggle, switch `light` ↔ `dark`
 - update `data-theme`
+- write the new value to the theme cookie
 - write the new value to `localStorage`
 - update header-local React state so the toggle UI stays in sync
 
@@ -207,8 +204,9 @@ The theme logic is intentionally split across two phases.
 
 Owned by `src/app/layout.tsx`:
 
-- choose a theme before the first paint
-- set the global document attribute
+- choose a theme from request cookies before the first paint
+- render the global document attribute
+- pass the resolved initial theme into the header
 
 ### Header-owned phase
 
@@ -216,17 +214,16 @@ Owned by `src/components/layout/Header/Header.tsx`:
 
 - reflect the active theme in the shell UI
 - provide the toggle control and label text
-- initialize local theme state from the shared default
-- sync local theme state from the bootstrapped DOM theme after mount
+- initialize local theme state from the server-provided theme
 - keep header theme UI state in sync with the selected theme
 
 ### Shared utility phase
 
 Owned by `src/shared/theme/themePreference.ts`:
 
-- read the current theme from the DOM
+- read the current theme from the DOM first and then from `localStorage`
 - write the selected theme to `data-theme`
-- persist the selected theme to `localStorage`
+- persist the selected theme to both the cookie and `localStorage`
 
 This split is correct because the two concerns happen at different lifecycle stages.
 

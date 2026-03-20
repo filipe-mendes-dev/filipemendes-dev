@@ -15,7 +15,7 @@ Primary entry points:
 - `src/app/projects/[slug]/page.tsx`
 - `src/app/not-found.tsx`
 
-The codebase is organized as a static-first site with client-side enhancements for theme, navigation state, scrolling, and motion.
+The codebase is organized as a mostly static site with request-aware theme rendering and client-side enhancements for navigation state, scrolling, and motion.
 
 ## Layer Responsibilities
 
@@ -27,13 +27,14 @@ Current responsibility:
 
 - define route entry files required by App Router
 - define the root layout shell
+- read request cookies needed for root document rendering
 - define route metadata
 - define dynamic route param generation
 - define route-level not-found behavior
 
 Key files:
 
-- `src/app/layout.tsx` → root shell, global CSS imports, theme bootstrap, shared header/footer
+- `src/app/layout.tsx` → root shell, global CSS imports, cookie-backed theme bootstrap, shared header/footer
 - `src/app/page.tsx` → homepage route entry
 - `src/app/projects/[slug]/page.tsx` → project route params, metadata, slug lookup, not-found handling
 - `src/app/not-found.tsx` → App Router not-found entry
