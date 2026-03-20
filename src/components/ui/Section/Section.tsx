@@ -24,43 +24,56 @@ export const Section = ({
 }: SectionProps): ReactElement => {
   const revealMotion = useSectionRevealMotion();
   const sectionRef = useRef<HTMLElement | null>(null);
+  const initialViewportFrameRef = useRef<number | null>(null);
   const hasResolvedInitialViewportRef = useRef(false);
   const [shouldStartHidden, setShouldStartHidden] = useState(false);
   const sectionClasses = joinClassNames(st.root, surface.section, className);
   const contentClasses = joinClassNames(st.content, contentClassName);
+  const handleSectionRef = useCallback((node: HTMLElement | null): void => {
+    sectionRef.current = node;
 
-  const handleSectionRef = useCallback(
-    (node: HTMLElement | null): void => {
-      sectionRef.current = node;
+    if (initialViewportFrameRef.current !== null) {
+      window.cancelAnimationFrame(initialViewportFrameRef.current);
+      initialViewportFrameRef.current = null;
+    }
 
-      if (node === null || hasResolvedInitialViewportRef.current) {
+    if (node === null || hasResolvedInitialViewportRef.current) {
+      return;
+    }
+
+    initialViewportFrameRef.current = window.requestAnimationFrame(() => {
+      if (
+        sectionRef.current === null ||
+        hasResolvedInitialViewportRef.current
+      ) {
         return;
       }
 
       hasResolvedInitialViewportRef.current = true;
 
-      const rect = node.getBoundingClientRect();
+      const rect = sectionRef.current.getBoundingClientRect();
       const isInitiallyVisible =
         rect.top < window.innerHeight && rect.bottom > 0;
 
       if (!isInitiallyVisible) {
         setShouldStartHidden(true);
       }
-    },
-    []
-  );
+    });
+  }, []);
 
   return (
     <motion.section
-      animate={shouldStartHidden ? "hidden" : false}
+      // These local animate props intentionally reset the initial inherited
+      // variant ownership from the page stagger so offscreen sections can take
+      // control again for their later whileInView reveal.
+      animate={shouldStartHidden ? "hidden" : undefined}
       className={sectionClasses}
       data-landing-section={id}
       id={id}
-      initial={shouldStartHidden ? "hidden" : false}
-      whileInView={"visible"}
-      viewport={revealMotion.viewport}
+      viewport={shouldStartHidden ? revealMotion.viewport : undefined}
       ref={handleSectionRef}
       variants={revealMotion.sectionVariants}
+      whileInView={shouldStartHidden ? "visible" : undefined}
     >
       <motion.div
         aria-hidden="true"
@@ -70,21 +83,25 @@ export const Section = ({
 
       {(title !== undefined || subtitle !== undefined) && (
         <motion.header
+          animate={shouldStartHidden ? "hidden" : undefined}
           variants={revealMotion.headerVariants}
           className={st.header}
         >
           {title !== undefined && (
             <motion.h2
+              animate={shouldStartHidden ? "hidden" : undefined}
               className={st.title}
               variants={revealMotion.titleGroupVariants}
             >
               <motion.span
+                animate={shouldStartHidden ? "hidden" : undefined}
                 className={st.titleText}
                 variants={revealMotion.itemVariants}
               >
                 {title}
               </motion.span>
               <motion.span
+                animate={shouldStartHidden ? "hidden" : undefined}
                 aria-hidden="true"
                 className={st.titleUnderline}
                 variants={revealMotion.titleUnderlineVariants}
@@ -93,6 +110,7 @@ export const Section = ({
           )}
           {subtitle !== undefined && (
             <motion.p
+              animate={shouldStartHidden ? "hidden" : undefined}
               className={st.subtitle}
               variants={revealMotion.itemVariants}
             >
@@ -102,6 +120,7 @@ export const Section = ({
         </motion.header>
       )}
       <motion.div
+        animate={shouldStartHidden ? "hidden" : undefined}
         className={contentClasses}
         variants={revealMotion.contentVariants}
       >

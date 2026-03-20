@@ -151,7 +151,6 @@ export const useSectionRevealMotion = (): SectionRevealMotion => {
       hidden: {},
       visible: {
         transition: {
-          when: "beforeChildren",
           delayChildren: isReducedMotionEnabled
             ? 0
             : stagger(toSeconds(sectionStaggerMs)),
@@ -165,7 +164,6 @@ export const useSectionRevealMotion = (): SectionRevealMotion => {
       visible: {
         opacity: 1,
         transition: {
-          when: "beforeChildren",
           delayChildren: isReducedMotionEnabled
             ? 0
             : stagger(toSeconds(titleStaggerMs)),
