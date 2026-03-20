@@ -3,6 +3,7 @@
 import { motion, stagger, useReducedMotion, type Variants } from 'framer-motion';
 import { type MouseEvent, type ReactElement, useEffect, useState } from 'react';
 
+import surface from '../../../../components/ui/PageSectionSurface/PageSectionSurface.module.css';
 import { Section } from '../../../../components/ui/Section';
 import type { ActionLink } from '../../../../data/portfolio';
 import type { SectionId } from '../../../../shared/navigation/sections';
@@ -31,7 +32,7 @@ const getActionHref = (action: ActionLink): string => {
 
 const joinClassNames = (...classNames: (string | false | undefined)[]): string => classNames.filter(Boolean).join(' ');
 
-export const HeroSection = ({ content, revealRef }: HeroSectionProps): ReactElement => {
+export const HeroSection = ({ content }: HeroSectionProps): ReactElement => {
     const isReducedMotionEnabled = useReducedMotion() ?? false;
     const [hasIntroFinished, setHasIntroFinished] = useState<boolean>(isReducedMotionEnabled);
     const isIntroComplete = isReducedMotionEnabled || hasIntroFinished;
@@ -108,10 +109,11 @@ export const HeroSection = ({ content, revealRef }: HeroSectionProps): ReactElem
     return (
         <div className={st.root}>
             <Section
-                className={st.heroSection}
+                className={`${surface.section} ${st.heroSection}`}
+                id="home"
             >
                 <div className={st.heroWindowStage}>
-                    <HeroWindow isContentVisible={isContentShown} revealRef={revealRef}>
+                    <HeroWindow isContentVisible={isContentShown}>
                         {isTerminalVisible ? <HeroTerminal onComplete={handleTerminalComplete} /> : null}
                         <div className={st.heroGrid}>
                             <motion.div

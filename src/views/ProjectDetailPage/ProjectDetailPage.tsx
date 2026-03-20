@@ -1,38 +1,27 @@
-"use client";
+'use client';
 
-import { type ReactElement, useCallback } from "react";
+import type { ReactElement } from 'react';
+import { motion } from 'framer-motion';
 
-import Link from "next/link";
+import Link from 'next/link';
 
 import {
   AppStoreIcon,
   BackIcon,
   ExternalLinkIcon,
   GooglePlayIcon,
-} from "../../components/icons";
-import { PageSectionSurface } from "../../components/ui/PageSectionSurface";
-import surface from "../../components/ui/PageSectionSurface/PageSectionSurface.module.css";
-import { Container } from "../../components/ui/Container";
-import { Section } from "../../components/ui/Section";
-import { usePageSectionReveal } from "../../shared/reveal/usePageSectionReveal";
-import su from "../../shared/styles/utilities.module.css";
-import {
-  landingPageMotion,
-  landingPageRevealRootMargin,
-} from "../../shared/theme/motion";
-import { DetailBulletList } from "./components/DetailBulletList";
-import type { ProjectDetailPageProps } from "./ProjectDetailPage.interfaces";
-import st from "./ProjectDetailPage.module.css";
+} from '../../components/icons';
+import { Container } from '../../components/ui/Container';
+import { PageSectionSurface } from '../../components/ui/PageSectionSurface';
+import surface from '../../components/ui/PageSectionSurface/PageSectionSurface.module.css';
+import { Section } from '../../components/ui/Section';
+import { useSectionRevealMotion } from '../../shared/motion/useSectionRevealMotion';
+import su from '../../shared/styles/utilities.module.css';
+import { DetailBulletList } from './components/DetailBulletList';
+import type { ProjectDetailPageProps } from './ProjectDetailPage.interfaces';
+import st from './ProjectDetailPage.module.css';
 
-const projectDetailSectionIds = [
-  "hero",
-  "gallery",
-  "features",
-  "architecture",
-  "stack",
-] as const;
-
-const hasStoreLinks = (project: ProjectDetailPageProps["project"]): boolean => {
+const hasStoreLinks = (project: ProjectDetailPageProps['project']): boolean => {
   return (
     project.storeLinks?.appStore !== undefined ||
     project.storeLinks?.googlePlay !== undefined
@@ -40,7 +29,7 @@ const hasStoreLinks = (project: ProjectDetailPageProps["project"]): boolean => {
 };
 
 const hasProjectActions = (
-  project: ProjectDetailPageProps["project"]
+  project: ProjectDetailPageProps['project'],
 ): boolean => {
   return hasStoreLinks(project) || project.links.length > 0;
 };
@@ -48,61 +37,20 @@ const hasProjectActions = (
 export const ProjectDetailPage = ({
   project,
 }: ProjectDetailPageProps): ReactElement => {
-  const { contentElementsRef, headerElementsRef, sectionElementsRef } =
-    usePageSectionReveal({
-      sectionIds: projectDetailSectionIds,
-      initialVisibleSectionId: "hero",
-      revealRootMargin: landingPageRevealRootMargin,
-      revealEntryThreshold: landingPageMotion.revealEntryThreshold,
-      triggerBySectionId: {
-        hero: "section",
-      },
-    });
-  const setSectionElement = useCallback(
-    (sectionId: (typeof projectDetailSectionIds)[number]) =>
-      (element: HTMLElement | null): void => {
-        sectionElementsRef.current[sectionId] = element;
-      },
-    [sectionElementsRef]
-  );
-  const setContentElement = useCallback(
-    (sectionId: (typeof projectDetailSectionIds)[number]) =>
-      (element: HTMLDivElement | null): void => {
-        contentElementsRef.current[sectionId] = element;
-      },
-    [contentElementsRef]
-  );
-  const setHeaderElement = useCallback(
-    (sectionId: (typeof projectDetailSectionIds)[number]) =>
-      (element: HTMLElement | null): void => {
-        headerElementsRef.current[sectionId] = element;
-      },
-    [headerElementsRef]
-  );
   const storeLinks = project.storeLinks;
+  const revealMotion = useSectionRevealMotion();
 
   return (
     <PageSectionSurface className={st.root}>
-      <section
-        ref={setSectionElement("hero")}
-        className={`${surface.section} ${st.heroSection}`}
-      >
+      <section className={`${surface.section} ${st.heroSection}`}>
         <Container className={st.heroInner}>
-          <div
-            ref={setContentElement("hero")}
-            className={st.heroReveal}
-            data-landing-reveal="visible"
-          >
+          <div className={st.heroReveal}>
             <Link href="/" className={st.backLink}>
               <BackIcon className={st.backIcon} />
               <span>Go Back</span>
             </Link>
 
-            <header
-              ref={setHeaderElement("hero")}
-              className={st.heroHeader}
-              data-landing-heading-reveal="visible"
-            >
+            <header className={st.heroHeader}>
               <div className={st.heroTitleRow}>
                 <div className={st.projectLogo} aria-hidden="true">
                   {project.logoText}
@@ -175,86 +123,64 @@ export const ProjectDetailPage = ({
 
       {project.screenshots.length > 0 && (
         <Section
-          title="Screenshot Gallery"
-          className={`${surface.section} ${st.gallerySection}`}
-          headerRevealRef={setHeaderElement("gallery")}
-          initialHeadingRevealState="pending"
+          className={st.gallerySection}
+          contentClassName={st.galleryGrid}
           id="project-detail-gallery"
-          sectionRef={setSectionElement("gallery")}
+          isRevealEnabled
+          title="Screenshot Gallery"
         >
-          <div
-            ref={setContentElement("gallery")}
-            className={st.galleryGrid}
-            data-landing-reveal="pending"
-          >
-            {project.screenshots.map((shot) => (
-              <figure key={shot.url} className={st.galleryItem}>
-                <img
-                  src={shot.url}
-                  alt={shot.alt}
-                  loading="lazy"
-                  width="1200"
-                  height="750"
-                />
-              </figure>
-            ))}
-          </div>
+          {project.screenshots.map((shot) => (
+            <motion.figure key={shot.url} className={st.galleryItem} variants={revealMotion.itemVariants}>
+              <img
+                src={shot.url}
+                alt={shot.alt}
+                loading="lazy"
+                width="1200"
+                height="750"
+              />
+            </motion.figure>
+          ))}
         </Section>
       )}
 
       <Section
-        title="Key Features"
-        className={`${surface.section} ${st.featuresSection}`}
-        headerRevealRef={setHeaderElement("features")}
-        initialHeadingRevealState="pending"
+        className={st.featuresSection}
+        contentClassName={st.detailSectionContent}
         id="project-detail-features"
-        sectionRef={setSectionElement("features")}
+        isRevealEnabled
+        title="Key Features"
       >
-        <div
-          ref={setContentElement("features")}
-          className={st.detailSectionContent}
-          data-landing-reveal="pending"
-        >
+        <motion.div variants={revealMotion.itemVariants}>
           <DetailBulletList items={project.keyFeatures} />
-        </div>
+        </motion.div>
       </Section>
 
       <Section
-        title="Architecture"
-        className={`${surface.section} ${st.architectureSection}`}
-        headerRevealRef={setHeaderElement("architecture")}
-        initialHeadingRevealState="pending"
+        className={st.architectureSection}
+        contentClassName={st.detailSectionContent}
         id="project-detail-architecture"
-        sectionRef={setSectionElement("architecture")}
+        isRevealEnabled
+        title="Architecture"
       >
-        <div
-          ref={setContentElement("architecture")}
-          className={st.detailSectionContent}
-          data-landing-reveal="pending"
-        >
+        <motion.div variants={revealMotion.itemVariants}>
           <DetailBulletList items={project.architecture} />
-        </div>
+        </motion.div>
       </Section>
 
       <Section
-        title="Tech Stack"
-        className={`${surface.section} ${st.stackSection}`}
-        headerRevealRef={setHeaderElement("stack")}
-        initialHeadingRevealState="pending"
+        className={st.stackSection}
+        contentClassName={st.stackSectionContent}
         id="project-detail-stack"
-        sectionRef={setSectionElement("stack")}
+        isRevealEnabled
+        title="Tech Stack"
       >
-        <div
-          ref={setContentElement("stack")}
-          className={st.stackSectionContent}
-          data-landing-reveal="pending"
-        >
+        <motion.div variants={revealMotion.itemVariants}>
           <ul className={su.chipList} aria-label="Project technologies">
             {project.techStack.map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
-        </div>
+        </motion.div>
       </Section>
     </PageSectionSurface>
   );

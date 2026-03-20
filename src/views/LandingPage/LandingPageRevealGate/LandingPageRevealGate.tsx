@@ -1,74 +1,27 @@
 'use client';
 
-import {
-  type ReactElement,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from 'react';
+import { useEffect, useState } from 'react';
+import { useReducedMotion } from 'framer-motion';
 
-import { sectionIds } from '../../../shared/navigation/sections';
-import { usePageSectionReveal } from '../../../shared/reveal/usePageSectionReveal';
-import {
-  landingPageMotion,
-  landingPageRevealRootMargin,
-} from '../../../shared/theme/motion';
-import { resolveLandingPageSectionElements } from '../navigation/landingPageSections';
 import { heroIntroRevealGateDelayMs } from '../sections/HeroSection/heroMotion';
-import type { LandingPageRevealGateProps } from './LandingPageRevealGate.interfaces';
 
-export const LandingPageRevealGate = ({
-  initialVisibleSectionId = 'home',
-}: LandingPageRevealGateProps): ReactElement | null => {
-  const [isRevealEnabled, setIsRevealEnabled] = useState(false);
-  const {
-    contentElementsRef,
-    headerElementsRef,
-    initializeRevealState,
-    sectionElementsRef,
-  } = usePageSectionReveal({
-    isRevealEnabled,
-    sectionIds,
-    initialVisibleSectionId,
-    revealRootMargin: landingPageRevealRootMargin,
-    revealEntryThreshold: landingPageMotion.revealEntryThreshold,
-    revealEntryViewportRatio: landingPageMotion.revealEntryViewportRatio,
-    revealVisibleInViewport: true,
-    triggerBySectionId: {
-      home: 'section',
-    },
-  });
-
-  useLayoutEffect(() => {
-    const resolvedSections = resolveLandingPageSectionElements();
-
-    sectionIds.forEach((sectionId) => {
-      const resolvedSection = resolvedSections[sectionId];
-
-      sectionElementsRef.current[sectionId] = resolvedSection.section;
-      headerElementsRef.current[sectionId] = resolvedSection.header;
-      contentElementsRef.current[sectionId] = resolvedSection.content;
-    });
-
-    initializeRevealState();
-  }, [
-    contentElementsRef,
-    headerElementsRef,
-    initializeRevealState,
-    sectionElementsRef,
-  ]);
+export const useLandingPageRevealEnabled = (): boolean => {
+  const isReducedMotionEnabled = useReducedMotion() ?? false;
+  const [hasRevealDelayElapsed, setHasRevealDelayElapsed] = useState<boolean>(false);
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const revealGateDelayMs = prefersReducedMotion ? 0 : heroIntroRevealGateDelayMs;
+    if (isReducedMotionEnabled) {
+      return undefined;
+    }
+
     const timeoutId = window.setTimeout(() => {
-      setIsRevealEnabled(true);
-    }, revealGateDelayMs);
+      setHasRevealDelayElapsed(true);
+    }, heroIntroRevealGateDelayMs);
 
     return () => {
       window.clearTimeout(timeoutId);
     };
-  }, []);
+  }, [isReducedMotionEnabled]);
 
-  return null;
+  return isReducedMotionEnabled || hasRevealDelayElapsed;
 };

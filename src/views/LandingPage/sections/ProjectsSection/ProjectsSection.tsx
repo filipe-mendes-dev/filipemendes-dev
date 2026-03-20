@@ -1,40 +1,31 @@
-import type { ReactElement } from 'react';
+'use client';
 
-import { RevealItem } from '../../../../components/ui/RevealItem';
+import type { ReactElement } from 'react';
+import { motion } from 'framer-motion';
+
 import { Section } from '../../../../components/ui/Section';
+import { useSectionRevealMotion } from '../../../../shared/motion/useSectionRevealMotion';
 import { ProjectCard } from './components/ProjectCard';
 import type { ProjectsSectionProps } from './ProjectsSection.interfaces';
 import st from './ProjectsSection.module.css';
 
-export const ProjectsSection = ({
-  content,
-  initialRevealState = 'visible',
-  sectionId,
-  revealRef,
-  headerRevealRef,
-}: ProjectsSectionProps): ReactElement => {
+export const ProjectsSection = ({ content, isRevealEnabled }: ProjectsSectionProps): ReactElement => {
+  const revealMotion = useSectionRevealMotion();
+
   return (
-    <div className={st.root}>
-      <Section
-        title="Projects"
-        subtitle="Each product is documented with a clear narrative from problem to measurable outcome."
-        headerProps={{ 'data-landing-section-heading': sectionId }}
-        initialHeadingRevealState={initialRevealState}
-        headerRevealRef={headerRevealRef}
-      >
-        <div
-          ref={revealRef}
-          className={st.projectsList}
-          data-landing-reveal={initialRevealState}
-          data-landing-section-content={sectionId}
-        >
-          {content.projects.map((project, index) => (
-            <RevealItem key={project.slug} index={index}>
-              <ProjectCard project={project} />
-            </RevealItem>
-          ))}
-        </div>
-      </Section>
-    </div>
+    <Section
+      className={st.root}
+      contentClassName={st.projectsList}
+      id="projects"
+      isRevealEnabled={isRevealEnabled}
+      subtitle="Each product is documented with a clear narrative from problem to measurable outcome."
+      title="Projects"
+    >
+      {content.projects.map((project) => (
+        <motion.div key={project.slug} variants={revealMotion.itemVariants}>
+          <ProjectCard project={project} />
+        </motion.div>
+      ))}
+    </Section>
   );
 };
