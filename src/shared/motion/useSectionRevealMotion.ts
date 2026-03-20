@@ -2,6 +2,7 @@
 
 import {
   stagger,
+  type UseInViewOptions,
   useReducedMotion,
   type Variants,
   type ViewportOptions,
@@ -21,10 +22,15 @@ type SectionRevealViewport = Required<
   Pick<ViewportOptions, "amount" | "margin" | "once">
 >;
 
+type SectionRevealInViewOptions = Required<
+  Pick<UseInViewOptions, "amount" | "margin" | "once">
+>;
+
 export interface SectionRevealMotion {
   contentVariants: Variants;
   dividerVariants: Variants;
   headerVariants: Variants;
+  inViewOptions: SectionRevealInViewOptions;
   itemVariants: Variants;
   nestedGroupVariants: Variants;
   sectionVariants: Variants;
@@ -100,6 +106,13 @@ export const useSectionRevealMotion = (): SectionRevealMotion => {
             : stagger(toSeconds(headerStaggerMs)),
         },
       },
+    },
+    inViewOptions: {
+      amount: landingPageMotion.revealEntryThreshold,
+      margin: landingPageRevealRootMargin as NonNullable<
+        UseInViewOptions["margin"]
+      >,
+      once: true,
     },
     itemVariants: {
       hidden: {

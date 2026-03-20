@@ -31,7 +31,6 @@ export const AcinWebPlatformPage = (): ReactElement => {
         className={shared.featuresSection}
         contentClassName={shared.detailSectionContent}
         id="project-detail-features"
-        isRevealEnabled
         title="Key Features"
       >
         <motion.div variants={revealMotion.itemVariants}>
@@ -43,7 +42,6 @@ export const AcinWebPlatformPage = (): ReactElement => {
         className={shared.architectureSection}
         contentClassName={shared.detailSectionContent}
         id="project-detail-architecture"
-        isRevealEnabled
         title="Architecture"
       >
         <motion.div variants={revealMotion.itemVariants}>

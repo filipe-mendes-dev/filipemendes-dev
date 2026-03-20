@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 import { ExternalLinkIcon, GithubIcon, LinkedInIcon } from '../../../../components/icons';
 import { TextActionLink } from '../../../../components/navigation/TextActionLink';
-import { Section } from '../../../../components/ui/Section';
+import { LandingPageSection } from '../../../../components/ui/Section';
 import { SoftSurface } from '../../../../components/ui/SoftSurface';
 import { useSectionRevealMotion } from '../../../../shared/motion/useSectionRevealMotion';
 import su from '../../../../shared/styles/utilities.module.css';
@@ -30,7 +30,7 @@ export const ContactSection = ({ content, isRevealEnabled }: ContactSectionProps
   const revealMotion = useSectionRevealMotion();
 
   return (
-    <Section
+    <LandingPageSection
       className={st.root}
       contentClassName={st.contactGrid}
       id="contact"
@@ -107,6 +107,6 @@ export const ContactSection = ({ content, isRevealEnabled }: ContactSectionProps
           </motion.form>
         </SoftSurface>
       </motion.div>
-    </Section>
+    </LandingPageSection>
   );
 };

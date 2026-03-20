@@ -22,7 +22,6 @@ export const ProjectScreenshotsSection = ({
       className={st.root}
       contentClassName={st.galleryGrid}
       id="project-detail-gallery"
-      isRevealEnabled
       title="Screenshot Gallery"
     >
       {screenshots.map((shot) => (

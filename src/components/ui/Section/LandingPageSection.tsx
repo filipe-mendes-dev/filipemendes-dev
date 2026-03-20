@@ -1,11 +1,11 @@
 "use client";
 
-import { type ReactElement, useCallback, useRef, useState } from "react";
+import { type ReactElement, useRef } from "react";
 import { motion } from "framer-motion";
 
 import { useSectionRevealMotion } from "../../../shared/motion/useSectionRevealMotion";
 import surface from "../PageSectionSurface/PageSectionSurface.module.css";
-import type { SectionProps } from "./Section.interfaces";
+import type { LandingPageSectionProps } from "./Section.interfaces";
 import st from "./Section.module.css";
 
 const joinClassNames = (...classNames: (string | undefined)[]): string => {
@@ -14,87 +14,80 @@ const joinClassNames = (...classNames: (string | undefined)[]): string => {
     .join(" ");
 };
 
-export const Section = ({
+export const LandingPageSection = ({
   children,
   title,
   subtitle,
   className,
   contentClassName,
   id,
-}: SectionProps): ReactElement => {
+  isRevealEnabled,
+}: LandingPageSectionProps): ReactElement => {
   const revealMotion = useSectionRevealMotion();
   const sectionRef = useRef<HTMLElement | null>(null);
-  const hasResolvedInitialViewportRef = useRef(false);
-  const [shouldStartHidden, setShouldStartHidden] = useState(false);
-  const sectionClasses = joinClassNames(st.root, surface.section, className);
-  const contentClasses = joinClassNames(st.content, contentClassName);
-
-  const handleSectionRef = useCallback(
-    (node: HTMLElement | null): void => {
-      sectionRef.current = node;
-
-      if (node === null || hasResolvedInitialViewportRef.current) {
-        return;
-      }
-
-      hasResolvedInitialViewportRef.current = true;
-
-      const rect = node.getBoundingClientRect();
-      const isInitiallyVisible =
-        rect.top < window.innerHeight && rect.bottom > 0;
-
-      if (!isInitiallyVisible) {
-        setShouldStartHidden(true);
-      }
-    },
-    []
+  const isRevealManaged = isRevealEnabled !== undefined;
+  const sectionClasses = joinClassNames(
+    st.root,
+    isRevealManaged ? surface.section : undefined,
+    className
   );
+  const contentClasses = joinClassNames(st.content, contentClassName);
 
   return (
     <motion.section
-      animate={shouldStartHidden ? "hidden" : false}
       className={sectionClasses}
       data-landing-section={id}
       id={id}
-      initial={shouldStartHidden ? "hidden" : false}
-      whileInView={"visible"}
+      initial={isRevealManaged ? "hidden" : false}
+      ref={sectionRef}
+      variants={isRevealManaged ? revealMotion.sectionVariants : undefined}
       viewport={revealMotion.viewport}
-      ref={handleSectionRef}
-      variants={revealMotion.sectionVariants}
+      whileInView={isRevealEnabled === true ? "visible" : "hidden"}
     >
-      <motion.div
-        aria-hidden="true"
-        className={surface.sectionDivider}
-        variants={revealMotion.dividerVariants}
-      />
-
+      {isRevealManaged && (
+        <motion.div
+          aria-hidden="true"
+          className={surface.sectionDivider}
+          variants={revealMotion.dividerVariants}
+        />
+      )}
       {(title !== undefined || subtitle !== undefined) && (
         <motion.header
-          variants={revealMotion.headerVariants}
+          {...(isRevealManaged
+            ? { variants: revealMotion.headerVariants }
+            : undefined)}
           className={st.header}
         >
           {title !== undefined && (
             <motion.h2
               className={st.title}
-              variants={revealMotion.titleGroupVariants}
+              variants={
+                isRevealManaged ? revealMotion.titleGroupVariants : undefined
+              }
             >
               <motion.span
                 className={st.titleText}
-                variants={revealMotion.itemVariants}
+                variants={
+                  isRevealManaged ? revealMotion.itemVariants : undefined
+                }
               >
                 {title}
               </motion.span>
               <motion.span
                 aria-hidden="true"
                 className={st.titleUnderline}
-                variants={revealMotion.titleUnderlineVariants}
+                variants={
+                  isRevealManaged
+                    ? revealMotion.titleUnderlineVariants
+                    : undefined
+                }
               />
             </motion.h2>
           )}
           {subtitle !== undefined && (
             <motion.p
               className={st.subtitle}
-              variants={revealMotion.itemVariants}
+              variants={isRevealManaged ? revealMotion.itemVariants : undefined}
             >
               {subtitle}
             </motion.p>
@@ -103,7 +96,7 @@ export const Section = ({
       )}
       <motion.div
         className={contentClasses}
-        variants={revealMotion.contentVariants}
+        variants={isRevealManaged ? revealMotion.contentVariants : undefined}
       >
         {children}
       </motion.div>

@@ -3,7 +3,7 @@
 import type { ReactElement } from 'react';
 import { motion } from 'framer-motion';
 
-import { Section } from '../../../../components/ui/Section';
+import { LandingPageSection } from '../../../../components/ui/Section';
 import { useSectionRevealMotion } from '../../../../shared/motion/useSectionRevealMotion';
 import { ProjectCard } from './components/ProjectCard';
 import type { ProjectsSectionProps } from './ProjectsSection.interfaces';
@@ -13,7 +13,7 @@ export const ProjectsSection = ({ content, isRevealEnabled }: ProjectsSectionPro
   const revealMotion = useSectionRevealMotion();
 
   return (
-    <Section
+    <LandingPageSection
       className={st.root}
       contentClassName={st.projectsList}
       id="projects"
@@ -26,6 +26,6 @@ export const ProjectsSection = ({ content, isRevealEnabled }: ProjectsSectionPro
           <ProjectCard project={project} />
         </motion.div>
       ))}
-    </Section>
+    </LandingPageSection>
   );
 };

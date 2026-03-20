@@ -33,7 +33,6 @@ export const InovInfraredDetectionPage = (): ReactElement => {
         className={shared.featuresSection}
         contentClassName={shared.detailSectionContent}
         id="project-detail-features"
-        isRevealEnabled
         title="Key Features"
       >
         <motion.div variants={revealMotion.itemVariants}>
@@ -45,7 +44,6 @@ export const InovInfraredDetectionPage = (): ReactElement => {
         className={shared.architectureSection}
         contentClassName={shared.detailSectionContent}
         id="project-detail-architecture"
-        isRevealEnabled
         title="Architecture"
       >
         <motion.div variants={revealMotion.itemVariants}>

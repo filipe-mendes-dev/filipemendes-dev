@@ -19,7 +19,6 @@ export const ProjectTechStackSection = ({
       className={st.root}
       contentClassName={st.content}
       id="project-detail-stack"
-      isRevealEnabled
       title="Tech Stack"
     >
       <motion.div variants={revealMotion.itemVariants}>
