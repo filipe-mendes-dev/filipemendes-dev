@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 import { type SectionId } from '../../../shared/navigation/sections';
 import { getLandingPageSectionElement } from './landingPageSections';
@@ -15,18 +15,12 @@ interface LandingPageNavigationControllerConfig {
   setPendingTargetSection: (sectionId: SectionId | null) => void;
 }
 
-const getPrefersReducedMotion = (): boolean => {
-  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-};
-
 export const useLandingPageNavigationController = ({
   clearRequestedSection,
   requestedSection,
   setActiveSection,
   setPendingTargetSection,
 }: LandingPageNavigationControllerConfig): void => {
-  const hasHandledFirstRequestRef = useRef(false);
-
   useEffect(() => {
     if (requestedSection === null) {
       return;
@@ -40,7 +34,7 @@ export const useLandingPageNavigationController = ({
 
     const targetTop = getSectionTargetTop(targetElement);
     const shouldSmoothScroll =
-      hasHandledFirstRequestRef.current && !getPrefersReducedMotion();
+      !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const shouldPinTarget =
       shouldSmoothScroll && !hasReachedTarget(targetTop);
 
@@ -52,7 +46,6 @@ export const useLandingPageNavigationController = ({
       targetTop,
     });
 
-    hasHandledFirstRequestRef.current = true;
     clearRequestedSection();
   }, [
     clearRequestedSection,

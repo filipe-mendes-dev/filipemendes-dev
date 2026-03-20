@@ -40,7 +40,7 @@ export const Section = ({
     <motion.section
       animate={isRevealManaged ? animationState : undefined}
       className={sectionClasses}
-      data-landing-section={isRevealManaged ? id : undefined}
+      data-landing-section={id}
       id={id}
       initial={isRevealManaged ? 'hidden' : false}
       ref={sectionRef}
