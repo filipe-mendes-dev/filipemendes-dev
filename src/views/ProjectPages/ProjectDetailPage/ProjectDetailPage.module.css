@@ -1,0 +1,29 @@
+.root {
+}
+
+.featuresSection::after {
+  top: auto;
+  bottom: 2rem;
+  left: max(1rem, calc(50% - 30rem));
+}
+
+.architectureSection::after {
+  top: auto;
+  bottom: 0;
+  left: calc(100% - clamp(14rem, 24vw, 18rem));
+}
+
+.detailSectionContent {
+  display: grid;
+  gap: var(--space-1);
+  max-width: var(--content-max-wide);
+  padding-left: 0;
+  border-left: 0;
+}
+
+@media (min-width: 48rem) {
+  .detailSectionContent {
+    padding-left: var(--space-3);
+    border-left: var(--line-strong) solid color-mix(in srgb, var(--line) 72%, transparent);
+  }
+}

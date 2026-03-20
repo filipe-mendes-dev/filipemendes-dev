@@ -1,6 +1,6 @@
 import type { ReactElement } from 'react';
 
-import su from '../../../../shared/styles/utilities.module.css';
+import su from '../../../../../shared/styles/utilities.module.css';
 import type { DetailBulletListProps } from './DetailBulletList.interfaces';
 import st from './DetailBulletList.module.css';
 

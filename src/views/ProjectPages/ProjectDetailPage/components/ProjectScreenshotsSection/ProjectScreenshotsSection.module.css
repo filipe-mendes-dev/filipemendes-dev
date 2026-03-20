@@ -1,0 +1,32 @@
+.root::after {
+  top: 4rem;
+  left: calc(100% - clamp(13rem, 22vw, 17rem));
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+.galleryItem {
+  margin: 0;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: var(--line-strong) solid var(--line);
+  background: var(--paper-raised);
+}
+
+.galleryItem img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 64rem) {
+  .galleryGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

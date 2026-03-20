@@ -4,7 +4,7 @@ import type { ReactElement } from 'react';
 import { motion } from 'framer-motion';
 
 import { EducationIcon, ExternalLinkIcon, PublicationsIcon } from '../../../../components/icons';
-import { Section } from '../../../../components/ui/Section';
+import { LandingPageSection } from '../../../../components/ui/Section';
 import { useSectionRevealMotion } from '../../../../shared/motion/useSectionRevealMotion';
 import su from '../../../../shared/styles/utilities.module.css';
 import { AboutSupportSection } from './components/AboutSupportSection';
@@ -16,7 +16,7 @@ export const AboutSection = ({ content, isRevealEnabled }: AboutSectionProps): R
   const revealMotion = useSectionRevealMotion();
 
   return (
-    <Section
+    <LandingPageSection
       className={st.root}
       contentClassName={st.layout}
       id="about"
@@ -82,6 +82,6 @@ export const AboutSection = ({ content, isRevealEnabled }: AboutSectionProps): R
           )}
         </motion.div>
       </motion.div>
-    </Section>
+    </LandingPageSection>
   );
 };

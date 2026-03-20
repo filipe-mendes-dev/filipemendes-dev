@@ -1,5 +1,5 @@
-import type { ProjectDetail } from '../../../../../../data/portfolio';
+import type { ProjectListItem } from '../../../../../../data/portfolio';
 
 export interface ProjectCardProps {
-  project: ProjectDetail;
+  project: ProjectListItem;
 }

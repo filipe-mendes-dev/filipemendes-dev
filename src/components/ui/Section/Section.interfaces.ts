@@ -7,5 +7,8 @@ export interface SectionProps {
   className?: string;
   contentClassName?: string;
   id?: string;
+}
+
+export interface LandingPageSectionProps extends SectionProps {
   isRevealEnabled?: boolean;
 }

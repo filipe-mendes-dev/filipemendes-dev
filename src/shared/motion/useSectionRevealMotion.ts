@@ -5,6 +5,7 @@ import {
   type UseInViewOptions,
   useReducedMotion,
   type Variants,
+  type ViewportOptions,
 } from "framer-motion";
 
 import {
@@ -18,6 +19,10 @@ import {
 } from "../theme/motion";
 
 type SectionRevealViewport = Required<
+  Pick<ViewportOptions, "amount" | "margin" | "once">
+>;
+
+type SectionRevealInViewOptions = Required<
   Pick<UseInViewOptions, "amount" | "margin" | "once">
 >;
 
@@ -25,6 +30,7 @@ export interface SectionRevealMotion {
   contentVariants: Variants;
   dividerVariants: Variants;
   headerVariants: Variants;
+  inViewOptions: SectionRevealInViewOptions;
   itemVariants: Variants;
   nestedGroupVariants: Variants;
   sectionVariants: Variants;
@@ -101,6 +107,13 @@ export const useSectionRevealMotion = (): SectionRevealMotion => {
         },
       },
     },
+    inViewOptions: {
+      amount: landingPageMotion.revealEntryThreshold,
+      margin: landingPageRevealRootMargin as NonNullable<
+        UseInViewOptions["margin"]
+      >,
+      once: true,
+    },
     itemVariants: {
       hidden: {
         opacity: 0,
@@ -138,7 +151,6 @@ export const useSectionRevealMotion = (): SectionRevealMotion => {
       hidden: {},
       visible: {
         transition: {
-          when: "beforeChildren",
           delayChildren: isReducedMotionEnabled
             ? 0
             : stagger(toSeconds(sectionStaggerMs)),
@@ -152,7 +164,6 @@ export const useSectionRevealMotion = (): SectionRevealMotion => {
       visible: {
         opacity: 1,
         transition: {
-          when: "beforeChildren",
           delayChildren: isReducedMotionEnabled
             ? 0
             : stagger(toSeconds(titleStaggerMs)),
@@ -175,9 +186,7 @@ export const useSectionRevealMotion = (): SectionRevealMotion => {
     },
     viewport: {
       amount: landingPageMotion.revealEntryThreshold,
-      margin: landingPageRevealRootMargin as NonNullable<
-        UseInViewOptions["margin"]
-      >,
+      margin: landingPageRevealRootMargin,
       once: true,
     },
   };

@@ -32,36 +32,13 @@ export interface ProjectNarrative {
     outcome: string;
 }
 
-export interface ProjectStoreLinks {
-    appStore?: string;
-    googlePlay?: string;
-}
-
-export interface ProjectScreenshot {
-    alt: string;
-    url: string;
-}
-
-export interface ProjectDetailLink {
-    label: string;
+export interface ProjectListItem {
     href: string;
-}
-
-export interface ProjectDetail {
-    slug: string;
     name: string;
     logoText: string;
     category: string;
     description: string;
-    positioning: string;
     narrative: ProjectNarrative;
-    isMobileApp: boolean;
-    storeLinks?: ProjectStoreLinks;
-    screenshots: ProjectScreenshot[];
-    keyFeatures: string[];
-    architecture: string[];
-    techStack: string[];
-    links: ProjectDetailLink[];
 }
 
 export interface ExperienceItem {
@@ -110,7 +87,7 @@ export interface PortfolioContent {
     descriptor: string;
     navigation: NavigationItem[];
     hero: HeroContent;
-    projects: ProjectDetail[];
+    projects: ProjectListItem[];
     about: AboutContent;
     contact: ContactContent;
 }
@@ -141,13 +118,12 @@ export const portfolio: PortfolioContent = {
     },
     projects: [
         {
-            slug: 'acin-web-platform',
+            href: '/projects/acin-web-platform',
             name: 'ACIN Web Platform',
             logoText: 'AC',
             category: 'Frontend Platform',
             description:
                 'Web platform development work focused on responsive React interfaces, GraphQL integration, and native-like behavior on the web.',
-            positioning: 'Positioning: frontend platform work delivered as a Front-End Developer at ACIN group.',
             narrative: {
                 problem:
                     'The platform needed modern frontend delivery with responsive behavior, API integration, and dependable test coverage.',
@@ -157,39 +133,14 @@ export const portfolio: PortfolioContent = {
                 outcome:
                     'Shipped production frontend work for ACIN group from October 2023 to July 2025 with a strong focus on responsiveness and delivery quality.',
             },
-            isMobileApp: false,
-            screenshots: [],
-            keyFeatures: [
-                'Responsive layouts with native-like behavior via Capacitor',
-                'GraphQL API integration for platform data',
-                'Unit and E2E testing with Vitest and Playwright',
-            ],
-            architecture: [
-                'Component-based React frontend written in TypeScript',
-                'Docker-based development environment using Vite and Yarn',
-                'Testing workflow covering units and end-to-end browser journeys',
-            ],
-            techStack: [
-                'React',
-                'TypeScript',
-                'GraphQL',
-                'Capacitor',
-                'Docker',
-                'Vite',
-                'Yarn',
-                'Vitest',
-                'Playwright',
-            ],
-            links: [],
         },
         {
-            slug: 'nearsoft-mobile-apps',
+            href: '/projects/nearsoft-mobile-apps',
             name: 'Nearsoft Mobile Banking Apps',
             logoText: 'NS',
             category: 'Mobile Development',
             description:
                 'Mobile banking app development centered on React Native, TypeScript, Redux, REST integrations, and reusable UI components.',
-            positioning: 'Positioning: mobile product work delivered as a Mobile Developer at Nearsoft.',
             narrative: {
                 problem:
                     'The apps required reliable mobile delivery, shared component reuse, and coordination across iOS and Android native workflows.',
@@ -199,30 +150,14 @@ export const portfolio: PortfolioContent = {
                 outcome:
                     'Delivered cross-platform banking app features, contributed to a shared internal component library, and supported the onboarding of a summer intern.',
             },
-            isMobileApp: true,
-            screenshots: [],
-            keyFeatures: [
-                'Mobile banking flows built with React Native and Redux',
-                'REST API integration across app features',
-                'Shared internal component library reused across apps',
-            ],
-            architecture: [
-                'TypeScript-first React Native codebase for cross-platform delivery',
-                'Native development workflow using Xcode and Android Studio',
-                'Shared UI foundation designed for reuse across multiple mobile apps',
-            ],
-            techStack: ['React Native', 'TypeScript', 'Redux', 'REST APIs', 'Xcode', 'Android Studio'],
-            links: [],
         },
         {
-            slug: 'inov-infrared-detection',
+            href: '/projects/inov-infrared-detection',
             name: 'INOV Infrared Detection Research',
             logoText: 'IN',
             category: 'Applied Machine Learning',
             description:
                 'Research and engineering work on real-time infrared image classification using EfficientDet, TensorFlow, and OpenCV.',
-            positioning:
-                'Positioning: computer vision and data pipeline work delivered as a Software Engineer at INOV.',
             narrative: {
                 problem:
                     'The project needed real-time detection of vehicles, people, and deer from infrared video surveillance data.',
@@ -232,20 +167,6 @@ export const portfolio: PortfolioContent = {
                 outcome:
                     'Produced research that was published and presented at the 2022 International Conference on Electrical, Computer and Energy Technologies.',
             },
-            isMobileApp: false,
-            screenshots: [],
-            keyFeatures: [
-                'Real-time detection for vehicles, people, and deer',
-                'Infrared footage collection and labeling for training',
-                'Conference publication and presentation based on the work',
-            ],
-            architecture: [
-                'EfficientDet neural network model adapted for infrared image classification',
-                'Training workflow supported by curated and labeled thermal datasets',
-                'Computer vision pipeline implemented with TensorFlow and OpenCV',
-            ],
-            techStack: ['Python', 'TensorFlow', 'OpenCV', 'EfficientDet'],
-            links: [{ label: 'Conference Publication', href: 'https://doi.org/10.1109/ICECET55527.2022.9872921' }],
         },
     ],
     about: {
@@ -327,12 +248,4 @@ export const portfolio: PortfolioContent = {
         availability: 'Based in Madeira, Portugal.',
         socials: [{ label: 'LinkedIn', href: 'https://linkedin.com/in/mendes-filipe-dev' }],
     },
-};
-
-export const getProjectSlugs = (): string[] => {
-    return portfolio.projects.map((project) => project.slug);
-};
-
-export const getProjectBySlug = (slug: string): ProjectDetail | undefined => {
-    return portfolio.projects.find((project) => project.slug === slug);
 };
