@@ -3,7 +3,7 @@
 import type { ReactElement } from 'react';
 import { motion } from 'framer-motion';
 
-import { ExternalLinkIcon, GithubIcon, LinkedInIcon } from '../../../../components/icons';
+import { ExternalLinkIcon, GitHubMarkIcon, LinkedInIcon } from '../../../../components/icons';
 import { TextActionLink } from '../../../../components/navigation/TextActionLink';
 import { LandingPageSection } from '../../../../components/ui/Section';
 import { SoftSurface } from '../../../../components/ui/SoftSurface';
@@ -16,7 +16,7 @@ const getSocialIcon = (label: string): ReactElement => {
   const normalizedLabel = label.toLowerCase();
 
   if (normalizedLabel.includes('github')) {
-    return <GithubIcon className={st.socialIcon} />;
+    return <GitHubMarkIcon className={st.socialIcon} />;
   }
 
   if (normalizedLabel.includes('linkedin')) {

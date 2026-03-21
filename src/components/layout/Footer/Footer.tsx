@@ -1,9 +1,14 @@
-import type { ReactElement } from 'react';
+import type { ReactElement } from "react";
 
-import { GithubIcon, LinkedInIcon } from '../../icons';
-import { Container } from '../../ui/Container';
-import type { FooterProps } from './Footer.interfaces';
-import st from './Footer.module.css';
+import {
+  GitHubMarkIcon,
+  LinkedInIcon,
+  NextJsDarkIcon,
+  NextJsLightIcon,
+} from "../../icons";
+import { Container } from "../../ui/Container";
+import type { FooterProps } from "./Footer.interfaces";
+import st from "./Footer.module.css";
 
 export const Footer = ({
   descriptor,
@@ -12,24 +17,27 @@ export const Footer = ({
   name,
 }: FooterProps): ReactElement => {
   const currentYear = new Date().getFullYear();
-  const hasSocialLinks =
-    githubUrl !== undefined || linkedInUrl !== undefined;
+  const hasSocialLinks = githubUrl !== undefined || linkedInUrl !== undefined;
+  const copyrightLine = `${name} © ${currentYear}`;
 
   return (
     <footer className={st.root}>
       <Container className={st.footerInner}>
-        <div className={st.footerBrandColumn}>
-          <div className={st.footerBrand}>
-            <p className={st.footerTag}>[ portfolio.system ]</p>
-            <p className={st.footerName}>{name}</p>
-            <p className={st.footerDescriptor}>{descriptor}</p>
-            <div className={st.footerMetaRow}>
-              <p className={st.footerMeta}>Next.js App Router + TypeScript</p>
-              <span aria-hidden="true">•</span>
-              <p className={st.footerMeta}>Static-first portfolio architecture</p>
-            </div>
-            <p className={st.footerMeta}>Copyright {currentYear}</p>
-          </div>
+        <div className={st.footerBrand}>
+          <p className={st.footerTag}>[ Portfolio.system ]</p>
+          <p className={st.footerName}>{copyrightLine}</p>
+          <p className={st.footerDescriptor}>{descriptor}</p>
+          <p className={st.footerMeta}>
+            <span>Built with Next.js</span>
+            <span className={st.themeIcon} aria-hidden="true">
+              <NextJsDarkIcon
+                className={`${st.metaIcon} ${st.iconLightTheme}`}
+              />
+              <NextJsLightIcon
+                className={`${st.metaIcon} ${st.iconDarkTheme}`}
+              />
+            </span>
+          </p>
         </div>
 
         {hasSocialLinks && (
@@ -41,9 +49,12 @@ export const Footer = ({
                   className={st.footerLink}
                   target="_blank"
                   rel="noreferrer"
+                  aria-label="Visit GitHub profile"
                 >
-                  <GithubIcon className={st.socialIcon} />
-                  GitHub
+                  <span className={st.themeIcon} aria-hidden="true">
+                    <GitHubMarkIcon className={st.socialIcon} />
+                  </span>
+                  <span className={st.socialLabel}>GitHub</span>
                 </a>
               </li>
             )}
@@ -54,9 +65,12 @@ export const Footer = ({
                   className={st.footerLink}
                   target="_blank"
                   rel="noreferrer"
+                  aria-label="Visit LinkedIn profile"
                 >
-                  <LinkedInIcon className={st.socialIcon} />
-                  LinkedIn
+                  <span className={st.themeIcon} aria-hidden="true">
+                    <LinkedInIcon className={st.socialIcon} />
+                  </span>
+                  <span className={st.socialLabel}>LinkedIn</span>
                 </a>
               </li>
             )}

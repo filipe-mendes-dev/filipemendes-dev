@@ -84,9 +84,10 @@
 }
 
 .socialIcon {
-    width: var(--icon-size-sm);
-    height: var(--icon-size-sm);
+    width: 1rem;
+    height: 1rem;
     flex: none;
+    color: currentColor;
 }
 
 .formPanel {
