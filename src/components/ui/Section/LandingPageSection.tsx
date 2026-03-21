@@ -22,6 +22,7 @@ export const LandingPageSection = ({
   contentClassName,
   id,
   isRevealEnabled,
+  hasSeparator = true,
 }: LandingPageSectionProps): ReactElement => {
   const revealMotion = useSectionRevealMotion();
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -44,7 +45,7 @@ export const LandingPageSection = ({
       viewport={revealMotion.viewport}
       whileInView={isRevealEnabled === true ? "visible" : "hidden"}
     >
-      {isRevealManaged && (
+      {isRevealManaged && hasSeparator && (
         <motion.div
           aria-hidden="true"
           className={surface.sectionDivider}

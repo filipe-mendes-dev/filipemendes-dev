@@ -110,6 +110,7 @@ export const HeroSection = ({ content }: HeroSectionProps): ReactElement => {
         <div className={st.root}>
             <Section
                 className={`${surface.section} ${st.heroSection}`}
+                hasSeparator={false}
                 id="home"
             >
                 <div className={st.heroWindowStage}>

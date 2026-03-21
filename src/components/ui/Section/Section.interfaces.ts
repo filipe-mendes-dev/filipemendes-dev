@@ -7,6 +7,7 @@ export interface SectionProps {
   className?: string;
   contentClassName?: string;
   id?: string;
+  hasSeparator?: boolean;
 }
 
 export interface LandingPageSectionProps extends SectionProps {

@@ -21,6 +21,7 @@ export const Section = ({
   className,
   contentClassName,
   id,
+  hasSeparator = true,
 }: SectionProps): ReactElement => {
   const revealMotion = useSectionRevealMotion();
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -75,11 +76,13 @@ export const Section = ({
       variants={revealMotion.sectionVariants}
       whileInView={shouldStartHidden ? "visible" : undefined}
     >
-      <motion.div
-        aria-hidden="true"
-        className={surface.sectionDivider}
-        variants={revealMotion.dividerVariants}
-      />
+      {hasSeparator && (
+        <motion.div
+          aria-hidden="true"
+          className={surface.sectionDivider}
+          variants={revealMotion.dividerVariants}
+        />
+      )}
 
       {(title !== undefined || subtitle !== undefined) && (
         <motion.header
