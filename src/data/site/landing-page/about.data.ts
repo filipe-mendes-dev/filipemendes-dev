@@ -11,7 +11,7 @@ export interface AboutData {
 
 export const aboutData: AboutData = {
   profile:
-    "I take pride in what I do. The magic is in the small details, the consistency and reliability of every interaction. Be it web platform, mobile application or applied machine learning, my goal is to build long lasting products.",
+    "The magic is in the small details, the consistency and the reliability of every interaction. Across web platforms and mobile applications, I focus on building products I am proud of.",
   experience: experienceData,
   education: educationData,
   publications: publicationsData,

@@ -16,8 +16,7 @@ export const publicationsData: PublicationItem[] = [
   {
     title:
       "Study on the Application of EfficientDet to Real-Time Classification of Infrared Images from Video Surveillance",
-    venue:
-      "2022 International Conference on Electrical, Computer and Energy Technologies (ICECET)",
+    venue: "ICECET Conference",
     year: "2022",
     href: "https://doi.org/10.1109/ICECET55527.2022.9872921",
   },

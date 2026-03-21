@@ -11,20 +11,20 @@ export const experienceData: ExperienceItem[] = [
     company: "ACIN group",
     period: "Oct 2023 - Jul 2025",
     summary:
-      "Built web platform features with React and TypeScript, implemented responsive layouts with Capacitor, integrated GraphQL APIs, and worked with Vitest and Playwright.",
+      "Developed and maintained core features for a healthcare platform used in production, improving usability and consistency across critical workflows. Built responsive interfaces with React and TypeScript, integrated GraphQL APIs, and ensured reliable behavior across devices.",
   },
   {
     role: "Mobile Developer",
     company: "Nearsoft",
     period: "Jan 2023 - Sep 2023",
     summary:
-      "Developed mobile banking apps with React Native, TypeScript, and Redux, integrated REST APIs, and contributed to a shared internal component library.",
+      "Delivered mobile banking features used by real users, focusing on reliability, performance, and consistent user experience. Built cross-platform functionality with React Native and TypeScript, integrated REST APIs, and contributed to a shared component library.",
   },
   {
     role: "Software Engineer",
     company: "INOV",
     period: "Mar 2021 - Feb 2022",
     summary:
-      "Developed real-time detection solutions with EfficientDet, collected and labeled infrared data, and published the resulting research at an international conference.",
+      "Developed real-time object detection solutions using EfficientDet as part of applied machine learning research. Collected and labeled infrared data, trained and evaluated models, and published results at an international conference.",
   },
 ];
