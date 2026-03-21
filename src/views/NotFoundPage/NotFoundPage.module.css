@@ -1,3 +1,14 @@
+.surface {
+  --surface-ambient-drift-a-duration: 18s;
+  --surface-ambient-drift-b-duration: 22s;
+  --surface-ambient-drift-c-duration: 26s;
+  --surface-ambient-glow-a-duration: 17s;
+  --surface-ambient-glow-b-duration: 19s;
+  --surface-ambient-glow-c-duration: 21s;
+  --surface-ray-breath-duration: 12.5s;
+  --surface-ray-drift-duration: 15.5s;
+}
+
 .root {
   min-height: 100%;
   display: grid;

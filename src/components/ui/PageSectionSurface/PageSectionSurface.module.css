@@ -1,6 +1,14 @@
 .root {
   display: grid;
   --landing-scroll-spacing: var(--space-3);
+  --surface-ambient-drift-a-duration: 11s;
+  --surface-ambient-drift-b-duration: 14s;
+  --surface-ambient-drift-c-duration: 17s;
+  --surface-ambient-glow-a-duration: 13s;
+  --surface-ambient-glow-b-duration: 15s;
+  --surface-ambient-glow-c-duration: 17s;
+  --surface-ray-breath-duration: 10.2s;
+  --surface-ray-drift-duration: 12.2s;
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -13,73 +21,117 @@
   );
 }
 
-.root::before,
-.root::after {
-  content: '';
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+.root::before {
+  content: "";
   position: absolute;
-  inset: -2rem;
+  inset: -12%;
   pointer-events: none;
   z-index: 0;
 }
 
 .root::before {
-  background-image:
-    linear-gradient(to right, color-mix(in srgb, var(--moss) 12%, transparent) 1px, transparent 1px),
+  background-image: linear-gradient(
+      to right,
+      color-mix(in srgb, var(--moss) 12%, transparent) 1px,
+      transparent 1px
+    ),
     linear-gradient(
       to right,
-      color-mix(in srgb, var(--code-ink) 11%, color-mix(in srgb, var(--moss) 6%, transparent)) 1px,
+      color-mix(
+          in srgb,
+          var(--code-ink) 11%,
+          color-mix(in srgb, var(--moss) 6%, transparent)
+        )
+        1px,
       transparent 1px
     ),
     linear-gradient(
       to bottom,
-      color-mix(in srgb, var(--code-ink) 9%, color-mix(in srgb, var(--moss) 4%, transparent)) 1px,
+      color-mix(
+          in srgb,
+          var(--code-ink) 9%,
+          color-mix(in srgb, var(--moss) 4%, transparent)
+        )
+        1px,
       transparent 1px
     );
-  background-size:
-    160px 100%,
-    44px 44px,
-    44px 44px;
+  background-size: 160px 100%, 44px 44px, 44px 44px;
   opacity: 0.16;
 }
 
-.root::after {
-  background:
-    radial-gradient(circle at 18% 14%, color-mix(in srgb, var(--moss) 13%, transparent) 0%, transparent 15%),
-    radial-gradient(circle at 82% 68%, color-mix(in srgb, var(--moss-strong) 12%, transparent) 0%, transparent 13%),
-    radial-gradient(circle at 50% 36%, color-mix(in srgb, var(--moss-strong) 10%, transparent) 0%, transparent 10%);
+.ambientGlow {
+  position: absolute;
+  inset: -22%;
+  pointer-events: none;
+  z-index: 0;
   opacity: 0.9;
   transform: translate3d(0, 0, 0);
   will-change: transform, opacity;
-  animation:
-    surfaceAmbientDrift 5.5s ease-in-out infinite alternate,
-    surfaceAmbientGlow 7s ease-in-out infinite alternate;
-  background-size:
-    100% 100%,
-    100% 100%,
-    100% 100%;
-  background-repeat: no-repeat;
+  animation: surfaceAmbientDriftA var(--surface-ambient-drift-a-duration)
+      ease-in-out infinite alternate,
+    surfaceAmbientGlow var(--surface-ambient-glow-a-duration) ease-in-out
+      infinite alternate;
+}
+
+.ambientGlowA {
+  background: radial-gradient(
+    circle at 22% 18%,
+    color-mix(in srgb, var(--moss) 13%, transparent) 0%,
+    transparent 15%
+  );
+}
+
+.ambientGlowB {
+  background: radial-gradient(
+    circle at 78% 64%,
+    color-mix(in srgb, var(--moss-strong) 12%, transparent) 0%,
+    transparent 13%
+  );
+  animation: surfaceAmbientDriftB var(--surface-ambient-drift-b-duration)
+      ease-in-out infinite alternate,
+    surfaceAmbientGlow var(--surface-ambient-glow-b-duration) ease-in-out
+      infinite alternate-reverse;
+  animation-delay: -6s;
+}
+
+.ambientGlowC {
+  background: radial-gradient(
+    circle at 50% 36%,
+    color-mix(in srgb, var(--moss-strong) 10%, transparent) 0%,
+    transparent 10%
+  );
+  animation: surfaceAmbientDriftC var(--surface-ambient-drift-c-duration)
+      ease-in-out infinite alternate,
+    surfaceAmbientGlow var(--surface-ambient-glow-c-duration) ease-in-out
+      infinite alternate;
+  animation-delay: -11s;
 }
 
 .ambientRay {
   position: absolute;
-  inset: -2rem;
+  inset: -12%;
   pointer-events: none;
   z-index: 0;
-  background:
-    linear-gradient(
-      115deg,
-      transparent 22%,
-      color-mix(in srgb, var(--paper-raised) 42%, transparent) 40%,
-      color-mix(in srgb, var(--moss) 12%, transparent) 49%,
-      color-mix(in srgb, var(--paper-raised) 16%, transparent) 57%,
-      transparent 70%
-    );
+  background: linear-gradient(
+    115deg,
+    transparent 22%,
+    color-mix(in srgb, var(--paper-raised) 42%, transparent) 40%,
+    color-mix(in srgb, var(--moss) 12%, transparent) 49%,
+    color-mix(in srgb, var(--paper-raised) 16%, transparent) 57%,
+    transparent 70%
+  );
   opacity: 0.46;
   transform: translate3d(0, 0, 0);
   will-change: opacity, transform;
-  animation:
-    surfaceRayBreath 3.2s ease-in-out infinite alternate,
-    surfaceRayDrift 4.8s ease-in-out infinite alternate;
+  animation: surfaceRayBreath var(--surface-ray-breath-duration) ease-in-out
+      infinite alternate,
+    surfaceRayDrift var(--surface-ray-drift-duration) ease-in-out infinite
+      alternate;
 }
 
 .section {
@@ -90,7 +142,7 @@
 }
 
 .section::after {
-  content: '';
+  content: "";
   position: absolute;
   pointer-events: none;
   z-index: 0;
@@ -126,47 +178,125 @@
     90deg,
     transparent 0%,
     color-mix(in srgb, var(--moss) 18%, transparent) 12%,
-    color-mix(in srgb, var(--moss) 34%, color-mix(in srgb, var(--line) 18%, transparent)) 50%,
+    color-mix(
+        in srgb,
+        var(--moss) 34%,
+        color-mix(in srgb, var(--line) 18%, transparent)
+      )
+      50%,
     color-mix(in srgb, var(--moss) 18%, transparent) 88%,
     transparent 100%
   );
   z-index: 1;
 }
 
+@media (max-width: 48rem) {
+  .root {
+    --surface-ambient-drift-a-duration: 11s;
+    --surface-ambient-drift-b-duration: 14s;
+    --surface-ambient-drift-c-duration: 17s;
+    --surface-ambient-glow-a-duration: 13s;
+    --surface-ambient-glow-b-duration: 15s;
+    --surface-ambient-glow-c-duration: 17s;
+    --surface-ray-breath-duration: 10.2s;
+    --surface-ray-drift-duration: 12.2s;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ambientRay,
-  .root::after {
+  .ambientGlow {
     opacity: 0;
     animation: none;
     transform: none;
   }
 }
 
-@keyframes surfaceAmbientDrift {
+@keyframes surfaceAmbientDriftA {
   0% {
     transform: translate3d(0, 0, 0);
   }
 
-  50% {
-    transform: translate3d(
-      50px,
-      -46px,
-      0
-    );
+  18% {
+    transform: translate3d(10vw, -6vh, 0);
+  }
+
+  39% {
+    transform: translate3d(22vw, -14vh, 0);
+  }
+
+  58% {
+    transform: translate3d(8vw, 4vh, 0);
+  }
+
+  81% {
+    transform: translate3d(-12vw, 13vh, 0);
   }
 
   100% {
-    transform: translate3d(
-      -40px,
-      36px,
-      0
-    );
+    transform: translate3d(-18vw, 8vh, 0);
+  }
+}
+
+@keyframes surfaceAmbientDriftB {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  21% {
+    transform: translate3d(-12vw, 10vh, 0);
+  }
+
+  47% {
+    transform: translate3d(-24vw, -4vh, 0);
+  }
+
+  69% {
+    transform: translate3d(-8vw, -16vh, 0);
+  }
+
+  100% {
+    transform: translate3d(14vw, -10vh, 0);
+  }
+}
+
+@keyframes surfaceAmbientDriftC {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  16% {
+    transform: translate3d(14vw, 8vh, 0);
+  }
+
+  34% {
+    transform: translate3d(4vw, 18vh, 0);
+  }
+
+  61% {
+    transform: translate3d(-18vw, 6vh, 0);
+  }
+
+  82% {
+    transform: translate3d(-10vw, -14vh, 0);
+  }
+
+  100% {
+    transform: translate3d(9vw, -8vh, 0);
   }
 }
 
 @keyframes surfaceAmbientGlow {
   0% {
     opacity: 0.66;
+  }
+
+  35% {
+    opacity: 0.82;
+  }
+
+  62% {
+    opacity: 0.74;
   }
 
   100% {
@@ -179,6 +309,14 @@
     opacity: 0.26;
   }
 
+  40% {
+    opacity: 0.52;
+  }
+
+  70% {
+    opacity: 0.43;
+  }
+
   100% {
     opacity: 0.68;
   }
@@ -189,11 +327,19 @@
     transform: translate3d(0, 0, 0);
   }
 
+  26% {
+    transform: translate3d(-10px, 6px, 0);
+  }
+
+  48% {
+    transform: translate3d(-22px, 18px, 0);
+  }
+
+  71% {
+    transform: translate3d(-14px, 12px, 0);
+  }
+
   100% {
-    transform: translate3d(
-      -30px,
-      24px,
-      0
-    );
+    transform: translate3d(-30px, 24px, 0);
   }
 }
