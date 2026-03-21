@@ -12,7 +12,7 @@ Primary entry points:
 
 - `src/app/layout.tsx`
 - `src/app/page.tsx`
-- `src/app/projects/[slug]/page.tsx`
+- `src/app/projects/*/page.tsx`
 - `src/app/not-found.tsx`
 
 The codebase is organized as a mostly static site with request-aware theme rendering and client-side enhancements for navigation state, scrolling, and motion.
@@ -29,7 +29,6 @@ Current responsibility:
 - define the root layout shell
 - read request cookies needed for root document rendering
 - define route metadata
-- define dynamic route param generation
 - define route-level not-found behavior
 
 Key files:
@@ -37,7 +36,7 @@ Key files:
 - `src/app/layout.tsx` → root shell, global CSS imports, cookie-backed theme bootstrap, shared header/footer
 - `src/app/fonts.ts` → shared `next/font` definitions for app-wide typography variables
 - `src/app/page.tsx` → homepage route entry
-- `src/app/projects/[slug]/page.tsx` → project route params, metadata, slug lookup, not-found handling
+- `src/app/projects/*/page.tsx` → explicit project route entries and metadata wiring
 - `src/app/not-found.tsx` → App Router not-found entry
 
 What `src/app` does not own:
@@ -114,14 +113,14 @@ What `src/components` does not own:
 Current groups:
 
 - `src/shared/navigation`
-- `src/shared/reveal`
+- `src/shared/motion`
 - `src/shared/styles`
 - `src/shared/theme`
 
 Current responsibility:
 
 - shared section ID definitions in `src/shared/navigation/sections.ts`
-- shared reveal primitives in `src/shared/reveal`
+- shared reveal primitives in `src/shared/motion`
 - theme tokens and motion configuration in `src/shared/theme`
 - global styles and shared CSS utilities in `src/shared/styles`
 
@@ -148,7 +147,6 @@ Current responsibility:
 - project collection
 - about content
 - contact content
-- project slug helpers
 
 What `src/data` does not own:
 
@@ -179,9 +177,9 @@ Example: homepage
 
 Example: project detail page
 
-- `src/app/projects/[slug]/page.tsx` resolves the slug and metadata
-- it passes a resolved project into `src/views/ProjectDetailPage/ProjectDetailPage.tsx`
-- the view composes shared UI wrappers and project-specific detail sections
+- `src/app/projects/atlas-mobile/page.tsx` is representative of the current pattern
+- the route file exports metadata and renders a dedicated project page view from `src/views/ProjectPages`
+- the project view composes the shared `ProjectDetailPage` shell plus project-specific sections and data
 
 ## Route Files vs Views
 

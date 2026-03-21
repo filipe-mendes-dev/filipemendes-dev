@@ -28,9 +28,9 @@ These items describe potential future changes. They are not current architecture
 
 ### 3. Reduce client surface area on project detail pages
 
-- Current state: `src/app/projects/[slug]/page.tsx` is static-friendly, but `src/views/ProjectDetailPage/ProjectDetailPage.tsx` is fully client-side because reveal logic is embedded in the page view.
-- Why it matters: the page hydrates more UI than its content model requires.
-- Possible improvement: keep the content rendering server-first and move reveal behavior into a smaller client-only enhancer if the complexity is justified.
+- Current state: each project route file under `src/app/projects/*/page.tsx` is thin and static-friendly, but the project page views under `src/views/ProjectPages/*Page.tsx` and the shared `src/views/ProjectPages/ProjectDetailPage/ProjectDetailPage.tsx` are client components because they compose Framer Motion sections and shared reveal behavior directly.
+- Why it matters: the project-detail subtree hydrates more UI than the mostly static content requires.
+- Possible improvement: only revisit this if project-detail pages need better static rendering characteristics or lower hydration cost. A worthwhile refactor would move reveal orchestration into a smaller client-only boundary while keeping the content composition server-first.
 - Risk level: Medium
 - Priority: Medium
 
@@ -75,7 +75,7 @@ These areas currently have clear value and should not be changed without a speci
 - thin route files in `src/app` that delegate into `src/views`
 - the split between route-sized `views` and reusable `components`
 - `HeaderNavList` as a presentational extraction
-- route-level project lookup and metadata generation in `src/app/projects/[slug]/page.tsx`
+- explicit per-project route files in `src/app/projects/*/page.tsx` that only wire metadata and view exports
 - the overall static-first rendering model
 
 ## Summary
@@ -85,3 +85,4 @@ The current codebase does not need a broad refactor to function well. The most m
 - keep homepage navigation and reveal ownership explicit and narrow
 - keep shell-level architecture simple and explicit
 - clarify source-of-truth ownership for theme logic and tokens
+- only reduce project-page client boundaries if the measurable payoff becomes relevant

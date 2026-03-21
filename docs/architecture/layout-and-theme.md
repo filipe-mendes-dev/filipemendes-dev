@@ -71,7 +71,7 @@ Current role:
 - provide the base title and description for the site
 - serve as fallback metadata for routes that do not override it
 
-Route-specific metadata is added in `src/app/projects/[slug]/page.tsx` via `generateMetadata()`.
+Route-specific metadata is added in the per-project route files under `src/app/projects/*/page.tsx` via `generateMetadata()`.
 
 ## Shared Shell Mounting
 

@@ -12,10 +12,8 @@ The current site content is centralized in:
 
 This file exports:
 
-- content interfaces such as `PortfolioContent`, `ProjectDetail`, and `NavigationItem`
+- content interfaces such as `PortfolioContent`, `ProjectListItem`, and `NavigationItem`
 - the `portfolio` object
-- `getProjectSlugs()`
-- `getProjectBySlug(slug)`
 
 At the current scale, this file acts as both:
 
@@ -49,7 +47,6 @@ Current consumers:
 
 - `src/app/layout.tsx` → passes `siteTitle` to `Header`
 - `src/app/layout.tsx` → passes `siteTitle` and `descriptor` to `Footer`
-- `src/app/projects/[slug]/page.tsx` → uses `siteTitle` in `generateMetadata()`
 
 ### Navigation
 
@@ -94,13 +91,13 @@ Field:
 Current consumers:
 
 - `src/views/LandingPage/sections/ProjectsSection/ProjectsSection.tsx` → renders project cards
-- `src/app/projects/[slug]/page.tsx` → resolves a single project
-- `src/views/ProjectDetailPage/ProjectDetailPage.tsx` → renders project details
+- `src/views/ProjectPages/*Page.data.ts` → reuses route hrefs and shared project summary data where needed
+- `src/views/ProjectPages/ProjectDetailPage/ProjectDetailPage.tsx` → renders the shared project detail shell
 
 Each project entry currently supports both:
 
 - homepage summary presentation
-- full project detail route rendering
+- project-route linking through `href`
 
 ### About content
 
@@ -182,34 +179,16 @@ This is a simple page-level pass-through model and is appropriate for the curren
 
 Relevant code:
 
-- `src/app/projects/[slug]/page.tsx`
+- `src/app/projects/*/page.tsx`
 
 Current behavior:
 
-- `generateStaticParams()` uses `getProjectSlugs()`
-- `getProjectFromParams()` uses `getProjectBySlug(slug)`
-- `generateMetadata()` uses the resolved project plus `portfolio.siteTitle`
-- the route renders `ProjectDetailPage` with the resolved project
+- the route files do not resolve project slugs dynamically
+- each project route imports prepared metadata and a dedicated project view
+- those project views use local `*.data.ts` files for page-specific detail content
+- the shared `portfolio` content still supplies homepage project summaries and route hrefs
 
-This keeps slug lookup, metadata generation, and page rendering aligned to the same content source.
-
-## Project Slug Helpers
-
-Relevant code:
-
-- `src/data/portfolio.ts` → `getProjectSlugs()`
-- `src/data/portfolio.ts` → `getProjectBySlug()`
-
-Current behavior:
-
-- `getProjectSlugs()` maps the project collection to slug strings
-- `getProjectBySlug()` performs a simple in-memory lookup
-
-This is intentionally simple because:
-
-- the content is local
-- the collection is small
-- there is no pagination or external data source
+This keeps route files thin, but it also means the current project-detail route model is more explicit and less data-driven than the homepage.
 
 ## Why This Model Works Now
 
@@ -231,7 +210,7 @@ Examples:
 
 - navigation is both content and shell routing input
 - contact socials are both page content and shell footer input
-- project entries serve both homepage cards and detail pages
+- project entries serve both homepage cards and project-route linking
 
 These are acceptable tradeoffs for the current site size because they reduce duplication and keep the data model easy to audit.
 
@@ -242,6 +221,5 @@ These are acceptable tradeoffs for the current site size because they reduce dup
 It currently works well because it provides:
 
 - one typed content source
-- one project collection for both list and detail pages
-- simple route lookup helpers
+- one project collection for homepage summaries and project-route links
 - direct compatibility with the current static-first rendering model

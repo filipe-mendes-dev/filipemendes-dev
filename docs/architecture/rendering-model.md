@@ -10,7 +10,7 @@ The current portfolio is static-first.
 
 - Route content comes from local TypeScript data in `src/data/portfolio.ts`.
 - The homepage is rendered from static content only.
-- Project detail pages are generated from a fixed slug list in `src/app/projects/[slug]/page.tsx`.
+- Project detail pages are exposed through explicit route files in `src/app/projects/*/page.tsx`.
 - Client components are used for interaction and motion, not for data loading.
 
 ## Route-Level Rendering Facts
@@ -35,19 +35,18 @@ Result:
 
 Route entry:
 
-- `src/app/projects/[slug]/page.tsx`
+- `src/app/projects/*/page.tsx`
 
 Current behavior:
 
-- `generateStaticParams()` builds one route per project slug
-- `dynamicParams = false` disables unknown runtime slugs
-- `generateMetadata()` derives page metadata from the resolved project
-- `getProjectFromParams()` resolves the slug and calls `notFound()` when no project matches
+- each project directory contains its own `page.tsx`
+- each route file exports `generateMetadata()` from project-specific data already prepared in `src/views/ProjectPages/*Page.data.ts`
+- each route file renders its matching project view from `src/views/ProjectPages/*Page.tsx`
 
 Result:
 
-- known project pages are statically generated
-- unknown project slugs are not treated as dynamic fallback pages
+- known project pages are statically generated from explicit route entries
+- there is no dynamic slug lookup path in the current project-page architecture
 
 ### Not-found route
 
@@ -69,7 +68,7 @@ These files are server components because they do not declare `use client`:
 
 - `src/app/layout.tsx`
 - `src/app/page.tsx`
-- `src/app/projects/[slug]/page.tsx`
+- `src/app/projects/*/page.tsx`
 - `src/app/not-found.tsx`
 - `src/views/LandingPage/LandingPage.tsx`
 - `src/views/NotFoundPage/NotFoundPage.tsx`
@@ -175,9 +174,8 @@ During production build:
 - Next.js evaluates route files in `src/app`
 - `src/app/layout.tsx` is compiled as the root shell
 - `src/data/portfolio.ts` is imported as the content source
-- `src/app/projects/[slug]/page.tsx` runs `generateStaticParams()`
-- project metadata is prepared by `generateMetadata()`
-- static HTML is generated for `/` and each known project slug
+- project route files under `src/app/projects/*/page.tsx` export metadata for their matching pages
+- static HTML is generated for `/`, `/projects/*`, and the not-found UI
 
 There is no remote data dependency in the current build path.
 
