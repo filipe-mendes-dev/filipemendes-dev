@@ -35,6 +35,7 @@ Current responsibility:
 Key files:
 
 - `src/app/layout.tsx` → root shell, global CSS imports, cookie-backed theme bootstrap, shared header/footer
+- `src/app/fonts.ts` → shared `next/font` definitions for app-wide typography variables
 - `src/app/page.tsx` → homepage route entry
 - `src/app/projects/[slug]/page.tsx` → project route params, metadata, slug lookup, not-found handling
 - `src/app/not-found.tsx` → App Router not-found entry

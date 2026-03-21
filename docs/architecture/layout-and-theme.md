@@ -34,11 +34,33 @@ It does not own:
 
 Current ownership by file:
 
-- `theme.css` → CSS custom properties and font imports
+- `src/app/fonts.ts` → `next/font` definitions and the shared root font-variable class string
+- `theme.css` → CSS custom properties and font tokens
 - `reset.css` → reset/normalization rules
 - `base.css` → base element defaults such as `html`, `body`, links, focus styles, and reduced-motion overrides
 
 This matches the current architecture: leaf components rely on CSS Modules and shared variables, not repeated global imports.
+
+## Font Loading Ownership
+
+Relevant code:
+
+- `src/app/fonts.ts`
+- `src/app/layout.tsx`
+- `src/shared/theme/theme.css`
+
+Current behavior:
+
+- `src/app/fonts.ts` defines the Google fonts through `next/font/google`
+- `src/app/fonts.ts` exports one composed `appFontVariables` class string
+- `src/app/layout.tsx` applies that string once on `<body>`
+- `src/shared/theme/theme.css` maps `--font-display`, `--font-body`, and `--font-mono` to those root font variables
+
+Why this split exists:
+
+- `next/font` loaders are JavaScript values, so they cannot be declared directly in CSS Modules
+- the root layout is still the correct place to apply the generated classes because typography tokens are global
+- keeping the definitions in `src/app/fonts.ts` keeps `layout.tsx` smaller while preserving one global font boundary
 
 ## Metadata Ownership
 
