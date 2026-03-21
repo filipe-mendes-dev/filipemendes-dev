@@ -18,14 +18,14 @@ export const Footer = ({
 }: FooterProps): ReactElement => {
   const currentYear = new Date().getFullYear();
   const hasSocialLinks = githubUrl !== undefined || linkedInUrl !== undefined;
-  const copyrightLine = `${name} © ${currentYear}`;
+  const copyrightLine = `© ${currentYear}`;
 
   return (
     <footer className={st.root}>
       <Container className={st.footerInner}>
         <div className={st.footerBrand}>
           <p className={st.footerTag}>[ Portfolio.system ]</p>
-          <p className={st.footerName}>{copyrightLine}</p>
+          <p className={st.footerName}>{name}</p>
           <p className={st.footerDescriptor}>{descriptor}</p>
           <p className={st.footerMeta}>
             <span>Built with Next.js</span>
@@ -37,6 +37,10 @@ export const Footer = ({
                 className={`${st.metaIcon} ${st.iconDarkTheme}`}
               />
             </span>
+            <span className={st.metaDivider} aria-hidden="true">
+              •
+            </span>
+            <span>{copyrightLine}</span>
           </p>
         </div>
 

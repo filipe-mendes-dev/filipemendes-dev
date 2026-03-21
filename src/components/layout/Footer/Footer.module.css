@@ -123,7 +123,12 @@
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
+  flex-wrap: wrap;
   color: var(--ink-muted);
+}
+
+.metaDivider {
+  color: color-mix(in srgb, var(--line) 78%, var(--ink-muted));
 }
 
 .footerTag,

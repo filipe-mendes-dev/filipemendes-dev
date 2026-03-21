@@ -9,6 +9,7 @@ declare const styles: {
   readonly 'footerTag': string;
   readonly 'iconDarkTheme': string;
   readonly 'iconLightTheme': string;
+  readonly 'metaDivider': string;
   readonly 'metaIcon': string;
   readonly 'root': string;
   readonly 'socialIcon': string;
