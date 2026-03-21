@@ -3,9 +3,9 @@ import type { ReactElement } from 'react';
 import Link from 'next/link';
 
 import { BackIcon, ExternalLinkIcon } from '../../../../../components/icons';
+import { TextActionLink } from '../../../../../components/navigation/TextActionLink';
 import { Container } from '../../../../../components/ui/Container';
 import surface from '../../../../../components/ui/PageSectionSurface/PageSectionSurface.module.css';
-import su from '../../../../../shared/styles/utilities.module.css';
 import {
   AppStoreBadgeIcon,
   GooglePlayBadgeIcon,
@@ -89,16 +89,16 @@ export const ProjectDetailHero = ({
               {hero.links.length > 0 && (
                 <div className={st.projectDetailLinks}>
                   {hero.links.map((link) => (
-                    <a
+                    <TextActionLink
                       key={link.label}
                       href={link.href}
-                      className={`${su.textLink} ${st.metaLink}`}
+                      className={st.metaLink}
                       target="_blank"
                       rel="noreferrer"
+                      trailingIcon={<ExternalLinkIcon className={st.metaLinkIcon} />}
                     >
-                      <span>{link.label}</span>
-                      <ExternalLinkIcon className={st.metaLinkIcon} />
-                    </a>
+                      {link.label}
+                    </TextActionLink>
                   ))}
                 </div>
               )}
