@@ -1,6 +1,8 @@
 declare const styles: {
+  readonly 'appStoreBadgeImage': string;
   readonly 'backIcon': string;
   readonly 'backLink': string;
+  readonly 'googlePlayBadgeImage': string;
   readonly 'heroActions': string;
   readonly 'heroHeader': string;
   readonly 'heroInner': string;
@@ -17,7 +19,7 @@ declare const styles: {
   readonly 'projectPositioning': string;
   readonly 'projectTitle': string;
   readonly 'root': string;
-  readonly 'storeBadgeIcon': string;
+  readonly 'storeBadgeGraphic': string;
   readonly 'storeBadgeLink': string;
   readonly 'storeLinkRow': string;
 };
