@@ -12,9 +12,9 @@ export interface ContactData {
 
 export const contactData: ContactData = {
   intro:
-    "I work across frontend web platforms, mobile applications, and machine learning systems. The best way to reach me is by email or LinkedIn.",
+    "Open to focused product and engineering work where quality, clarity, and long-term thinking matter.",
   email: "mendes.filipe.dev@gmail.com",
-  availability: "Based in Madeira, Portugal.",
+  availability: "Based in Madeira, Portugal — open to remote collaboration.",
   socials: [
     { label: "LinkedIn", href: "https://linkedin.com/in/mendes-filipe-dev" },
     { label: "GitHub", href: "https://github.com/Flaip10" },
