@@ -26,11 +26,11 @@ export const AboutSection = ({ content, isRevealEnabled }: AboutSectionProps): R
     >
       <motion.div className={st.introBlock} variants={revealMotion.itemVariants}>
         <p className={st.introEyebrow}>Product systems perspective</p>
-        <p className={st.cardLead}>{content.about.profile}</p>
+        <p className={st.cardLead}>{content.profile}</p>
       </motion.div>
 
       <motion.div variants={revealMotion.itemVariants}>
-        <ExperienceTimeline className={st.journeyPanel} items={content.about.experience} />
+        <ExperienceTimeline className={st.journeyPanel} items={content.experience} />
       </motion.div>
 
       <motion.div variants={revealMotion.itemVariants}>
@@ -38,7 +38,7 @@ export const AboutSection = ({ content, isRevealEnabled }: AboutSectionProps): R
           <motion.div variants={revealMotion.itemVariants}>
             <AboutSupportSection className={`${st.supportSection} ${st.educationSection}`} icon={EducationIcon} title="Education">
               <ul className={`${su.stackList} ${st.educationList}`}>
-                {content.about.education.map((entry) => (
+                {content.education.map((entry) => (
                   <li className={st.educationEntry} key={`${entry.title}-${entry.period ?? 'ongoing'}`}>
                     <div className={st.educationHeading}>
                       <p className={st.educationTitle}>{entry.title}</p>
@@ -51,7 +51,7 @@ export const AboutSection = ({ content, isRevealEnabled }: AboutSectionProps): R
             </AboutSupportSection>
           </motion.div>
 
-          {content.about.publications.length > 0 && (
+          {content.publications.length > 0 && (
             <motion.div variants={revealMotion.itemVariants}>
               <AboutSupportSection
                 className={`${st.supportSection} ${st.publicationSection}`}
@@ -59,7 +59,7 @@ export const AboutSection = ({ content, isRevealEnabled }: AboutSectionProps): R
                 title="Publications"
               >
                 <ul className={`${su.stackList} ${st.publicationList}`}>
-                  {content.about.publications.map((entry) => (
+                  {content.publications.map((entry) => (
                     <li className={st.publicationEntry} key={`${entry.title}-${entry.year ?? 'undated'}`}>
                       {entry.href !== undefined ? (
                         <a href={entry.href} className={st.publicationLink} target="_blank" rel="noreferrer">

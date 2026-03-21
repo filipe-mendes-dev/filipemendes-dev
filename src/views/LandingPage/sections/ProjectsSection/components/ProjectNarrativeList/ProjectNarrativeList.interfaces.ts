@@ -1,4 +1,4 @@
-import type { ProjectNarrative } from '../../../../../../data/portfolio';
+import type { ProjectNarrative } from '../../../../../../data/site/projects.data';
 
 export interface ProjectNarrativeListProps {
   narrative: ProjectNarrative;

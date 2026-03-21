@@ -1,6 +1,6 @@
-import type { PortfolioContent } from '../../../../data/portfolio';
+import type { LandingProjectCardViewModel } from '../../../../data/view-models/landing-page.view-model';
 
 export interface ProjectsSectionProps {
-  content: PortfolioContent;
+  content: LandingProjectCardViewModel[];
   isRevealEnabled: boolean;
 }

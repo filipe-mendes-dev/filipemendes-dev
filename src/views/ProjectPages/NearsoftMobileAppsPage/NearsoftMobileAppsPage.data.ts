@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { portfolio } from "../../../data/portfolio";
+import { siteData } from "../../../data/site/site.data";
 import type {
   ProjectDetailHeroData,
   ProjectScreenshotItem,
@@ -41,7 +41,7 @@ export const nearsoftMobileAppsTechStack: string[] = [
   "Android Studio",
 ];
 
-const title = `${nearsoftMobileAppsHero.name} | ${portfolio.siteTitle}`;
+const title = `${nearsoftMobileAppsHero.name} | ${siteData.siteTitle}`;
 
 export const nearsoftMobileAppsMetadata: Metadata = {
   title,

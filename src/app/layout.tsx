@@ -5,7 +5,8 @@ import type { ReactElement, ReactNode } from "react";
 
 import { Footer } from "../components/layout/Footer";
 import { Header } from "../components/layout/Header";
-import { portfolio } from "../data/portfolio";
+import type { SocialLink } from "../data/site/contact.data";
+import { getShellViewModel } from "../data/view-models/shell.view-model";
 import { appFontVariables } from "./fonts";
 import { getThemeInitializationScript } from "../shared/theme/themeInitializationScript";
 import {
@@ -29,8 +30,11 @@ interface RootLayoutProps {
   children: ReactNode;
 }
 
-const getSocialLink = (label: string): string | undefined => {
-  const socialLink = portfolio.contact.socials.find(
+const getSocialLink = (
+  label: string,
+  socials: SocialLink[],
+): string | undefined => {
+  const socialLink = socials.find(
     (item) => item.label.toLowerCase() === label.toLowerCase()
   );
 
@@ -40,8 +44,9 @@ const getSocialLink = (label: string): string | undefined => {
 const RootLayout = async ({
   children,
 }: RootLayoutProps): Promise<ReactElement> => {
-  const githubUrl = getSocialLink("GitHub");
-  const linkedInUrl = getSocialLink("LinkedIn");
+  const shellViewModel = getShellViewModel();
+  const githubUrl = getSocialLink("GitHub", shellViewModel.footerSocials);
+  const linkedInUrl = getSocialLink("LinkedIn", shellViewModel.footerSocials);
   const cookieStore = await cookies();
   const persistedTheme = cookieStore.get(themeCookieKey)?.value;
   const initialTheme = isThemeName(persistedTheme)
@@ -61,15 +66,15 @@ const RootLayout = async ({
         </Script>
         <Header
           initialTheme={initialTheme}
-          navigation={portfolio.navigation}
-          siteTitle={portfolio.siteTitle}
+          navigation={shellViewModel.navigation}
+          siteTitle={shellViewModel.siteTitle}
         />
         <main className={st.main}>{children}</main>
         <Footer
-          descriptor={portfolio.descriptor}
+          descriptor={shellViewModel.descriptor}
           githubUrl={githubUrl}
           linkedInUrl={linkedInUrl}
-          name={portfolio.siteTitle}
+          name={shellViewModel.siteTitle}
         />
       </body>
     </html>

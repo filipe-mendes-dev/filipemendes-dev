@@ -3,7 +3,7 @@
 import type { ReactElement } from "react";
 
 import { PageSectionSurface } from "../../components/ui/PageSectionSurface";
-import { portfolio } from "../../data/portfolio";
+import { getLandingPageViewModel } from "../../data/view-models/landing-page.view-model";
 import { LandingPageNavigationBinder } from "./navigation/LandingPageNavigationBinder";
 import { useLandingPageRevealEnabled } from "./useLandingPageRevealEnabled";
 import { AboutSection } from "./sections/AboutSection";
@@ -13,16 +13,16 @@ import { ProjectsSection } from "./sections/ProjectsSection";
 import st from "./LandingPage.module.css";
 
 const LandingPage = (): ReactElement => {
-  const content = portfolio;
+  const { about, contact, hero, projects } = getLandingPageViewModel();
   const isRevealEnabled = useLandingPageRevealEnabled();
 
   return (
     <PageSectionSurface className={st.root}>
       <LandingPageNavigationBinder />
-      <HeroSection content={content} />
-      <ProjectsSection content={content} isRevealEnabled={isRevealEnabled} />
-      <AboutSection content={content} isRevealEnabled={isRevealEnabled} />
-      <ContactSection content={content} isRevealEnabled={isRevealEnabled} />
+      <HeroSection content={hero} />
+      <ProjectsSection content={projects} isRevealEnabled={isRevealEnabled} />
+      <AboutSection content={about} isRevealEnabled={isRevealEnabled} />
+      <ContactSection content={contact} isRevealEnabled={isRevealEnabled} />
     </PageSectionSurface>
   );
 };

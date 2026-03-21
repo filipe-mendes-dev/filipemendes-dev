@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { portfolio } from "../../../data/portfolio";
+import { siteData } from "../../../data/site/site.data";
 import type {
   ProjectDetailHeroData,
   ProjectScreenshotItem,
@@ -44,7 +44,7 @@ export const inovInfraredDetectionTechStack: string[] = [
   "EfficientDet",
 ];
 
-const title = `${inovInfraredDetectionHero.name} | ${portfolio.siteTitle}`;
+const title = `${inovInfraredDetectionHero.name} | ${siteData.siteTitle}`;
 
 export const inovInfraredDetectionMetadata: Metadata = {
   title,

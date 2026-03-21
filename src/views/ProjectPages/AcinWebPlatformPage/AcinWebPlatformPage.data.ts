@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { portfolio } from "../../../data/portfolio";
+import { siteData } from "../../../data/site/site.data";
 import type {
   ProjectDetailHeroData,
   ProjectScreenshotItem,
@@ -44,7 +44,7 @@ export const acinWebPlatformTechStack: string[] = [
   "Playwright",
 ];
 
-const title = `${acinWebPlatformHero.name} | ${portfolio.siteTitle}`;
+const title = `${acinWebPlatformHero.name} | ${siteData.siteTitle}`;
 
 export const acinWebPlatformMetadata: Metadata = {
   title,

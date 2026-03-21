@@ -1,6 +1,6 @@
-import type { PortfolioContent } from '../../../../data/portfolio';
+import type { LandingAboutViewModel } from '../../../../data/view-models/landing-page.view-model';
 
 export interface AboutSectionProps {
-  content: PortfolioContent;
+  content: LandingAboutViewModel;
   isRevealEnabled: boolean;
 }

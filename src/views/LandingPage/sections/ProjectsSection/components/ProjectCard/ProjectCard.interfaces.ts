@@ -1,5 +1,5 @@
-import type { ProjectListItem } from '../../../../../../data/portfolio';
+import type { LandingProjectCardViewModel } from '../../../../../../data/view-models/landing-page.view-model';
 
 export interface ProjectCardProps {
-  project: ProjectListItem;
+  project: LandingProjectCardViewModel;
 }
