@@ -130,16 +130,34 @@
 .storeBadgeLink {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
-  min-height: var(--control-height-md);
+  min-height: 2.75rem;
   width: fit-content;
-  border-radius: var(--radius-pill);
+  border-radius: calc(var(--radius-sm) * 0.6);
+  overflow: hidden;
 }
 
-.storeBadgeIcon {
-  width: 1.15rem;
-  height: 1.15rem;
-  flex: none;
+.storeBadgeGraphic {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.75rem;
+  width: auto;
+  max-width: 100%;
+}
+
+.storeBadgeGraphic :global(svg) {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+}
+
+.appStoreBadgeImage {
+  height: 2.75rem;
+}
+
+.googlePlayBadgeImage {
+  height: 2.75rem;
 }
 
 .backLink {
@@ -183,6 +201,14 @@
   .projectLogo {
     min-width: 3.75rem;
     max-width: 4.25rem;
+  }
+  
+  .appStoreBadgeImage {
+    height: 3rem;
+  }
+
+  .googlePlayBadgeImage {
+    height: 3rem;
   }
 }
 
