@@ -22,7 +22,7 @@ export const ProjectsSection = ({ content, isRevealEnabled }: ProjectsSectionPro
       title="Projects"
     >
       {content.map((project) => (
-        <motion.div key={project.href} variants={revealMotion.itemVariants}>
+        <motion.div key={project.id} variants={revealMotion.itemVariants}>
           <ProjectCard project={project} />
         </motion.div>
       ))}

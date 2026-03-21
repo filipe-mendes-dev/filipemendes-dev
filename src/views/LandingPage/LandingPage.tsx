@@ -12,8 +12,10 @@ import { HeroSection } from "./sections/HeroSection";
 import { ProjectsSection } from "./sections/ProjectsSection";
 import st from "./LandingPage.module.css";
 
+const landingPageViewModel = getLandingPageViewModel();
+
 const LandingPage = (): ReactElement => {
-  const { about, contact, hero, projects } = getLandingPageViewModel();
+  const { about, contact, hero, projects } = landingPageViewModel;
   const isRevealEnabled = useLandingPageRevealEnabled();
 
   return (
