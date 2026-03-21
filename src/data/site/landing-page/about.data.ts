@@ -1,10 +1,6 @@
 import { educationData, type EducationItem } from "../education.data";
 import { experienceData, type ExperienceItem } from "../experience.data";
-import { personData } from "../person.data";
-import {
-  type PublicationItem,
-  publicationsData,
-} from "../publications.data";
+import { type PublicationItem, publicationsData } from "../publications.data";
 
 export interface AboutData {
   profile: string;
@@ -14,7 +10,8 @@ export interface AboutData {
 }
 
 export const aboutData: AboutData = {
-  profile: personData.aboutProfile,
+  profile:
+    "I take pride in what I do. The magic is in the small details, the consistency and reliability of every interaction. Be it web platform, mobile application or applied machine learning, my goal is to build long lasting products.",
   experience: experienceData,
   education: educationData,
   publications: publicationsData,
