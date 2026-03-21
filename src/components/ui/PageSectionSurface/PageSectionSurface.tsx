@@ -11,8 +11,11 @@ export const PageSectionSurface = ({
 
   return (
     <div className={rootClassName}>
+      <div aria-hidden="true" className={`${st.ambientGlow} ${st.ambientGlowA}`} />
+      <div aria-hidden="true" className={`${st.ambientGlow} ${st.ambientGlowB}`} />
+      <div aria-hidden="true" className={`${st.ambientGlow} ${st.ambientGlowC}`} />
       <div aria-hidden="true" className={st.ambientRay} />
-      {children}
+      <div className={st.content}>{children}</div>
     </div>
   );
 };
