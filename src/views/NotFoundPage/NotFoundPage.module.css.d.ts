@@ -4,6 +4,7 @@ declare const styles: {
   readonly 'lead': string;
   readonly 'primaryAction': string;
   readonly 'root': string;
+  readonly 'surface': string;
   readonly 'title': string;
 };
 
