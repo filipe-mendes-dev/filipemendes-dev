@@ -1,6 +1,6 @@
-import type { LandingContactViewModel } from '../../../../data/view-models/landing-page.view-model';
+import type { ContactData } from '../../../../data/site/landing-page/contact.data';
 
 export interface ContactSectionProps {
-  content: LandingContactViewModel;
+  content: ContactData;
   isRevealEnabled: boolean;
 }

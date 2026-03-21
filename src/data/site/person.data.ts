@@ -1,7 +1,5 @@
 export interface PersonData {
   name: string;
-  role: string;
-  summary: string;
   currentStatus: string;
   portrait: {
     alt: string;
@@ -14,9 +12,6 @@ export interface PersonData {
 
 export const personData: PersonData = {
   name: "Filipe Mendes",
-  role: "Frontend and mobile software developer with experience across React, React Native, TypeScript, GraphQL, and applied machine learning.",
-  summary:
-    "I enjoy solving complex problems efficiently, learning quickly, and adapting fast to new domains. My recent work spans frontend web platforms, mobile banking apps, and computer vision research.",
   currentStatus: "Based in Madeira, Portugal.",
   portrait: {
     alt: "Portrait of Filipe Mendes from CV",
@@ -26,5 +21,5 @@ export const personData: PersonData = {
     sizes: "(min-width: 64rem) 192px, (min-width: 48rem) 176px, 152px",
   },
   aboutProfile:
-    "I have a keen eye for detail and enjoy solving complex challenges efficiently. My background combines frontend web development, mobile app delivery, and machine learning research, shaped by a fast-learning and adaptable approach.",
+    "I take pride in what I do. The magic is in the small details, the consistency and reliability of every interaction. Be it web platform, mobile application or applied machine learning, my goal is to build long lasting products.",
 };

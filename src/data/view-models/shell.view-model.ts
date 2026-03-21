@@ -1,4 +1,7 @@
-import { contactData, type SocialLink } from "../site/contact.data";
+import {
+  contactData,
+  type SocialLink,
+} from "../site/landing-page/contact.data";
 import { type NavigationItem, siteData } from "../site/site.data";
 
 export interface ShellViewModel {

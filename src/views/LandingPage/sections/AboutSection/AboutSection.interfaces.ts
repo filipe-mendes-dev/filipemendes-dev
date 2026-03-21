@@ -1,6 +1,6 @@
-import type { LandingAboutViewModel } from '../../../../data/view-models/landing-page.view-model';
+import type { AboutData } from '../../../../data/site/landing-page/about.data';
 
 export interface AboutSectionProps {
-  content: LandingAboutViewModel;
+  content: AboutData;
   isRevealEnabled: boolean;
 }

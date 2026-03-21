@@ -5,7 +5,7 @@ import type { ReactElement, ReactNode } from "react";
 
 import { Footer } from "../components/layout/Footer";
 import { Header } from "../components/layout/Header";
-import type { SocialLink } from "../data/site/contact.data";
+import type { SocialLink } from "../data/site/landing-page/contact.data";
 import { getShellViewModel } from "../data/view-models/shell.view-model";
 import { appFontVariables } from "./fonts";
 import { getThemeInitializationScript } from "../shared/theme/themeInitializationScript";

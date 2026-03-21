@@ -19,6 +19,16 @@ export const getProjectHref = (slug: string): string => {
   return `/projects/${slug}`;
 };
 
+export interface LandingProjectData {
+  id: string;
+  href: string;
+  name: string;
+  logoText: string;
+  category: string;
+  description: string;
+  narrative: ProjectNarrative;
+}
+
 export const projectsData: ProjectRecord[] = [
   {
     id: "acin-web-platform",
@@ -77,3 +87,17 @@ export const projectsData: ProjectRecord[] = [
     },
   },
 ];
+
+export const landingProjectsData: LandingProjectData[] = projectsData.map(
+  (project) => {
+    return {
+      id: project.id,
+      href: getProjectHref(project.slug),
+      name: project.name,
+      logoText: project.logoText,
+      category: project.category,
+      description: project.description,
+      narrative: project.narrative,
+    };
+  },
+);

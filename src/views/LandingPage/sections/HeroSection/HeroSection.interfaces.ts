@@ -1,5 +1,5 @@
-import type { LandingHeroViewModel } from '../../../../data/view-models/landing-page.view-model';
+import type { HeroData } from '../../../../data/site/landing-page/hero.data';
 
 export interface HeroSectionProps {
-  content: LandingHeroViewModel;
+  content: HeroData;
 }
