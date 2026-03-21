@@ -6,6 +6,7 @@ import type { ReactElement, ReactNode } from "react";
 import { Footer } from "../components/layout/Footer";
 import { Header } from "../components/layout/Header";
 import { portfolio } from "../data/portfolio";
+import { appFontVariables } from "./fonts";
 import { getThemeInitializationScript } from "../shared/theme/themeInitializationScript";
 import {
   defaultThemePreference,
@@ -54,7 +55,7 @@ const RootLayout = async ({
 
   return (
     <html lang="en" data-theme={initialTheme}>
-      <body className={st.body}>
+      <body className={`${st.body} ${appFontVariables}`}>
         <Script id="theme-init" strategy="beforeInteractive">
           {themeInitializationScript}
         </Script>
