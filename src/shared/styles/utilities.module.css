@@ -5,7 +5,7 @@
 .cardEyebrow {
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  font-size: var(--font-size-caption);
+  font-size: var(--text-overline);
   color: var(--moss);
   font-weight: 700;
 }
@@ -46,7 +46,7 @@
 }
 
 .listMeta {
-  font-size: var(--font-size-body);
+  font-size: var(--text-body);
   color: var(--ink-muted);
 }
 
@@ -71,6 +71,7 @@
   min-height: var(--control-height-lg);
   padding: 0.62rem 1rem;
   border: var(--line-strong) solid color-mix(in srgb, var(--line) 78%, transparent);
+  font-size: var(--text-action);
   font-weight: 600;
   display: inline-flex;
   align-items: center;

@@ -103,7 +103,7 @@
 .category {
     margin: 0;
     font-family: var(--font-mono);
-    font-size: var(--font-size-caption);
+    font-size: var(--text-overline);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--moss);
@@ -114,7 +114,7 @@
 .title {
     margin: 0;
     max-width: var(--content-max-narrow);
-    font-size: clamp(1.35rem, 1.22rem + 0.55vw, 1.8rem);
+    font-size: var(--text-card-title);
     line-height: var(--line-height-title);
     letter-spacing: -0.015em;
     text-wrap: balance;

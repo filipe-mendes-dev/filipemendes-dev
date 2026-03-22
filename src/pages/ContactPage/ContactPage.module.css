@@ -170,7 +170,7 @@
 
 .fieldLabel {
     font-family: var(--font-mono);
-    font-size: var(--font-size-caption);
+    font-size: var(--text-label);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--ink-muted);
@@ -220,7 +220,7 @@
 .formButton {
     width: fit-content;
     font-family: var(--font-display);
-    font-size: var(--font-size-body);
+    font-size: var(--text-action);
     padding: var(--control-padding-lg);
 }
 

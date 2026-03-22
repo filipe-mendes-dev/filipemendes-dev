@@ -141,7 +141,7 @@
 .heroKicker {
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    font-size: var(--font-size-caption);
+    font-size: var(--text-overline);
     color: var(--moss);
     font-weight: 700;
 }
@@ -166,7 +166,7 @@
 }
 
 .heroRole {
-    font-size: var(--font-size-body-lg);
+    font-size: var(--text-body-lg);
     color: var(--ink);
     max-width: var(--content-max-narrow);
     overflow-wrap: anywhere;

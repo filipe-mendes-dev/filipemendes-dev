@@ -89,7 +89,7 @@
 .projectCategory {
   margin: 0;
   font-family: var(--font-mono);
-  font-size: var(--font-size-caption);
+  font-size: var(--text-overline);
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -101,7 +101,7 @@
 .projectTitle {
   margin: 0;
   max-width: var(--content-max-narrow);
-  font-size: clamp(1.5rem, 1.34rem + 0.72vw, 1.95rem);
+  font-size: var(--text-page-title);
   line-height: var(--line-height-title);
   letter-spacing: -0.015em;
   text-wrap: balance;

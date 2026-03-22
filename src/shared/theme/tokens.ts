@@ -50,6 +50,16 @@ export interface ThemeTokens {
   'font-size-heading-lg': string;
   'font-size-title': string;
   'font-size-lead': string;
+  'text-overline': string;
+  'text-nav': string;
+  'text-label': string;
+  'text-body': string;
+  'text-body-lg': string;
+  'text-lead': string;
+  'text-section-title': string;
+  'text-card-title': string;
+  'text-page-title': string;
+  'text-action': string;
   'line-height-body': string;
   'line-height-heading': string;
   'line-height-title': string;
@@ -116,6 +126,16 @@ const commonThemeTokens: Pick<
   | 'font-size-heading-lg'
   | 'font-size-title'
   | 'font-size-lead'
+  | 'text-overline'
+  | 'text-nav'
+  | 'text-label'
+  | 'text-body'
+  | 'text-body-lg'
+  | 'text-lead'
+  | 'text-section-title'
+  | 'text-card-title'
+  | 'text-page-title'
+  | 'text-action'
   | 'line-height-body'
   | 'line-height-heading'
   | 'line-height-title'
@@ -178,6 +198,16 @@ const commonThemeTokens: Pick<
   'font-size-heading-lg': 'clamp(1.2rem, 1.1rem + 0.3vw, 1.35rem)',
   'font-size-title': 'clamp(1.7rem, 3.4vw, 2.35rem)',
   'font-size-lead': 'clamp(1rem, 0.96rem + 0.2vw, 1.1rem)',
+  'text-overline': 'var(--font-size-caption)',
+  'text-nav': 'var(--font-size-body)',
+  'text-label': 'var(--font-size-caption)',
+  'text-body': 'var(--font-size-body)',
+  'text-body-lg': 'var(--font-size-body-lg)',
+  'text-lead': 'var(--font-size-lead)',
+  'text-section-title': 'var(--font-size-title)',
+  'text-card-title': 'clamp(1.35rem, 1.22rem + 0.55vw, 1.8rem)',
+  'text-page-title': 'clamp(1.5rem, 1.34rem + 0.72vw, 1.95rem)',
+  'text-action': 'var(--font-size-body)',
   'line-height-body': '1.65',
   'line-height-heading': '1.2',
   'line-height-title': '1.14',

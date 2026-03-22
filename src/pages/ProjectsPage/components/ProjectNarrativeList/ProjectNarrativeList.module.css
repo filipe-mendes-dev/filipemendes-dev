@@ -12,7 +12,7 @@
 .label {
   margin: 0;
   font-family: var(--font-mono);
-  font-size: var(--font-size-caption);
+  font-size: var(--text-overline);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--moss);

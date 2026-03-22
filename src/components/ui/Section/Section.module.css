@@ -27,7 +27,7 @@
 }
 
 .header h2 {
-    font-size: var(--font-size-title);
+    font-size: var(--text-section-title);
     letter-spacing: 0.01em;
     line-height: var(--line-height-title);
     position: relative;
@@ -61,7 +61,7 @@
 .subtitle {
     max-width: var(--content-max-readable);
     color: var(--ink-muted);
-    font-size: var(--font-size-lead);
+    font-size: var(--text-lead);
     transition: opacity var(--motion-duration-2xl) var(--motion-ease-emphasized),
         transform var(--motion-duration-3xl) var(--motion-ease-emphasized);
 }
