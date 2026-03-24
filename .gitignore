@@ -9,6 +9,7 @@ pnpm-debug.log*
 node_modules
 dist
 .next
+next-env.d.ts
 *.local
 *.tsbuildinfo
 
