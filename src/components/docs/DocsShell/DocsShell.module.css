@@ -1,0 +1,98 @@
+.root {
+  --docs-mobile-topbar-height: 4.25rem;
+  --docs-sidebar-collapsed-width: 4rem;
+  --docs-sidebar-expanded-width: 17.5rem;
+  --docs-sidebar-width: var(--docs-sidebar-collapsed-width);
+  display: grid;
+  min-height: 100dvh;
+  height: 100dvh;
+  overflow: hidden;
+  background: linear-gradient(
+      to right,
+      color-mix(in srgb, var(--moss) 8%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--moss) 6%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--paper-raised) 18%, var(--paper)) 0%,
+      color-mix(in srgb, var(--paper) 94%, var(--stone)) 100%
+    );
+  background-size: 42px 42px, 42px 42px, 100% 100%;
+}
+
+.backdrop {
+  display: none;
+}
+
+.rootExpanded {
+  --docs-sidebar-width: var(--docs-sidebar-expanded-width);
+}
+
+.rootCollapsed {
+  --docs-sidebar-width: var(--docs-sidebar-collapsed-width);
+}
+
+.content {
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: clamp(1rem, 3vw, 2rem);
+  scrollbar-gutter: stable;
+}
+
+.contentInner {
+  width: min(100%, 64rem);
+}
+
+@media (min-width: 64rem) {
+  .root {
+    grid-template-columns: var(--docs-sidebar-collapsed-width) minmax(0, 1fr);
+  }
+
+  .rootExpanded {
+    grid-template-columns: max-content minmax(0, 1fr);
+  }
+
+  .rootCollapsed {
+    grid-template-columns: var(--docs-sidebar-collapsed-width) minmax(0, 1fr);
+  }
+
+  .content {
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+  }
+}
+
+@media (max-width: 63.99rem) {
+  .root {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .content {
+    padding-top: calc(var(--docs-mobile-topbar-height) + 0.75rem);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 18;
+    border: 0;
+    background: color-mix(in srgb, var(--paper) 42%, transparent);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--motion-duration-md) var(--motion-ease-standard);
+  }
+
+  .backdropVisible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}

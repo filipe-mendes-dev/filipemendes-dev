@@ -1,0 +1,127 @@
+.root {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.header {
+  display: grid;
+  gap: var(--space-2);
+  max-width: var(--content-max-readable);
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--moss);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-caption);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 1.75rem + 1.2vw, 3rem);
+  line-height: var(--line-height-title);
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.collectionLead {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: var(--font-size-body);
+  line-height: 1.8;
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+}
+
+.documentGrid {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.documentCard {
+  display: grid;
+  gap: var(--space-2);
+  padding: clamp(1rem, 2.2vw, 1.25rem);
+  border: var(--line-strong) solid color-mix(in srgb, var(--line) 68%, transparent);
+  border-radius: calc(var(--radius-md) * 0.92);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--paper-raised) 98%, transparent) 0%,
+    color-mix(in srgb, var(--paper) 72%, var(--paper-raised)) 100%
+  );
+  text-decoration: none;
+  transition:
+    border-color var(--transition),
+    transform var(--transition),
+    background-color var(--transition);
+}
+
+.documentCard:hover {
+  border-color: color-mix(in srgb, var(--moss) 16%, var(--line));
+  transform: translate3d(0, -2px, 0);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--paper-raised) 99%, transparent) 0%,
+    color-mix(in srgb, var(--paper) 76%, var(--paper-raised)) 100%
+  );
+}
+
+.documentCard:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--moss) 70%, transparent);
+  outline-offset: 2px;
+}
+
+.cardEyebrow {
+  margin: 0;
+  color: var(--moss);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-caption);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cardTitle {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 0.94rem + 0.22vw, 1.1rem);
+  line-height: var(--line-height-heading);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.cardSummary {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: var(--font-size-caption);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.cardCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 0.45rem 0.8rem;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--paper) 18%, transparent);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-caption);
+  line-height: 1.4;
+}
+
+@media (min-width: 48rem) {
+  .documentGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
