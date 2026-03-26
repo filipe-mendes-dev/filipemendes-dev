@@ -52,15 +52,15 @@
 
 @media (min-width: 64rem) {
   .root {
-    grid-template-columns: var(--docs-sidebar-collapsed-width) minmax(0, 1fr);
+    grid-template-columns: var(--docs-sidebar-width) minmax(0, 1fr);
   }
 
   .rootExpanded {
-    grid-template-columns: max-content minmax(0, 1fr);
+    grid-template-columns: var(--docs-sidebar-width) minmax(0, 1fr);
   }
 
   .rootCollapsed {
-    grid-template-columns: var(--docs-sidebar-collapsed-width) minmax(0, 1fr);
+    grid-template-columns: var(--docs-sidebar-width) minmax(0, 1fr);
   }
 
   .content {

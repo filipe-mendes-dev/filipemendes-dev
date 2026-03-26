@@ -16,7 +16,6 @@
 }
 
 .rootExpanded {
-  width: max-content;
 }
 
 .body {
@@ -30,7 +29,7 @@
   min-height: 0;
   overflow: auto;
   overscroll-behavior: none;
-  padding: 1rem;
+  padding: 1rem 0.5rem;
   scrollbar-gutter: stable;
 }
 
