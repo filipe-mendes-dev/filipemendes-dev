@@ -3,6 +3,9 @@ import { cookies } from "next/headers";
 import Script from "next/script";
 import type { ReactElement, ReactNode } from "react";
 
+import { Footer } from "../components/layout/Footer";
+import { Header } from "../components/layout/Header";
+import { portfolio } from "../data/portfolio";
 import { appFontVariables } from "./fonts";
 import { getThemeInitializationScript } from "../shared/theme/themeInitializationScript";
 import {
@@ -26,9 +29,19 @@ interface RootLayoutProps {
   children: ReactNode;
 }
 
+const getSocialLink = (label: string): string | undefined => {
+  const socialLink = portfolio.contact.socials.find(
+    (item) => item.label.toLowerCase() === label.toLowerCase()
+  );
+
+  return socialLink?.href;
+};
+
 const RootLayout = async ({
   children,
 }: RootLayoutProps): Promise<ReactElement> => {
+  const githubUrl = getSocialLink("GitHub");
+  const linkedInUrl = getSocialLink("LinkedIn");
   const cookieStore = await cookies();
   const persistedTheme = cookieStore.get(themeCookieKey)?.value;
   const initialTheme = isThemeName(persistedTheme)
@@ -46,7 +59,18 @@ const RootLayout = async ({
         <Script id="theme-init" strategy="beforeInteractive">
           {themeInitializationScript}
         </Script>
-        {children}
+        <Header
+          initialTheme={initialTheme}
+          navigation={portfolio.navigation}
+          siteTitle={portfolio.siteTitle}
+        />
+        <main className={st.main}>{children}</main>
+        <Footer
+          descriptor={portfolio.descriptor}
+          githubUrl={githubUrl}
+          linkedInUrl={linkedInUrl}
+          name={portfolio.siteTitle}
+        />
       </body>
     </html>
   );
