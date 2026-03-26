@@ -1,0 +1,61 @@
+.root {
+  display: grid;
+  gap: 0.35rem;
+  max-height: 10rem;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.rootCollapsed {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-top-color: transparent;
+  opacity: 0;
+  transform: translateY(0.5rem);
+  pointer-events: none;
+}
+
+.tag,
+.name,
+.descriptor,
+.meta {
+  margin: 0;
+}
+
+.tag,
+.meta {
+  color: var(--ink-muted);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-caption);
+  line-height: 1.5;
+}
+
+.name {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: var(--font-size-body);
+  line-height: 1.25;
+}
+
+.descriptor {
+  color: var(--ink-soft);
+  font-size: var(--font-size-caption);
+  line-height: 1.5;
+}
+
+.meta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+@media (max-width: 63.99rem) {
+  .rootCollapsed {
+    display: none;
+  }
+
+  .rootExpanded {
+    display: grid;
+  }
+}
