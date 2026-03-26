@@ -4,7 +4,7 @@ import type { ReactElement } from "react";
 import {
   atlasMobileMetadata,
   AtlasMobilePage,
-} from "../../../views/ProjectPages/AtlasMobilePage";
+} from "../../../../views/ProjectPages/AtlasMobilePage";
 
 export const generateMetadata = (): Metadata => {
   return atlasMobileMetadata;

@@ -4,7 +4,7 @@ import type { ReactElement } from "react";
 import {
   forgeWebMetadata,
   ForgeWebPage,
-} from "../../../views/ProjectPages/ForgeWebPage";
+} from "../../../../views/ProjectPages/ForgeWebPage";
 
 export const generateMetadata = (): Metadata => {
   return forgeWebMetadata;

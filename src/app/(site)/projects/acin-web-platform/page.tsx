@@ -1,10 +1,10 @@
-import type { Metadata } from 'next';
-import type { ReactElement } from 'react';
+import type { Metadata } from "next";
+import type { ReactElement } from "react";
 
 import {
   acinWebPlatformMetadata,
   AcinWebPlatformPage,
-} from '../../../views/ProjectPages/AcinWebPlatformPage';
+} from "../../../../views/ProjectPages/AcinWebPlatformPage";
 
 export const generateMetadata = (): Metadata => {
   return acinWebPlatformMetadata;
