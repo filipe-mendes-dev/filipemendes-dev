@@ -27,12 +27,6 @@
   display: none;
 }
 
-.rootExpanded {
-}
-
-.rootCollapsed {
-}
-
 .content {
   min-width: 0;
   min-height: 0;
@@ -79,12 +73,12 @@
     transition: opacity var(--motion-duration-md) var(--motion-ease-standard);
   }
 
-  .backdropVisible {
+  .backdrop[data-state="open"] {
     opacity: 1;
     pointer-events: auto;
   }
 
-  .rootExpanded .content {
+  .root[data-mobile-state="open"] .content {
     padding-top: 1rem;
   }
 }

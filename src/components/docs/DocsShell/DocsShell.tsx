@@ -33,9 +33,8 @@ export const DocsShell = ({
 
   return (
     <div
-      className={`${st.root} ${
-        isMobileOpen ? st.rootExpanded : st.rootCollapsed
-      }`}
+      className={st.root}
+      data-mobile-state={isMobileOpen ? "open" : "closed"}
     >
       <DocsSidebar
         descriptor={descriptor}
@@ -48,9 +47,8 @@ export const DocsShell = ({
       />
       <button
         type="button"
-        className={`${st.backdrop} ${
-          isMobileOpen ? st.backdropVisible : ""
-        }`}
+        className={st.backdrop}
+        data-state={isMobileOpen ? "open" : "closed"}
         aria-label="Close docs navigation"
         onClick={handleClose}
       />
