@@ -19,7 +19,10 @@ export const DocsSidebarAccordion = ({
         label={label}
         onToggle={onToggle}
       />
-      <div className={`${st.body} ${isExpanded ? st.bodyExpanded : ""}`}>
+      <div
+        className={st.body}
+        data-state={isExpanded ? "open" : "closed"}
+      >
         <ul className={st.list}>
           {items.map((item) => (
             <li key={item.href}>

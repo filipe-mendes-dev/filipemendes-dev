@@ -12,7 +12,7 @@
     opacity var(--motion-duration-md) var(--motion-ease-standard);
 }
 
-.bodyExpanded {
+.body[data-state="open"] {
   grid-template-rows: 1fr;
   opacity: 1;
 }
