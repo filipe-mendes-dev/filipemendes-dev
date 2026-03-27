@@ -227,9 +227,8 @@ export const Header = ({
         ref={mobileNavRef}
         id={mobileNavId}
         aria-label="Primary"
-        className={`${st.headerNav} ${
-          isMobileMenuOpen ? st.headerNavOpen : ""
-        }`}
+        className={st.headerNav}
+        data-mobile-state={isMobileMenuOpen ? "open" : "closed"}
       >
         <div className={st.headerNavInner}>
           <HeaderNavList
