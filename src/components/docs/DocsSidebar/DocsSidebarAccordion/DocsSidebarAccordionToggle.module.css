@@ -1,4 +1,5 @@
 .root {
+  composes: fineHoverTarget from "../../../../shared/styles/utilities.module.css";
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 0.55rem;
@@ -16,25 +17,22 @@
   line-height: 1.4;
   text-align: left;
   text-transform: uppercase;
-  transition: color var(--transition), opacity var(--transition);
+  --hover-color: var(--ink);
+  --hover-background: transparent;
+  --hover-border-color: transparent;
+  --hover-opacity: 1;
+  --hover-transform: none;
+  --hover-box-shadow: none;
 }
 
 .root[aria-expanded="true"] {
   color: var(--ink);
+  --hover-color: var(--ink-muted);
 }
 
 .root:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--moss) 68%, transparent);
   outline-offset: 2px;
-}
-
-.rootCollapsed {
-  grid-template-columns: 1fr;
-  justify-items: center;
-  width: 2.75rem;
-  min-height: 2.75rem;
-  margin-inline: auto;
-  padding: 0;
 }
 
 .label {
@@ -45,14 +43,6 @@
   max-width: 10rem;
   overflow: hidden;
   white-space: nowrap;
-}
-
-.labelCollapsed {
-  opacity: 0;
-  transform: translateX(-0.4rem);
-  max-width: 0;
-  max-height: 0;
-  pointer-events: none;
 }
 
 .icon {
@@ -69,14 +59,4 @@
 
 .root[aria-expanded="true"] .icon {
   transform: rotate(180deg);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .root:hover {
-    color: var(--ink);
-  }
-
-  .root[aria-expanded="true"]:hover {
-    color: var(--ink-muted);
-  }
 }

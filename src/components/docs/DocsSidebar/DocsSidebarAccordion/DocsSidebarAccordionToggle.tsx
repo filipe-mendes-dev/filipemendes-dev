@@ -1,13 +1,13 @@
 import type { ReactElement } from "react";
 
-import type { DocsSidebarSectionToggleProps } from "./DocsSidebarSectionToggle.interfaces";
-import st from "./DocsSidebarSectionToggle.module.css";
+import type { DocsSidebarAccordionToggleProps } from "./DocsSidebarAccordionToggle.interfaces";
+import st from "./DocsSidebarAccordionToggle.module.css";
 
-export const DocsSidebarSectionToggle = ({
+export const DocsSidebarAccordionToggle = ({
   isExpanded,
   label,
   onToggle,
-}: DocsSidebarSectionToggleProps): ReactElement => {
+}: DocsSidebarAccordionToggleProps): ReactElement => {
   return (
     <button
       type="button"

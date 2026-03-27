@@ -1,7 +1,7 @@
 import type { ReactElement } from "react";
 
 import { DocsSidebarNavItem } from "../DocsSidebarNavItem";
-import { DocsSidebarSectionToggle } from "../DocsSidebarSectionToggle";
+import { DocsSidebarAccordionToggle } from "./DocsSidebarAccordionToggle";
 import type { DocsSidebarAccordionProps } from "./DocsSidebarAccordion.interfaces";
 import st from "./DocsSidebarAccordion.module.css";
 
@@ -14,7 +14,7 @@ export const DocsSidebarAccordion = ({
 }: DocsSidebarAccordionProps): ReactElement => {
   return (
     <div className={st.root}>
-      <DocsSidebarSectionToggle
+      <DocsSidebarAccordionToggle
         isExpanded={isExpanded}
         label={label}
         onToggle={onToggle}
