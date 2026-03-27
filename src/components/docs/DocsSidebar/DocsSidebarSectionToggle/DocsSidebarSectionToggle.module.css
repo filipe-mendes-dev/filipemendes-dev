@@ -19,13 +19,13 @@
   transition: color var(--transition), opacity var(--transition);
 }
 
+.root[aria-expanded="true"] {
+  color: var(--ink);
+}
+
 .root:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--moss) 68%, transparent);
   outline-offset: 2px;
-}
-
-.rootExpanded {
-  color: var(--ink);
 }
 
 .rootCollapsed {
@@ -60,18 +60,23 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1rem;
-  height: 1rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  justify-self: center;
   transition: transform var(--motion-duration-md) var(--motion-ease-standard),
     color var(--transition);
 }
 
-.iconExpanded {
+.root[aria-expanded="true"] .icon {
   transform: rotate(180deg);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .root:hover {
     color: var(--ink);
+  }
+
+  .root[aria-expanded="true"]:hover {
+    color: var(--ink-muted);
   }
 }

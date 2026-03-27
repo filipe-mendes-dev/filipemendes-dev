@@ -11,15 +11,12 @@ export const DocsSidebarSectionToggle = ({
   return (
     <button
       type="button"
-      className={`${st.root} ${isExpanded ? st.rootExpanded : ""}`}
+      className={st.root}
       onClick={onToggle}
       aria-expanded={isExpanded}
     >
       <span className={st.label}>{label}</span>
-      <span
-        className={`${st.icon} ${isExpanded ? st.iconExpanded : ""}`}
-        aria-hidden="true"
-      >
+      <span className={st.icon} aria-hidden="true">
         ⌄
       </span>
     </button>
