@@ -6,8 +6,8 @@ import { type ReactElement, useId, useState } from "react";
 import { DocsSidebarFooter } from "./DocsSidebarFooter";
 import { DocsSidebarHeader } from "./DocsSidebarHeader";
 import type { DocsSidebarProps } from "./DocsSidebar.interfaces";
+import { DocsSidebarAccordion } from "./DocsSidebarAccordion";
 import { DocsSidebarNavItem } from "./DocsSidebarNavItem";
-import { DocsSidebarSectionToggle } from "./DocsSidebarSectionToggle";
 import st from "./DocsSidebar.module.css";
 
 const getDocHref = (docSlug: string): string => `/docs/${docSlug}`;
@@ -29,13 +29,30 @@ export const DocsSidebar = ({
   const [isProjectsOpen, setIsProjectsOpen] = useState(true);
   const [isFeaturedOpen, setIsFeaturedOpen] = useState(true);
   const isHomeActive = pathname === "/docs";
+  const projectItems = projects.map((project) => {
+    const href = getProjectHref(project.slug);
+
+    return {
+      href,
+      isActive: pathname === href || pathname.startsWith(`${href}/`),
+      label: project.name,
+    };
+  });
+  const featuredItems = featuredDocs.map((document) => {
+    const href = getDocHref(document.slug);
+
+    return {
+      href,
+      isActive: pathname === href,
+      label: document.title,
+    };
+  });
 
   return (
     <aside
-      className={`${st.root} ${
-        isMobileOpen ? st.rootExpanded : st.rootCollapsed
-      }`}
+      className={st.root}
       aria-label="Documentation sidebar"
+      data-mobile-state={isMobileOpen ? "open" : "closed"}
     >
       <DocsSidebarHeader
         docsNavId={docsNavId}
@@ -61,74 +78,25 @@ export const DocsSidebar = ({
               </li>
             </ul>
 
-            <div className={st.navSection}>
-              <DocsSidebarSectionToggle
-                isExpanded={isProjectsOpen}
-                label="Projects"
-                onToggle={() => {
-                  setIsProjectsOpen((currentValue) => !currentValue);
-                }}
-              />
-              <div
-                className={`${st.sectionBody} ${
-                  isProjectsOpen ? st.sectionBodyExpanded : ""
-                }`}
-              >
-                <ul className={st.navList}>
-                  {projects.map((project) => {
-                    const href = getProjectHref(project.slug);
-                    const isActive =
-                      pathname === href || pathname.startsWith(`${href}/`);
+            <DocsSidebarAccordion
+              isExpanded={isProjectsOpen}
+              items={projectItems}
+              label="Projects"
+              onItemClick={onClose}
+              onToggle={() => {
+                setIsProjectsOpen((currentValue) => !currentValue);
+              }}
+            />
 
-                    return (
-                      <li key={project.slug}>
-                        <DocsSidebarNavItem
-                          href={href}
-                          isActive={isActive}
-                          isNested
-                          label={project.name}
-                          onClick={onClose}
-                        />
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            </div>
-
-            <div className={st.navSection}>
-              <DocsSidebarSectionToggle
-                isExpanded={isFeaturedOpen}
-                label="Featured"
-                onToggle={() => {
-                  setIsFeaturedOpen((currentValue) => !currentValue);
-                }}
-              />
-              <div
-                className={`${st.sectionBody} ${
-                  isFeaturedOpen ? st.sectionBodyExpanded : ""
-                }`}
-              >
-                <ul className={st.navList}>
-                  {featuredDocs.map((document) => {
-                    const href = getDocHref(document.slug);
-                    const isActive = pathname === href;
-
-                    return (
-                      <li key={document.slug}>
-                        <DocsSidebarNavItem
-                          href={href}
-                          isActive={isActive}
-                          isNested
-                          label={document.title}
-                          onClick={onClose}
-                        />
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            </div>
+            <DocsSidebarAccordion
+              isExpanded={isFeaturedOpen}
+              items={featuredItems}
+              label="Featured"
+              onItemClick={onClose}
+              onToggle={() => {
+                setIsFeaturedOpen((currentValue) => !currentValue);
+              }}
+            />
           </nav>
         </div>
       </div>

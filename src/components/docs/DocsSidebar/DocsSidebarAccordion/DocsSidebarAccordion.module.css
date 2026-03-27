@@ -1,0 +1,27 @@
+.root {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.body {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows var(--motion-duration-md)
+      var(--motion-ease-standard),
+    opacity var(--motion-duration-md) var(--motion-ease-standard);
+}
+
+.bodyExpanded {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.list {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+}
