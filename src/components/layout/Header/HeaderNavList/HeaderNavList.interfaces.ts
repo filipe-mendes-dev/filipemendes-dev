@@ -12,5 +12,5 @@ export interface HeaderNavListItem {
 export interface HeaderNavListProps {
   items: HeaderNavListItem[];
   listClassName?: string;
-  linkClassName: string;
+  linkClassName?: string;
 }

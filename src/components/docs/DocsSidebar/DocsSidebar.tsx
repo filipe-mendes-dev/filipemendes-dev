@@ -18,9 +18,9 @@ const getProjectHref = (projectSlug: string): string =>
 export const DocsSidebar = ({
   descriptor,
   featuredDocs,
-  isExpanded,
+  isMobileOpen,
   onClose,
-  onToggleExpanded,
+  onToggleMobileNavigation,
   projects,
   siteTitle,
 }: DocsSidebarProps): ReactElement => {
@@ -33,14 +33,14 @@ export const DocsSidebar = ({
   return (
     <aside
       className={`${st.root} ${
-        isExpanded ? st.rootExpanded : st.rootCollapsed
+        isMobileOpen ? st.rootExpanded : st.rootCollapsed
       }`}
       aria-label="Documentation sidebar"
     >
       <DocsSidebarHeader
         docsNavId={docsNavId}
-        isExpanded={isExpanded}
-        onToggleExpanded={onToggleExpanded}
+        isMobileOpen={isMobileOpen}
+        onToggleMobileNavigation={onToggleMobileNavigation}
       />
       <div className={st.body}>
         <div className={st.navScroller}>
@@ -55,7 +55,6 @@ export const DocsSidebar = ({
                   compactLabel="H"
                   href="/docs"
                   isActive={isHomeActive}
-                  isExpanded={isExpanded}
                   label="Home"
                   onClick={onClose}
                 />
@@ -65,13 +64,16 @@ export const DocsSidebar = ({
             <div className={st.navSection}>
               <DocsSidebarSectionToggle
                 isExpanded={isProjectsOpen}
-                isSidebarExpanded={isExpanded}
                 label="Projects"
                 onToggle={() => {
                   setIsProjectsOpen((currentValue) => !currentValue);
                 }}
               />
-              {isProjectsOpen && (
+              <div
+                className={`${st.sectionBody} ${
+                  isProjectsOpen ? st.sectionBodyExpanded : ""
+                }`}
+              >
                 <ul className={st.navList}>
                   {projects.map((project) => {
                     const href = getProjectHref(project.slug);
@@ -83,7 +85,6 @@ export const DocsSidebar = ({
                         <DocsSidebarNavItem
                           href={href}
                           isActive={isActive}
-                          isExpanded={isExpanded}
                           isNested
                           label={project.name}
                           onClick={onClose}
@@ -92,19 +93,22 @@ export const DocsSidebar = ({
                     );
                   })}
                 </ul>
-              )}
+              </div>
             </div>
 
             <div className={st.navSection}>
               <DocsSidebarSectionToggle
                 isExpanded={isFeaturedOpen}
-                isSidebarExpanded={isExpanded}
                 label="Featured"
                 onToggle={() => {
                   setIsFeaturedOpen((currentValue) => !currentValue);
                 }}
               />
-              {isFeaturedOpen && (
+              <div
+                className={`${st.sectionBody} ${
+                  isFeaturedOpen ? st.sectionBodyExpanded : ""
+                }`}
+              >
                 <ul className={st.navList}>
                   {featuredDocs.map((document) => {
                     const href = getDocHref(document.slug);
@@ -115,7 +119,6 @@ export const DocsSidebar = ({
                         <DocsSidebarNavItem
                           href={href}
                           isActive={isActive}
-                          isExpanded={isExpanded}
                           isNested
                           label={document.title}
                           onClick={onClose}
@@ -124,16 +127,12 @@ export const DocsSidebar = ({
                     );
                   })}
                 </ul>
-              )}
+              </div>
             </div>
           </nav>
         </div>
       </div>
-      <DocsSidebarFooter
-        descriptor={descriptor}
-        isExpanded={isExpanded}
-        siteTitle={siteTitle}
-      />
+      <DocsSidebarFooter descriptor={descriptor} siteTitle={siteTitle} />
     </aside>
   );
 };

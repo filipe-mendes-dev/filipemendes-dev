@@ -1,5 +1,5 @@
 export interface DocsSidebarHeaderProps {
   docsNavId: string;
-  isExpanded: boolean;
-  onToggleExpanded: () => void;
+  isMobileOpen: boolean;
+  onToggleMobileNavigation: () => void;
 }

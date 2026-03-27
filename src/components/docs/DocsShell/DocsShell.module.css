@@ -1,8 +1,6 @@
 .root {
   --docs-mobile-topbar-height: 4.25rem;
-  --docs-sidebar-collapsed-width: 4rem;
   --docs-sidebar-expanded-width: 17.5rem;
-  --docs-sidebar-width: var(--docs-sidebar-collapsed-width);
   display: grid;
   min-height: 100dvh;
   height: 100dvh;
@@ -30,11 +28,9 @@
 }
 
 .rootExpanded {
-  --docs-sidebar-width: var(--docs-sidebar-expanded-width);
 }
 
 .rootCollapsed {
-  --docs-sidebar-width: var(--docs-sidebar-collapsed-width);
 }
 
 .content {
@@ -52,15 +48,7 @@
 
 @media (min-width: 64rem) {
   .root {
-    grid-template-columns: var(--docs-sidebar-width) minmax(0, 1fr);
-  }
-
-  .rootExpanded {
-    grid-template-columns: var(--docs-sidebar-width) minmax(0, 1fr);
-  }
-
-  .rootCollapsed {
-    grid-template-columns: var(--docs-sidebar-width) minmax(0, 1fr);
+    grid-template-columns: var(--docs-sidebar-expanded-width) minmax(0, 1fr);
   }
 
   .content {
@@ -94,5 +82,9 @@
   .backdropVisible {
     opacity: 1;
     pointer-events: auto;
+  }
+
+  .rootExpanded .content {
+    padding-top: 1rem;
   }
 }

@@ -6,39 +6,19 @@
     color-mix(in srgb, var(--line) 72%, transparent);
 }
 
-.rootCollapsed {
-  justify-items: center;
-  padding-inline: 0.5rem;
-}
-
-.rootExpanded {
-}
-
 .button {
-  display: inline-grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: center;
-  gap: 0.45rem;
-  width: fit-content;
-  min-width: 0;
-  padding: 0.6rem 0.7rem;
+  display: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
   border: 0;
-  border-radius: var(--radius-lg);
-  background: color-mix(in srgb, var(--paper-raised) 8%, transparent);
+  border-radius: var(--radius-md);
+  background: transparent;
   color: var(--ink);
   cursor: pointer;
-  font-family: var(--font-display);
-  text-align: left;
   transition: color var(--transition), background-color var(--transition),
-    border-color var(--transition),
-    transform var(--motion-duration-md) var(--motion-ease-standard);
-  backdrop-filter: blur(10px) saturate(120%);
-  -webkit-backdrop-filter: blur(10px) saturate(120%);
-}
-
-.button:hover {
-  color: var(--moss);
-  background: color-mix(in srgb, var(--accent-soft) 12%, transparent);
+    box-shadow var(--motion-duration-lg) var(--motion-ease-standard),
+    transform var(--motion-duration-xl) var(--motion-ease-emphasized);
 }
 
 .button:focus-visible {
@@ -46,11 +26,17 @@
   outline-offset: 2px;
 }
 
-.buttonCollapsed {
-  grid-template-columns: 1fr;
-  justify-items: center;
-  width: 2.75rem;
-  margin-inline: auto;
+.brand {
+  display: inline-grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.45rem;
+  width: fit-content;
+  min-width: 0;
+  padding: 0.6rem 0.7rem;
+  color: var(--ink);
+  font-family: var(--font-display);
+  text-align: left;
 }
 
 .prompt {
@@ -58,12 +44,7 @@
   font-family: var(--font-mono);
   font-size: var(--font-size-heading-sm);
   flex-shrink: 0;
-  transition: color var(--transition),
-    transform var(--motion-duration-md) var(--motion-ease-standard);
-}
-
-.promptCollapsed {
-  transform: scale(0.95);
+  transition: color var(--transition);
 }
 
 .textContainer {
@@ -80,19 +61,6 @@
   line-height: 1.2;
   letter-spacing: 0.02em;
   white-space: nowrap;
-  transition: opacity var(--motion-duration-md) var(--motion-ease-standard),
-    transform var(--motion-duration-md) var(--motion-ease-standard),
-    max-width var(--motion-duration-md) var(--motion-ease-standard);
-  max-width: 14rem;
-  overflow: hidden;
-}
-
-.textHidden {
-  opacity: 0;
-  transform: translateX(-0.4rem);
-  max-width: 0;
-  max-height: 0;
-  pointer-events: none;
 }
 
 .eyebrow {
@@ -104,68 +72,62 @@
   line-height: 1.4;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  transition: opacity var(--motion-duration-md) var(--motion-ease-standard),
-    transform var(--motion-duration-md) var(--motion-ease-standard),
-    max-height var(--motion-duration-md) var(--motion-ease-standard);
-  max-height: 2rem;
-  overflow: hidden;
 }
 
-.eyebrowHidden {
-  opacity: 0;
-  transform: translateX(-0.4rem);
-  max-width: 0;
-  max-height: 0;
-  pointer-events: none;
-}
-
-.miniText {
+.mobileBar {
   display: none;
-  font-size: var(--font-size-heading-sm);
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: 0.03em;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
 }
 
-.miniTextVisible {
+.mobileBrand {
+  display: inline-grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.menuToggleBars {
+  display: grid;
+  gap: 0.22rem;
+}
+
+.menuToggleBars span {
   display: block;
+  width: 1.1rem;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: currentColor;
+  transform-origin: center;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    background: color-mix(in srgb, var(--code-bg) 42%, transparent);
+  }
 }
 
 @media (max-width: 63.99rem) {
-  .rootExpanded {
-    padding-inline: 1rem;
-  }
-
-  .rootCollapsed {
-    padding: 0 0.3rem;
+  .root {
+    padding: 0;
     border-bottom: 0;
   }
 
-  .buttonCollapsed {
-    grid-template-columns: auto 1fr;
+  .brand {
+    display: none;
+  }
+
+  .mobileBar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
     width: 100%;
-    margin: 0;
-    border-radius: var(--radius-pill);
+    column-gap: var(--space-3);
   }
 
-  .textHidden,
-  .miniTextVisible {
-    opacity: 1;
-    transform: none;
-    max-width: none;
-    max-height: none;
-    pointer-events: auto;
-  }
-
-  .textHidden {
-    font-size: var(--font-size-body);
-  }
-
-  .miniTextVisible {
-    display: none;
-  }
-
-  .eyebrowHidden {
-    display: none;
+  .button {
+    display: grid;
+    justify-self: end;
   }
 }

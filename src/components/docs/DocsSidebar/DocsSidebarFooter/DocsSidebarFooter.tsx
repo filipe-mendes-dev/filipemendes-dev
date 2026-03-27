@@ -18,7 +18,6 @@ const subscribeToThemePreference = (): (() => void) => {
 
 export const DocsSidebarFooter = ({
   descriptor,
-  isExpanded,
   siteTitle,
 }: DocsSidebarFooterProps): ReactElement => {
   const currentYear = new Date().getFullYear();
@@ -40,11 +39,7 @@ export const DocsSidebarFooter = ({
   };
 
   return (
-    <div
-      className={`${st.root} ${
-        isExpanded ? st.rootExpanded : st.rootCollapsed
-      }`}
-    >
+    <div className={st.root} data-sidebar-footer="true">
       <ThemeToggle
         className={st.themeToggle}
         label={themeToggleLabel}
@@ -54,18 +49,13 @@ export const DocsSidebarFooter = ({
       />
 
       <p className={st.tag}>[ Docs.system ]</p>
-
-      {isExpanded && (
-        <>
-          <p className={st.name}>{siteTitle}</p>
-          <p className={st.descriptor}>{descriptor}</p>
-          <p className={st.meta}>
-            <span>Built with Next.js</span>
-            <span aria-hidden="true">•</span>
-            <span>© {currentYear}</span>
-          </p>
-        </>
-      )}
+      <p className={st.name}>{siteTitle}</p>
+      <p className={st.descriptor}>{descriptor}</p>
+      <p className={st.meta}>
+        <span>Built with Next.js</span>
+        <span aria-hidden="true">•</span>
+        <span>© {currentYear}</span>
+      </p>
     </div>
   );
 };

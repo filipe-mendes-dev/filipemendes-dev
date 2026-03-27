@@ -19,10 +19,6 @@
   transition: color var(--transition), opacity var(--transition);
 }
 
-.root:hover {
-  color: var(--ink);
-}
-
 .root:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--moss) 68%, transparent);
   outline-offset: 2px;
@@ -72,4 +68,10 @@
 
 .iconExpanded {
   transform: rotate(180deg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .root:hover {
+    color: var(--ink);
+  }
 }

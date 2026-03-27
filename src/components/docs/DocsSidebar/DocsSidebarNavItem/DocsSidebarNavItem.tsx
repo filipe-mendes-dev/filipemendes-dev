@@ -17,7 +17,6 @@ export const DocsSidebarNavItem = ({
   compactLabel,
   href,
   isActive,
-  isExpanded,
   label,
   isNested = false,
   onClick,
@@ -27,16 +26,12 @@ export const DocsSidebarNavItem = ({
   return (
     <Link
       href={href}
-      className={`${st.root} ${isActive ? st.rootActive : ""} ${
-        isExpanded ? "" : st.rootCollapsed
-      } ${isNested ? st.rootNested : ""}`}
+      className={`${st.root} ${isActive ? st.rootActive : ""} ${isNested ? st.rootNested : ""}`}
       aria-current={isActive ? "page" : undefined}
       onClick={onClick}
     >
       <span className={st.compactLabel}>{resolvedCompactLabel}</span>
-      <span className={`${st.label} ${isExpanded ? "" : st.labelCompact}`}>
-        {label}
-      </span>
+      <span className={st.label}>{label}</span>
     </Link>
   );
 };

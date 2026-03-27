@@ -12,12 +12,6 @@
     opacity var(--transition);
 }
 
-.root:hover {
-  color: var(--ink);
-  opacity: 1;
-  background: color-mix(in srgb, var(--accent-soft) 16%, transparent);
-}
-
 .root:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--moss) 68%, transparent);
   outline-offset: 2px;
@@ -91,4 +85,12 @@
 .rootNested .label {
   font-size: var(--font-size-caption);
   font-weight: 500;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .root:hover {
+    color: var(--ink);
+    opacity: 1;
+    background: color-mix(in srgb, var(--accent-soft) 16%, transparent);
+  }
 }
