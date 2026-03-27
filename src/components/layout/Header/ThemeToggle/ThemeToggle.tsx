@@ -14,7 +14,7 @@ export const ThemeToggle = ({
   return (
     <button
       type="button"
-      className={`${st.root} ${size === 'compact' ? st.compact : ''} ${theme === 'dark' ? st.dark : ''} ${className ?? ''}`.trim()}
+      className={`${st.root} ${size === 'compact' ? st.compact : ''} ${className ?? ''}`.trim()}
       onClick={onToggle}
       aria-label={label}
       aria-pressed={theme === 'dark'}
