@@ -17,12 +17,12 @@
   outline-offset: 2px;
 }
 
-.rootActive {
+.root[aria-current="page"] {
   color: var(--moss);
   background: color-mix(in srgb, var(--accent-soft) 16%, transparent);
 }
 
-.rootActive:hover {
+.root[aria-current="page"]:hover {
   color: var(--moss);
   background: color-mix(in srgb, var(--accent-soft) 16%, transparent);
 }
@@ -52,7 +52,7 @@
   transition: color var(--transition), background-color var(--transition);
 }
 
-.rootActive .compactLabel {
+.root[aria-current="page"] .compactLabel {
   color: var(--moss);
   background: color-mix(in srgb, var(--accent-soft) 18%, transparent);
 }

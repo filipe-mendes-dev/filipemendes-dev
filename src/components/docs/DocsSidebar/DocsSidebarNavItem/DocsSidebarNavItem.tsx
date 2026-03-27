@@ -26,7 +26,7 @@ export const DocsSidebarNavItem = ({
   return (
     <Link
       href={href}
-      className={`${st.root} ${isActive ? st.rootActive : ""} ${isNested ? st.rootNested : ""}`}
+      className={`${st.root} ${isNested ? st.rootNested : ""}`}
       aria-current={isActive ? "page" : undefined}
       onClick={onClick}
     >
