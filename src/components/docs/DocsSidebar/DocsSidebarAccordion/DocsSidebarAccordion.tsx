@@ -37,7 +37,7 @@ const itemVariants: Variants = {
     opacity: 0,
     transition: {
       duration: motionDurationMs.fast / 1000,
-      ease: motionEase.standard,
+      ease: motionEase.emphasized,
     },
   },
   expanded: {
