@@ -78,7 +78,4 @@
     pointer-events: auto;
   }
 
-  .root[data-mobile-state="open"] .content {
-    padding-top: 1rem;
-  }
 }

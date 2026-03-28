@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import type { ReactElement } from "react";
 
 import type { DocsSidebarAccordionToggleProps } from "./DocsSidebarAccordionToggle.interfaces";
@@ -9,7 +10,8 @@ export const DocsSidebarAccordionToggle = ({
   onToggle,
 }: DocsSidebarAccordionToggleProps): ReactElement => {
   return (
-    <button
+    <motion.button
+      layout
       type="button"
       className={st.root}
       onClick={onToggle}
@@ -19,6 +21,6 @@ export const DocsSidebarAccordionToggle = ({
       <span className={st.icon} aria-hidden="true">
         ⌄
       </span>
-    </button>
+    </motion.button>
   );
 };
