@@ -4,6 +4,7 @@
   padding-block: 0.5rem;
   border-bottom: var(--line-strong) solid
     color-mix(in srgb, var(--line) 72%, transparent);
+  background: color-mix(in srgb, var(--paper-raised) 92%, transparent);
 }
 
 .button {
@@ -112,6 +113,7 @@
   .root {
     padding: 0;
     border-bottom: 0;
+    pointer-events: auto;
   }
 
   .brand {
@@ -124,6 +126,11 @@
     align-items: center;
     width: 100%;
     column-gap: var(--space-3);
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    border-bottom: var(--line-strong) solid
+      color-mix(in srgb, var(--line) 68%, transparent);
+    background: var(--paper-raised);
   }
 
   .button {

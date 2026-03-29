@@ -1,6 +1,6 @@
 "use client";
 
-import { type ReactElement, useId } from "react";
+import { type ReactElement, useState } from "react";
 
 import { DocsSidebarHeader } from "./DocsSidebarHeader";
 import type { DocsSidebarProps } from "./DocsSidebar.interfaces";
@@ -10,35 +10,34 @@ import st from "./DocsSidebar.module.css";
 export const DocsSidebar = ({
   descriptor,
   featuredDocs,
-  isMobileOpen,
-  onClose,
-  onToggleMobileNavigation,
   projects,
   siteTitle,
 }: DocsSidebarProps): ReactElement => {
-  const docsNavId = useId();
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+
+  const handleToggleMobileNavigation = (): void => {
+    setIsMobileOpen((currentValue) => !currentValue);
+  };
+
+  const handleClose = (): void => {
+    setIsMobileOpen(false);
+  };
 
   return (
-    <aside
-      className={st.root}
-      aria-label="Documentation sidebar"
-      data-mobile-state={isMobileOpen ? "open" : "closed"}
-    >
+    <aside className={st.root} aria-label="Documentation sidebar">
       <DocsSidebarHeader
-        docsNavId={docsNavId}
         isMobileOpen={isMobileOpen}
-        onToggleMobileNavigation={onToggleMobileNavigation}
+        onToggleMobileNavigation={handleToggleMobileNavigation}
       />
-      <div className={st.body}>
-        <DocsSidebarContent
-          descriptor={descriptor}
-          featuredDocs={featuredDocs}
-          isMobileOpen={isMobileOpen}
-          onClose={onClose}
-          projects={projects}
-          siteTitle={siteTitle}
-        />
-      </div>
+
+      <DocsSidebarContent
+        descriptor={descriptor}
+        featuredDocs={featuredDocs}
+        isMobileOpen={isMobileOpen}
+        onClose={handleClose}
+        projects={projects}
+        siteTitle={siteTitle}
+      />
     </aside>
   );
 };

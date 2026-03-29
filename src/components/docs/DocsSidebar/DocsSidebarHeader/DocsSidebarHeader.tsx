@@ -4,7 +4,6 @@ import type { DocsSidebarHeaderProps } from "./DocsSidebarHeader.interfaces";
 import st from "./DocsSidebarHeader.module.css";
 
 export const DocsSidebarHeader = ({
-  docsNavId,
   isMobileOpen,
   onToggleMobileNavigation,
 }: DocsSidebarHeaderProps): ReactElement => {
@@ -38,7 +37,6 @@ export const DocsSidebarHeader = ({
         <button
           type="button"
           className={st.button}
-          aria-controls={docsNavId}
           aria-expanded={isMobileOpen}
           aria-label={toggleLabel}
           onClick={onToggleMobileNavigation}

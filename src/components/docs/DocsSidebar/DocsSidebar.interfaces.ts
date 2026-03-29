@@ -6,9 +6,6 @@ import type {
 export interface DocsSidebarProps {
   descriptor: string;
   featuredDocs: DocSummary[];
-  isMobileOpen: boolean;
-  onClose: () => void;
-  onToggleMobileNavigation: () => void;
   projects: DocsProjectSummary[];
   siteTitle: string;
 }
