@@ -15,6 +15,11 @@
   --button-secondary-bg: #edf1f5;
   --header-bg: rgb(246 248 251 / 74%);
   --footer-bg: #d9d7d1;
+  --footer-surface-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--paper-raised) 48%, transparent) 0%,
+    color-mix(in srgb, var(--footer-bg) 18%, var(--paper-raised)) 100%
+  );
   --hero-home-bg: #f6f6f4;
   --hero-projects-bg: #eff2f6;
   --hero-about-bg: #f3f5f7;
@@ -115,6 +120,11 @@
   --button-secondary-bg: #1f232a;
   --header-bg: rgb(17 19 23 / 92%);
   --footer-bg: #010203;
+  --footer-surface-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--paper-raised) 48%, transparent) 0%,
+    color-mix(in srgb, var(--footer-bg) 18%, var(--paper-raised)) 100%
+  );
   --hero-home-bg: #07090b;
   --hero-projects-bg: #090b0e;
   --hero-about-bg: #080a0d;

@@ -3,11 +3,7 @@
   display: grid;
   gap: 0.35rem;
   padding: 1rem;
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--paper-raised) 48%, transparent) 0%,
-    color-mix(in srgb, var(--footer-bg) 18%, var(--paper-raised)) 100%
-  );
+  background: var(--footer-surface-bg);
   max-height: 10rem;
   overflow: hidden;
 }
