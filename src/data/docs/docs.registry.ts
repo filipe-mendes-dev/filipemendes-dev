@@ -1,3 +1,7 @@
+import {
+  arcTimerPrivacyAndPermissionsPolicy,
+  arcTimerReleasePolicy,
+} from "./arc-timer.docs";
 import { nearsoftMobileAppsAppPublishingPolicy } from "./nearsoft-mobile-apps.docs";
 import {
   nearsoftMobileAppsIncidentNotesTemplate,
@@ -9,7 +13,11 @@ import type { Doc, DocsProjectSummary, DocSummary } from "./docs.interfaces";
 
 const isDocsDemoEnabled = process.env.ENABLE_DOCS_DEMOS === "true";
 
-const coreDocsRegistry: Doc[] = [nearsoftMobileAppsAppPublishingPolicy];
+const coreDocsRegistry: Doc[] = [
+  arcTimerReleasePolicy,
+  arcTimerPrivacyAndPermissionsPolicy,
+  nearsoftMobileAppsAppPublishingPolicy,
+];
 
 const demoDocsRegistry: Doc[] = [
   nearsoftMobileAppsReleaseChecklist,
@@ -22,11 +30,18 @@ const docsRegistry: Doc[] = isDocsDemoEnabled
   : coreDocsRegistry;
 const docsProjectsRegistry: DocsProjectSummary[] = [
   {
+    slug: "arc-timer",
+    name: "Arc Timer",
+    description:
+      "Release, privacy, and operational policy documentation for the Arc Timer mobile app.",
+    order: 1,
+  },
+  {
     slug: "nearsoft-mobile-apps",
     name: "Nearsoft Mobile Banking Apps",
     description:
       "Operational notes, publishing policies, and delivery references for the Nearsoft mobile work.",
-    order: 1,
+    order: 2,
   },
 ];
 

@@ -15,7 +15,12 @@ export const arcTimerHero: ProjectDetailHeroData = {
   positioning:
     "Positioning: a workout timer product built around trust, responsiveness, and distraction-free use.",
   isMobileApp: true,
-  links: [],
+  links: [
+    {
+      label: "Docs",
+      href: "/docs/projects/arc-timer",
+    },
+  ],
 };
 
 export const arcTimerScreenshots: ProjectScreenshotItem[] = [];
