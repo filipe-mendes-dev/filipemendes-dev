@@ -27,7 +27,8 @@
   min-width: 0;
   min-height: 0;
   overflow: auto;
-  padding: clamp(1rem, 3vw, 2rem);
+  padding-inline: clamp(2rem, 3vw, 3.5rem);
+  padding-block: min(1.5rem, 3vw);
   scrollbar-gutter: stable;
 }
 
@@ -38,10 +39,6 @@
 @media (min-width: 64rem) {
   .root {
     grid-template-columns: var(--docs-sidebar-expanded-width) minmax(0, 1fr);
-  }
-
-  .content {
-    padding: clamp(1.5rem, 3vw, 2.5rem);
   }
 }
 
