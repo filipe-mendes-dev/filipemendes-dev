@@ -3,8 +3,8 @@ import type { ReactElement } from "react";
 
 import {
   arcTimerMetadata,
-  ArcTimerPage
-} from "../../../views/ProjectPages/ArcTimerPage";
+  ArcTimerPage,
+} from "../../../../views/ProjectPages/ArcTimerPage";
 
 export const generateMetadata = (): Metadata => {
   return arcTimerMetadata;
