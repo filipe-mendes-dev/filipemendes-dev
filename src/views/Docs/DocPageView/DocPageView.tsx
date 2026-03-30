@@ -3,6 +3,7 @@ import type { ReactElement } from "react";
 
 import { DocContent } from "../../../components/docs/DocContent";
 import type { Doc } from "../../../data/docs/docs.interfaces";
+import { DocPageRail } from "./components/DocPageRail";
 import st from "./DocPageView.module.css";
 
 export interface DocPageViewProps {
@@ -29,16 +30,27 @@ export const DocPageView = ({
         <span className={st.breadcrumbCurrent}>{doc.title}</span>
       </nav>
 
-      <header className={st.header}>
-        <p className={st.eyebrow}>{doc.projectName}</p>
-        <h1 className={st.title}>{doc.title}</h1>
-        <p className={st.summary}>{doc.summary}</p>
-        {doc.lastUpdatedLabel !== undefined && (
-          <p className={st.metaLabel}>{doc.lastUpdatedLabel}</p>
-        )}
-      </header>
+      <div className={st.layout}>
+        <div className={st.mainColumn}>
+          <header className={st.header}>
+            <p className={st.eyebrow}>{doc.projectName}</p>
+            <h1 className={st.title}>{doc.title}</h1>
+            <p className={st.summary}>{doc.summary}</p>
+            {doc.lastUpdatedLabel !== undefined && (
+              <p className={st.metaLabel}>{doc.lastUpdatedLabel}</p>
+            )}
+          </header>
 
-      <DocContent doc={doc} />
+          <DocContent doc={doc} />
+        </div>
+
+        <DocPageRail
+          lastUpdatedLabel={doc.lastUpdatedLabel}
+          projectName={doc.projectName}
+          projectSlug={doc.projectSlug}
+          sections={doc.sections}
+        />
+      </div>
     </div>
   );
 };
