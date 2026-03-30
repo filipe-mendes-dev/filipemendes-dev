@@ -1,19 +1,15 @@
-import {
-  nearsoftMobileAppsAppPublishingPolicy,
-} from './nearsoft-mobile-apps.docs';
+import { nearsoftMobileAppsAppPublishingPolicy } from "./nearsoft-mobile-apps.docs";
 import {
   nearsoftMobileAppsIncidentNotesTemplate,
   nearsoftMobileAppsLocalizationGuide,
   nearsoftMobileAppsReleaseChecklist,
   nearsoftMobileAppsSupportRunbook,
-} from './nearsoft-mobile-apps.demo.docs';
-import type { Doc, DocsProjectSummary, DocSummary } from './docs.interfaces';
+} from "./nearsoft-mobile-apps.demo.docs";
+import type { Doc, DocsProjectSummary, DocSummary } from "./docs.interfaces";
 
-const isDocsDemoEnabled = process.env.ENABLE_DOCS_DEMOS === 'true';
+const isDocsDemoEnabled = process.env.ENABLE_DOCS_DEMOS === "true";
 
-const coreDocsRegistry: Doc[] = [
-  nearsoftMobileAppsAppPublishingPolicy,
-];
+const coreDocsRegistry: Doc[] = [nearsoftMobileAppsAppPublishingPolicy];
 
 const demoDocsRegistry: Doc[] = [
   nearsoftMobileAppsReleaseChecklist,
@@ -26,10 +22,10 @@ const docsRegistry: Doc[] = isDocsDemoEnabled
   : coreDocsRegistry;
 const docsProjectsRegistry: DocsProjectSummary[] = [
   {
-    slug: 'nearsoft-mobile-apps',
-    name: 'Nearsoft Mobile Banking Apps',
+    slug: "nearsoft-mobile-apps",
+    name: "Nearsoft Mobile Banking Apps",
     description:
-      'Operational notes, publishing policies, and delivery references for the Nearsoft mobile work.',
+      "Operational notes, publishing policies, and delivery references for the Nearsoft mobile work.",
     order: 1,
   },
 ];
@@ -55,23 +51,23 @@ export const getDoc = (docSlug: string): Doc | undefined => {
 };
 
 export const getDocsProjects = (): DocsProjectSummary[] => {
-  return [...docsProjectsRegistry].sort((left, right) => left.order - right.order);
+  return [...docsProjectsRegistry].sort(
+    (left, right) => left.order - right.order
+  );
 };
 
 export const getDocsProject = (
-  projectSlug: string,
+  projectSlug: string
 ): DocsProjectSummary | undefined => {
   return docsProjectsRegistry.find((project) => project.slug === projectSlug);
 };
 
 export const getProjectDocs = (projectSlug: string): DocSummary[] => {
-  return getDocsNavigationItems().filter((doc) => doc.projectSlug === projectSlug);
+  return getDocsNavigationItems().filter(
+    (doc) => doc.projectSlug === projectSlug
+  );
 };
 
 export const getFeaturedDocs = (): DocSummary[] => {
   return getDocsNavigationItems().filter((doc) => doc.featured === true);
-};
-
-export const hasDocs = (): boolean => {
-  return docsRegistry.length > 0;
 };
