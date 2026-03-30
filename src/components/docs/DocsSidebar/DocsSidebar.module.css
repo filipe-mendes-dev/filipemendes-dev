@@ -5,8 +5,6 @@
   width: 100%;
   min-width: 0;
   height: 100dvh;
-  border-right: var(--line-strong) solid
-    color-mix(in srgb, var(--line) 68%, transparent);
   transition: border-color var(--transition);
   overflow: hidden;
 }

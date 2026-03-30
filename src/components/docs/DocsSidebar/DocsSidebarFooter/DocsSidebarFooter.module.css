@@ -3,8 +3,6 @@
   display: grid;
   gap: 0.35rem;
   padding: 1rem;
-  border-top: var(--line-strong) solid
-    color-mix(in srgb, var(--line) 72%, transparent);
   background: linear-gradient(
     180deg,
     color-mix(in srgb, var(--paper-raised) 48%, transparent) 0%,

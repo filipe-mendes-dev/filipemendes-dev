@@ -2,8 +2,6 @@
   display: grid;
   padding-inline: 0.2rem;
   padding-block: 0.5rem;
-  border-bottom: var(--line-strong) solid
-    color-mix(in srgb, var(--line) 72%, transparent);
   background: color-mix(in srgb, var(--paper-raised) 92%, transparent);
 }
 
@@ -128,8 +126,8 @@
     column-gap: var(--space-3);
     padding-inline: 1rem;
     padding-block: 0.5rem;
-    border-bottom: var(--line-strong) solid
-      color-mix(in srgb, var(--line) 68%, transparent);
+    /* border-bottom: var(--line-strong) solid
+      color-mix(in srgb, var(--line) 68%, transparent); */
     background: var(--paper-raised);
   }
 
