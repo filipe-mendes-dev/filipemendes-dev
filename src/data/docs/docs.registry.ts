@@ -1,7 +1,29 @@
-import { nearsoftMobileAppsAppPublishingPolicy } from './nearsoft-mobile-apps.docs';
+import {
+  nearsoftMobileAppsAppPublishingPolicy,
+} from './nearsoft-mobile-apps.docs';
+import {
+  nearsoftMobileAppsIncidentNotesTemplate,
+  nearsoftMobileAppsLocalizationGuide,
+  nearsoftMobileAppsReleaseChecklist,
+  nearsoftMobileAppsSupportRunbook,
+} from './nearsoft-mobile-apps.demo.docs';
 import type { Doc, DocsProjectSummary, DocSummary } from './docs.interfaces';
 
-const docsRegistry: Doc[] = [nearsoftMobileAppsAppPublishingPolicy];
+const isDocsDemoEnabled = process.env.ENABLE_DOCS_DEMOS === 'true';
+
+const coreDocsRegistry: Doc[] = [
+  nearsoftMobileAppsAppPublishingPolicy,
+];
+
+const demoDocsRegistry: Doc[] = [
+  nearsoftMobileAppsReleaseChecklist,
+  nearsoftMobileAppsSupportRunbook,
+  nearsoftMobileAppsLocalizationGuide,
+  nearsoftMobileAppsIncidentNotesTemplate,
+];
+const docsRegistry: Doc[] = isDocsDemoEnabled
+  ? [...coreDocsRegistry, ...demoDocsRegistry]
+  : coreDocsRegistry;
 const docsProjectsRegistry: DocsProjectSummary[] = [
   {
     slug: 'nearsoft-mobile-apps',
