@@ -18,7 +18,6 @@ import { useHeaderController } from "./useHeaderController";
 import { heroIntroRevealGateDelayMs } from "../../../views/LandingPage/sections/HeroSection/heroMotion";
 
 export const Header = ({
-  initialTheme,
   siteTitle,
   navigation,
 }: HeaderProps): ReactElement => {
@@ -33,12 +32,8 @@ export const Header = ({
     mobileNavId,
     mobileNavItems,
     mobileNavRef,
-    theme,
-    themeToggleLabel,
     toggleMobileMenu,
-    toggleTheme,
   } = useHeaderController({
-    initialTheme,
     navigation,
   });
   const isReducedMotionEnabled = useReducedMotion() ?? false;
@@ -193,11 +188,7 @@ export const Header = ({
             initial={headerRevealInitial}
             animate={headerRevealAnimate}
           >
-            <ThemeToggle
-              theme={theme}
-              label={themeToggleLabel}
-              onToggle={toggleTheme}
-            />
+            <ThemeToggle />
           </motion.div>
 
           <motion.button
@@ -240,9 +231,6 @@ export const Header = ({
           <div className={st.mobileMenuFooter}>
             <span className={st.mobileMenuLabel}>Theme</span>
             <ThemeToggle
-              theme={theme}
-              label={themeToggleLabel}
-              onToggle={toggleTheme}
               className={st.mobileThemeToggle}
               size="compact"
             />

@@ -10,7 +10,7 @@ import {
   isThemeName,
   themeCookieKey,
   themeStorageKey,
-} from "../shared/theme/themePreference";
+} from "../shared/theme/themePreferenceStore";
 import "../shared/theme/theme.css";
 import "../shared/styles/reset.css";
 import "../shared/styles/base.css";
