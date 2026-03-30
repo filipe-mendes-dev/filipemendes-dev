@@ -2,7 +2,8 @@
   position: relative;
   display: grid;
   gap: 0.35rem;
-  padding: 1rem;
+  padding-inline: 1.25rem;
+  padding-block: 1rem;
   background: var(--footer-surface-bg);
   max-height: 10rem;
   overflow: hidden;
