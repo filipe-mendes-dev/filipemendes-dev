@@ -14,10 +14,6 @@
   border-radius: var(--radius-md);
   background: transparent;
   color: var(--ink);
-  cursor: pointer;
-  transition: color var(--transition), background-color var(--transition),
-    box-shadow var(--motion-duration-lg) var(--motion-ease-standard),
-    transform var(--motion-duration-xl) var(--motion-ease-emphasized);
 }
 
 .button:focus-visible {
@@ -101,12 +97,6 @@
   transform-origin: center;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .button:hover {
-    background: color-mix(in srgb, var(--code-bg) 42%, transparent);
-  }
-}
-
 @media (max-width: 63.99rem) {
   .root {
     padding: 0;
@@ -126,9 +116,6 @@
     column-gap: var(--space-3);
     padding-inline: 1rem;
     padding-block: 0.5rem;
-    /* border-bottom: var(--line-strong) solid
-      color-mix(in srgb, var(--line) 68%, transparent); */
-    background: var(--paper-raised);
   }
 
   .button {
