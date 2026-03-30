@@ -15,6 +15,11 @@
   --button-secondary-bg: #edf1f5;
   --header-bg: rgb(246 248 251 / 74%);
   --footer-bg: #d9d7d1;
+  --footer-surface-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--paper-raised) 48%, transparent) 0%,
+    color-mix(in srgb, var(--footer-bg) 18%, var(--paper-raised)) 100%
+  );
   --hero-home-bg: #f6f6f4;
   --hero-projects-bg: #eff2f6;
   --hero-about-bg: #f3f5f7;
@@ -54,21 +59,28 @@
   --line-height-heading: 1.2;
   --line-height-title: 1.14;
   --line-height-display: 1.16;
-  --font-space-grotesk: 'Space Grotesk';
-  --font-manrope: 'Manrope';
-  --font-ibm-plex-mono: 'IBM Plex Mono';
-  --font-display: var(--font-space-grotesk), 'Segoe UI', sans-serif;
-  --font-body: var(--font-manrope), 'Segoe UI', sans-serif;
-  --font-mono: var(--font-ibm-plex-mono), 'SFMono-Regular', monospace;
+  --font-space-grotesk: "Space Grotesk";
+  --font-manrope: "Manrope";
+  --font-ibm-plex-mono: "IBM Plex Mono";
+  --font-display: var(--font-space-grotesk), "Segoe UI", sans-serif;
+  --font-body: var(--font-manrope), "Segoe UI", sans-serif;
+  --font-mono: var(--font-ibm-plex-mono), "SFMono-Regular", monospace;
   --space-1: 0.5rem;
   --space-2: 0.75rem;
   --space-3: 1rem;
   --space-4: 1.5rem;
   --space-5: 2rem;
   --space-6: clamp(2.5rem, 5vw, 4rem);
-  --container: min(100% - clamp(2rem, 6vw, 4.5rem), 72rem);
+  --container: min(
+    calc(100% - clamp(2rem, 6vw, 4.5rem)),
+    clamp(72rem, 80vw, 88rem)
+  );
+  --shell-container: min(
+    calc(100% - clamp(1rem, 3vw, 2.5rem)),
+    clamp(76rem, 92vw, 90rem)
+  );
   --content-max-narrow: 34ch;
-  --content-max-readable: 62ch;
+  --content-max-readable: 65ch;
   --content-max-wide: 54rem;
   --section-padding-y: var(--space-5);
   --section-padding-y-lg: var(--space-6);
@@ -98,7 +110,7 @@
   --motion-ease-emphasized: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-:root[data-theme='dark'] {
+:root[data-theme="dark"] {
   --paper: #040506;
   --paper-raised: #0f1114;
   --card-bg: #15181c;
@@ -115,6 +127,11 @@
   --button-secondary-bg: #1f232a;
   --header-bg: rgb(17 19 23 / 92%);
   --footer-bg: #010203;
+  --footer-surface-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--paper-raised) 48%, transparent) 0%,
+    color-mix(in srgb, var(--footer-bg) 18%, var(--paper-raised)) 100%
+  );
   --hero-home-bg: #07090b;
   --hero-projects-bg: #090b0e;
   --hero-about-bg: #080a0d;

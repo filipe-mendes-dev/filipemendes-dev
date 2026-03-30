@@ -20,14 +20,9 @@ import {
   requestLandingPageSection,
   subscribeToLandingPageNavigation,
 } from '../../../views/LandingPage/navigation/landingPageNavigationStore';
-import {
-  setStoredThemePreference,
-  type ThemeName,
-} from '../../../shared/theme/themePreference';
 import type { HeaderNavListItem } from './HeaderNavList/HeaderNavList.interfaces';
 
 interface HeaderControllerConfig {
-  initialTheme: ThemeName;
   navigation: NavigationItem[];
 }
 
@@ -44,10 +39,7 @@ interface HeaderControllerResult {
   mobileNavId: string;
   mobileNavItems: HeaderNavListItem[];
   mobileNavRef: RefObject<HTMLElement | null>;
-  theme: ThemeName;
-  themeToggleLabel: string;
   toggleMobileMenu: () => void;
-  toggleTheme: () => void;
 }
 
 const getSectionHref = (sectionId: SectionId): string => {
@@ -70,7 +62,6 @@ const getMobileNavItemStyle = (index: number): CSSProperties => {
 };
 
 export const useHeaderController = ({
-  initialTheme,
   navigation,
 }: HeaderControllerConfig): HeaderControllerResult => {
   const pathname = usePathname() ?? '/';
@@ -78,7 +69,6 @@ export const useHeaderController = ({
   const mobileNavRef = useRef<HTMLElement | null>(null);
   const mobileNavId = useId();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [theme, setTheme] = useState<ThemeName>(initialTheme);
   const landingPageNavigation = useSyncExternalStore(
     subscribeToLandingPageNavigation,
     getLandingPageNavigationSnapshot,
@@ -91,8 +81,6 @@ export const useHeaderController = ({
         ? 'projects'
         : undefined;
   const isLandingPage = pathname === '/';
-  const themeToggleLabel =
-    theme === 'light' ? 'Activate dark theme' : 'Activate light theme';
   const mobileMenuLabel = isMobileMenuOpen
     ? 'Close navigation menu'
     : 'Open navigation menu';
@@ -179,13 +167,6 @@ export const useHeaderController = ({
     setIsMobileMenuOpen((currentValue) => !currentValue);
   };
 
-  const toggleTheme = (): void => {
-    const nextTheme: ThemeName = theme === 'light' ? 'dark' : 'light';
-
-    setStoredThemePreference(nextTheme);
-    setTheme(nextTheme);
-  };
-
   useLayoutEffect(() => {
     if (headerRef.current === null) {
       return undefined;
@@ -256,9 +237,6 @@ export const useHeaderController = ({
     mobileNavId,
     mobileNavItems,
     mobileNavRef,
-    theme,
-    themeToggleLabel,
     toggleMobileMenu,
-    toggleTheme,
   };
 };

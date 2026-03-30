@@ -1,21 +1,12 @@
 .root {
   border-top: var(--line-strong) solid var(--line);
-  background: var(--footer-bg);
+  background: var(--footer-surface-bg);
   padding-block: var(--space-4);
 }
 
-:global([data-theme="dark"]) .root {
-  background: radial-gradient(
-      circle at 80% 0%,
-      color-mix(in srgb, var(--moss) 2%, transparent) 0%,
-      transparent 22%
-    ),
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--paper-raised) 5%, transparent) 0%,
-      transparent 40%
-    ),
-    var(--footer-bg);
+.footerShell {
+  width: var(--shell-container);
+  margin-inline: auto;
 }
 
 .footerInner {

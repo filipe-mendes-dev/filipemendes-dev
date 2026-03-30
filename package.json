@@ -5,7 +5,6 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "css:types": "node scripts/generate-css-module-types.mjs",
     "tokens:check": "node scripts/check-theme-tokens.mjs",
     "build": "next build",
     "start": "next start",

@@ -1,0 +1,125 @@
+.root {
+  display: grid;
+  padding-inline: 0.2rem;
+  padding-block: 0.5rem;
+  background: color-mix(in srgb, var(--paper-raised) 92%, transparent);
+}
+
+.button {
+  display: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--ink);
+}
+
+.button:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--moss) 68%, transparent);
+  outline-offset: 2px;
+}
+
+.brand {
+  display: inline-grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.45rem;
+  width: fit-content;
+  min-width: 0;
+  padding: 0.6rem 0.7rem;
+  color: var(--ink);
+  font-family: var(--font-display);
+  text-align: left;
+}
+
+.prompt {
+  color: var(--moss);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-heading-sm);
+  flex-shrink: 0;
+  transition: color var(--transition);
+}
+
+.textContainer {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  min-width: max-content;
+  white-space: nowrap;
+}
+
+.text {
+  font-size: var(--font-size-heading-sm);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--moss);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-caption);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.mobileBar {
+  display: none;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+}
+
+.mobileBrand {
+  display: inline-grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.menuToggleBars {
+  display: grid;
+  gap: 0.22rem;
+}
+
+.menuToggleBars span {
+  display: block;
+  width: 1.1rem;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: currentColor;
+  transform-origin: center;
+}
+
+@media (max-width: 63.99rem) {
+  .root {
+    padding: 0;
+    border-bottom: 0;
+    pointer-events: auto;
+  }
+
+  .brand {
+    display: none;
+  }
+
+  .mobileBar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    width: 100%;
+    column-gap: var(--space-3);
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+  }
+
+  .button {
+    display: grid;
+    justify-self: end;
+  }
+}

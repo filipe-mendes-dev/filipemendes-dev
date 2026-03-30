@@ -5,7 +5,6 @@ import st from './HeroTerminal.module.css';
 import { emphasizedEase, heroMotionConfig, wait } from '../heroMotion';
 import type { HeroTerminalProps } from './HeroTerminal.interfaces';
 
-const joinClassNames = (...classNames: (string | false | undefined)[]): string => classNames.filter(Boolean).join(' ');
 type HeroCommandStage = 'idle' | 'typing' | 'typed' | 'executing' | 'exiting';
 const HERO_COMMAND_TEXT = 'portfolio --launch';
 
@@ -89,8 +88,9 @@ export const HeroTerminal = ({ onComplete }: HeroTerminalProps): ReactElement =>
                 aria-hidden="true"
             >
                 <p
-                    className={joinClassNames(st.command, stage === 'executing' && st.commandExecuting)}
+                    className={st.command}
                     data-hero-command="true"
+                    data-state={stage}
                 >
                     <span className={st.prompt}>$</span>
                     <motion.span

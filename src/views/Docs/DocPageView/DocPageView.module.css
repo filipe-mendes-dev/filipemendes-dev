@@ -1,0 +1,121 @@
+.root {
+  --docs-page-header-max: 44rem;
+  --docs-page-rail-width: 16rem;
+  display: grid;
+  gap: var(--space-5);
+}
+
+.layout {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.mainColumn {
+  display: grid;
+  gap: var(--space-5);
+  min-width: 0;
+}
+
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  min-width: 0;
+}
+
+.breadcrumbLink,
+.breadcrumbProject,
+.breadcrumbCurrent,
+.breadcrumbDivider {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-caption);
+  line-height: 1.5;
+}
+
+.breadcrumbLink {
+  color: var(--ink-muted);
+  text-decoration: none;
+}
+
+.breadcrumbLink:hover {
+  color: var(--ink);
+}
+
+.breadcrumbProject,
+.breadcrumbCurrent {
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.breadcrumbDivider {
+  color: var(--ink-muted);
+}
+
+.breadcrumbLink:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--moss) 68%, transparent);
+  outline-offset: 2px;
+}
+
+.header {
+  display: grid;
+  gap: var(--space-2);
+  max-width: min(100%, var(--docs-page-header-max));
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--moss);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-caption);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 1.78rem + 1vw, 2.9rem);
+  line-height: var(--line-height-title);
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.summary {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: var(--font-size-body);
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+.metaLabel {
+  margin: 0;
+  width: fit-content;
+  padding-block: 0.35rem;
+  border-bottom: var(--line-strong) solid color-mix(in srgb, var(--line) 86%, transparent);
+  color: var(--ink-muted);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-caption);
+  line-height: 1.4;
+}
+
+.rail {
+  display: none;
+}
+
+@media (min-width: 90rem) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) var(--docs-page-rail-width);
+    align-items: start;
+    column-gap: clamp(1.5rem, 2.5vw, 2.5rem);
+  }
+
+  .rail {
+    min-width: 0;
+  }
+}

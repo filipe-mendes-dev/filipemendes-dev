@@ -53,7 +53,7 @@
     opacity: 0;
 }
 
-.commandExecuting::after {
+.command[data-state='executing']::after {
     animation: heroCommandSweep var(--motion-duration-3xl) linear both;
 }
 

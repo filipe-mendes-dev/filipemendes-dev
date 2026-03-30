@@ -1,0 +1,55 @@
+.root {
+  --docs-mobile-topbar-height: 4.25rem;
+  --docs-sidebar-expanded-width: 17.5rem;
+  display: grid;
+  min-height: 100dvh;
+  height: 100dvh;
+  overflow: hidden;
+  background: linear-gradient(
+      to right,
+      color-mix(in srgb, var(--moss) 8%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--moss) 6%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--paper-raised) 18%, var(--paper)) 0%,
+      color-mix(in srgb, var(--paper) 94%, var(--stone)) 100%
+    );
+  background-size: 42px 42px, 42px 42px, 100% 100%;
+}
+
+.content {
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  padding-inline: clamp(2rem, 3vw, 3.5rem);
+  padding-block: min(1.5rem, 3vw);
+  scrollbar-gutter: stable;
+}
+
+.contentInner {
+  width: min(100%, 76rem);
+}
+
+@media (min-width: 64rem) {
+  .root {
+    grid-template-columns: var(--docs-sidebar-expanded-width) minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 63.99rem) {
+  .root {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .content {
+    padding-top: calc(var(--docs-mobile-topbar-height) + 0.75rem);
+    padding-inline: clamp(1.5rem, 3vw, 3rem);
+    padding-bottom: min(1.5rem, 3vw);
+  }
+}
