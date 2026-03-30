@@ -6,7 +6,6 @@ import {
   NextJsDarkIcon,
   NextJsLightIcon,
 } from "../../icons";
-import { Container } from "../../ui/Container";
 import type { FooterProps } from "./Footer.interfaces";
 import st from "./Footer.module.css";
 
@@ -22,65 +21,67 @@ export const Footer = ({
 
   return (
     <footer className={st.root}>
-      <Container className={st.footerInner}>
-        <div className={st.footerBrand}>
-          <p className={st.footerTag}>[ Portfolio.system ]</p>
-          <p className={st.footerName}>{name}</p>
-          <p className={st.footerDescriptor}>{descriptor}</p>
-          <p className={st.footerMeta}>
-            <span>Built with Next.js</span>
-            <span className={st.themeIcon} aria-hidden="true">
-              <NextJsDarkIcon
-                className={`${st.metaIcon} ${st.iconLightTheme}`}
-              />
-              <NextJsLightIcon
-                className={`${st.metaIcon} ${st.iconDarkTheme}`}
-              />
-            </span>
-            <span className={st.metaDivider} aria-hidden="true">
-              •
-            </span>
-            <span>{copyrightLine}</span>
-          </p>
-        </div>
+      <div className={st.footerShell}>
+        <div className={st.footerInner}>
+          <div className={st.footerBrand}>
+            <p className={st.footerTag}>[ Portfolio.system ]</p>
+            <p className={st.footerName}>{name}</p>
+            <p className={st.footerDescriptor}>{descriptor}</p>
+            <p className={st.footerMeta}>
+              <span>Built with Next.js</span>
+              <span className={st.themeIcon} aria-hidden="true">
+                <NextJsDarkIcon
+                  className={`${st.metaIcon} ${st.iconLightTheme}`}
+                />
+                <NextJsLightIcon
+                  className={`${st.metaIcon} ${st.iconDarkTheme}`}
+                />
+              </span>
+              <span className={st.metaDivider} aria-hidden="true">
+                •
+              </span>
+              <span>{copyrightLine}</span>
+            </p>
+          </div>
 
-        {hasSocialLinks && (
-          <ul className={st.footerSocialList}>
-            {githubUrl !== undefined && (
-              <li>
-                <a
-                  href={githubUrl}
-                  className={st.footerLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Visit GitHub profile"
-                >
-                  <span className={st.themeIcon} aria-hidden="true">
-                    <GitHubMarkIcon className={st.socialIcon} />
-                  </span>
-                  <span className={st.socialLabel}>GitHub</span>
-                </a>
-              </li>
-            )}
-            {linkedInUrl !== undefined && (
-              <li>
-                <a
-                  href={linkedInUrl}
-                  className={st.footerLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Visit LinkedIn profile"
-                >
-                  <span className={st.themeIcon} aria-hidden="true">
-                    <LinkedInIcon className={st.socialIcon} />
-                  </span>
-                  <span className={st.socialLabel}>LinkedIn</span>
-                </a>
-              </li>
-            )}
-          </ul>
-        )}
-      </Container>
+          {hasSocialLinks && (
+            <ul className={st.footerSocialList}>
+              {githubUrl !== undefined && (
+                <li>
+                  <a
+                    href={githubUrl}
+                    className={st.footerLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Visit GitHub profile"
+                  >
+                    <span className={st.themeIcon} aria-hidden="true">
+                      <GitHubMarkIcon className={st.socialIcon} />
+                    </span>
+                    <span className={st.socialLabel}>GitHub</span>
+                  </a>
+                </li>
+              )}
+              {linkedInUrl !== undefined && (
+                <li>
+                  <a
+                    href={linkedInUrl}
+                    className={st.footerLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Visit LinkedIn profile"
+                  >
+                    <span className={st.themeIcon} aria-hidden="true">
+                      <LinkedInIcon className={st.socialIcon} />
+                    </span>
+                    <span className={st.socialLabel}>LinkedIn</span>
+                  </a>
+                </li>
+              )}
+            </ul>
+          )}
+        </div>
+      </div>
     </footer>
   );
 };

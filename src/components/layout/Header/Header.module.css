@@ -13,7 +13,7 @@
 
 .headerInner {
   position: relative;
-  width: var(--container);
+  width: var(--shell-container);
   margin-inline: auto;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
