@@ -33,7 +33,7 @@
 }
 
 .contentInner {
-  width: min(100%, 64rem);
+  width: min(100%, 76rem);
 }
 
 @media (min-width: 64rem) {
@@ -49,8 +49,7 @@
 
   .content {
     padding-top: calc(var(--docs-mobile-topbar-height) + 0.75rem);
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-bottom: 1rem;
+    padding-inline: clamp(1.5rem, 3vw, 3rem);
+    padding-bottom: min(1.5rem, 3vw);
   }
 }
