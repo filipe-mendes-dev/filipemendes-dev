@@ -1,0 +1,96 @@
+.root {
+  display: grid;
+  grid-template-columns: 1.6rem minmax(0, 1fr);
+  gap: 0.8rem;
+  align-items: center;
+  padding: 0.5rem 0.7rem;
+  border-radius: 99999;
+  color: var(--ink-soft);
+  text-decoration: none;
+  background: transparent;
+  transition: color var(--transition), background-color var(--transition),
+    opacity var(--transition);
+}
+
+.root:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--moss) 68%, transparent);
+  outline-offset: 2px;
+}
+
+.root[aria-current="page"] {
+  color: var(--moss);
+  background: color-mix(in srgb, var(--accent-soft) 16%, transparent);
+}
+
+.root[aria-current="page"]:hover {
+  color: var(--moss);
+  background: color-mix(in srgb, var(--accent-soft) 16%, transparent);
+}
+
+.rootCollapsed {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  width: 2.75rem;
+  min-height: 2.75rem;
+  margin-inline: auto;
+  padding: 0;
+  box-shadow: none;
+}
+
+.compactLabel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: var(--radius-sm);
+  color: color-mix(in srgb, var(--moss) 72%, var(--ink-muted));
+  font-family: var(--font-mono);
+  font-size: var(--font-size-caption);
+  line-height: 1;
+  text-transform: uppercase;
+  transition: color var(--transition), background-color var(--transition);
+}
+
+.root[aria-current="page"] .compactLabel {
+  color: var(--moss);
+  background: color-mix(in srgb, var(--accent-soft) 18%, transparent);
+}
+
+.label {
+  color: currentColor;
+  font-size: var(--font-size-body-sm);
+  font-weight: 600;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  transition: opacity var(--motion-duration-md) var(--motion-ease-standard),
+    transform var(--motion-duration-md) var(--motion-ease-standard),
+    max-width var(--motion-duration-md) var(--motion-ease-standard);
+  max-width: 12rem;
+  overflow: hidden;
+}
+
+.labelCompact {
+  opacity: 0;
+  transform: translateX(-0.4rem);
+  max-width: 0;
+  max-height: 0;
+  pointer-events: none;
+}
+
+.rootNested {
+  margin-left: 0.45rem;
+}
+
+.rootNested .label {
+  font-size: var(--font-size-caption);
+  font-weight: 500;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .root:hover {
+    color: var(--ink);
+    opacity: 1;
+    background: color-mix(in srgb, var(--accent-soft) 16%, transparent);
+  }
+}

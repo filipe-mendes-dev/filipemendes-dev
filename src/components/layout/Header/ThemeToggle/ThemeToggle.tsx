@@ -1,24 +1,26 @@
+"use client";
+
 import type { ReactElement } from 'react';
 
 import { MoonIcon, SunIcon } from '../../../icons';
+import { useThemePreference } from '../../../../shared/theme/useThemePreference';
 import type { ThemeToggleProps } from './ThemeToggle.interfaces';
 import st from './ThemeToggle.module.css';
 
 export const ThemeToggle = ({
-  theme,
-  label,
-  onToggle,
   className,
   size = 'default',
 }: ThemeToggleProps): ReactElement => {
+  const { theme, themeToggleLabel, toggleTheme } = useThemePreference();
+
   return (
     <button
       type="button"
-      className={`${st.root} ${size === 'compact' ? st.compact : ''} ${theme === 'dark' ? st.dark : ''} ${className ?? ''}`.trim()}
-      onClick={onToggle}
-      aria-label={label}
+      className={`${st.root} ${size === 'compact' ? st.compact : ''} ${className ?? ''}`.trim()}
+      onClick={toggleTheme}
+      aria-label={themeToggleLabel}
       aria-pressed={theme === 'dark'}
-      title={label}
+      title={themeToggleLabel}
     >
       <span className={st.iconWrap} aria-hidden="true">
         <SunIcon className={st.iconSun} />

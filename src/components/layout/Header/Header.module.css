@@ -13,7 +13,7 @@
 
 .headerInner {
   position: relative;
-  width: var(--container);
+  width: var(--shell-container);
   margin-inline: auto;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
@@ -85,7 +85,7 @@
     visibility 0ms linear var(--motion-duration-xl);
 }
 
-.headerNavOpen {
+.headerNav[data-mobile-state="open"] {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
@@ -126,13 +126,13 @@
     transform var(--motion-duration-xl) var(--motion-ease-emphasized);
 }
 
-.headerNavOpen .siteNavList > li,
-.headerNavOpen .mobileMenuFooter {
+.headerNav[data-mobile-state="open"] .siteNavList > li,
+.headerNav[data-mobile-state="open"] .mobileMenuFooter {
   opacity: 1;
   transform: translateY(0);
 }
 
-.headerNavOpen .mobileMenuFooter {
+.headerNav[data-mobile-state="open"] .mobileMenuFooter {
   transition-delay: var(--motion-duration-md);
 }
 
