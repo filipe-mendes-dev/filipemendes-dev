@@ -1,3 +1,5 @@
+import type { ProjectBranding } from "../../../../../components/projects/ProjectLogoMark";
+
 export interface ProjectDetailStoreLinks {
   appStore?: string;
   googlePlay?: string;
@@ -10,7 +12,7 @@ export interface ProjectDetailHeroLink {
 
 export interface ProjectDetailHeroData {
   name: string;
-  logoText: string;
+  branding: ProjectBranding;
   category: string;
   positioning: string;
   description: string;

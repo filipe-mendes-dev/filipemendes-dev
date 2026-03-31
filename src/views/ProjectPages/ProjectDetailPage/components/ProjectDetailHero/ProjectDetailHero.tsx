@@ -1,26 +1,26 @@
-import type { ReactElement } from 'react';
+import type { ReactElement } from "react";
 
-import Link from 'next/link';
+import Link from "next/link";
 
-import { BackIcon, ExternalLinkIcon } from '../../../../../components/icons';
-import { TextActionLink } from '../../../../../components/navigation/TextActionLink';
-import { Container } from '../../../../../components/ui/Container';
-import surface from '../../../../../components/ui/PageSectionSurface/PageSectionSurface.module.css';
+import { BackIcon, ExternalLinkIcon } from "../../../../../components/icons";
+import { TextActionLink } from "../../../../../components/navigation/TextActionLink";
+import { ProjectLogoMark } from "../../../../../components/projects/ProjectLogoMark";
+import surface from "../../../../../components/ui/PageSectionSurface/PageSectionSurface.module.css";
 import {
   AppStoreBadgeIcon,
   GooglePlayBadgeIcon,
-} from './ProjectDetailHeroBadgeIcons';
-import type { ProjectDetailHeroProps } from './ProjectDetailHero.interfaces';
-import st from './ProjectDetailHero.module.css';
+} from "./ProjectDetailHeroBadgeIcons";
+import type { ProjectDetailHeroProps } from "./ProjectDetailHero.interfaces";
+import st from "./ProjectDetailHero.module.css";
 
-const hasStoreLinks = (hero: ProjectDetailHeroProps['hero']): boolean => {
+const hasStoreLinks = (hero: ProjectDetailHeroProps["hero"]): boolean => {
   return (
     hero.storeLinks?.appStore !== undefined ||
     hero.storeLinks?.googlePlay !== undefined
   );
 };
 
-const hasProjectActions = (hero: ProjectDetailHeroProps['hero']): boolean => {
+const hasProjectActions = (hero: ProjectDetailHeroProps["hero"]): boolean => {
   return hasStoreLinks(hero) || hero.links.length > 0;
 };
 
@@ -31,17 +31,12 @@ export const ProjectDetailHero = ({
 
   return (
     <section className={`${surface.section} ${st.root}`}>
-      <Container className={st.heroInner}>
+      <div className={st.heroInner}>
         <div className={st.heroReveal}>
-          <Link href="/" className={st.backLink}>
-            <BackIcon className={st.backIcon} />
-            <span>Go Back</span>
-          </Link>
-
           <header className={st.heroHeader}>
             <div className={st.heroTitleRow}>
               <div className={st.projectLogo} aria-hidden="true">
-                {hero.logoText}
+                <ProjectLogoMark branding={hero.branding} />
               </div>
               <div className={st.projectHeaderIntro}>
                 <p className={st.projectCategory}>{hero.category}</p>
@@ -51,6 +46,10 @@ export const ProjectDetailHero = ({
             <div className={st.projectHeaderContent}>
               <p className={st.projectPositioning}>{hero.positioning}</p>
               <p className={st.projectDescription}>{hero.description}</p>
+              <Link href="/" className={st.backLink}>
+                <BackIcon className={st.backIcon} />
+                <span>Back to projects</span>
+              </Link>
             </div>
           </header>
 
@@ -95,7 +94,9 @@ export const ProjectDetailHero = ({
                       className={st.metaLink}
                       target="_blank"
                       rel="noreferrer"
-                      trailingIcon={<ExternalLinkIcon className={st.metaLinkIcon} />}
+                      trailingIcon={
+                        <ExternalLinkIcon className={st.metaLinkIcon} />
+                      }
                     >
                       {link.label}
                     </TextActionLink>
@@ -105,7 +106,7 @@ export const ProjectDetailHero = ({
             </div>
           )}
         </div>
-      </Container>
+      </div>
     </section>
   );
 };
