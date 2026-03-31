@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 
+import { FilipeMendesLogo } from "../../../branding/FilipeMendesLogo";
 import type { DocsSidebarHeaderProps } from "./DocsSidebarHeader.interfaces";
 import st from "./DocsSidebarHeader.module.css";
 
@@ -14,23 +15,31 @@ export const DocsSidebarHeader = ({
   return (
     <div className={st.root}>
       <div className={st.brand}>
-        <span className={st.prompt} aria-hidden="true">
-          {"</>"}
-        </span>
-        <div className={st.textContainer}>
-          <span className={st.text}>filipemendes.dev</span>
-          <span className={st.eyebrow}>.Docs</span>
+        <div className={st.brandContent}>
+          <span className={st.logo} aria-hidden="true">
+            <span className={st.logoLight}>
+              <FilipeMendesLogo theme="light" />
+            </span>
+            <span className={st.logoDark}>
+              <FilipeMendesLogo theme="dark" />
+            </span>
+          </span>
+          <span className={st.eyebrow}>Docs</span>
         </div>
       </div>
 
       <div className={st.mobileBar}>
         <div className={st.mobileBrand}>
-          <span className={st.prompt} aria-hidden="true">
-            {"</>"}
-          </span>
-          <div className={st.textContainer}>
-            <span className={st.text}>filipemendes.dev</span>
-            <span className={st.eyebrow}>.Docs</span>
+          <div className={st.brandContent}>
+            <span className={st.logo} aria-hidden="true">
+              <span className={st.logoLight}>
+                <FilipeMendesLogo theme="light" />
+              </span>
+              <span className={st.logoDark}>
+                <FilipeMendesLogo theme="dark" />
+              </span>
+            </span>
+            <span className={st.eyebrow}>Docs</span>
           </div>
         </div>
 

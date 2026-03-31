@@ -22,51 +22,60 @@
 }
 
 .brand {
-  display: inline-grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
   width: fit-content;
   min-width: 0;
   padding: 0.6rem 0.7rem;
   color: var(--ink);
-  font-family: var(--font-display);
   text-align: left;
 }
 
-.prompt {
-  color: var(--moss);
-  font-family: var(--font-mono);
-  font-size: var(--font-size-heading-sm);
-  flex-shrink: 0;
-  transition: color var(--transition);
-}
-
-.textContainer {
+.brandContent {
   display: inline-flex;
-  align-items: baseline;
-  gap: 0.35rem;
-  min-width: max-content;
-  white-space: nowrap;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
 }
 
-.text {
-  font-size: var(--font-size-heading-sm);
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
+.logo {
+  display: inline-flex;
+  min-width: 0;
+  color: var(--ink);
+}
+
+.logoLight,
+.logoDark {
+  display: inline-flex;
+}
+
+.logoDark {
+  display: none;
+}
+
+:global([data-theme="dark"]) .logoLight {
+  display: none;
+}
+
+:global([data-theme="dark"]) .logoDark {
+  display: inline-flex;
 }
 
 .eyebrow {
   margin: 0;
-  color: var(--moss);
+  display: inline-flex;
+  align-items: end;
+  min-height: 1.3rem;
+  padding-inline: 0.42rem;
+  border-radius: var(--radius-pill);
+  color: var(--ink-soft);
   font-family: var(--font-mono);
-  font-size: var(--font-size-caption);
+  font-size: 0.6rem;
   font-weight: 600;
-  line-height: 1.4;
-  letter-spacing: 0.1em;
+  line-height: 1;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  background: color-mix(in srgb, var(--code-bg) 72%, transparent);
 }
 
 .mobileBar {
@@ -76,10 +85,8 @@
 }
 
 .mobileBrand {
-  display: inline-grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
   min-width: 0;
 }
 
