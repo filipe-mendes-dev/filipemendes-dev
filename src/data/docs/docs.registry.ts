@@ -10,6 +10,7 @@ import {
   nearsoftMobileAppsReleaseChecklist,
   nearsoftMobileAppsSupportRunbook,
 } from "./nearsoft-mobile-apps.demo.docs";
+import { standaloneOperationsMemo } from "./standalone-demo.docs";
 import type { Doc, DocsProjectSummary, DocSummary } from "./docs.interfaces";
 
 const isDocsDemoEnabled = process.env.ENABLE_DOCS_DEMOS === "true";
@@ -25,6 +26,7 @@ const demoDocsRegistry: Doc[] = [
   nearsoftMobileAppsSupportRunbook,
   nearsoftMobileAppsLocalizationGuide,
   nearsoftMobileAppsIncidentNotesTemplate,
+  standaloneOperationsMemo,
 ];
 
 const getDocsProjectSummary = (
