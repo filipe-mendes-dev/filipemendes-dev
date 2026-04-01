@@ -2,239 +2,246 @@
 }
 
 .heroSection {
-    position: relative;
-    padding-top: var(--space-5);
+  position: relative;
+  padding-top: var(--space-5);
 }
 
 .heroWindowStage {
-    position: relative;
-    display: grid;
-    align-content: start;
-    min-height: clamp(24rem, 52vw, 34rem);
+  position: relative;
+  display: grid;
+  align-content: start;
+  min-height: 0;
 }
 
 .heroGrid {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-4);
-    align-items: start;
-    padding: clamp(1rem, 3vw, 1.8rem);
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  align-items: start;
+  padding: clamp(1rem, 3vw, 1.8rem);
 }
 
 .heroMediaColumn {
-    position: relative;
-    display: grid;
-    place-items: start;
-    min-width: 0;
-    padding: 0;
+  position: relative;
+  display: grid;
+  place-items: start;
+  min-width: 0;
+  padding: 0;
 }
 
 .heroPhotoFrame {
-    position: relative;
-    z-index: 1;
-    width: min(100%, clamp(7.25rem, 20vw, 9.5rem));
-    margin: 0;
-    padding: 0.42rem;
-    border: var(--line-strong) solid color-mix(in srgb, var(--code-border) 68%, var(--line));
-    border-radius: calc(var(--radius-2xl) * 0.95);
-    overflow: hidden;
-    background: linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--code-bg) 82%, var(--paper-raised)) 0%,
-        color-mix(in srgb, var(--paper-raised) 96%, transparent) 100%
-    );
-    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--paper-raised) 68%, transparent),
-        inset 0 0 0 1px color-mix(in srgb, var(--paper-raised) 20%, transparent);
+  position: relative;
+  z-index: 1;
+  width: min(100%, clamp(7.25rem, 20vw, 9.5rem));
+  margin: 0;
+  padding: 0.42rem;
+  border: var(--line-strong) solid
+    color-mix(in srgb, var(--code-border) 68%, var(--line));
+  border-radius: calc(var(--radius-2xl) * 0.95);
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--code-bg) 82%, var(--paper-raised)) 0%,
+    color-mix(in srgb, var(--paper-raised) 96%, transparent) 100%
+  );
+  box-shadow: inset 0 1px 0
+      color-mix(in srgb, var(--paper-raised) 68%, transparent),
+    inset 0 0 0 1px color-mix(in srgb, var(--paper-raised) 20%, transparent);
 }
 
 .heroPhotoFrame::before {
-    content: '';
-    position: absolute;
-    inset: 0.42rem;
-    border-radius: calc(var(--radius-xl) * 0.96);
-    border: 1px solid color-mix(in srgb, var(--code-border) 38%, transparent);
-    background: linear-gradient(180deg, color-mix(in srgb, var(--paper-raised) 14%, transparent) 0%, transparent 20%),
-        repeating-linear-gradient(
-            90deg,
-            transparent 0,
-            transparent 18px,
-            color-mix(in srgb, var(--code-border) 12%, transparent) 18px,
-            color-mix(in srgb, var(--code-border) 12%, transparent) 19px
-        );
-    pointer-events: none;
+  content: "";
+  position: absolute;
+  inset: 0.42rem;
+  border-radius: calc(var(--radius-xl) * 0.96);
+  border: 1px solid color-mix(in srgb, var(--code-border) 38%, transparent);
+  background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--paper-raised) 14%, transparent) 0%,
+      transparent 20%
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 18px,
+      color-mix(in srgb, var(--code-border) 12%, transparent) 18px,
+      color-mix(in srgb, var(--code-border) 12%, transparent) 19px
+    );
+  pointer-events: none;
 }
 
 .heroPhoto {
-    position: relative;
-    z-index: 1;
-    display: block;
-    width: 100%;
-    height: 100%;
-    aspect-ratio: 4 / 5;
-    border-radius: calc(var(--radius-xl) * 0.92);
-    object-fit: cover;
-    box-shadow: none;
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: calc(var(--radius-xl) * 0.92);
+  object-fit: cover;
+  box-shadow: none;
 }
 
 .heroCopy {
-    display: grid;
-    gap: clamp(var(--space-3), 2vw, var(--space-4));
-    min-width: 0;
-    align-content: start;
+  display: grid;
+  gap: clamp(var(--space-3), 2vw, var(--space-4));
+  min-width: 0;
+  align-content: start;
 }
 
 .heroRevealItem {
 }
 
 .heroKicker {
-    font-size: var(--font-size-caption);
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--moss);
+  font-size: var(--font-size-caption);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--moss);
 }
 
 .heroTitle {
-    max-width: 13ch;
-    padding-bottom: 0.08em;
-    line-height: var(--line-height-display);
-    letter-spacing: -0.025em;
-    text-wrap: balance;
+  max-width: 13ch;
+  padding-bottom: 0.08em;
+  line-height: var(--line-height-display);
+  letter-spacing: -0.025em;
+  text-wrap: balance;
 }
 
 .heroBody {
-    display: grid;
-    gap: var(--space-2);
-    width: 100%;
-    max-width: var(--content-max-readable);
+  display: grid;
+  gap: var(--space-2);
+  width: 100%;
+  max-width: var(--content-max-readable);
 }
 
 .heroRole {
-    max-width: var(--content-max-narrow);
-    font-size: var(--font-size-body-lg);
-    color: var(--ink);
-    overflow-wrap: anywhere;
-    text-wrap: pretty;
+  max-width: var(--content-max-narrow);
+  font-size: var(--font-size-body-lg);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
 }
 
 .heroSummary {
-    max-width: var(--content-max-readable);
-    color: var(--ink-soft);
-    overflow-wrap: anywhere;
-    text-wrap: pretty;
+  max-width: var(--content-max-readable);
+  color: var(--ink-soft);
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
 }
 
 .heroNow {
-    max-width: var(--content-max-readable);
-    padding-top: var(--space-2);
-    border-top: var(--line-strong) solid color-mix(in srgb, var(--line) 82%, transparent);
-    color: var(--ink);
-    overflow-wrap: anywhere;
-    text-wrap: pretty;
+  max-width: var(--content-max-readable);
+  padding-top: var(--space-2);
+  border-top: var(--line-strong) solid
+    color-mix(in srgb, var(--line) 82%, transparent);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
 }
 
 .heroActions {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-2);
-    align-items: stretch;
-    width: min(100%, 30rem);
-    max-width: 30rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2);
+  align-items: stretch;
+  width: min(100%, 30rem);
+  max-width: 30rem;
 }
 
 .heroActionLink {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    min-width: 0;
-    text-align: center;
-    white-space: nowrap;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  text-align: center;
+  white-space: nowrap;
 }
 
 @media (min-width: 36rem) {
-    .heroActions {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+  .heroActions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (min-width: 48rem) {
-    .heroGrid {
-        grid-template-columns: minmax(8.5rem, 11rem) minmax(0, 1fr);
-        gap: clamp(1rem, 3vw, 2.35rem);
-    }
+  .heroGrid {
+    grid-template-columns: minmax(8.5rem, 11rem) minmax(0, 1fr);
+    gap: clamp(1rem, 3vw, 2.35rem);
+  }
 
-    .heroMediaColumn {
-        place-items: start;
-    }
+  .heroMediaColumn {
+    place-items: start;
+  }
 
-    .heroPhotoFrame {
-        width: 100%;
-    }
+  .heroPhotoFrame {
+    width: 100%;
+  }
 
-    .heroCopy {
-        width: 100%;
-    }
+  .heroCopy {
+    width: 100%;
+  }
 
-    .heroBody {
-        max-width: none;
-    }
+  .heroBody {
+    max-width: none;
+  }
 
-    .heroRole {
-        max-width: 30ch;
-    }
+  .heroRole {
+    max-width: 30ch;
+  }
 
-    .heroSummary,
-    .heroNow {
-        max-width: 100%;
-    }
+  .heroSummary,
+  .heroNow {
+    max-width: 100%;
+  }
 }
 
 @media (min-width: 64rem) {
-    .heroSection {
-        padding-top: var(--font-size-body-xl);
-    }
+  .heroSection {
+    padding-top: var(--font-size-body-xl);
+  }
 
-    .heroGrid {
-        grid-template-columns: minmax(9rem, 12rem) minmax(0, 1.45fr);
-        gap: clamp(1.5rem, 4vw, 3.5rem);
-        padding: clamp(1.35rem, 2.6vw, 2rem);
-    }
+  .heroGrid {
+    grid-template-columns: minmax(9rem, 12rem) minmax(0, 1.45fr);
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    padding: clamp(1.35rem, 2.6vw, 2rem);
+  }
 
-    .heroBody {
-        max-width: min(74ch, 100%);
-    }
+  .heroBody {
+    max-width: min(74ch, 100%);
+  }
 
-    .heroSummary {
-        max-width: min(72ch, 100%);
-    }
+  .heroSummary {
+    max-width: min(72ch, 100%);
+  }
 
-    .heroActions {
-        grid-template-columns: repeat(2, minmax(0, max-content));
-        justify-content: start;
-        width: auto;
-        max-width: none;
-    }
+  .heroActions {
+    grid-template-columns: repeat(2, minmax(0, max-content));
+    justify-content: start;
+    width: auto;
+    max-width: none;
+  }
 
-    .heroActionLink {
-        width: auto;
-        min-width: 10.5rem;
-    }
+  .heroActionLink {
+    width: auto;
+    min-width: 10.5rem;
+  }
 }
 
 @media (max-width: 30rem) {
-    .heroMediaColumn {
-        padding: 0;
-    }
+  .heroMediaColumn {
+    padding: 0;
+  }
 
-    .heroPhotoFrame {
-        padding: 0.32rem;
-    }
+  .heroPhotoFrame {
+    padding: 0.32rem;
+  }
 
-    .heroPhotoFrame::before {
-        inset: 0.32rem;
-    }
+  .heroPhotoFrame::before {
+    inset: 0.32rem;
+  }
 }
