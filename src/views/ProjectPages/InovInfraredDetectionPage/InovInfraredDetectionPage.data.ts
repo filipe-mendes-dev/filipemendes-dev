@@ -8,7 +8,9 @@ import type {
 
 export const inovInfraredDetectionHero: ProjectDetailHeroData = {
   name: "INOV Infrared Detection Research",
-  logoText: "IN",
+  logo: {
+    logoText: "IN",
+  },
   category: "Applied Machine Learning",
   description:
     "Research and engineering work on real-time infrared image classification using EfficientDet, TensorFlow, and OpenCV.",

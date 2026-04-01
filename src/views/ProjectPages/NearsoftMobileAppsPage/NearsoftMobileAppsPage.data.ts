@@ -8,7 +8,9 @@ import type {
 
 export const nearsoftMobileAppsHero: ProjectDetailHeroData = {
   name: "Nearsoft Mobile Banking Apps",
-  logoText: "NS",
+  logo: {
+    logoText: "NS",
+  },
   category: "Mobile Development",
   description:
     "Mobile banking app development centered on React Native, TypeScript, Redux, REST integrations, and reusable UI components.",

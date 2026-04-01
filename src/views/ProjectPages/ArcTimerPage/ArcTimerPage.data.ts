@@ -1,15 +1,22 @@
 import type { Metadata } from "next";
 
+import { getProjectRecordBySlug } from "../../../data/site/landing-page/projects.data";
 import { siteData } from "../../../data/site/site.data";
 import type {
   ProjectDetailHeroData,
   ProjectScreenshotItem,
 } from "../ProjectDetailPage";
 
+const arcTimerProject = getProjectRecordBySlug("arc-timer");
+
+if (arcTimerProject === undefined) {
+  throw new Error('Missing project record for slug "arc-timer".');
+}
+
 export const arcTimerHero: ProjectDetailHeroData = {
-  name: "Arc Timer",
-  logoText: "AT",
-  category: "Mobile App",
+  name: arcTimerProject.name,
+  logo: arcTimerProject.logo,
+  category: arcTimerProject.category,
   description:
     "A focused interval timer for HIIT workouts, designed around precise timing, minimal interaction, and reliable execution during high-intensity sessions.",
   positioning:

@@ -8,7 +8,9 @@ import type {
 
 export const acinWebPlatformHero: ProjectDetailHeroData = {
   name: "ACIN Web Platform",
-  logoText: "AC",
+  logo: {
+    logoText: "AC",
+  },
   category: "Frontend Platform",
   description:
     "Web platform development work focused on responsive React interfaces, GraphQL integration, and native-like behavior on the web.",
