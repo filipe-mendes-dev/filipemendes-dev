@@ -11,6 +11,9 @@ export const DocPageRail = ({
   projectSlug,
   sections,
 }: DocPageRailProps): ReactElement => {
+  const hasProjectContext =
+    projectName !== undefined && projectSlug !== undefined;
+
   return (
     <aside className={st.root} aria-label="Document outline">
       <div className={st.inner}>
@@ -32,12 +35,16 @@ export const DocPageRail = ({
         <div className={st.section}>
           <p className={st.eyebrow}>Context</p>
           <div className={st.meta}>
-            <Link
-              href={`/docs/projects/${projectSlug}`}
-              className={st.projectLink}
-            >
-              {projectName}
-            </Link>
+            {hasProjectContext ? (
+              <Link
+                href={`/docs/projects/${projectSlug}`}
+                className={st.projectLink}
+              >
+                {projectName}
+              </Link>
+            ) : (
+              <p className={st.metaLabel}>Standalone document</p>
+            )}
             {lastUpdatedLabel !== undefined && (
               <p className={st.metaLabel}>{lastUpdatedLabel}</p>
             )}

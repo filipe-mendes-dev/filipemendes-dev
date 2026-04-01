@@ -24,6 +24,8 @@ export const DocsSidebarNavItem = ({
   onClick,
 }: DocsSidebarNavItemProps): ReactElement => {
   const resolvedCompactLabel = compactLabel ?? getCompactLabel(label);
+  const hasGraphicLogo =
+    logo?.logoImage !== undefined || logo?.logoIcon !== undefined;
 
   return (
     <Link
@@ -32,13 +34,15 @@ export const DocsSidebarNavItem = ({
       aria-current={isActive ? "page" : undefined}
       onClick={onClick}
     >
-      <span className={st.compactLabel}>
-        {logo === undefined ? (
-          resolvedCompactLabel
-        ) : (
+      <span
+        className={`${st.compactLabel} ${hasGraphicLogo ? st.compactLabelGraphicLogo : ""}`}
+      >
+        {logo !== undefined ? (
           <span className={st.logoMark} aria-hidden="true">
             <ProjectLogoMark logo={logo} />
           </span>
+        ) : (
+          resolvedCompactLabel
         )}
       </span>
       <span className={st.label}>{label}</span>

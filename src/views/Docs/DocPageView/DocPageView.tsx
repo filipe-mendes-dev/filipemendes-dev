@@ -13,19 +13,27 @@ export interface DocPageViewProps {
 export const DocPageView = ({
   doc,
 }: DocPageViewProps): ReactElement => {
+  const hasProjectContext =
+    doc.projectName !== undefined && doc.projectSlug !== undefined;
+  const eyebrow = doc.projectName ?? "Standalone document";
+
   return (
     <div className={st.root}>
       <nav aria-label="Breadcrumb" className={st.breadcrumbs}>
         <Link href="/docs" className={st.breadcrumbLink}>
           Home
         </Link>
-        <span className={st.breadcrumbDivider}>/</span>
-        <Link
-          href={`/docs/projects/${doc.projectSlug}`}
-          className={st.breadcrumbLink}
-        >
-          {doc.projectName}
-        </Link>
+        {hasProjectContext && (
+          <>
+            <span className={st.breadcrumbDivider}>/</span>
+            <Link
+              href={`/docs/projects/${doc.projectSlug}`}
+              className={st.breadcrumbLink}
+            >
+              {doc.projectName}
+            </Link>
+          </>
+        )}
         <span className={st.breadcrumbDivider}>/</span>
         <span className={st.breadcrumbCurrent}>{doc.title}</span>
       </nav>
@@ -33,7 +41,7 @@ export const DocPageView = ({
       <div className={st.layout}>
         <div className={st.mainColumn}>
           <header className={st.header}>
-            <p className={st.eyebrow}>{doc.projectName}</p>
+            <p className={st.eyebrow}>{eyebrow}</p>
             <h1 className={st.title}>{doc.title}</h1>
             <p className={st.summary}>{doc.summary}</p>
             {doc.lastUpdatedLabel !== undefined && (

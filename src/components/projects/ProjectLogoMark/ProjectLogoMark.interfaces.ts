@@ -5,6 +5,7 @@ export interface ProjectLogoImageSet {
 
 export interface ProjectLogo {
   logoText: string;
+  logoIcon?: "document";
   logoImage?: ProjectLogoImageSet;
 }
 

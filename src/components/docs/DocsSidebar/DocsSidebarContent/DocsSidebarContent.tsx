@@ -3,6 +3,7 @@ import { usePathname } from "next/navigation";
 import { type ReactElement, useState } from "react";
 
 import { motionDurationMs, motionEase } from "../../../../shared/theme/motion";
+import type { ProjectLogo } from "../../../../components/projects/ProjectLogoMark";
 import { DocsSidebarAccordion } from "../DocsSidebarAccordion";
 import { DocsSidebarFooter } from "../DocsSidebarFooter";
 import { DocsSidebarNavItem } from "../DocsSidebarNavItem";
@@ -13,6 +14,11 @@ const getDocHref = (docSlug: string): string => `/docs/${docSlug}`;
 
 const getProjectHref = (projectSlug: string): string =>
   `/docs/projects/${projectSlug}`;
+
+const documentLogo: ProjectLogo = {
+  logoIcon: "document",
+  logoText: "DOC",
+};
 
 const mobileBodyVariants: Variants = {
   hidden: {
@@ -62,6 +68,9 @@ export const DocsSidebarContent = ({
   const [isProjectsOpen, setIsProjectsOpen] = useState(true);
   const [isFeaturedOpen, setIsFeaturedOpen] = useState(true);
   const isHomeActive = pathname === "/docs";
+  const projectLogoBySlug = new Map(
+    projects.map((project) => [project.slug, project.logo] as const),
+  );
   const projectItems = projects.map((project) => {
     const href = getProjectHref(project.slug);
 
@@ -74,11 +83,16 @@ export const DocsSidebarContent = ({
   });
   const featuredItems = featuredDocs.map((document) => {
     const href = getDocHref(document.slug);
+    const logo =
+      document.projectSlug !== undefined
+        ? (projectLogoBySlug.get(document.projectSlug) ?? documentLogo)
+        : documentLogo;
 
     return {
       href,
       isActive: pathname === href,
       label: document.title,
+      logo,
     };
   });
 

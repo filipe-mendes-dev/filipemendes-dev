@@ -5,8 +5,8 @@ export interface DocPageRailSectionItem {
 
 export interface DocPageRailProps {
   lastUpdatedLabel?: string;
-  projectName: string;
-  projectSlug: string;
+  projectName?: string;
+  projectSlug?: string;
   sections: DocPageRailSectionItem[];
 }
 

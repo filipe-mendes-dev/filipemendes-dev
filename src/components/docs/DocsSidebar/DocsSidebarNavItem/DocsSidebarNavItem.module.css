@@ -52,6 +52,10 @@
   transition: color var(--transition), background-color var(--transition);
 }
 
+.compactLabelGraphicLogo {
+  background: transparent;
+}
+
 .logoMark {
   display: inline-flex;
   align-items: center;
@@ -63,6 +67,10 @@
 .root[aria-current="page"] .compactLabel {
   color: var(--moss);
   background: color-mix(in srgb, var(--accent-soft) 18%, transparent);
+}
+
+.root[aria-current="page"] .compactLabelGraphicLogo {
+  background: transparent;
 }
 
 .label {

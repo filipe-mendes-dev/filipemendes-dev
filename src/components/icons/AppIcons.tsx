@@ -138,6 +138,15 @@ export const PublicationsIcon = (props: AppIconProps): ReactElement => (
   </IconBase>
 );
 
+export const DocumentIcon = (props: AppIconProps): ReactElement => (
+  <IconBase {...props}>
+    <path
+      fill="currentColor"
+      d="M8.25 3.75h6.05l3.45 3.45v9.05A1.75 1.75 0 0 1 16 18H8.25a1.75 1.75 0 0 1-1.75-1.75V5.5a1.75 1.75 0 0 1 1.75-1.75Zm0 1.5A.25.25 0 0 0 8 5.5v10.75c0 .14.11.25.25.25H16a.25.25 0 0 0 .25-.25V8.25h-2.5A1.75 1.75 0 0 1 12 6.5V5.25H8.25Zm5.25.31V6.5c0 .14.11.25.25.25h.94l-1.19-1.19ZM9.25 10.25A.75.75 0 0 1 10 9.5h4a.75.75 0 0 1 0 1.5h-4a.75.75 0 0 1-.75-.75Zm0 3A.75.75 0 0 1 10 12.5h4.75a.75.75 0 0 1 0 1.5H10a.75.75 0 0 1-.75-.75Z"
+    />
+  </IconBase>
+);
+
 export const SunIcon = (props: AppIconProps): ReactElement => (
   <IconBase {...props}>
     <path
