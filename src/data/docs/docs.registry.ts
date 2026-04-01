@@ -1,3 +1,4 @@
+import { getProjectRecordBySlug } from "../site/landing-page/projects.data";
 import {
   arcTimerPrivacyAndPermissionsPolicy,
   arcTimerReleasePolicy,
@@ -25,24 +26,41 @@ const demoDocsRegistry: Doc[] = [
   nearsoftMobileAppsLocalizationGuide,
   nearsoftMobileAppsIncidentNotesTemplate,
 ];
+
+const getDocsProjectSummary = (
+  slug: string,
+  description: string,
+  order: number,
+): DocsProjectSummary => {
+  const project = getProjectRecordBySlug(slug);
+
+  if (project === undefined) {
+    throw new Error(`Missing docs project registry source for slug: ${slug}`);
+  }
+
+  return {
+    slug: project.slug,
+    name: project.name,
+    logo: project.logo,
+    description,
+    order,
+  };
+};
+
 const docsRegistry: Doc[] = isDocsDemoEnabled
   ? [...coreDocsRegistry, ...demoDocsRegistry]
   : coreDocsRegistry;
 const docsProjectsRegistry: DocsProjectSummary[] = [
-  {
-    slug: "arc-timer",
-    name: "Arc Timer",
-    description:
-      "Release, privacy, and operational policy documentation for the Arc Timer mobile app.",
-    order: 1,
-  },
-  {
-    slug: "nearsoft-mobile-apps",
-    name: "Nearsoft Mobile Banking Apps",
-    description:
-      "Operational notes, publishing policies, and delivery references for the Nearsoft mobile work.",
-    order: 2,
-  },
+  getDocsProjectSummary(
+    "arc-timer",
+    "Release, privacy, and operational policy documentation for the Arc Timer mobile app.",
+    1,
+  ),
+  getDocsProjectSummary(
+    "nearsoft-mobile-apps",
+    "Operational notes, publishing policies, and delivery references for the Nearsoft mobile work.",
+    2,
+  ),
 ];
 
 const getSortedDocs = (): Doc[] => {

@@ -1,3 +1,10 @@
+import arcTimerDarkLogo from "../../../assets/logos/arc-timer/app-logo-dark.svg";
+import arcTimerLightLogo from "../../../assets/logos/arc-timer/app-logo-light.svg";
+import type { ProjectLogo } from "../../../components/projects/ProjectLogoMark";
+
+const arcTimerDarkLogoPath = arcTimerDarkLogo as unknown as string;
+const arcTimerLightLogoPath = arcTimerLightLogo as unknown as string;
+
 export interface ProjectNarrative {
   problem: string;
   approach: string;
@@ -9,7 +16,7 @@ export interface ProjectRecord {
   id: string;
   slug: string;
   name: string;
-  logoText: string;
+  logo: ProjectLogo;
   category: string;
   description: string;
   narrative: ProjectNarrative;
@@ -23,7 +30,7 @@ export interface LandingProjectData {
   id: string;
   href: string;
   name: string;
-  logoText: string;
+  logo: ProjectLogo;
   category: string;
   description: string;
   narrative: ProjectNarrative;
@@ -34,7 +41,9 @@ export const projectsData: ProjectRecord[] = [
     id: "acin-web-platform",
     slug: "acin-web-platform",
     name: "ACIN Web Platform",
-    logoText: "AC",
+    logo: {
+      logoText: "AC",
+    },
     category: "Frontend Platform",
     description:
       "Web platform development work focused on responsive React interfaces, GraphQL integration, and native-like behavior on the web.",
@@ -53,7 +62,13 @@ export const projectsData: ProjectRecord[] = [
     id: "arc-timer",
     slug: "arc-timer",
     name: "Arc Timer",
-    logoText: "AT",
+    logo: {
+      logoText: "AT",
+      logoImage: {
+        darkTheme: arcTimerLightLogoPath,
+        lightTheme: arcTimerDarkLogoPath,
+      },
+    },
     category: "Mobile App",
     description:
       "A focused interval timer for HIIT workouts designed around precise timing, minimal interaction, and reliable flow during high-intensity sessions.",
@@ -72,7 +87,9 @@ export const projectsData: ProjectRecord[] = [
     id: "nearsoft-mobile-apps",
     slug: "nearsoft-mobile-apps",
     name: "Nearsoft Mobile Banking Apps",
-    logoText: "NS",
+    logo: {
+      logoText: "NS",
+    },
     category: "Mobile Development",
     description:
       "Mobile banking app development centered on React Native, TypeScript, Redux, REST integrations, and reusable UI components.",
@@ -91,7 +108,9 @@ export const projectsData: ProjectRecord[] = [
     id: "inov-infrared-detection",
     slug: "inov-infrared-detection",
     name: "INOV Infrared Detection Research",
-    logoText: "IN",
+    logo: {
+      logoText: "IN",
+    },
     category: "Applied Machine Learning",
     description:
       "Research and engineering work on real-time infrared image classification using EfficientDet, TensorFlow, and OpenCV.",
@@ -113,10 +132,16 @@ export const landingProjectsData: LandingProjectData[] = projectsData.map(
       id: project.id,
       href: getProjectHref(project.slug),
       name: project.name,
-      logoText: project.logoText,
+      logo: project.logo,
       category: project.category,
       description: project.description,
       narrative: project.narrative,
     };
   }
 );
+
+export const getProjectRecordBySlug = (
+  slug: string,
+): ProjectRecord | undefined => {
+  return projectsData.find((project) => project.slug === slug);
+};

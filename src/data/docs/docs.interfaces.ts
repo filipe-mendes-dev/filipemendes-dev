@@ -1,3 +1,5 @@
+import type { ProjectLogo } from "../../components/projects/ProjectLogoMark";
+
 export interface DocParagraphBlock {
   kind: 'paragraph';
   text: string;
@@ -30,6 +32,7 @@ export interface DocSummary {
 export interface DocsProjectSummary {
   slug: string;
   name: string;
+  logo: ProjectLogo;
   description: string;
   order: number;
 }

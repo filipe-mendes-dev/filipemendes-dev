@@ -48,7 +48,9 @@ const atlasMobileProject = getProjectByHref("/projects/atlas-mobile");
 export const atlasMobileDetail: PortfolioTestProjectDetail = {
   hero: {
     name: atlasMobileProject.name,
-    logoText: atlasMobileProject.logoText,
+    logo: {
+      logoText: atlasMobileProject.logoText,
+    },
     category: atlasMobileProject.category,
     description: atlasMobileProject.description,
     positioning:
@@ -88,7 +90,9 @@ const forgeWebProject = getProjectByHref("/projects/forge-web");
 export const forgeWebDetail: PortfolioTestProjectDetail = {
   hero: {
     name: forgeWebProject.name,
-    logoText: forgeWebProject.logoText,
+    logo: {
+      logoText: forgeWebProject.logoText,
+    },
     category: forgeWebProject.category,
     description: forgeWebProject.description,
     positioning:
