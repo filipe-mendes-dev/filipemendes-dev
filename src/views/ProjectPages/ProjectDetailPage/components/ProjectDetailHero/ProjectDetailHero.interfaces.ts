@@ -1,4 +1,4 @@
-import type { ProjectBranding } from "../../../../../components/projects/ProjectLogoMark";
+import type { ProjectLogo } from "../../../../../components/projects/ProjectLogoMark";
 
 export interface ProjectDetailStoreLinks {
   appStore?: string;
@@ -12,7 +12,7 @@ export interface ProjectDetailHeroLink {
 
 export interface ProjectDetailHeroData {
   name: string;
-  branding: ProjectBranding;
+  logo: ProjectLogo;
   category: string;
   positioning: string;
   description: string;

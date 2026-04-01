@@ -36,7 +36,7 @@ export const ProjectDetailHero = ({
           <header className={st.heroHeader}>
             <div className={st.heroTitleRow}>
               <div className={st.projectLogo} aria-hidden="true">
-                <ProjectLogoMark branding={hero.branding} />
+                <ProjectLogoMark logo={hero.logo} />
               </div>
               <div className={st.projectHeaderIntro}>
                 <p className={st.projectCategory}>{hero.category}</p>
