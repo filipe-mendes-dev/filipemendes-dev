@@ -2,6 +2,7 @@ import type { ReactElement } from 'react';
 
 import { ExternalLinkIcon } from '../../../../../../components/icons';
 import { TextActionLink } from '../../../../../../components/navigation/TextActionLink';
+import { ProjectLogoMark } from '../../../../../../components/projects/ProjectLogoMark';
 import { SoftSurface } from '../../../../../../components/ui/SoftSurface';
 import { ProjectNarrativeList } from '../ProjectNarrativeList';
 import type { ProjectCardProps } from './ProjectCard.interfaces';
@@ -13,7 +14,7 @@ export const ProjectCard = ({ project }: ProjectCardProps): ReactElement => {
       <div className={st.header}>
         <div className={st.lead}>
           <div className={st.marker} aria-hidden="true">
-            {project.logoText}
+            <ProjectLogoMark logo={project.logo} />
           </div>
 
           <div className={st.heading}>
