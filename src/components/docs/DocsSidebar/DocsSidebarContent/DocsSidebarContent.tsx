@@ -66,6 +66,7 @@ export const DocsSidebarContent = ({
     const href = getProjectHref(project.slug);
 
     return {
+      logo: project.logo,
       href,
       isActive: pathname === href || pathname.startsWith(`${href}/`),
       label: project.name,

@@ -1,4 +1,7 @@
+import type { ProjectLogo } from "../../../../components/projects/ProjectLogoMark";
+
 export interface DocsSidebarAccordionItem {
+  logo?: ProjectLogo;
   compactLabel?: string;
   href: string;
   isActive: boolean;

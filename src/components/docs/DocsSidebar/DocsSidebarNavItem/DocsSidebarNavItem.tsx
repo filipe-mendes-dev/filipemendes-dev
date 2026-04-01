@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactElement } from "react";
 
+import { ProjectLogoMark } from "../../../../components/projects/ProjectLogoMark";
 import type { DocsSidebarNavItemProps } from "./DocsSidebarNavItem.interfaces";
 import st from "./DocsSidebarNavItem.module.css";
 
@@ -14,6 +15,7 @@ const getCompactLabel = (label: string): string => {
 };
 
 export const DocsSidebarNavItem = ({
+  logo,
   compactLabel,
   href,
   isActive,
@@ -30,7 +32,15 @@ export const DocsSidebarNavItem = ({
       aria-current={isActive ? "page" : undefined}
       onClick={onClick}
     >
-      <span className={st.compactLabel}>{resolvedCompactLabel}</span>
+      <span className={st.compactLabel}>
+        {logo === undefined ? (
+          resolvedCompactLabel
+        ) : (
+          <span className={st.logoMark} aria-hidden="true">
+            <ProjectLogoMark logo={logo} />
+          </span>
+        )}
+      </span>
       <span className={st.label}>{label}</span>
     </Link>
   );

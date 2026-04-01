@@ -72,6 +72,7 @@ export const DocsSidebarAccordion = ({
         {items.map((item) => (
           <motion.li variants={itemVariants} key={item.label}>
             <DocsSidebarNavItem
+              logo={item.logo}
               compactLabel={item.compactLabel}
               href={item.href}
               isActive={item.isActive}
