@@ -34,7 +34,7 @@
 .brandContent {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
   min-width: 0;
 }
 
@@ -64,18 +64,18 @@
 .eyebrow {
   margin: 0;
   display: inline-flex;
-  align-items: end;
+  align-items: center;
   min-height: 1.3rem;
-  padding-inline: 0.42rem;
+  padding-inline: 0.5rem;
   border-radius: var(--radius-pill);
-  color: var(--ink-soft);
+  color: color-mix(in srgb, var(--moss) 74%, var(--ink-soft));
   font-family: var(--font-mono);
   font-size: 0.6rem;
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  background: color-mix(in srgb, var(--code-bg) 72%, transparent);
+  background: color-mix(in srgb, var(--moss) 8%, transparent);
 }
 
 .mobileBar {
