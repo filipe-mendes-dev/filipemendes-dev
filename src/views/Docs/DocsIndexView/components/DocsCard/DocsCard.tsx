@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ReactElement } from "react";
 
 import { CalendarIcon } from "../../../../../components/icons";
+import { ProjectLogoMark } from "../../../../../components/projects/ProjectLogoMark";
 import type { DocsCardProps } from "./DocsCard.interfaces";
 import st from "./DocsCard.module.css";
 
@@ -19,7 +20,14 @@ export const DocsCard = ({ doc }: DocsCardProps): ReactElement => {
   return (
     <Link href={`/docs/${doc.slug}`} className={st.root}>
       <div className={st.topRow}>
-        <p className={st.eyebrow}>{doc.projectName ?? "Standalone document"}</p>
+        <p className={st.eyebrow}>
+          {doc.logo !== undefined && (
+            <span className={st.eyebrowLogo} aria-hidden="true">
+              <ProjectLogoMark logo={doc.logo} />
+            </span>
+          )}
+          <span>{doc.projectName ?? "Standalone document"}</span>
+        </p>
         {cardDateLabel !== undefined && (
           <p className={st.metaLabel}>
             <CalendarIcon className={st.metaIcon} />

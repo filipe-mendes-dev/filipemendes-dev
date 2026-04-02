@@ -12,8 +12,12 @@ import {
 } from "./nearsoft-mobile-apps.demo.docs";
 import { standaloneOperationsMemo } from "./standalone-demo.docs";
 import type { Doc, DocsProjectSummary, DocSummary } from "./docs.interfaces";
+import type { ProjectLogo } from "../../components/projects/ProjectLogoMark";
 
 const isDocsDemoEnabled = process.env.ENABLE_DOCS_DEMOS === "true";
+const documentLogo: ProjectLogo = {
+  logoIcon: "document",
+};
 
 const coreDocsRegistry: Doc[] = [
   arcTimerReleasePolicy,
@@ -69,10 +73,19 @@ const getSortedDocs = (): Doc[] => {
   return [...docsRegistry].sort((left, right) => left.order - right.order);
 };
 
+export const getDocLogo = (projectSlug?: string): ProjectLogo => {
+  if (projectSlug === undefined) {
+    return documentLogo;
+  }
+
+  return getProjectRecordBySlug(projectSlug)?.logo ?? documentLogo;
+};
+
 export const getDocsNavigationItems = (): DocSummary[] => {
   return getSortedDocs().map((doc) => ({
     featured: doc.featured,
     lastUpdatedLabel: doc.lastUpdatedLabel,
+    logo: getDocLogo(doc.projectSlug),
     order: doc.order,
     projectSlug: doc.projectSlug,
     projectName: doc.projectName,
@@ -83,7 +96,16 @@ export const getDocsNavigationItems = (): DocSummary[] => {
 };
 
 export const getDoc = (docSlug: string): Doc | undefined => {
-  return docsRegistry.find((doc) => doc.slug === docSlug);
+  const doc = docsRegistry.find((entry) => entry.slug === docSlug);
+
+  if (doc === undefined) {
+    return undefined;
+  }
+
+  return {
+    ...doc,
+    logo: getDocLogo(doc.projectSlug),
+  };
 };
 
 export const getDocsProjects = (): DocsProjectSummary[] => {

@@ -1,12 +1,14 @@
 import Link from "next/link";
 import type { ReactElement } from "react";
 
+import { ProjectLogoMark } from "../../../../../components/projects/ProjectLogoMark";
 import type { DocPageRailProps } from "./DocPageRail.interfaces";
 import { DocPageRailItem } from "./DocPageRailItem";
 import st from "./DocPageRail.module.css";
 
 export const DocPageRail = ({
   lastUpdatedLabel,
+  logo,
   projectName,
   projectSlug,
   sections,
@@ -39,10 +41,22 @@ export const DocPageRail = ({
                 href={`/docs/projects/${projectSlug}`}
                 className={st.projectLink}
               >
+                {logo !== undefined && (
+                  <span className={st.projectLogo} aria-hidden="true">
+                    <ProjectLogoMark logo={logo} />
+                  </span>
+                )}
                 {projectName}
               </Link>
             ) : (
-              <p className={st.contextLabel}>Standalone document</p>
+              <p className={st.contextLabel}>
+                {logo !== undefined && (
+                  <span className={st.projectLogo} aria-hidden="true">
+                    <ProjectLogoMark logo={logo} />
+                  </span>
+                )}
+                <span>Standalone document</span>
+              </p>
             )}
             {lastUpdatedLabel !== undefined && (
               <p className={st.metaLabel}>{lastUpdatedLabel}</p>

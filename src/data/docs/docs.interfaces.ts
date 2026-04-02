@@ -24,6 +24,7 @@ export interface DocSummary {
   title: string;
   summary: string;
   order: number;
+  logo?: ProjectLogo;
   projectSlug?: string;
   projectName?: string;
   lastUpdatedLabel?: string;

@@ -52,6 +52,9 @@
 
 .eyebrow {
   margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   color: var(--moss);
   font-family: var(--font-mono);
   font-size: var(--font-size-caption);
@@ -59,6 +62,15 @@
   line-height: 1.4;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.eyebrowLogo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  flex: none;
 }
 
 .metaLabel {

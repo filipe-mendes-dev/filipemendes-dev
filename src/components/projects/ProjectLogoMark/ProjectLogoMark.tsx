@@ -32,7 +32,7 @@ export const ProjectLogoMark = ({
   }
 
   if (logo.logoImage === undefined) {
-    return <span className={st.text}>{logo.logoText}</span>;
+    return <span className={st.text}>{logo.logoText ?? ""}</span>;
   }
 
   return (
