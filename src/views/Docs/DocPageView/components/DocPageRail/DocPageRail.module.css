@@ -67,10 +67,19 @@
   }
 
   .projectLink {
-    color: var(--ink);
+    color: var(--moss);
     font-size: var(--font-size-body-sm);
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
+    text-wrap: pretty;
+  }
+
+  .contextLabel {
+    margin: 0;
+    color: var(--moss);
+    font-size: var(--font-size-body-sm);
+    font-weight: 700;
+    line-height: 1.45;
     text-wrap: pretty;
   }
 

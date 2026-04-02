@@ -33,7 +33,6 @@ export const DocPageRail = ({
         </div>
 
         <div className={st.section}>
-          <p className={st.eyebrow}>Context</p>
           <div className={st.meta}>
             {hasProjectContext ? (
               <Link
@@ -43,7 +42,7 @@ export const DocPageRail = ({
                 {projectName}
               </Link>
             ) : (
-              <p className={st.metaLabel}>Standalone document</p>
+              <p className={st.contextLabel}>Standalone document</p>
             )}
             {lastUpdatedLabel !== undefined && (
               <p className={st.metaLabel}>{lastUpdatedLabel}</p>
