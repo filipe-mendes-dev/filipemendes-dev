@@ -1,6 +1,7 @@
 export {
   AppStoreIcon,
   BackIcon,
+  CalendarIcon,
   DocumentIcon,
   DocumentIconFilled,
   EducationIcon,

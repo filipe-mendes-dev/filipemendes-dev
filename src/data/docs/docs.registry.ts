@@ -72,6 +72,7 @@ const getSortedDocs = (): Doc[] => {
 export const getDocsNavigationItems = (): DocSummary[] => {
   return getSortedDocs().map((doc) => ({
     featured: doc.featured,
+    lastUpdatedLabel: doc.lastUpdatedLabel,
     order: doc.order,
     projectSlug: doc.projectSlug,
     projectName: doc.projectName,

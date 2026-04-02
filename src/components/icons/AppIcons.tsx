@@ -235,6 +235,46 @@ export const DocumentIcon = (props: AppIconProps): ReactElement => (
   </IconBase>
 );
 
+export const CalendarIcon = (props: AppIconProps): ReactElement => (
+  <IconBase viewBox="0 0 512 512" {...props}>
+    <rect
+      fill="none"
+      stroke="currentColor"
+      stroke-linejoin="round"
+      stroke-width="32"
+      x="48"
+      y="80"
+      width="416"
+      height="384"
+      rx="48"
+    />
+    <circle fill="currentColor" cx="296" cy="232" r="24" />
+    <circle fill="currentColor" cx="376" cy="232" r="24" />
+    <circle fill="currentColor" cx="296" cy="312" r="24" />
+    <circle fill="currentColor" cx="376" cy="312" r="24" />
+    <circle fill="currentColor" cx="136" cy="312" r="24" />
+    <circle fill="currentColor" cx="216" cy="312" r="24" />
+    <circle fill="currentColor" cx="136" cy="392" r="24" />
+    <circle fill="currentColor" cx="216" cy="392" r="24" />
+    <circle fill="currentColor" cx="296" cy="392" r="24" />
+    <path
+      fill="none"
+      stroke="currentColor"
+      stroke-linejoin="round"
+      stroke-width="32"
+      stroke-linecap="round"
+      d="M128 48v32M384 48v32"
+    />
+    <path
+      fill="none"
+      stroke="currentColor"
+      stroke-linejoin="round"
+      stroke-width="32"
+      d="M464 160H48"
+    />
+  </IconBase>
+);
+
 export const DocumentIconFilled = (props: AppIconProps): ReactElement => (
   <IconBase viewBox="0 0 512 512" {...props}>
     <path

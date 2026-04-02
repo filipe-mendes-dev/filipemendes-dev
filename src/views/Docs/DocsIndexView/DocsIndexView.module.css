@@ -35,8 +35,13 @@
   color: var(--ink-soft);
   font-size: var(--font-size-body);
   line-height: 1.8;
-  text-wrap: pretty;
   overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .documentGrid {

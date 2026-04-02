@@ -26,6 +26,7 @@ export interface DocSummary {
   order: number;
   projectSlug?: string;
   projectName?: string;
+  lastUpdatedLabel?: string;
   featured?: boolean;
 }
 
@@ -38,6 +39,5 @@ export interface DocsProjectSummary {
 }
 
 export interface Doc extends DocSummary {
-  lastUpdatedLabel?: string;
   sections: DocSection[];
 }
