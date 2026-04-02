@@ -5,10 +5,11 @@ export interface ProjectLogoImageSet {
 
 export interface ProjectLogo {
   logoText: string;
-  logoIcon?: "document";
+  logoIcon?: "document" | "home";
   logoImage?: ProjectLogoImageSet;
 }
 
 export interface ProjectLogoMarkProps {
+  isFilled?: boolean;
   logo: ProjectLogo;
 }

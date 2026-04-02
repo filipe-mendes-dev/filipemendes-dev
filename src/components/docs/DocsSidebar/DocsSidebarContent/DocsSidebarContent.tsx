@@ -20,6 +20,11 @@ const documentLogo: ProjectLogo = {
   logoText: "DOC",
 };
 
+const homeLogo: ProjectLogo = {
+  logoIcon: "home",
+  logoText: "HOME",
+};
+
 const mobileBodyVariants: Variants = {
   hidden: {
     height: 0,
@@ -101,10 +106,10 @@ export const DocsSidebarContent = ({
       <ul className={st.navList}>
         <li>
           <DocsSidebarNavItem
-            compactLabel="H"
             href="/docs"
             isActive={isHomeActive}
             label="Home"
+            logo={homeLogo}
             onClick={onClose}
           />
         </li>

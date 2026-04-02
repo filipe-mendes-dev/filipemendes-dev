@@ -39,7 +39,7 @@ export const DocsSidebarNavItem = ({
       >
         {logo !== undefined ? (
           <span className={st.logoMark} aria-hidden="true">
-            <ProjectLogoMark logo={logo} />
+            <ProjectLogoMark logo={logo} isFilled={isActive} />
           </span>
         ) : (
           resolvedCompactLabel
