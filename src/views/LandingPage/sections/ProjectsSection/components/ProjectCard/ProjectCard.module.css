@@ -147,12 +147,18 @@
 }
 
 .description {
-  margin: 0;
-  max-width: var(--content-max-readable);
-  line-height: 1.7;
-  color: var(--ink-soft);
-  overflow-wrap: anywhere;
-  text-wrap: pretty;
+    margin: 0;
+    max-width: var(--content-max-readable);
+    line-height: 1.7;
+    color: var(--ink-soft);
+    overflow-wrap: anywhere;
+    text-wrap: pretty;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .link {
