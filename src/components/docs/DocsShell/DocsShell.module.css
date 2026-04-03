@@ -27,13 +27,13 @@
   min-width: 0;
   min-height: 0;
   overflow: auto;
-  padding-inline: clamp(2rem, 3vw, 3.5rem);
-  padding-block: min(1.5rem, 3vw);
-  scrollbar-gutter: stable;
+  padding-inline: clamp(1.5rem, 3vw, 4rem);
+  padding-block: clamp(1.5rem, 3vw, 2.5rem);
+  scrollbar-gutter: both-edges;
 }
 
 .contentInner {
-  width: min(100%, 76rem);
+  width: min(100%, 88rem);
 }
 
 @media (min-width: 64rem) {
@@ -50,6 +50,6 @@
   .content {
     padding-top: calc(var(--docs-mobile-topbar-height) + 0.75rem);
     padding-inline: clamp(1.5rem, 3vw, 3rem);
-    padding-bottom: min(1.5rem, 3vw);
+    padding-bottom: clamp(1.5rem, 3vh, 2.5rem);
   }
 }
