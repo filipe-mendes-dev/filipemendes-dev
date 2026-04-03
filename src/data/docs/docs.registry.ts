@@ -1,73 +1,58 @@
-import { getProjectRecordBySlug } from "../site/landing-page/projects.data";
-import {
-  arcTimerPrivacyAndPermissionsPolicy,
-  arcTimerReleasePolicy,
-} from "./arc-timer.docs";
-import { nearsoftMobileAppsAppPublishingPolicy } from "./nearsoft-mobile-apps.docs";
-import {
-  nearsoftMobileAppsIncidentNotesTemplate,
-  nearsoftMobileAppsLocalizationGuide,
-  nearsoftMobileAppsReleaseChecklist,
-  nearsoftMobileAppsSupportRunbook,
-} from "./nearsoft-mobile-apps.demo.docs";
-import { standaloneOperationsMemo } from "./standalone-demo.docs";
-import type { Doc, DocsProjectSummary, DocSummary } from "./docs.interfaces";
 import type { ProjectLogo } from "../../components/projects/ProjectLogoMark";
+import {
+  getProjectRecordBySlug,
+  type ProjectModule,
+  projectModules,
+} from "../projects";
+import type { Doc, DocsProjectSummary, DocSummary } from "./docs.interfaces";
 
 const isDocsDemoEnabled = process.env.ENABLE_DOCS_DEMOS === "true";
 const documentLogo: ProjectLogo = {
   logoIcon: "document",
 };
 
-const coreDocsRegistry: Doc[] = [
-  arcTimerReleasePolicy,
-  arcTimerPrivacyAndPermissionsPolicy,
-  nearsoftMobileAppsAppPublishingPolicy,
-];
+const projectDocsModules = projectModules.filter(
+  (
+    projectModule,
+  ): projectModule is ProjectModule & {
+    docs: NonNullable<ProjectModule["docs"]>;
+  } => {
+    return projectModule.docs !== undefined;
+  },
+);
 
-const demoDocsRegistry: Doc[] = [
-  nearsoftMobileAppsReleaseChecklist,
-  nearsoftMobileAppsSupportRunbook,
-  nearsoftMobileAppsLocalizationGuide,
-  nearsoftMobileAppsIncidentNotesTemplate,
-  standaloneOperationsMemo,
-];
+const coreProjectDocsModules = projectDocsModules.filter((projectModule) => {
+  return projectModule.isDemo !== true;
+});
 
-const getDocsProjectSummary = (
-  slug: string,
-  description: string,
-  order: number,
-): DocsProjectSummary => {
-  const project = getProjectRecordBySlug(slug);
+const demoProjectDocsModules = projectDocsModules.filter((projectModule) => {
+  return projectModule.isDemo === true;
+});
 
-  if (project === undefined) {
-    throw new Error(`Missing docs project registry source for slug: ${slug}`);
-  }
+const coreDocsRegistry: Doc[] = coreProjectDocsModules.flatMap(
+  (projectModule) => projectModule.docs.documents,
+);
 
-  return {
-    slug: project.slug,
-    name: project.name,
-    logo: project.logo,
-    description,
-    order,
-  };
-};
+const demoDocsRegistry: Doc[] = demoProjectDocsModules.flatMap(
+  (projectModule) => projectModule.docs.documents,
+);
 
 const docsRegistry: Doc[] = isDocsDemoEnabled
   ? [...coreDocsRegistry, ...demoDocsRegistry]
   : coreDocsRegistry;
-const docsProjectsRegistry: DocsProjectSummary[] = [
-  getDocsProjectSummary(
-    "arc-timer",
-    "Release, privacy, and operational policy documentation for the Arc Timer mobile app.",
-    1,
-  ),
-  getDocsProjectSummary(
-    "nearsoft-mobile-apps",
-    "Operational notes, publishing policies, and delivery references for the Nearsoft mobile work.",
-    2,
-  ),
-];
+const docsProjectsRegistry: DocsProjectSummary[] = (
+  isDocsDemoEnabled ? projectDocsModules : coreProjectDocsModules
+)
+  .map((projectModule) => {
+    return {
+      slug: projectModule.project.slug,
+      name: projectModule.project.name,
+      logo: projectModule.project.logo,
+      description: projectModule.docs.description,
+      order: projectModule.docs.order,
+    };
+  })
+  .sort((left, right) => left.order - right.order);
 
 const getSortedDocs = (): Doc[] => {
   return [...docsRegistry].sort((left, right) => left.order - right.order);
@@ -81,18 +66,30 @@ export const getDocLogo = (projectSlug?: string): ProjectLogo => {
   return getProjectRecordBySlug(projectSlug)?.logo ?? documentLogo;
 };
 
-export const getDocsNavigationItems = (): DocSummary[] => {
-  return getSortedDocs().map((doc) => ({
+const getDocProjectName = (projectSlug?: string): string | undefined => {
+  if (projectSlug === undefined) {
+    return undefined;
+  }
+
+  return getProjectRecordBySlug(projectSlug)?.name;
+};
+
+const toDocSummary = (doc: Doc): DocSummary => {
+  return {
     featured: doc.featured,
     lastUpdatedLabel: doc.lastUpdatedLabel,
     logo: getDocLogo(doc.projectSlug),
     order: doc.order,
+    projectName: getDocProjectName(doc.projectSlug),
     projectSlug: doc.projectSlug,
-    projectName: doc.projectName,
     slug: doc.slug,
     summary: doc.summary,
     title: doc.title,
-  }));
+  };
+};
+
+export const getDocsNavigationItems = (): DocSummary[] => {
+  return getSortedDocs().map(toDocSummary);
 };
 
 export const getDoc = (docSlug: string): Doc | undefined => {
@@ -105,6 +102,7 @@ export const getDoc = (docSlug: string): Doc | undefined => {
   return {
     ...doc,
     logo: getDocLogo(doc.projectSlug),
+    projectName: getDocProjectName(doc.projectSlug),
   };
 };
 
