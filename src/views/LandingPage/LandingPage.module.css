@@ -1,24 +1,28 @@
 .root {
 }
 
+.layoutContainer {
+  padding-block: 0;
+}
+
 .homeSection::after {
-    top: 1rem;
-    left: max(1rem, calc(50% - 34rem));
+  top: 1rem;
+  left: max(1rem, calc(50% - 34rem));
 }
 
 .projectsSection::after {
-    top: 6rem;
-    left: calc(100% - clamp(13rem, 22vw, 17rem));
+  top: 6rem;
+  left: calc(100% - clamp(13rem, 22vw, 17rem));
 }
 
 .aboutSection::after {
-    top: auto;
-    bottom: 2rem;
-    left: max(1rem, calc(50% - 30rem));
+  top: auto;
+  bottom: 2rem;
+  left: max(1rem, calc(50% - 30rem));
 }
 
 .contactSection::after {
-    top: auto;
-    bottom: 0;
-    left: calc(100% - clamp(14rem, 24vw, 18rem));
+  top: auto;
+  bottom: 0;
+  left: calc(100% - clamp(14rem, 24vw, 18rem));
 }

@@ -3,14 +3,10 @@
 }
 
 .content {
-  width: var(--container);
-  margin-inline: auto;
   display: grid;
 }
 
 .header {
-  width: var(--container);
-  margin-inline: auto;
   margin-bottom: var(--space-5);
   display: grid;
   gap: 0.4rem;
@@ -46,5 +42,14 @@
 @media (min-width: 48rem) {
   .root {
     padding-block: clamp(2rem, 4vw, 3rem);
+  }
+  .content {
+    width: var(--container);
+    margin-inline: auto;
+  }
+
+  .header {
+    width: var(--container);
+    margin-inline: auto;
   }
 }
