@@ -86,8 +86,6 @@
   --content-max-narrow: 34ch;
   --content-max-readable: 65ch;
   --content-max-wide: 54rem;
-  --section-padding-y: var(--space-5);
-  --section-padding-y-lg: var(--space-6);
   --panel-padding: clamp(1rem, 1.6vw, 1.25rem);
   --panel-padding-compact: clamp(0.85rem, 1.35vw, 1rem);
   --control-height-md: 2.75rem;
