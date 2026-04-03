@@ -26,76 +26,70 @@ export const ProjectDetailHero = ({
   return (
     <section className={`${surface.section} ${st.root}`}>
       <div className={st.heroInner}>
-        <div className={st.heroReveal}>
-          <header className={st.heroHeader}>
-            <div className={st.heroTitleRow}>
-              <div className={st.projectLogo} aria-hidden="true">
-                <ProjectLogoMark logo={hero.logo} />
-              </div>
-              <div className={st.projectHeaderIntro}>
-                <p className={st.projectCategory}>{hero.category}</p>
-                <h1 className={st.projectTitle}>{hero.name}</h1>
-              </div>
+        <header className={st.heroHeader}>
+          <div className={st.heroTitleRow}>
+            <div className={st.projectLogo} aria-hidden="true">
+              <ProjectLogoMark logo={hero.logo} />
             </div>
-            <div className={st.projectHeaderContent}>
-              <p className={st.projectPositioning}>{hero.positioning}</p>
-              <p className={st.projectDescription}>{hero.description}</p>
-              <div className={st.contentActions}>
+            <div className={st.projectHeaderIntro}>
+              <p className={st.projectCategory}>{hero.category}</p>
+              <h1 className={st.projectTitle}>{hero.name}</h1>
+            </div>
+          </div>
+          <div className={st.projectHeaderContent}>
+            <p className={st.projectPositioning}>{hero.positioning}</p>
+            <p className={st.projectDescription}>{hero.description}</p>
+            <div className={st.contentActions}>
               {hero.links.length > 0 && (
-                  <div className={st.projectDetailLinks}>
-                    {hero.links.map((link) => (
-                      <TextActionLink
-                        key={link.label}
-                        href={link.href}
-                        className={st.metaLink}
-                        target="_blank"
-                        rel="noreferrer"
-                        trailingIcon={
-                          <ExternalLinkIcon className={st.metaLinkIcon} />
-                        }
-                      >
-                        {link.label}
-                      </TextActionLink>
-                    ))}
-                  </div>
-                )}
-              </div>
+                <div className={st.projectDetailLinks}>
+                  {hero.links.map((link) => (
+                    <TextActionLink
+                      key={link.label}
+                      href={link.href}
+                      className={st.metaLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      trailingIcon={
+                        <ExternalLinkIcon className={st.metaLinkIcon} />
+                      }
+                    >
+                      {link.label}
+                    </TextActionLink>
+                  ))}
+                </div>
+              )}
             </div>
-          </header>
+          </div>
+        </header>
 
-          {hasStoreLinks(hero) && hero.isMobileApp && (
-            <div className={st.heroActions}>
-              <div className={st.storeLinkRow} aria-label="Mobile app stores">
-                {storeLinks?.appStore !== undefined && (
-                  <a
-                    href={storeLinks.appStore}
-                    className={st.storeBadgeLink}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="Download on the App Store"
-                  >
-                    <AppStoreBadgeIcon
-                      className={`${st.storeBadgeGraphic} ${st.appStoreBadgeImage}`}
-                    />
-                  </a>
-                )}
-                {storeLinks?.googlePlay !== undefined && (
-                  <a
-                    href={storeLinks.googlePlay}
-                    className={st.storeBadgeLink}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="Get it on Google Play"
-                  >
-                    <GooglePlayBadgeIcon
-                      className={`${st.storeBadgeGraphic} ${st.googlePlayBadgeImage}`}
-                    />
-                  </a>
-                )}
-              </div>
+        {hasStoreLinks(hero) && hero.isMobileApp && (
+          <div className={st.heroActions}>
+            <div className={st.storeLinkRow} aria-label="Mobile app stores">
+              {storeLinks?.appStore !== undefined && (
+                <a
+                  href={storeLinks.appStore}
+                  className={st.storeBadgeLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Download on the App Store"
+                >
+                  <AppStoreBadgeIcon className={st.storeBadgeGraphic} />
+                </a>
+              )}
+              {storeLinks?.googlePlay !== undefined && (
+                <a
+                  href={storeLinks.googlePlay}
+                  className={st.storeBadgeLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Get it on Google Play"
+                >
+                  <GooglePlayBadgeIcon className={st.storeBadgeGraphic} />
+                </a>
+              )}
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </section>
   );
