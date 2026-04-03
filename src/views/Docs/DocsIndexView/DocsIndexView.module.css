@@ -41,6 +41,7 @@
   line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 65ch;
 }
 
 .documentGrid {

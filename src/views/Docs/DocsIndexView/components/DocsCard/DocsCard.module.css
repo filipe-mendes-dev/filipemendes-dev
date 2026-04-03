@@ -108,6 +108,12 @@
   font-size: var(--font-size-caption);
   line-height: 1.6;
   overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (hover: hover) and (pointer: fine) {
