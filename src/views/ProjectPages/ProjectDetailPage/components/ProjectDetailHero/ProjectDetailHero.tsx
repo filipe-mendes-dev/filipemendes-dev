@@ -48,7 +48,7 @@ export const ProjectDetailHero = ({
               <p className={st.projectDescription}>{hero.description}</p>
               <Link href="/" className={st.backLink}>
                 <BackIcon className={st.backIcon} />
-                <span>Back to projects</span>
+                <span>Back home</span>
               </Link>
             </div>
           </header>
