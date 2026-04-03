@@ -76,6 +76,7 @@ export const DocsSidebarAccordion = ({
               compactLabel={item.compactLabel}
               href={item.href}
               isActive={item.isActive}
+              isHighlighted={item.isHighlighted}
               isNested
               label={item.label}
               onClick={onItemClick}

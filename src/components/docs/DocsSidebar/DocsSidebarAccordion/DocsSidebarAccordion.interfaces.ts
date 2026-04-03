@@ -5,6 +5,7 @@ export interface DocsSidebarAccordionItem {
   compactLabel?: string;
   href: string;
   isActive: boolean;
+  isHighlighted?: boolean;
   label: string;
 }
 

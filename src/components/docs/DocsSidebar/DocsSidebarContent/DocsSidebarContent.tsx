@@ -72,11 +72,14 @@ export const DocsSidebarContent = ({
   const isHomeActive = pathname === "/docs";
   const projectItems = projects.map((project) => {
     const href = getProjectHref(project.slug);
+    const isProjectIndexActive = pathname === href;
+    const isProjectDescendantActive = pathname.startsWith(`${href}/`);
 
     return {
       logo: project.logo,
       href,
-      isActive: pathname === href || pathname.startsWith(`${href}/`),
+      isActive: isProjectIndexActive,
+      isHighlighted: isProjectDescendantActive,
       label: project.name,
     };
   });

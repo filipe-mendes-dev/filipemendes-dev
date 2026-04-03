@@ -5,6 +5,7 @@ export interface DocsSidebarNavItemProps {
   compactLabel?: string;
   href: string;
   isActive: boolean;
+  isHighlighted?: boolean;
   label: string;
   isNested?: boolean;
   onClick: () => void;

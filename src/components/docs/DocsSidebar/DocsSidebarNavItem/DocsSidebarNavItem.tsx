@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { ReactElement } from "react";
+import type { MouseEvent, ReactElement } from "react";
 
 import { ProjectLogoMark } from "../../../../components/projects/ProjectLogoMark";
 import type { DocsSidebarNavItemProps } from "./DocsSidebarNavItem.interfaces";
@@ -19,6 +19,7 @@ export const DocsSidebarNavItem = ({
   compactLabel,
   href,
   isActive,
+  isHighlighted = false,
   label,
   isNested = false,
   onClick,
@@ -26,13 +27,22 @@ export const DocsSidebarNavItem = ({
   const resolvedCompactLabel = compactLabel ?? getCompactLabel(label);
   const hasGraphicLogo =
     logo?.logoImage !== undefined || logo?.logoIcon !== undefined;
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>): void => {
+    if (isActive) {
+      event.preventDefault();
+      return;
+    }
+
+    onClick();
+  };
 
   return (
     <Link
       href={href}
       className={`${st.root} ${isNested ? st.rootNested : ""}`}
       aria-current={isActive ? "page" : undefined}
-      onClick={onClick}
+      data-highlighted={isActive || isHighlighted ? "true" : undefined}
+      onClick={handleClick}
     >
       <span
         className={`${st.compactLabel} ${hasGraphicLogo ? st.compactLabelGraphicLogo : ""}`}
