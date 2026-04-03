@@ -4,13 +4,12 @@ import { type ReactElement, useState } from "react";
 
 import { motionDurationMs, motionEase } from "../../../../shared/theme/motion";
 import type { ProjectLogo } from "../../../../components/projects/ProjectLogoMark";
+import { getDocHref } from "../../../../data/docs/docs.registry";
 import { DocsSidebarAccordion } from "../DocsSidebarAccordion";
 import { DocsSidebarFooter } from "../DocsSidebarFooter";
 import { DocsSidebarNavItem } from "../DocsSidebarNavItem";
 import type { DocsSidebarContentProps } from "./DocsSidebarContent.interfaces";
 import st from "./DocsSidebarContent.module.css";
-
-const getDocHref = (docSlug: string): string => `/docs/${docSlug}`;
 
 const getProjectHref = (projectSlug: string): string =>
   `/docs/projects/${projectSlug}`;
@@ -82,7 +81,7 @@ export const DocsSidebarContent = ({
     };
   });
   const featuredItems = featuredDocs.map((document) => {
-    const href = getDocHref(document.slug);
+    const href = getDocHref(document);
 
     return {
       href,

@@ -3,6 +3,7 @@ import type { ReactElement } from "react";
 
 import { CalendarIcon } from "../../../../../components/icons";
 import { ProjectLogoMark } from "../../../../../components/projects/ProjectLogoMark";
+import { getDocHref } from "../../../../../data/docs/docs.registry";
 import type { DocsCardProps } from "./DocsCard.interfaces";
 import st from "./DocsCard.module.css";
 
@@ -18,7 +19,7 @@ export const DocsCard = ({ doc }: DocsCardProps): ReactElement => {
   const cardDateLabel = getCardDateLabel(doc.lastUpdatedLabel);
 
   return (
-    <Link href={`/docs/${doc.slug}`} className={st.root}>
+    <Link href={getDocHref(doc)} className={st.root}>
       <div className={st.topRow}>
         <p className={st.eyebrow}>
           {doc.logo !== undefined && (

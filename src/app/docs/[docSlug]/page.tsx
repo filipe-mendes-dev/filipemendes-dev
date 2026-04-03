@@ -18,7 +18,7 @@ export const generateMetadata = async ({
   const { docSlug } = await params;
   const doc = getDoc(docSlug);
 
-  if (doc === undefined) {
+  if (doc === undefined || doc.projectSlug !== undefined) {
     return {
       title: `Docs | ${siteData.siteTitle}`,
     };
@@ -46,7 +46,7 @@ const DocRoute = async ({ params }: DocRouteProps): Promise<ReactElement> => {
   const { docSlug } = await params;
   const doc = getDoc(docSlug);
 
-  if (doc === undefined) {
+  if (doc === undefined || doc.projectSlug !== undefined) {
     notFound();
   }
 

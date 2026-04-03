@@ -58,6 +58,17 @@ const getSortedDocs = (): Doc[] => {
   return [...docsRegistry].sort((left, right) => left.order - right.order);
 };
 
+export const getDocHref = ({
+  projectSlug,
+  slug,
+}: Pick<DocSummary, "projectSlug" | "slug">): string => {
+  if (projectSlug !== undefined) {
+    return `/docs/projects/${projectSlug}/${slug}`;
+  }
+
+  return `/docs/${slug}`;
+};
+
 export const getDocLogo = (projectSlug?: string): ProjectLogo => {
   if (projectSlug === undefined) {
     return documentLogo;
@@ -92,8 +103,21 @@ export const getDocsNavigationItems = (): DocSummary[] => {
   return getSortedDocs().map(toDocSummary);
 };
 
-export const getDoc = (docSlug: string): Doc | undefined => {
-  const doc = docsRegistry.find((entry) => entry.slug === docSlug);
+export const getDoc = (
+  docSlug: string,
+  projectSlug?: string,
+): Doc | undefined => {
+  const doc = docsRegistry.find((entry) => {
+    if (entry.slug !== docSlug) {
+      return false;
+    }
+
+    if (projectSlug === undefined) {
+      return entry.projectSlug === undefined;
+    }
+
+    return entry.projectSlug === projectSlug;
+  });
 
   if (doc === undefined) {
     return undefined;
