@@ -17,12 +17,10 @@ const getProjectHref = (projectSlug: string): string =>
 
 const documentLogo: ProjectLogo = {
   logoIcon: "document",
-  logoText: "DOC",
 };
 
 const homeLogo: ProjectLogo = {
   logoIcon: "home",
-  logoText: "HOME",
 };
 
 const mobileBodyVariants: Variants = {
@@ -73,9 +71,6 @@ export const DocsSidebarContent = ({
   const [isProjectsOpen, setIsProjectsOpen] = useState(true);
   const [isFeaturedOpen, setIsFeaturedOpen] = useState(true);
   const isHomeActive = pathname === "/docs";
-  const projectLogoBySlug = new Map(
-    projects.map((project) => [project.slug, project.logo] as const),
-  );
   const projectItems = projects.map((project) => {
     const href = getProjectHref(project.slug);
 
@@ -88,16 +83,12 @@ export const DocsSidebarContent = ({
   });
   const featuredItems = featuredDocs.map((document) => {
     const href = getDocHref(document.slug);
-    const logo =
-      document.projectSlug !== undefined
-        ? (projectLogoBySlug.get(document.projectSlug) ?? documentLogo)
-        : documentLogo;
 
     return {
       href,
       isActive: pathname === href,
       label: document.title,
-      logo,
+      logo: document.logo ?? documentLogo,
     };
   });
 
