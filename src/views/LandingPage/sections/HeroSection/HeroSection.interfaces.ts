@@ -1,5 +1,5 @@
-import type { PortfolioContent } from '../../../../data/portfolio';
+import type { HeroData } from '../../../../data/site/landing-page/hero.data';
 
 export interface HeroSectionProps {
-  content: PortfolioContent;
+  content: HeroData;
 }

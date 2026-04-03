@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import type { ReactElement } from "react";
 
-import { portfolio } from "../../data/portfolio";
 import { getDocsNavigationItems } from "../../data/docs/docs.registry";
+import { siteData } from "../../data/site/site.data";
 import { DocsIndexView } from "../../views/Docs/DocsIndexView";
 
-const title = `Docs | ${portfolio.siteTitle}`;
+const title = `Docs | ${siteData.siteTitle}`;
 const description =
   "Standalone documentation workspace for project notes, policies, and implementation references.";
 

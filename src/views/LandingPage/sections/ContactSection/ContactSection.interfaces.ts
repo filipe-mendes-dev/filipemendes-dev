@@ -1,6 +1,6 @@
-import type { PortfolioContent } from '../../../../data/portfolio';
+import type { ContactData } from '../../../../data/site/landing-page/contact.data';
 
 export interface ContactSectionProps {
-  content: PortfolioContent;
+  content: ContactData;
   isRevealEnabled: boolean;
 }

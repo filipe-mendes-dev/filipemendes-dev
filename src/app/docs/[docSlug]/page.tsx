@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { ReactElement } from "react";
 
-import { portfolio } from "../../../data/portfolio";
 import { getDoc } from "../../../data/docs/docs.registry";
+import { siteData } from "../../../data/site/site.data";
 import { DocPageView } from "../../../views/Docs/DocPageView";
 
 interface DocRouteProps {
@@ -18,13 +18,13 @@ export const generateMetadata = async ({
   const { docSlug } = await params;
   const doc = getDoc(docSlug);
 
-  if (doc === undefined) {
+  if (doc === undefined || doc.projectSlug !== undefined) {
     return {
-      title: `Docs | ${portfolio.siteTitle}`,
+      title: `Docs | ${siteData.siteTitle}`,
     };
   }
 
-  const title = `${doc.title} | Docs | ${portfolio.siteTitle}`;
+  const title = `${doc.title} | Docs | ${siteData.siteTitle}`;
 
   return {
     title,
@@ -46,7 +46,7 @@ const DocRoute = async ({ params }: DocRouteProps): Promise<ReactElement> => {
   const { docSlug } = await params;
   const doc = getDoc(docSlug);
 
-  if (doc === undefined) {
+  if (doc === undefined || doc.projectSlug !== undefined) {
     notFound();
   }
 

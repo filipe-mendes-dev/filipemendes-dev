@@ -1,6 +1,6 @@
-import type { PortfolioContent } from '../../../../data/portfolio';
+import type { LandingProjectData } from '../../../../data/site/landing-page/projects.data';
 
 export interface ProjectsSectionProps {
-  content: PortfolioContent;
+  content: LandingProjectData[];
   isRevealEnabled: boolean;
 }

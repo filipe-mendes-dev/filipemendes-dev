@@ -1,6 +1,6 @@
-import type { PortfolioContent } from '../../../../data/portfolio';
+import type { AboutData } from '../../../../data/site/landing-page/about.data';
 
 export interface AboutSectionProps {
-  content: PortfolioContent;
+  content: AboutData;
   isRevealEnabled: boolean;
 }

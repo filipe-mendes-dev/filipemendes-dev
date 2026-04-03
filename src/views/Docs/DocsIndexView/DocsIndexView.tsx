@@ -1,7 +1,7 @@
-import Link from 'next/link';
 import type { ReactElement } from 'react';
 
 import type { DocSummary } from '../../../data/docs/docs.interfaces';
+import { DocsCard } from './components/DocsCard';
 import st from './DocsIndexView.module.css';
 
 export interface DocsIndexViewProps {
@@ -27,16 +27,7 @@ export const DocsIndexView = ({
 
       <div className={st.documentGrid}>
         {docs.map((document) => (
-          <Link
-            key={document.slug}
-            href={`/docs/${document.slug}`}
-            className={st.documentCard}
-          >
-            <p className={st.cardEyebrow}>{document.projectName}</p>
-            <h2 className={st.cardTitle}>{document.title}</h2>
-            <p className={st.cardSummary}>{document.summary}</p>
-            <span className={st.cardCta}>Open document</span>
-          </Link>
+          <DocsCard key={document.slug} doc={document} />
         ))}
       </div>
     </section>

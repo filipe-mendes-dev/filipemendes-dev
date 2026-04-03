@@ -21,8 +21,8 @@ export const ProjectsSection = ({ content, isRevealEnabled }: ProjectsSectionPro
       subtitle="Each product is documented with a clear narrative from problem to measurable outcome."
       title="Projects"
     >
-      {content.projects.map((project) => (
-        <motion.div key={project.href} variants={revealMotion.itemVariants}>
+      {content.map((project) => (
+        <motion.div key={project.id} variants={revealMotion.itemVariants}>
           <ProjectCard project={project} />
         </motion.div>
       ))}

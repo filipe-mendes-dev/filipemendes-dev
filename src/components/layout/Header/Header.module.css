@@ -29,14 +29,9 @@
 }
 
 .siteMark {
-  font-family: var(--font-display);
   display: inline-flex;
   align-items: center;
   flex-wrap: nowrap;
-  gap: 0.45rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  font-size: var(--font-size-heading-md);
   color: var(--ink);
   text-decoration: none;
   transition: color var(--transition), transform var(--transition);
@@ -45,21 +40,26 @@
   max-width: 100%;
 }
 
-.siteMark:hover {
-  color: var(--moss);
-  transform: translateY(-1px);
+.siteMarkLogo {
+  display: inline-flex;
+  min-width: 0;
 }
 
-.siteMarkPrompt {
-  font-family: var(--font-mono);
-  font-size: var(--font-size-heading-sm);
-  color: var(--moss);
-  flex-shrink: 0;
+.siteMarkLogoLight,
+.siteMarkLogoDark {
+  display: inline-flex;
 }
 
-.siteMarkText {
-  letter-spacing: 0.02em;
-  white-space: nowrap;
+.siteMarkLogoDark {
+  display: none;
+}
+
+:global([data-theme="dark"]) .siteMarkLogoLight {
+  display: none;
+}
+
+:global([data-theme="dark"]) .siteMarkLogoDark {
+  display: inline-flex;
 }
 
 .headerNav {
@@ -271,6 +271,14 @@
 }
 
 @media (min-width: 48rem) {
+  @media (hover: hover) {
+    .siteMark:hover {
+      color: var(--moss);
+      --fm-logo-primary-fill: currentColor;
+      --fm-logo-secondary-fill: currentColor;
+    }
+  }
+
   .headerInner {
     grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     row-gap: 0;

@@ -17,14 +17,13 @@
   outline-offset: 2px;
 }
 
-.root[aria-current="page"] {
+.root[data-highlighted="true"] {
   color: var(--moss);
   background: color-mix(in srgb, var(--accent-soft) 16%, transparent);
 }
 
-.root[aria-current="page"]:hover {
-  color: var(--moss);
-  background: color-mix(in srgb, var(--accent-soft) 16%, transparent);
+.root[aria-current="page"] {
+  cursor: default;
 }
 
 .rootCollapsed {
@@ -52,9 +51,25 @@
   transition: color var(--transition), background-color var(--transition);
 }
 
-.root[aria-current="page"] .compactLabel {
+.compactLabelGraphicLogo {
+  background: transparent;
+}
+
+.logoMark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.root[data-highlighted="true"] .compactLabel {
   color: var(--moss);
   background: color-mix(in srgb, var(--accent-soft) 18%, transparent);
+}
+
+.root[data-highlighted="true"] .compactLabelGraphicLogo {
+  background: transparent;
 }
 
 .label {
@@ -88,7 +103,7 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .root:hover {
+  .root:not([aria-current="page"]):hover {
     color: var(--ink);
     opacity: 1;
     background: color-mix(in srgb, var(--accent-soft) 16%, transparent);

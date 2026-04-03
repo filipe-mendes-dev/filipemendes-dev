@@ -1,0 +1,39 @@
+import {
+  createProjectMetadata,
+  type ProjectDetailContent,
+} from "../projects.interfaces";
+import { project } from "./project.data";
+
+export const projectDetail: ProjectDetailContent = {
+  hero: {
+    name: project.name,
+    logo: project.logo,
+    category: project.category,
+    description: project.description,
+    positioning:
+      "Positioning: computer vision and data pipeline work delivered as a Software Engineer at INOV.",
+    isMobileApp: false,
+    links: [
+      {
+        label: "Conference Publication",
+        href: "https://doi.org/10.1109/ICECET55527.2022.9872921",
+      },
+    ],
+  },
+  screenshots: [],
+  keyFeatures: [
+    "Real-time detection for vehicles, people, and deer",
+    "Infrared footage collection and labeling for training",
+    "Conference publication and presentation based on the work",
+  ],
+  architecture: [
+    "EfficientDet neural network model adapted for infrared image classification",
+    "Training workflow supported by curated and labeled thermal datasets",
+    "Computer vision pipeline implemented with TensorFlow and OpenCV",
+  ],
+  techStack: ["Python", "TensorFlow", "OpenCV", "EfficientDet"],
+  metadata: createProjectMetadata(
+    project.name,
+    project.description,
+  ),
+};

@@ -12,7 +12,7 @@ import {
   useSyncExternalStore,
 } from 'react';
 
-import type { NavigationItem } from '../../../data/portfolio';
+import type { NavigationItem } from '../../../data/site/site.data';
 import { type SectionId } from '../../../shared/navigation/sections';
 import {
   getLandingPageNavigationServerSnapshot,

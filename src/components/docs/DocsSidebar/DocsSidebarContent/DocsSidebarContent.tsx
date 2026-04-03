@@ -3,16 +3,24 @@ import { usePathname } from "next/navigation";
 import { type ReactElement, useState } from "react";
 
 import { motionDurationMs, motionEase } from "../../../../shared/theme/motion";
+import type { ProjectLogo } from "../../../../components/projects/ProjectLogoMark";
+import { getDocHref } from "../../../../data/docs/docs.registry";
 import { DocsSidebarAccordion } from "../DocsSidebarAccordion";
 import { DocsSidebarFooter } from "../DocsSidebarFooter";
 import { DocsSidebarNavItem } from "../DocsSidebarNavItem";
 import type { DocsSidebarContentProps } from "./DocsSidebarContent.interfaces";
 import st from "./DocsSidebarContent.module.css";
 
-const getDocHref = (docSlug: string): string => `/docs/${docSlug}`;
-
 const getProjectHref = (projectSlug: string): string =>
   `/docs/projects/${projectSlug}`;
+
+const documentLogo: ProjectLogo = {
+  logoIcon: "document",
+};
+
+const homeLogo: ProjectLogo = {
+  logoIcon: "home",
+};
 
 const mobileBodyVariants: Variants = {
   hidden: {
@@ -64,20 +72,25 @@ export const DocsSidebarContent = ({
   const isHomeActive = pathname === "/docs";
   const projectItems = projects.map((project) => {
     const href = getProjectHref(project.slug);
+    const isProjectIndexActive = pathname === href;
+    const isProjectDescendantActive = pathname.startsWith(`${href}/`);
 
     return {
+      logo: project.logo,
       href,
-      isActive: pathname === href || pathname.startsWith(`${href}/`),
+      isActive: isProjectIndexActive,
+      isHighlighted: isProjectDescendantActive,
       label: project.name,
     };
   });
   const featuredItems = featuredDocs.map((document) => {
-    const href = getDocHref(document.slug);
+    const href = getDocHref(document);
 
     return {
       href,
       isActive: pathname === href,
       label: document.title,
+      logo: document.logo ?? documentLogo,
     };
   });
 
@@ -86,10 +99,10 @@ export const DocsSidebarContent = ({
       <ul className={st.navList}>
         <li>
           <DocsSidebarNavItem
-            compactLabel="H"
             href="/docs"
             isActive={isHomeActive}
             label="Home"
+            logo={homeLogo}
             onClick={onClose}
           />
         </li>

@@ -1,14 +1,19 @@
-import type { ReactElement, SVGProps } from 'react';
+import type { ReactElement, SVGProps } from "react";
 
 interface IconBaseProps extends SVGProps<SVGSVGElement> {
   children: ReactElement | ReactElement[];
+  viewBox?: string;
 }
 
 type AppIconProps = SVGProps<SVGSVGElement>;
 
-const IconBase = ({ children, ...props }: IconBaseProps): ReactElement => {
+const IconBase = ({
+  children,
+  viewBox = "0 0 24 24",
+  ...props
+}: IconBaseProps): ReactElement => {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
+    <svg viewBox={viewBox} aria-hidden="true" {...props}>
       {children}
     </svg>
   );
@@ -16,13 +21,19 @@ const IconBase = ({ children, ...props }: IconBaseProps): ReactElement => {
 
 export const BackIcon = (props: AppIconProps): ReactElement => (
   <IconBase {...props}>
-    <path fill="currentColor" d="M10.7 5.3a1 1 0 0 1 0 1.4L6.42 11H20a1 1 0 1 1 0 2H6.41l4.3 4.3a1 1 0 1 1-1.42 1.4l-6-6a1 1 0 0 1 0-1.4l6-6a1 1 0 0 1 1.41 0Z" />
+    <path
+      fill="currentColor"
+      d="M10.7 5.3a1 1 0 0 1 0 1.4L6.42 11H20a1 1 0 1 1 0 2H6.41l4.3 4.3a1 1 0 1 1-1.42 1.4l-6-6a1 1 0 0 1 0-1.4l6-6a1 1 0 0 1 1.41 0Z"
+    />
   </IconBase>
 );
 
 export const ExternalLinkIcon = (props: AppIconProps): ReactElement => (
   <IconBase {...props}>
-    <path fill="currentColor" d="M14 3h7v7h-2V6.41l-8.3 8.3-1.4-1.42 8.29-8.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z" />
+    <path
+      fill="currentColor"
+      d="M14 3h7v7h-2V6.41l-8.3 8.3-1.4-1.42 8.29-8.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"
+    />
   </IconBase>
 );
 
@@ -35,7 +46,9 @@ export const LinkedInIcon = (props: AppIconProps): ReactElement => (
   </IconBase>
 );
 
-export const GitHubMarkIcon = (props: SVGProps<SVGSVGElement>): ReactElement => (
+export const GitHubMarkIcon = (
+  props: SVGProps<SVGSVGElement>
+): ReactElement => (
   <svg viewBox="0 0 98 96" aria-hidden="true" {...props}>
     <path
       fill="currentColor"
@@ -44,7 +57,9 @@ export const GitHubMarkIcon = (props: SVGProps<SVGSVGElement>): ReactElement => 
   </svg>
 );
 
-export const GitHubLockupIcon = (props: SVGProps<SVGSVGElement>): ReactElement => (
+export const GitHubLockupIcon = (
+  props: SVGProps<SVGSVGElement>
+): ReactElement => (
   <svg viewBox="0 0 416 95" aria-hidden="true" {...props}>
     <path
       fill="currentColor"
@@ -57,20 +72,42 @@ export const GitHubLockupIcon = (props: SVGProps<SVGSVGElement>): ReactElement =
   </svg>
 );
 
-export const NextJsLightIcon = (props: SVGProps<SVGSVGElement>): ReactElement => (
+export const NextJsLightIcon = (
+  props: SVGProps<SVGSVGElement>
+): ReactElement => (
   <svg viewBox="0 0 180 180" aria-hidden="true" {...props}>
     <circle cx="90" cy="90" r="90" fill="#000" />
     <path
       d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z"
       fill="url(#nextjs-light-icon-gradient-a)"
     />
-    <rect x="115" y="54" width="12" height="72" fill="url(#nextjs-light-icon-gradient-b)" />
+    <rect
+      x="115"
+      y="54"
+      width="12"
+      height="72"
+      fill="url(#nextjs-light-icon-gradient-b)"
+    />
     <defs>
-      <linearGradient id="nextjs-light-icon-gradient-a" x1="109" y1="116.5" x2="144.5" y2="160.5" gradientUnits="userSpaceOnUse">
+      <linearGradient
+        id="nextjs-light-icon-gradient-a"
+        x1="109"
+        y1="116.5"
+        x2="144.5"
+        y2="160.5"
+        gradientUnits="userSpaceOnUse"
+      >
         <stop stopColor="#fff" />
         <stop offset="1" stopColor="#fff" stopOpacity="0" />
       </linearGradient>
-      <linearGradient id="nextjs-light-icon-gradient-b" x1="121" y1="54" x2="120.799" y2="106.875" gradientUnits="userSpaceOnUse">
+      <linearGradient
+        id="nextjs-light-icon-gradient-b"
+        x1="121"
+        y1="54"
+        x2="120.799"
+        y2="106.875"
+        gradientUnits="userSpaceOnUse"
+      >
         <stop stopColor="#fff" />
         <stop offset="1" stopColor="#fff" stopOpacity="0" />
       </linearGradient>
@@ -78,20 +115,42 @@ export const NextJsLightIcon = (props: SVGProps<SVGSVGElement>): ReactElement =>
   </svg>
 );
 
-export const NextJsDarkIcon = (props: SVGProps<SVGSVGElement>): ReactElement => (
+export const NextJsDarkIcon = (
+  props: SVGProps<SVGSVGElement>
+): ReactElement => (
   <svg viewBox="0 0 180 180" aria-hidden="true" {...props}>
     <circle cx="90" cy="90" r="87" fill="#000" stroke="#fff" strokeWidth="6" />
     <path
       d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z"
       fill="url(#nextjs-dark-icon-gradient-a)"
     />
-    <rect x="115" y="54" width="12" height="72" fill="url(#nextjs-dark-icon-gradient-b)" />
+    <rect
+      x="115"
+      y="54"
+      width="12"
+      height="72"
+      fill="url(#nextjs-dark-icon-gradient-b)"
+    />
     <defs>
-      <linearGradient id="nextjs-dark-icon-gradient-a" x1="109" y1="116.5" x2="144.5" y2="160.5" gradientUnits="userSpaceOnUse">
+      <linearGradient
+        id="nextjs-dark-icon-gradient-a"
+        x1="109"
+        y1="116.5"
+        x2="144.5"
+        y2="160.5"
+        gradientUnits="userSpaceOnUse"
+      >
         <stop stopColor="#fff" />
         <stop offset="1" stopColor="#fff" stopOpacity="0" />
       </linearGradient>
-      <linearGradient id="nextjs-dark-icon-gradient-b" x1="121" y1="54" x2="120.799" y2="106.875" gradientUnits="userSpaceOnUse">
+      <linearGradient
+        id="nextjs-dark-icon-gradient-b"
+        x1="121"
+        y1="54"
+        x2="120.799"
+        y2="106.875"
+        gradientUnits="userSpaceOnUse"
+      >
         <stop stopColor="#fff" />
         <stop offset="1" stopColor="#fff" stopOpacity="0" />
       </linearGradient>
@@ -110,22 +169,40 @@ export const AppStoreIcon = (props: AppIconProps): ReactElement => (
 
 export const GooglePlayIcon = (props: AppIconProps): ReactElement => (
   <IconBase {...props}>
-    <path fill="#34A853" d="M4.8 4.5c-.2.3-.3.8-.3 1.4v12.2c0 .6.1 1.1.3 1.4l10.8-7.5L4.8 4.5Z" />
-    <path fill="#4285F4" d="M16.8 13.2 7.9 22c.4 0 .8-.1 1.3-.4l10.1-5.7-2.5-2.7Z" />
-    <path fill="#FBBC04" d="M19.3 8.1 9.2 2.4c-.5-.3-.9-.4-1.3-.4l8.9 8.8 2.5-2.7Z" />
-    <path fill="#EA4335" d="M21.1 10.3 19.3 9l-2.9 3 2.9 3 1.8-1c1.2-.7 1.2-2 0-2.7Z" />
+    <path
+      fill="#34A853"
+      d="M4.8 4.5c-.2.3-.3.8-.3 1.4v12.2c0 .6.1 1.1.3 1.4l10.8-7.5L4.8 4.5Z"
+    />
+    <path
+      fill="#4285F4"
+      d="M16.8 13.2 7.9 22c.4 0 .8-.1 1.3-.4l10.1-5.7-2.5-2.7Z"
+    />
+    <path
+      fill="#FBBC04"
+      d="M19.3 8.1 9.2 2.4c-.5-.3-.9-.4-1.3-.4l8.9 8.8 2.5-2.7Z"
+    />
+    <path
+      fill="#EA4335"
+      d="M21.1 10.3 19.3 9l-2.9 3 2.9 3 1.8-1c1.2-.7 1.2-2 0-2.7Z"
+    />
   </IconBase>
 );
 
 export const ExperienceIcon = (props: AppIconProps): ReactElement => (
   <IconBase {...props}>
-    <path fill="currentColor" d="M4.75 4.5A2.25 2.25 0 0 1 7 2.25h10A2.25 2.25 0 0 1 19.25 4.5v15A2.25 2.25 0 0 1 17 21.75H7A2.25 2.25 0 0 1 4.75 19.5v-15ZM7 3.75a.75.75 0 0 0-.75.75v15c0 .41.34.75.75.75h10c.41 0 .75-.34.75-.75v-15a.75.75 0 0 0-.75-.75H7Zm2.25 3a.75.75 0 0 1 .75-.75h4a.75.75 0 0 1 0 1.5h-4a.75.75 0 0 1-.75-.75Zm0 4a.75.75 0 0 1 .75-.75h6a.75.75 0 1 1 0 1.5h-6a.75.75 0 0 1-.75-.75Z" />
+    <path
+      fill="currentColor"
+      d="M4.75 4.5A2.25 2.25 0 0 1 7 2.25h10A2.25 2.25 0 0 1 19.25 4.5v15A2.25 2.25 0 0 1 17 21.75H7A2.25 2.25 0 0 1 4.75 19.5v-15ZM7 3.75a.75.75 0 0 0-.75.75v15c0 .41.34.75.75.75h10c.41 0 .75-.34.75-.75v-15a.75.75 0 0 0-.75-.75H7Zm2.25 3a.75.75 0 0 1 .75-.75h4a.75.75 0 0 1 0 1.5h-4a.75.75 0 0 1-.75-.75Zm0 4a.75.75 0 0 1 .75-.75h6a.75.75 0 1 1 0 1.5h-6a.75.75 0 0 1-.75-.75Z"
+    />
   </IconBase>
 );
 
 export const EducationIcon = (props: AppIconProps): ReactElement => (
   <IconBase {...props}>
-    <path fill="currentColor" d="M12 3.75 2.5 8.35v.8l9.5 4.6 9.5-4.6v-.8L12 3.75Zm0 11.6-6.97-3.37V16a1 1 0 0 0 .55.9l6 2.9a1 1 0 0 0 .84 0l6-2.9a1 1 0 0 0 .55-.9v-4.02L12 15.35Z" />
+    <path
+      fill="currentColor"
+      d="M12 3.75 2.5 8.35v.8l9.5 4.6 9.5-4.6v-.8L12 3.75Zm0 11.6-6.97-3.37V16a1 1 0 0 0 .55.9l6 2.9a1 1 0 0 0 .84 0l6-2.9a1 1 0 0 0 .55-.9v-4.02L12 15.35Z"
+    />
   </IconBase>
 );
 
@@ -134,6 +211,113 @@ export const PublicationsIcon = (props: AppIconProps): ReactElement => (
     <path
       fill="currentColor"
       d="M6.75 3.25h8.8a2.75 2.75 0 0 1 2.75 2.75v10.5a.75.75 0 0 1-1.28.53l-1.52-1.51-1.52 1.51a.75.75 0 0 1-1.06 0l-1.42-1.41-1.42 1.41a.75.75 0 0 1-1.06 0L7.5 15.5 5.98 17a.75.75 0 0 1-1.28-.53V6a2.75 2.75 0 0 1 2.05-2.66Zm0 1.5A1.25 1.25 0 0 0 5.95 6v8.69l.77-.77a1.1 1.1 0 0 1 1.56 0l1.27 1.27 1.27-1.27a1.1 1.1 0 0 1 1.56 0l1.07 1.07 1.07-1.07a1.1 1.1 0 0 1 1.56 0l.77.77V6a1.25 1.25 0 0 0-1.25-1.25h-8.8Zm1.5 2.75A.75.75 0 0 1 9 6.75h4.3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75Zm0 3.5A.75.75 0 0 1 9 10.25h5.8a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75Z"
+    />
+  </IconBase>
+);
+
+export const DocumentIcon = (props: AppIconProps): ReactElement => (
+  <IconBase viewBox="0 0 512 512" {...props}>
+    <path
+      d="M416 221.25V416a48 48 0 01-48 48H144a48 48 0 01-48-48V96a48 48 0 0148-48h98.75a32 32 0 0122.62 9.37l141.26 141.26a32 32 0 019.37 22.62z"
+      fill="none"
+      stroke="currentColor"
+      stroke-linejoin="round"
+      stroke-width="32"
+    />
+    <path
+      d="M256 56v120a32 32 0 0032 32h120M176 288h160M176 368h160"
+      fill="none"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="32"
+    />
+  </IconBase>
+);
+
+export const CalendarIcon = (props: AppIconProps): ReactElement => (
+  <IconBase viewBox="0 0 512 512" {...props}>
+    <rect
+      fill="none"
+      stroke="currentColor"
+      stroke-linejoin="round"
+      stroke-width="32"
+      x="48"
+      y="80"
+      width="416"
+      height="384"
+      rx="48"
+    />
+    <circle fill="currentColor" cx="296" cy="232" r="24" />
+    <circle fill="currentColor" cx="376" cy="232" r="24" />
+    <circle fill="currentColor" cx="296" cy="312" r="24" />
+    <circle fill="currentColor" cx="376" cy="312" r="24" />
+    <circle fill="currentColor" cx="136" cy="312" r="24" />
+    <circle fill="currentColor" cx="216" cy="312" r="24" />
+    <circle fill="currentColor" cx="136" cy="392" r="24" />
+    <circle fill="currentColor" cx="216" cy="392" r="24" />
+    <circle fill="currentColor" cx="296" cy="392" r="24" />
+    <path
+      fill="none"
+      stroke="currentColor"
+      stroke-linejoin="round"
+      stroke-width="32"
+      stroke-linecap="round"
+      d="M128 48v32M384 48v32"
+    />
+    <path
+      fill="none"
+      stroke="currentColor"
+      stroke-linejoin="round"
+      stroke-width="32"
+      d="M464 160H48"
+    />
+  </IconBase>
+);
+
+export const DocumentIconFilled = (props: AppIconProps): ReactElement => (
+  <IconBase viewBox="0 0 512 512" {...props}>
+    <path
+      fill="currentColor"
+      d="M428 224H288a48 48 0 01-48-48V36a4 4 0 00-4-4h-92a64 64 0 00-64 64v320a64 64 0 0064 64h224a64 64 0 0064-64V228a4 4 0 00-4-4zm-92 160H176a16 16 0 010-32h160a16 16 0 010 32zm0-80H176a16 16 0 010-32h160a16 16 0 010 32z"
+    />
+    <path
+      fill="currentColor"
+      d="M419.22 188.59L275.41 44.78a2 2 0 00-3.41 1.41V176a16 16 0 0016 16h129.81a2 2 0 001.41-3.41z"
+    />
+  </IconBase>
+);
+
+export const HomeIcon = (props: AppIconProps): ReactElement => (
+  <IconBase viewBox="0 0 512 512" {...props}>
+    <path
+      d="M80 212v236a16 16 0 0016 16h96V328a24 24 0 0124-24h80a24 24 0 0124 24v136h96a16 16 0 0016-16V212"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="32"
+    />
+    <path
+      d="M480 256L266.89 52c-5-5.28-16.69-5.34-21.78 0L32 256M400 179V64h-48v69"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="32"
+    />
+  </IconBase>
+);
+
+export const HomeIconFilled = (props: AppIconProps): ReactElement => (
+  <IconBase viewBox="0 0 512 512" {...props}>
+    <path
+      fill="currentColor"
+      d="M261.56 101.28a8 8 0 00-11.06 0L66.4 277.15a8 8 0 00-2.47 5.79L63.9 448a32 32 0 0032 32H192a16 16 0 0016-16V328a8 8 0 018-8h80a8 8 0 018 8v136a16 16 0 0016 16h96.06a32 32 0 0032-32V282.94a8 8 0 00-2.47-5.79z"
+    />
+    <path
+      fill="currentColor"
+      d="M490.91 244.15l-74.8-71.56V64a16 16 0 00-16-16h-48a16 16 0 00-16 16v32l-57.92-55.38C272.77 35.14 264.71 32 256 32c-8.68 0-16.72 3.14-22.14 8.63l-212.7 203.5c-6.22 6-7 15.87-1.34 22.37A16 16 0 0043 267.56L250.5 69.28a8 8 0 0111.06 0l207.52 198.28a16 16 0 0022.59-.44c6.14-6.36 5.63-16.86-.76-22.97z"
     />
   </IconBase>
 );

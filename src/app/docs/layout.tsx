@@ -5,7 +5,7 @@ import {
   getDocsProjects,
   getFeaturedDocs,
 } from "../../data/docs/docs.registry";
-import { portfolio } from "../../data/portfolio";
+import { siteData } from "../../data/site/site.data";
 
 interface DocsLayoutProps {
   children: ReactNode;
@@ -16,10 +16,10 @@ const DocsLayout = ({
 }: DocsLayoutProps): ReactElement => {
   return (
     <DocsShell
-      descriptor={portfolio.descriptor}
+      descriptor={siteData.descriptor}
       featuredDocs={getFeaturedDocs()}
       projects={getDocsProjects()}
-      siteTitle={portfolio.siteTitle}
+      siteTitle={siteData.siteTitle}
     >
       {children}
     </DocsShell>

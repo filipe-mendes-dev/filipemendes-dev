@@ -5,7 +5,7 @@ import { type MouseEvent, type ReactElement, useEffect, useState } from 'react';
 
 import surface from '../../../../components/ui/PageSectionSurface/PageSectionSurface.module.css';
 import { Section } from '../../../../components/ui/Section';
-import type { ActionLink } from '../../../../data/portfolio';
+import type { HeroAction } from '../../../../data/site/landing-page/hero.data';
 import type { SectionId } from '../../../../shared/navigation/sections';
 import { requestLandingPageSection } from '../../navigation/landingPageNavigationStore';
 import su from '../../../../shared/styles/utilities.module.css';
@@ -15,7 +15,7 @@ import type { HeroSectionProps } from './HeroSection.interfaces';
 import st from './HeroSection.module.css';
 import { heroMotionConfig } from './heroMotion';
 
-const getActionClassName = (action: ActionLink): string => {
+const getActionClassName = (action: HeroAction): string => {
     const variantClass =
         action.variant === 'primary'
             ? su.buttonPrimary
@@ -26,7 +26,7 @@ const getActionClassName = (action: ActionLink): string => {
     return `${su.button} ${variantClass} ${st.heroActionLink}`;
 };
 
-const getActionHref = (action: ActionLink): string => {
+const getActionHref = (action: HeroAction): string => {
     return action.href;
 };
 
@@ -126,10 +126,10 @@ export const HeroSection = ({ content }: HeroSectionProps): ReactElement => {
                             >
                                 <figure className={st.heroPhotoFrame}>
                                     <img
-                                        src={content.hero.photoUrl}
-                                        alt={content.hero.photoAlt}
-                                        srcSet={content.hero.photoSrcSet}
-                                        sizes={content.hero.photoSizes}
+                                        src={content.photoUrl}
+                                        alt={content.photoAlt}
+                                        srcSet={content.photoSrcSet}
+                                        sizes={content.photoSizes}
                                         className={st.heroPhoto}
                                     />
                                 </figure>
@@ -145,30 +145,30 @@ export const HeroSection = ({ content }: HeroSectionProps): ReactElement => {
                                     data-hero-copy-item="true"
                                     variants={revealItemVariants}
                                 >
-                                    <span className={st.heroKicker}>Engineering Portfolio</span>
+                                    <span className={st.heroKicker}>{content.kicker}</span>
                                 </motion.p>
                                 <motion.h1
                                     className={st.heroTitle}
                                     data-hero-copy-item="true"
                                     variants={revealItemVariants}
                                 >
-                                    {content.hero.name}
+                                    {content.name}
                                 </motion.h1>
                                 <motion.div
                                     className={joinClassNames(st.heroBody, st.heroRevealItem)}
                                     data-hero-copy-item="true"
                                     variants={revealItemVariants}
                                 >
-                                    <p className={st.heroRole}>{content.hero.role}</p>
-                                    <p className={st.heroSummary}>{content.hero.summary}</p>
-                                    <p className={st.heroNow}>{content.hero.now}</p>
+                                    <p className={st.heroRole}>{content.headline}</p>
+                                    <p className={st.heroSummary}>{content.supportingText}</p>
+                                    <p className={st.heroNow}>{content.status}</p>
                                 </motion.div>
                                 <motion.div
                                     className={joinClassNames(st.heroActions, st.heroRevealItem)}
                                     data-hero-copy-item="true"
                                     variants={revealItemVariants}
                                 >
-                                    {content.hero.actions.map((action) => {
+                                    {content.actions.map((action) => {
                                         return (
                                             <a
                                                 key={action.label}

@@ -42,7 +42,7 @@ export const ContactSection = ({ content, isRevealEnabled }: ContactSectionProps
         <div className={st.supportRail}>
           <div className={st.introBlock}>
             <p className={st.eyebrow}>Direct Contact</p>
-            <p className={st.intro}>{content.contact.intro}</p>
+            <p className={st.intro}>{content.intro}</p>
           </div>
 
           <motion.div className={st.supportSections} variants={revealMotion.nestedGroupVariants}>
@@ -50,12 +50,12 @@ export const ContactSection = ({ content, isRevealEnabled }: ContactSectionProps
               <h3 id="contact-direct-heading" className={st.supportTitle}>
                 Email & Elsewhere
               </h3>
-              <p className={st.supportBody}>{content.contact.availability}</p>
-              <TextActionLink href={`mailto:${content.contact.email}`} className={st.primaryLink}>
-                {content.contact.email}
+              <p className={st.supportBody}>{content.availability}</p>
+              <TextActionLink href={`mailto:${content.email}`} className={st.primaryLink}>
+                {content.email}
               </TextActionLink>
               <ul className={st.contactLinks}>
-                {content.contact.socials.map((item) => (
+                {content.socials.map((item) => (
                   <li key={item.label}>
                     <TextActionLink href={item.href} className={st.socialLink} target="_blank" rel="noreferrer" leadingIcon={getSocialIcon(item.label)}>
                       {item.label}
@@ -74,7 +74,7 @@ export const ContactSection = ({ content, isRevealEnabled }: ContactSectionProps
             <p className={st.eyebrow}>Primary Action</p>
             <h3 className={st.formTitle}>Send a Message</h3>
           </div>
-          <motion.form className={st.contactForm} action={`mailto:${content.contact.email}`} encType="text/plain" method="post" variants={revealMotion.nestedGroupVariants}>
+          <motion.form className={st.contactForm} action={`mailto:${content.email}`} encType="text/plain" method="post" variants={revealMotion.nestedGroupVariants}>
             <motion.div variants={revealMotion.itemVariants}>
               <div className={st.field}>
                 <label htmlFor="contact-name" className={st.fieldLabel}>

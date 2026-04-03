@@ -2,7 +2,7 @@ import type { ReactElement, ReactNode } from "react";
 
 import { Footer } from "../../components/layout/Footer/Footer";
 import { Header } from "../../components/layout/Header/Header";
-import { portfolio } from "../../data/portfolio";
+import { getShellViewModel } from "../../data/view-models/shell.view-model";
 import st from "../layout.module.css";
 
 interface SiteLayoutProps {
@@ -12,25 +12,26 @@ interface SiteLayoutProps {
 const SiteLayout = ({
   children,
 }: SiteLayoutProps): ReactElement => {
-  const linkedInUrl = portfolio.contact.socials.find(
+  const shellViewModel = getShellViewModel();
+  const linkedInUrl = shellViewModel.footerSocials.find(
     (social) => social.label === "LinkedIn",
   )?.href;
-  const githubUrl = portfolio.contact.socials.find(
+  const githubUrl = shellViewModel.footerSocials.find(
     (social) => social.label === "GitHub",
   )?.href;
 
   return (
     <>
       <Header
-        navigation={portfolio.navigation}
-        siteTitle={portfolio.siteTitle}
+        navigation={shellViewModel.navigation}
+        siteTitle={shellViewModel.siteTitle}
       />
       <main className={st.main}>{children}</main>
       <Footer
-        descriptor={portfolio.descriptor}
+        descriptor={shellViewModel.descriptor}
         githubUrl={githubUrl}
         linkedInUrl={linkedInUrl}
-        name={portfolio.siteTitle}
+        name={shellViewModel.siteTitle}
       />
     </>
   );

@@ -15,6 +15,7 @@ import { headerMotionConfig } from "./headerMotion";
 import st from "./Header.module.css";
 import { ThemeToggle } from "./ThemeToggle";
 import { useHeaderController } from "./useHeaderController";
+import { FilipeMendesLogo } from "../../branding/FilipeMendesLogo";
 import { heroIntroRevealGateDelayMs } from "../../../views/LandingPage/sections/HeroSection/heroMotion";
 
 export const Header = ({
@@ -148,10 +149,14 @@ export const Header = ({
             onClick={handleHomeNavigation}
             {...homeLinkAriaCurrent}
           >
-            <span className={st.siteMarkPrompt} aria-hidden="true">
-              {"</>"}
+            <span className={st.siteMarkLogo} aria-hidden="true">
+              <span className={st.siteMarkLogoLight}>
+                <FilipeMendesLogo theme="light" />
+              </span>
+              <span className={st.siteMarkLogoDark}>
+                <FilipeMendesLogo theme="dark" />
+              </span>
             </span>
-            <span className={st.siteMarkText}>filipemendes.dev</span>
           </Link>
 
           <nav aria-label="Primary" className={st.desktopNav}>
@@ -188,7 +193,7 @@ export const Header = ({
             initial={headerRevealInitial}
             animate={headerRevealAnimate}
           >
-            <ThemeToggle />
+            <ThemeToggle size="compact" />
           </motion.div>
 
           <motion.button
@@ -230,10 +235,7 @@ export const Header = ({
 
           <div className={st.mobileMenuFooter}>
             <span className={st.mobileMenuLabel}>Theme</span>
-            <ThemeToggle
-              className={st.mobileThemeToggle}
-              size="compact"
-            />
+            <ThemeToggle className={st.mobileThemeToggle} size="compact" />
           </div>
         </div>
       </nav>

@@ -1,5 +1,5 @@
-import type { ProjectListItem } from '../../../../../../data/portfolio';
+import type { LandingProjectData } from '../../../../../../data/site/landing-page/projects.data';
 
 export interface ProjectCardProps {
-  project: ProjectListItem;
+  project: LandingProjectData;
 }

@@ -1,13 +1,13 @@
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import type { ReactElement } from 'react';
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import type { ReactElement } from "react";
 
 import {
   getDocsProject,
   getProjectDocs,
-} from '../../../../data/docs/docs.registry';
-import { portfolio } from '../../../../data/portfolio';
-import { DocsIndexView } from '../../../../views/Docs/DocsIndexView';
+} from "../../../../data/docs/docs.registry";
+import { siteData } from "../../../../data/site/site.data";
+import { DocsIndexView } from "../../../../views/Docs/DocsIndexView";
 
 interface DocsProjectRouteProps {
   params: Promise<{
@@ -23,11 +23,11 @@ export const generateMetadata = async ({
 
   if (project === undefined) {
     return {
-      title: `Docs | ${portfolio.siteTitle}`,
+      title: `Docs | ${siteData.siteTitle}`,
     };
   }
 
-  const title = `${project.name} Docs | ${portfolio.siteTitle}`;
+  const title = `${project.name} Docs | ${siteData.siteTitle}`;
 
   return {
     title,
@@ -35,10 +35,10 @@ export const generateMetadata = async ({
     openGraph: {
       title,
       description: project.description,
-      type: 'website',
+      type: "website",
     },
     twitter: {
-      card: 'summary',
+      card: "summary",
       title,
       description: project.description,
     },
