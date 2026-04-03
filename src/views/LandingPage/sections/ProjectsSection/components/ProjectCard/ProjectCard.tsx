@@ -17,7 +17,12 @@ export const ProjectCard = ({ project }: ProjectCardProps): ReactElement => {
           </div>
 
           <div className={st.heading}>
-            <p className={st.category}>{project.category}</p>
+            <div className={st.metaRow}>
+              <p className={st.category}>{project.category}</p>
+              {project.isProfessional === true ? (
+                <span className={st.professionalBadge}>Professional</span>
+              ) : null}
+            </div>
             <h2 className={st.title}>{project.name}</h2>
           </div>
         </div>

@@ -23,6 +23,7 @@ export interface ProjectRecord {
   category: string;
   description: string;
   narrative: ProjectNarrative;
+  isProfessional?: boolean;
 }
 
 export interface LandingProjectData {
@@ -33,6 +34,7 @@ export interface LandingProjectData {
   category: string;
   description: string;
   narrative: ProjectNarrative;
+  isProfessional?: boolean;
 }
 
 export interface ProjectDetailContent {
@@ -73,6 +75,7 @@ export const toLandingProjectData = (
     category: project.category,
     description: project.description,
     narrative: project.narrative,
+    isProfessional: project.isProfessional,
   };
 };
 

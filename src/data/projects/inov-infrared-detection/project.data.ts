@@ -8,6 +8,7 @@ export const project: ProjectRecord = {
     logoText: "IN",
   },
   category: "Applied Machine Learning",
+  isProfessional: true,
   description:
     "Research and engineering work on real-time infrared image classification using EfficientDet, TensorFlow, and OpenCV.",
   narrative: {

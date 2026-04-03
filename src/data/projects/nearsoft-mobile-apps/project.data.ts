@@ -8,6 +8,7 @@ export const project: ProjectRecord = {
     logoText: "NS",
   },
   category: "Mobile Development",
+  isProfessional: true,
   description:
     "Mobile banking app development centered on React Native, TypeScript, Redux, REST integrations, and reusable UI components.",
   narrative: {
