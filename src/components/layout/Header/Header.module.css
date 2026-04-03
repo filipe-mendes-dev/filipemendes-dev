@@ -263,7 +263,7 @@
 .mobileMenuLabel {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: var(--font-size-micro);
   line-height: 1;
   letter-spacing: 0.05em;
   text-transform: uppercase;

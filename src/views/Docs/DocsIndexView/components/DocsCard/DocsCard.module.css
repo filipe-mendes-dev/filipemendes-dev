@@ -81,7 +81,7 @@
   gap: 0.32rem;
   color: var(--ink-muted);
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: var(--font-size-micro);
   line-height: 1;
   white-space: nowrap;
 }
