@@ -54,7 +54,7 @@ const toViewportBottomRootMargin = (viewportRatio: number): string => {
 export const landingPageMotion: LandingPageMotionConfig = {
   activeSectionViewportRatio: 0.2,
   revealEntryThreshold: 0.01,
-  revealEntryViewportRatio: 0.65,
+  revealEntryViewportRatio: 0.85,
 };
 
 export const motionDurationMs: MotionDurationConfig = {
