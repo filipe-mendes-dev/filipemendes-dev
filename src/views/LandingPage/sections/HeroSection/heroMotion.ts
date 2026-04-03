@@ -17,19 +17,19 @@ interface HeroMotionConfig {
 }
 
 export const heroMotionConfig: HeroMotionConfig = {
-  afterWindow: motionDurationMs.fast,
-  terminalEnter: motionDurationMs.medium,
-  beforeTyping: motionDurationMs.slow,
-  typing: 600,
+  afterWindow: 0,
+  terminalEnter: motionDurationMs.fast,
+  beforeTyping: motionDurationMs.fast,
+  typing: motionDurationMs.medium,
   beforeExecute: 0,
-  execute: 600,
-  terminalExit: motionDurationMs.medium,
-  beforeExpand: 0,
-  grow: motionDurationMs.slower,
-  contentDelayFromGrowStart: 0,
+  execute: motionDurationMs.slower,
+  terminalExit: motionDurationMs.fast,
+  beforeExpand: motionDurationMs.fast,
+  grow: motionDurationMs.medium,
+  contentDelayFromGrowStart: motionDurationMs.fast,
   contentStagger: motionDurationMs.fast,
-  contentEnter: motionDurationMs.slow,
-  mediaEnter: motionDurationMs.slow,
+  contentEnter: motionDurationMs.fast,
+  mediaEnter: motionDurationMs.fast,
 };
 
 export const heroIntroRevealGateDelayMs =
