@@ -11,8 +11,7 @@ export interface ContactData {
 }
 
 export const contactData: ContactData = {
-  intro:
-    "Open to focused product and engineering work where quality, clarity, and long-term thinking matter.",
+  intro: "Open to focused product and architecture collaboration.",
   email: "mendes.filipe.dev@gmail.com",
   availability: "Based in Madeira, Portugal — open to remote collaboration.",
   socials: [
