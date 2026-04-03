@@ -4,7 +4,6 @@ import { ExternalLinkIcon } from '../../../../../../components/icons';
 import { TextActionLink } from '../../../../../../components/navigation/TextActionLink';
 import { ProjectLogoMark } from '../../../../../../components/projects/ProjectLogoMark';
 import { SoftSurface } from '../../../../../../components/ui/SoftSurface';
-import { ProjectNarrativeList } from '../ProjectNarrativeList';
 import type { ProjectCardProps } from './ProjectCard.interfaces';
 import st from './ProjectCard.module.css';
 
@@ -31,8 +30,6 @@ export const ProjectCard = ({ project }: ProjectCardProps): ReactElement => {
           View Product Details
         </TextActionLink>
       </div>
-
-      <ProjectNarrativeList narrative={project.narrative} />
     </SoftSurface>
   );
 };
