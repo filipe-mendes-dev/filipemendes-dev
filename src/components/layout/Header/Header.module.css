@@ -303,6 +303,15 @@
     display: none;
   }
 
+  .headerInner {
+    width: var(--shell-container);
+    margin-inline: auto;
+  }
+
+  .headerBar {
+    padding-inline: 0;
+  }
+
   .desktopSiteNavList {
     display: flex;
     gap: var(--space-4);
