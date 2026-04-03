@@ -60,6 +60,12 @@
   gap: var(--space-3);
 }
 
+.contentActions {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-2);
+}
+
 .projectHeaderIntro {
   display: flex;
   flex-direction: column;
@@ -105,14 +111,14 @@
 
 .heroActions {
   display: grid;
-  gap: var(--space-3);
+  gap: var(--space-2);
 }
 
 .projectDetailLinks,
 .storeLinkRow {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-3);
+  gap: var(--space-2) var(--space-3);
   align-items: center;
 }
 
@@ -121,6 +127,8 @@
   align-items: center;
   gap: 0.45rem;
   color: var(--moss);
+  min-height: auto;
+  padding-block: 0;
 }
 
 .metaLinkIcon {
@@ -161,41 +169,6 @@
 .googlePlayBadgeImage {
   height: 2.75rem;
 }
-
-.backLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  width: fit-content;
-  min-height: 1.9rem;
-  color: var(--ink);
-  text-decoration: none;
-  padding: 0.28rem 0.65rem 0.32rem;
-  border-radius: var(--radius-pill);
-  border: var(--line-strong) solid
-    color-mix(in srgb, var(--line) 82%, transparent);
-  background: color-mix(in srgb, var(--paper-raised) 62%, transparent);
-  transition: color var(--transition), border-color var(--transition),
-    background-color var(--transition);
-  font-size: 0.84rem;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: 0.01em;
-}
-
-.backIcon {
-  width: 0.78rem;
-  height: 0.78rem;
-  flex: none;
-}
-
-.backLink:hover {
-  color: var(--moss);
-  border-color: color-mix(in srgb, var(--moss) 36%, var(--line));
-  background: color-mix(in srgb, var(--paper-raised) 82%, transparent);
-}
-
-.backLink:focus-visible,
 .storeBadgeLink:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--moss) 70%, transparent);
   outline-offset: 2px;
