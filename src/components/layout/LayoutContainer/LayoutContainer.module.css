@@ -1,0 +1,8 @@
+.root {
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  padding-inline: var(--layout-container-padding-inline);
+  padding-block: var(--layout-container-padding-block);
+  scrollbar-gutter: both-edges;
+}

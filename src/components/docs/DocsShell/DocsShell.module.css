@@ -24,12 +24,6 @@
 }
 
 .content {
-  min-width: 0;
-  min-height: 0;
-  overflow: auto;
-  padding-inline: clamp(1.5rem, 3vw, 4rem);
-  padding-block: clamp(1.5rem, 3vw, 2.5rem);
-  scrollbar-gutter: both-edges;
 }
 
 .contentInner {
