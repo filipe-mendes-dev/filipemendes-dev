@@ -1,6 +1,6 @@
 .root {
   --docs-mobile-topbar-height: 4.25rem;
-  --docs-sidebar-expanded-width: 17.5rem;
+  --docs-sidebar-expanded-width: clamp(17.5rem, 15.5rem + 3vw, 22rem);
   display: grid;
   min-height: 100dvh;
   height: 100dvh;
