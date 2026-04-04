@@ -24,6 +24,7 @@
 }
 
 .content {
+  overflow: auto;
 }
 
 .contentInner {
