@@ -14,6 +14,7 @@
   --chip-bg: #eef1f5;
   --button-secondary-bg: #edf1f5;
   --header-bg: rgb(246 248 251 / 74%);
+  --overlay-backdrop: rgb(0 0 0 / 78%);
   --footer-bg: #d9d7d1;
   --footer-surface-bg: linear-gradient(
     180deg,
@@ -128,6 +129,7 @@
   --chip-bg: #1a1d22;
   --button-secondary-bg: #1f232a;
   --header-bg: rgb(17 19 23 / 92%);
+  --overlay-backdrop: rgb(0 0 0 / 78%);
   --footer-bg: #010203;
   --footer-surface-bg: linear-gradient(
     180deg,
