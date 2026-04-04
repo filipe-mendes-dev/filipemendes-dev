@@ -77,10 +77,6 @@ export const ProjectScreenshotsSection = ({
       return;
     }
 
-    const previousOverflow = document.body.style.overflow;
-
-    document.body.style.overflow = "hidden";
-
     const handleKeyDown = (event: KeyboardEvent): void => {
       if (event.key === "Escape") {
         setSelectedIndex(null);
@@ -111,7 +107,6 @@ export const ProjectScreenshotsSection = ({
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [selectedIndex, screenshots.length]);
