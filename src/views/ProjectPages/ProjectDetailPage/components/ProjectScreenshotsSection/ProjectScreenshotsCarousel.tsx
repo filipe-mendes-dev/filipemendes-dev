@@ -64,7 +64,7 @@ export const ProjectScreenshotsCarousel = ({
   items,
   onSelect,
 }: ProjectScreenshotsCarouselProps): ReactElement | null => {
-  const [containerWidth, setContainerWidth] = useState(1);
+  const [containerWidth, setContainerWidth] = useState<number | null>(null);
   const [index, setIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [slidesToShow, setSlidesToShow] = useState(1);
@@ -77,7 +77,7 @@ export const ProjectScreenshotsCarousel = ({
   useEffect(() => {
     const updateLayout = (): void => {
       const width = window.innerWidth;
-      const nextContainerWidth = containerRef.current?.offsetWidth ?? 1;
+      const nextContainerWidth = containerRef.current?.offsetWidth ?? null;
 
       setContainerWidth(nextContainerWidth);
 
@@ -103,7 +103,7 @@ export const ProjectScreenshotsCarousel = ({
   }, [items.length]);
 
   useEffect(() => {
-    if (!isDragging && containerRef.current !== null) {
+    if (!isDragging && containerWidth !== null) {
       const slideWidth =
         (containerWidth - SLIDE_GAP_PX * Math.max(slidesToShow - 1, 0)) /
         slidesToShow;
@@ -132,8 +132,15 @@ export const ProjectScreenshotsCarousel = ({
   ): void => {
     setIsDragging(false);
 
+    const measuredContainerWidth =
+      containerWidth ?? containerRef.current?.offsetWidth ?? null;
+
+    if (measuredContainerWidth === null) {
+      return;
+    }
+
     const slideWidth =
-      (containerWidth - SLIDE_GAP_PX * Math.max(slidesToShow - 1, 0)) /
+      (measuredContainerWidth - SLIDE_GAP_PX * Math.max(slidesToShow - 1, 0)) /
       slidesToShow;
     const offset = info.offset.x;
     const velocity = info.velocity.x;
@@ -164,8 +171,10 @@ export const ProjectScreenshotsCarousel = ({
   };
 
   const slideWidth =
-    (containerWidth - SLIDE_GAP_PX * Math.max(slidesToShow - 1, 0)) /
-    slidesToShow;
+    containerWidth === null
+      ? null
+      : (containerWidth - SLIDE_GAP_PX * Math.max(slidesToShow - 1, 0)) /
+        slidesToShow;
 
   return (
     <div className={st.root}>
@@ -191,7 +200,11 @@ export const ProjectScreenshotsCarousel = ({
             <div
               key={`${item.url}-${itemIndex}`}
               className={st.slide}
-              style={{ width: `${slideWidth}px` } as CSSProperties}
+              style={
+                slideWidth === null
+                  ? undefined
+                  : ({ width: `${slideWidth}px` } as CSSProperties)
+              }
             >
               <button
                 type="button"
