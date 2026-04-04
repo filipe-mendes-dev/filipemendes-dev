@@ -38,15 +38,3 @@
   color: var(--ink-muted);
   font-size: var(--font-size-lead);
 }
-
-@media (min-width: 48rem) {
-  .content {
-    width: var(--container);
-    margin-inline: auto;
-  }
-
-  .header {
-    width: var(--container);
-    margin-inline: auto;
-  }
-}
