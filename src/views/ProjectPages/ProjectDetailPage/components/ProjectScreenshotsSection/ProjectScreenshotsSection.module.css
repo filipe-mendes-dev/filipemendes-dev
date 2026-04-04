@@ -150,7 +150,6 @@
   min-height: 0;
   overflow: hidden;
   padding: 0;
-  min-height: min(72vh, 48rem);
 }
 
 .modalImage {
@@ -181,7 +180,7 @@
   }
 
   .modalFrame {
-    min-height: min(58vh, 34rem);
+    min-height: min(44vh, 26rem);
   }
 }
 
