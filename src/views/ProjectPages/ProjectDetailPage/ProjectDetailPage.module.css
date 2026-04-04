@@ -1,6 +1,10 @@
 .root {
 }
 
+.layoutContainer {
+  padding-block: 0;
+}
+
 .featuresSection::after {
   top: auto;
   bottom: 2rem;
@@ -24,6 +28,7 @@
 @media (min-width: 48rem) {
   .detailSectionContent {
     padding-left: var(--space-3);
-    border-left: var(--line-strong) solid color-mix(in srgb, var(--line) 72%, transparent);
+    border-left: var(--line-strong) solid
+      color-mix(in srgb, var(--line) 72%, transparent);
   }
 }

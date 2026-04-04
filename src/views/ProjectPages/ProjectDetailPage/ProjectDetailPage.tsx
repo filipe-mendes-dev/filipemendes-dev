@@ -25,7 +25,7 @@ export const ProjectDetailPage = ({
 
   return (
     <PageSectionSurface className={st.root}>
-      <LayoutContainer>
+      <LayoutContainer className={st.layoutContainer}>
         <ProjectDetailHero hero={hero} />
         <motion.div
           animate="visible"
