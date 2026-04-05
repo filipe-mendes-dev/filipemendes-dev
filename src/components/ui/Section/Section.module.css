@@ -13,11 +13,15 @@
 }
 
 .title {
-  font-size: var(--font-size-title);
+  font-size: var(--font-size-title-sm);
   letter-spacing: 0.01em;
   line-height: var(--line-height-title);
   display: grid;
   gap: 0.55rem;
+}
+
+.landingTitle {
+  font-size: var(--font-size-title);
 }
 
 .titleText {
