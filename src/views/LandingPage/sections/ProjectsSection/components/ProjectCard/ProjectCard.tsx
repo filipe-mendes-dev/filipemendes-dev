@@ -16,24 +16,20 @@ export const ProjectCard = ({ project }: ProjectCardProps): ReactElement => {
         </div>
 
         <div className={st.heading}>
-          <div className={st.metaRow}>
-            <p className={st.category}>{project.category}</p>
-          </div>
+          <p className={st.category}>{project.category}</p>
           <h2 className={st.title}>{project.name}</h2>
         </div>
       </div>
 
       <p className={st.description}>{project.description}</p>
 
-      <div className={st.actions}>
-        <TextActionLink
-          href={project.href}
-          className={st.link}
-          trailingIcon={<ExternalLinkIcon />}
-        >
-          View Project Details
-        </TextActionLink>
-      </div>
+      <TextActionLink
+        href={project.href}
+        className={st.link}
+        trailingIcon={<ExternalLinkIcon />}
+      >
+        View Project Details
+      </TextActionLink>
       {project.isProfessional === true ? (
         <span className={st.professionalBadge}>Professional</span>
       ) : null}

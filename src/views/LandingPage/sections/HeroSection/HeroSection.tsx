@@ -31,10 +31,6 @@ const getActionClassName = (action: HeroAction): string => {
   return `${su.button} ${variantClass} ${st.heroActionLink}`;
 };
 
-const getActionHref = (action: HeroAction): string => {
-  return action.href;
-};
-
 export const HeroSection = ({ content }: HeroSectionProps): ReactElement => {
   const isReducedMotionEnabled = useReducedMotion() ?? false;
   const [hasIntroFinished, setHasIntroFinished] = useState<boolean>(
@@ -192,7 +188,7 @@ export const HeroSection = ({ content }: HeroSectionProps): ReactElement => {
                     return (
                       <a
                         key={action.label}
-                        href={getActionHref(action)}
+                        href={action.href}
                         className={getActionClassName(action)}
                         onClick={
                           action.sectionId === undefined

@@ -92,14 +92,6 @@
   justify-content: center;
 }
 
-.metaRow {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem 0.75rem;
-}
-
 .category {
   margin: 0;
   font-family: var(--font-mono);
@@ -139,9 +131,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   text-wrap: nowrap;
-}
-
-.actions {
 }
 
 .description {
@@ -184,10 +173,6 @@
     border-bottom-left-radius: unset;
     border-top-left-radius: var(--radius-pill);
     inset-block-end: 0;
-  }
-
-  .metaRow {
-    justify-content: start;
   }
 
   .description {
