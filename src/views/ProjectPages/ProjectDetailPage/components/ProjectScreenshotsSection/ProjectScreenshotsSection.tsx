@@ -65,14 +65,15 @@ const CloseIcon = (): ReactElement => {
 
 export const ProjectScreenshotsSection = ({
   screenshots,
-  title = "Screenshot Gallery",
-  subtitle,
 }: ProjectScreenshotsSectionProps): ReactElement | null => {
   const revealMotion = useSectionRevealMotion();
   const prefersReducedMotion = useReducedMotion();
+  const items = screenshots.items;
+  const title = screenshots.title ?? "Screenshot Gallery";
+  const subtitle = screenshots.subtitle;
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const selectedScreenshot =
-    selectedIndex === null ? undefined : screenshots[selectedIndex];
+    selectedIndex === null ? undefined : items[selectedIndex];
 
   useEffect(() => {
     if (selectedIndex === null) {
@@ -91,7 +92,7 @@ export const ProjectScreenshotsSection = ({
             return currentIndex;
           }
 
-          return (currentIndex + 1) % screenshots.length;
+          return (currentIndex + 1) % items.length;
         });
       }
 
@@ -101,7 +102,7 @@ export const ProjectScreenshotsSection = ({
             return currentIndex;
           }
 
-          return (currentIndex - 1 + screenshots.length) % screenshots.length;
+          return (currentIndex - 1 + items.length) % items.length;
         });
       }
     };
@@ -111,9 +112,9 @@ export const ProjectScreenshotsSection = ({
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [selectedIndex, screenshots.length]);
+  }, [items.length, selectedIndex]);
 
-  if (screenshots.length === 0) {
+  if (items.length === 0) {
     return null;
   }
 
@@ -127,7 +128,7 @@ export const ProjectScreenshotsSection = ({
     >
       <motion.div variants={revealMotion.itemVariants}>
         <ProjectScreenshotsCarousel
-          items={screenshots}
+          items={items}
           onSelect={(index) => setSelectedIndex(index)}
         />
       </motion.div>
@@ -173,7 +174,7 @@ export const ProjectScreenshotsSection = ({
                   </button>
 
                   <div className={st.modalFrame}>
-                    {screenshots.length > 1 && (
+                    {items.length > 1 && (
                       <>
                         <button
                           type="button"
@@ -186,8 +187,7 @@ export const ProjectScreenshotsSection = ({
                               }
 
                               return (
-                                (currentIndex - 1 + screenshots.length) %
-                                screenshots.length
+                                (currentIndex - 1 + items.length) % items.length
                               );
                             })
                           }
@@ -204,7 +204,7 @@ export const ProjectScreenshotsSection = ({
                                 return currentIndex;
                               }
 
-                              return (currentIndex + 1) % screenshots.length;
+                              return (currentIndex + 1) % items.length;
                             })
                           }
                         >

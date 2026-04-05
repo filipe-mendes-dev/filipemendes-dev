@@ -4,8 +4,12 @@ export interface ProjectScreenshotItem {
   url: string;
 }
 
-export interface ProjectScreenshotsSectionProps {
-  screenshots: ProjectScreenshotItem[];
+export interface ProjectScreenshotsContent {
+  items: ProjectScreenshotItem[];
   title?: string;
   subtitle?: string;
+}
+
+export interface ProjectScreenshotsSectionProps {
+  screenshots: ProjectScreenshotsContent;
 }

@@ -11,6 +11,7 @@ export type {
 } from './components/ProjectDetailHero';
 export type {
   ProjectScreenshotItem,
+  ProjectScreenshotsContent,
   ProjectScreenshotsSectionProps,
 } from './components/ProjectScreenshotsSection';
 export type { ProjectTechStackSectionProps } from './components/ProjectTechStackSection';

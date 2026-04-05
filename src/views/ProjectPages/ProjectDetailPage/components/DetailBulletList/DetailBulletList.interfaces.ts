@@ -4,5 +4,5 @@ export interface DetailBulletListItem {
 }
 
 export interface DetailBulletListProps {
-  items: (string | DetailBulletListItem)[];
+  items: DetailBulletListItem[];
 }

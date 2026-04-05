@@ -2,6 +2,7 @@ export { ProjectScreenshotsSection } from './ProjectScreenshotsSection';
 export { ProjectScreenshotsCarousel } from './ProjectScreenshotsCarousel';
 export type {
   ProjectScreenshotItem,
+  ProjectScreenshotsContent,
   ProjectScreenshotsSectionProps,
 } from './ProjectScreenshotsSection.interfaces';
 export type {
