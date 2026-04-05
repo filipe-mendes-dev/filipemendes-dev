@@ -57,17 +57,34 @@ export const projectDetail: ProjectDetailContent = {
   },
   keyFeatures: [
     {
-      title: "Structured workout definition ",
+      title: "Custom workout creation",
       description:
-        "Workouts are defined through a controlled interval model, allowing precise configuration of exercises, durations, and transitions.",
+        "Create workouts with full control over exercises, intervals, and timing structure.",
     },
     {
-      title:
-        "Large, clear visual feedback for fast comprehension during intense exercise",
+      title: "Simple session controls",
+      description:
+        "Pause, resume, skip, or end sessions with minimal interaction during active workouts.",
     },
     {
-      title:
-        "Predictable interval transitions that keep the user focused on the workout instead of the device",
+      title: "Clear workout layout",
+      description:
+        "All key information is visible at a glance, including time, current exercise, progress, and next step.",
+    },
+    {
+      title: "Session history",
+      description:
+        "Track completed workouts with stored session data and past activity.",
+    },
+    {
+      title: "Workout import and export",
+      description:
+        "Share and reuse workouts through file-based import and export.",
+    },
+    {
+      title: "Multi-language support",
+      description:
+        "Interface available in multiple languages for broader accessibility.",
     },
   ],
   architecture: [
