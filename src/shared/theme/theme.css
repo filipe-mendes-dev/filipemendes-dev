@@ -76,8 +76,8 @@
   --space-6: clamp(2.5rem, 5vw, 4rem);
   --layout-container-padding-inline: clamp(1.5rem, 3vw, 4rem);
   --layout-container-padding-block: clamp(1.5rem, 3vw, 2.5rem);
-  --container: min(100%, clamp(72rem, 95vw, 88rem));
-  --shell-container: min(100%, clamp(76rem, 95vw, 90rem));
+  --container: min(100%, clamp(72rem, 90vw, 88rem));
+  --shell-container: min(100%, clamp(80rem, 100vw, 98rem));
   --content-max-narrow: 34ch;
   --content-max-readable: 65ch;
   --content-max-wide: 54rem;

@@ -283,7 +283,9 @@
     grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     row-gap: 0;
     min-height: 4.25rem;
-    padding-block: 0;
+    padding-inline: var(--layout-container-padding-inline);
+    width: var(--shell-container);
+    margin-inline: auto;
   }
 
   .siteMark {
@@ -301,11 +303,6 @@
 
   .headerNav {
     display: none;
-  }
-
-  .headerInner {
-    width: var(--shell-container);
-    margin-inline: auto;
   }
 
   .headerBar {
