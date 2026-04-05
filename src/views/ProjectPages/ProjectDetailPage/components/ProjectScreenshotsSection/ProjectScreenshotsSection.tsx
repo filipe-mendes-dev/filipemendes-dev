@@ -65,6 +65,8 @@ const CloseIcon = (): ReactElement => {
 
 export const ProjectScreenshotsSection = ({
   screenshots,
+  title = "Screenshot Gallery",
+  subtitle,
 }: ProjectScreenshotsSectionProps): ReactElement | null => {
   const revealMotion = useSectionRevealMotion();
   const prefersReducedMotion = useReducedMotion();
@@ -120,7 +122,8 @@ export const ProjectScreenshotsSection = ({
       className={st.root}
       contentClassName={st.content}
       id="project-detail-gallery"
-      title="Screenshot Gallery"
+      subtitle={subtitle}
+      title={title}
     >
       <motion.div variants={revealMotion.itemVariants}>
         <ProjectScreenshotsCarousel

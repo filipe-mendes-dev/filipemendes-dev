@@ -6,4 +6,6 @@ export interface ProjectScreenshotItem {
 
 export interface ProjectScreenshotsSectionProps {
   screenshots: ProjectScreenshotItem[];
+  title?: string;
+  subtitle?: string;
 }
