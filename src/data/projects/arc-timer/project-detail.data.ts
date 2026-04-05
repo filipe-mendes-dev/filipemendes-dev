@@ -21,7 +21,38 @@ export const projectDetail: ProjectDetailContent = {
       },
     ],
   },
-  screenshots: [],
+  screenshots: [
+    {
+      id: "arc-timer-home-page",
+      alt: "Arc Timer home page screenshots.",
+      url: "/images/projects/arc-timer/HomePage.png",
+    },
+    {
+      id: "arc-timer-workouts-info",
+      alt: "Workout list and info pages.",
+      url: "/images/projects/arc-timer/Workouts_Info.png",
+    },
+    {
+      id: "arc-timer-workout-run-page",
+      alt: "Arc Timer active workout page.",
+      url: "/images/projects/arc-timer/WorkoutRun_Page.png",
+    },
+    {
+      id: "arc-timer-session-pages",
+      alt: "Arc Timer session share and session details.",
+      url: "/images/projects/arc-timer/Session_Pages.png",
+    },
+    {
+      id: "arc-timer-settings-page",
+      alt: "Arc Timer settings page.",
+      url: "/images/projects/arc-timer/Settings_Page.png",
+    },
+    {
+      id: "arc-timer-theme-showcase",
+      alt: "Arc Timer theme showcase.",
+      url: "/images/projects/arc-timer/Theme_Showcase.png",
+    },
+  ],
   keyFeatures: [
     "Time-driven workout sessions designed to require minimal interaction once a session starts",
     "Large, clear visual feedback for fast comprehension during intense exercise",
@@ -41,6 +72,6 @@ export const projectDetail: ProjectDetailContent = {
   ],
   metadata: createProjectMetadata(
     project.name,
-    "A focused interval timer for HIIT workouts, designed around precise timing, minimal interaction, and reliable execution during high-intensity sessions.",
+    "A focused interval timer for HIIT workouts, designed around precise timing, minimal interaction, and reliable execution during high-intensity sessions."
   ),
 };
