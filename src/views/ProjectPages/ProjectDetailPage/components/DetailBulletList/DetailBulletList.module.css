@@ -15,11 +15,7 @@
   min-width: 0;
   border-radius: var(--radius-pill);
   overflow: hidden;
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--paper-raised) 26%, transparent) 0%,
-    color-mix(in srgb, var(--card-bg) 56%, transparent) 100%
-  );
+  background: var(--card-surface-bg);
 }
 
 .index {
