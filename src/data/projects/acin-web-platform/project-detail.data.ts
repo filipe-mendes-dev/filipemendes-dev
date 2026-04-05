@@ -30,9 +30,15 @@ export const projectDetail: ProjectDetailContent = {
     },
   ],
   architecture: [
-    "Component-based React frontend written in TypeScript",
-    "Docker-based development environment using Vite and Yarn",
-    "Testing workflow covering units and end-to-end browser journeys",
+    {
+      title: "Component-based React frontend written in TypeScript",
+    },
+    {
+      title: "Docker-based development environment using Vite and Yarn",
+    },
+    {
+      title: "Testing workflow covering units and end-to-end browser journeys",
+    },
   ],
   techStack: [
     "React",

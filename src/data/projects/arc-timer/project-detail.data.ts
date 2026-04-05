@@ -57,8 +57,9 @@ export const projectDetail: ProjectDetailContent = {
   },
   keyFeatures: [
     {
-      title:
-        "Time-driven workout sessions designed to require minimal interaction once a session starts",
+      title: "Structured workout definition ",
+      description:
+        "Workouts are defined through a controlled interval model, allowing precise configuration of exercises, durations, and transitions.",
     },
     {
       title:
@@ -70,9 +71,18 @@ export const projectDetail: ProjectDetailContent = {
     },
   ],
   architecture: [
-    "Session flow built around a precise interval engine rather than frequent UI interaction",
-    "Execution model designed to remain stable through rapid interval changes and background runtime conditions",
-    "Product decisions shaped around consistency, clarity, and dependable behavior during real workouts",
+    {
+      title:
+        "Session flow built around a precise interval engine rather than frequent UI interaction",
+    },
+    {
+      title:
+        "Execution model designed to remain stable through rapid interval changes and background runtime conditions",
+    },
+    {
+      title:
+        "Product decisions shaped around consistency, clarity, and dependable behavior during real workouts",
+    },
   ],
   techStack: [
     "React Native",

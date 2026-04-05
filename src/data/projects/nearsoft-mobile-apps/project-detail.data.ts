@@ -30,9 +30,15 @@ export const projectDetail: ProjectDetailContent = {
     },
   ],
   architecture: [
-    "TypeScript-first React Native codebase for cross-platform delivery",
-    "Native development workflow using Xcode and Android Studio",
-    "Shared UI foundation designed for reuse across multiple mobile apps",
+    {
+      title: "TypeScript-first React Native codebase for cross-platform delivery",
+    },
+    {
+      title: "Native development workflow using Xcode and Android Studio",
+    },
+    {
+      title: "Shared UI foundation designed for reuse across multiple mobile apps",
+    },
   ],
   techStack: [
     "React Native",

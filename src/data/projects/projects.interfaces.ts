@@ -41,7 +41,7 @@ export interface ProjectDetailContent {
   hero: ProjectDetailHeroData;
   screenshots: ProjectDetailScreenshotsContent;
   keyFeatures: ProjectDetailFeatureItem[];
-  architecture: string[];
+  architecture: ProjectDetailFeatureItem[];
   techStack: string[];
   metadata: Metadata;
 }

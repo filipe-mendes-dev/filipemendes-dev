@@ -35,9 +35,16 @@ export const projectDetail: ProjectDetailContent = {
     },
   ],
   architecture: [
-    "EfficientDet neural network model adapted for infrared image classification",
-    "Training workflow supported by curated and labeled thermal datasets",
-    "Computer vision pipeline implemented with TensorFlow and OpenCV",
+    {
+      title:
+        "EfficientDet neural network model adapted for infrared image classification",
+    },
+    {
+      title: "Training workflow supported by curated and labeled thermal datasets",
+    },
+    {
+      title: "Computer vision pipeline implemented with TensorFlow and OpenCV",
+    },
   ],
   techStack: ["Python", "TensorFlow", "OpenCV", "EfficientDet"],
   metadata: createProjectMetadata(
