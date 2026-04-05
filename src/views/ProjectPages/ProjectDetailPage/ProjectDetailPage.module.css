@@ -7,7 +7,6 @@
 
 .detailSectionContent {
   display: grid;
-  max-width: var(--content-max-wide);
 }
 
 @media (min-width: 48rem) {
