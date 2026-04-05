@@ -87,6 +87,7 @@
   --shell-container: min(100%, clamp(80rem, 100vw, 98rem));
   --content-max-narrow: 34ch;
   --content-max-readable: 65ch;
+  --content-max-readable-lg: 75ch;
   --content-max-wide: 54rem;
   --panel-padding: clamp(1.25rem, 1.6vw, 1.5rem);
   --panel-padding-compact: clamp(0.85rem, 1.35vw, 1rem);

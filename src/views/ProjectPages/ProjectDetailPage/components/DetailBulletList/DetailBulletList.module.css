@@ -4,7 +4,7 @@
 
 .list {
   gap: var(--space-3);
-  max-width: var(--content-max-wide);
+  max-width: var(--content-max-readable-lg);
 }
 
 .item {

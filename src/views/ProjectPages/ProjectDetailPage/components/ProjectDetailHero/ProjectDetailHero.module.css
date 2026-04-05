@@ -11,7 +11,7 @@
   display: grid;
   gap: var(--space-3);
   align-items: start;
-  max-width: var(--content-max-readable);
+  max-width: var(--content-max-readable-lg);
 }
 
 .heroTitleRow {
@@ -87,14 +87,15 @@
 
 .projectPositioning {
   color: var(--ink-muted);
-  font-size: clamp(1rem, 1.4vw, 1.12rem);
-  line-height: 1.66;
+  font-size: clamp(0.9rem, 1.4vw, 1rem);
   overflow-wrap: anywhere;
   text-wrap: pretty;
+  max-width: var(--content-max-readable);
 }
 
 .projectDescription {
-  overflow-wrap: anywhere;
+  font-size: clamp(1rem, 1.4vw, 1.12rem);
+  overflow-wrap: break-word;
   text-wrap: pretty;
 }
 
