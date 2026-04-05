@@ -61,7 +61,8 @@
   --font-size-heading-md: clamp(1.05rem, 0.96rem + 0.2vw, 1.2rem);
   --font-size-heading-lg: clamp(1.2rem, 1.1rem + 0.3vw, 1.35rem);
   --font-size-title: clamp(1.7rem, 3.7vw, 2.35rem);
-  --font-size-title-sm: clamp(1.6rem, 3vw, 2.15rem);
+  --font-size-title-sm: clamp(1.35rem, 3vw, 1.85rem);
+  --font-size-title-md: clamp(1.55rem, 3.1vw, 2rem);
   --font-size-lead: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
   --line-height-body: 1.65;
   --line-height-heading: 1.2;
