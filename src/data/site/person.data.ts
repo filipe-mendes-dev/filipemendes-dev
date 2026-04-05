@@ -14,9 +14,9 @@ export const personData: PersonData = {
   currentStatus: "Based in Madeira, Portugal.",
   portrait: {
     alt: "Portrait of Filipe Mendes from CV",
-    url: "/images/filipe-mendes-250.webp",
+    url: "/images/main-logo/filipe-mendes-250.webp",
     srcSet:
-      "/images/filipe-mendes-250.webp 250w, /images/filipe-mendes-500.webp 500w",
+      "/images/main-logo/filipe-mendes-250.webp 250w, /images/main-logo/filipe-mendes-500.webp 500w",
     sizes: "(min-width: 64rem) 192px, (min-width: 48rem) 176px, 152px",
   },
 };

@@ -11,20 +11,15 @@ export const ProjectCard = ({ project }: ProjectCardProps): ReactElement => {
   return (
     <SoftSurface className={st.root}>
       <div className={st.header}>
-        <div className={st.lead}>
-          <div className={st.marker} aria-hidden="true">
-            <ProjectLogoMark logo={project.logo} />
-          </div>
+        <div className={st.marker} aria-hidden="true">
+          <ProjectLogoMark logo={project.logo} />
+        </div>
 
-          <div className={st.heading}>
-            <div className={st.metaRow}>
-              <p className={st.category}>{project.category}</p>
-              {project.isProfessional === true ? (
-                <span className={st.professionalBadge}>Professional</span>
-              ) : null}
-            </div>
-            <h2 className={st.title}>{project.name}</h2>
+        <div className={st.heading}>
+          <div className={st.metaRow}>
+            <p className={st.category}>{project.category}</p>
           </div>
+          <h2 className={st.title}>{project.name}</h2>
         </div>
       </div>
 
@@ -39,6 +34,9 @@ export const ProjectCard = ({ project }: ProjectCardProps): ReactElement => {
           View Project Details
         </TextActionLink>
       </div>
+      {project.isProfessional === true ? (
+        <span className={st.professionalBadge}>Professional</span>
+      ) : null}
     </SoftSurface>
   );
 };
