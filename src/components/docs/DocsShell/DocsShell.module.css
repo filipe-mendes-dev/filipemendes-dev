@@ -20,7 +20,7 @@
       color-mix(in srgb, var(--paper-raised) 18%, var(--paper)) 0%,
       color-mix(in srgb, var(--paper) 94%, var(--stone)) 100%
     );
-  background-size: 42px 42px, 42px 42px, 100% 100%;
+  background-size: 84px 42px, 42px 42px, 100% 100%;
 }
 
 .content {
