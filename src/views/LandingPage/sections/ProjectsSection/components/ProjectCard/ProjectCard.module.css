@@ -111,7 +111,7 @@
   align-items: center;
   padding-block: clamp(0.5rem, 0.6vw, 0.75rem);
   padding-inline: clamp(1.25rem, 0.6vw, 1.5rem) clamp(1rem, 0.6vw, 1.25rem);
-  border-bottom-left-radius: var(--radius-pill);
+  border-bottom-left-radius: var(--radius-xl);
   background: color-mix(in srgb, var(--moss) 8%, transparent);
   color: color-mix(in srgb, var(--moss) 74%, var(--ink-soft));
   font-size: var(--font-size-micro);

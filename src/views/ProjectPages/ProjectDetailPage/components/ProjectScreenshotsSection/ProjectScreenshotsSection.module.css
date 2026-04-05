@@ -63,7 +63,7 @@
   display: grid;
   gap: var(--space-3);
   background: var(--screenshot-overlay-surface);
-  border-radius: calc(var(--radius-xl) + 0.3rem);
+  border-radius: var(--radius-xl);
   overflow: hidden;
 }
 
