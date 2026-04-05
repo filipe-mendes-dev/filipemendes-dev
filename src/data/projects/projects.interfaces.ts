@@ -40,10 +40,15 @@ export interface LandingProjectData {
 export interface ProjectDetailContent {
   hero: ProjectDetailHeroData;
   screenshots: ProjectDetailScreenshotsContent;
-  keyFeatures: string[];
+  keyFeatures: ProjectDetailFeatureItem[];
   architecture: string[];
   techStack: string[];
   metadata: Metadata;
+}
+
+export interface ProjectDetailFeatureItem {
+  title: string;
+  description?: string;
 }
 
 export interface ProjectDetailScreenshotsContent {

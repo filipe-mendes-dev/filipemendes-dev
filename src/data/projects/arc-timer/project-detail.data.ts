@@ -10,9 +10,8 @@ export const projectDetail: ProjectDetailContent = {
     logo: project.logo,
     category: project.category,
     description:
-      "A focused interval timer for HIIT workouts, designed around precise timing, minimal interaction, and reliable execution during high-intensity sessions.",
-    positioning:
-      "Positioning: a workout timer product built around trust, responsiveness, and distraction-free use.",
+      "Personal-use project evolved into a production-level application. Full workout flow from setup to execution and tracking.",
+    positioning: "HIIT timer application covering the full workout lifecycle.",
     isMobileApp: true,
     links: [
       {
@@ -21,42 +20,54 @@ export const projectDetail: ProjectDetailContent = {
       },
     ],
   },
-  screenshots: [
-    {
-      id: "arc-timer-home-page",
-      alt: "Arc Timer home page screenshots.",
-      url: "/images/projects/arc-timer/HomePage.png",
-    },
-    {
-      id: "arc-timer-workouts-info",
-      alt: "Workout list and info pages.",
-      url: "/images/projects/arc-timer/Workouts_Info.png",
-    },
-    {
-      id: "arc-timer-workout-run-page",
-      alt: "Arc Timer active workout page.",
-      url: "/images/projects/arc-timer/WorkoutRun_Page.png",
-    },
-    {
-      id: "arc-timer-session-pages",
-      alt: "Arc Timer session share and session details.",
-      url: "/images/projects/arc-timer/Session_Pages.png",
-    },
-    {
-      id: "arc-timer-settings-page",
-      alt: "Arc Timer settings page.",
-      url: "/images/projects/arc-timer/Settings_Page.png",
-    },
-    {
-      id: "arc-timer-theme-showcase",
-      alt: "Arc Timer theme showcase.",
-      url: "/images/projects/arc-timer/Theme_Showcase.png",
-    },
-  ],
+  screenshots: {
+    title: "App Interface",
+    items: [
+      {
+        id: "arc-timer-home-page",
+        alt: "Home interface with quick start and recent sessions.",
+        url: "/images/projects/arc-timer/HomePage.png",
+      },
+      {
+        id: "arc-timer-workouts-info",
+        alt: "Workout list and configuration interface.",
+        url: "/images/projects/arc-timer/Workouts_Info.png",
+      },
+      {
+        id: "arc-timer-workout-run-page",
+        alt: "Active session interface with interval progression and controls.",
+        url: "/images/projects/arc-timer/WorkoutRun_Page.png",
+      },
+      {
+        id: "arc-timer-session-pages",
+        alt: "Session details, history, and sharing interface.",
+        url: "/images/projects/arc-timer/Session_Pages.png",
+      },
+      {
+        id: "arc-timer-settings-page",
+        alt: "Settings and configuration interface.",
+        url: "/images/projects/arc-timer/Settings_Page.png",
+      },
+      {
+        id: "arc-timer-theme-showcase",
+        alt: "Theme variations and visual customization.",
+        url: "/images/projects/arc-timer/Theme_Showcase.png",
+      },
+    ],
+  },
   keyFeatures: [
-    "Time-driven workout sessions designed to require minimal interaction once a session starts",
-    "Large, clear visual feedback for fast comprehension during intense exercise",
-    "Predictable interval transitions that keep the user focused on the workout instead of the device",
+    {
+      title:
+        "Time-driven workout sessions designed to require minimal interaction once a session starts",
+    },
+    {
+      title:
+        "Large, clear visual feedback for fast comprehension during intense exercise",
+    },
+    {
+      title:
+        "Predictable interval transitions that keep the user focused on the workout instead of the device",
+    },
   ],
   architecture: [
     "Session flow built around a precise interval engine rather than frequent UI interaction",

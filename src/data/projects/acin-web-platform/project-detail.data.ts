@@ -19,9 +19,15 @@ export const projectDetail: ProjectDetailContent = {
     items: [],
   },
   keyFeatures: [
-    "Responsive layouts with native-like behavior via Capacitor",
-    "GraphQL API integration for platform data",
-    "Unit and E2E testing with Vitest and Playwright",
+    {
+      title: "Responsive layouts with native-like behavior via Capacitor",
+    },
+    {
+      title: "GraphQL API integration for platform data",
+    },
+    {
+      title: "Unit and E2E testing with Vitest and Playwright",
+    },
   ],
   architecture: [
     "Component-based React frontend written in TypeScript",

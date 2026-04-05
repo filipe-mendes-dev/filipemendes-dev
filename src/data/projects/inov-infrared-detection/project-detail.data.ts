@@ -24,9 +24,15 @@ export const projectDetail: ProjectDetailContent = {
     items: [],
   },
   keyFeatures: [
-    "Real-time detection for vehicles, people, and deer",
-    "Infrared footage collection and labeling for training",
-    "Conference publication and presentation based on the work",
+    {
+      title: "Real-time detection for vehicles, people, and deer",
+    },
+    {
+      title: "Infrared footage collection and labeling for training",
+    },
+    {
+      title: "Conference publication and presentation based on the work",
+    },
   ],
   architecture: [
     "EfficientDet neural network model adapted for infrared image classification",
