@@ -39,11 +39,17 @@ export interface LandingProjectData {
 
 export interface ProjectDetailContent {
   hero: ProjectDetailHeroData;
-  screenshots: ProjectScreenshotItem[];
+  screenshots: ProjectDetailScreenshotsContent;
   keyFeatures: string[];
   architecture: string[];
   techStack: string[];
   metadata: Metadata;
+}
+
+export interface ProjectDetailScreenshotsContent {
+  items: ProjectScreenshotItem[];
+  title?: string;
+  subtitle?: string;
 }
 
 export interface ProjectDocsContent {

@@ -20,7 +20,9 @@ export const projectDetail: ProjectDetailContent = {
       },
     ],
   },
-  screenshots: [],
+  screenshots: {
+    items: [],
+  },
   keyFeatures: [
     "Real-time detection for vehicles, people, and deer",
     "Infrared footage collection and labeling for training",

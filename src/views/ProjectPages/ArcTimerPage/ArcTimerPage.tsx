@@ -25,7 +25,11 @@ export const ArcTimerPage = (): ReactElement => {
 
   return (
     <ProjectDetailPage hero={arcTimerHero}>
-      <ProjectScreenshotsSection screenshots={arcTimerScreenshots} />
+      <ProjectScreenshotsSection
+        screenshots={arcTimerScreenshots.items}
+        subtitle={arcTimerScreenshots.subtitle}
+        title={arcTimerScreenshots.title}
+      />
 
       <Section
         className={shared.featuresSection}

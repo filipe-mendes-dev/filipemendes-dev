@@ -15,7 +15,9 @@ export const projectDetail: ProjectDetailContent = {
     isMobileApp: true,
     links: [],
   },
-  screenshots: [],
+  screenshots: {
+    items: [],
+  },
   keyFeatures: [
     "Mobile banking flows built with React Native and Redux",
     "REST API integration across app features",

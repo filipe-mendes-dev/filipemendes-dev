@@ -15,7 +15,9 @@ export const projectDetail: ProjectDetailContent = {
     isMobileApp: false,
     links: [],
   },
-  screenshots: [],
+  screenshots: {
+    items: [],
+  },
   keyFeatures: [
     "Responsive layouts with native-like behavior via Capacitor",
     "GraphQL API integration for platform data",
