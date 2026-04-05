@@ -175,8 +175,14 @@ export const HeroSection = ({ content }: HeroSectionProps): ReactElement => {
                 >
                   <p className={st.heroRole}>{content.headline}</p>
                   <p className={st.heroSummary}>{content.supportingText}</p>
-                  <p className={st.heroNow}>{content.status}</p>
                 </motion.div>
+                <motion.p
+                  className={st.heroNow}
+                  data-hero-copy-item="true"
+                  variants={revealItemVariants}
+                >
+                  {content.status}
+                </motion.p>
                 <motion.div
                   className={st.heroActions}
                   data-hero-copy-item="true"

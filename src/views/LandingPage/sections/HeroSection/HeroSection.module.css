@@ -85,7 +85,7 @@
 
 .heroCopy {
   display: grid;
-  gap: clamp(0.85rem, 1.8vw, var(--space-4));
+  gap: clamp(1rem, 1.8vw, var(--space-5));
   min-width: 0;
   align-content: start;
 }
@@ -115,7 +115,7 @@
 }
 
 .heroRole {
-  max-width: 22ch;
+  max-width: var(--content-max-readable);
   font-size: clamp(1.18rem, 1.05rem + 0.6vw, 1.58rem);
   font-weight: 500;
   line-height: 1.36;
@@ -198,21 +198,8 @@
     width: 100%;
   }
 
-  .heroCopy {
-    width: 100%;
-  }
-
   .heroBody {
     max-width: none;
-  }
-
-  .heroRole {
-    max-width: 30ch;
-  }
-
-  .heroSummary,
-  .heroNow {
-    max-width: 100%;
   }
 }
 
@@ -221,14 +208,6 @@
     grid-template-columns: minmax(9rem, 12rem) minmax(0, 1.45fr);
     gap: clamp(1.5rem, 4vw, 3.5rem);
     padding: clamp(1.35rem, 2.6vw, 2rem);
-  }
-
-  .heroBody {
-    max-width: min(74ch, 100%);
-  }
-
-  .heroSummary {
-    max-width: min(72ch, 100%);
   }
 
   .heroActions {
@@ -241,10 +220,6 @@
 }
 
 @media (max-width: 30rem) {
-  .heroCopy {
-    gap: 0.95rem;
-  }
-
   .heroKicker {
     font-size: var(--font-size-micro);
     letter-spacing: 0.1em;
@@ -252,28 +227,6 @@
 
   .heroTitle {
     font-size: clamp(1.82rem, 7vw, 2.35rem);
-  }
-
-  .heroRole {
-    max-width: 18ch;
-    font-size: clamp(1.08rem, 0.98rem + 0.9vw, 1.28rem);
-    line-height: 1.42;
-  }
-
-  .heroSummary {
-    max-width: 28ch;
-    font-size: var(--font-size-body);
-    line-height: 1.68;
-  }
-
-  .heroNow {
-    font-size: var(--font-size-body-sm);
-  }
-
-  .heroActions {
-    flex-direction: column;
-    align-items: stretch;
-    max-width: min(100%, 19rem);
   }
 
   .heroActionLink {
