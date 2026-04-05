@@ -2,6 +2,11 @@
   --paper: #f6f6f4;
   --paper-raised: #ffffff;
   --card-bg: rgb(255 255 255 / 97%);
+  --card-surface-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--paper-raised) 94%, transparent) 0%,
+    color-mix(in srgb, var(--card-bg) 88%, transparent) 100%
+  );
   --code-bg: #edf2f8;
   --code-border: rgb(39 88 164 / 26%);
   --code-ink: #244066;
@@ -111,6 +116,11 @@
   --paper: #040506;
   --paper-raised: #0f1114;
   --card-bg: #15181c;
+  --card-surface-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--paper-raised) 26%, transparent) 0%,
+    color-mix(in srgb, var(--card-bg) 56%, transparent) 100%
+  );
   --code-bg: #111625;
   --code-border: rgb(120 166 233 / 42%);
   --code-ink: #a6c7f5;
