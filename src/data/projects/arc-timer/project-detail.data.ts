@@ -59,32 +59,24 @@ export const projectDetail: ProjectDetailContent = {
     {
       title: "Custom workout creation",
       description:
-        "Create workouts with full control over exercises, intervals, and timing structure.",
+        "Create workouts by defining exercises, intervals, and durations.",
     },
     {
       title: "Simple session controls",
       description:
-        "Pause, resume, skip, or end sessions with minimal interaction during active workouts.",
-    },
-    {
-      title: "Clear workout layout",
-      description:
-        "All key information is visible at a glance, including time, current exercise, progress, and next step.",
+        "Pause, resume, skip, or end a session with minimal interaction during workouts.",
     },
     {
       title: "Session history",
-      description:
-        "Track completed workouts with stored session data and past activity.",
+      description: "Track completed workouts and review past sessions.",
     },
     {
       title: "Workout import and export",
-      description:
-        "Share and reuse workouts through file-based import and export.",
+      description: "Share and reuse workouts through file import and export.",
     },
     {
       title: "Multi-language support",
-      description:
-        "Interface available in multiple languages for broader accessibility.",
+      description: "Available in multiple languages for broader accessibility.",
     },
   ],
   architecture: [
