@@ -151,19 +151,26 @@ export const HeroSection = ({ content }: HeroSectionProps): ReactElement => {
                 animate={isContentShown ? "visible" : "hidden"}
                 variants={copyVariants}
               >
-                <motion.p
+                <motion.div
                   data-hero-copy-item="true"
                   variants={revealItemVariants}
+                  className={st.heroHeader}
                 >
-                  <span className={st.heroKicker}>{content.kicker}</span>
-                </motion.p>
-                <motion.h1
-                  className={st.heroTitle}
-                  data-hero-copy-item="true"
-                  variants={revealItemVariants}
-                >
-                  {content.name}
-                </motion.h1>
+                  <motion.p
+                    data-hero-copy-item="true"
+                    variants={revealItemVariants}
+                  >
+                    <span className={st.heroKicker}>{content.kicker}</span>
+                  </motion.p>
+                  <motion.h1
+                    className={st.heroTitle}
+                    data-hero-copy-item="true"
+                    variants={revealItemVariants}
+                  >
+                    {content.name}
+                  </motion.h1>
+                </motion.div>
+
                 <motion.div
                   className={st.heroBody}
                   data-hero-copy-item="true"
