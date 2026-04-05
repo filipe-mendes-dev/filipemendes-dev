@@ -35,10 +35,6 @@ const getActionHref = (action: HeroAction): string => {
   return action.href;
 };
 
-const joinClassNames = (
-  ...classNames: (string | false | undefined)[]
-): string => classNames.filter(Boolean).join(" ");
-
 export const HeroSection = ({ content }: HeroSectionProps): ReactElement => {
   const isReducedMotionEnabled = useReducedMotion() ?? false;
   const [hasIntroFinished, setHasIntroFinished] = useState<boolean>(
@@ -160,7 +156,6 @@ export const HeroSection = ({ content }: HeroSectionProps): ReactElement => {
                 variants={copyVariants}
               >
                 <motion.p
-                  className={st.heroRevealItem}
                   data-hero-copy-item="true"
                   variants={revealItemVariants}
                 >
@@ -174,7 +169,7 @@ export const HeroSection = ({ content }: HeroSectionProps): ReactElement => {
                   {content.name}
                 </motion.h1>
                 <motion.div
-                  className={joinClassNames(st.heroBody, st.heroRevealItem)}
+                  className={st.heroBody}
                   data-hero-copy-item="true"
                   variants={revealItemVariants}
                 >
@@ -183,7 +178,7 @@ export const HeroSection = ({ content }: HeroSectionProps): ReactElement => {
                   <p className={st.heroNow}>{content.status}</p>
                 </motion.div>
                 <motion.div
-                  className={joinClassNames(st.heroActions, st.heroRevealItem)}
+                  className={st.heroActions}
                   data-hero-copy-item="true"
                   variants={revealItemVariants}
                 >
