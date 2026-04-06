@@ -13,8 +13,8 @@ import {
 } from "../ProjectDetailPage";
 import shared from "../ProjectDetailPage/ProjectDetailPage.module.css";
 import {
-  arcTimerArchitecture,
   arcTimerHero,
+  arcTimerImplementationDetails,
   arcTimerKeyFeatures,
   arcTimerScreenshots,
   arcTimerTechStack,
@@ -42,10 +42,10 @@ export const ArcTimerPage = (): ReactElement => {
         className={shared.architectureSection}
         contentClassName={shared.detailSectionContent}
         id="project-detail-architecture"
-        title="Architecture"
+        title="Implementation Details"
       >
         <motion.div variants={revealMotion.itemVariants}>
-          <DetailBulletList items={arcTimerArchitecture} />
+          <DetailBulletList items={arcTimerImplementationDetails} />
         </motion.div>
       </Section>
 
