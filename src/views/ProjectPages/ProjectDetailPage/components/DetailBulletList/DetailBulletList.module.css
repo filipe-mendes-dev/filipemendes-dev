@@ -7,6 +7,11 @@
   gap: clamp(1rem, 0.92rem + 0.35vw, var(--space-4));
 }
 
+.column {
+  gap: clamp(1rem, 0.92rem + 0.35vw, var(--space-4));
+  height: fit-content;
+}
+
 .item {
   display: grid;
   min-width: 0;
@@ -72,10 +77,6 @@
 
 @media (min-width: 64rem) {
   .list {
-    display: grid;
-    grid-template-columns: auto auto;
-    column-gap: clamp(1.75rem, 2vw, 2.5rem);
-    row-gap: var(--space-4);
-    align-items: start;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

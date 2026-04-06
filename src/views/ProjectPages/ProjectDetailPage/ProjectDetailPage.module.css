@@ -10,14 +10,12 @@
 }
 
 @media (min-width: 48rem) {
-  .detailSectionContent {
-    padding-left: var(--space-3);
-  }
-}
-
-@media (min-width: 48rem) {
   .layoutContainer {
     width: var(--container);
     margin-inline: auto;
+  }
+
+  .detailSectionContent {
+    padding-left: var(--space-3);
   }
 }
