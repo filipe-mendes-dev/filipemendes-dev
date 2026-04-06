@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 import { personData } from "../data/site/person.data";
-import { siteData } from "../data/site/site.data";
+import { siteMetadata } from "../data/site/site.metadata";
 
 export const alt = `${personData.name} portfolio preview`;
 export const contentType = "image/png";
@@ -47,7 +47,7 @@ const OpenGraphImage = (): ImageResponse => {
               textTransform: "uppercase",
             }}
           >
-            {siteData.description}
+            {siteMetadata.description}
           </div>
           <div
             style={{

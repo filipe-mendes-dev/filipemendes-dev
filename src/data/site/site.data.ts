@@ -13,9 +13,8 @@ export interface SiteData {
 }
 
 export const siteData: SiteData = {
-  siteTitle: "Filipe Mendes | Frontend & Mobile Engineer",
-  description:
-    "Frontend and mobile engineer focused on reliable UI behavior, interaction quality, and structured case studies.",
+  siteTitle: "Filipe Mendes",
+  description: "Frontend & Mobile Engineer",
   navigation: [
     { label: "Home", href: "/", sectionId: "home" },
     { label: "Projects", href: "/", sectionId: "projects" },
