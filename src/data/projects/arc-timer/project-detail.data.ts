@@ -79,18 +79,26 @@ export const projectDetail: ProjectDetailContent = {
       description: "Available in multiple languages for broader accessibility.",
     },
   ],
-  architecture: [
+  implementationDetails: [
     {
-      title:
-        "Session flow built around a precise interval engine rather than frequent UI interaction",
+      title: "State-based timer flow",
+      description:
+        "Each phase is part of a state machine, enabling controlled transitions and event propagation.",
     },
     {
-      title:
-        "Execution model designed to remain stable through rapid interval changes and background runtime conditions",
+      title: "1Hz engine cycle",
+      description:
+        "Timer engine updates once per second, balancing efficiency with required precision.",
     },
     {
-      title:
-        "Product decisions shaped around consistency, clarity, and dependable behavior during real workouts",
+      title: "Reanimated UI-thread animations",
+      description:
+        "Animations run on the UI thread using Reanimated, avoiding load on the JavaScript thread.",
+    },
+    {
+      title: "File-based workout sharing",
+      description:
+        "Workouts serialized into files for import, export, and reuse across devices.",
     },
   ],
   techStack: [
