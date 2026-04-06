@@ -4,6 +4,7 @@ import Script from "next/script";
 import type { ReactElement, ReactNode } from "react";
 
 import { appFontVariables } from "./fonts";
+import { siteMetadata } from "../data/site/site.metadata";
 import { getThemeInitializationScript } from "../shared/theme/themeInitializationScript";
 import {
   defaultThemePreference,
@@ -17,9 +18,36 @@ import "../shared/styles/base.css";
 import st from "./layout.module.css";
 
 export const metadata: Metadata = {
-  title: "Filipe Mendes",
-  description:
-    "Incremental Next.js App Router migration foundation for the portfolio website.",
+  metadataBase: new URL(siteMetadata.siteUrl),
+  title: siteMetadata.title,
+  description: siteMetadata.description,
+  applicationName: siteMetadata.title,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: siteMetadata.title,
+    description: siteMetadata.description,
+    url: "/",
+    siteName: siteMetadata.title,
+    type: "website",
+    images: [siteMetadata.openGraphImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteMetadata.title,
+    description: siteMetadata.description,
+    images: [siteMetadata.twitterImage],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
 };
 
 interface RootLayoutProps {

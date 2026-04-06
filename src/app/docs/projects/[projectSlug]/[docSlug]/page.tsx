@@ -6,6 +6,10 @@ import {
   getDoc,
   getDocsProject,
 } from "../../../../../data/docs/docs.registry";
+import {
+  createOpenGraphMetadata,
+  createTwitterMetadata,
+} from "../../../../../data/site/site.metadata";
 import { siteData } from "../../../../../data/site/site.data";
 import { DocPageView } from "../../../../../views/Docs/DocPageView";
 
@@ -33,16 +37,8 @@ export const generateMetadata = async ({
   return {
     title,
     description: doc.summary,
-    openGraph: {
-      title,
-      description: doc.summary,
-      type: "article",
-    },
-    twitter: {
-      card: "summary",
-      title,
-      description: doc.summary,
-    },
+    openGraph: createOpenGraphMetadata(title, doc.summary, "article"),
+    twitter: createTwitterMetadata(title, doc.summary),
   };
 };
 

@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import type { ReactElement } from "react";
 
 import { getDocsNavigationItems } from "../../data/docs/docs.registry";
+import {
+  createOpenGraphMetadata,
+  createTwitterMetadata,
+} from "../../data/site/site.metadata";
 import { siteData } from "../../data/site/site.data";
 import { DocsIndexView } from "../../views/Docs/DocsIndexView";
 
@@ -12,16 +16,8 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
-  openGraph: {
-    title,
-    description,
-    type: "website",
-  },
-  twitter: {
-    card: "summary",
-    title,
-    description,
-  },
+  openGraph: createOpenGraphMetadata(title, description, "website"),
+  twitter: createTwitterMetadata(title, description),
 };
 
 const DocsHomeRoute = (): ReactElement => {

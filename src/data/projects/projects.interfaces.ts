@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 
 import type { ProjectLogo } from "../../components/projects/ProjectLogoMark";
 import type { Doc } from "../docs/docs.interfaces";
+import {
+  createOpenGraphMetadata,
+  createTwitterMetadata,
+} from "../site/site.metadata";
 import { siteData } from "../site/site.data";
 import type {
   ProjectDetailHeroData,
@@ -89,15 +93,7 @@ export const createProjectMetadata = (
   return {
     title,
     description,
-    openGraph: {
-      title,
-      description,
-      type: "article",
-    },
-    twitter: {
-      card: "summary",
-      title,
-      description,
-    },
+    openGraph: createOpenGraphMetadata(title, description, "article"),
+    twitter: createTwitterMetadata(title, description),
   };
 };
