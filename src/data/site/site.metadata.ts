@@ -17,7 +17,7 @@ export interface SiteMetadataConfig {
   twitterImage: string;
 }
 
-const defaultSiteUrl = "http://filipemendes.dev";
+const defaultSiteUrl = "https://filipemendes.dev";
 
 const resolveSiteUrl = (): string => {
   return (

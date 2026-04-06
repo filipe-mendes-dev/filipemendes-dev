@@ -89,7 +89,7 @@ const OpenGraphImage = (): ImageResponse => {
             }}
           >
             <div style={{ display: "flex" }}>{personData.currentStatus}</div>
-            <div style={{ display: "flex" }}>filipe-mendes.dev</div>
+            <div style={{ display: "flex" }}>filipemendes.dev</div>
           </div>
         </div>
       </div>
