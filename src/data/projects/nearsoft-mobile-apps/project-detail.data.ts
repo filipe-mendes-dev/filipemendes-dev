@@ -29,7 +29,7 @@ export const projectDetail: ProjectDetailContent = {
       title: "Shared internal component library reused across apps",
     },
   ],
-  architecture: [
+  implementationDetails: [
     {
       title: "TypeScript-first React Native codebase for cross-platform delivery",
     },

@@ -13,8 +13,8 @@ import {
 } from "../ProjectDetailPage";
 import shared from "../ProjectDetailPage/ProjectDetailPage.module.css";
 import {
-  atlasMobileArchitecture,
   atlasMobileHero,
+  atlasMobileImplementationDetails,
   atlasMobileKeyFeatures,
   atlasMobileScreenshots,
   atlasMobileTechStack,
@@ -42,10 +42,10 @@ export const AtlasMobilePage = (): ReactElement => {
         className={shared.architectureSection}
         contentClassName={shared.detailSectionContent}
         id="project-detail-architecture"
-        title="Architecture"
+        title="Implementation Details"
       >
         <motion.div variants={revealMotion.itemVariants}>
-          <DetailBulletList items={atlasMobileArchitecture} />
+          <DetailBulletList items={atlasMobileImplementationDetails} />
         </motion.div>
       </Section>
 

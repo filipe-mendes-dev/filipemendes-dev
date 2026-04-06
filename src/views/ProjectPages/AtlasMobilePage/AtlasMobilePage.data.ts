@@ -3,7 +3,8 @@ import type { ProjectScreenshotsContent } from "../ProjectDetailPage";
 
 export const atlasMobileHero = atlasMobileDetail.hero;
 export const atlasMobileKeyFeatures = atlasMobileDetail.keyFeatures;
-export const atlasMobileArchitecture = atlasMobileDetail.architecture;
+export const atlasMobileImplementationDetails =
+  atlasMobileDetail.implementationDetails;
 export const atlasMobileTechStack = atlasMobileDetail.techStack;
 export const atlasMobileMetadata = atlasMobileDetail.metadata;
 

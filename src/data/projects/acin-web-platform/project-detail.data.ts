@@ -29,7 +29,7 @@ export const projectDetail: ProjectDetailContent = {
       title: "Unit and E2E testing with Vitest and Playwright",
     },
   ],
-  architecture: [
+  implementationDetails: [
     {
       title: "Component-based React frontend written in TypeScript",
     },

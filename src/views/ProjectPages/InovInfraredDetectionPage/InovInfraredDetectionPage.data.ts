@@ -7,8 +7,8 @@ export const inovInfraredDetectionScreenshots =
   inovInfraredDetectionDetail.screenshots;
 export const inovInfraredDetectionKeyFeatures =
   inovInfraredDetectionDetail.keyFeatures;
-export const inovInfraredDetectionArchitecture =
-  inovInfraredDetectionDetail.architecture;
+export const inovInfraredDetectionImplementationDetails =
+  inovInfraredDetectionDetail.implementationDetails;
 export const inovInfraredDetectionTechStack =
   inovInfraredDetectionDetail.techStack;
 export const inovInfraredDetectionMetadata =

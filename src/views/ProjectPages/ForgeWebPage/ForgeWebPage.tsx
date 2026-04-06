@@ -12,8 +12,8 @@ import {
 } from "../ProjectDetailPage";
 import shared from "../ProjectDetailPage/ProjectDetailPage.module.css";
 import {
-  forgeWebArchitecture,
   forgeWebHero,
+  forgeWebImplementationDetails,
   forgeWebKeyFeatures,
   forgeWebTechStack,
 } from "./ForgeWebPage.data";
@@ -38,10 +38,10 @@ export const ForgeWebPage = (): ReactElement => {
         className={shared.architectureSection}
         contentClassName={shared.detailSectionContent}
         id="project-detail-architecture"
-        title="Architecture"
+        title="Implementation Details"
       >
         <motion.div variants={revealMotion.itemVariants}>
-          <DetailBulletList items={forgeWebArchitecture} />
+          <DetailBulletList items={forgeWebImplementationDetails} />
         </motion.div>
       </Section>
 

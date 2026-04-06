@@ -34,7 +34,7 @@ export const projectDetail: ProjectDetailContent = {
       title: "Conference publication and presentation based on the work",
     },
   ],
-  architecture: [
+  implementationDetails: [
     {
       title:
         "EfficientDet neural network model adapted for infrared image classification",

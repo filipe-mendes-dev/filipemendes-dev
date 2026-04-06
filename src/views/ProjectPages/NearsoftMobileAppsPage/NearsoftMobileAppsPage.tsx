@@ -13,8 +13,8 @@ import {
 } from '../ProjectDetailPage';
 import shared from '../ProjectDetailPage/ProjectDetailPage.module.css';
 import {
-  nearsoftMobileAppsArchitecture,
   nearsoftMobileAppsHero,
+  nearsoftMobileAppsImplementationDetails,
   nearsoftMobileAppsKeyFeatures,
   nearsoftMobileAppsScreenshots,
   nearsoftMobileAppsTechStack,
@@ -42,10 +42,10 @@ export const NearsoftMobileAppsPage = (): ReactElement => {
         className={shared.architectureSection}
         contentClassName={shared.detailSectionContent}
         id="project-detail-architecture"
-        title="Architecture"
+        title="Implementation Details"
       >
         <motion.div variants={revealMotion.itemVariants}>
-          <DetailBulletList items={nearsoftMobileAppsArchitecture} />
+          <DetailBulletList items={nearsoftMobileAppsImplementationDetails} />
         </motion.div>
       </Section>
 

@@ -7,7 +7,7 @@ export const nearsoftMobileAppsScreenshots =
   nearsoftMobileAppsDetail.screenshots;
 export const nearsoftMobileAppsKeyFeatures =
   nearsoftMobileAppsDetail.keyFeatures;
-export const nearsoftMobileAppsArchitecture =
-  nearsoftMobileAppsDetail.architecture;
+export const nearsoftMobileAppsImplementationDetails =
+  nearsoftMobileAppsDetail.implementationDetails;
 export const nearsoftMobileAppsTechStack = nearsoftMobileAppsDetail.techStack;
 export const nearsoftMobileAppsMetadata = nearsoftMobileAppsDetail.metadata;

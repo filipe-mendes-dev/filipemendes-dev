@@ -7,7 +7,7 @@ import type { ProjectDetailFeatureItem } from "./projects";
 export interface PortfolioTestProjectDetail {
   hero: ProjectDetailHeroData;
   keyFeatures: ProjectDetailFeatureItem[];
-  architecture: ProjectDetailFeatureItem[];
+  implementationDetails: ProjectDetailFeatureItem[];
   techStack: string[];
   metadata: Metadata;
 }
@@ -77,7 +77,7 @@ export const atlasMobileDetail: PortfolioTestProjectDetail = {
       title: "Structured notes with attachment pipelines",
     },
   ],
-  architecture: [
+  implementationDetails: [
     {
       title: "Client state split between local cache and validated server snapshots",
     },
@@ -127,7 +127,7 @@ export const forgeWebDetail: PortfolioTestProjectDetail = {
       title: "Ownership routing for technical response workflows",
     },
   ],
-  architecture: [
+  implementationDetails: [
     {
       title: "Composable frontend modules backed by typed GraphQL contracts",
     },
