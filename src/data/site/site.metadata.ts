@@ -36,7 +36,7 @@ export const siteMetadata: SiteMetadataConfig = {
     height: 630,
     alt: `${personData.name} portfolio preview`,
   },
-  twitterImage: "/twitter-image",
+  twitterImage: "/opengraph-image",
 };
 
 export const createOpenGraphMetadata = (
