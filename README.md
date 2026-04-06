@@ -1,27 +1,59 @@
-# Filipe Mendes Portfolio
+<p align="center">
+  <img src="./public/images/main-logo/filipe-mendes-250.webp" alt="Filipe Mendes portrait" width="128" height="128" />
+</p>
 
-Next.js App Router portfolio covering landing pages, project detail pages, and a standalone documentation workspace.
+<h1 align="center">Filipe Mendes Portfolio</h1>
+
+<p align="center">
+  Next.js App Router portfolio covering landing pages, project case studies, and a standalone documentation workspace.
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-16-black?logo=next.js" alt="Next.js 16" />
+  <img src="https://img.shields.io/badge/React-19-149ECA?logo=react&logoColor=white" alt="React 19" />
+  <img src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white" alt="TypeScript 5" />
+  <img src="https://img.shields.io/badge/Framer_Motion-12-000000?logo=framer&logoColor=white" alt="Framer Motion 12" />
+  <img src="https://img.shields.io/badge/npm-11-CB3837?logo=npm&logoColor=white" alt="npm 11" />
+</p>
+
+## Contents
+
+- [Overview](#overview)
+- [Highlights](#highlights)
+- [Stack](#stack)
+- [Route Surface](#route-surface)
+- [Project Structure](#project-structure)
+- [Local Development](#local-development)
+- [Scripts](#scripts)
+- [Content and Docs Model](#content-and-docs-model)
+- [Environment Toggle](#environment-toggle)
+- [Verification](#verification)
 
 ## Overview
 
-This repository powers a personal portfolio for Filipe Mendes, a frontend and mobile engineer. The site combines:
-
-- a landing page with hero, projects, about, and contact sections
-- dedicated project pages for selected case studies
-- a docs workspace for delivery notes, project documentation, and reference material
-- light and dark theme persistence through cookies and `localStorage`
+This repository powers a personal portfolio for Filipe Mendes, a frontend and mobile engineer. The site combines a section-based landing page, dedicated project pages, and a docs workspace for project notes and reference material.
 
 Content is data-driven. Site copy, project records, project detail content, and docs entries live under `src/data`, then flow into thin route files and focused views.
+
+## Highlights
+
+- Landing page with hero, projects, about, and contact sections
+- Dedicated project routes for portfolio case studies
+- Standalone docs workspace separated from the main site shell
+- Theme persistence through cookies and `localStorage`
+- Shared theme tokens, motion tokens, and CSS variable-driven styling
+- Server-first rendering with narrow client boundaries for motion and browser state
 
 ## Stack
 
 - Next.js 16 App Router
 - React 19
 - TypeScript 5
-- Framer Motion for interaction and reveal motion
-- CSS Modules plus shared theme tokens and CSS custom properties
+- Framer Motion
+- CSS Modules
+- Shared theme tokens and CSS custom properties
 
-## Routes
+## Route Surface
 
 - `/` landing page
 - `/projects/[slug]` project detail pages
@@ -30,30 +62,41 @@ Content is data-driven. Site copy, project records, project detail content, and 
 - `/docs/projects/[projectSlug]` project docs index
 - `/docs/projects/[projectSlug]/[docSlug]` project-scoped docs
 
-## Architecture Notes
+## Project Structure
 
-- `src/app` keeps route files thin and focused on metadata, params, and data handoff.
-- `src/views` owns page-level composition.
-- `src/components` contains reusable UI, docs, branding, navigation, and layout pieces.
-- `src/data` stores portfolio content, project metadata, docs registry entries, and site copy.
-- `src/shared/theme` centralizes theme tokens, motion values, and theme initialization.
+```text
+src/
+  app/         App Router routes, metadata, and layout entry points
+  views/       Page-level composition
+  components/  Reusable UI, layout, branding, navigation, and docs components
+  data/        Site copy, project modules, docs registry, and static content
+  shared/      Theme, motion, styles, and shared navigation utilities
+```
 
-The app defaults to Server Components. Client boundaries stay small and are used for motion, section tracking, theme interactions, and browser-only behavior.
+Architecture boundaries:
+
+- `src/app` handles params, metadata, and view handoff
+- `src/views` owns page composition
+- `src/components` holds reusable building blocks
+- `src/data` stores deterministic content
+- `src/shared/theme` centralizes theme initialization and motion values
+
+The app defaults to Server Components. Client components are limited to motion, section tracking, theme interactions, and browser-only behavior.
 
 ## Local Development
 
-### Prerequisites
+Prerequisites:
 
 - Node.js 22+
 - npm 11+
 
-### Install
+Install dependencies:
 
 ```bash
 npm install
 ```
 
-### Start the development server
+Start the development server:
 
 ```bash
 npm run dev
@@ -72,11 +115,11 @@ Open [http://localhost:3000](http://localhost:3000).
 - `npm run check` run token checks, lint, and type checking
 - `npm run format` apply ESLint auto-fixes
 
-## Content Model
+## Content and Docs Model
 
 Projects are registered as modules under `src/data/projects`. Each module can expose:
 
-- landing-card content
+- landing card content
 - project detail content
 - docs content
 - visibility flags for landing and demo behavior
@@ -85,11 +128,11 @@ The docs workspace is registry-driven. `src/data/docs/docs.registry.ts` builds n
 
 ## Environment Toggle
 
-Set `ENABLE_DOCS_DEMOS=true` to include development-only docs fixtures in the docs registry. Leave it unset in normal usage to keep demo content hidden.
+Set `ENABLE_DOCS_DEMOS=true` to include development-only docs fixtures in the docs registry. Leave it unset to keep demo content hidden.
 
 ## Verification
 
-Before shipping changes, run:
+Run both commands before shipping changes:
 
 ```bash
 npm run check
