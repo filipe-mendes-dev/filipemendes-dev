@@ -145,7 +145,7 @@ export const ProjectScreenshotsCarousel = ({
     const offset = info.offset.x;
     const velocity = info.velocity.x;
 
-    let nextIndex = index;
+    let nextIndex = clampedIndex;
 
     if (Math.abs(velocity) > SWIPE_VELOCITY_THRESHOLD) {
       nextIndex = velocity > 0 ? clampedIndex - 1 : clampedIndex + 1;
@@ -238,9 +238,7 @@ export const ProjectScreenshotsCarousel = ({
           aria-label="Show previous screenshots"
           className={`${st.arrowButton} ${st.arrowButtonPrev}`}
           disabled={clampedIndex === 0}
-          onClick={() =>
-            setIndex((currentIndex) => Math.max(0, currentIndex - 1))
-          }
+          onClick={() => setIndex(Math.max(0, clampedIndex - 1))}
         >
           <ChevronBackIcon />
         </button>
@@ -250,9 +248,7 @@ export const ProjectScreenshotsCarousel = ({
           aria-label="Show next screenshots"
           className={`${st.arrowButton} ${st.arrowButtonNext}`}
           disabled={clampedIndex === maxIndex}
-          onClick={() =>
-            setIndex((currentIndex) => Math.min(maxIndex, currentIndex + 1))
-          }
+          onClick={() => setIndex(Math.min(maxIndex, clampedIndex + 1))}
         >
           <ChevronForwardIcon />
         </button>
