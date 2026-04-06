@@ -1,18 +1,5 @@
-import {
-  projectModule as acinWebPlatformProjectModule,
-} from "./acin-web-platform";
-import {
-  projectModule as demoDocsProjectModule,
-} from "./demo-docs";
-import {
-  projectModule as arcTimerProjectModule,
-} from "./arc-timer";
-import {
-  projectModule as inovInfraredDetectionProjectModule,
-} from "./inov-infrared-detection";
-import {
-  projectModule as nearsoftMobileAppsProjectModule,
-} from "./nearsoft-mobile-apps";
+import { projectModule as demoDocsProjectModule } from "./demo-docs";
+import { projectModule as arcTimerProjectModule } from "./arc-timer";
 import {
   type LandingProjectData,
   type ProjectModule,
@@ -26,7 +13,6 @@ export type {
   ProjectDocsContent,
   ProjectDetailFeatureItem,
   ProjectModule,
-  ProjectNarrative,
   ProjectRecord,
 } from "./projects.interfaces";
 export {
@@ -36,11 +22,8 @@ export {
 } from "./projects.interfaces";
 
 export const projectModules: ProjectModule[] = [
-  acinWebPlatformProjectModule,
-  demoDocsProjectModule,
   arcTimerProjectModule,
-  nearsoftMobileAppsProjectModule,
-  inovInfraredDetectionProjectModule,
+  demoDocsProjectModule,
 ];
 
 const publicProjectModules = projectModules.filter((projectModule) => {
@@ -48,21 +31,24 @@ const publicProjectModules = projectModules.filter((projectModule) => {
 });
 
 export const projectsData: ProjectRecord[] = publicProjectModules.map(
-  (projectModule) => projectModule.project,
+  (projectModule) => projectModule.project
 );
 
-export const landingProjectsData: LandingProjectData[] = publicProjectModules.map(
-  (projectModule) => toLandingProjectData(projectModule.project),
-);
+export const landingProjectsData: LandingProjectData[] =
+  publicProjectModules.map((projectModule) =>
+    toLandingProjectData(projectModule.project)
+  );
 
 export const getProjectModuleBySlug = (
-  slug: string,
+  slug: string
 ): ProjectModule | undefined => {
-  return projectModules.find((projectModule) => projectModule.project.slug === slug);
+  return projectModules.find(
+    (projectModule) => projectModule.project.slug === slug
+  );
 };
 
 export const getProjectRecordBySlug = (
-  slug: string,
+  slug: string
 ): ProjectRecord | undefined => {
   return getProjectModuleBySlug(slug)?.project;
 };
