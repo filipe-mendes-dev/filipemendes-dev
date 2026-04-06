@@ -101,13 +101,7 @@ export const projectDetail: ProjectDetailContent = {
         "Workouts serialized into files for import, export, and reuse across devices.",
     },
   ],
-  techStack: [
-    "React Native",
-    "TypeScript",
-    "Expo",
-    "Audio feedback",
-    "Haptic feedback",
-  ],
+  techStack: ["React Native", "Expo Router", "React Reanimated", "TypeScript"],
   metadata: createProjectMetadata(
     project.name,
     "A focused interval timer for HIIT workouts, designed around precise timing, minimal interaction, and reliable execution during high-intensity sessions."
