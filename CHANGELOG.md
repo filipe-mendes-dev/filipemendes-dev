@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## Unreleased
+
+### Changed
+
+- Updated the Open Graph image to better match the website design
+
 ## [v1.0.0] - 2026-04-06
 
 ### Added
