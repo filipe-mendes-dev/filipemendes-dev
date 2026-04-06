@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 
 import { personData } from "./person.data";
-import { siteData } from "./site.data";
 
 export interface SiteMetadataImage {
   alt: string;
