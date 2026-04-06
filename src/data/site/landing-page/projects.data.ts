@@ -4,8 +4,4 @@ export {
   landingProjectsData,
   projectsData,
 } from "../../projects";
-export type {
-  LandingProjectData,
-  ProjectNarrative,
-  ProjectRecord,
-} from "../../projects";
+export type { LandingProjectData, ProjectRecord } from "../../projects";

@@ -25,7 +25,7 @@ const NotFound = (): ReactElement => {
         <NotFoundPage />
       </main>
       <Footer
-        descriptor={shellViewModel.descriptor}
+        descriptor={shellViewModel.description}
         githubUrl={githubUrl}
         linkedInUrl={linkedInUrl}
         name={shellViewModel.siteTitle}

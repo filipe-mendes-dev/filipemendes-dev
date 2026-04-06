@@ -6,7 +6,7 @@ import { type NavigationItem, siteData } from "../site/site.data";
 
 export interface ShellViewModel {
   siteTitle: string;
-  descriptor: string;
+  description: string;
   navigation: NavigationItem[];
   footerSocials: SocialLink[];
 }
@@ -14,7 +14,7 @@ export interface ShellViewModel {
 export const getShellViewModel = (): ShellViewModel => {
   return {
     siteTitle: siteData.siteTitle,
-    descriptor: siteData.descriptor,
+    description: siteData.description,
     navigation: siteData.navigation,
     footerSocials: contactData.socials,
   };

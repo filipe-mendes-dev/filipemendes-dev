@@ -9,15 +9,13 @@ interface SiteLayoutProps {
   children: ReactNode;
 }
 
-const SiteLayout = ({
-  children,
-}: SiteLayoutProps): ReactElement => {
+const SiteLayout = ({ children }: SiteLayoutProps): ReactElement => {
   const shellViewModel = getShellViewModel();
   const linkedInUrl = shellViewModel.footerSocials.find(
-    (social) => social.label === "LinkedIn",
+    (social) => social.label === "LinkedIn"
   )?.href;
   const githubUrl = shellViewModel.footerSocials.find(
-    (social) => social.label === "GitHub",
+    (social) => social.label === "GitHub"
   )?.href;
 
   return (
@@ -28,7 +26,7 @@ const SiteLayout = ({
       />
       <main className={st.main}>{children}</main>
       <Footer
-        descriptor={shellViewModel.descriptor}
+        descriptor={shellViewModel.description}
         githubUrl={githubUrl}
         linkedInUrl={linkedInUrl}
         name={shellViewModel.siteTitle}

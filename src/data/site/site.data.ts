@@ -8,13 +8,13 @@ export interface NavigationItem {
 
 export interface SiteData {
   siteTitle: string;
-  descriptor: string;
+  description: string;
   navigation: NavigationItem[];
 }
 
 export const siteData: SiteData = {
   siteTitle: "Filipe Mendes",
-  descriptor: "Software Developer",
+  description: "Frontend & Mobile Engineer",
   navigation: [
     { label: "Home", href: "/", sectionId: "home" },
     { label: "Projects", href: "/", sectionId: "projects" },

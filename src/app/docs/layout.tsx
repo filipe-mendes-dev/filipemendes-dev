@@ -11,12 +11,10 @@ interface DocsLayoutProps {
   children: ReactNode;
 }
 
-const DocsLayout = ({
-  children,
-}: DocsLayoutProps): ReactElement => {
+const DocsLayout = ({ children }: DocsLayoutProps): ReactElement => {
   return (
     <DocsShell
-      descriptor={siteData.descriptor}
+      descriptor={siteData.description}
       featuredDocs={getFeaturedDocs()}
       projects={getDocsProjects()}
       siteTitle={siteData.siteTitle}

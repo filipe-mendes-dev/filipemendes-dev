@@ -2,18 +2,15 @@ import type { Metadata } from "next";
 
 import type { ProjectLogo } from "../../components/projects/ProjectLogoMark";
 import type { Doc } from "../docs/docs.interfaces";
+import {
+  createOpenGraphMetadata,
+  createTwitterMetadata,
+} from "../site/site.metadata";
 import { siteData } from "../site/site.data";
 import type {
   ProjectDetailHeroData,
   ProjectScreenshotItem,
 } from "../../views/ProjectPages/ProjectDetailPage";
-
-export interface ProjectNarrative {
-  problem: string;
-  approach: string;
-  stack: string;
-  outcome: string;
-}
 
 export interface ProjectRecord {
   id: string;
@@ -22,7 +19,6 @@ export interface ProjectRecord {
   logo: ProjectLogo;
   category: string;
   description: string;
-  narrative: ProjectNarrative;
   isProfessional?: boolean;
 }
 
@@ -33,7 +29,6 @@ export interface LandingProjectData {
   logo: ProjectLogo;
   category: string;
   description: string;
-  narrative: ProjectNarrative;
   isProfessional?: boolean;
 }
 
@@ -76,7 +71,7 @@ export const getProjectHref = (slug: string): string => {
 };
 
 export const toLandingProjectData = (
-  project: ProjectRecord,
+  project: ProjectRecord
 ): LandingProjectData => {
   return {
     id: project.id,
@@ -85,29 +80,20 @@ export const toLandingProjectData = (
     logo: project.logo,
     category: project.category,
     description: project.description,
-    narrative: project.narrative,
     isProfessional: project.isProfessional,
   };
 };
 
 export const createProjectMetadata = (
   projectName: string,
-  description: string,
+  description: string
 ): Metadata => {
   const title = `${projectName} | ${siteData.siteTitle}`;
 
   return {
     title,
     description,
-    openGraph: {
-      title,
-      description,
-      type: "article",
-    },
-    twitter: {
-      card: "summary",
-      title,
-      description,
-    },
+    openGraph: createOpenGraphMetadata(title, description, "article"),
+    twitter: createTwitterMetadata(title, description),
   };
 };

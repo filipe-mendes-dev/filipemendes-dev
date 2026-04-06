@@ -93,6 +93,8 @@ export const DocsSidebarContent = ({
       logo: document.logo ?? documentLogo,
     };
   });
+  const hasFeaturedItems = featuredItems.length > 0;
+  const hasProjectItems = projectItems.length > 0;
 
   const content = (
     <nav aria-label="Documentation navigation" className={st.nav}>
@@ -109,24 +111,28 @@ export const DocsSidebarContent = ({
       </ul>
 
       <LayoutGroup>
-        <DocsSidebarAccordion
-          isExpanded={isFeaturedOpen}
-          items={featuredItems}
-          label="Featured"
-          onItemClick={onClose}
-          onToggle={() => {
-            setIsFeaturedOpen((currentValue) => !currentValue);
-          }}
-        />
-        <DocsSidebarAccordion
-          isExpanded={isProjectsOpen}
-          items={projectItems}
-          label="Projects"
-          onItemClick={onClose}
-          onToggle={() => {
-            setIsProjectsOpen((currentValue) => !currentValue);
-          }}
-        />
+        {hasFeaturedItems ? (
+          <DocsSidebarAccordion
+            isExpanded={isFeaturedOpen}
+            items={featuredItems}
+            label="Featured"
+            onItemClick={onClose}
+            onToggle={() => {
+              setIsFeaturedOpen((currentValue) => !currentValue);
+            }}
+          />
+        ) : null}
+        {hasProjectItems ? (
+          <DocsSidebarAccordion
+            isExpanded={isProjectsOpen}
+            items={projectItems}
+            label="Projects"
+            onItemClick={onClose}
+            onToggle={() => {
+              setIsProjectsOpen((currentValue) => !currentValue);
+            }}
+          />
+        ) : null}
       </LayoutGroup>
     </nav>
   );
