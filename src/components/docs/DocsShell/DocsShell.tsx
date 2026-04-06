@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 
+import { LayoutContainer } from "../../layout/LayoutContainer";
 import { DocsSidebar } from "../DocsSidebar";
 import type { DocsShellProps } from "./DocsShell.interfaces";
 import st from "./DocsShell.module.css";
@@ -19,9 +20,9 @@ export const DocsShell = ({
         projects={projects}
         siteTitle={siteTitle}
       />
-      <main className={st.content}>
+      <LayoutContainer as="main" className={st.content}>
         <div className={st.contentInner}>{children}</div>
-      </main>
+      </LayoutContainer>
     </div>
   );
 };

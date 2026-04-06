@@ -5,7 +5,6 @@ interface LandingPageMotionConfig {
 }
 
 export interface MotionDurationConfig {
-  divider: number;
   fast: number;
   medium: number;
   slow: number;
@@ -39,9 +38,11 @@ export interface MotionStaggerConfig {
 }
 
 const formatPercentageValue = (value: number): string => {
-  const roundedValue = Number.isInteger(value) ? value.toString() : value.toFixed(2);
+  const roundedValue = Number.isInteger(value)
+    ? value.toString()
+    : value.toFixed(2);
 
-  return roundedValue.replace(/\.?0+$/, '');
+  return roundedValue.replace(/\.?0+$/, "");
 };
 
 const toViewportBottomRootMargin = (viewportRatio: number): string => {
@@ -53,11 +54,10 @@ const toViewportBottomRootMargin = (viewportRatio: number): string => {
 export const landingPageMotion: LandingPageMotionConfig = {
   activeSectionViewportRatio: 0.2,
   revealEntryThreshold: 0.01,
-  revealEntryViewportRatio: 0.65,
+  revealEntryViewportRatio: 0.85,
 };
 
 export const motionDurationMs: MotionDurationConfig = {
-  divider: 840,
   fast: 120,
   medium: 240,
   slow: 360,
@@ -83,13 +83,13 @@ export const motionScale: MotionScaleConfig = {
 };
 
 export const motionStaggerMs: MotionStaggerConfig = {
-  compact: 90,
-  header: 120,
-  relaxed: 180,
-  section: 180,
-  tight: 70,
+  compact: 60,
+  header: 80,
+  relaxed: 120,
+  section: 120,
+  tight: 50,
 };
 
 export const landingPageRevealRootMargin = toViewportBottomRootMargin(
-  landingPageMotion.revealEntryViewportRatio,
+  landingPageMotion.revealEntryViewportRatio
 );

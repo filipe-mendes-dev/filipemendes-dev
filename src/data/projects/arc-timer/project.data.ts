@@ -18,7 +18,7 @@ export const project: ProjectRecord = {
   },
   category: "Mobile App",
   description:
-    "A focused interval timer for HIIT workouts designed around precise timing, minimal interaction, and reliable flow during high-intensity sessions.",
+    "Personal-use project evolved into a production-level application. Full workout flow from setup to execution and tracking.",
   narrative: {
     problem:
       "HIIT sessions require precise timing and minimal interaction, but many workout timers force too much attention back onto the device during execution.",

@@ -80,8 +80,6 @@
 
 .mobileBar {
   display: none;
-  padding-inline: 1rem;
-  padding-block: 0.5rem;
 }
 
 .mobileBrand {
@@ -121,7 +119,7 @@
     align-items: center;
     width: 100%;
     column-gap: var(--space-3);
-    padding-inline: 1rem;
+    padding-inline: 1.25rem 0.75rem;
     padding-block: 0.5rem;
   }
 

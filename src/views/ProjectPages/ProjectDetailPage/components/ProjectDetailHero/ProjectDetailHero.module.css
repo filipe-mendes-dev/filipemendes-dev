@@ -1,16 +1,8 @@
-.root::after {
-  top: 1rem;
-  left: max(1rem, calc(50% - 34rem));
+.root {
 }
 
 .heroInner {
-  width: var(--container);
-  margin-inline: auto;
-  padding-bottom: var(--space-5);
-  padding-top: var(--space-4);
-}
-
-.heroReveal {
+  padding-block: clamp(2.5rem, 4vw, 3.5rem);
   display: grid;
   gap: var(--space-4);
 }
@@ -19,6 +11,7 @@
   display: grid;
   gap: var(--space-3);
   align-items: start;
+  max-width: var(--content-max-readable-lg);
 }
 
 .heroTitleRow {
@@ -27,15 +20,15 @@
   gap: var(--space-2);
   align-items: stretch;
   width: fit-content;
-  max-width: min(100%, 25rem);
+  max-width: min(100%, var(--content-max-wide));
 }
 
 .projectLogo {
+  width: clamp(3.35rem, 6vw, 4.4rem);
+  flex: none;
   align-self: stretch;
   height: auto;
   aspect-ratio: 1;
-  min-width: 3.35rem;
-  max-width: 3.75rem;
   border-radius: calc(var(--radius-md) * 0.92);
   border: var(--line-strong) solid
     color-mix(in srgb, var(--code-border) 44%, transparent);
@@ -60,6 +53,12 @@
   gap: var(--space-3);
 }
 
+.contentActions {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-2);
+}
+
 .projectHeaderIntro {
   display: flex;
   flex-direction: column;
@@ -81,38 +80,35 @@
 
 .projectTitle {
   margin: 0;
-  max-width: var(--content-max-narrow);
-  font-size: clamp(1.5rem, 1.34rem + 0.72vw, 1.95rem);
+  font-size: var(--font-size-title-md);
   line-height: var(--line-height-title);
-  letter-spacing: -0.015em;
   text-wrap: balance;
 }
 
 .projectPositioning {
-  max-width: var(--content-max-readable);
   color: var(--ink-muted);
-  font-size: clamp(1rem, 1.4vw, 1.12rem);
-  line-height: 1.66;
+  font-size: clamp(0.9rem, 1.4vw, 1rem);
   overflow-wrap: anywhere;
   text-wrap: pretty;
+  max-width: var(--content-max-readable);
 }
 
 .projectDescription {
-  max-width: var(--content-max-readable);
-  overflow-wrap: anywhere;
+  font-size: clamp(1rem, 1.4vw, 1.12rem);
+  overflow-wrap: break-word;
   text-wrap: pretty;
 }
 
 .heroActions {
   display: grid;
-  gap: var(--space-3);
+  gap: var(--space-2);
 }
 
 .projectDetailLinks,
 .storeLinkRow {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-3);
+  gap: var(--space-2) var(--space-3);
   align-items: center;
 }
 
@@ -121,6 +117,8 @@
   align-items: center;
   gap: 0.45rem;
   color: var(--moss);
+  min-height: auto;
+  padding-block: 0;
 }
 
 .metaLinkIcon {
@@ -142,7 +140,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 2.75rem;
+  height: clamp(2.75rem, 5vw, 3rem);
   width: auto;
   max-width: 100%;
 }
@@ -154,88 +152,7 @@
   max-width: 100%;
 }
 
-.appStoreBadgeImage {
-  height: 2.75rem;
-}
-
-.googlePlayBadgeImage {
-  height: 2.75rem;
-}
-
-.backLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  width: fit-content;
-  min-height: 1.9rem;
-  color: var(--ink);
-  text-decoration: none;
-  padding: 0.28rem 0.65rem 0.32rem;
-  border-radius: var(--radius-pill);
-  border: var(--line-strong) solid
-    color-mix(in srgb, var(--line) 82%, transparent);
-  background: color-mix(in srgb, var(--paper-raised) 62%, transparent);
-  transition: color var(--transition), border-color var(--transition),
-    background-color var(--transition);
-  font-size: 0.84rem;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: 0.01em;
-}
-
-.backIcon {
-  width: 0.78rem;
-  height: 0.78rem;
-  flex: none;
-}
-
-.backLink:hover {
-  color: var(--moss);
-  border-color: color-mix(in srgb, var(--moss) 36%, var(--line));
-  background: color-mix(in srgb, var(--paper-raised) 82%, transparent);
-}
-
-.backLink:focus-visible,
 .storeBadgeLink:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--moss) 70%, transparent);
   outline-offset: 2px;
-}
-
-@media (min-width: 48rem) {
-  .heroTitleRow {
-    max-width: min(100%, var(--content-max-wide));
-  }
-
-  .projectLogo {
-    min-width: 3.75rem;
-    max-width: 4.25rem;
-  }
-
-  .appStoreBadgeImage {
-    height: 3rem;
-  }
-
-  .googlePlayBadgeImage {
-    height: 3rem;
-  }
-}
-
-@media (min-width: 64rem) {
-  .heroInner {
-    padding-bottom: var(--space-6);
-  }
-
-  .heroActions {
-    grid-template-columns: 1fr;
-    align-items: start;
-  }
-
-  .projectLogo {
-    min-width: 4rem;
-    max-width: 4.4rem;
-  }
-
-  .storeLinkRow {
-    justify-content: flex-start;
-  }
 }

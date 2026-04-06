@@ -8,13 +8,15 @@ import { useSectionRevealMotion } from "../../../shared/motion/useSectionRevealM
 import {
   DetailBulletList,
   ProjectDetailPage,
+  ProjectScreenshotsSection,
   ProjectTechStackSection,
 } from "../ProjectDetailPage";
 import shared from "../ProjectDetailPage/ProjectDetailPage.module.css";
 import {
-  atlasMobileArchitecture,
   atlasMobileHero,
+  atlasMobileImplementationDetails,
   atlasMobileKeyFeatures,
+  atlasMobileScreenshots,
   atlasMobileTechStack,
 } from "./AtlasMobilePage.data";
 
@@ -23,6 +25,8 @@ export const AtlasMobilePage = (): ReactElement => {
 
   return (
     <ProjectDetailPage hero={atlasMobileHero}>
+      <ProjectScreenshotsSection screenshots={atlasMobileScreenshots} />
+
       <Section
         className={shared.featuresSection}
         contentClassName={shared.detailSectionContent}
@@ -38,10 +42,10 @@ export const AtlasMobilePage = (): ReactElement => {
         className={shared.architectureSection}
         contentClassName={shared.detailSectionContent}
         id="project-detail-architecture"
-        title="Architecture"
+        title="Implementation Details"
       >
         <motion.div variants={revealMotion.itemVariants}>
-          <DetailBulletList items={atlasMobileArchitecture} />
+          <DetailBulletList items={atlasMobileImplementationDetails} />
         </motion.div>
       </Section>
 

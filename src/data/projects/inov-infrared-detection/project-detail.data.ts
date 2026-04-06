@@ -20,16 +20,31 @@ export const projectDetail: ProjectDetailContent = {
       },
     ],
   },
-  screenshots: [],
+  screenshots: {
+    items: [],
+  },
   keyFeatures: [
-    "Real-time detection for vehicles, people, and deer",
-    "Infrared footage collection and labeling for training",
-    "Conference publication and presentation based on the work",
+    {
+      title: "Real-time detection for vehicles, people, and deer",
+    },
+    {
+      title: "Infrared footage collection and labeling for training",
+    },
+    {
+      title: "Conference publication and presentation based on the work",
+    },
   ],
-  architecture: [
-    "EfficientDet neural network model adapted for infrared image classification",
-    "Training workflow supported by curated and labeled thermal datasets",
-    "Computer vision pipeline implemented with TensorFlow and OpenCV",
+  implementationDetails: [
+    {
+      title:
+        "EfficientDet neural network model adapted for infrared image classification",
+    },
+    {
+      title: "Training workflow supported by curated and labeled thermal datasets",
+    },
+    {
+      title: "Computer vision pipeline implemented with TensorFlow and OpenCV",
+    },
   ],
   techStack: ["Python", "TensorFlow", "OpenCV", "EfficientDet"],
   metadata: createProjectMetadata(

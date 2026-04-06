@@ -13,8 +13,8 @@ import {
 } from "../ProjectDetailPage";
 import shared from "../ProjectDetailPage/ProjectDetailPage.module.css";
 import {
-  acinWebPlatformArchitecture,
   acinWebPlatformHero,
+  acinWebPlatformImplementationDetails,
   acinWebPlatformKeyFeatures,
   acinWebPlatformScreenshots,
   acinWebPlatformTechStack,
@@ -42,10 +42,10 @@ export const AcinWebPlatformPage = (): ReactElement => {
         className={shared.architectureSection}
         contentClassName={shared.detailSectionContent}
         id="project-detail-architecture"
-        title="Architecture"
+        title="Implementation Details"
       >
         <motion.div variants={revealMotion.itemVariants}>
-          <DetailBulletList items={acinWebPlatformArchitecture} />
+          <DetailBulletList items={acinWebPlatformImplementationDetails} />
         </motion.div>
       </Section>
 

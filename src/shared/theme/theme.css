@@ -2,6 +2,11 @@
   --paper: #f6f6f4;
   --paper-raised: #ffffff;
   --card-bg: rgb(255 255 255 / 97%);
+  --card-surface-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--paper-raised) 94%, transparent) 0%,
+    color-mix(in srgb, var(--card-bg) 88%, transparent) 100%
+  );
   --code-bg: #edf2f8;
   --code-border: rgb(39 88 164 / 26%);
   --code-ink: #244066;
@@ -14,6 +19,7 @@
   --chip-bg: #eef1f5;
   --button-secondary-bg: #edf1f5;
   --header-bg: rgb(246 248 251 / 74%);
+  --overlay-backdrop: rgb(0 0 0 / 78%);
   --footer-bg: #d9d7d1;
   --footer-surface-bg: linear-gradient(
     180deg,
@@ -44,6 +50,7 @@
   --radius-pill: 999px;
   --radius-xl: 1.25rem;
   --radius-2xl: 1.5rem;
+  --font-size-micro: 0.68rem;
   --font-size-caption: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-body-sm: 0.8125rem;
@@ -53,7 +60,9 @@
   --font-size-heading-sm: clamp(1.02rem, 0.95rem + 0.2vw, 1.16rem);
   --font-size-heading-md: clamp(1.05rem, 0.96rem + 0.2vw, 1.2rem);
   --font-size-heading-lg: clamp(1.2rem, 1.1rem + 0.3vw, 1.35rem);
-  --font-size-title: clamp(1.7rem, 3.4vw, 2.35rem);
+  --font-size-title: clamp(1.7rem, 3.7vw, 2.35rem);
+  --font-size-title-sm: clamp(1.35rem, 3vw, 1.85rem);
+  --font-size-title-md: clamp(1.55rem, 3.1vw, 2rem);
   --font-size-lead: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
   --line-height-body: 1.65;
   --line-height-heading: 1.2;
@@ -64,27 +73,23 @@
   --font-ibm-plex-mono: "IBM Plex Mono";
   --font-display: var(--font-space-grotesk), "Segoe UI", sans-serif;
   --font-body: var(--font-manrope), "Segoe UI", sans-serif;
-  --font-mono: var(--font-ibm-plex-mono), "SFMono-Regular", monospace;
+  --font-mono: "Cascadia Mono", "Cascadia Code", "Consolas",
+    var(--font-ibm-plex-mono), "SFMono-Regular", monospace;
   --space-1: 0.5rem;
   --space-2: 0.75rem;
   --space-3: 1rem;
   --space-4: 1.5rem;
   --space-5: 2rem;
   --space-6: clamp(2.5rem, 5vw, 4rem);
-  --container: min(
-    calc(100% - clamp(2rem, 6vw, 4.5rem)),
-    clamp(72rem, 80vw, 88rem)
-  );
-  --shell-container: min(
-    calc(100% - clamp(1rem, 3vw, 2.5rem)),
-    clamp(76rem, 92vw, 90rem)
-  );
+  --layout-container-padding-inline: clamp(1.5rem, 3vw, 4rem);
+  --layout-container-padding-block: clamp(1.5rem, 3vw, 2.5rem);
+  --container: min(100%, clamp(72rem, 90vw, 88rem));
+  --shell-container: min(100%, clamp(80rem, 100vw, 98rem));
   --content-max-narrow: 34ch;
   --content-max-readable: 65ch;
+  --content-max-readable-lg: 75ch;
   --content-max-wide: 54rem;
-  --section-padding-y: var(--space-5);
-  --section-padding-y-lg: var(--space-6);
-  --panel-padding: clamp(1rem, 1.6vw, 1.25rem);
+  --panel-padding: clamp(1.25rem, 1.6vw, 1.5rem);
   --panel-padding-compact: clamp(0.85rem, 1.35vw, 1rem);
   --control-height-md: 2.75rem;
   --control-height-lg: 2.85rem;
@@ -114,6 +119,11 @@
   --paper: #040506;
   --paper-raised: #0f1114;
   --card-bg: #15181c;
+  --card-surface-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--paper-raised) 26%, transparent) 0%,
+    color-mix(in srgb, var(--card-bg) 56%, transparent) 100%
+  );
   --code-bg: #111625;
   --code-border: rgb(120 166 233 / 42%);
   --code-ink: #a6c7f5;
@@ -126,6 +136,7 @@
   --chip-bg: #1a1d22;
   --button-secondary-bg: #1f232a;
   --header-bg: rgb(17 19 23 / 92%);
+  --overlay-backdrop: rgb(0 0 0 / 78%);
   --footer-bg: #010203;
   --footer-surface-bg: linear-gradient(
     180deg,

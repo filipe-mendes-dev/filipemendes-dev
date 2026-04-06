@@ -5,8 +5,7 @@
 }
 
 .footerShell {
-  width: var(--shell-container);
-  margin-inline: auto;
+  padding-inline: var(--layout-container-padding-inline);
 }
 
 .footerInner {
@@ -138,6 +137,11 @@
 @media (min-width: 48rem) {
   .root {
     padding-block: var(--space-5);
+  }
+
+  .footerShell {
+    width: var(--shell-container);
+    margin-inline: auto;
   }
 
   .footerInner {

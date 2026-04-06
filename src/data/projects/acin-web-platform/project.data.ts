@@ -8,6 +8,7 @@ export const project: ProjectRecord = {
     logoText: "AC",
   },
   category: "Frontend Platform",
+  isProfessional: true,
   description:
     "Web platform development work focused on responsive React interfaces, GraphQL integration, and native-like behavior on the web.",
   narrative: {

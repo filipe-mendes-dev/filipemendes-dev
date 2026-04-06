@@ -3,34 +3,80 @@
 }
 
 .list {
-  gap: var(--space-4);
+  display: grid;
+  gap: clamp(1rem, 0.92rem + 0.35vw, var(--space-4));
+}
+
+.column {
+  gap: clamp(1rem, 0.92rem + 0.35vw, var(--space-4));
+  height: fit-content;
 }
 
 .item {
-  position: relative;
   display: grid;
-  gap: 0.35rem;
-  padding-left: calc(var(--space-3) + 0.55rem);
   min-width: 0;
 }
 
-.item::before {
-  content: '';
-  position: absolute;
-  top: 0.42rem;
-  left: 0;
-  width: 0.46rem;
-  height: 0.46rem;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--moss) 0%, var(--clay) 100%);
-  box-shadow: 0 0 0 0.16rem var(--moss-faint);
+.body {
+  display: grid;
+  min-width: 0;
+  max-width: var(--content-max-readable-lg);
+  gap: clamp(0.75rem, 0.67rem + 0.35vw, 0.95rem);
 }
 
-.copy {
+.heading {
+  display: inline-flex;
+  min-width: 0;
+  width: fit-content;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  align-items: center;
+  background: var(--card-surface-bg);
+}
+
+.index {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  flex: none;
+  color: var(--moss);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-caption);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  background: var(--header-bg);
+  padding-inline: clamp(0.76rem, 0.72rem + 0.18vw, 0.85rem)
+    clamp(0.48rem, 0.45rem + 0.12vw, 0.5rem);
+}
+
+.title {
+  min-width: 0;
   margin: 0;
-  font-size: var(--font-size-body);
-  line-height: 1.68;
+  font-size: var(--font-size-heading-sm);
   color: var(--ink);
   overflow-wrap: anywhere;
   text-wrap: pretty;
+  font-weight: 600;
+  line-height: 1.4;
+  padding-block: 0.38rem;
+  padding-inline: clamp(0.5rem, 0.45rem + 0.25vw, 0.6rem)
+    clamp(0.72rem, 0.56rem + 0.7vw, 1rem);
+}
+
+.description {
+  margin: 0;
+  padding-inline: clamp(1.2rem, 0.93rem + 1.2vw, 2.15rem)
+    clamp(0.7rem, 0.61rem + 0.4vw, 1rem);
+  font-size: var(--font-size-body);
+  line-height: 1.7;
+  color: var(--ink-muted);
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+@media (min-width: 64rem) {
+  .list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }

@@ -15,16 +15,30 @@ export const projectDetail: ProjectDetailContent = {
     isMobileApp: false,
     links: [],
   },
-  screenshots: [],
+  screenshots: {
+    items: [],
+  },
   keyFeatures: [
-    "Responsive layouts with native-like behavior via Capacitor",
-    "GraphQL API integration for platform data",
-    "Unit and E2E testing with Vitest and Playwright",
+    {
+      title: "Responsive layouts with native-like behavior via Capacitor",
+    },
+    {
+      title: "GraphQL API integration for platform data",
+    },
+    {
+      title: "Unit and E2E testing with Vitest and Playwright",
+    },
   ],
-  architecture: [
-    "Component-based React frontend written in TypeScript",
-    "Docker-based development environment using Vite and Yarn",
-    "Testing workflow covering units and end-to-end browser journeys",
+  implementationDetails: [
+    {
+      title: "Component-based React frontend written in TypeScript",
+    },
+    {
+      title: "Docker-based development environment using Vite and Yarn",
+    },
+    {
+      title: "Testing workflow covering units and end-to-end browser journeys",
+    },
   ],
   techStack: [
     "React",

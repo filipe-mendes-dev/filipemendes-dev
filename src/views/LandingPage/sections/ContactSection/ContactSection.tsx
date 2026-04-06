@@ -35,7 +35,6 @@ export const ContactSection = ({ content, isRevealEnabled }: ContactSectionProps
       contentClassName={st.contactGrid}
       id="contact"
       isRevealEnabled={isRevealEnabled}
-      subtitle="Open to focused product and architecture collaboration."
       title="Contact"
     >
       <motion.div variants={revealMotion.itemVariants}>

@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 
 import { portfolio, type ProjectListItem } from "./portfolio_test";
 import type { ProjectDetailHeroData } from "../views/ProjectPages/ProjectDetailPage";
+import type { ProjectDetailFeatureItem } from "./projects";
 
 export interface PortfolioTestProjectDetail {
   hero: ProjectDetailHeroData;
-  keyFeatures: string[];
-  architecture: string[];
+  keyFeatures: ProjectDetailFeatureItem[];
+  implementationDetails: ProjectDetailFeatureItem[];
   techStack: string[];
   metadata: Metadata;
 }
@@ -66,14 +67,26 @@ export const atlasMobileDetail: PortfolioTestProjectDetail = {
     ],
   },
   keyFeatures: [
-    "Offline draft capture with conflict-safe sync",
-    "Role-based task queues and escalation controls",
-    "Structured notes with attachment pipelines",
+    {
+      title: "Offline draft capture with conflict-safe sync",
+    },
+    {
+      title: "Role-based task queues and escalation controls",
+    },
+    {
+      title: "Structured notes with attachment pipelines",
+    },
   ],
-  architecture: [
-    "Client state split between local cache and validated server snapshots",
-    "Queue-based sync worker with retry windows and observability events",
-    "Design system tokens shared between product surfaces for consistency",
+  implementationDetails: [
+    {
+      title: "Client state split between local cache and validated server snapshots",
+    },
+    {
+      title: "Queue-based sync worker with retry windows and observability events",
+    },
+    {
+      title: "Design system tokens shared between product surfaces for consistency",
+    },
   ],
   techStack: [
     "React Native",
@@ -104,14 +117,26 @@ export const forgeWebDetail: PortfolioTestProjectDetail = {
     ],
   },
   keyFeatures: [
-    "Environment health panels with drill-down context",
-    "Release annotations mapped to deployment windows",
-    "Ownership routing for technical response workflows",
+    {
+      title: "Environment health panels with drill-down context",
+    },
+    {
+      title: "Release annotations mapped to deployment windows",
+    },
+    {
+      title: "Ownership routing for technical response workflows",
+    },
   ],
-  architecture: [
-    "Composable frontend modules backed by typed GraphQL contracts",
-    "Server-side normalization to reduce client-side branching complexity",
-    "Observability hooks for tracing product behavior changes",
+  implementationDetails: [
+    {
+      title: "Composable frontend modules backed by typed GraphQL contracts",
+    },
+    {
+      title: "Server-side normalization to reduce client-side branching complexity",
+    },
+    {
+      title: "Observability hooks for tracing product behavior changes",
+    },
   ],
   techStack: ["React", "TypeScript", "Vite", "GraphQL", "Node.js"],
   metadata: createMetadata(forgeWebProject, forgeWebProject.description),

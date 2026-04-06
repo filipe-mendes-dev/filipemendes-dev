@@ -33,6 +33,7 @@ export const LandingPageSection = ({
     className
   );
   const contentClasses = joinClassNames(st.content, contentClassName);
+  const titleClasses = joinClassNames(st.title, st.landingTitle);
 
   return (
     <motion.section
@@ -61,7 +62,7 @@ export const LandingPageSection = ({
         >
           {title !== undefined && (
             <motion.h2
-              className={st.title}
+              className={titleClasses}
               variants={
                 isRevealManaged ? revealMotion.titleGroupVariants : undefined
               }

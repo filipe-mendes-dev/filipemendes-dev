@@ -1,27 +1,27 @@
 .root {
-  padding-block: var(--section-padding-y);
+  padding-block: clamp(2.4rem, 4vw, 4rem);
 }
 
 .content {
-  width: var(--container);
-  margin-inline: auto;
   display: grid;
 }
 
 .header {
-  width: var(--container);
-  margin-inline: auto;
   margin-bottom: var(--space-5);
   display: grid;
   gap: 0.4rem;
 }
 
 .title {
-  font-size: var(--font-size-title);
+  font-size: var(--font-size-title-sm);
   letter-spacing: 0.01em;
   line-height: var(--line-height-title);
   display: grid;
   gap: 0.55rem;
+}
+
+.landingTitle {
+  font-size: var(--font-size-title);
 }
 
 .titleText {
@@ -41,10 +41,4 @@
   max-width: var(--content-max-readable);
   color: var(--ink-muted);
   font-size: var(--font-size-lead);
-}
-
-@media (min-width: 48rem) {
-  .root {
-    padding-block: var(--section-padding-y-lg);
-  }
 }

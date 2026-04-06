@@ -13,8 +13,8 @@ import {
 } from '../ProjectDetailPage';
 import shared from '../ProjectDetailPage/ProjectDetailPage.module.css';
 import {
-  inovInfraredDetectionArchitecture,
   inovInfraredDetectionHero,
+  inovInfraredDetectionImplementationDetails,
   inovInfraredDetectionKeyFeatures,
   inovInfraredDetectionScreenshots,
   inovInfraredDetectionTechStack,
@@ -44,10 +44,10 @@ export const InovInfraredDetectionPage = (): ReactElement => {
         className={shared.architectureSection}
         contentClassName={shared.detailSectionContent}
         id="project-detail-architecture"
-        title="Architecture"
+        title="Implementation Details"
       >
         <motion.div variants={revealMotion.itemVariants}>
-          <DetailBulletList items={inovInfraredDetectionArchitecture} />
+          <DetailBulletList items={inovInfraredDetectionImplementationDetails} />
         </motion.div>
       </Section>
 

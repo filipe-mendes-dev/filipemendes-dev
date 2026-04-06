@@ -23,6 +23,7 @@ export interface ProjectRecord {
   category: string;
   description: string;
   narrative: ProjectNarrative;
+  isProfessional?: boolean;
 }
 
 export interface LandingProjectData {
@@ -33,15 +34,27 @@ export interface LandingProjectData {
   category: string;
   description: string;
   narrative: ProjectNarrative;
+  isProfessional?: boolean;
 }
 
 export interface ProjectDetailContent {
   hero: ProjectDetailHeroData;
-  screenshots: ProjectScreenshotItem[];
-  keyFeatures: string[];
-  architecture: string[];
+  screenshots: ProjectDetailScreenshotsContent;
+  keyFeatures: ProjectDetailFeatureItem[];
+  implementationDetails: ProjectDetailFeatureItem[];
   techStack: string[];
   metadata: Metadata;
+}
+
+export interface ProjectDetailFeatureItem {
+  title: string;
+  description?: string;
+}
+
+export interface ProjectDetailScreenshotsContent {
+  items: ProjectScreenshotItem[];
+  title?: string;
+  subtitle?: string;
 }
 
 export interface ProjectDocsContent {
@@ -73,6 +86,7 @@ export const toLandingProjectData = (
     category: project.category,
     description: project.description,
     narrative: project.narrative,
+    isProfessional: project.isProfessional,
   };
 };
 

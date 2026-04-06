@@ -28,7 +28,6 @@ export const AboutSection = ({
       contentClassName={st.layout}
       id="about"
       isRevealEnabled={isRevealEnabled}
-      subtitle="Profile, systems experience, education, and selected publications."
       title="About Me"
     >
       <motion.div

@@ -2,6 +2,7 @@
 
 import type { ReactElement } from "react";
 
+import { LayoutContainer } from "../../components/layout/LayoutContainer";
 import { PageSectionSurface } from "../../components/ui/PageSectionSurface";
 import { aboutData } from "../../data/site/landing-page/about.data";
 import { contactData } from "../../data/site/landing-page/contact.data";
@@ -20,11 +21,19 @@ const LandingPage = (): ReactElement => {
 
   return (
     <PageSectionSurface className={st.root}>
-      <LandingPageNavigationBinder />
-      <HeroSection content={heroData} />
-      <ProjectsSection content={landingProjectsData} isRevealEnabled={isRevealEnabled} />
-      <AboutSection content={aboutData} isRevealEnabled={isRevealEnabled} />
-      <ContactSection content={contactData} isRevealEnabled={isRevealEnabled} />
+      <LayoutContainer className={st.layoutContainer}>
+        <LandingPageNavigationBinder />
+        <HeroSection content={heroData} />
+        <ProjectsSection
+          content={landingProjectsData}
+          isRevealEnabled={isRevealEnabled}
+        />
+        <AboutSection content={aboutData} isRevealEnabled={isRevealEnabled} />
+        <ContactSection
+          content={contactData}
+          isRevealEnabled={isRevealEnabled}
+        />
+      </LayoutContainer>
     </PageSectionSurface>
   );
 };

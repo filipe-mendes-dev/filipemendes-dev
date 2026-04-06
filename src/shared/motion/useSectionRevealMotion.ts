@@ -39,9 +39,9 @@ export interface SectionRevealMotion {
   viewport: SectionRevealViewport;
 }
 
-const dividerDurationMs = motionDurationMs.divider;
-const itemDurationMs = motionDurationMs.slower;
-const underlineDurationMs = motionDurationMs.slow;
+const dividerDurationMs = motionDurationMs.medium;
+const itemDurationMs = motionDurationMs.medium;
+const underlineDurationMs = motionDurationMs.fast;
 
 const groupOffsetPx = motionOffsetPx.header;
 const itemOffsetPx = motionOffsetPx.item;
@@ -53,7 +53,7 @@ const headerStaggerMs = motionStaggerMs.header;
 const titleStaggerMs = motionStaggerMs.header;
 const contentStaggerMs = motionStaggerMs.compact;
 const nestedStaggerMs = motionStaggerMs.tight;
-const nestedStartDelayMs = motionDurationMs.fast / 2;
+const nestedStartDelayMs = motionStaggerMs.tight;
 
 const toSeconds = (durationMs: number): number => {
   return durationMs / 1000;

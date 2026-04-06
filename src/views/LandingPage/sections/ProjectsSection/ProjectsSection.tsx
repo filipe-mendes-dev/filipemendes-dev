@@ -1,15 +1,18 @@
-'use client';
+"use client";
 
-import type { ReactElement } from 'react';
-import { motion } from 'framer-motion';
+import type { ReactElement } from "react";
+import { motion } from "framer-motion";
 
-import { LandingPageSection } from '../../../../components/ui/Section';
-import { useSectionRevealMotion } from '../../../../shared/motion/useSectionRevealMotion';
-import { ProjectCard } from './components/ProjectCard';
-import type { ProjectsSectionProps } from './ProjectsSection.interfaces';
-import st from './ProjectsSection.module.css';
+import { LandingPageSection } from "../../../../components/ui/Section";
+import { useSectionRevealMotion } from "../../../../shared/motion/useSectionRevealMotion";
+import { ProjectCard } from "./components/ProjectCard";
+import type { ProjectsSectionProps } from "./ProjectsSection.interfaces";
+import st from "./ProjectsSection.module.css";
 
-export const ProjectsSection = ({ content, isRevealEnabled }: ProjectsSectionProps): ReactElement => {
+export const ProjectsSection = ({
+  content,
+  isRevealEnabled,
+}: ProjectsSectionProps): ReactElement => {
   const revealMotion = useSectionRevealMotion();
 
   return (
@@ -18,7 +21,7 @@ export const ProjectsSection = ({ content, isRevealEnabled }: ProjectsSectionPro
       contentClassName={st.projectsList}
       id="projects"
       isRevealEnabled={isRevealEnabled}
-      subtitle="Each product is documented with a clear narrative from problem to measurable outcome."
+      subtitle="Personal work and selected contributions from my professional experience."
       title="Projects"
     >
       {content.map((project) => (

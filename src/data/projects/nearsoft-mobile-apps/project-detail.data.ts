@@ -15,16 +15,30 @@ export const projectDetail: ProjectDetailContent = {
     isMobileApp: true,
     links: [],
   },
-  screenshots: [],
+  screenshots: {
+    items: [],
+  },
   keyFeatures: [
-    "Mobile banking flows built with React Native and Redux",
-    "REST API integration across app features",
-    "Shared internal component library reused across apps",
+    {
+      title: "Mobile banking flows built with React Native and Redux",
+    },
+    {
+      title: "REST API integration across app features",
+    },
+    {
+      title: "Shared internal component library reused across apps",
+    },
   ],
-  architecture: [
-    "TypeScript-first React Native codebase for cross-platform delivery",
-    "Native development workflow using Xcode and Android Studio",
-    "Shared UI foundation designed for reuse across multiple mobile apps",
+  implementationDetails: [
+    {
+      title: "TypeScript-first React Native codebase for cross-platform delivery",
+    },
+    {
+      title: "Native development workflow using Xcode and Android Studio",
+    },
+    {
+      title: "Shared UI foundation designed for reuse across multiple mobile apps",
+    },
   ],
   techStack: [
     "React Native",

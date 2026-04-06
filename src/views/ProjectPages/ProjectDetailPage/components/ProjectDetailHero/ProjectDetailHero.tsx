@@ -1,8 +1,6 @@
 import type { ReactElement } from "react";
 
-import Link from "next/link";
-
-import { BackIcon, ExternalLinkIcon } from "../../../../../components/icons";
+import { ExternalLinkIcon } from "../../../../../components/icons";
 import { TextActionLink } from "../../../../../components/navigation/TextActionLink";
 import { ProjectLogoMark } from "../../../../../components/projects/ProjectLogoMark";
 import surface from "../../../../../components/ui/PageSectionSurface/PageSectionSurface.module.css";
@@ -20,10 +18,6 @@ const hasStoreLinks = (hero: ProjectDetailHeroProps["hero"]): boolean => {
   );
 };
 
-const hasProjectActions = (hero: ProjectDetailHeroProps["hero"]): boolean => {
-  return hasStoreLinks(hero) || hero.links.length > 0;
-};
-
 export const ProjectDetailHero = ({
   hero,
 }: ProjectDetailHeroProps): ReactElement => {
@@ -32,59 +26,20 @@ export const ProjectDetailHero = ({
   return (
     <section className={`${surface.section} ${st.root}`}>
       <div className={st.heroInner}>
-        <div className={st.heroReveal}>
-          <header className={st.heroHeader}>
-            <div className={st.heroTitleRow}>
-              <div className={st.projectLogo} aria-hidden="true">
-                <ProjectLogoMark logo={hero.logo} />
-              </div>
-              <div className={st.projectHeaderIntro}>
-                <p className={st.projectCategory}>{hero.category}</p>
-                <h1 className={st.projectTitle}>{hero.name}</h1>
-              </div>
+        <header className={st.heroHeader}>
+          <div className={st.heroTitleRow}>
+            <div className={st.projectLogo} aria-hidden="true">
+              <ProjectLogoMark logo={hero.logo} />
             </div>
-            <div className={st.projectHeaderContent}>
-              <p className={st.projectPositioning}>{hero.positioning}</p>
-              <p className={st.projectDescription}>{hero.description}</p>
-              <Link href="/" className={st.backLink}>
-                <BackIcon className={st.backIcon} />
-                <span>Back home</span>
-              </Link>
+            <div className={st.projectHeaderIntro}>
+              <p className={st.projectCategory}>{hero.category}</p>
+              <h1 className={st.projectTitle}>{hero.name}</h1>
             </div>
-          </header>
-
-          {hasProjectActions(hero) && (
-            <div className={st.heroActions}>
-              {hero.isMobileApp && hasStoreLinks(hero) && (
-                <div className={st.storeLinkRow} aria-label="Mobile app stores">
-                  {storeLinks?.appStore !== undefined && (
-                    <a
-                      href={storeLinks.appStore}
-                      className={st.storeBadgeLink}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label="Download on the App Store"
-                    >
-                      <AppStoreBadgeIcon
-                        className={`${st.storeBadgeGraphic} ${st.appStoreBadgeImage}`}
-                      />
-                    </a>
-                  )}
-                  {storeLinks?.googlePlay !== undefined && (
-                    <a
-                      href={storeLinks.googlePlay}
-                      className={st.storeBadgeLink}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label="Get it on Google Play"
-                    >
-                      <GooglePlayBadgeIcon
-                        className={`${st.storeBadgeGraphic} ${st.googlePlayBadgeImage}`}
-                      />
-                    </a>
-                  )}
-                </div>
-              )}
+          </div>
+          <div className={st.projectHeaderContent}>
+            <p className={st.projectPositioning}>{hero.positioning}</p>
+            <p className={st.projectDescription}>{hero.description}</p>
+            <div className={st.contentActions}>
               {hero.links.length > 0 && (
                 <div className={st.projectDetailLinks}>
                   {hero.links.map((link) => (
@@ -104,8 +59,37 @@ export const ProjectDetailHero = ({
                 </div>
               )}
             </div>
-          )}
-        </div>
+          </div>
+        </header>
+
+        {hasStoreLinks(hero) && hero.isMobileApp && (
+          <div className={st.heroActions}>
+            <div className={st.storeLinkRow} aria-label="Mobile app stores">
+              {storeLinks?.appStore !== undefined && (
+                <a
+                  href={storeLinks.appStore}
+                  className={st.storeBadgeLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Download on the App Store"
+                >
+                  <AppStoreBadgeIcon className={st.storeBadgeGraphic} />
+                </a>
+              )}
+              {storeLinks?.googlePlay !== undefined && (
+                <a
+                  href={storeLinks.googlePlay}
+                  className={st.storeBadgeLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Get it on Google Play"
+                >
+                  <GooglePlayBadgeIcon className={st.storeBadgeGraphic} />
+                </a>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

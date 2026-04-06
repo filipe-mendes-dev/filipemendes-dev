@@ -9,12 +9,12 @@
   backdrop-filter: blur(12px) saturate(140%);
   -webkit-backdrop-filter: blur(12px) saturate(140%);
   background: var(--header-bg);
+  padding-inline: 1.25rem 0.75rem;
 }
 
 .headerInner {
   position: relative;
-  width: var(--shell-container);
-  margin-inline: auto;
+  width: 100%;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
@@ -263,7 +263,7 @@
 .mobileMenuLabel {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: var(--font-size-micro);
   line-height: 1;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -283,7 +283,9 @@
     grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     row-gap: 0;
     min-height: 4.25rem;
-    padding-block: 0;
+    padding-inline: var(--layout-container-padding-inline);
+    width: var(--shell-container);
+    margin-inline: auto;
   }
 
   .siteMark {
@@ -301,6 +303,10 @@
 
   .headerNav {
     display: none;
+  }
+
+  .headerBar {
+    padding-inline: 0;
   }
 
   .desktopSiteNavList {

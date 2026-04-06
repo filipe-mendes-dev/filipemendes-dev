@@ -24,6 +24,7 @@ export type {
   LandingProjectData,
   ProjectDetailContent,
   ProjectDocsContent,
+  ProjectDetailFeatureItem,
   ProjectModule,
   ProjectNarrative,
   ProjectRecord,
