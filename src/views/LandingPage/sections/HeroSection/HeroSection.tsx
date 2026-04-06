@@ -153,7 +153,6 @@ export const HeroSection = ({ content }: HeroSectionProps): ReactElement => {
               >
                 <motion.div
                   data-hero-copy-item="true"
-                  variants={revealItemVariants}
                   className={st.heroHeader}
                 >
                   <motion.p
