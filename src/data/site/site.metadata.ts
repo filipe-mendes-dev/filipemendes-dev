@@ -17,12 +17,18 @@ export interface SiteMetadataConfig {
   twitterImage: string;
 }
 
-const defaultSiteUrl = "https://filipemendes.dev";
+const defaultLocalSiteUrl = "http://localhost:3000";
 
 const resolveSiteUrl = (): string => {
-  return (
-    process.env.NEXT_PUBLIC_SITE_URL ?? process.env.SITE_URL ?? defaultSiteUrl
-  );
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL;
+  }
+
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+
+  return defaultLocalSiteUrl;
 };
 
 export const siteMetadata: SiteMetadataConfig = {
@@ -31,12 +37,12 @@ export const siteMetadata: SiteMetadataConfig = {
     "Frontend and mobile engineer focused on reliable UI behavior, interaction quality, and structured case studies.",
   siteUrl: resolveSiteUrl(),
   openGraphImage: {
-    url: "/opengraph-image",
+    url: "/opengraph-image.png",
     width: 1200,
     height: 630,
     alt: `${personData.name} portfolio preview`,
   },
-  twitterImage: "/opengraph-image",
+  twitterImage: "/opengraph-image.png",
 };
 
 export const createOpenGraphMetadata = (
