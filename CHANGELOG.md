@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 - Updated the Open Graph image to better match the website design
+- Added baseline security headers for transport enforcement, framing protection, referrer control, opener isolation, MIME sniffing prevention, and disabled unused browser permissions
 
 ## [v1.0.0] - 2026-04-06
 
