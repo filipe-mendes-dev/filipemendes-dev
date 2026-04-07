@@ -33,8 +33,7 @@ const resolveSiteUrl = (): string => {
 
 export const siteMetadata: SiteMetadataConfig = {
   title: "Filipe Mendes | Frontend & Mobile Engineer",
-  description:
-    "Frontend and mobile engineer focused on reliable UI behavior, interaction quality, and structured case studies.",
+  description: "Building production-grade web and mobile products.",
   siteUrl: resolveSiteUrl(),
   openGraphImage: {
     url: "/opengraph-image.png",
