@@ -17,7 +17,7 @@ export interface SiteMetadataConfig {
   twitterImage: string;
 }
 
-const defaultLocalSiteUrl = "http://localhost:3000";
+const defaultProductionSiteUrl = "https://filipemendes.dev";
 
 const resolveSiteUrl = (): string => {
   if (process.env.NEXT_PUBLIC_SITE_URL) {
@@ -28,7 +28,7 @@ const resolveSiteUrl = (): string => {
     return `https://${process.env.VERCEL_URL}`;
   }
 
-  return defaultLocalSiteUrl;
+  return defaultProductionSiteUrl;
 };
 
 export const siteMetadata: SiteMetadataConfig = {

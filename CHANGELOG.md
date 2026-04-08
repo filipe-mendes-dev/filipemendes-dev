@@ -6,10 +6,16 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+### Added
+
+- Added a branded email signature asset at `public/email/Signature.png` for future email-related use
+
 ### Changed
 
 - Updated the Open Graph image to better match the website design
 - Added baseline security headers for transport enforcement, framing protection, referrer control, opener isolation, MIME sniffing prevention, and disabled unused browser permissions
+- Updated the public contact email to `contact@filipemendes.dev`
+- Reworked the contact section so the primary email action copies the address with inline success and failure feedback
 
 ## [v1.0.0] - 2026-04-06
 
