@@ -5,6 +5,10 @@
 </p>
 
 <p align="center">
+  <img src="https://filipemendes.dev/opengraph-image.png" alt="Filipe Mendes portfolio preview" />
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/Next.js-16-black?logo=next.js" alt="Next.js 16" />
   <img src="https://img.shields.io/badge/React-19-149ECA?logo=react&logoColor=white" alt="React 19" />
   <img src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white" alt="TypeScript 5" />
