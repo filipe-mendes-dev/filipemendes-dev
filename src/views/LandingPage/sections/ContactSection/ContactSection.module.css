@@ -93,11 +93,6 @@
   transition: color var(--transition);
 }
 
-.copyEmailButton:hover {
-  color: var(--moss-strong);
-  text-decoration: none;
-}
-
 .copyEmailButton:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--moss) 70%, transparent);
   outline-offset: 2px;
@@ -200,12 +195,6 @@
     box-shadow var(--transition), transform var(--transition);
 }
 
-.fieldInput:hover {
-  border-color: color-mix(in srgb, var(--code-border) 72%, var(--line));
-  background: color-mix(in srgb, var(--paper-raised) 95%, var(--code-bg));
-  box-shadow: 0 10px 20px color-mix(in srgb, var(--code-bg) 8%, transparent);
-}
-
 .fieldTextarea {
   resize: vertical;
   min-height: 9rem;
@@ -233,6 +222,19 @@
 .formButton:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--moss) 30%, transparent);
   outline-offset: 2px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .copyEmailButton:hover {
+    color: var(--moss-strong);
+    text-decoration: none;
+  }
+
+  .fieldInput:hover {
+    border-color: color-mix(in srgb, var(--code-border) 72%, var(--line));
+    background: color-mix(in srgb, var(--paper-raised) 95%, var(--code-bg));
+    box-shadow: 0 10px 20px color-mix(in srgb, var(--code-bg) 8%, transparent);
+  }
 }
 
 @media (min-width: 48rem) {
