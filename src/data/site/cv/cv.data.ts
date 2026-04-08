@@ -20,6 +20,12 @@ const contactLinks: CvContactLink[] = [
     kind: "email",
   },
   {
+    label: "Website",
+    href: "https://filipemendes.dev",
+    displayValue: "filipemendes.dev",
+    kind: "external",
+  },
+  {
     label: "LinkedIn",
     href: "https://linkedin.com/in/mendes-filipe-dev",
     displayValue: "mendes-filipe-dev",
@@ -41,14 +47,14 @@ const experience: CvExperienceEntry[] = experienceData.map((entry) => {
           "Integrated GraphQL-driven data flows across responsive interfaces.",
         ]
       : entry.company === "Nearsoft"
-        ? [
-            "Delivered React Native banking features with a reliability focus.",
-            "Contributed to shared UI patterns and API integration work.",
-          ]
-        : [
-            "Worked on EfficientDet-based object detection research.",
-            "Collected, labeled, and evaluated infrared datasets for publication.",
-          ];
+      ? [
+          "Delivered React Native banking features with a reliability focus.",
+          "Contributed to shared UI patterns and API integration work.",
+        ]
+      : [
+          "Worked on EfficientDet-based object detection research.",
+          "Collected, labeled, and evaluated infrared datasets for publication.",
+        ];
 
   return {
     role: entry.role,
@@ -79,7 +85,12 @@ const skillGroups: CvSkillGroup[] = [
   },
   {
     title: "Product Delivery",
-    items: ["Design systems", "Component architecture", "Accessibility", "Performance"],
+    items: [
+      "Design systems",
+      "Component architecture",
+      "Accessibility",
+      "Performance",
+    ],
   },
 ];
 

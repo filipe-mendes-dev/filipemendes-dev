@@ -5,6 +5,7 @@ import {
   ExternalLinkIcon,
   GitHubMarkIcon,
   LinkedInIcon,
+  WebsiteIcon,
 } from "../../../../components/icons";
 import { cvData } from "../../../../data/site/cv/cv.data";
 import type { CvContactLink } from "../../../../data/site/cv/cv.interfaces";
@@ -23,6 +24,10 @@ const getContactIcon = (kind: CvContactLink["kind"]): ReactElement => {
 
   if (kind === "github") {
     return <GitHubMarkIcon className={st.contactIcon} />;
+  }
+
+  if (kind === "external") {
+    return <WebsiteIcon className={st.contactIcon} />;
   }
 
   return <ExternalLinkIcon className={st.contactIcon} />;
@@ -44,32 +49,33 @@ export const CvPageHeader = (_props: CvPageHeaderProps): ReactElement => {
             className={st.portrait}
           />
         </div>
-
         <div className={st.identityBlock}>
           <div className={st.identityLead}>
             <h1 className={st.name}>{personalInfo.name}</h1>
             <p className={st.role}>{personalInfo.title}</p>
           </div>
-          <p className={st.location}>{personalInfo.location}</p>
-        </div>
-      </div>
 
-      <div className={st.contactRail}>
-        <ul className={st.contacts}>
-          {contactLinks.map((item) => (
-            <li className={st.contactEntry} key={item.label}>
-              <a
-                href={item.href}
-                className={st.contactValue}
-                target={item.kind === "email" ? undefined : "_blank"}
-                rel={item.kind === "email" ? undefined : "noreferrer"}
-              >
-                {getContactIcon(item.kind)}
-                <span>{item.displayValue}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
+          <div className={st.contactRail}>
+            <ul className={st.contacts}>
+              {contactLinks.map((item) => (
+                <li className={st.contactEntry} key={item.label}>
+                  <a
+                    href={item.href}
+                    className={st.contactValue}
+                    target={item.kind === "email" ? undefined : "_blank"}
+                    rel={item.kind === "email" ? undefined : "noreferrer"}
+                  >
+                    {getContactIcon(item.kind)}
+                    <span>{item.displayValue}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <div className={st.locationContainer}>
+              <p className={st.location}>{personalInfo.location}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </header>
   );
