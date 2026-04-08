@@ -7,17 +7,12 @@
   border-bottom: 1px solid var(--cv-rule-strong);
 }
 
-.heroBlock {
+.hero {
   display: grid;
   grid-template-columns: 28mm minmax(0, 1fr);
   gap: 6mm;
   align-items: center;
   min-width: 0;
-}
-
-.portraitColumn {
-  display: grid;
-  justify-items: start;
 }
 
 .portraitFrame {
@@ -38,67 +33,61 @@
   object-position: center 18%;
 }
 
-.identity {
+.identityBlock {
   display: grid;
-  gap: 1.4mm;
+  gap: 2mm;
   min-width: 0;
 }
 
+.identityLead {
+  display: grid;
+  gap: 0.5mm;
+}
+
 .name {
-  font-size: var(--cv-font-size-display);
+  font-size: var(--cv-font-size-hero-title);
   line-height: var(--cv-line-height-tight);
   letter-spacing: -0.05em;
   color: var(--cv-heading-ink);
 }
 
-.title {
+.role {
   color: var(--cv-heading-ink);
   font-family: var(--font-body);
-  font-size: var(--cv-font-size-title);
-  font-weight: 600;
+  font-size: var(--cv-font-size-hero-subtitle);
+  font-weight: 400;
   letter-spacing: -0.03em;
   line-height: var(--cv-line-height-tight);
-}
-
-.summary {
-  max-width: 48ch;
-  color: var(--cv-body-ink);
-  font-size: var(--cv-font-size-body);
-  line-height: var(--cv-line-height-relaxed);
-  text-wrap: pretty;
 }
 
 .location {
   width: fit-content;
   max-width: 100%;
   color: var(--cv-body-ink);
-  font-size: var(--cv-font-size-body);
+  font-size: var(--cv-font-size-meta);
   line-height: var(--cv-line-height-normal);
   overflow-wrap: anywhere;
 }
 
-.identityMeta {
+.contactRail {
   display: grid;
-  gap: 2.2mm;
   justify-items: start;
   align-content: center;
   min-width: 0;
   height: 100%;
 }
 
-.contactList {
+.contacts {
   list-style: none;
   display: grid;
   gap: 1.7mm;
-  width: 100%;
 }
 
-.contactItem {
+.contactEntry {
   display: grid;
-  gap: 0.4mm;
 }
 
-.contactLink {
+.contactValue {
   display: inline-flex;
   align-items: center;
   gap: 1.4mm;
@@ -107,7 +96,7 @@
   color: var(--cv-heading-ink);
   text-decoration: none;
   font-family: var(--font-body);
-  font-size: var(--cv-font-size-body);
+  font-size: var(--cv-font-size-meta);
   font-weight: 600;
   letter-spacing: -0.012em;
   line-height: var(--cv-line-height-normal);
@@ -121,35 +110,14 @@
   color: var(--cv-accent);
 }
 
-.availability {
-  width: fit-content;
-  max-width: 100%;
-  font-family: var(--font-mono);
-  font-size: var(--cv-font-size-meta);
-  line-height: var(--cv-line-height-normal);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--cv-muted);
-}
-
-.contactLabel {
-  font-family: var(--font-mono);
-  font-size: var(--cv-font-size-label);
-  line-height: var(--cv-line-height-normal);
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--cv-muted);
-}
-
 @media print {
   .root {
     break-inside: avoid-page;
     page-break-inside: avoid;
   }
 
-  .summary,
   .location,
-  .contactLink {
+  .contactValue {
     overflow-wrap: normal;
   }
 }

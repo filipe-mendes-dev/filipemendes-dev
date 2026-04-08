@@ -34,37 +34,33 @@ export const CvPageHeader = (_props: CvPageHeaderProps): ReactElement => {
 
   return (
     <header className={st.root}>
-      <div className={st.heroBlock}>
-        <div className={st.portraitColumn}>
-          <div className={st.portraitFrame}>
-            <img
-              src={portrait.url}
-              alt={portrait.alt}
-              srcSet={portrait.srcSet}
-              sizes={portrait.sizes}
-              className={st.portrait}
-            />
-          </div>
+      <div className={st.hero}>
+        <div className={st.portraitFrame}>
+          <img
+            src={portrait.url}
+            alt={portrait.alt}
+            srcSet={portrait.srcSet}
+            sizes={portrait.sizes}
+            className={st.portrait}
+          />
         </div>
 
-        <div className={st.identity}>
-          <h1 className={st.name}>{personalInfo.name}</h1>
-          <p className={st.title}>{personalInfo.title}</p>
+        <div className={st.identityBlock}>
+          <div className={st.identityLead}>
+            <h1 className={st.name}>{personalInfo.name}</h1>
+            <p className={st.role}>{personalInfo.title}</p>
+          </div>
           <p className={st.location}>{personalInfo.location}</p>
-          {personalInfo.summary !== undefined &&
-            personalInfo.summary.length > 0 && (
-              <p className={st.summary}>{personalInfo.summary}</p>
-            )}
         </div>
       </div>
 
-      <div className={st.identityMeta}>
-        <ul className={st.contactList}>
+      <div className={st.contactRail}>
+        <ul className={st.contacts}>
           {contactLinks.map((item) => (
-            <li className={st.contactItem} key={item.label}>
+            <li className={st.contactEntry} key={item.label}>
               <a
                 href={item.href}
-                className={st.contactLink}
+                className={st.contactValue}
                 target={item.kind === "email" ? undefined : "_blank"}
                 rel={item.kind === "email" ? undefined : "noreferrer"}
               >
