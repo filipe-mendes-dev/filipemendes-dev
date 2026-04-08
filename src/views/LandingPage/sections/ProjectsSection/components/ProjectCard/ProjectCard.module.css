@@ -21,27 +21,8 @@
   pointer-events: none;
 }
 
-.root:hover {
-  border-color: var(--code-border);
-  box-shadow: inset 0 1px 0
-      color-mix(in srgb, var(--paper-raised) 12%, transparent),
-    0 0 28px 8px color-mix(in srgb, var(--moss-faint) 18%, transparent),
-    0 18px 52px color-mix(in srgb, var(--code-bg) 10%, transparent);
-}
-
-.root:hover::after {
-  transform: translateX(110%);
-}
-
 :global([data-theme="light"]) .root {
   border-color: color-mix(in srgb, var(--line) 46%, transparent);
-}
-
-:global([data-theme="light"]) .root:hover {
-  border-color: color-mix(in srgb, var(--moss) 22%, var(--line));
-  box-shadow: inset 0 1px 0
-      color-mix(in srgb, var(--paper-raised) 72%, transparent),
-    0 18px 40px color-mix(in srgb, var(--ink) 6%, transparent);
 }
 
 .header {
@@ -155,6 +136,27 @@
   font-weight: 500;
   min-height: unset;
   padding: unset;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .root:hover {
+    border-color: var(--code-border);
+    box-shadow: inset 0 1px 0
+        color-mix(in srgb, var(--paper-raised) 12%, transparent),
+      0 0 28px 8px color-mix(in srgb, var(--moss-faint) 18%, transparent),
+      0 18px 52px color-mix(in srgb, var(--code-bg) 10%, transparent);
+  }
+
+  .root:hover::after {
+    transform: translateX(110%);
+  }
+
+  :global([data-theme="light"]) .root:hover {
+    border-color: color-mix(in srgb, var(--moss) 22%, var(--line));
+    box-shadow: inset 0 1px 0
+        color-mix(in srgb, var(--paper-raised) 72%, transparent),
+      0 18px 40px color-mix(in srgb, var(--ink) 6%, transparent);
+  }
 }
 
 @media (min-width: 48rem) {
