@@ -16,12 +16,12 @@
 .name {
   color: var(--cv-heading-ink);
   font-weight: 700;
-  font-size: var(--cv-font-size-entry-title);
-  line-height: var(--cv-line-height-entry-title);
+  font-size: var(--cv-font-size-title);
+  line-height: var(--cv-line-height-tight);
 }
 
 .level {
   color: var(--cv-body-ink);
   font-size: var(--cv-font-size-body);
-  line-height: var(--cv-line-height-body);
+  line-height: var(--cv-line-height-relaxed);
 }

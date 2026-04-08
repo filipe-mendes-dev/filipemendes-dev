@@ -13,8 +13,8 @@
 .title {
   color: var(--cv-heading-ink);
   font-weight: 700;
-  font-size: var(--cv-font-size-entry-title);
-  line-height: var(--cv-line-height-entry-title);
+  font-size: var(--cv-font-size-title);
+  line-height: var(--cv-line-height-tight);
 }
 
 .skillList {
@@ -34,6 +34,6 @@
     var(--cv-paper-bg)
   );
   color: var(--cv-heading-ink);
-  font-size: var(--cv-font-size-chip);
-  line-height: var(--cv-line-height-chip);
+  font-size: var(--cv-font-size-body);
+  line-height: var(--cv-line-height-normal);
 }

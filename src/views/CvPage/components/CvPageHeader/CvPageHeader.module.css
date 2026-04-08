@@ -45,8 +45,8 @@
 }
 
 .name {
-  font-size: var(--cv-font-size-hero-name);
-  line-height: var(--cv-line-height-hero-name);
+  font-size: var(--cv-font-size-display);
+  line-height: var(--cv-line-height-tight);
   letter-spacing: -0.05em;
   color: var(--cv-heading-ink);
 }
@@ -54,17 +54,17 @@
 .title {
   color: var(--cv-heading-ink);
   font-family: var(--font-body);
-  font-size: var(--cv-font-size-hero-title);
+  font-size: var(--cv-font-size-title);
   font-weight: 600;
   letter-spacing: -0.03em;
-  line-height: var(--cv-line-height-hero-title);
+  line-height: var(--cv-line-height-tight);
 }
 
 .summary {
   max-width: 48ch;
   color: var(--cv-body-ink);
   font-size: var(--cv-font-size-body);
-  line-height: var(--cv-line-height-body);
+  line-height: var(--cv-line-height-relaxed);
   text-wrap: pretty;
 }
 
@@ -72,8 +72,8 @@
   width: fit-content;
   max-width: 100%;
   color: var(--cv-body-ink);
-  font-size: var(--cv-font-size-body-sm);
-  line-height: var(--cv-line-height-body-sm);
+  font-size: var(--cv-font-size-body);
+  line-height: var(--cv-line-height-normal);
   overflow-wrap: anywhere;
 }
 
@@ -107,10 +107,10 @@
   color: var(--cv-heading-ink);
   text-decoration: none;
   font-family: var(--font-body);
-  font-size: var(--cv-font-size-body-sm);
+  font-size: var(--cv-font-size-body);
   font-weight: 600;
   letter-spacing: -0.012em;
-  line-height: var(--cv-line-height-body-sm);
+  line-height: var(--cv-line-height-normal);
   overflow-wrap: anywhere;
 }
 
@@ -126,7 +126,7 @@
   max-width: 100%;
   font-family: var(--font-mono);
   font-size: var(--cv-font-size-meta);
-  line-height: var(--cv-line-height-meta);
+  line-height: var(--cv-line-height-normal);
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--cv-muted);
@@ -135,7 +135,7 @@
 .contactLabel {
   font-family: var(--font-mono);
   font-size: var(--cv-font-size-label);
-  line-height: var(--cv-line-height-label);
+  line-height: var(--cv-line-height-normal);
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--cv-muted);

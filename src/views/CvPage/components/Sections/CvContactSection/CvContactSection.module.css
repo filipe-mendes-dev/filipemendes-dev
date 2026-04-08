@@ -12,7 +12,7 @@
 .label {
   font-family: var(--font-mono);
   font-size: var(--cv-font-size-label);
-  line-height: var(--cv-line-height-label);
+  line-height: var(--cv-line-height-normal);
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--cv-muted);
@@ -26,9 +26,9 @@
   max-width: 100%;
   color: var(--cv-heading-ink);
   text-decoration: none;
-  font-size: var(--cv-font-size-body-sm);
+  font-size: var(--cv-font-size-body);
   font-weight: 600;
-  line-height: var(--cv-line-height-body-sm);
+  line-height: var(--cv-line-height-normal);
   overflow-wrap: anywhere;
 }
 
