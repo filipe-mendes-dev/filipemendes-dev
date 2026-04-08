@@ -17,7 +17,6 @@ import type { ContactSectionProps } from "./ContactSection.interfaces";
 import st from "./ContactSection.module.css";
 
 interface ContactFormValues {
-  email: string;
   message: string;
   name: string;
 }
@@ -75,7 +74,6 @@ const getContactFormValues = (form: HTMLFormElement): ContactFormValues => {
 
   return {
     name: getFormFieldValue(formData, "name"),
-    email: getFormFieldValue(formData, "email"),
     message: getFormFieldValue(formData, "message"),
   };
 };
@@ -215,22 +213,6 @@ export const ContactSection = ({
                   name="name"
                   type="text"
                   autoComplete="name"
-                  required
-                  className={st.fieldInput}
-                />
-              </div>
-            </motion.div>
-            <motion.div variants={revealMotion.itemVariants}>
-              <div className={st.field}>
-                <label htmlFor="contact-email" className={st.fieldLabel}>
-                  Email
-                </label>
-                <input
-                  id="contact-email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  inputMode="email"
                   required
                   className={st.fieldInput}
                 />
