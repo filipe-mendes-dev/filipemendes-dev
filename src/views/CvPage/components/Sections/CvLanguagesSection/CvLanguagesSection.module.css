@@ -1,0 +1,49 @@
+.root {
+  list-style: none;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  align-items: baseline;
+  break-inside: avoid-page;
+  page-break-inside: avoid;
+}
+
+.name {
+  color: var(--cv-heading-ink);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.level {
+  color: var(--cv-body-ink);
+  line-height: 1.58;
+}
+
+@media (max-width: 48rem) {
+  .item {
+    flex-direction: column;
+    align-items: start;
+  }
+}
+
+@media (max-width: 30rem) {
+  .level {
+    overflow-wrap: anywhere;
+  }
+}
+
+@media print {
+  .item {
+    flex-direction: row;
+    align-items: baseline;
+  }
+
+  .level {
+    overflow-wrap: normal;
+  }
+}

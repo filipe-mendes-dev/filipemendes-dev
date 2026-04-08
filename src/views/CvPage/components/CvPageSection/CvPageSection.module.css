@@ -1,0 +1,21 @@
+.root {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.content {
+  display: grid;
+  gap: 0.8rem;
+}
+
+@media print {
+  .root {
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+
+  .content {
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+}

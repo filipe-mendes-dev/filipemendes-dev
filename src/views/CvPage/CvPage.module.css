@@ -1,0 +1,135 @@
+.root {
+  min-height: 100%;
+  background: var(--cv-preview-bg);
+}
+
+.previewShell {
+  padding-top: clamp(1.5rem, 4vw, 3rem);
+  padding-bottom: clamp(1.5rem, 5vw, 4rem);
+}
+
+.screenDocument {
+  display: grid;
+  gap: 1.45rem;
+}
+
+.printDocument {
+  display: none;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.52fr) minmax(12.8rem, 0.9fr);
+  gap: 1.35rem;
+}
+
+.primaryColumn,
+.secondaryColumn {
+  display: grid;
+  gap: 1.15rem;
+  align-content: start;
+}
+
+.printColumns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.52fr) minmax(12.8rem, 0.9fr);
+  gap: 1.35rem;
+}
+
+.printPrimaryColumn,
+.printSecondaryColumn {
+  display: grid;
+  gap: 1.15rem;
+  align-content: start;
+}
+
+.printSecondaryColumn {
+  padding-left: 1rem;
+  border-left: 1px solid var(--cv-rule);
+}
+
+.printPage {
+  display: grid;
+  gap: 1.45rem;
+}
+
+.secondaryColumn {
+  padding-left: 1rem;
+  border-left: 1px solid var(--cv-rule);
+}
+
+@media (max-width: 64rem) {
+  .previewShell {
+    padding-inline: clamp(0.75rem, 3vw, 1.5rem);
+  }
+}
+
+@media (max-width: 48rem) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+
+  .secondaryColumn {
+    padding-left: 0;
+    border-left: 0;
+    padding-top: 0.4rem;
+    border-top: 1px solid var(--cv-rule);
+  }
+}
+
+@page {
+  size: A4;
+  margin: 14mm 13mm 14mm 13mm;
+}
+
+@media print {
+  :global(body) {
+    background: #ffffff !important;
+  }
+
+  :global(body)::before {
+    display: none !important;
+    content: none !important;
+  }
+
+  .root {
+    min-height: auto;
+    background: #ffffff;
+  }
+
+  .previewShell {
+    padding: 0;
+  }
+
+  .screenDocument {
+    display: none;
+  }
+
+  .printDocument {
+    display: grid;
+    gap: 0;
+    background: #ffffff;
+  }
+
+  .printPage {
+    page-break-after: always;
+    break-after: page;
+    background: #ffffff;
+  }
+
+  .printPage:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  .printSecondaryColumn {
+    padding-left: 1rem;
+    padding-top: 0;
+    border-top: 0;
+    border-left: 1px solid rgb(31 35 40 / 13%);
+  }
+
+  .secondaryColumn {
+    border-left-color: rgb(31 35 40 / 13%);
+  }
+}

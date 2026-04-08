@@ -1,0 +1,35 @@
+.root {
+  list-style: none;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.item {
+  display: grid;
+  gap: 0.42rem;
+  break-inside: avoid-page;
+  page-break-inside: avoid;
+}
+
+.title {
+  color: var(--cv-heading-ink);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.description {
+  color: var(--cv-body-ink);
+  line-height: 1.58;
+}
+
+@media (max-width: 30rem) {
+  .description {
+    overflow-wrap: anywhere;
+  }
+}
+
+@media print {
+  .description {
+    overflow-wrap: normal;
+  }
+}
