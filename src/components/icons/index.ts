@@ -4,6 +4,7 @@ export {
   CalendarIcon,
   DocumentIcon,
   DocumentIconFilled,
+  EmailIcon,
   EducationIcon,
   ExperienceIcon,
   ExternalLinkIcon,
