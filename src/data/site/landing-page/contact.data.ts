@@ -12,7 +12,7 @@ export interface ContactData {
 
 export const contactData: ContactData = {
   intro: "Open to focused frontend, mobile and product architecture work.",
-  email: "mendes.filipe.dev@gmail.com",
+  email: "contact@filipemendes.dev",
   availability:
     "Based in Madeira, Portugal. Available for remote collaboration.",
   socials: [
