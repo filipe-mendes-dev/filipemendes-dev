@@ -64,11 +64,71 @@
   line-height: 1.62;
 }
 
-.primaryLink {
+.emailAction {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.copyEmailButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: fit-content;
+  max-width: 100%;
+  min-height: var(--control-height-md);
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 1.05vw, 1.08rem);
+  font-weight: 400;
+  line-height: 1.72;
+  letter-spacing: 0.01em;
   color: var(--ink);
-  font-size: clamp(1.1rem, 1.3vw, 1.28rem);
-  font-weight: 600;
-  line-height: 1.4;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.copyEmailButton:hover {
+  color: var(--moss-strong);
+  text-decoration: none;
+}
+
+.copyEmailButton:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--moss) 70%, transparent);
+  outline-offset: 2px;
+}
+
+.copyEmailButton:disabled {
+  cursor: default;
+}
+
+.copyPill {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + var(--space-2));
+  transform: translateY(-50%);
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-caption);
+  line-height: 1;
+  color: var(--moss-strong);
+  background: color-mix(in srgb, var(--moss-faint) 68%, transparent);
+  border: var(--line-strong) solid color-mix(in srgb, var(--moss) 20%, transparent);
+  border-radius: var(--radius-pill);
+  padding: 0.32rem 0.55rem;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.copyPillError {
+  color: var(--signal-red);
+  background: color-mix(in srgb, var(--signal-red) 14%, transparent);
+  border-color: color-mix(in srgb, var(--signal-red) 22%, transparent);
 }
 
 .contactLinks {
