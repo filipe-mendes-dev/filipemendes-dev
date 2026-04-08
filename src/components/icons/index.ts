@@ -19,4 +19,5 @@ export {
   NextJsLightIcon,
   PublicationsIcon,
   SunIcon,
+  WebsiteIcon,
 } from './AppIcons';
