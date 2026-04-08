@@ -1,11 +1,11 @@
 .root {
   display: grid;
-  gap: 0.8rem;
+  gap: 3.4mm;
 }
 
 .group {
   display: grid;
-  gap: 0.45rem;
+  gap: 1.9mm;
   break-inside: avoid-page;
   page-break-inside: avoid;
 }
@@ -13,22 +13,27 @@
 .title {
   color: var(--cv-heading-ink);
   font-weight: 700;
-  line-height: 1.4;
+  font-size: var(--cv-font-size-entry-title);
+  line-height: var(--cv-line-height-entry-title);
 }
 
 .skillList {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
+  gap: 1.4mm;
 }
 
 .skillChip {
-  padding: 0.28rem 0.55rem;
+  padding: 1.1mm 2.2mm;
   border: 1px solid var(--cv-rule);
   border-radius: 999px;
-  background: color-mix(in srgb, var(--cv-accent) 4%, white);
+  background: color-mix(
+    in srgb,
+    var(--cv-accent) 4%,
+    var(--cv-paper-bg)
+  );
   color: var(--cv-heading-ink);
-  font-size: 0.79rem;
-  line-height: 1.35;
+  font-size: var(--cv-font-size-chip);
+  line-height: var(--cv-line-height-chip);
 }

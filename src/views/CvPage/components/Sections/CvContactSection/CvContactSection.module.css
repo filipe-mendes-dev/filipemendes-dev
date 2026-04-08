@@ -1,19 +1,19 @@
 .root {
   list-style: none;
   display: grid;
-  gap: 0.65rem;
+  gap: 2.8mm;
 }
 
 .item {
   display: grid;
-  gap: 0.2rem;
+  gap: 0.8mm;
 }
 
 .label {
   font-family: var(--font-mono);
-  font-size: 0.67rem;
-  line-height: 1.45;
-  letter-spacing: 0.08em;
+  font-size: var(--cv-font-size-label);
+  line-height: var(--cv-line-height-label);
+  letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--cv-muted);
 }
@@ -21,24 +21,20 @@
 .link {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 1.4mm;
   width: fit-content;
   max-width: 100%;
   color: var(--cv-heading-ink);
-  text-decoration-color: var(--cv-accent-soft);
+  text-decoration: none;
+  font-size: var(--cv-font-size-body-sm);
+  font-weight: 600;
+  line-height: var(--cv-line-height-body-sm);
   overflow-wrap: anywhere;
 }
 
 .contactIcon {
-  width: 0.92rem;
-  height: 0.92rem;
+  width: 3.4mm;
+  height: 3.4mm;
   flex: none;
   color: var(--cv-accent);
-}
-
-@media print {
-  .link {
-    max-width: none;
-    overflow-wrap: normal;
-  }
 }

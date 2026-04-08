@@ -1,21 +1,21 @@
 .root {
   display: flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: 2.2mm;
   margin: 0;
-  padding-bottom: 0.35rem;
+  padding-bottom: 1.4mm;
   border-bottom: 1px solid var(--cv-rule-strong);
   font-family: var(--font-display);
-  font-size: 0.96rem;
-  line-height: 1.35;
+  font-size: var(--cv-font-size-section-heading);
+  line-height: var(--cv-line-height-section-heading);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--cv-heading-ink);
 }
 
 .icon {
-  width: 1rem;
-  height: 1rem;
+  width: 3.6mm;
+  height: 3.6mm;
   flex: none;
   color: var(--cv-accent);
 }

@@ -15,8 +15,11 @@ import {
 import st from "./CvPage.module.css";
 
 const CvPage = (): ReactElement => {
-  const firstPrintPageExperience = cvData.experience.slice(0, 2);
-  const secondPrintPageExperience = cvData.experience.slice(2);
+  const firstPrintPageExperience = cvData.experience;
+  const hasSecondPrintPage =
+    cvData.profileItems.length > 0 ||
+    cvData.education.length > 0 ||
+    cvData.languages.length > 0;
 
   return (
     <main className={st.root}>
@@ -46,7 +49,6 @@ const CvPage = (): ReactElement => {
 
               <div className={st.printColumns}>
                 <div className={st.printPrimaryColumn}>
-                  <CvProfileSection items={cvData.profileItems} />
                   <CvExperienceSection entries={firstPrintPageExperience} />
                 </div>
 
@@ -57,19 +59,20 @@ const CvPage = (): ReactElement => {
               </div>
             </section>
 
-            <section className={st.printPage}>
-              <div className={st.printColumns}>
-                <div className={st.printPrimaryColumn}>
-                  {secondPrintPageExperience.length > 0 &&
-                    <CvExperienceSection entries={secondPrintPageExperience} />}
-                  <CvEducationSection entries={cvData.education} />
-                </div>
+            {hasSecondPrintPage && (
+              <section className={st.printPage}>
+                <div className={st.printColumns}>
+                  <div className={st.printPrimaryColumn}>
+                    <CvProfileSection items={cvData.profileItems} />
+                    <CvEducationSection entries={cvData.education} />
+                  </div>
 
-                <aside className={st.printSecondaryColumn}>
-                  <CvLanguagesSection languages={cvData.languages} />
-                </aside>
-              </div>
-            </section>
+                  <aside className={st.printSecondaryColumn}>
+                    <CvLanguagesSection languages={cvData.languages} />
+                  </aside>
+                </div>
+              </section>
+            )}
           </div>
         </CvPaper>
       </LayoutContainer>

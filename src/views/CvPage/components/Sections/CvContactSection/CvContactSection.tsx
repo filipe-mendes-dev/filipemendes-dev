@@ -1,6 +1,7 @@
 import type { ReactElement } from "react";
 
 import {
+  EmailIcon,
   ExternalLinkIcon,
   GitHubMarkIcon,
   LinkedInIcon,
@@ -10,6 +11,10 @@ import type { CvContactSectionProps } from "./CvContactSection.interfaces";
 import st from "./CvContactSection.module.css";
 
 const getContactIcon = (kind: CvContactSectionProps["contactLinks"][number]["kind"]): ReactElement => {
+  if (kind === "email") {
+    return <EmailIcon className={st.contactIcon} />;
+  }
+
   if (kind === "linkedin") {
     return <LinkedInIcon className={st.contactIcon} />;
   }

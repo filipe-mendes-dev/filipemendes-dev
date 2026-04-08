@@ -22,13 +22,13 @@ const contactLinks: CvContactLink[] = [
   {
     label: "LinkedIn",
     href: "https://linkedin.com/in/mendes-filipe-dev",
-    displayValue: "linkedin.com/in/mendes-filipe-dev",
+    displayValue: "mendes-filipe-dev",
     kind: "linkedin",
   },
   {
     label: "GitHub",
     href: "https://github.com/filipe-mendes-dev",
-    displayValue: "github.com/filipe-mendes-dev",
+    displayValue: "filipe-mendes-dev",
     kind: "github",
   },
 ];

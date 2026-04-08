@@ -1,12 +1,12 @@
 .root {
   list-style: none;
   display: grid;
-  gap: 0.8rem;
+  gap: 3.4mm;
 }
 
 .item {
   display: grid;
-  gap: 0.42rem;
+  gap: 1.8mm;
   break-inside: avoid-page;
   page-break-inside: avoid;
 }
@@ -14,22 +14,12 @@
 .title {
   color: var(--cv-heading-ink);
   font-weight: 700;
-  line-height: 1.4;
+  font-size: var(--cv-font-size-entry-title);
+  line-height: var(--cv-line-height-entry-title);
 }
 
 .description {
   color: var(--cv-body-ink);
-  line-height: 1.58;
-}
-
-@media (max-width: 30rem) {
-  .description {
-    overflow-wrap: anywhere;
-  }
-}
-
-@media print {
-  .description {
-    overflow-wrap: normal;
-  }
+  font-size: var(--cv-font-size-body);
+  line-height: var(--cv-line-height-body);
 }
