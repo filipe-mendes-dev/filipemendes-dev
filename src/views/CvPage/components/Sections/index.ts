@@ -1,5 +1,3 @@
-export { CvContactSection } from "./CvContactSection";
-export type { CvContactSectionProps } from "./CvContactSection";
 export { CvEducationSection } from "./CvEducationSection";
 export type { CvEducationSectionProps } from "./CvEducationSection";
 export { CvExperienceSection } from "./CvExperienceSection";

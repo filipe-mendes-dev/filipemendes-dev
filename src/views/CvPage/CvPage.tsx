@@ -5,7 +5,6 @@ import { cvData } from "../../data/site/cv/cv.data";
 import { CvPaper } from "./components/CvPaper";
 import { CvPageHeader } from "./components/CvPageHeader";
 import {
-  CvContactSection,
   CvEducationSection,
   CvExperienceSection,
   CvLanguagesSection,
@@ -36,7 +35,6 @@ const CvPage = (): ReactElement => {
               </div>
 
               <aside className={st.secondaryColumn}>
-                <CvContactSection contactLinks={cvData.contactLinks} />
                 <CvTechStackSection skillGroups={cvData.skillGroups} />
                 <CvLanguagesSection languages={cvData.languages} />
               </aside>
@@ -53,7 +51,6 @@ const CvPage = (): ReactElement => {
                 </div>
 
                 <aside className={st.printSecondaryColumn}>
-                  <CvContactSection contactLinks={cvData.contactLinks} />
                   <CvTechStackSection skillGroups={cvData.skillGroups} />
                 </aside>
               </div>
