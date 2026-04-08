@@ -23,7 +23,7 @@ const CvPage = (): ReactElement => {
       <LayoutContainer className={st.previewShell}>
         <CvPaper>
           <div className={st.screenDocument}>
-            <CvPageHeader personalInfo={cvData.personalInfo} />
+            <CvPageHeader />
 
             <div className={st.columns}>
               <div className={st.primaryColumn}>
@@ -42,7 +42,7 @@ const CvPage = (): ReactElement => {
 
           <div className={st.printDocument}>
             <section className={st.printPage}>
-              <CvPageHeader personalInfo={cvData.personalInfo} />
+              <CvPageHeader />
 
               <div className={st.printColumns}>
                 <div className={st.printPrimaryColumn}>

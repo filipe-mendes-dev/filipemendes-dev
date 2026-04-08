@@ -4,13 +4,13 @@
 }
 
 .previewShell {
-  padding-top: clamp(1.5rem, 4vw, 3rem);
-  padding-bottom: clamp(1.5rem, 5vw, 4rem);
+  padding-top: 12mm;
+  padding-bottom: 16mm;
 }
 
 .screenDocument {
   display: grid;
-  gap: 1.45rem;
+  gap: 7mm;
 }
 
 .printDocument {
@@ -19,62 +19,43 @@
 
 .columns {
   display: grid;
-  grid-template-columns: minmax(0, 1.52fr) minmax(12.8rem, 0.9fr);
-  gap: 1.35rem;
+  grid-template-columns: 118mm 58mm;
+  gap: 8mm;
 }
 
 .primaryColumn,
 .secondaryColumn {
   display: grid;
-  gap: 1.15rem;
+  gap: 6mm;
   align-content: start;
 }
 
 .printColumns {
   display: grid;
-  grid-template-columns: minmax(0, 1.52fr) minmax(12.8rem, 0.9fr);
-  gap: 1.35rem;
+  grid-template-columns: 118mm 58mm;
+  gap: 8mm;
 }
 
 .printPrimaryColumn,
 .printSecondaryColumn {
   display: grid;
-  gap: 1.15rem;
+  gap: 6mm;
   align-content: start;
 }
 
 .printSecondaryColumn {
-  padding-left: 1rem;
+  padding-left: 4mm;
   border-left: 1px solid var(--cv-rule);
 }
 
 .printPage {
   display: grid;
-  gap: 1.45rem;
+  gap: 7mm;
 }
 
 .secondaryColumn {
-  padding-left: 1rem;
+  padding-left: 4mm;
   border-left: 1px solid var(--cv-rule);
-}
-
-@media (max-width: 64rem) {
-  .previewShell {
-    padding-inline: clamp(0.75rem, 3vw, 1.5rem);
-  }
-}
-
-@media (max-width: 48rem) {
-  .columns {
-    grid-template-columns: 1fr;
-  }
-
-  .secondaryColumn {
-    padding-left: 0;
-    border-left: 0;
-    padding-top: 0.4rem;
-    border-top: 1px solid var(--cv-rule);
-  }
 }
 
 @page {
@@ -123,7 +104,7 @@
   }
 
   .printSecondaryColumn {
-    padding-left: 1rem;
+    padding-left: 4mm;
     padding-top: 0;
     border-top: 0;
     border-left: 1px solid rgb(31 35 40 / 13%);
