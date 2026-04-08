@@ -4,7 +4,7 @@
 }
 
 .root {
-  width: min(100%, 210mm);
+  width: 210mm;
   min-height: 297mm;
   padding: 14mm 13mm 14mm 13mm;
   background: var(--cv-paper-bg);
@@ -14,12 +14,6 @@
   overflow: visible;
   print-color-adjust: exact;
   -webkit-print-color-adjust: exact;
-}
-
-@media (max-width: 48rem) {
-  .root {
-    padding: 1.35rem;
-  }
 }
 
 @media print {
