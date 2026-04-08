@@ -85,11 +85,8 @@
   padding: 0.5rem 0;
   font-family: var(--font-mono);
   font-size: clamp(1rem, 1.05vw, 1.08rem);
-  font-weight: 400;
-  line-height: 1.72;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.025em;
   color: var(--ink);
-  text-decoration: none;
   transition: color var(--transition);
 }
 
@@ -113,7 +110,8 @@
   line-height: 1;
   color: var(--moss-strong);
   background: color-mix(in srgb, var(--moss-faint) 68%, transparent);
-  border: var(--line-strong) solid color-mix(in srgb, var(--moss) 20%, transparent);
+  border: var(--line-strong) solid
+    color-mix(in srgb, var(--moss) 20%, transparent);
   border-radius: var(--radius-pill);
   padding: 0.32rem 0.55rem;
   pointer-events: none;
