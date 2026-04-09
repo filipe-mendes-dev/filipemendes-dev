@@ -25,13 +25,14 @@ export const cvWebsiteLink = {
 export const cvExperienceOverrides: Record<string, CvExperienceOverride> = {
   "ACIN group::Frontend Developer": {
     context:
-      "Production healthcare platform for cross-device workflows and frontend consistency.",
+      "Contributed to migrating a legacy healthcare platform from server-rendered PHP to React, introducing API-driven workflows and establishing consistent behavior across devices.",
     bullets: [
-      "Built React interfaces for clinical and operational workflows across responsive web surfaces.",
-      "Integrated GraphQL queries and mutations to keep UI state aligned with backend workflow data.",
-      "Structured shared interaction patterns and component boundaries to reduce divergence between screens.",
+      "Built React interfaces for admin dashboards, patient records and medication workflows.",
+      "Implemented GraphQL queries and mutations for form submission, validation and pagination.",
+      "Developed reusable form patterns and layout primitives for large, mobile-constrained workflows.",
+      "Ported legacy PHP screens to React while maintaining parallel old and new interfaces.",
     ],
-    stack: ["React", "TypeScript", "GraphQL", "CSS Modules"],
+    stack: ["React", "TypeScript", "GraphQL", "Styled Components"],
   },
   "Nearsoft::Mobile Developer": {
     context:
