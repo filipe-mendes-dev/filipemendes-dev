@@ -98,7 +98,7 @@ const mapEducationEntries = (): CvEducationEntry[] => {
   return educationData.map((entry) => {
     return {
       title: entry.title,
-      institution: "Instituto Superior Técnico — Universidade de Lisboa",
+      institution: entry.details ?? "",
       timeframe: entry.period ?? "Completed",
     };
   });
