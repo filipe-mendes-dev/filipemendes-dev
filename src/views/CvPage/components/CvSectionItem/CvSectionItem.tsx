@@ -5,6 +5,7 @@ import st from "./CvSectionItem.module.css";
 
 export const CvSectionItem = ({
   title,
+  titleClassName,
   subtitle,
   date,
   href,
@@ -14,6 +15,10 @@ export const CvSectionItem = ({
   const rootClassName = hasBottomSeparator
     ? `${st.root} ${st.withBottomSeparator}`
     : st.root;
+  const resolvedTitleClassName =
+    titleClassName !== undefined && titleClassName.length > 0
+      ? `${st.title} ${titleClassName}`
+      : st.title;
 
   return (
     <li className={rootClassName}>
@@ -24,7 +29,7 @@ export const CvSectionItem = ({
             <a className={st.headerMainLink} href={href}>
               <div className={st.headerMain}>
                 <div className={st.identity}>
-                  <h3 className={st.title}>{title}</h3>
+                  <h3 className={resolvedTitleClassName}>{title}</h3>
                   {subtitle !== undefined && subtitle.length > 0 && (
                     <p className={st.subtitle}>{subtitle}</p>
                   )}
@@ -34,7 +39,7 @@ export const CvSectionItem = ({
           ) : (
             <div className={st.headerMain}>
               <div className={st.identity}>
-                <h3 className={st.title}>{title}</h3>
+                <h3 className={resolvedTitleClassName}>{title}</h3>
                 {subtitle !== undefined && subtitle.length > 0 && (
                   <p className={st.subtitle}>{subtitle}</p>
                 )}
@@ -46,7 +51,7 @@ export const CvSectionItem = ({
           ) : null}
         </div>
       ) : (
-        <h3 className={st.title}>{title}</h3>
+        <h3 className={resolvedTitleClassName}>{title}</h3>
       )}
 
       {children}

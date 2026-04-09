@@ -46,11 +46,19 @@ export interface CvProjectEntry {
   href: string;
 }
 
+export interface CvPublicationEntry {
+  title: string;
+  venue?: string;
+  year?: string;
+  href?: string;
+}
+
 export interface CvDocumentData {
   personalInfo: CvPersonalInfo;
   contactLinks: CvContactLink[];
   experience: CvExperienceEntry[];
   projects: CvProjectEntry[];
+  publications: CvPublicationEntry[];
   education: CvEducationEntry[];
   skillGroups: CvSkillGroup[];
   languages: CvLanguageEntry[];

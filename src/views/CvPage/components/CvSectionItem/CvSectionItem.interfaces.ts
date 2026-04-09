@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 
 export interface CvSectionItemProps {
   title: string;
+  titleClassName?: string;
   subtitle?: string;
   date?: string;
   href?: string;
