@@ -8,7 +8,7 @@ import {
   LocationIcon,
   WebsiteIcon,
 } from "../../../../components/icons";
-import { cvData } from "../../../../data/site/cv/cv.data";
+import { cvData } from "../../../../data/site/cv/cv.adapter";
 import type { CvContactLink } from "../../../../data/site/cv/cv.interfaces";
 import { personData } from "../../../../data/site/person.data";
 import type { CvPageHeaderProps } from "./CvPageHeader.interfaces";
