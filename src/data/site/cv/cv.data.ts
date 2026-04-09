@@ -117,7 +117,7 @@ export const cvData: CvDocumentData = {
   personalInfo: {
     name: personData.name,
     title: cvPersonalInfo.title ?? "Frontend & Mobile Engineer",
-    location: personData.currentStatus,
+    location: personData.location,
   },
   contactLinks: cvContactLinks,
   projects: mapProjectEntries(),

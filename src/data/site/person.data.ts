@@ -2,7 +2,7 @@ import { profileData } from "./profile.data";
 
 export interface PersonData {
   name: string;
-  currentStatus: string;
+  location: string;
   portrait: {
     alt: string;
     url: string;
@@ -15,7 +15,7 @@ export interface PersonData {
 
 export const personData: PersonData = {
   name: profileData.name,
-  currentStatus: profileData.location,
+  location: profileData.location,
   portrait: {
     alt: "Portrait of Filipe Mendes from CV",
     url: "/images/profile-pictures/filipe-mendes-250.webp",

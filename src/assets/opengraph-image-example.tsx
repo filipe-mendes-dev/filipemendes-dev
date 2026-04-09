@@ -88,7 +88,7 @@ const OpenGraphImage = (): ImageResponse => {
               color: "rgba(255, 255, 255, 0.8)",
             }}
           >
-            <div style={{ display: "flex" }}>{personData.currentStatus}</div>
+            <div style={{ display: "flex" }}>{personData.location}</div>
             <div style={{ display: "flex" }}>filipemendes.dev</div>
           </div>
         </div>
