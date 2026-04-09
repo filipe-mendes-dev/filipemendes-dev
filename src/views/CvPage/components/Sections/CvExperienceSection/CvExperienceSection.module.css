@@ -1,7 +1,7 @@
 .root {
   list-style: none;
   display: grid;
-  gap: 3.4mm;
+  gap: 5mm;
 }
 
 .entry {
@@ -20,30 +20,30 @@
 
 .entryIdentity {
   display: grid;
-  gap: 0.6mm;
+  gap: 1mm;
   min-width: 0;
 }
 
 .entryTitle {
   color: var(--cv-heading-ink);
-  font-weight: 700;
-  font-size: var(--cv-font-size-body);
+  font-weight: 600;
+  font-size: var(--cv-font-size-title);
   line-height: var(--cv-line-height-tight);
 }
 
 .entryCompany {
   color: var(--cv-body-ink);
-  font-size: var(--cv-font-size-body);
+  font-size: var(--cv-font-size-meta);
   line-height: var(--cv-line-height-normal);
 }
 
 .entryPeriod {
   flex: none;
-  font-family: var(--font-mono);
-  font-size: var(--cv-font-size-meta);
-  line-height: var(--cv-line-height-normal);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: var(--font-manrope);
+  font-weight: 600;
+  font-size: var(--cv-font-size-label);
+  line-height: var(--cv-line-height-tight);
+  letter-spacing: 0.2mm;
   color: var(--cv-muted);
   text-align: right;
 }
