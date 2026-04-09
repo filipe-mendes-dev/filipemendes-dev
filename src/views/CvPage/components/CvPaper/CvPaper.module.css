@@ -6,7 +6,7 @@
 .root {
   width: 210mm;
   min-height: 297mm;
-  padding: 16mm;
+  padding: 14mm;
   background: var(--cv-paper-bg);
   color: var(--cv-ink);
   border: 1px solid var(--cv-frame-line);
