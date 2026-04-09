@@ -9,7 +9,7 @@ export const CvEducationSection = ({
   entries,
 }: CvEducationSectionProps): ReactElement => {
   return (
-    <CvPageSection title="Education">
+    <CvPageSection title="Education" hasBottomSeparator>
       <ul className={st.root}>
         {entries.map((entry) => (
           <CvSectionItem
