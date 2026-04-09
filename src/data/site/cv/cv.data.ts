@@ -60,11 +60,11 @@ export const cvExperienceOverrides: Record<string, CvExperienceOverride> = {
 export const cvProjectOverrides: Record<string, CvProjectOverride> = {
   "arc-timer": {
     context:
-      "Personal workout timer application covering setup, execution, and session tracking.",
+      "Designed and built a production-level mobile application covering the full workout lifecycle from setup to execution and tracking.",
     bullets: [
-      "Built the full workout flow from setup to active execution, interval control, and run tracking.",
-      "Implemented deterministic session progression for exercise, rest, and transition states.",
-      "Structured the app around reusable session logic and file-based workout reuse instead of isolated timer screens.",
+      "Cross-platform mobile architecture with React Native and Expo Router enabling fast iteration and consistent behavior.",
+      "State-based timer system with a 1Hz update cycle ensuring predictable execution under runtime constraints.",
+      "UI-thread animations with React Reanimated avoiding JavaScript thread blocking.",
     ],
     stack: ["React Native", "Expo Router", "React Reanimated", "TypeScript"],
   },
