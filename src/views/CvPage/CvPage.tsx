@@ -22,10 +22,19 @@ const CvPage = (): ReactElement => {
             <CvPageHeader />
 
             <div className={st.contentFlow}>
-              <CvExperienceSection entries={cvData.experience} />
-              <CvProjectsSection entries={cvData.projects} />
-              <CvEducationSection entries={cvData.education} />
-              <CvPublicationsSection entries={cvData.publications} />
+              <CvExperienceSection
+                entries={cvData.experience}
+                hasBottomSeparator
+              />
+              <CvProjectsSection entries={cvData.projects} hasBottomSeparator />
+              <CvEducationSection
+                entries={cvData.education}
+                hasBottomSeparator
+              />
+              <CvPublicationsSection
+                entries={cvData.publications}
+                hasBottomSeparator
+              />
               <CvLanguagesSection languages={cvData.languages} />
             </div>
           </div>
@@ -36,9 +45,18 @@ const CvPage = (): ReactElement => {
 
               <div className={st.contentFlow}>
                 <CvExperienceSection entries={cvData.experience} />
-                <CvProjectsSection entries={cvData.projects} />
-                <CvEducationSection entries={cvData.education} />
-                <CvPublicationsSection entries={cvData.publications} />
+                <CvProjectsSection
+                  entries={cvData.projects}
+                  hasBottomSeparator
+                />
+                <CvEducationSection
+                  entries={cvData.education}
+                  hasBottomSeparator
+                />
+                <CvPublicationsSection
+                  entries={cvData.publications}
+                  hasBottomSeparator
+                />
                 <CvLanguagesSection languages={cvData.languages} />
               </div>
             </section>
