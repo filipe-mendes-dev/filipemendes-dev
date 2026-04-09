@@ -2,7 +2,7 @@
   display: grid;
   margin: 0;
   gap: 0.4mm;
-  font-family: var(--font-space-grotesk);
+  font-family: var(--font-display);
   font-size: var(--cv-font-section-title);
   font-weight: 700;
   line-height: var(--cv-line-height-normal);
