@@ -1,4 +1,5 @@
 import { contactData } from "../landing-page/contact.data";
+import { getProjectHref, projectsData } from "../../projects";
 import { educationData } from "../education.data";
 import { experienceData } from "../experience.data";
 import { personData } from "../person.data";
@@ -8,6 +9,7 @@ import type {
   CvEducationEntry,
   CvExperienceEntry,
   CvLanguageEntry,
+  CvProjectEntry,
   CvSkillGroup,
 } from "./cv.interfaces";
 
@@ -69,7 +71,16 @@ const education: CvEducationEntry[] = educationData.map((entry) => {
     title: entry.title,
     institution: "Instituto Superior Técnico - Universidade de Lisboa",
     period: entry.period ?? "Completed",
-    details: entry.details,
+  };
+});
+
+const projects: CvProjectEntry[] = projectsData.map((project) => {
+  return {
+    name: project.name,
+    category: project.category,
+    description: project.description,
+    href: getProjectHref(project.slug),
+    logo: project.logo,
   };
 });
 
@@ -113,6 +124,7 @@ export const cvData: CvDocumentData = {
   },
   contactLinks,
   experience,
+  projects,
   education,
   skillGroups,
   languages,

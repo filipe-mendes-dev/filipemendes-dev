@@ -1,3 +1,5 @@
+import type { ProjectLogo } from "../../../components/projects/ProjectLogoMark";
+
 export interface CvPersonalInfo {
   name: string;
   title: string;
@@ -39,10 +41,19 @@ export interface CvLanguageEntry {
   proficiency: string;
 }
 
+export interface CvProjectEntry {
+  name: string;
+  category: string;
+  description: string;
+  href: string;
+  logo: ProjectLogo;
+}
+
 export interface CvDocumentData {
   personalInfo: CvPersonalInfo;
   contactLinks: CvContactLink[];
   experience: CvExperienceEntry[];
+  projects: CvProjectEntry[];
   education: CvEducationEntry[];
   skillGroups: CvSkillGroup[];
   languages: CvLanguageEntry[];
