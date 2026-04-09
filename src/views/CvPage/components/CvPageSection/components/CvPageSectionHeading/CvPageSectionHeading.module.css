@@ -1,21 +1,26 @@
 .root {
-  display: flex;
-  align-items: center;
-  gap: 2.2mm;
+  display: grid;
+  gap: 1mm;
   margin: 0;
-  padding-bottom: 1.4mm;
-  border-bottom: 1px solid var(--cv-rule-strong);
-  font-family: var(--font-display);
-  font-size: var(--cv-font-size-label);
+  font-family: var(--font-mono);
+  font-size: var(--cv-font-size-body);
+  font-weight: 600;
   line-height: var(--cv-line-height-normal);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--cv-heading-ink);
 }
 
-.icon {
-  width: 3.6mm;
-  height: 3.6mm;
-  flex: none;
-  color: var(--cv-accent);
+.titleText {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.accent {
+  display: block;
+  width: 7mm;
+  height: 0.4mm;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--cv-accent) 88%, transparent);
 }

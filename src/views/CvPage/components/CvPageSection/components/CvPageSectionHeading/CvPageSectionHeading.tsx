@@ -5,12 +5,11 @@ import st from "./CvPageSectionHeading.module.css";
 
 export const CvPageSectionHeading = ({
   title,
-  icon: Icon,
 }: CvPageSectionHeadingProps): ReactElement => {
   return (
     <h2 className={st.root}>
-      <Icon className={st.icon} />
-      <span>{title}</span>
+      <span className={st.titleText}>{title}</span>
+      <span aria-hidden="true" className={st.accent} />
     </h2>
   );
 };

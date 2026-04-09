@@ -7,7 +7,6 @@ import st from "./CvPageSection.module.css";
 export const CvPageSection = ({
   children,
   title,
-  icon,
   className,
   contentClassName,
 }: CvPageSectionProps): ReactElement => {
@@ -20,7 +19,7 @@ export const CvPageSection = ({
 
   return (
     <section className={rootClassName}>
-      <CvPageSectionHeading icon={icon} title={title} />
+      <CvPageSectionHeading title={title} />
       <div className={innerClassName}>{children}</div>
     </section>
   );
