@@ -7,7 +7,7 @@ export interface ExperienceItem {
 
 export const experienceData: ExperienceItem[] = [
   {
-    role: "Front-End Developer",
+    role: "Frontend Developer",
     company: "ACIN group",
     period: "Oct 2023 - Jul 2025",
     summary:
