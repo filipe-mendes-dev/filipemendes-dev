@@ -23,54 +23,10 @@ export const cvPersonalInfo: Partial<CvPersonalInfo> = {
   title: "Frontend & Mobile Engineer",
 };
 
-const cvWebsiteLink: CvContactLink = {
-  label: "Website",
-  href: "https://filipemendes.dev",
-  displayValue: "filipemendes.dev",
-  kind: "external",
-};
+const getSocialHref = (label: string): string => {
+  const socialLink = contactData.socials.find((entry) => entry.label === label);
 
-const cvSocialDisplayValues: Record<string, CvContactLink> = {
-  LinkedIn: {
-    label: "LinkedIn",
-    href: "https://linkedin.com/in/mendes-filipe-dev",
-    displayValue: "mendes-filipe-dev",
-    kind: "linkedin",
-  },
-  GitHub: {
-    label: "GitHub",
-    href: "https://github.com/filipe-mendes-dev",
-    displayValue: "filipe-mendes-dev",
-    kind: "github",
-  },
-};
-
-const mapContactLinks = (): CvContactLink[] => {
-  const socialLinks = contactData.socials
-    .map((entry) => {
-      const mappedEntry = cvSocialDisplayValues[entry.label];
-
-      if (mappedEntry === undefined) {
-        return null;
-      }
-
-      return {
-        ...mappedEntry,
-        href: entry.href,
-      };
-    })
-    .filter((entry): entry is CvContactLink => entry !== null);
-
-  return [
-    {
-      label: "Email",
-      href: `mailto:${contactData.email}`,
-      displayValue: contactData.email,
-      kind: "email",
-    },
-    cvWebsiteLink,
-    ...socialLinks,
-  ];
+  return socialLink?.href ?? "#";
 };
 
 const mapProjectEntries = (): CvProjectEntry[] => {
@@ -142,13 +98,40 @@ export const cvLanguages: CvLanguageEntry[] = [
   },
 ];
 
+export const cvContactLinks: CvContactLink[] = [
+  {
+    label: "Email",
+    href: `mailto:${contactData.email}`,
+    displayValue: contactData.email,
+    kind: "email",
+  },
+  {
+    label: "Website",
+    href: "https://filipemendes.dev",
+    displayValue: "filipemendes.dev",
+    kind: "external",
+  },
+  {
+    label: "LinkedIn",
+    href: getSocialHref("LinkedIn"),
+    displayValue: "mendes-filipe-dev",
+    kind: "linkedin",
+  },
+  {
+    label: "GitHub",
+    href: getSocialHref("GitHub"),
+    displayValue: "filipe-mendes-dev",
+    kind: "github",
+  },
+];
+
 export const cvData: CvDocumentData = {
   personalInfo: {
     name: personData.name,
     title: cvPersonalInfo.title ?? "Frontend & Mobile Engineer",
     location: personData.currentStatus,
   },
-  contactLinks: mapContactLinks(),
+  contactLinks: cvContactLinks,
   projects: mapProjectEntries(),
   languages: cvLanguages,
 };
