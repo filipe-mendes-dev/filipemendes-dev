@@ -1,7 +1,7 @@
 .root {
 }
 
-.layoutContainer {
+.layoutContainer.layoutContainer {
   padding-block: 0;
 }
 
