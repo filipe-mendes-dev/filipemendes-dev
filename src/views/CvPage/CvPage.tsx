@@ -1,7 +1,7 @@
 import type { ReactElement } from "react";
 
 import { LayoutContainer } from "../../components/layout/LayoutContainer";
-import { cvData } from "../../data/site/cv/cv.data";
+import { cvData } from "../../data/site/cv/cv.adapter";
 import { CvPaper } from "./components/CvPaper";
 import { CvPageHeader } from "./components/CvPageHeader";
 import {
@@ -10,13 +10,10 @@ import {
   CvLanguagesSection,
   CvProjectsSection,
   CvPublicationsSection,
-  CvTechStackSection,
 } from "./components/Sections";
 import st from "./CvPage.module.css";
 
 const CvPage = (): ReactElement => {
-  const firstPrintPageExperience = cvData.experience;
-
   return (
     <main className={st.root}>
       <LayoutContainer className={st.previewShell}>
@@ -24,18 +21,12 @@ const CvPage = (): ReactElement => {
           <div className={st.screenDocument}>
             <CvPageHeader />
 
-            <div className={st.columns}>
-              <div className={st.primaryColumn}>
-                <CvExperienceSection entries={cvData.experience} />
-                <CvProjectsSection entries={cvData.projects} />
-                <CvEducationSection entries={cvData.education} />
-                <CvPublicationsSection entries={cvData.publications} />
-              </div>
-
-              <aside className={st.secondaryColumn}>
-                <CvTechStackSection skillGroups={cvData.skillGroups} />
-                <CvLanguagesSection languages={cvData.languages} />
-              </aside>
+            <div className={st.contentFlow}>
+              <CvExperienceSection entries={cvData.experience} />
+              <CvProjectsSection entries={cvData.projects} />
+              <CvEducationSection entries={cvData.education} />
+              <CvPublicationsSection entries={cvData.publications} />
+              <CvLanguagesSection languages={cvData.languages} />
             </div>
           </div>
 
@@ -43,18 +34,12 @@ const CvPage = (): ReactElement => {
             <section className={st.printPage}>
               <CvPageHeader />
 
-              <div className={st.columns}>
-                <div className={st.primaryColumn}>
-                  <CvExperienceSection entries={firstPrintPageExperience} />
-                  <CvProjectsSection entries={cvData.projects} />
-                  <CvEducationSection entries={cvData.education} />
-                  <CvPublicationsSection entries={cvData.publications} />
-                </div>
-
-                <aside className={st.secondaryColumn}>
-                  <CvTechStackSection skillGroups={cvData.skillGroups} />
-                  <CvLanguagesSection languages={cvData.languages} />
-                </aside>
+              <div className={st.contentFlow}>
+                <CvExperienceSection entries={cvData.experience} />
+                <CvProjectsSection entries={cvData.projects} />
+                <CvEducationSection entries={cvData.education} />
+                <CvPublicationsSection entries={cvData.publications} />
+                <CvLanguagesSection languages={cvData.languages} />
               </div>
             </section>
           </div>

@@ -1,115 +1,74 @@
-import { contactData } from "../landing-page/contact.data";
-import { getProjectHref, projectsData } from "../../projects";
-import { educationData } from "../education.data";
-import { experienceData } from "../experience.data";
-import { personData } from "../person.data";
-import { publicationsData } from "../publications.data";
-import type {
-  CvContactLink,
-  CvDocumentData,
-  CvEducationEntry,
-  CvExperienceEntry,
-  CvLanguageEntry,
-  CvProjectEntry,
-  CvPublicationEntry,
-  CvSkillGroup,
-} from "./cv.interfaces";
+import type { CvLanguageEntry, CvPersonalInfo } from "./cv.interfaces";
 
-const contactLinks: CvContactLink[] = [
-  {
-    label: "Email",
-    href: `mailto:${contactData.email}`,
-    displayValue: contactData.email,
-    kind: "email",
+export interface CvExperienceOverride {
+  context: string;
+  bullets: string[];
+  stack: string[];
+}
+
+export interface CvProjectOverride {
+  context: string;
+  bullets: string[];
+  stack: string[];
+}
+
+export const cvPersonalInfo: Partial<CvPersonalInfo> = {
+  title: "Frontend & Mobile Engineer",
+};
+
+export const cvWebsiteLink = {
+  label: "Website",
+  href: "https://filipemendes.dev",
+  displayValue: "filipemendes.dev",
+};
+
+export const cvExperienceOverrides: Record<string, CvExperienceOverride> = {
+  "ACIN group::Frontend Developer": {
+    context:
+      "Production healthcare platform for cross-device workflows and frontend consistency.",
+    bullets: [
+      "Built React interfaces for clinical and operational workflows across responsive web surfaces.",
+      "Integrated GraphQL queries and mutations to keep UI state aligned with backend workflow data.",
+      "Structured shared interaction patterns and component boundaries to reduce divergence between screens.",
+    ],
+    stack: ["React", "TypeScript", "GraphQL", "CSS Modules"],
   },
-  {
-    label: "Website",
-    href: "https://filipemendes.dev",
-    displayValue: "filipemendes.dev",
-    kind: "external",
+  "Nearsoft::Mobile Developer": {
+    context:
+      "Mobile banking product focused on reliable flows, API integration, and reusable interface behavior.",
+    bullets: [
+      "Built React Native banking flows with predictable state transitions and clear user feedback.",
+      "Integrated REST APIs into mobile screens and connected response data to reusable UI patterns.",
+      "Structured shared component behavior so new flows could ship without duplicating interface logic.",
+    ],
+    stack: ["React Native", "TypeScript", "REST APIs"],
   },
-  {
-    label: "LinkedIn",
-    href: "https://linkedin.com/in/mendes-filipe-dev",
-    displayValue: "mendes-filipe-dev",
-    kind: "linkedin",
+  "INOV::Software Engineer": {
+    context:
+      "Applied machine learning research focused on infrared classification and object detection.",
+    bullets: [
+      "Built an EfficientDet-based pipeline for real-time infrared object detection research.",
+      "Collected, labeled, and evaluated infrared datasets used for model training and validation.",
+      "Structured the experimentation flow from dataset preparation to evaluation for reproducible publication work.",
+    ],
+    stack: ["Python", "EfficientDet", "Computer Vision"],
   },
-  {
-    label: "GitHub",
-    href: "https://github.com/filipe-mendes-dev",
-    displayValue: "filipe-mendes-dev",
-    kind: "github",
+};
+
+export const cvProjectOverrides: Record<string, CvProjectOverride> = {
+  "arc-timer": {
+    context:
+      "Personal workout timer application covering setup, execution, and session tracking.",
+    bullets: [
+      "Built the full workout flow from setup to active execution, interval control, and run tracking.",
+      "Implemented deterministic session progression for exercise, rest, and transition states.",
+      "Structured the app around reusable session logic and file-based workout reuse instead of isolated timer screens.",
+    ],
+    stack: ["React Native", "Expo Router", "React Reanimated", "TypeScript"],
   },
-];
+};
 
-const experience: CvExperienceEntry[] = experienceData.map((entry) => {
-  const highlights: string[] =
-    entry.company === "ACIN group"
-      ? [
-          "Built production healthcare workflows with React and TypeScript.",
-          "Integrated GraphQL-driven data flows across responsive interfaces.",
-        ]
-      : entry.company === "Nearsoft"
-      ? [
-          "Delivered React Native banking features with a reliability focus.",
-          "Contributed to shared UI patterns and API integration work.",
-        ]
-      : [
-          "Worked on EfficientDet-based object detection research.",
-          "Collected, labeled, and evaluated infrared datasets for publication.",
-        ];
-
-  return {
-    role: entry.role,
-    company: entry.company,
-    period: entry.period,
-    summary: entry.summary,
-    highlights,
-  };
-});
-
-const education: CvEducationEntry[] = educationData.map((entry) => {
-  return {
-    title: entry.title,
-    institution: "Instituto Superior Técnico - Universidade de Lisboa",
-    period: entry.period ?? "Completed",
-  };
-});
-
-const projects: CvProjectEntry[] = projectsData.map((project) => {
-  return {
-    name: project.name,
-    category: project.category,
-    description: project.description,
-    href: getProjectHref(project.slug),
-  };
-});
-
-const publications: CvPublicationEntry[] = publicationsData.map((entry) => {
-  return {
-    title: entry.title,
-    venue: entry.venue,
-    year: entry.year,
-    href: entry.href,
-  };
-});
-
-const skillGroups: CvSkillGroup[] = [
-  {
-    title: "Frontend",
-    items: ["React", "Next.js", "TypeScript", "Motion"],
-  },
-  {
-    title: "Mobile",
-    items: ["React Native", "Reanimated"],
-  },
-  {
-    title: "Daily Tools",
-    items: ["Cursor", "Codex", "Figma"],
-  },
-];
-
-const languages: CvLanguageEntry[] = [
+export const cvLanguages: CvLanguageEntry[] = [
   {
     name: "Portuguese",
     proficiency: "Native",
@@ -119,19 +78,3 @@ const languages: CvLanguageEntry[] = [
     proficiency: "C1",
   },
 ];
-
-export const cvData: CvDocumentData = {
-  personalInfo: {
-    name: personData.name,
-    title: "Frontend & Mobile Engineer",
-    location: personData.currentStatus,
-    availability: contactData.availability,
-  },
-  contactLinks,
-  experience,
-  projects,
-  publications,
-  education,
-  skillGroups,
-  languages,
-};

@@ -14,24 +14,20 @@ export interface CvContactLink {
 }
 
 export interface CvExperienceEntry {
-  role: string;
-  company: string;
-  period: string;
+  title: string;
+  organization: string;
+  timeframe: string;
   location?: string;
-  summary: string;
-  highlights?: string[];
+  context: string;
+  bullets: string[];
+  stack: string[];
 }
 
 export interface CvEducationEntry {
   title: string;
   institution: string;
-  period: string;
+  timeframe: string;
   details?: string;
-}
-
-export interface CvSkillGroup {
-  title: string;
-  items: string[];
 }
 
 export interface CvLanguageEntry {
@@ -40,9 +36,13 @@ export interface CvLanguageEntry {
 }
 
 export interface CvProjectEntry {
-  name: string;
-  category: string;
-  description: string;
+  title: string;
+  type?: string;
+  timeframe?: string;
+  location?: string;
+  context: string;
+  bullets: string[];
+  stack: string[];
   href: string;
 }
 
@@ -60,6 +60,5 @@ export interface CvDocumentData {
   projects: CvProjectEntry[];
   publications: CvPublicationEntry[];
   education: CvEducationEntry[];
-  skillGroups: CvSkillGroup[];
   languages: CvLanguageEntry[];
 }
