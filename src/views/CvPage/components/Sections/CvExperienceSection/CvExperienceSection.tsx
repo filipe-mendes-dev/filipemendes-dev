@@ -1,6 +1,5 @@
 import type { ReactElement } from "react";
 
-import { ExperienceIcon } from "../../../../../components/icons";
 import { CvPageSection } from "../../CvPageSection";
 import type { CvExperienceSectionProps } from "./CvExperienceSection.interfaces";
 import st from "./CvExperienceSection.module.css";
@@ -9,7 +8,7 @@ export const CvExperienceSection = ({
   entries,
 }: CvExperienceSectionProps): ReactElement => {
   return (
-    <CvPageSection icon={ExperienceIcon} title="Experience">
+    <CvPageSection title="Experience">
       <ol className={st.root}>
         {entries.map((entry) => (
           <li className={st.entry} key={`${entry.company}-${entry.role}`}>

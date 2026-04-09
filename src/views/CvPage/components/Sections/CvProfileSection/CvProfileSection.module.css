@@ -14,7 +14,7 @@
 .title {
   color: var(--cv-heading-ink);
   font-weight: 700;
-  font-size: var(--cv-font-size-title);
+  font-size: var(--cv-font-size-body);
   line-height: var(--cv-line-height-tight);
 }
 

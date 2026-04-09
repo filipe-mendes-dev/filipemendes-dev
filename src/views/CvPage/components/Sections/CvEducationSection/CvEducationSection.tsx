@@ -1,6 +1,5 @@
 import type { ReactElement } from "react";
 
-import { EducationIcon } from "../../../../../components/icons";
 import { CvPageSection } from "../../CvPageSection";
 import type { CvEducationSectionProps } from "./CvEducationSection.interfaces";
 import st from "./CvEducationSection.module.css";
@@ -9,7 +8,7 @@ export const CvEducationSection = ({
   entries,
 }: CvEducationSectionProps): ReactElement => {
   return (
-    <CvPageSection icon={EducationIcon} title="Education">
+    <CvPageSection title="Education">
       <ul className={st.root}>
         {entries.map((entry) => (
           <li className={st.entry} key={entry.title}>
