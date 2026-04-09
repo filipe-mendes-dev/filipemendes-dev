@@ -5,4 +5,5 @@ export interface CvPageSectionProps {
   title: string;
   className?: string;
   contentClassName?: string;
+  hasBottomSeparator?: boolean;
 }

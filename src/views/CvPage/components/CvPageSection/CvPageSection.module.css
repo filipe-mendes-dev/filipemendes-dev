@@ -7,7 +7,7 @@
   display: grid;
 }
 
-.root::after {
+.withBottomSeparator::after {
   content: "";
   display: block;
   justify-self: center;

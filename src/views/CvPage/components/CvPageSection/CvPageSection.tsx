@@ -9,9 +9,15 @@ export const CvPageSection = ({
   title,
   className,
   contentClassName,
+  hasBottomSeparator = true,
 }: CvPageSectionProps): ReactElement => {
+  const baseRootClassName = hasBottomSeparator
+    ? `${st.root} ${st.withBottomSeparator}`
+    : st.root;
   const rootClassName =
-    className === undefined ? st.root : `${st.root} ${className}`;
+    className === undefined
+      ? baseRootClassName
+      : `${baseRootClassName} ${className}`;
   const innerClassName =
     contentClassName === undefined
       ? st.content
