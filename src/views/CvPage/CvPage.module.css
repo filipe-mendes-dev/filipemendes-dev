@@ -27,7 +27,7 @@
 .primaryColumn,
 .secondaryColumn {
   display: grid;
-  gap: 6mm;
+  gap: 4mm;
   align-content: start;
 }
 
