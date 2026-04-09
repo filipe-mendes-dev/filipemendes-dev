@@ -7,6 +7,7 @@ export const CvSectionItem = ({
   title,
   subtitle,
   date,
+  href,
   children,
   hasBottomSeparator = false,
 }: CvSectionItemProps): ReactElement => {
@@ -19,15 +20,30 @@ export const CvSectionItem = ({
       {(subtitle !== undefined && subtitle.length > 0) ||
       (date !== undefined && date.length > 0) ? (
         <div className={st.header}>
-          <div className={st.identity}>
-            <h3 className={st.title}>{title}</h3>
-            {subtitle !== undefined && subtitle.length > 0 && (
-              <p className={st.subtitle}>{subtitle}</p>
-            )}
-          </div>
-          {date !== undefined && date.length > 0 && (
-            <p className={st.date}>{date}</p>
+          {href !== undefined && href.length > 0 ? (
+            <a className={st.headerMainLink} href={href}>
+              <div className={st.headerMain}>
+                <div className={st.identity}>
+                  <h3 className={st.title}>{title}</h3>
+                  {subtitle !== undefined && subtitle.length > 0 && (
+                    <p className={st.subtitle}>{subtitle}</p>
+                  )}
+                </div>
+              </div>
+            </a>
+          ) : (
+            <div className={st.headerMain}>
+              <div className={st.identity}>
+                <h3 className={st.title}>{title}</h3>
+                {subtitle !== undefined && subtitle.length > 0 && (
+                  <p className={st.subtitle}>{subtitle}</p>
+                )}
+              </div>
+            </div>
           )}
+          {date !== undefined && date.length > 0 ? (
+            <p className={st.date}>{date}</p>
+          ) : null}
         </div>
       ) : (
         <h3 className={st.title}>{title}</h3>
