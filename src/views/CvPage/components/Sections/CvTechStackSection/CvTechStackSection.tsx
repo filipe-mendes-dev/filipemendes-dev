@@ -1,6 +1,7 @@
 import type { ReactElement } from "react";
 
 import { CvPageSection } from "../../CvPageSection";
+import { CvSectionItem } from "../../CvSectionItem";
 import type { CvTechStackSectionProps } from "./CvTechStackSection.interfaces";
 import st from "./CvTechStackSection.module.css";
 
@@ -9,10 +10,9 @@ export const CvTechStackSection = ({
 }: CvTechStackSectionProps): ReactElement => {
   return (
     <CvPageSection title="Tech Stack">
-      <div className={st.root}>
+      <ul className={st.root}>
         {skillGroups.map((group) => (
-          <section className={st.group} key={group.title}>
-            <h3 className={st.title}>{group.title}</h3>
+          <CvSectionItem title={group.title} key={group.title}>
             <ul className={st.skillList}>
               {group.items.map((item) => (
                 <li className={st.skillChip} key={item}>
@@ -20,9 +20,9 @@ export const CvTechStackSection = ({
                 </li>
               ))}
             </ul>
-          </section>
+          </CvSectionItem>
         ))}
-      </div>
+      </ul>
     </CvPageSection>
   );
 };
