@@ -1,6 +1,7 @@
 import type { ReactElement } from "react";
 
 import { CvPageSection } from "../../CvPageSection";
+import { CvSectionItem } from "../../CvSectionItem";
 import type { CvEducationSectionProps } from "./CvEducationSection.interfaces";
 import st from "./CvEducationSection.module.css";
 
@@ -11,18 +12,16 @@ export const CvEducationSection = ({
     <CvPageSection title="Education">
       <ul className={st.root}>
         {entries.map((entry) => (
-          <li className={st.entry} key={entry.title}>
-            <div className={st.entryHeader}>
-              <div className={st.entryIdentity}>
-                <h3 className={st.entryTitle}>{entry.title}</h3>
-                <p className={st.entryCompany}>{entry.institution}</p>
-              </div>
-              <p className={st.entryPeriod}>{entry.period}</p>
-            </div>
+          <CvSectionItem
+            date={entry.period}
+            key={entry.title}
+            subtitle={entry.institution}
+            title={entry.title}
+          >
             {entry.details !== undefined && (
               <p className={st.entryDetails}>{entry.details}</p>
             )}
-          </li>
+          </CvSectionItem>
         ))}
       </ul>
     </CvPageSection>

@@ -3,48 +3,8 @@
   display: grid;
   gap: 3.4mm;
 }
-
-.entry {
-  display: grid;
-  gap: 1.8mm;
-  break-inside: avoid-page;
-  page-break-inside: avoid;
-}
-
-.entryHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  gap: 3.2mm;
-}
-
-.entryIdentity {
-  display: grid;
-  gap: 0.6mm;
-  min-width: 0;
-}
-
-.entryTitle {
-  color: var(--cv-heading-ink);
-  font-weight: 700;
-  font-size: var(--cv-font-size-body);
-  line-height: var(--cv-line-height-tight);
-}
-
-.entryCompany,
 .entryDetails {
   color: var(--cv-body-ink);
   font-size: var(--cv-font-size-body);
   line-height: var(--cv-line-height-normal);
-}
-
-.entryPeriod {
-  flex: none;
-  font-family: var(--font-mono);
-  font-size: var(--cv-font-size-meta);
-  line-height: var(--cv-line-height-normal);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--cv-muted);
-  text-align: right;
 }

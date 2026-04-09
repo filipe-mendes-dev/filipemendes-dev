@@ -4,50 +4,6 @@
   gap: 5mm;
 }
 
-.entry {
-  display: grid;
-  gap: 1.8mm;
-  break-inside: avoid-page;
-  page-break-inside: avoid;
-}
-
-.entryHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  gap: 3.2mm;
-}
-
-.entryIdentity {
-  display: grid;
-  gap: 1mm;
-  min-width: 0;
-}
-
-.entryTitle {
-  color: var(--cv-heading-ink);
-  font-weight: 600;
-  font-size: var(--cv-font-size-title);
-  line-height: var(--cv-line-height-tight);
-}
-
-.entryCompany {
-  color: var(--cv-body-ink);
-  font-size: var(--cv-font-size-meta);
-  line-height: var(--cv-line-height-normal);
-}
-
-.entryPeriod {
-  flex: none;
-  font-family: var(--font-manrope);
-  font-weight: 600;
-  font-size: var(--cv-font-size-label);
-  line-height: var(--cv-line-height-tight);
-  letter-spacing: 0.2mm;
-  color: var(--cv-muted);
-  text-align: right;
-}
-
 .entrySummary {
   color: var(--cv-body-ink);
   font-size: var(--cv-font-size-body);
