@@ -9,7 +9,7 @@ export const CvExperienceSection = ({
   entries,
 }: CvExperienceSectionProps): ReactElement => {
   return (
-    <CvPageSection title="Experience">
+    <CvPageSection title="Experience" hasBottomSeparator>
       <ol className={st.root}>
         {entries.map((entry, index) => (
           <CvSectionItem
