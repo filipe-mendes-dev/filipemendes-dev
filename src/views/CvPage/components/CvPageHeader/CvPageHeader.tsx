@@ -47,7 +47,14 @@ export const CvPageHeader = (_props: CvPageHeaderProps): ReactElement => {
             alt={portrait.alt}
             srcSet={portrait.srcSet}
             sizes={portrait.sizes}
-            className={st.portrait}
+            className={`${st.portrait} ${st.screenPortrait}`}
+          />
+          <img
+            src={portrait.printUrl}
+            alt={portrait.alt}
+            srcSet={portrait.printSrcSet}
+            sizes="1643px"
+            className={`${st.portrait} ${st.printPortrait}`}
           />
         </div>
         <div className={st.identityBlock}>

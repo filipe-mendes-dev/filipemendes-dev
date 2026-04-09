@@ -14,9 +14,6 @@ import st from "./CvPage.module.css";
 
 const CvPage = (): ReactElement => {
   const firstPrintPageExperience = cvData.experience;
-  const hasSecondPrintPage =
-    cvData.education.length > 0 ||
-    cvData.languages.length > 0;
 
   return (
     <main className={st.root}>
@@ -45,27 +42,15 @@ const CvPage = (): ReactElement => {
               <div className={st.columns}>
                 <div className={st.primaryColumn}>
                   <CvExperienceSection entries={firstPrintPageExperience} />
+                  <CvEducationSection entries={cvData.education} />
                 </div>
 
                 <aside className={st.secondaryColumn}>
                   <CvTechStackSection skillGroups={cvData.skillGroups} />
+                  <CvLanguagesSection languages={cvData.languages} />
                 </aside>
               </div>
             </section>
-
-            {hasSecondPrintPage && (
-              <section className={st.printPage}>
-                <div className={st.columns}>
-                  <div className={st.primaryColumn}>
-                    <CvEducationSection entries={cvData.education} />
-                  </div>
-
-                  <aside className={st.secondaryColumn}>
-                    <CvLanguagesSection languages={cvData.languages} />
-                  </aside>
-                </div>
-              </section>
-            )}
           </div>
         </CvPaper>
       </LayoutContainer>

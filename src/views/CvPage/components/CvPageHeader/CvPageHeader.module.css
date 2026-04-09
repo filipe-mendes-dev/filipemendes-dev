@@ -32,6 +32,14 @@
   transform: translateY(-4mm);
 }
 
+.screenPortrait {
+  display: block;
+}
+
+.printPortrait {
+  display: none;
+}
+
 .identityBlock {
   display: grid;
   gap: 3mm;
@@ -131,6 +139,14 @@
 }
 
 @media print {
+  .screenPortrait {
+    display: none;
+  }
+
+  .printPortrait {
+    display: block;
+  }
+
   .root {
     break-inside: avoid-page;
     page-break-inside: avoid;
