@@ -8,5 +8,3 @@ export { CvPublicationsSection } from "./CvPublicationsSection";
 export type { CvPublicationsSectionProps } from "./CvPublicationsSection";
 export { CvProjectsSection } from "./CvProjectsSection";
 export type { CvProjectsSectionProps } from "./CvProjectsSection";
-export { CvTechStackSection } from "./CvTechStackSection";
-export type { CvTechStackSectionProps } from "./CvTechStackSection";
