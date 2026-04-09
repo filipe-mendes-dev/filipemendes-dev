@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { personData } from "./person.data";
+import { profileData } from "./profile.data";
 
 export interface SiteMetadataImage {
   alt: string;
@@ -17,7 +18,7 @@ export interface SiteMetadataConfig {
   twitterImage: string;
 }
 
-const defaultProductionSiteUrl = "https://filipemendes.dev";
+const defaultProductionSiteUrl = profileData.website.href;
 
 const resolveSiteUrl = (): string => {
   if (process.env.NEXT_PUBLIC_SITE_URL) {

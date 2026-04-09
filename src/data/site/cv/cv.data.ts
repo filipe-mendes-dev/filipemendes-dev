@@ -3,8 +3,8 @@ import {
   getProjectModuleBySlug,
   projectsData,
 } from "../../projects";
-import { contactData } from "../landing-page/contact.data";
 import { personData } from "../person.data";
+import { profileData } from "../profile.data";
 import type {
   CvContactLink,
   CvDocumentData,
@@ -21,12 +21,6 @@ export interface CvProjectOverride {
 
 export const cvPersonalInfo: Partial<CvPersonalInfo> = {
   title: "Frontend & Mobile Engineer",
-};
-
-const getSocialHref = (label: string): string => {
-  const socialLink = contactData.socials.find((entry) => entry.label === label);
-
-  return socialLink?.href ?? "#";
 };
 
 const mapProjectEntries = (): CvProjectEntry[] => {
@@ -101,28 +95,22 @@ export const cvLanguages: CvLanguageEntry[] = [
 export const cvContactLinks: CvContactLink[] = [
   {
     label: "Email",
-    href: `mailto:${contactData.email}`,
-    displayValue: contactData.email,
+    href: `mailto:${profileData.email}`,
+    displayValue: profileData.email,
     kind: "email",
   },
   {
     label: "Website",
-    href: "https://filipemendes.dev",
-    displayValue: "filipemendes.dev",
+    href: profileData.website.href,
+    displayValue: profileData.website.displayValue,
     kind: "external",
   },
-  {
-    label: "LinkedIn",
-    href: getSocialHref("LinkedIn"),
-    displayValue: "mendes-filipe-dev",
-    kind: "linkedin",
-  },
-  {
-    label: "GitHub",
-    href: getSocialHref("GitHub"),
-    displayValue: "filipe-mendes-dev",
-    kind: "github",
-  },
+  ...profileData.socials.map((entry) => ({
+    label: entry.label,
+    href: entry.href,
+    displayValue: entry.displayValue,
+    kind: entry.kind,
+  })),
 ];
 
 export const cvData: CvDocumentData = {
