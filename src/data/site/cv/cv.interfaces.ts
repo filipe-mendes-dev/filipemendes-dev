@@ -39,11 +39,6 @@ export interface CvLanguageEntry {
   proficiency: string;
 }
 
-export interface CvProfileItem {
-  title: string;
-  description: string;
-}
-
 export interface CvDocumentData {
   personalInfo: CvPersonalInfo;
   contactLinks: CvContactLink[];
@@ -51,5 +46,4 @@ export interface CvDocumentData {
   education: CvEducationEntry[];
   skillGroups: CvSkillGroup[];
   languages: CvLanguageEntry[];
-  profileItems: CvProfileItem[];
 }

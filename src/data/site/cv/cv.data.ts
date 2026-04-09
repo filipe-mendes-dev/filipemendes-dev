@@ -8,7 +8,6 @@ import type {
   CvEducationEntry,
   CvExperienceEntry,
   CvLanguageEntry,
-  CvProfileItem,
   CvSkillGroup,
 } from "./cv.interfaces";
 
@@ -105,19 +104,6 @@ const languages: CvLanguageEntry[] = [
   },
 ];
 
-const profileItems: CvProfileItem[] = [
-  {
-    title: "Interaction quality",
-    description:
-      "Care about clear hierarchy, stable states, and detail work that holds up in production.",
-  },
-  {
-    title: "Systems thinking",
-    description:
-      "Prefer maintainable UI structures, typed data flows, and reusable product decisions.",
-  },
-];
-
 export const cvData: CvDocumentData = {
   personalInfo: {
     name: personData.name,
@@ -130,5 +116,4 @@ export const cvData: CvDocumentData = {
   education,
   skillGroups,
   languages,
-  profileItems,
 };

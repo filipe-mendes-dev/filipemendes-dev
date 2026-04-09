@@ -8,7 +8,6 @@ import {
   CvEducationSection,
   CvExperienceSection,
   CvLanguagesSection,
-  CvProfileSection,
   CvTechStackSection,
 } from "./components/Sections";
 import st from "./CvPage.module.css";
@@ -16,7 +15,6 @@ import st from "./CvPage.module.css";
 const CvPage = (): ReactElement => {
   const firstPrintPageExperience = cvData.experience;
   const hasSecondPrintPage =
-    cvData.profileItems.length > 0 ||
     cvData.education.length > 0 ||
     cvData.languages.length > 0;
 
@@ -29,7 +27,6 @@ const CvPage = (): ReactElement => {
 
             <div className={st.columns}>
               <div className={st.primaryColumn}>
-                {/* <CvProfileSection items={cvData.profileItems} /> */}
                 <CvExperienceSection entries={cvData.experience} />
                 <CvEducationSection entries={cvData.education} />
               </div>
@@ -60,7 +57,6 @@ const CvPage = (): ReactElement => {
               <section className={st.printPage}>
                 <div className={st.columns}>
                   <div className={st.primaryColumn}>
-                    <CvProfileSection items={cvData.profileItems} />
                     <CvEducationSection entries={cvData.education} />
                   </div>
 
