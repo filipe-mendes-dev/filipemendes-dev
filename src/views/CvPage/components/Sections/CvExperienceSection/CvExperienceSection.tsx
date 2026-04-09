@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 
+import { CvBulletList } from "../../CvBulletList";
 import { CvSectionItem } from "../../CvSectionItem";
 import { CvPageSection } from "../../CvPageSection";
 import type { CvExperienceSectionProps } from "./CvExperienceSection.interfaces";
@@ -22,13 +23,7 @@ export const CvExperienceSection = ({
           >
             <p className={st.entrySummary}>{entry.context}</p>
             {entry.bullets.length > 0 && (
-              <ul className={st.highlightList}>
-                {entry.bullets.map((bullet) => (
-                  <li className={st.highlightItem} key={bullet}>
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
+              <CvBulletList items={entry.bullets} />
             )}
             {entry.stack.length > 0 && (
               <p className={st.stackLine}>Stack: {entry.stack.join(", ")}</p>
