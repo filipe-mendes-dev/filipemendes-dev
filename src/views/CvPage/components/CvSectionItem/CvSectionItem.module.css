@@ -16,11 +16,13 @@
   width: 78%;
   height: 1px;
   margin-top: 1.8mm;
-  background: radial-gradient(
-    circle at center,
-    color-mix(in srgb, var(--cv-rule-strong) 82%, transparent) 0%,
-    color-mix(in srgb, var(--cv-rule) 42%, transparent) 34%,
-    transparent 74%
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--cv-rule) 42%, transparent) 18%,
+    color-mix(in srgb, var(--cv-rule) 82%, transparent) 50%,
+    color-mix(in srgb, var(--cv-rule) 42%, transparent) 82%,
+    transparent 100%
   );
 }
 
