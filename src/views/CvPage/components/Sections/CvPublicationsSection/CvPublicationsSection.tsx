@@ -11,14 +11,13 @@ export const CvPublicationsSection = ({
   return (
     <CvPageSection title="Publications">
       <ul className={st.root}>
-        {entries.map((entry, index) => (
+        {entries.map((entry) => (
           <CvSectionItem
             title={entry.title}
             titleClassName={st.itemTitle}
             subtitle={entry.venue}
             date={entry.year}
             href={entry.href}
-            hasBottomSeparator={index < entries.length - 1}
             key={entry.title}
           />
         ))}
