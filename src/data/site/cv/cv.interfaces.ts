@@ -1,5 +1,3 @@
-import type { ProjectLogo } from "../../../components/projects/ProjectLogoMark";
-
 export interface CvPersonalInfo {
   name: string;
   title: string;
@@ -46,7 +44,6 @@ export interface CvProjectEntry {
   category: string;
   description: string;
   href: string;
-  logo: ProjectLogo;
 }
 
 export interface CvDocumentData {

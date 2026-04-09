@@ -80,7 +80,6 @@ const projects: CvProjectEntry[] = projectsData.map((project) => {
     category: project.category,
     description: project.description,
     href: getProjectHref(project.slug),
-    logo: project.logo,
   };
 });
 
