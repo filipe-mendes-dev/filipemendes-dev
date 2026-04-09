@@ -2,6 +2,8 @@ import type { ReactElement } from "react";
 
 import { LayoutContainer } from "../../components/layout/LayoutContainer";
 import { educationData } from "../../data/site/education.data";
+import { experienceData } from "../../data/site/experience.data";
+import { publicationsData } from "../../data/site/publications.data";
 import { cvData } from "../../data/site/cv/cv.adapter";
 import { CvPaper } from "./components/CvPaper";
 import { CvPageHeader } from "./components/CvPageHeader";
@@ -24,7 +26,7 @@ const CvPage = (): ReactElement => {
 
             <div className={st.contentFlow}>
               <CvExperienceSection
-                entries={cvData.experience}
+                entries={experienceData}
                 hasBottomSeparator
               />
               <CvProjectsSection entries={cvData.projects} hasBottomSeparator />
@@ -33,7 +35,7 @@ const CvPage = (): ReactElement => {
                 hasBottomSeparator
               />
               <CvPublicationsSection
-                entries={cvData.publications}
+                entries={publicationsData}
                 hasBottomSeparator
               />
               <CvLanguagesSection languages={cvData.languages} />
@@ -45,7 +47,7 @@ const CvPage = (): ReactElement => {
               <CvPageHeader />
 
               <div className={st.contentFlow}>
-                <CvExperienceSection entries={cvData.experience} />
+                <CvExperienceSection entries={experienceData} />
                 <CvProjectsSection
                   entries={cvData.projects}
                   hasBottomSeparator
@@ -55,7 +57,7 @@ const CvPage = (): ReactElement => {
                   hasBottomSeparator
                 />
                 <CvPublicationsSection
-                  entries={cvData.publications}
+                  entries={publicationsData}
                   hasBottomSeparator
                 />
                 <CvLanguagesSection languages={cvData.languages} />

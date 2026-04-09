@@ -1,6 +1,6 @@
-import type { CvPublicationEntry } from "../../../../../data/site/cv/cv.interfaces";
+import type { PublicationItem } from "../../../../../data/site/publications.data";
 
 export interface CvPublicationsSectionProps {
-  entries: CvPublicationEntry[];
+  entries: PublicationItem[];
   hasBottomSeparator?: boolean;
 }

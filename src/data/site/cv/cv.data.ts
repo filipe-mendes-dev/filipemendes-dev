@@ -1,4 +1,5 @@
 import type {
+  CvContactLink,
   CvLanguageEntry,
   CvPersonalInfo,
   CvProjectEntry,
@@ -14,11 +15,32 @@ export const cvPersonalInfo: Partial<CvPersonalInfo> = {
   title: "Frontend & Mobile Engineer",
 };
 
-export const cvWebsiteLink = {
-  label: "Website",
-  href: "https://filipemendes.dev",
-  displayValue: "filipemendes.dev",
-};
+export const cvContactLinks: CvContactLink[] = [
+  {
+    label: "Email",
+    href: "mailto:contact@filipemendes.dev",
+    displayValue: "contact@filipemendes.dev",
+    kind: "email",
+  },
+  {
+    label: "Website",
+    href: "https://filipemendes.dev",
+    displayValue: "filipemendes.dev",
+    kind: "external",
+  },
+  {
+    label: "LinkedIn",
+    href: "https://linkedin.com/in/mendes-filipe-dev",
+    displayValue: "mendes-filipe-dev",
+    kind: "linkedin",
+  },
+  {
+    label: "GitHub",
+    href: "https://github.com/filipe-mendes-dev",
+    displayValue: "filipe-mendes-dev",
+    kind: "github",
+  },
+];
 
 export const cvProjectOverrides: Record<string, CvProjectOverride> = {
   "arc-timer": {
