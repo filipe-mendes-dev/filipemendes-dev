@@ -4,7 +4,7 @@ import { LayoutContainer } from "../../components/layout/LayoutContainer";
 import { educationData } from "../../data/site/education.data";
 import { experienceData } from "../../data/site/experience.data";
 import { publicationsData } from "../../data/site/publications.data";
-import { cvData } from "../../data/site/cv/cv.adapter";
+import { cvData } from "../../data/site/cv/cv.data";
 import { CvPaper } from "./components/CvPaper";
 import { CvPageHeader } from "./components/CvPageHeader";
 import {

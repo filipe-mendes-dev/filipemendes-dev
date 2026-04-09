@@ -1,5 +1,13 @@
+import {
+  getProjectHref,
+  getProjectModuleBySlug,
+  projectsData,
+} from "../../projects";
+import { contactData } from "../landing-page/contact.data";
+import { personData } from "../person.data";
 import type {
   CvContactLink,
+  CvDocumentData,
   CvLanguageEntry,
   CvPersonalInfo,
   CvProjectEntry,
@@ -15,32 +23,84 @@ export const cvPersonalInfo: Partial<CvPersonalInfo> = {
   title: "Frontend & Mobile Engineer",
 };
 
-export const cvContactLinks: CvContactLink[] = [
-  {
-    label: "Email",
-    href: "mailto:contact@filipemendes.dev",
-    displayValue: "contact@filipemendes.dev",
-    kind: "email",
-  },
-  {
-    label: "Website",
-    href: "https://filipemendes.dev",
-    displayValue: "filipemendes.dev",
-    kind: "external",
-  },
-  {
+const cvWebsiteLink: CvContactLink = {
+  label: "Website",
+  href: "https://filipemendes.dev",
+  displayValue: "filipemendes.dev",
+  kind: "external",
+};
+
+const cvSocialDisplayValues: Record<string, CvContactLink> = {
+  LinkedIn: {
     label: "LinkedIn",
     href: "https://linkedin.com/in/mendes-filipe-dev",
     displayValue: "mendes-filipe-dev",
     kind: "linkedin",
   },
-  {
+  GitHub: {
     label: "GitHub",
     href: "https://github.com/filipe-mendes-dev",
     displayValue: "filipe-mendes-dev",
     kind: "github",
   },
-];
+};
+
+const mapContactLinks = (): CvContactLink[] => {
+  const socialLinks = contactData.socials
+    .map((entry) => {
+      const mappedEntry = cvSocialDisplayValues[entry.label];
+
+      if (mappedEntry === undefined) {
+        return null;
+      }
+
+      return {
+        ...mappedEntry,
+        href: entry.href,
+      };
+    })
+    .filter((entry): entry is CvContactLink => entry !== null);
+
+  return [
+    {
+      label: "Email",
+      href: `mailto:${contactData.email}`,
+      displayValue: contactData.email,
+      kind: "email",
+    },
+    cvWebsiteLink,
+    ...socialLinks,
+  ];
+};
+
+const mapProjectEntries = (): CvProjectEntry[] => {
+  const sharedProjects = projectsData.map((project) => {
+    const override = cvProjectOverrides[project.slug];
+    const detail = getProjectModuleBySlug(project.slug)?.detail;
+
+    return {
+      title: project.name,
+      type: project.category,
+      context:
+        override?.context ?? detail?.hero.description ?? project.description,
+      bullets:
+        override?.bullets ??
+        detail?.keyFeatures
+          .slice(0, 3)
+          .map(
+            (item) =>
+              `${item.title}${
+                item.description !== undefined ? ` — ${item.description}` : ""
+              }`
+          ) ??
+        [],
+      stack: override?.stack ?? detail?.techStack ?? [],
+      href: getProjectHref(project.slug),
+    };
+  });
+
+  return [...sharedProjects, ...cvStandaloneProjects];
+};
 
 export const cvProjectOverrides: Record<string, CvProjectOverride> = {
   "arc-timer": {
@@ -81,3 +141,14 @@ export const cvLanguages: CvLanguageEntry[] = [
     proficiency: "C1",
   },
 ];
+
+export const cvData: CvDocumentData = {
+  personalInfo: {
+    name: personData.name,
+    title: cvPersonalInfo.title ?? "Frontend & Mobile Engineer",
+    location: personData.currentStatus,
+  },
+  contactLinks: mapContactLinks(),
+  projects: mapProjectEntries(),
+  languages: cvLanguages,
+};
