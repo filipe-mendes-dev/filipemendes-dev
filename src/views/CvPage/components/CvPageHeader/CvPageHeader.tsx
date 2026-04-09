@@ -5,6 +5,7 @@ import {
   ExternalLinkIcon,
   GitHubMarkIcon,
   LinkedInIcon,
+  LocationIcon,
   WebsiteIcon,
 } from "../../../../components/icons";
 import { cvData } from "../../../../data/site/cv/cv.data";
@@ -72,7 +73,10 @@ export const CvPageHeader = (_props: CvPageHeaderProps): ReactElement => {
               ))}
             </ul>
             <div className={st.locationContainer}>
-              <p className={st.location}>{personalInfo.location}</p>
+              <p className={st.location}>
+                <LocationIcon className={st.locationIcon} />
+                <span>{personalInfo.location}</span>
+              </p>
             </div>
           </div>
         </div>

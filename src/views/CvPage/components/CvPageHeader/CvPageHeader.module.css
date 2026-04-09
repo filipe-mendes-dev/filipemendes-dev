@@ -60,12 +60,22 @@
 }
 
 .location {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.4mm;
   width: fit-content;
   max-width: 100%;
   color: var(--cv-body-ink);
   font-size: var(--cv-font-size-meta);
   line-height: var(--cv-line-height-normal);
   overflow-wrap: anywhere;
+}
+
+.locationIcon {
+  width: 3.4mm;
+  height: 3.4mm;
+  flex: none;
+  color: var(--cv-accent);
 }
 
 .contactRail {

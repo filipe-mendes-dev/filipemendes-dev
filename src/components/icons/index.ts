@@ -14,6 +14,7 @@ export {
   HomeIcon,
   HomeIconFilled,
   LinkedInIcon,
+  LocationIcon,
   MoonIcon,
   NextJsDarkIcon,
   NextJsLightIcon,

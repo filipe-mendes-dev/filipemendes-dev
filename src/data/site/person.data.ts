@@ -11,7 +11,7 @@ export interface PersonData {
 
 export const personData: PersonData = {
   name: "Filipe Mendes",
-  currentStatus: "Based in Madeira, Portugal.",
+  currentStatus: "Madeira, Portugal",
   portrait: {
     alt: "Portrait of Filipe Mendes from CV",
     url: "/images/main-logo/filipe-mendes-250.webp",
