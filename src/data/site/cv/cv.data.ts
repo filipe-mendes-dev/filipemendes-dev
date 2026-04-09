@@ -36,11 +36,12 @@ export const cvExperienceOverrides: Record<string, CvExperienceOverride> = {
   },
   "Nearsoft::Mobile Developer": {
     context:
-      "Mobile banking product focused on reliable flows, API integration, and reusable interface behavior.",
+      "Worked on mobile banking applications from initial development to release, covering core financial workflows under production constraints.",
     bullets: [
-      "Built React Native banking flows with predictable state transitions and clear user feedback.",
-      "Integrated REST APIs into mobile screens and connected response data to reusable UI patterns.",
-      "Structured shared component behavior so new flows could ship without duplicating interface logic.",
+      "Built React Native interfaces across account management, transfers, payments, and debit card features.",
+      "Integrated REST APIs handling authentication, request mapping, pagination, and error states.",
+      "Improved flow modularity and shared component structure to reduce duplication across screens.",
+      "Participated in App Store and Google Play release processes.",
     ],
     stack: ["React Native", "TypeScript", "REST APIs"],
   },
