@@ -1,4 +1,8 @@
-import type { CvLanguageEntry, CvPersonalInfo } from "./cv.interfaces";
+import type {
+  CvLanguageEntry,
+  CvPersonalInfo,
+  CvProjectEntry,
+} from "./cv.interfaces";
 
 export interface CvExperienceOverride {
   context: string;
@@ -69,6 +73,22 @@ export const cvProjectOverrides: Record<string, CvProjectOverride> = {
     stack: ["React Native", "Expo Router", "React Reanimated", "TypeScript"],
   },
 };
+
+export const cvStandaloneProjects: CvProjectEntry[] = [
+  {
+    title: "filipemendes.dev",
+    type: "Portfolio Website",
+    context:
+      "Designed and built a portfolio platform for presenting projects, documentation, and a developer profile.",
+    bullets: [
+      "Next.js App Router architecture with server-rendered pages for landing, project, and documentation flows.",
+      "Motion-driven UI using Framer Motion for layout transitions and content sequencing across the platform.",
+      "Multi-surface structure combining projects, documentation, and profile content within a single application.",
+    ],
+    stack: ["Next.js", "TypeScript", "App Router", "CSS Modules"],
+    href: "/",
+  },
+];
 
 export const cvLanguages: CvLanguageEntry[] = [
   {

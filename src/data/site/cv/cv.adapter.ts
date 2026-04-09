@@ -13,6 +13,7 @@ import {
   cvLanguages,
   cvPersonalInfo,
   cvProjectOverrides,
+  cvStandaloneProjects,
   cvWebsiteLink,
 } from "./cv.data";
 import type {
@@ -75,7 +76,7 @@ const mapExperienceEntries = (): CvExperienceEntry[] => {
 };
 
 const mapProjectEntries = (): CvProjectEntry[] => {
-  return projectsData.map((project) => {
+  const sharedProjects = projectsData.map((project) => {
     const override = cvProjectOverrides[project.slug];
     const detail = getProjectModuleBySlug(project.slug)?.detail;
 
@@ -99,6 +100,8 @@ const mapProjectEntries = (): CvProjectEntry[] => {
       href: getProjectHref(project.slug),
     };
   });
+
+  return [...sharedProjects, ...cvStandaloneProjects];
 };
 
 const mapEducationEntries = (): CvEducationEntry[] => {
