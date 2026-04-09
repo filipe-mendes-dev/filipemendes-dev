@@ -1,0 +1,12 @@
+.root {
+  list-style: disc;
+  padding-left: 5.5mm;
+  display: grid;
+  gap: 1mm;
+}
+
+.item {
+  color: var(--cv-body-ink);
+  font-size: var(--cv-font-size-body);
+  line-height: var(--cv-line-height-normal);
+}
