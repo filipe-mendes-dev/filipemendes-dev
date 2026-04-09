@@ -1,0 +1,10 @@
+export { CvEducationSection } from "./CvEducationSection";
+export type { CvEducationSectionProps } from "./CvEducationSection";
+export { CvExperienceSection } from "./CvExperienceSection";
+export type { CvExperienceSectionProps } from "./CvExperienceSection";
+export { CvLanguagesSection } from "./CvLanguagesSection";
+export type { CvLanguagesSectionProps } from "./CvLanguagesSection";
+export { CvPublicationsSection } from "./CvPublicationsSection";
+export type { CvPublicationsSectionProps } from "./CvPublicationsSection";
+export { CvProjectsSection } from "./CvProjectsSection";
+export type { CvProjectsSectionProps } from "./CvProjectsSection";

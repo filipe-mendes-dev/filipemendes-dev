@@ -37,6 +37,58 @@ export const ExternalLinkIcon = (props: AppIconProps): ReactElement => (
   </IconBase>
 );
 
+export const EmailIcon = (props: AppIconProps): ReactElement => (
+  <IconBase viewBox="0 0 512 512" {...props}>
+    <path
+      fill="currentColor"
+      d="M464 80H48a16 16 0 0 0-16 16v320a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16zM265.82 284.63a16 16 0 0 1-19.64 0L89.55 162.81l19.64-25.26L256 251.73l146.81-114.18 19.64 25.26z"
+    />
+  </IconBase>
+);
+
+export const WebsiteIcon = (props: AppIconProps): ReactElement => (
+  <IconBase viewBox="0 0 512 512" {...props}>
+    <path
+      d="M256 48C141.13 48 48 141.13 48 256s93.13 208 208 208 208-93.13 208-208S370.87 48 256 48z"
+      fill="none"
+      stroke="currentColor"
+      strokeMiterlimit="10"
+      strokeWidth="32"
+    />
+    <path
+      d="M256 48c-58.07 0-112.67 93.13-112.67 208S197.93 464 256 464s112.67-93.13 112.67-208S314.07 48 256 48z"
+      fill="none"
+      stroke="currentColor"
+      strokeMiterlimit="10"
+      strokeWidth="32"
+    />
+    <path
+      d="M117.33 117.33c38.24 27.15 86.38 43.34 138.67 43.34s100.43-16.19 138.67-43.34M394.67 394.67c-38.24-27.15-86.38-43.34-138.67-43.34s-100.43 16.19-138.67 43.34"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="32"
+    />
+    <path
+      d="M256 48v416M464 256H48"
+      fill="none"
+      stroke="currentColor"
+      strokeMiterlimit="10"
+      strokeWidth="32"
+    />
+  </IconBase>
+);
+
+export const LocationIcon = (props: AppIconProps): ReactElement => (
+  <IconBase viewBox="0 0 512 512" {...props}>
+    <path
+      d="M256 32C167.67 32 96 96.51 96 176c0 128 160 304 160 304s160-176 160-304c0-79.49-71.67-144-160-144zm0 224a64 64 0 1164-64 64.07 64.07 0 01-64 64z"
+      fill="currentColor"
+    />
+  </IconBase>
+);
+
 export const LinkedInIcon = (props: AppIconProps): ReactElement => (
   <IconBase {...props}>
     <path

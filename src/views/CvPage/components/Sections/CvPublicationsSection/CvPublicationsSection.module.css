@@ -1,0 +1,9 @@
+.root {
+  display: grid;
+  list-style: none;
+  gap: 4mm;
+}
+
+.itemTitle {
+  font-size: var(--cv-font-size-meta);
+}

@@ -1,0 +1,72 @@
+.root {
+  min-width: calc(210mm + 24mm);
+  min-height: max(100%, calc(297mm + 32mm));
+  background: var(--cv-preview-bg);
+}
+
+.previewShell {
+  padding-top: 12mm;
+  padding-bottom: 16mm;
+}
+
+.screenDocument,
+.printPage {
+  display: grid;
+  gap: 5mm;
+}
+
+.printDocument {
+  display: none;
+}
+
+.contentFlow {
+  display: grid;
+  gap: 4mm;
+}
+
+@page {
+  size: A4;
+  margin: 14mm;
+}
+
+@media print {
+  :global(body) {
+    background: #ffffff !important;
+  }
+
+  :global(body)::before {
+    display: none !important;
+    content: none !important;
+  }
+
+  .root {
+    min-width: auto;
+    min-height: auto;
+    background: #ffffff;
+  }
+
+  .previewShell {
+    padding: 0;
+  }
+
+  .screenDocument {
+    display: none;
+  }
+
+  .printDocument {
+    display: grid;
+    gap: 0;
+    background: #ffffff;
+  }
+
+  .printPage {
+    page-break-after: always;
+    break-after: page;
+    background: #ffffff;
+  }
+
+  .printPage:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+}

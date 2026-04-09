@@ -41,7 +41,7 @@ export const heroData: HeroData = {
   name: personData.name,
   headline: "Building production-grade web and mobile products.",
   supportingText: "Careful implementation, reliable in real use.",
-  status: personData.currentStatus,
+  status: personData.location,
   photoAlt: personData.portrait.alt,
   photoUrl: personData.portrait.url,
   photoSrcSet: personData.portrait.srcSet,

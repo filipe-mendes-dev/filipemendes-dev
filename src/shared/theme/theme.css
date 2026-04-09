@@ -1,55 +1,12 @@
 :root {
-  --paper: #f6f6f4;
-  --paper-raised: #ffffff;
-  --card-bg: rgb(255 255 255 / 97%);
-  --card-surface-bg: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--paper-raised) 94%, transparent) 0%,
-    color-mix(in srgb, var(--card-bg) 88%, transparent) 100%
-  );
-  --code-bg: #edf2f8;
-  --code-border: rgb(39 88 164 / 26%);
-  --code-ink: #244066;
-  --ink: #1f2328;
-  --ink-soft: #43484d;
-  --ink-muted: rgb(31 35 40 / 68%);
-  --ink-inverse: #ffffff;
-  --surface-inverse: #111111;
-  --stone: #eceff3;
-  --chip-bg: #eef1f5;
-  --button-secondary-bg: #edf1f5;
-  --header-bg: rgb(246 248 251 / 74%);
-  --overlay-backdrop: rgb(0 0 0 / 78%);
-  --footer-bg: #d9d7d1;
-  --footer-surface-bg: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--paper-raised) 48%, transparent) 0%,
-    color-mix(in srgb, var(--footer-bg) 18%, var(--paper-raised)) 100%
-  );
-  --hero-home-bg: #f6f6f4;
-  --hero-projects-bg: #eff2f6;
-  --hero-about-bg: #f3f5f7;
-  --hero-contact-bg: #eceff3;
-  --accent-soft: rgb(39 88 164 / 16%);
-  --moss-faint: rgb(39 88 164 / 11%);
-  --signal-red: #f47f7c;
-  --signal-yellow: #f0ba4a;
-  --signal-green: #51b96b;
-  --sun-accent: #876526;
-  --moon-accent: #4a6998;
-  --texture-dot: rgb(0 0 0 / 11%);
-  --texture-opacity: 0.012;
-  --moss: #2758a4;
-  --moss-strong: #1f4586;
-  --clay: #8eaad8;
-  --line: rgb(31 35 40 / 15%);
-  --line-strong: 1px;
-  --radius-lg: 1rem;
-  --radius-md: 0.9rem;
-  --radius-sm: 0.6rem;
-  --radius-pill: 999px;
-  --radius-xl: 1.25rem;
-  --radius-2xl: 1.5rem;
+  --font-space-grotesk: "Space Grotesk";
+  --font-manrope: "Manrope";
+  --font-ibm-plex-mono: "IBM Plex Mono";
+  --font-display: var(--font-space-grotesk), "Segoe UI", sans-serif;
+  --font-body: var(--font-manrope), "Segoe UI", sans-serif;
+  --font-mono: "Cascadia Mono", "Cascadia Code", "Consolas",
+    var(--font-ibm-plex-mono), "SFMono-Regular", monospace;
+
   --font-size-micro: 0.68rem;
   --font-size-caption: 0.75rem;
   --font-size-sm: 0.875rem;
@@ -68,19 +25,36 @@
   --line-height-heading: 1.2;
   --line-height-title: 1.14;
   --line-height-display: 1.16;
-  --font-space-grotesk: "Space Grotesk";
-  --font-manrope: "Manrope";
-  --font-ibm-plex-mono: "IBM Plex Mono";
-  --font-display: var(--font-space-grotesk), "Segoe UI", sans-serif;
-  --font-body: var(--font-manrope), "Segoe UI", sans-serif;
-  --font-mono: "Cascadia Mono", "Cascadia Code", "Consolas",
-    var(--font-ibm-plex-mono), "SFMono-Regular", monospace;
+
   --space-1: 0.5rem;
   --space-2: 0.75rem;
   --space-3: 1rem;
   --space-4: 1.5rem;
   --space-5: 2rem;
   --space-6: clamp(2.5rem, 5vw, 4rem);
+
+  --radius-sm: 0.6rem;
+  --radius-md: 0.9rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+  --radius-pill: 999px;
+
+  --line-strong: 1px;
+  --transition: 240ms ease;
+  --motion-unit: 60ms;
+  --motion-duration-xs: 120ms;
+  --motion-duration-sm: 180ms;
+  --motion-duration-md: 240ms;
+  --motion-duration-lg: 300ms;
+  --motion-duration-xl: 360ms;
+  --motion-duration-2xl: 480ms;
+  --motion-duration-3xl: 600ms;
+  --motion-duration-4xl: 840ms;
+  --motion-stagger-sm: 60ms;
+  --motion-ease-standard: cubic-bezier(0.2, 0.9, 0.24, 1);
+  --motion-ease-emphasized: cubic-bezier(0.22, 1, 0.36, 1);
+
   --layout-container-padding-inline: clamp(1.5rem, 3vw, 4rem);
   --layout-container-padding-block: clamp(1.5rem, 3vw, 2.5rem);
   --container: min(100%, clamp(72rem, 90vw, 88rem));
@@ -95,44 +69,101 @@
   --control-height-lg: 2.85rem;
   --control-padding-md: 0.55rem 0.85rem;
   --control-padding-lg: 0.7rem 1.05rem;
-  --icon-size-sm: 1rem;
   --icon-size-xs: 0.85rem;
+  --icon-size-sm: 1rem;
   --icon-size-md: 1.25rem;
   --header-offset: 4.5rem;
   --shadow-tint: 0 18px 36px rgb(31 35 40 / 8%);
-  --transition: 240ms ease;
-  --motion-unit: 60ms;
-  --motion-duration-xs: 120ms;
-  --motion-duration-sm: 180ms;
-  --motion-duration-md: 240ms;
-  --motion-duration-lg: 300ms;
-  --motion-duration-xl: 360ms;
-  --motion-duration-2xl: 480ms;
-  --motion-duration-3xl: 600ms;
-  --motion-duration-4xl: 840ms;
-  --motion-stagger-sm: 60ms;
-  --motion-ease-standard: cubic-bezier(0.2, 0.9, 0.24, 1);
-  --motion-ease-emphasized: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --paper: #f6f6f4;
+  --paper-raised: #ffffff;
+  --ink: #1f2328;
+  --ink-soft: #43484d;
+  --ink-muted: rgb(31 35 40 / 68%);
+  --ink-inverse: #ffffff;
+  --surface-inverse: #111111;
+  --stone: #eceff3;
+  --line: rgb(31 35 40 / 15%);
+
+  --card-bg: rgb(255 255 255 / 97%);
+  --card-surface-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--paper-raised) 94%, transparent) 0%,
+    color-mix(in srgb, var(--card-bg) 88%, transparent) 100%
+  );
+  --chip-bg: #eef1f5;
+  --button-secondary-bg: #edf1f5;
+  --header-bg: rgb(246 248 251 / 74%);
+  --overlay-backdrop: rgb(0 0 0 / 78%);
+  --footer-bg: #d9d7d1;
+  --footer-surface-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--paper-raised) 48%, transparent) 0%,
+    color-mix(in srgb, var(--footer-bg) 18%, var(--paper-raised)) 100%
+  );
+  --hero-home-bg: #f6f6f4;
+  --hero-projects-bg: #eff2f6;
+  --hero-about-bg: #f3f5f7;
+  --hero-contact-bg: #eceff3;
+
+  --code-bg: #edf2f8;
+  --code-border: rgb(39 88 164 / 26%);
+  --code-ink: #244066;
+
+  --moss: #2758a4;
+  --moss-strong: #1f4586;
+  --clay: #8eaad8;
+  --accent-soft: rgb(39 88 164 / 16%);
+  --moss-faint: rgb(39 88 164 / 11%);
+  --signal-red: #f47f7c;
+  --signal-yellow: #f0ba4a;
+  --signal-green: #51b96b;
+  --sun-accent: #876526;
+  --moon-accent: #4a6998;
+
+  --texture-dot: rgb(0 0 0 / 11%);
+  --texture-opacity: 0.012;
+
+  --cv-paper-bg: #ffffff;
+  --cv-preview-bg: #ffffff;
+  --cv-ink: #1f2328;
+  --cv-body-ink: #43484d;
+  --cv-heading-ink: #1b2128;
+  --cv-muted: rgb(31 35 40 / 62%);
+  --cv-accent: #2758a4;
+  --cv-accent-soft: rgb(39 88 164 / 12%);
+  --cv-rule: rgb(31 35 40 / 12%);
+  --cv-rule-strong: rgb(31 35 40 / 18%);
+  --cv-frame-line: rgb(39 88 164 / 18%);
+  --cv-font-size-hero-title: 24pt;
+  --cv-font-size-hero-subtitle: 15pt;
+  --cv-font-section-title: 18pt;
+  --cv-font-size-title: 12pt;
+  --cv-font-size-body: 11pt;
+  --cv-font-size-meta: 10pt;
+  --cv-font-size-label: 8pt;
+  --cv-line-height-tight: 1.2;
+  --cv-line-height-normal: 1.35;
+  --cv-line-height-relaxed: 1.48;
 }
 
 :root[data-theme="dark"] {
   --paper: #040506;
   --paper-raised: #0f1114;
-  --card-bg: #15181c;
-  --card-surface-bg: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--paper-raised) 26%, transparent) 0%,
-    color-mix(in srgb, var(--card-bg) 56%, transparent) 100%
-  );
-  --code-bg: #111625;
-  --code-border: rgb(120 166 233 / 42%);
-  --code-ink: #a6c7f5;
   --ink: #f6f3eb;
   --ink-soft: #e5dccf;
   --ink-muted: rgb(229 220 207 / 76%);
   --ink-inverse: #050505;
   --surface-inverse: #f6f3eb;
   --stone: #0d0f12;
+  --line: rgb(234 236 240 / 22%);
+
+  --card-bg: #15181c;
+  --card-surface-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--paper-raised) 26%, transparent) 0%,
+    color-mix(in srgb, var(--card-bg) 56%, transparent) 100%
+  );
   --chip-bg: #1a1d22;
   --button-secondary-bg: #1f232a;
   --header-bg: rgb(17 19 23 / 92%);
@@ -147,6 +178,14 @@
   --hero-projects-bg: #090b0e;
   --hero-about-bg: #080a0d;
   --hero-contact-bg: #0a0c10;
+
+  --code-bg: #111625;
+  --code-border: rgb(120 166 233 / 42%);
+  --code-ink: #a6c7f5;
+
+  --moss: #78a6e9;
+  --moss-strong: #97bdf2;
+  --clay: #b6ccee;
   --accent-soft: rgb(120 166 233 / 30%);
   --moss-faint: rgb(120 166 233 / 18%);
   --signal-red: #e1908d;
@@ -154,11 +193,8 @@
   --signal-green: #72bf86;
   --sun-accent: #f3c47b;
   --moon-accent: #a6c0ef;
+
   --texture-dot: rgb(255 255 255 / 18%);
   --texture-opacity: 0.012;
-  --moss: #78a6e9;
-  --moss-strong: #97bdf2;
-  --clay: #b6ccee;
-  --line: rgb(234 236 240 / 22%);
   --shadow-tint: 0 24px 52px rgb(0 0 0 / 38%);
 }

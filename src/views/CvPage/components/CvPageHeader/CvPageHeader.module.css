@@ -1,0 +1,158 @@
+.root {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8mm;
+  align-items: start;
+  padding-bottom: 5mm;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 6mm;
+  height: 100%;
+  align-items: start;
+  min-width: 0;
+}
+
+.portraitFrame {
+  width: 30mm;
+  aspect-ratio: 10 / 11;
+  border-radius: 6mm;
+  background: var(--cv-paper-bg);
+  overflow: hidden;
+}
+
+.portrait {
+  width: 140%;
+  height: 140%;
+  border-radius: 5mm;
+  object-fit: cover;
+  transform: translateY(-4mm);
+}
+
+.screenPortrait {
+  display: block;
+}
+
+.printPortrait {
+  display: none;
+}
+
+.identityBlock {
+  display: grid;
+  gap: 3mm;
+  min-width: 0;
+}
+
+.identityLead {
+  gap: 1mm;
+  display: grid;
+}
+
+.name {
+  font-size: var(--cv-font-size-hero-title);
+  line-height: var(--cv-line-height-tight);
+  letter-spacing: -0.05em;
+  color: var(--cv-heading-ink);
+}
+
+.role {
+  color: var(--cv-heading-ink);
+  font-family: var(--font-body);
+  font-size: var(--cv-font-size-hero-subtitle);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: var(--cv-line-height-tight);
+}
+
+.location {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.4mm;
+  width: fit-content;
+  max-width: 100%;
+  color: var(--cv-body-ink);
+  font-size: var(--cv-font-size-meta);
+  line-height: var(--cv-line-height-normal);
+  overflow-wrap: anywhere;
+}
+
+.locationIcon {
+  width: 3.4mm;
+  height: 3.4mm;
+  flex: none;
+  color: var(--cv-accent);
+}
+
+.contactRail {
+  display: grid;
+  gap: 3.2mm;
+  justify-items: start;
+  align-content: center;
+  grid-template-columns: auto minmax(0, 1fr);
+  min-width: 0;
+  height: 100%;
+}
+
+.locationContainer {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  align-items: end;
+  justify-content: end;
+}
+
+.contacts {
+  list-style: none;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 1.7mm;
+}
+
+.contactEntry {
+  display: grid;
+}
+
+.contactValue {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.4mm;
+  width: fit-content;
+  max-width: 100%;
+  color: var(--cv-body-ink);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: var(--cv-font-size-label);
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  line-height: var(--cv-line-height-normal);
+  overflow-wrap: anywhere;
+}
+
+.contactIcon {
+  width: 3.4mm;
+  height: 3.4mm;
+  flex: none;
+  color: var(--cv-accent);
+}
+
+@media print {
+  .screenPortrait {
+    display: none;
+  }
+
+  .printPortrait {
+    display: block;
+  }
+
+  .root {
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+
+  .location,
+  .contactValue {
+    overflow-wrap: normal;
+  }
+}

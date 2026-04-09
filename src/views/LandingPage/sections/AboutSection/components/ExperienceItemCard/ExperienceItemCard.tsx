@@ -10,11 +10,20 @@ export const ExperienceItemCard = ({
     return (
         <li className={st.root}>
             <div className={st.heading}>
-                <p className={`${su.listTitle} ${st.title}`}>{item.role}</p>
-                <p className={st.company}>{item.company}</p>
+                <p className={`${su.listTitle} ${st.title}`}>{item.title}</p>
+                <p className={st.company}>{item.organization}</p>
             </div>
-            <p className={`${su.listMeta} ${st.meta}`}>{item.period}</p>
-            <p className={st.copy}>{item.summary}</p>
+            <p className={`${su.listMeta} ${st.meta}`}>{item.timeframe}</p>
+            <p className={st.copy}>{item.context}</p>
+            {item.bullets.length > 0 && (
+                <ul className={st.bulletList}>
+                    {item.bullets.map((bullet) => (
+                        <li className={st.bulletItem} key={bullet}>
+                            {bullet}
+                        </li>
+                    ))}
+                </ul>
+            )}
         </li>
     );
 };
