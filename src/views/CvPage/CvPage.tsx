@@ -29,7 +29,7 @@ const CvPage = (): ReactElement => {
 
             <div className={st.columns}>
               <div className={st.primaryColumn}>
-                <CvProfileSection items={cvData.profileItems} />
+                {/* <CvProfileSection items={cvData.profileItems} /> */}
                 <CvExperienceSection entries={cvData.experience} />
                 <CvEducationSection entries={cvData.education} />
               </div>
@@ -45,12 +45,12 @@ const CvPage = (): ReactElement => {
             <section className={st.printPage}>
               <CvPageHeader />
 
-              <div className={st.printColumns}>
-                <div className={st.printPrimaryColumn}>
+              <div className={st.columns}>
+                <div className={st.primaryColumn}>
                   <CvExperienceSection entries={firstPrintPageExperience} />
                 </div>
 
-                <aside className={st.printSecondaryColumn}>
+                <aside className={st.secondaryColumn}>
                   <CvTechStackSection skillGroups={cvData.skillGroups} />
                 </aside>
               </div>
@@ -58,13 +58,13 @@ const CvPage = (): ReactElement => {
 
             {hasSecondPrintPage && (
               <section className={st.printPage}>
-                <div className={st.printColumns}>
-                  <div className={st.printPrimaryColumn}>
+                <div className={st.columns}>
+                  <div className={st.primaryColumn}>
                     <CvProfileSection items={cvData.profileItems} />
                     <CvEducationSection entries={cvData.education} />
                   </div>
 
-                  <aside className={st.printSecondaryColumn}>
+                  <aside className={st.secondaryColumn}>
                     <CvLanguagesSection languages={cvData.languages} />
                   </aside>
                 </div>
