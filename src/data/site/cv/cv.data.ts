@@ -3,6 +3,7 @@ import { getProjectHref, projectsData } from "../../projects";
 import { educationData } from "../education.data";
 import { experienceData } from "../experience.data";
 import { personData } from "../person.data";
+import { publicationsData } from "../publications.data";
 import type {
   CvContactLink,
   CvDocumentData,
@@ -10,6 +11,7 @@ import type {
   CvExperienceEntry,
   CvLanguageEntry,
   CvProjectEntry,
+  CvPublicationEntry,
   CvSkillGroup,
 } from "./cv.interfaces";
 
@@ -83,23 +85,27 @@ const projects: CvProjectEntry[] = projectsData.map((project) => {
   };
 });
 
+const publications: CvPublicationEntry[] = publicationsData.map((entry) => {
+  return {
+    title: entry.title,
+    venue: entry.venue,
+    year: entry.year,
+    href: entry.href,
+  };
+});
+
 const skillGroups: CvSkillGroup[] = [
   {
     title: "Frontend",
-    items: ["React", "Next.js", "TypeScript", "GraphQL", "CSS Modules"],
+    items: ["React", "Next.js", "TypeScript", "Motion"],
   },
   {
     title: "Mobile",
-    items: ["React Native", "Cross-platform UI", "REST API integration"],
+    items: ["React Native", "Reanimated"],
   },
   {
-    title: "Product Delivery",
-    items: [
-      "Design systems",
-      "Component architecture",
-      "Accessibility",
-      "Performance",
-    ],
+    title: "Daily Tools",
+    items: ["Cursor", "Codex", "Figma"],
   },
 ];
 
@@ -124,6 +130,7 @@ export const cvData: CvDocumentData = {
   contactLinks,
   experience,
   projects,
+  publications,
   education,
   skillGroups,
   languages,

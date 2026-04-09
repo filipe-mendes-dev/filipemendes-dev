@@ -9,6 +9,7 @@ import {
   CvExperienceSection,
   CvLanguagesSection,
   CvProjectsSection,
+  CvPublicationsSection,
   CvTechStackSection,
 } from "./components/Sections";
 import st from "./CvPage.module.css";
@@ -28,6 +29,7 @@ const CvPage = (): ReactElement => {
                 <CvExperienceSection entries={cvData.experience} />
                 <CvProjectsSection entries={cvData.projects} />
                 <CvEducationSection entries={cvData.education} />
+                <CvPublicationsSection entries={cvData.publications} />
               </div>
 
               <aside className={st.secondaryColumn}>
@@ -46,6 +48,7 @@ const CvPage = (): ReactElement => {
                   <CvExperienceSection entries={firstPrintPageExperience} />
                   <CvProjectsSection entries={cvData.projects} />
                   <CvEducationSection entries={cvData.education} />
+                  <CvPublicationsSection entries={cvData.publications} />
                 </div>
 
                 <aside className={st.secondaryColumn}>

@@ -1,0 +1,11 @@
+.root {
+  display: grid;
+  gap: 3.4mm;
+  list-style: none;
+}
+
+.itemTitle {
+  font-size: var(--cv-font-size-body);
+  line-height: var(--cv-line-height-normal);
+  font-weight: 600;
+}
