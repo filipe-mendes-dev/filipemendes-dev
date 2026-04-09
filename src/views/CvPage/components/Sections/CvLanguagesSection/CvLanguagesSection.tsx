@@ -6,9 +6,10 @@ import st from "./CvLanguagesSection.module.css";
 
 export const CvLanguagesSection = ({
   languages,
+  hasBottomSeparator = false,
 }: CvLanguagesSectionProps): ReactElement => {
   return (
-    <CvPageSection title="Languages">
+    <CvPageSection title="Languages" hasBottomSeparator={hasBottomSeparator}>
       <ul className={st.root}>
         {languages.map((entry) => (
           <li className={st.item} key={entry.name}>

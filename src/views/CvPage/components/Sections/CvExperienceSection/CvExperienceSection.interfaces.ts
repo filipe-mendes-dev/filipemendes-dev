@@ -2,4 +2,5 @@ import type { CvExperienceEntry } from "../../../../../data/site/cv/cv.interface
 
 export interface CvExperienceSectionProps {
   entries: CvExperienceEntry[];
+  hasBottomSeparator?: boolean;
 }

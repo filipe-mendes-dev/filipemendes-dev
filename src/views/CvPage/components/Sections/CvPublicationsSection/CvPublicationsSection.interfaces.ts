@@ -2,4 +2,5 @@ import type { CvPublicationEntry } from "../../../../../data/site/cv/cv.interfac
 
 export interface CvPublicationsSectionProps {
   entries: CvPublicationEntry[];
+  hasBottomSeparator?: boolean;
 }

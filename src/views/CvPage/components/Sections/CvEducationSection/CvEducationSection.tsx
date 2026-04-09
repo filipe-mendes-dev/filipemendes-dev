@@ -7,9 +7,10 @@ import st from "./CvEducationSection.module.css";
 
 export const CvEducationSection = ({
   entries,
+  hasBottomSeparator = false,
 }: CvEducationSectionProps): ReactElement => {
   return (
-    <CvPageSection title="Education" hasBottomSeparator>
+    <CvPageSection title="Education" hasBottomSeparator={hasBottomSeparator}>
       <ul className={st.root}>
         {entries.map((entry) => (
           <CvSectionItem

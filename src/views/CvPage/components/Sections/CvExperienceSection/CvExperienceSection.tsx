@@ -7,9 +7,10 @@ import st from "./CvExperienceSection.module.css";
 
 export const CvExperienceSection = ({
   entries,
+  hasBottomSeparator = false,
 }: CvExperienceSectionProps): ReactElement => {
   return (
-    <CvPageSection title="Experience" hasBottomSeparator>
+    <CvPageSection title="Experience" hasBottomSeparator={hasBottomSeparator}>
       <ol className={st.root}>
         {entries.map((entry, index) => (
           <CvSectionItem
