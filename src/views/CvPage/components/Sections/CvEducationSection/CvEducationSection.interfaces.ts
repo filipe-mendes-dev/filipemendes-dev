@@ -1,6 +1,6 @@
-import type { CvEducationEntry } from "../../../../../data/site/cv/cv.interfaces";
+import type { EducationItem } from "../../../../../data/site/education.data";
 
 export interface CvEducationSectionProps {
-  entries: CvEducationEntry[];
+  entries: EducationItem[];
   hasBottomSeparator?: boolean;
 }

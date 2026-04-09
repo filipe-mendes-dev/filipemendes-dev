@@ -23,13 +23,6 @@ export interface CvExperienceEntry {
   stack: string[];
 }
 
-export interface CvEducationEntry {
-  title: string;
-  institution: string;
-  timeframe: string;
-  details?: string;
-}
-
 export interface CvLanguageEntry {
   name: string;
   proficiency: string;
@@ -59,6 +52,5 @@ export interface CvDocumentData {
   experience: CvExperienceEntry[];
   projects: CvProjectEntry[];
   publications: CvPublicationEntry[];
-  education: CvEducationEntry[];
   languages: CvLanguageEntry[];
 }

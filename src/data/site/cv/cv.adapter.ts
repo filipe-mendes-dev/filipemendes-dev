@@ -4,7 +4,6 @@ import {
   projectsData,
 } from "../../projects";
 import { contactData } from "../landing-page/contact.data";
-import { educationData } from "../education.data";
 import { experienceData } from "../experience.data";
 import { personData } from "../person.data";
 import { publicationsData } from "../publications.data";
@@ -18,7 +17,6 @@ import {
 import type {
   CvContactLink,
   CvDocumentData,
-  CvEducationEntry,
   CvExperienceEntry,
   CvProjectEntry,
   CvPublicationEntry,
@@ -94,16 +92,6 @@ const mapProjectEntries = (): CvProjectEntry[] => {
   return [...sharedProjects, ...cvStandaloneProjects];
 };
 
-const mapEducationEntries = (): CvEducationEntry[] => {
-  return educationData.map((entry) => {
-    return {
-      title: entry.title,
-      institution: entry.details ?? "",
-      timeframe: entry.period ?? "Completed",
-    };
-  });
-};
-
 const mapPublicationEntries = (): CvPublicationEntry[] => {
   return publicationsData.map((entry) => {
     return {
@@ -125,7 +113,6 @@ export const cvData: CvDocumentData = {
   contactLinks: mapContactLinks(),
   experience: mapExperienceEntries(),
   projects: mapProjectEntries(),
-  education: mapEducationEntries(),
   publications: mapPublicationEntries(),
   languages: cvLanguages,
 };

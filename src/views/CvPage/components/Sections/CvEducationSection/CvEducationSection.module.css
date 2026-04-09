@@ -3,8 +3,3 @@
   display: grid;
   gap: 3.4mm;
 }
-.entryDetails {
-  color: var(--cv-body-ink);
-  font-size: var(--cv-font-size-body);
-  line-height: var(--cv-line-height-normal);
-}

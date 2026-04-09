@@ -1,6 +1,7 @@
 import type { ReactElement } from "react";
 
 import { LayoutContainer } from "../../components/layout/LayoutContainer";
+import { educationData } from "../../data/site/education.data";
 import { cvData } from "../../data/site/cv/cv.adapter";
 import { CvPaper } from "./components/CvPaper";
 import { CvPageHeader } from "./components/CvPageHeader";
@@ -28,7 +29,7 @@ const CvPage = (): ReactElement => {
               />
               <CvProjectsSection entries={cvData.projects} hasBottomSeparator />
               <CvEducationSection
-                entries={cvData.education}
+                entries={educationData}
                 hasBottomSeparator
               />
               <CvPublicationsSection
@@ -50,7 +51,7 @@ const CvPage = (): ReactElement => {
                   hasBottomSeparator
                 />
                 <CvEducationSection
-                  entries={cvData.education}
+                  entries={educationData}
                   hasBottomSeparator
                 />
                 <CvPublicationsSection
