@@ -13,7 +13,7 @@ export const CvEducationSection = ({
       <ul className={st.root}>
         {entries.map((entry) => (
           <CvSectionItem
-            date={entry.period}
+            date={entry.timeframe}
             key={entry.title}
             subtitle={entry.institution}
             title={entry.title}
