@@ -1,13 +1,11 @@
 .root {
   display: grid;
-  gap: 1mm;
   margin: 0;
-  font-family: var(--font-mono);
-  font-size: var(--cv-font-size-body);
-  font-weight: 600;
+  gap: 0.4mm;
+  font-family: var(--font-space-grotesk);
+  font-size: var(--cv-font-section-title);
+  font-weight: 700;
   line-height: var(--cv-line-height-normal);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
   color: var(--cv-heading-ink);
 }
 
@@ -19,8 +17,8 @@
 
 .accent {
   display: block;
-  width: 7mm;
-  height: 0.4mm;
+  width: 11mm;
+  height: 0.5mm;
   border-radius: 999px;
   background: color-mix(in srgb, var(--cv-accent) 88%, transparent);
 }
