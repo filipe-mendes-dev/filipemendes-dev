@@ -9,7 +9,7 @@ export const CvPageSection = ({
   title,
   className,
   contentClassName,
-  hasBottomSeparator = true,
+  hasBottomSeparator = false,
 }: CvPageSectionProps): ReactElement => {
   const baseRootClassName = hasBottomSeparator
     ? `${st.root} ${st.withBottomSeparator}`
