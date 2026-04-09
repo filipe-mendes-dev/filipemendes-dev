@@ -100,7 +100,7 @@ const languages: CvLanguageEntry[] = [
   },
   {
     name: "English",
-    proficiency: "Professional working proficiency",
+    proficiency: "C1",
   },
 ];
 
