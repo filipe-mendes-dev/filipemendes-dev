@@ -11,7 +11,7 @@
 .screenDocument,
 .printPage {
   display: grid;
-  gap: 7mm;
+  gap: 5mm;
 }
 
 .printDocument {
