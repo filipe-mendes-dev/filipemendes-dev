@@ -6,7 +6,7 @@
 }
 
 .withBottomSeparator {
-  padding-bottom: 3.2mm;
+  margin-bottom: 3.6mm;
 }
 
 .withBottomSeparator::after {
@@ -15,6 +15,7 @@
   justify-self: center;
   width: 78%;
   height: 1px;
+  margin-top: 1.8mm;
   background: radial-gradient(
     circle at center,
     color-mix(in srgb, var(--cv-rule-strong) 82%, transparent) 0%,
@@ -27,7 +28,6 @@
   display: flex;
   justify-content: space-between;
   align-items: start;
-  gap: 3.2mm;
 }
 
 .identity {
