@@ -9,7 +9,7 @@ export const CvTechStackSection = ({
   skillGroups,
 }: CvTechStackSectionProps): ReactElement => {
   return (
-    <CvPageSection title="Tech Stack">
+    <CvPageSection title="Tech Stack" hasBottomSeparator>
       <ul className={st.root}>
         {skillGroups.map((group) => (
           <CvSectionItem title={group.title} key={group.title}>
