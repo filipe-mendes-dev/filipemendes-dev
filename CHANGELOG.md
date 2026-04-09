@@ -9,12 +9,14 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 - Added a branded email signature asset at `public/email/Signature.png` for future email-related use
+- Added a canonical `/curriculum-vitae` route with a print-ready CV document view
 
 ### Changed
 
 - Updated the Open Graph image to better match the website design
 - Updated the public contact email to `contact@filipemendes.dev`
 - Reworked the contact section so the primary email action copies the address with inline success and failure feedback
+- Centralized person, contact, hero, CV, and metadata consumers around shared profile data
 
 ## [v1.0.0] - 2026-04-06
 
