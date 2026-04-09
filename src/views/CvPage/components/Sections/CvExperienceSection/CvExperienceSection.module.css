@@ -1,7 +1,6 @@
 .root {
   list-style: none;
   display: grid;
-  gap: 5mm;
 }
 
 .entrySummary {

@@ -8,9 +8,14 @@ export const CvSectionItem = ({
   subtitle,
   date,
   children,
+  hasBottomSeparator = false,
 }: CvSectionItemProps): ReactElement => {
+  const rootClassName = hasBottomSeparator
+    ? `${st.root} ${st.withBottomSeparator}`
+    : st.root;
+
   return (
-    <li className={st.root}>
+    <li className={rootClassName}>
       {(subtitle !== undefined && subtitle.length > 0) ||
       (date !== undefined && date.length > 0) ? (
         <div className={st.header}>

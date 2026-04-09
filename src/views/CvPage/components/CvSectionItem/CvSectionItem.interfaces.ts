@@ -5,4 +5,5 @@ export interface CvSectionItemProps {
   subtitle?: string;
   date?: string;
   children?: ReactNode;
+  hasBottomSeparator?: boolean;
 }

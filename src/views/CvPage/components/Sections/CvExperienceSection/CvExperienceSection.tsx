@@ -11,9 +11,10 @@ export const CvExperienceSection = ({
   return (
     <CvPageSection title="Experience">
       <ol className={st.root}>
-        {entries.map((entry) => (
+        {entries.map((entry, index) => (
           <CvSectionItem
             date={entry.period}
+            hasBottomSeparator={index < entries.length - 1}
             key={`${entry.company}-${entry.role}`}
             subtitle={entry.company}
             title={entry.role}
