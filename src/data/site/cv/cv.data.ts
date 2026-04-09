@@ -47,13 +47,13 @@ export const cvExperienceOverrides: Record<string, CvExperienceOverride> = {
   },
   "INOV::Software Engineer": {
     context:
-      "Applied machine learning research focused on infrared classification and object detection.",
+      "Worked on applied computer vision research for infrared-based object detection and classification in surveillance systems.",
     bullets: [
-      "Built an EfficientDet-based pipeline for real-time infrared object detection research.",
-      "Collected, labeled, and evaluated infrared datasets used for model training and validation.",
-      "Structured the experimentation flow from dataset preparation to evaluation for reproducible publication work.",
+      "Built an infrared-based detection system for identifying people, vehicles, and deer.",
+      "Collected, labeled, and curated datasets, including organizing on-site data acquisition.",
+      "Trained and evaluated models using TensorFlow and supported deployment into a C# inference application using OpenCV.",
     ],
-    stack: ["Python", "EfficientDet", "Computer Vision"],
+    stack: ["Python", "TensorFlow", "CUDA", "OpenCV", "Computer Vision"],
   },
 };
 
