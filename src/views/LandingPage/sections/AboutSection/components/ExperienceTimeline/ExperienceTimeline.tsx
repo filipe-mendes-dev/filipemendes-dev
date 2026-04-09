@@ -26,7 +26,7 @@ export const ExperienceTimeline = ({
                 {items.map((item) => (
                     <ExperienceItemCard
                         item={item}
-                        key={`${item.company}-${item.role}`}
+                        key={`${item.organization}-${item.title}`}
                     />
                 ))}
             </ul>

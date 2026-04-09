@@ -9,7 +9,6 @@ import { experienceData } from "../experience.data";
 import { personData } from "../person.data";
 import { publicationsData } from "../publications.data";
 import {
-  cvExperienceOverrides,
   cvLanguages,
   cvPersonalInfo,
   cvProjectOverrides,
@@ -24,10 +23,6 @@ import type {
   CvProjectEntry,
   CvPublicationEntry,
 } from "./cv.interfaces";
-
-const getExperienceOverrideKey = (company: string, role: string): string => {
-  return `${company}::${role}`;
-};
 
 const mapContactLinks = (): CvContactLink[] => {
   const socialLinks: CvContactLink[] = contactData.socials.map((entry) => {
@@ -59,18 +54,13 @@ const mapContactLinks = (): CvContactLink[] => {
 
 const mapExperienceEntries = (): CvExperienceEntry[] => {
   return experienceData.map((entry) => {
-    const override =
-      cvExperienceOverrides[
-        getExperienceOverrideKey(entry.company, entry.role)
-      ];
-
     return {
-      title: entry.role,
-      organization: entry.company,
-      timeframe: entry.period,
-      context: override?.context ?? entry.summary,
-      bullets: override?.bullets ?? [],
-      stack: override?.stack ?? [],
+      title: entry.title,
+      organization: entry.organization,
+      timeframe: entry.timeframe,
+      context: entry.context,
+      bullets: entry.bullets,
+      stack: entry.stack,
     };
   });
 };
