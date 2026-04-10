@@ -29,8 +29,8 @@ export const experienceData: ExperienceItem[] = [
     context:
       "Worked on mobile banking applications from initial development to release, covering core financial workflows under production constraints.",
     bullets: [
-      "Built React Native interfaces across account management, transfers, payments, and debit card features.",
-      "Integrated REST APIs handling authentication, request mapping, pagination, and error states.",
+      "Built React Native interfaces across account management, transfers, payments and debit card features.",
+      "Integrated REST APIs handling authentication, request mapping, pagination and error states.",
       "Improved flow modularity and shared component structure to reduce duplication across screens.",
       "Participated in App Store and Google Play release processes.",
     ],
@@ -43,8 +43,8 @@ export const experienceData: ExperienceItem[] = [
     context:
       "Worked on applied computer vision research for infrared-based object detection and classification in surveillance systems.",
     bullets: [
-      "Built an infrared-based detection system for identifying people, vehicles, and deer.",
-      "Collected, labeled, and curated datasets, including organizing on-site data acquisition.",
+      "Built an infrared-based detection system for identifying people, vehicles and deer.",
+      "Collected, labeled and curated datasets, including organizing on-site data acquisition.",
       "Trained and evaluated models using TensorFlow and supported deployment into a C# inference application using OpenCV.",
     ],
     stack: ["Python", "TensorFlow", "CUDA", "OpenCV", "Computer Vision"],

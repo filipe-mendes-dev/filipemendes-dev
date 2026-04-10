@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document explains the current role of `src/data/portfolio.ts` and how content flows into the app shell, homepage, and project detail routes.
+This document explains the current role of `src/data/portfolio.ts` and how content flows into the app shell, homepage and project detail routes.
 
 ## Primary Content Source
 
@@ -12,7 +12,7 @@ The current site content is centralized in:
 
 This file exports:
 
-- content interfaces such as `PortfolioContent`, `ProjectListItem`, and `NavigationItem`
+- content interfaces such as `PortfolioContent`, `ProjectListItem` and `NavigationItem`
 - the `portfolio` object
 
 At the current scale, this file acts as both:
@@ -79,7 +79,7 @@ Contents include:
 - role copy
 - summary copy
 - current status/location copy
-- image URL, `srcSet`, `sizes`, and alt text
+- image URL, `srcSet`, `sizes` and alt text
 - hero action definitions
 
 ### Project collection

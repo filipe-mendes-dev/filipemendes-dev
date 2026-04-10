@@ -37,7 +37,7 @@ Current ownership by file:
 - `src/app/fonts.ts` → `next/font` definitions and the shared root font-variable class string
 - `theme.css` → CSS custom properties and font tokens
 - `reset.css` → reset/normalization rules
-- `base.css` → base element defaults such as `html`, `body`, links, focus styles, and reduced-motion overrides
+- `base.css` → base element defaults such as `html`, `body`, links, focus styles and reduced-motion overrides
 
 This matches the current architecture: leaf components rely on CSS Modules and shared variables, not repeated global imports.
 
@@ -54,7 +54,7 @@ Current behavior:
 - `src/app/fonts.ts` defines the Google fonts through `next/font/google`
 - `src/app/fonts.ts` exports one composed `appFontVariables` class string
 - `src/app/layout.tsx` applies that string once on `<body>`
-- `src/shared/theme/theme.css` maps `--font-display`, `--font-body`, and `--font-mono` to those root font variables
+- `src/shared/theme/theme.css` maps `--font-display`, `--font-body` and `--font-mono` to those root font variables
 
 Why this split exists:
 
@@ -164,7 +164,7 @@ Current behavior:
 - light theme tokens are defined in `:root`
 - dark overrides are defined in `:root[data-theme='dark']`
 
-This means component styling does not need JavaScript theme branching. Components simply read CSS variables such as `var(--paper)`, `var(--ink)`, and `var(--header-bg)`.
+This means component styling does not need JavaScript theme branching. Components simply read CSS variables such as `var(--paper)`, `var(--ink)` and `var(--header-bg)`.
 
 ## Client Theme Updates
 
@@ -196,7 +196,7 @@ Relevant code:
 
 Current facts:
 
-- `Header.tsx` is already a client component for routing, menu state, layout effects, and DOM interaction
+- `Header.tsx` is already a client component for routing, menu state, layout effects and DOM interaction
 - theme values still live in CSS, but the toggle UI only needs one local `theme` value
 - no other live component currently subscribes to theme changes through shared JS state
 

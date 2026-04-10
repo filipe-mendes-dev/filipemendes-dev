@@ -1,7 +1,7 @@
 <h1 align="center">Filipe Mendes Portfolio</h1>
 
 <p align="center">
-  Next.js App Router portfolio covering landing pages, project case studies, and a standalone documentation workspace.
+  Next.js App Router portfolio covering landing pages, project case studies and a standalone documentation workspace.
 </p>
 
 <p align="center">
@@ -31,17 +31,17 @@
 
 ## Overview
 
-This repository powers a personal portfolio for Filipe Mendes, a frontend and mobile engineer. The site combines a section-based landing page, dedicated project pages, and a docs workspace for project notes and reference material.
+This repository powers a personal portfolio for Filipe Mendes, a frontend and mobile engineer. The site combines a section-based landing page, dedicated project pages and a docs workspace for project notes and reference material.
 
-Content is data-driven. Site copy, project records, project detail content, and docs entries live under `src/data`, then flow into thin route files and focused views.
+Content is data-driven. Site copy, project records, project detail content and docs entries live under `src/data`, then flow into thin route files and focused views.
 
 ## Highlights
 
-- Landing page with hero, projects, about, and contact sections
+- Landing page with hero, projects, about and contact sections
 - Dedicated project routes for portfolio case studies
 - Standalone docs workspace separated from the main site shell
 - Theme persistence through cookies and `localStorage`
-- Shared theme tokens, motion tokens, and CSS variable-driven styling
+- Shared theme tokens, motion tokens and CSS variable-driven styling
 - Server-first rendering with narrow client boundaries for motion and browser state
 
 ## Stack
@@ -66,22 +66,22 @@ Content is data-driven. Site copy, project records, project detail content, and 
 
 ```text
 src/
-  app/         App Router routes, metadata, and layout entry points
+  app/         App Router routes, metadata and layout entry points
   views/       Page-level composition
-  components/  Reusable UI, layout, branding, navigation, and docs components
-  data/        Site copy, project modules, docs registry, and static content
-  shared/      Theme, motion, styles, and shared navigation utilities
+  components/  Reusable UI, layout, branding, navigation and docs components
+  data/        Site copy, project modules, docs registry and static content
+  shared/      Theme, motion, styles and shared navigation utilities
 ```
 
 Architecture boundaries:
 
-- `src/app` handles params, metadata, and view handoff
+- `src/app` handles params, metadata and view handoff
 - `src/views` owns page composition
 - `src/components` holds reusable building blocks
 - `src/data` stores deterministic content
 - `src/shared/theme` centralizes theme initialization and motion values
 
-The app defaults to Server Components. Client components are limited to motion, section tracking, theme interactions, and browser-only behavior.
+The app defaults to Server Components. Client components are limited to motion, section tracking, theme interactions and browser-only behavior.
 
 ## Local Development
 
@@ -112,7 +112,7 @@ Open [http://localhost:3000](http://localhost:3000).
 - `npm run lint` run ESLint
 - `npm run typecheck` run TypeScript without emitting files
 - `npm run tokens:check` validate theme token usage
-- `npm run check` run token checks, lint, and type checking
+- `npm run check` run token checks, lint and type checking
 - `npm run format` apply ESLint auto-fixes
 
 ## Content and Docs Model

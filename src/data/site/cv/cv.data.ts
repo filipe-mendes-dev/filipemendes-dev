@@ -70,11 +70,11 @@ export const cvStandaloneProjects: CvProjectEntry[] = [
     title: "filipemendes.dev",
     type: "Portfolio Website",
     context:
-      "Designed and built a portfolio platform for presenting projects, documentation, and a developer profile.",
+      "Designed and built a portfolio platform for presenting projects, documentation and a developer profile.",
     bullets: [
-      "Next.js App Router architecture with server-rendered pages for landing, project, and documentation flows.",
+      "Next.js App Router architecture with server-rendered pages for landing, project and documentation flows.",
       "Motion-driven UI using Framer Motion for layout transitions and content sequencing across the platform.",
-      "Multi-surface structure combining projects, documentation, and profile content within a single application.",
+      "Multi-surface structure combining projects, documentation and profile content within a single application.",
     ],
     stack: ["Next.js", "TypeScript", "App Router", "CSS Modules"],
     href: "/",

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document describes the current structure of the portfolio website and the ownership boundaries between routes, views, reusable components, shared modules, and static content.
+This document describes the current structure of the portfolio website and the ownership boundaries between routes, views, reusable components, shared modules and static content.
 
 ## Framework Context
 
@@ -15,7 +15,7 @@ Primary entry points:
 - `src/app/projects/*/page.tsx`
 - `src/app/not-found.tsx`
 
-The codebase is organized as a mostly static site with request-aware theme rendering and client-side enhancements for navigation state, scrolling, and motion.
+The codebase is organized as a mostly static site with request-aware theme rendering and client-side enhancements for navigation state, scrolling and motion.
 
 ## Layer Responsibilities
 
@@ -89,7 +89,7 @@ Current groups:
 Current responsibility:
 
 - shared shell components such as `Header` and `Footer`
-- reusable layout primitives such as `Container`, `Section`, and `PageSectionSurface`
+- reusable layout primitives such as `Container`, `Section` and `PageSectionSurface`
 - reusable navigation helpers such as `HeaderNavList`
 - reusable visual wrappers such as `SoftSurface`
 - icons and small shared presentation helpers
@@ -172,8 +172,8 @@ Example: homepage
 - `LandingPage.tsx` renders local sections under `src/views/LandingPage/sections` and declares the landing-page section roots inline
 - `LandingPage.tsx` mounts the landing-page navigation binder and computes a reveal-enabled flag for lower sections
 - those sections use reusable UI from `src/components`
-- section navigation behavior comes from `src/views/LandingPage/navigation/useLandingPageNavigationController.ts` and `src/views/LandingPage/navigation/useLandingPageActiveSectionTracker.ts`, backed by a minimal store with request intent, active section, and pending target state
-- reveal behavior comes from `src/components/ui/Section/Section.tsx` and `src/shared/motion/useSectionRevealMotion.ts`, and is driven by viewport visibility rather than navigation intent
+- section navigation behavior comes from `src/views/LandingPage/navigation/useLandingPageNavigationController.ts` and `src/views/LandingPage/navigation/useLandingPageActiveSectionTracker.ts`, backed by a minimal store with request intent, active section and pending target state
+- reveal behavior comes from `src/components/ui/Section/Section.tsx` and `src/shared/motion/useSectionRevealMotion.ts` and is driven by viewport visibility rather than navigation intent
 
 Example: project detail page
 
@@ -209,4 +209,4 @@ The current site is best understood as:
 - route-sized views for page composition
 - a small set of client-only interaction systems layered over static output
 
-That model is consistent across the homepage, project detail pages, and not-found UI.
+That model is consistent across the homepage, project detail pages and not-found UI.

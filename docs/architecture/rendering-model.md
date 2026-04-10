@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document describes how the current site renders across build time, route execution, and browser hydration.
+This document describes how the current site renders across build time, route execution and browser hydration.
 
 ## Current Model
 
@@ -72,7 +72,7 @@ These files are server components because they do not declare `use client`:
 - `src/app/not-found.tsx`
 - `src/views/LandingPage/LandingPage.tsx`
 - `src/views/NotFoundPage/NotFoundPage.tsx`
-- most reusable UI wrappers such as `Section`, `Container`, `PageSectionSurface`, and `SoftSurface`
+- most reusable UI wrappers such as `Section`, `Container`, `PageSectionSurface` and `SoftSurface`
 
 Why they can stay server-side:
 
@@ -98,7 +98,7 @@ The current explicit client entry files are:
 Why it is client:
 
 - uses `usePathname()`
-- uses `useState`, `useEffect`, `useLayoutEffect`, and `useSyncExternalStore`
+- uses `useState`, `useEffect`, `useLayoutEffect` and `useSyncExternalStore`
 - reads and writes `document.documentElement`
 - uses `ResizeObserver`
 - registers document-level pointer listeners
@@ -137,7 +137,7 @@ Could it be server instead:
 Why it is client:
 
 - uses Framer Motion
-- uses `useReducedMotion`, `useState`, and `useEffect`
+- uses `useReducedMotion`, `useState` and `useEffect`
 - requests landing-page section navigation on hero actions
 
 Could it be server instead:
@@ -175,7 +175,7 @@ During production build:
 - `src/app/layout.tsx` is compiled as the root shell
 - `src/data/portfolio.ts` is imported as the content source
 - project route files under `src/app/projects/*/page.tsx` export metadata for their matching pages
-- static HTML is generated for `/`, `/projects/*`, and the not-found UI
+- static HTML is generated for `/`, `/projects/*` and the not-found UI
 
 There is no remote data dependency in the current build path.
 
@@ -277,6 +277,6 @@ The current rendering model is:
 
 - static at the route/content level
 - server-component-first by default
-- client-enhanced for shell interaction, scrolling, and motion
+- client-enhanced for shell interaction, scrolling and motion
 
 That model is coherent. The main rendering tradeoff is not data loading, but how much interactive behavior currently expands the client-side subtree.

@@ -5,7 +5,7 @@ const lastUpdatedLabel = "Last updated · March 2026";
 
 export const projectDocs: ProjectDocsContent = {
   description:
-    "Release, privacy, and operational policy documentation for the Arc Timer mobile app.",
+    "Release, privacy and operational policy documentation for the Arc Timer mobile app.",
   order: 1,
   documents: [
     {
@@ -14,7 +14,7 @@ export const projectDocs: ProjectDocsContent = {
       projectSlug: project.slug,
       title: "Arc Timer Privacy and Permissions Policy",
       summary:
-        "Policy for handling user data, device permissions, and disclosure updates in a workout timer product built around low-friction usage.",
+        "Policy for handling user data, device permissions and disclosure updates in a workout timer product built around low-friction usage.",
       lastUpdatedLabel,
       sections: [
         {
@@ -28,8 +28,8 @@ export const projectDocs: ProjectDocsContent = {
             {
               kind: "list",
               items: [
-                "Collect only the data needed to support core workout timing, diagnostics, and clearly defined product improvements.",
-                "Do not introduce new analytics events or identifiers without reviewing their retention, purpose, and user-facing disclosure impact.",
+                "Collect only the data needed to support core workout timing, diagnostics and clearly defined product improvements.",
+                "Do not introduce new analytics events or identifiers without reviewing their retention, purpose and user-facing disclosure impact.",
                 "Avoid storing sensitive workout context unless it is necessary for a user-facing feature and documented in release planning.",
               ],
             },
@@ -60,7 +60,7 @@ export const projectDocs: ProjectDocsContent = {
           content: [
             {
               kind: "paragraph",
-              text: "Store disclosures, privacy text, and support-facing explanations must stay aligned with the shipped app behavior. Changes that affect data handling or permission usage should be treated as release-gating items rather than documentation follow-up.",
+              text: "Store disclosures, privacy text and support-facing explanations must stay aligned with the shipped app behavior. Changes that affect data handling or permission usage should be treated as release-gating items rather than documentation follow-up.",
             },
             {
               kind: "list",

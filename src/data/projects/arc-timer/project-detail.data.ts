@@ -40,7 +40,7 @@ export const projectDetail: ProjectDetailContent = {
       },
       {
         id: "arc-timer-session-pages",
-        alt: "Session details, history, and sharing interface.",
+        alt: "Session details, history and sharing interface.",
         url: "/images/projects/arc-timer/Session_Pages.png",
       },
       {
@@ -59,7 +59,7 @@ export const projectDetail: ProjectDetailContent = {
     {
       title: "Custom workout creation",
       description:
-        "Create workouts by defining exercises, intervals, and durations.",
+        "Create workouts by defining exercises, intervals and durations.",
     },
     {
       title: "Simple session controls",
@@ -98,12 +98,12 @@ export const projectDetail: ProjectDetailContent = {
     {
       title: "File-based workout sharing",
       description:
-        "Workouts serialized into files for import, export, and reuse across devices.",
+        "Workouts serialized into files for import, export and reuse across devices.",
     },
   ],
   techStack: ["React Native", "Expo Router", "React Reanimated", "TypeScript"],
   metadata: createProjectMetadata(
     project.name,
-    "A focused interval timer for HIIT workouts, designed around precise timing, minimal interaction, and reliable execution during high-intensity sessions."
+    "A focused interval timer for HIIT workouts, designed around precise timing, minimal interaction and reliable execution during high-intensity sessions."
   ),
 };

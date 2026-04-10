@@ -9,5 +9,5 @@ export const project: ProjectRecord = {
   },
   category: "Documentation Sandbox",
   description:
-    "Development-only documentation fixtures used to validate docs navigation, layout, and fallback rendering behavior.",
+    "Development-only documentation fixtures used to validate docs navigation, layout and fallback rendering behavior.",
 };

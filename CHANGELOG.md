@@ -16,7 +16,7 @@ All notable changes to this project will be documented in this file.
 - Updated the Open Graph image to better match the website design
 - Updated the public contact email to `contact@filipemendes.dev`
 - Reworked the contact section so the primary email action copies the address with inline success and failure feedback
-- Centralized person, contact, hero, CV, and metadata consumers around shared profile data
+- Centralized person, contact, hero, CV and metadata consumers around shared profile data
 
 ## [v1.0.0] - 2026-04-06
 
@@ -24,13 +24,13 @@ All notable changes to this project will be documented in this file.
 
 #### Core Platform
 
-- Next.js App Router portfolio with landing, project, and documentation routes
+- Next.js App Router portfolio with landing, project and documentation routes
 - Section-based landing page (hero, projects, about, contact)
 - Dedicated project routes for case study rendering
 
 #### Project Showcase
 
-- Arc Timer case study including overview, screenshots, feature highlights, and implementation details
+- Arc Timer case study including overview, screenshots, feature highlights and implementation details
 
 #### Documentation System
 

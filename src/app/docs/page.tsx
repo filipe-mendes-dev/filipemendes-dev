@@ -11,7 +11,7 @@ import { DocsIndexView } from "../../views/Docs/DocsIndexView";
 
 const title = `Docs | ${siteData.siteTitle}`;
 const description =
-  "Standalone documentation workspace for project notes, policies, and implementation references.";
+  "Standalone documentation workspace for project notes, policies and implementation references.";
 
 export const metadata: Metadata = {
   title,
@@ -25,7 +25,7 @@ const DocsHomeRoute = (): ReactElement => {
     <DocsIndexView
       docs={getDocsNavigationItems()}
       eyebrow="Documentation Workspace"
-      intro="A dedicated space for delivery notes, release policies, and reference material that should live outside the main portfolio shell."
+      intro="A dedicated space for delivery notes, release policies and reference material that should live outside the main portfolio shell."
       title="Docs"
     />
   );

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document explains the current shared header, landing-page navigation flow, and section-scrolling behavior.
+This document explains the current shared header, landing-page navigation flow and section-scrolling behavior.
 
 ## Header Ownership
 
@@ -72,11 +72,11 @@ Navigation state is split across four key pieces:
 - `src/views/LandingPage/LandingPage.tsx` → declares the landing-page section contract in markup
 - `src/views/LandingPage/navigation/LandingPageNavigationBinder.tsx` → subscribes to the landing-page navigation store and mounts the navigation controller
 - `src/components/layout/Header/useHeaderController.ts` → initiates navigation requests and prepares header nav items
-- `src/views/LandingPage/navigation/landingPageNavigationStore.ts` → stores `activeSection`, transient `requestedSection`, and optional `pendingTargetSection`
+- `src/views/LandingPage/navigation/landingPageNavigationStore.ts` → stores `activeSection`, transient `requestedSection` and optional `pendingTargetSection`
 - `src/views/LandingPage/navigation/landingPageSections.ts` → defines the section-resolution contract and shared section attributes
-- `src/views/LandingPage/navigation/landingPageScroll.ts` → owns target measurement, arrival checks, and scroll execution
+- `src/views/LandingPage/navigation/landingPageScroll.ts` → owns target measurement, arrival checks and scroll execution
 - `src/views/LandingPage/useLandingPageRevealEnabled/useLandingPageRevealEnabled.tsx` → enables landing-page section reveal after the hero intro delay
-- `src/views/LandingPage/navigation/useLandingPageNavigationController.ts` → consumes requests, performs scroll, and sets `pendingTargetSection` when smooth-scroll pinning is needed
+- `src/views/LandingPage/navigation/useLandingPageNavigationController.ts` → consumes requests, performs scroll and sets `pendingTargetSection` when smooth-scroll pinning is needed
 - `src/views/LandingPage/navigation/useLandingPageActiveSectionTracker.ts` → tracks active section during normal scroll and pins the target while `pendingTargetSection` is active
 - `src/components/ui/Section/Section.tsx` and `src/shared/motion/useSectionRevealMotion.ts` → own viewport-driven section reveal behavior
 
@@ -175,11 +175,11 @@ Relevant code:
 Current behavior:
 
 - reveal-managed sections reveal when they enter view
-- the same reveal logic applies to manual scroll, wheel/touch scroll, smooth programmatic scroll, and cross-page return-to-section flows
+- the same reveal logic applies to manual scroll, wheel/touch scroll, smooth programmatic scroll and cross-page return-to-section flows
 - reveal timing lives in shared motion variants rather than in navigation-driven choreography
 - no navigation-driven reveal choreography remains
 
-This keeps navigation focused on scroll mechanics, reveal focused on visibility-driven appearance, and hero intro as a separate readiness gate.
+This keeps navigation focused on scroll mechanics, reveal focused on visibility-driven appearance and hero intro as a separate readiness gate.
 
 ## Project-Page Navigation Flow
 
@@ -266,7 +266,7 @@ Current role:
 
 - render precomputed nav items for both desktop and mobile
 - apply `aria-current`
-- accept already-prepared hrefs, click handlers, and optional styles
+- accept already-prepared hrefs, click handlers and optional styles
 
 It does not own:
 
@@ -290,7 +290,7 @@ Current behavior:
 - the delay is derived from shared motion CSS variables
 - CSS performs the actual opacity/transform animation
 
-This is small, local, and appropriately placed in the header.
+This is small, local and appropriately placed in the header.
 
 ## Where Navigation Behavior Diverges
 
@@ -340,7 +340,7 @@ The hardest part of the current navigation architecture is the interaction betwe
 
 Why it is complex:
 
-- requested navigation, pending target state, and observed active state share one external store snapshot
+- requested navigation, pending target state and observed active state share one external store snapshot
 - landing-page section resolution still depends on DOM attributes, but that contract is now centralized in `landingPageSections.ts`
 - navigation and reveal are separate, but both still depend on the same section-level DOM contract
 
@@ -353,7 +353,7 @@ The current navigation model is consistent once its boundaries are clear:
 - `LandingPage.tsx` owns which sections participate and exposes the section-root markers inline
 - each landing-page section owns the heading/content markers for its own reveal DOM
 - the header requests section changes and renders shell state
-- `landingPageSections.ts` owns how section roots, headings, and reveal content are identified
+- `landingPageSections.ts` owns how section roots, headings and reveal content are identified
 - the landing-page navigation binder mounts one request consumer and one tracker
 - the navigation controller owns request consumption and offset-aware scrolling
 - the active-section tracker owns normal scroll tracking and pending-target pinning
