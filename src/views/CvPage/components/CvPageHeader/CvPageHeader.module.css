@@ -107,7 +107,8 @@
   list-style: none;
   display: grid;
   grid-template-columns: auto auto;
-  gap: 1.7mm;
+  row-gap: 1.7mm;
+  column-gap: 3.5mm;
 }
 
 .contactEntry {
