@@ -1,5 +1,7 @@
 import type { ReactElement, ReactNode } from "react";
 
+import { CvRouteDocumentStyles } from "./CvRouteDocumentStyles";
+
 interface CurriculumVitaeLayoutProps {
   children: ReactNode;
 }
@@ -7,7 +9,7 @@ interface CurriculumVitaeLayoutProps {
 const CurriculumVitaeLayout = ({
   children,
 }: CurriculumVitaeLayoutProps): ReactElement => {
-  return <>{children}</>;
+  return <CvRouteDocumentStyles>{children}</CvRouteDocumentStyles>;
 };
 
 export default CurriculumVitaeLayout;
