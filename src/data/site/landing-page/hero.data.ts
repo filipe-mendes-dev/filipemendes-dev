@@ -5,7 +5,7 @@ export interface HeroAction {
   label: string;
   href: string;
   sectionId?: SectionId;
-  variant: "primary" | "secondary" | "ghost";
+  variant: "primary" | "secondary" | "tertiary";
 }
 
 export interface HeroData {
@@ -33,6 +33,11 @@ const heroActions: HeroAction[] = [
     href: "/",
     sectionId: "contact",
     variant: "secondary",
+  },
+  {
+    label: "View CV",
+    href: "/cv",
+    variant: "tertiary",
   },
 ];
 
