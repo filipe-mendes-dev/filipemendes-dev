@@ -4,8 +4,8 @@ const CurriculumVitaeHead = (): ReactElement => {
   return (
     <style>{`
       html, body {
-        -webkit-text-size-adjust: 100%;
-        text-size-adjust: 100%;
+        -webkit-text-size-adjust: none;
+        text-size-adjust: none;
       }
     `}</style>
   );
