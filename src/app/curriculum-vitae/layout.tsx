@@ -1,7 +1,5 @@
 import type { ReactElement, ReactNode } from "react";
 
-import "./route.css";
-
 interface CurriculumVitaeLayoutProps {
   children: ReactNode;
 }
