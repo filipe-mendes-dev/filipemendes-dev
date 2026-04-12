@@ -15,6 +15,10 @@ export const projectDetail: ProjectDetailContent = {
     isMobileApp: true,
     links: [
       {
+        label: "GitHub",
+        href: "https://github.com/filipe-mendes-dev/arc-timer",
+      },
+      {
         label: "Docs",
         href: "/docs/projects/arc-timer",
       },
