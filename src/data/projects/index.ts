@@ -1,5 +1,6 @@
 import { projectModule as demoDocsProjectModule } from "./demo-docs";
 import { projectModule as arcTimerProjectModule } from "./arc-timer";
+import { projectModule as filipemendesDevProjectModule } from "./filipemendes-dev";
 import {
   type LandingProjectData,
   type ProjectModule,
@@ -23,6 +24,7 @@ export {
 
 export const projectModules: ProjectModule[] = [
   arcTimerProjectModule,
+  filipemendesDevProjectModule,
   demoDocsProjectModule,
 ];
 

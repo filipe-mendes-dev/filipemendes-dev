@@ -1,7 +1,7 @@
 import {
   getProjectHref,
   getProjectModuleBySlug,
-  projectsData,
+  projectModules,
 } from "../../projects";
 import { personData } from "../person.data";
 import { profileData } from "../profile.data";
@@ -24,32 +24,33 @@ export const cvPersonalInfo: Partial<CvPersonalInfo> = {
 };
 
 const mapProjectEntries = (): CvProjectEntry[] => {
-  const sharedProjects = projectsData.map((project) => {
-    const override = cvProjectOverrides[project.slug];
-    const detail = getProjectModuleBySlug(project.slug)?.detail;
+  return projectModules
+    .filter((projectModule) => projectModule.isDemo !== true)
+    .map((projectModule) => {
+      const { project } = projectModule;
+      const override = cvProjectOverrides[project.slug];
+      const detail = getProjectModuleBySlug(project.slug)?.detail;
 
-    return {
-      title: project.name,
-      type: project.category,
-      context:
-        override?.context ?? detail?.hero.description ?? project.description,
-      bullets:
-        override?.bullets ??
-        detail?.keyFeatures
-          .slice(0, 3)
-          .map(
-            (item) =>
-              `${item.title}${
-                item.description !== undefined ? ` — ${item.description}` : ""
-              }`
-          ) ??
-        [],
-      stack: override?.stack ?? detail?.techStack ?? [],
-      href: getProjectHref(project.slug),
-    };
-  });
-
-  return [...sharedProjects, ...cvStandaloneProjects];
+      return {
+        title: project.name,
+        type: project.category,
+        context:
+          override?.context ?? detail?.hero.description ?? project.description,
+        bullets:
+          override?.bullets ??
+          detail?.keyFeatures
+            .slice(0, 3)
+            .map(
+              (item) =>
+                `${item.title}${
+                  item.description !== undefined ? ` — ${item.description}` : ""
+                }`
+            ) ??
+          [],
+        stack: override?.stack ?? detail?.techStack ?? [],
+        href: getProjectHref(project.slug),
+      };
+    });
 };
 
 export const cvProjectOverrides: Record<string, CvProjectOverride> = {
@@ -63,12 +64,7 @@ export const cvProjectOverrides: Record<string, CvProjectOverride> = {
     ],
     stack: ["React Native", "Expo Router", "React Reanimated", "TypeScript"],
   },
-};
-
-export const cvStandaloneProjects: CvProjectEntry[] = [
-  {
-    title: "filipemendes.dev",
-    type: "Portfolio Website",
+  "filipemendes-dev": {
     context:
       "Designed and built a portfolio platform for presenting projects, documentation and a developer profile.",
     bullets: [
@@ -77,9 +73,8 @@ export const cvStandaloneProjects: CvProjectEntry[] = [
       "Multi-surface structure combining projects, documentation and profile content within a single application.",
     ],
     stack: ["Next.js", "TypeScript", "App Router", "CSS Modules"],
-    href: "/",
   },
-];
+};
 
 export const cvLanguages: CvLanguageEntry[] = [
   {
