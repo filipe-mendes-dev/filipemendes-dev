@@ -8,6 +8,8 @@ import {
 } from "framer-motion";
 import { type MouseEvent, type ReactElement, useEffect, useState } from "react";
 
+import { ExternalLinkIcon } from "../../../../components/icons";
+import { TextActionLink } from "../../../../components/navigation/TextActionLink";
 import surface from "../../../../components/ui/PageSectionSurface/PageSectionSurface.module.css";
 import { Section } from "../../../../components/ui/Section";
 import type { HeroAction } from "../../../../data/site/landing-page/hero.data";
@@ -22,11 +24,7 @@ import { heroMotionConfig } from "./heroMotion";
 
 const getActionClassName = (action: HeroAction): string => {
   const variantClass =
-    action.variant === "primary"
-      ? su.buttonPrimary
-      : action.variant === "secondary"
-      ? su.buttonSecondary
-      : su.textLink;
+    action.variant === "primary" ? su.buttonPrimary : su.buttonSecondary;
 
   return `${su.button} ${variantClass} ${st.heroActionLink}`;
 };
@@ -68,6 +66,13 @@ export const HeroSection = ({ content }: HeroSectionProps): ReactElement => {
       event.preventDefault();
       requestLandingPageSection(sectionTargetId);
     };
+
+  const buttonActions = content.actions.filter(
+    (action) => action.variant !== "tertiary"
+  );
+  const tertiaryActions = content.actions.filter(
+    (action) => action.variant === "tertiary"
+  );
 
   const revealItemVariants: Variants = {
     hidden: {
@@ -190,20 +195,34 @@ export const HeroSection = ({ content }: HeroSectionProps): ReactElement => {
                   data-hero-copy-item="true"
                   variants={revealItemVariants}
                 >
-                  {content.actions.map((action) => {
+                  <div className={st.heroButtonGroup}>
+                    {buttonActions.map((action) => {
+                      return (
+                        <a
+                          key={action.label}
+                          href={action.href}
+                          className={getActionClassName(action)}
+                          onClick={
+                            action.sectionId === undefined
+                              ? undefined
+                              : handleSectionActionClick(action.sectionId)
+                          }
+                        >
+                          {action.label}
+                        </a>
+                      );
+                    })}
+                  </div>
+                  {tertiaryActions.map((action) => {
                     return (
-                      <a
+                      <TextActionLink
                         key={action.label}
                         href={action.href}
-                        className={getActionClassName(action)}
-                        onClick={
-                          action.sectionId === undefined
-                            ? undefined
-                            : handleSectionActionClick(action.sectionId)
-                        }
+                        className={st.heroTertiaryAction}
+                        trailingIcon={<ExternalLinkIcon />}
                       >
                         {action.label}
-                      </a>
+                      </TextActionLink>
                     );
                   })}
                 </motion.div>
