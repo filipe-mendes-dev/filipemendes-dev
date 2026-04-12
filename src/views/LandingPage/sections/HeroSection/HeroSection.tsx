@@ -184,11 +184,24 @@ export const HeroSection = ({ content }: HeroSectionProps): ReactElement => {
                   <p className={st.heroSummary}>{content.supportingText}</p>
                 </motion.div>
                 <motion.p
-                  className={st.heroNow}
                   data-hero-copy-item="true"
                   variants={revealItemVariants}
                 >
-                  {content.status}
+                  <span className={st.heroMetaRow}>
+                    <span className={st.heroNow}>{content.status}</span>
+                    {tertiaryActions.map((action) => {
+                      return (
+                        <TextActionLink
+                          key={`${action.label}-mobile`}
+                          href={action.href}
+                          className={`${st.heroTertiaryAction} ${st.heroTertiaryActionMobile}`}
+                          trailingIcon={<ExternalLinkIcon />}
+                        >
+                          {action.label}
+                        </TextActionLink>
+                      );
+                    })}
+                  </span>
                 </motion.p>
                 <motion.div
                   className={st.heroActions}
@@ -218,7 +231,7 @@ export const HeroSection = ({ content }: HeroSectionProps): ReactElement => {
                       <TextActionLink
                         key={action.label}
                         href={action.href}
-                        className={st.heroTertiaryAction}
+                        className={`${st.heroTertiaryAction} ${st.heroTertiaryActionDesktop}`}
                         trailingIcon={<ExternalLinkIcon />}
                       >
                         {action.label}
