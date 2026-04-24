@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { ReactElement } from "react";
 
@@ -6,40 +5,14 @@ import {
   getDocsProject,
   getProjectDocs,
 } from "../../../../data/docs/docs.registry";
-import {
-  createOpenGraphMetadata,
-  createTwitterMetadata,
-} from "../../../../data/site/site.metadata";
-import { siteData } from "../../../../data/site/site.data";
 import { DocsIndexView } from "../../../../views/Docs/DocsIndexView";
+export { generateMetadata } from "./metadata";
 
 interface DocsProjectRouteProps {
   params: Promise<{
     projectSlug: string;
   }>;
 }
-
-export const generateMetadata = async ({
-  params,
-}: DocsProjectRouteProps): Promise<Metadata> => {
-  const { projectSlug } = await params;
-  const project = getDocsProject(projectSlug);
-
-  if (project === undefined) {
-    return {
-      title: `Docs | ${siteData.siteTitle}`,
-    };
-  }
-
-  const title = `${project.name} Docs | ${siteData.siteTitle}`;
-
-  return {
-    title,
-    description: project.description,
-    openGraph: createOpenGraphMetadata(title, project.description, "website"),
-    twitter: createTwitterMetadata(title, project.description),
-  };
-};
 
 const DocsProjectRoute = async ({
   params,
