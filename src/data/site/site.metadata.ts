@@ -1,5 +1,3 @@
-import type { Metadata } from "next";
-
 import { personData } from "./person.data";
 import { profileData } from "./profile.data";
 
@@ -13,6 +11,7 @@ export interface SiteMetadataImage {
 export interface SiteMetadataConfig {
   description: string;
   openGraphImage: SiteMetadataImage;
+  siteName: string;
   siteUrl: string;
   title: string;
   twitterImage: string;
@@ -33,6 +32,7 @@ const resolveSiteUrl = (): string => {
 };
 
 export const siteMetadata: SiteMetadataConfig = {
+  siteName: personData.name,
   title: "Filipe Mendes | Frontend & Mobile Engineer",
   description: "Building production-grade web and mobile products.",
   siteUrl: resolveSiteUrl(),
@@ -43,29 +43,4 @@ export const siteMetadata: SiteMetadataConfig = {
     alt: `${personData.name} portfolio preview`,
   },
   twitterImage: "/opengraph-image.png",
-};
-
-export const createOpenGraphMetadata = (
-  title: string,
-  description: string,
-  type: "article" | "website"
-): NonNullable<Metadata["openGraph"]> => {
-  return {
-    title,
-    description,
-    type,
-    images: [siteMetadata.openGraphImage],
-  };
-};
-
-export const createTwitterMetadata = (
-  title: string,
-  description: string
-): NonNullable<Metadata["twitter"]> => {
-  return {
-    card: "summary_large_image",
-    title,
-    description,
-    images: [siteMetadata.twitterImage],
-  };
 };
