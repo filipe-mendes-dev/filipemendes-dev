@@ -37,7 +37,7 @@ export const ProjectDetailHero = ({
             </div>
           </div>
           <div className={st.projectHeaderContent}>
-            <p className={st.projectPositioning}>{hero.positioning}</p>
+            <p className={st.projectPositioning}>{hero.summary}</p>
             <p className={st.projectDescription}>{hero.description}</p>
             <div className={st.contentActions}>
               {hero.links.length > 0 && (
