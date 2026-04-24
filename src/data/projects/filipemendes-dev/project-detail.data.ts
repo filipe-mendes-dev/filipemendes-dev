@@ -34,34 +34,29 @@ export const projectDetail: ProjectDetailContent = {
   },
   keyFeatures: [
     {
-      title: "Multi-surface architecture",
+      title: "Multi-page Portfolio Experience",
       description:
-        "Browse landing, project, docs, and CV flows from one shared content model.",
+        "Separate routes for homepage, projects, docs and CV content.",
     },
     {
-      title: "SSR-aware theme engine",
+      title: "Structured Work Showcase",
       description:
-        "Load persisted theme selection before first paint to avoid visible flicker.",
+        "Projects and profile content structured for clear, efficient review.",
     },
     {
-      title: "Typed content system",
+      title: "Responsive Cross-Device Layouts",
       description:
-        "Author project and docs content as TypeScript modules with compile-time checks.",
+        "Browse the same content cleanly across desktop, tablet and mobile.",
     },
     {
-      title: "Print-aware CV rendering",
+      title: "Printable CV Route",
       description:
-        "Render the CV with screen and print variants tuned for browser-to-PDF output.",
+        "CV route optimized for browser viewing and clean PDF export.",
     },
     {
-      title: "Accessibility-first animation",
+      title: "Polished Interface Design",
       description:
-        "Apply shared motion patterns while respecting reduced-motion preferences site-wide.",
-    },
-    {
-      title: "Per-project detail pages",
-      description:
-        "Present each project through dedicated pages with features and implementation notes.",
+        "Motion, spacing and hierarchy tuned for a cleaner reading flow.",
     },
   ],
   implementationDetails: [
