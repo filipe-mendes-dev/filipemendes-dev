@@ -1,4 +1,2 @@
 export { ArcTimerPage } from "./ArcTimerPage";
-export {
-  arcTimerMetadata,
-} from "./ArcTimerPage.data";
+export { arcTimerPageMetadata } from "./ArcTimerPage.data";
