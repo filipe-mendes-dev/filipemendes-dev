@@ -1,5 +1,5 @@
 import {
-  createProjectMetadata,
+  createProjectPageMetadata,
   type ProjectDetailContent,
 } from "../projects.interfaces";
 import { project } from "./project.data";
@@ -73,8 +73,9 @@ export const projectDetail: ProjectDetailContent = {
     "Framer Motion",
     "CSS Modules",
   ],
-  metadata: createProjectMetadata(
+  pageMetadata: createProjectPageMetadata(
     project.name,
-    "A portfolio website built with Next.js App Router to present projects, documentation and developer profile content in a single product surface."
+    "A portfolio website built with Next.js App Router to present projects, documentation and developer profile content in a single product surface.",
+    project.slug
   ),
 };

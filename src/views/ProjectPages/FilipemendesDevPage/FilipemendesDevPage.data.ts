@@ -6,4 +6,4 @@ export const filipemendesDevKeyFeatures = filipemendesDevDetail.keyFeatures;
 export const filipemendesDevImplementationDetails =
   filipemendesDevDetail.implementationDetails;
 export const filipemendesDevTechStack = filipemendesDevDetail.techStack;
-export const filipemendesDevMetadata = filipemendesDevDetail.metadata;
+export const filipemendesDevPageMetadata = filipemendesDevDetail.pageMetadata;

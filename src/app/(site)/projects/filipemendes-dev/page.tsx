@@ -1,14 +1,7 @@
-import type { Metadata } from "next";
 import type { ReactElement } from "react";
 
-import {
-  filipemendesDevMetadata,
-  FilipemendesDevPage,
-} from "../../../../views/ProjectPages/FilipemendesDevPage";
-
-export const generateMetadata = (): Metadata => {
-  return filipemendesDevMetadata;
-};
+import { FilipemendesDevPage } from "../../../../views/ProjectPages/FilipemendesDevPage";
+export { metadata } from "./metadata";
 
 const FilipemendesDevRoute = (): ReactElement => {
   return <FilipemendesDevPage />;
