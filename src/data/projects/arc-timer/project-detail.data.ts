@@ -9,9 +9,9 @@ export const projectDetail: ProjectDetailContent = {
     name: project.name,
     logo: project.logo,
     category: project.category,
+    summary: "HIIT timer application covering the full workout lifecycle.",
     description:
-      "Personal-use project evolved into a production-level application. Full workout flow from setup to execution and tracking.",
-    positioning: "HIIT timer application covering the full workout lifecycle.",
+      "Personal-use project evolved into a production-level application. It covers the full workout flow from setup to execution and tracking.",
     isMobileApp: true,
     links: [
       {
@@ -68,7 +68,7 @@ export const projectDetail: ProjectDetailContent = {
     {
       title: "Simple session controls",
       description:
-        "Pause, resume, skip, or end a session with minimal interaction during workouts.",
+        "Pause, resume, skip or end a session with minimal interaction during workouts.",
     },
     {
       title: "Session history",
@@ -87,12 +87,12 @@ export const projectDetail: ProjectDetailContent = {
     {
       title: "State-based timer flow",
       description:
-        "Each phase is part of a state machine, enabling controlled transitions and event propagation.",
+        "Workout phases run through a state machine, keeping transitions and session controls predictable.",
     },
     {
       title: "1Hz engine cycle",
       description:
-        "Timer engine updates once per second, balancing efficiency with required precision.",
+        "Second-level precision was sufficient for workouts, so the timer runs at 1Hz to reduce overhead.",
     },
     {
       title: "Reanimated UI-thread animations",
@@ -102,7 +102,7 @@ export const projectDetail: ProjectDetailContent = {
     {
       title: "File-based workout sharing",
       description:
-        "Workouts serialized into files for import, export and reuse across devices.",
+        "Workouts serialize to files for import, export and reuse across devices.",
     },
   ],
   techStack: ["React Native", "Expo Router", "React Reanimated", "TypeScript"],
