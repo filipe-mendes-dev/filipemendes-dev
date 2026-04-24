@@ -5,4 +5,4 @@ export const arcTimerScreenshots = arcTimerDetail.screenshots;
 export const arcTimerKeyFeatures = arcTimerDetail.keyFeatures;
 export const arcTimerImplementationDetails = arcTimerDetail.implementationDetails;
 export const arcTimerTechStack = arcTimerDetail.techStack;
-export const arcTimerMetadata = arcTimerDetail.metadata;
+export const arcTimerPageMetadata = arcTimerDetail.pageMetadata;
