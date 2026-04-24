@@ -9,10 +9,10 @@ export const projectDetail: ProjectDetailContent = {
     name: project.name,
     logo: project.logo,
     category: project.category,
-    positioning:
-      "Portfolio platform bringing together project pages, documentation and profile content in one application.",
+    summary:
+      "Portfolio platform presenting projects, documentation and a developer profile.",
     description:
-      "Designed and built a portfolio platform for presenting projects, documentation and a developer profile.",
+      "Designed and built to showcase frontend engineering work through project pages, technical docs and personal presentation.",
     isMobileApp: false,
     links: [
       {
@@ -34,36 +34,66 @@ export const projectDetail: ProjectDetailContent = {
   },
   keyFeatures: [
     {
-      title: "Multi-surface product structure",
+      title: "Multi-surface architecture",
       description:
-        "Combines landing, project detail, documentation and CV flows within a single portfolio application.",
+        "Browse landing, project, docs, and CV flows from one shared content model.",
     },
     {
-      title: "Motion-led presentation",
+      title: "SSR-aware theme engine",
       description:
-        "Uses Framer Motion for section reveals and content sequencing across the browsing experience.",
+        "Load persisted theme selection before first paint to avoid visible flicker.",
     },
     {
-      title: "Structured project storytelling",
+      title: "Typed content system",
       description:
-        "Presents each project through dedicated detail content instead of relying only on summary cards.",
+        "Author project and docs content as TypeScript modules with compile-time checks.",
+    },
+    {
+      title: "Print-aware CV rendering",
+      description:
+        "Render the CV with screen and print variants tuned for browser-to-PDF output.",
+    },
+    {
+      title: "Accessibility-first animation",
+      description:
+        "Apply shared motion patterns while respecting reduced-motion preferences site-wide.",
+    },
+    {
+      title: "Per-project detail pages",
+      description:
+        "Present each project through dedicated pages with features and implementation notes.",
     },
   ],
   implementationDetails: [
     {
-      title: "Next.js App Router composition",
+      title: "Routes as pure entry points",
       description:
-        "Uses server-rendered route boundaries with thin route files delegating UI composition to dedicated views.",
+        "App Router entry files stay thin and delegate composition to view modules.",
     },
     {
-      title: "Shared project module registry",
+      title: "Module-scoped project registry",
       description:
-        "Centralizes project metadata so landing cards, CV entries and project detail pages reuse the same source of truth.",
+        "Project modules co-locate metadata, detail copy, and docs behind one registry.",
     },
     {
-      title: "Scoped styling system",
+      title: "Cookie-based theme without flash",
       description:
-        "Builds the interface with CSS Modules and shared theme tokens carried through CSS custom properties.",
+        "Server-read theme cookies set initial HTML state before hydration to prevent flash.",
+    },
+    {
+      title: "Shared motion config",
+      description:
+        "Shared motion tokens centralize durations, easing, and stagger values across components.",
+    },
+    {
+      title: "CSS custom properties as design system",
+      description:
+        "CSS custom properties carry color, spacing, typography, and motion tokens through modules.",
+    },
+    {
+      title: "Build-time sitemap from registries",
+      description:
+        "Project and docs registries generate sitemap entries automatically at build time.",
     },
   ],
   techStack: [
@@ -75,7 +105,7 @@ export const projectDetail: ProjectDetailContent = {
   ],
   pageMetadata: createProjectPageMetadata(
     project.name,
-    "A portfolio website built with Next.js App Router to present projects, documentation and developer profile content in a single product surface.",
+    "Portfolio platform presenting projects, documentation and a developer profile.",
     project.slug
   ),
 };
