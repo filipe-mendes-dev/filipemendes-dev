@@ -16,8 +16,9 @@ export type {
   ProjectModule,
   ProjectRecord,
 } from "./projects.interfaces";
+export type { PageMetadataInput } from "../../shared/seo/createPageMetadata";
 export {
-  createProjectMetadata,
+  createProjectPageMetadata,
   getProjectHref,
   toLandingProjectData,
 } from "./projects.interfaces";

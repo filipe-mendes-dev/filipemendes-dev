@@ -21,15 +21,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
   title: siteMetadata.title,
   description: siteMetadata.description,
-  applicationName: siteMetadata.title,
-  alternates: {
-    canonical: "/",
-  },
+  applicationName: siteMetadata.siteName,
   openGraph: {
     title: siteMetadata.title,
     description: siteMetadata.description,
-    url: "/",
-    siteName: siteMetadata.title,
+    siteName: siteMetadata.siteName,
     type: "website",
     images: [siteMetadata.openGraphImage],
   },

@@ -1,5 +1,5 @@
 import {
-  createProjectMetadata,
+  createProjectPageMetadata,
   type ProjectDetailContent,
 } from "../projects.interfaces";
 import { project } from "./project.data";
@@ -14,6 +14,10 @@ export const projectDetail: ProjectDetailContent = {
     positioning: "HIIT timer application covering the full workout lifecycle.",
     isMobileApp: true,
     links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/filipe-mendes-dev/arc-timer",
+      },
       {
         label: "Docs",
         href: "/docs/projects/arc-timer",
@@ -102,8 +106,9 @@ export const projectDetail: ProjectDetailContent = {
     },
   ],
   techStack: ["React Native", "Expo Router", "React Reanimated", "TypeScript"],
-  metadata: createProjectMetadata(
+  pageMetadata: createProjectPageMetadata(
     project.name,
-    "A focused interval timer for HIIT workouts, designed around precise timing, minimal interaction and reliable execution during high-intensity sessions."
+    "HIIT timer application covering the full workout lifecycle.",
+    project.slug
   ),
 };

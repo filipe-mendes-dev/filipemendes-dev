@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+- Restructured App Router metadata so route-specific SEO lives in dedicated `metadata.ts` files with shared page metadata builders and explicit not-found metadata handling
 - Updated the Open Graph image to better match the website design
 - Updated the public contact email to `contact@filipemendes.dev`
 - Reworked the contact section so the primary email action copies the address with inline success and failure feedback

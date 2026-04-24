@@ -1,12 +1,7 @@
-import type { Metadata } from "next";
-
 import type { ProjectLogo } from "../../components/projects/ProjectLogoMark";
+import type { PageMetadataInput } from "../../shared/seo/createPageMetadata";
 import type { Doc } from "../docs/docs.interfaces";
-import {
-  createOpenGraphMetadata,
-  createTwitterMetadata,
-} from "../site/site.metadata";
-import { siteData } from "../site/site.data";
+import { siteMetadata } from "../site/site.metadata";
 import type {
   ProjectDetailHeroData,
   ProjectScreenshotItem,
@@ -37,8 +32,8 @@ export interface ProjectDetailContent {
   screenshots: ProjectDetailScreenshotsContent;
   keyFeatures: ProjectDetailFeatureItem[];
   implementationDetails: ProjectDetailFeatureItem[];
+  pageMetadata: PageMetadataInput;
   techStack: string[];
-  metadata: Metadata;
 }
 
 export interface ProjectDetailFeatureItem {
@@ -84,16 +79,17 @@ export const toLandingProjectData = (
   };
 };
 
-export const createProjectMetadata = (
+export const createProjectPageMetadata = (
   projectName: string,
-  description: string
-): Metadata => {
-  const title = `${projectName} | ${siteData.siteTitle}`;
+  description: string,
+  slug: string
+): PageMetadataInput => {
+  const title = `${projectName} | ${siteMetadata.siteName}`;
 
   return {
     title,
     description,
-    openGraph: createOpenGraphMetadata(title, description, "article"),
-    twitter: createTwitterMetadata(title, description),
+    path: getProjectHref(slug),
+    type: "article",
   };
 };
