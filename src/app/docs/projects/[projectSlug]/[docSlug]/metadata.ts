@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getDoc, getDocHref } from "../../../../../data/docs/docs.registry";
 import { siteMetadata } from "../../../../../data/site/site.metadata";
 import { createPageMetadata } from "../../../../../shared/seo/createPageMetadata";
+import { createNotFoundMetadata } from "../../../../../shared/seo/createNotFoundMetadata";
 
 interface ProjectDocRouteMetadataProps {
   params: Promise<{
@@ -18,11 +19,7 @@ export const generateMetadata = async ({
   const doc = getDoc(docSlug, projectSlug);
 
   if (doc === undefined) {
-    return createPageMetadata({
-      title: `Docs | ${siteMetadata.siteName}`,
-      description: siteMetadata.description,
-      path: "/docs",
-    });
+    return createNotFoundMetadata();
   }
 
   return createPageMetadata({
