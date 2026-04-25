@@ -16,16 +16,8 @@ export const projectDetail: ProjectDetailContent = {
     isMobileApp: false,
     links: [
       {
-        label: "Homepage",
-        href: "/",
-      },
-      {
-        label: "Docs",
-        href: "/docs",
-      },
-      {
-        label: "CV",
-        href: "/cv",
+        label: "GitHub",
+        href: "https://github.com/filipe-mendes-dev/filipemendes-dev",
       },
     ],
   },
@@ -61,34 +53,29 @@ export const projectDetail: ProjectDetailContent = {
   ],
   implementationDetails: [
     {
-      title: "Routes as pure entry points",
+      title: "Hybrid Rendering Strategy",
       description:
-        "App Router entry files stay thin and delegate composition to view modules.",
+        "Next.js routes use server rendering, static generation or client interactivity based on content needs.",
     },
     {
-      title: "Module-scoped project registry",
+      title: "Cookie-Based Theme Sync",
       description:
-        "Project modules co-locate metadata, detail copy, and docs behind one registry.",
+        "Theme cookies keep server and client output aligned from first paint.",
     },
     {
-      title: "Cookie-based theme without flash",
+      title: "Coordinated Motion System",
       description:
-        "Server-read theme cookies set initial HTML state before hydration to prevent flash.",
+        "Shared Framer Motion patterns coordinate staggered transitions across pages and sections.",
     },
     {
-      title: "Shared motion config",
+      title: "Fluid Responsive Layouts",
       description:
-        "Shared motion tokens centralize durations, easing, and stagger values across components.",
+        "Clamp-based sizing and media queries adapt spacing, type and layout across screen sizes.",
     },
     {
-      title: "CSS custom properties as design system",
+      title: "Automated Metadata & SEO",
       description:
-        "CSS custom properties carry color, spacing, typography, and motion tokens through modules.",
-    },
-    {
-      title: "Build-time sitemap from registries",
-      description:
-        "Project and docs registries generate sitemap entries automatically at build time.",
+        "Metadata, sitemap, robots and social previews are generated from shared content sources.",
     },
   ],
   techStack: [
