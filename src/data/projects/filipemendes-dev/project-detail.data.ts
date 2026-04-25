@@ -22,7 +22,29 @@ export const projectDetail: ProjectDetailContent = {
     ],
   },
   screenshots: {
-    items: [],
+    title: "Website Surfaces",
+    items: [
+      {
+        id: "filipemendes-dev-homepage",
+        alt: "Landing page visual direction and content hierarchy.",
+        url: "/images/projects/filipemendes-dev/Homepage.png",
+      },
+      {
+        id: "filipemendes-dev-arc-timer-project",
+        alt: "Project detail presentation for a real product entry.",
+        url: "/images/projects/filipemendes-dev/Arc_Timer_Project.png",
+      },
+      {
+        id: "filipemendes-dev-docs",
+        alt: "Documentation surface with sidebar navigation and article layout.",
+        url: "/images/projects/filipemendes-dev/Docs.png",
+      },
+      {
+        id: "filipemendes-dev-theme-comparison",
+        alt: "Theme variation across the same interface section.",
+        url: "/images/projects/filipemendes-dev/Theme_Comparison.png",
+      },
+    ],
   },
   keyFeatures: [
     {
