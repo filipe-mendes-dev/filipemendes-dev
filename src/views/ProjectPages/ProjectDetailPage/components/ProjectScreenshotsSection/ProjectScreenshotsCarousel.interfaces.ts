@@ -1,5 +1,6 @@
 export interface ProjectScreenshotsCarouselItem {
   alt: string;
+  caption?: string;
   url: string;
 }
 
