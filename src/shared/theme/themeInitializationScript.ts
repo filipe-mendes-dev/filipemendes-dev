@@ -35,7 +35,7 @@ export const getThemeInitializationScript = ({
   };
 
   try {
-    const persistedTheme = getCookieTheme() ?? window.localStorage.getItem(storageKey);
+    const persistedTheme = getCookieTheme();
     const theme =
       persistedTheme === 'light' || persistedTheme === 'dark'
         ? persistedTheme

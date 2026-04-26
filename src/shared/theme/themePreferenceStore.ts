@@ -9,6 +9,51 @@ export const isThemeName = (value: string | null | undefined): value is ThemeNam
   return value === 'light' || value === 'dark';
 };
 
+export const getLocalThemePreference = (): ThemeName | null => {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  const persistedTheme = window.localStorage.getItem(themeStorageKey);
+
+  return isThemeName(persistedTheme) ? persistedTheme : null;
+};
+
+export const setCookieThemePreference = (theme: ThemeName): void => {
+  document.cookie = `${themeCookieKey}=${theme}; path=/; max-age=31536000; samesite=lax`;
+};
+
+export const dispatchThemePreferenceChange = (): void => {
+  window.dispatchEvent(new Event(themePreferenceChangeEventName));
+};
+
+export const applyThemePreference = (
+  theme: ThemeName,
+  {
+    persistCookie = true,
+    persistLocal = true,
+    notify = true,
+  }: {
+    notify?: boolean;
+    persistCookie?: boolean;
+    persistLocal?: boolean;
+  } = {}
+): void => {
+  document.documentElement.setAttribute("data-theme", theme);
+
+  if (persistLocal) {
+    window.localStorage.setItem(themeStorageKey, theme);
+  }
+
+  if (persistCookie) {
+    setCookieThemePreference(theme);
+  }
+
+  if (notify) {
+    dispatchThemePreferenceChange();
+  }
+};
+
 export const getStoredThemePreference = (): ThemeName => {
   if (typeof document === 'undefined') {
     return defaultThemePreference;
@@ -55,8 +100,45 @@ export const subscribeToThemePreference = (
 };
 
 export const setStoredThemePreference = (theme: ThemeName): void => {
-  document.documentElement.setAttribute('data-theme', theme);
-  window.localStorage.setItem(themeStorageKey, theme);
-  document.cookie = `${themeCookieKey}=${theme}; path=/; max-age=31536000; samesite=lax`;
-  window.dispatchEvent(new Event(themePreferenceChangeEventName));
+  applyThemePreference(theme);
+};
+
+export const syncThemePreferenceFromLocalStorage = (): void => {
+  const localTheme = getLocalThemePreference();
+  const currentTheme = getStoredThemePreference();
+
+  if (localTheme !== null && localTheme !== currentTheme) {
+    applyThemePreference(localTheme, { persistLocal: false });
+  }
+};
+
+export const startThemePreferenceSync = (): (() => void) => {
+  if (typeof window === "undefined") {
+    return () => undefined;
+  }
+
+  const handleStorage = (event: StorageEvent): void => {
+    if (event.key !== themeStorageKey || !isThemeName(event.newValue)) {
+      return;
+    }
+
+    applyThemePreference(event.newValue, { persistLocal: false });
+  };
+
+  const handleVisibilityChange = (): void => {
+    if (document.visibilityState !== "visible") {
+      return;
+    }
+
+    syncThemePreferenceFromLocalStorage();
+  };
+
+  syncThemePreferenceFromLocalStorage();
+  window.addEventListener("storage", handleStorage);
+  document.addEventListener("visibilitychange", handleVisibilityChange);
+
+  return () => {
+    window.removeEventListener("storage", handleStorage);
+    document.removeEventListener("visibilitychange", handleVisibilityChange);
+  };
 };

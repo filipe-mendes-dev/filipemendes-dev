@@ -5,6 +5,7 @@ import type { ReactElement, ReactNode } from "react";
 
 import { appFontVariables } from "./fonts";
 import { siteMetadata } from "../data/site/site.metadata";
+import { ThemePreferenceSync } from "../shared/theme/ThemePreferenceSync";
 import { getThemeInitializationScript } from "../shared/theme/themeInitializationScript";
 import {
   defaultThemePreference,
@@ -70,6 +71,7 @@ const RootLayout = async ({
         <Script id="theme-init" strategy="beforeInteractive">
           {themeInitializationScript}
         </Script>
+        <ThemePreferenceSync />
         {children}
       </body>
     </html>
