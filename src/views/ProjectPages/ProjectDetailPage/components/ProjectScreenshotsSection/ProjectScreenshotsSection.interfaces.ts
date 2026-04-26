@@ -1,6 +1,7 @@
 export interface ProjectScreenshotItem {
   id?: string | number;
   alt: string;
+  caption?: string;
   url: string;
 }
 

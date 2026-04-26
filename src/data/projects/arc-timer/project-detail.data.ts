@@ -9,9 +9,9 @@ export const projectDetail: ProjectDetailContent = {
     name: project.name,
     logo: project.logo,
     category: project.category,
+    summary: "HIIT timer application covering the full workout lifecycle.",
     description:
-      "Personal-use project evolved into a production-level application. Full workout flow from setup to execution and tracking.",
-    positioning: "HIIT timer application covering the full workout lifecycle.",
+      "Personal-use project evolved into a production-level application. It covers the full workout flow from setup to execution and tracking.",
     isMobileApp: true,
     links: [
       {
@@ -29,32 +29,38 @@ export const projectDetail: ProjectDetailContent = {
     items: [
       {
         id: "arc-timer-home-page",
-        alt: "Home interface with quick start and recent sessions.",
+        alt: "Arc Timer home screen with quick workout actions and recent sessions.",
+        caption: "Home interface with quick start and recent sessions.",
         url: "/images/projects/arc-timer/HomePage.png",
       },
       {
         id: "arc-timer-workouts-info",
-        alt: "Workout list and configuration interface.",
+        alt: "Workout list screen with search, saved routines and workout setup controls.",
+        caption: "Workout list and configuration interface.",
         url: "/images/projects/arc-timer/Workouts_Info.png",
       },
       {
         id: "arc-timer-workout-run-page",
-        alt: "Active session interface with interval progression and controls.",
+        alt: "Active workout screen with interval timer, exercise name and session controls.",
+        caption: "Active session interface with interval progression and controls.",
         url: "/images/projects/arc-timer/WorkoutRun_Page.png",
       },
       {
         id: "arc-timer-session-pages",
-        alt: "Session details, history and sharing interface.",
+        alt: "Session detail and history screens with workout summaries and sharing flows.",
+        caption: "Session details, history and sharing interface.",
         url: "/images/projects/arc-timer/Session_Pages.png",
       },
       {
         id: "arc-timer-settings-page",
-        alt: "Settings and configuration interface.",
+        alt: "Settings screen with app preferences and workout configuration options.",
+        caption: "Settings and configuration interface.",
         url: "/images/projects/arc-timer/Settings_Page.png",
       },
       {
         id: "arc-timer-theme-showcase",
-        alt: "Theme variations and visual customization.",
+        alt: "Theme comparison showing Arc Timer screens across multiple visual styles.",
+        caption: "Theme variations and visual customization.",
         url: "/images/projects/arc-timer/Theme_Showcase.png",
       },
     ],
@@ -68,7 +74,7 @@ export const projectDetail: ProjectDetailContent = {
     {
       title: "Simple session controls",
       description:
-        "Pause, resume, skip, or end a session with minimal interaction during workouts.",
+        "Pause, resume, skip or end a session with minimal interaction during workouts.",
     },
     {
       title: "Session history",
@@ -87,12 +93,12 @@ export const projectDetail: ProjectDetailContent = {
     {
       title: "State-based timer flow",
       description:
-        "Each phase is part of a state machine, enabling controlled transitions and event propagation.",
+        "Workout phases run through a state machine, keeping transitions and session controls predictable.",
     },
     {
       title: "1Hz engine cycle",
       description:
-        "Timer engine updates once per second, balancing efficiency with required precision.",
+        "Second-level precision was sufficient for workouts, so the timer runs at 1Hz to reduce overhead.",
     },
     {
       title: "Reanimated UI-thread animations",
@@ -102,7 +108,7 @@ export const projectDetail: ProjectDetailContent = {
     {
       title: "File-based workout sharing",
       description:
-        "Workouts serialized into files for import, export and reuse across devices.",
+        "Workouts serialize to files for import, export and reuse across devices.",
     },
   ],
   techStack: ["React Native", "Expo Router", "React Reanimated", "TypeScript"],

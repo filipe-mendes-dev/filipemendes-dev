@@ -14,7 +14,7 @@ export interface ProjectDetailHeroData {
   name: string;
   logo: ProjectLogo;
   category: string;
-  positioning: string;
+  summary: string;
   description: string;
   isMobileApp: boolean;
   storeLinks?: ProjectDetailStoreLinks;

@@ -222,7 +222,9 @@ export const ProjectScreenshotsSection = ({
                     />
                   </div>
                   <div className={st.modalMeta}>
-                    <p className={st.modalCaption}>{selectedScreenshot.alt}</p>
+                    <p className={st.modalCaption}>
+                      {selectedScreenshot.caption ?? selectedScreenshot.alt}
+                    </p>
                   </div>
                 </motion.div>
               </motion.div>
