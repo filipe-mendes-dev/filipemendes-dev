@@ -26,22 +26,26 @@ export const projectDetail: ProjectDetailContent = {
     items: [
       {
         id: "filipemendes-dev-homepage",
-        alt: "Landing page visual direction and content hierarchy.",
+        alt: "Homepage hero with profile photo, primary actions and project cards.",
+        caption: "Landing page visual direction and content hierarchy.",
         url: "/images/projects/filipemendes-dev/Homepage.png",
       },
       {
         id: "filipemendes-dev-arc-timer-project",
-        alt: "Project detail presentation for a real product entry.",
+        alt: "Arc Timer project detail page with hero copy and screenshot gallery.",
+        caption: "Project detail presentation for a real product entry.",
         url: "/images/projects/filipemendes-dev/Arc_Timer_Project.png",
       },
       {
         id: "filipemendes-dev-docs",
-        alt: "Documentation surface with sidebar navigation and article layout.",
+        alt: "Documentation page with sidebar navigation, article content and page index.",
+        caption: "Documentation surface with sidebar navigation and article layout.",
         url: "/images/projects/filipemendes-dev/Docs.png",
       },
       {
         id: "filipemendes-dev-theme-comparison",
-        alt: "Theme variation across the same interface section.",
+        alt: "About Me section shown in dark and light themes with a diagonal split.",
+        caption: "Theme variation across the same interface section.",
         url: "/images/projects/filipemendes-dev/Theme_Comparison.png",
       },
     ],
