@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 
 - Added a branded email signature asset at `public/email/Signature.png` for future email-related use
 - Added a canonical `/curriculum-vitae` route with a print-ready CV document view
+- Added a dedicated `filipemendes.dev` project page with branded logo assets, refined project copy and website screenshots
 
 ### Changed
 
@@ -18,6 +19,11 @@ All notable changes to this project will be documented in this file.
 - Updated the public contact email to `contact@filipemendes.dev`
 - Reworked the contact section so the primary email action copies the address with inline success and failure feedback
 - Centralized person, contact, hero, CV and metadata consumers around shared profile data
+
+### Fixed
+
+- Fixed theme initialization to avoid hydration mismatch on first paint
+- Fixed theme synchronization so returning to a tab or switching between tabs applies the current theme consistently
 
 ## [v1.0.0] - 2026-04-06
 
