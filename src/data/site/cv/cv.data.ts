@@ -81,6 +81,18 @@ export const cvProjectOverrides: Record<string, CvProjectOverride> = {
   },
 };
 
+export const cvSkills: Record<string, string[]> = {
+  "Core Stack": ["React", "React Native", "Next.js", "TypeScript"],
+  Workflow: ["Cursor", "Codex", "Git"],
+  "Libraries & Tools": [
+    "React Reanimated",
+    "Framer Motion",
+    "GraphQL",
+    "REST APIs",
+  ],
+  Other: ["Python", "TensorFlow", "OpenCV", "Figma"],
+};
+
 export const cvLanguages: CvLanguageEntry[] = [
   {
     name: "Portuguese",
@@ -123,5 +135,6 @@ export const cvData: CvDocumentData = {
   },
   contactLinks: cvContactLinks,
   projects: mapProjectEntries(),
+  skills: cvSkills,
   languages: cvLanguages,
 };

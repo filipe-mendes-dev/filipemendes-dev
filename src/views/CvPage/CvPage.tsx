@@ -13,6 +13,7 @@ import {
   CvLanguagesSection,
   CvProjectsSection,
   CvPublicationsSection,
+  CvSkillsSection,
 } from "./components/Sections";
 import st from "./CvPage.module.css";
 
@@ -34,6 +35,7 @@ const CvPage = (): ReactElement => {
                 entries={educationData}
                 hasBottomSeparator
               />
+              <CvSkillsSection skills={cvData.skills} hasBottomSeparator />
               <CvPublicationsSection
                 entries={publicationsData}
                 hasBottomSeparator
@@ -56,6 +58,7 @@ const CvPage = (): ReactElement => {
                   entries={educationData}
                   hasBottomSeparator
                 />
+                <CvSkillsSection skills={cvData.skills} hasBottomSeparator />
                 <CvPublicationsSection
                   entries={publicationsData}
                   hasBottomSeparator

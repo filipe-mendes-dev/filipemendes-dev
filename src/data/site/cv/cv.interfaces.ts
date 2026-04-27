@@ -33,5 +33,6 @@ export interface CvDocumentData {
   personalInfo: CvPersonalInfo;
   contactLinks: CvContactLink[];
   projects: CvProjectEntry[];
+  skills: Record<string, string[]>;
   languages: CvLanguageEntry[];
 }

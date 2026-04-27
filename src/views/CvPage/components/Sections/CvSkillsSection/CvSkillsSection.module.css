@@ -1,0 +1,28 @@
+.root {
+  list-style: none;
+  display: grid;
+  gap: 3.4mm;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  gap: 3.4mm;
+  align-items: baseline;
+  break-inside: avoid-page;
+  page-break-inside: avoid;
+}
+
+.label {
+  color: var(--cv-heading-ink);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--cv-font-size-title);
+  line-height: var(--cv-line-height-tight);
+}
+
+.value {
+  color: var(--cv-body-ink);
+  font-size: var(--cv-font-size-meta);
+  line-height: var(--cv-line-height-relaxed);
+}
