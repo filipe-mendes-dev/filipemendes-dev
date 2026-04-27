@@ -1,0 +1,5 @@
+.root {
+  color: var(--cv-muted);
+  font-size: var(--cv-font-size-meta);
+  line-height: var(--cv-line-height-normal);
+}
