@@ -7,6 +7,7 @@ export const CvSectionItem = ({
   title,
   titleClassName,
   subtitle,
+  inlineSubtitle = false,
   date,
   href,
   children,
@@ -24,16 +25,28 @@ export const CvSectionItem = ({
   const hasDate = date !== undefined && date.length > 0;
   const hasHeader = hasSubtitle || hasDate;
   const hasHref = href !== undefined && href.length > 0;
+  const isInline = inlineSubtitle && hasSubtitle;
 
   const titleHeading = (
     <h3 className={resolvedTitleClassName}>{title}</h3>
   );
 
+  const identityClassName = isInline ? st.identityInline : st.identity;
+
   const identity = (
     <div className={st.headerMain}>
-      <div className={st.identity}>
+      <div className={identityClassName}>
         {titleHeading}
-        {hasSubtitle && <p className={st.subtitle}>{subtitle}</p>}
+        {hasSubtitle && (
+          <>
+            {isInline && (
+              <span aria-hidden="true" className={st.subtitleSeparator}>
+                ·
+              </span>
+            )}
+            <p className={st.subtitle}>{subtitle}</p>
+          </>
+        )}
       </div>
     </div>
   );

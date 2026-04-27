@@ -15,6 +15,7 @@ export const CvExperienceSection = ({
       <ol className={st.root}>
         {entries.map((entry, index) => (
           <CvSectionItem
+            inlineSubtitle
             date={entry.timeframe}
             hasBottomSeparator={index < entries.length - 1}
             key={`${entry.organization}-${entry.title}`}
@@ -22,9 +23,7 @@ export const CvExperienceSection = ({
             title={entry.title}
           >
             <p className={st.entrySummary}>{entry.context}</p>
-            {entry.bullets.length > 0 && (
-              <CvBulletList items={entry.bullets} />
-            )}
+            {entry.bullets.length > 0 && <CvBulletList items={entry.bullets} />}
             {entry.stack.length > 0 && (
               <p className={st.stackLine}>Stack: {entry.stack.join(", ")}</p>
             )}

@@ -29,7 +29,7 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: start;
+  align-items: baseline;
   gap: 3mm;
 }
 
@@ -50,6 +50,21 @@
   height: auto;
   gap: 0.8mm;
   min-width: 0;
+}
+
+.identityInline {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0;
+  column-gap: 1.6mm;
+  min-width: 0;
+}
+
+.subtitleSeparator {
+  color: var(--cv-muted);
+  font-size: var(--cv-font-size-meta);
+  line-height: var(--cv-line-height-tight);
 }
 
 .title {
