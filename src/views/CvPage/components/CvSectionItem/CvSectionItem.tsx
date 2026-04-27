@@ -20,38 +20,39 @@ export const CvSectionItem = ({
       ? `${st.title} ${titleClassName}`
       : st.title;
 
+  const hasSubtitle = subtitle !== undefined && subtitle.length > 0;
+  const hasDate = date !== undefined && date.length > 0;
+  const hasHeader = hasSubtitle || hasDate;
+  const hasHref = href !== undefined && href.length > 0;
+
+  const titleHeading = (
+    <h3 className={resolvedTitleClassName}>{title}</h3>
+  );
+
+  const identity = (
+    <div className={st.headerMain}>
+      <div className={st.identity}>
+        {titleHeading}
+        {hasSubtitle && <p className={st.subtitle}>{subtitle}</p>}
+      </div>
+    </div>
+  );
+
   return (
     <li className={rootClassName}>
-      {(subtitle !== undefined && subtitle.length > 0) ||
-      (date !== undefined && date.length > 0) ? (
+      {hasHeader ? (
         <div className={st.header}>
-          {href !== undefined && href.length > 0 ? (
+          {hasHref ? (
             <a className={st.headerMainLink} href={href}>
-              <div className={st.headerMain}>
-                <div className={st.identity}>
-                  <h3 className={resolvedTitleClassName}>{title}</h3>
-                  {subtitle !== undefined && subtitle.length > 0 && (
-                    <p className={st.subtitle}>{subtitle}</p>
-                  )}
-                </div>
-              </div>
+              {identity}
             </a>
           ) : (
-            <div className={st.headerMain}>
-              <div className={st.identity}>
-                <h3 className={resolvedTitleClassName}>{title}</h3>
-                {subtitle !== undefined && subtitle.length > 0 && (
-                  <p className={st.subtitle}>{subtitle}</p>
-                )}
-              </div>
-            </div>
+            identity
           )}
-          {date !== undefined && date.length > 0 ? (
-            <p className={st.date}>{date}</p>
-          ) : null}
+          {hasDate && <p className={st.date}>{date}</p>}
         </div>
       ) : (
-        <h3 className={resolvedTitleClassName}>{title}</h3>
+        titleHeading
       )}
 
       {children}

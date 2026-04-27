@@ -21,6 +21,11 @@ export interface CvProjectOverride {
 
 export const cvPersonalInfo: Partial<CvPersonalInfo> = {
   title: "Frontend & Mobile Engineer",
+  experienceSummary: "3+ years experience",
+  summaryLines: [
+    "Engineering Physics graduate specialized in web and mobile development.",
+    "Currently expanding into end-to-end product development.",
+  ],
 };
 
 const mapProjectEntries = (): CvProjectEntry[] => {
@@ -113,6 +118,8 @@ export const cvData: CvDocumentData = {
     name: personData.name,
     title: cvPersonalInfo.title ?? "Frontend & Mobile Engineer",
     location: personData.location,
+    experienceSummary: cvPersonalInfo.experienceSummary,
+    summaryLines: cvPersonalInfo.summaryLines,
   },
   contactLinks: cvContactLinks,
   projects: mapProjectEntries(),

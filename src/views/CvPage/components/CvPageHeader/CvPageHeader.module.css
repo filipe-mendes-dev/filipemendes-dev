@@ -1,28 +1,20 @@
-.root {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 8mm;
-  align-items: start;
-  padding-bottom: 5mm;
-}
-
-.hero {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+.mainRow {
+  display: flex;
+  align-items: flex-start;
   gap: 6mm;
-  height: 100%;
-  align-items: start;
   min-width: 0;
 }
 
 .portraitFrame {
-  width: 30mm;
+  flex: none;
+  width: 31mm;
   aspect-ratio: 10 / 11;
   border-radius: 6mm;
   background: var(--cv-paper-bg);
   overflow: hidden;
 }
 
+/* Crops a wider source image and re-centers it inside the frame. */
 .portrait {
   width: 140%;
   height: 140%;
@@ -39,15 +31,26 @@
   display: none;
 }
 
-.identityBlock {
-  display: grid;
-  gap: 3mm;
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  gap: 1.8mm;
+}
+
+.identity {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4mm;
   min-width: 0;
 }
 
-.identityLead {
-  gap: 1mm;
-  display: grid;
+.nameRow {
+  display: flex;
+  align-items: baseline;
+  gap: 5mm;
+  min-width: 0;
 }
 
 .name {
@@ -55,6 +58,15 @@
   line-height: var(--cv-line-height-tight);
   letter-spacing: -0.05em;
   color: var(--cv-heading-ink);
+  white-space: nowrap;
+}
+
+.roleLine {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2.2mm;
+  min-width: 0;
+  white-space: nowrap;
 }
 
 .role {
@@ -66,9 +78,65 @@
   line-height: var(--cv-line-height-tight);
 }
 
-.location {
+.roleMeta {
+  color: var(--cv-body-ink);
+  font-size: var(--cv-font-size-meta);
+  letter-spacing: -0.012em;
+}
+
+.contacts {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2.4mm 5.4mm;
+  max-width: 100%;
+  margin: 0;
+}
+
+.contactEntry {
   display: inline-flex;
   align-items: center;
+  column-gap: 1.2mm;
+  min-width: 0;
+}
+
+.contactValue {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  color: var(--cv-body-ink);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: var(--cv-font-size-label);
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  line-height: var(--cv-line-height-normal);
+  overflow-wrap: anywhere;
+}
+
+.contactIcon {
+  width: 3.2mm;
+  height: 3.2mm;
+  flex: none;
+  color: var(--cv-accent);
+}
+
+.bio {
+  color: var(--cv-body-ink);
+  font-size: var(--cv-font-size-body);
+  line-height: var(--cv-line-height-relaxed);
+  letter-spacing: -0.005em;
+}
+
+.bioLine {
+  display: block;
+}
+
+.location {
+  display: inline-flex;
+  align-items: baseline;
   gap: 1.4mm;
   width: fit-content;
   max-width: 100%;
@@ -79,59 +147,6 @@
 }
 
 .locationIcon {
-  width: 3.4mm;
-  height: 3.4mm;
-  flex: none;
-  color: var(--cv-accent);
-}
-
-.contactRail {
-  display: grid;
-  gap: 3.2mm;
-  justify-items: start;
-  align-content: center;
-  grid-template-columns: auto minmax(0, 1fr);
-  min-width: 0;
-  height: 100%;
-}
-
-.locationContainer {
-  display: grid;
-  height: 100%;
-  width: 100%;
-  align-items: end;
-  justify-content: end;
-}
-
-.contacts {
-  list-style: none;
-  display: grid;
-  grid-template-columns: auto auto;
-  row-gap: 1.7mm;
-  column-gap: 3.5mm;
-}
-
-.contactEntry {
-  display: grid;
-}
-
-.contactValue {
-  display: inline-flex;
-  align-items: center;
-  gap: 1.4mm;
-  width: fit-content;
-  max-width: 100%;
-  color: var(--cv-body-ink);
-  text-decoration: none;
-  font-family: var(--font-body);
-  font-size: var(--cv-font-size-label);
-  font-weight: 600;
-  letter-spacing: -0.012em;
-  line-height: var(--cv-line-height-normal);
-  overflow-wrap: anywhere;
-}
-
-.contactIcon {
   width: 3.4mm;
   height: 3.4mm;
   flex: none;
@@ -152,8 +167,8 @@
     page-break-inside: avoid;
   }
 
-  .location,
-  .contactValue {
+  .contactValue,
+  .location {
     overflow-wrap: normal;
   }
 }

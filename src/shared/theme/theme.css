@@ -129,7 +129,7 @@
   --cv-ink: #1f2328;
   --cv-body-ink: #43484d;
   --cv-heading-ink: #1b2128;
-  --cv-muted: rgb(31 35 40 / 62%);
+  --cv-muted: rgb(31 35 40 / 50%);
   --cv-accent: #2758a4;
   --cv-accent-soft: rgb(39 88 164 / 12%);
   --cv-rule: rgb(31 35 40 / 12%);
@@ -137,10 +137,10 @@
   --cv-frame-line: rgb(39 88 164 / 18%);
   --cv-font-size-hero-title: 24pt;
   --cv-font-size-hero-subtitle: 15pt;
-  --cv-font-section-title: 18pt;
+  --cv-font-section-title: 14pt;
   --cv-font-size-title: 12pt;
-  --cv-font-size-body: 11pt;
-  --cv-font-size-meta: 10pt;
+  --cv-font-size-body: 10pt;
+  --cv-font-size-meta: 9pt;
   --cv-font-size-label: 8pt;
   --cv-line-height-tight: 1.2;
   --cv-line-height-normal: 1.35;
