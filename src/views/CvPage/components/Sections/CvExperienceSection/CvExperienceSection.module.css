@@ -9,12 +9,6 @@
   line-height: var(--cv-line-height-relaxed);
 }
 
-.stackLine {
-  color: var(--cv-muted);
-  font-size: var(--cv-font-size-meta);
-  line-height: var(--cv-line-height-normal);
-}
-
 @media print {
   .root {
     display: block;

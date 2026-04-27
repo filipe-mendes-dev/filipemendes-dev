@@ -3,6 +3,7 @@ import type { ReactElement } from "react";
 import { CvBulletList } from "../../CvBulletList";
 import { CvPageSection } from "../../CvPageSection";
 import { CvSectionItem } from "../../CvSectionItem";
+import { CvStackLine } from "../../CvStackLine";
 import type { CvProjectsSectionProps } from "./CvProjectsSection.interfaces";
 import st from "./CvProjectsSection.module.css";
 
@@ -24,9 +25,7 @@ export const CvProjectsSection = ({
           >
             <p className={st.description}>{entry.context}</p>
             {entry.bullets.length > 0 && <CvBulletList items={entry.bullets} />}
-            {entry.stack.length > 0 && (
-              <p className={st.stackLine}>Stack: {entry.stack.join(" · ")}</p>
-            )}
+            {entry.stack.length > 0 && <CvStackLine items={entry.stack} />}
           </CvSectionItem>
         ))}
       </ul>
