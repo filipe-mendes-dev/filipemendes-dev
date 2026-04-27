@@ -25,7 +25,7 @@ export const CvProjectsSection = ({
             <p className={st.description}>{entry.context}</p>
             {entry.bullets.length > 0 && <CvBulletList items={entry.bullets} />}
             {entry.stack.length > 0 && (
-              <p className={st.stackLine}>Stack: {entry.stack.join(", ")}</p>
+              <p className={st.stackLine}>Stack: {entry.stack.join(" · ")}</p>
             )}
           </CvSectionItem>
         ))}
