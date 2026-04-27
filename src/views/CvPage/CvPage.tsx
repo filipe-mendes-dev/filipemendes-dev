@@ -17,6 +17,31 @@ import {
 } from "./components/Sections";
 import st from "./CvPage.module.css";
 
+interface CvSectionsContentProps {
+  isPrint: boolean;
+}
+
+const CvSectionsContent = ({
+  isPrint,
+}: CvSectionsContentProps): ReactElement => {
+  return (
+    <div className={st.contentFlow}>
+      <CvExperienceSection
+        entries={experienceData}
+        hasBottomSeparator={isPrint !== true}
+      />
+      <CvProjectsSection entries={cvData.projects} hasBottomSeparator />
+      <CvEducationSection entries={educationData} hasBottomSeparator />
+      <CvSkillsSection skills={cvData.skills} hasBottomSeparator />
+      <CvPublicationsSection
+        entries={publicationsData}
+        hasBottomSeparator
+      />
+      <CvLanguagesSection languages={cvData.languages} />
+    </div>
+  );
+};
+
 const CvPage = (): ReactElement => {
   return (
     <main className={st.root}>
@@ -24,47 +49,13 @@ const CvPage = (): ReactElement => {
         <CvPaper>
           <div className={st.screenDocument}>
             <CvPageHeader />
-
-            <div className={st.contentFlow}>
-              <CvExperienceSection
-                entries={experienceData}
-                hasBottomSeparator
-              />
-              <CvProjectsSection entries={cvData.projects} hasBottomSeparator />
-              <CvEducationSection
-                entries={educationData}
-                hasBottomSeparator
-              />
-              <CvSkillsSection skills={cvData.skills} hasBottomSeparator />
-              <CvPublicationsSection
-                entries={publicationsData}
-                hasBottomSeparator
-              />
-              <CvLanguagesSection languages={cvData.languages} />
-            </div>
+            <CvSectionsContent isPrint={false} />
           </div>
 
           <div className={st.printDocument}>
             <section className={st.printPage}>
               <CvPageHeader />
-
-              <div className={st.contentFlow}>
-                <CvExperienceSection entries={experienceData} />
-                <CvProjectsSection
-                  entries={cvData.projects}
-                  hasBottomSeparator
-                />
-                <CvEducationSection
-                  entries={educationData}
-                  hasBottomSeparator
-                />
-                <CvSkillsSection skills={cvData.skills} hasBottomSeparator />
-                <CvPublicationsSection
-                  entries={publicationsData}
-                  hasBottomSeparator
-                />
-                <CvLanguagesSection languages={cvData.languages} />
-              </div>
+              <CvSectionsContent isPrint />
             </section>
           </div>
         </CvPaper>
