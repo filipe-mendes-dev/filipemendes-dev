@@ -29,7 +29,7 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: start;
+  align-items: baseline;
   gap: 3mm;
 }
 
@@ -50,6 +50,21 @@
   height: auto;
   gap: 0.8mm;
   min-width: 0;
+}
+
+.identityInline {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0;
+  column-gap: 1.6mm;
+  min-width: 0;
+}
+
+.identityInline .subtitle::before {
+  content: "·";
+  margin-right: 1.4mm;
+  color: var(--cv-muted);
 }
 
 .title {
@@ -74,4 +89,27 @@
   letter-spacing: 0.2mm;
   color: var(--cv-muted);
   text-align: right;
+}
+
+@media print {
+  .root {
+    display: block;
+  }
+
+  .root > * + * {
+    margin-top: 1.8mm;
+  }
+
+  .identity {
+    display: block;
+  }
+
+  .identity > * + * {
+    margin-top: 0.8mm;
+  }
+
+  .withBottomSeparator::after {
+    justify-self: auto;
+    margin-inline: auto;
+  }
 }

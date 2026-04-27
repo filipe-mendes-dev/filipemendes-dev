@@ -9,6 +9,19 @@ export interface ExperienceItem {
 
 export const experienceData: ExperienceItem[] = [
   {
+    title: "Product Development",
+    organization: "Independent",
+    timeframe: "Dec 2025 - Present",
+    context:
+      "Designed, built and shipped products from scratch with ownership across the full development cycle.",
+    bullets: [
+      "Built Arc Timer, a React Native workout application across iOS and Android, currently in App Store and Google Play review.",
+      "Built and launched filipemendes.dev, a responsive portfolio platform with polished UI and motion-driven interactions.",
+      "Expanding into backend development and API architecture to deliver complete products end-to-end.",
+    ],
+    stack: ["React Native", "Next.js", "TypeScript"],
+  },
+  {
     title: "Frontend Developer",
     organization: "ACIN group",
     timeframe: "Oct 2023 - Jul 2025",

@@ -10,3 +10,13 @@
   font-size: var(--cv-font-size-body);
   line-height: var(--cv-line-height-normal);
 }
+
+@media print {
+  .root {
+    display: block;
+  }
+
+  .root > * + * {
+    margin-top: 1mm;
+  }
+}

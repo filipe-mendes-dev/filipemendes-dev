@@ -22,3 +22,12 @@
   border-radius: 999px;
   background: color-mix(in srgb, var(--cv-accent) 88%, transparent);
 }
+
+@media print {
+  .root {
+    break-after: avoid;
+    page-break-after: avoid;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

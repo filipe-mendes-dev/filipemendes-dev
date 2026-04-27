@@ -21,6 +21,11 @@ export interface CvProjectOverride {
 
 export const cvPersonalInfo: Partial<CvPersonalInfo> = {
   title: "Frontend & Mobile Engineer",
+  experienceSummary: "3+ years experience",
+  summaryLines: [
+    "Engineering Physics graduate specialized in web and mobile development.",
+    "Currently expanding into end-to-end product development.",
+  ],
 };
 
 const mapProjectEntries = (): CvProjectEntry[] => {
@@ -76,6 +81,18 @@ export const cvProjectOverrides: Record<string, CvProjectOverride> = {
   },
 };
 
+export const cvSkills: Record<string, string[]> = {
+  "Core Stack": ["React", "React Native", "Next.js", "TypeScript"],
+  Workflow: ["Cursor", "Codex", "Git"],
+  "Libraries & Tools": [
+    "React Reanimated",
+    "Framer Motion",
+    "GraphQL",
+    "REST APIs",
+  ],
+  Other: ["Python", "TensorFlow", "OpenCV", "Figma"],
+};
+
 export const cvLanguages: CvLanguageEntry[] = [
   {
     name: "Portuguese",
@@ -113,8 +130,11 @@ export const cvData: CvDocumentData = {
     name: personData.name,
     title: cvPersonalInfo.title ?? "Frontend & Mobile Engineer",
     location: personData.location,
+    experienceSummary: cvPersonalInfo.experienceSummary,
+    summaryLines: cvPersonalInfo.summaryLines,
   },
   contactLinks: cvContactLinks,
   projects: mapProjectEntries(),
+  skills: cvSkills,
   languages: cvLanguages,
 };

@@ -2,8 +2,8 @@ export interface CvPersonalInfo {
   name: string;
   title: string;
   location: string;
-  availability?: string;
-  summary?: string;
+  experienceSummary?: string;
+  summaryLines?: [string, string];
 }
 
 export interface CvContactLink {
@@ -33,5 +33,6 @@ export interface CvDocumentData {
   personalInfo: CvPersonalInfo;
   contactLinks: CvContactLink[];
   projects: CvProjectEntry[];
+  skills: Record<string, string[]>;
   languages: CvLanguageEntry[];
 }
