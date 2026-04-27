@@ -60,13 +60,26 @@
   }
 
   .printPage {
+    display: block;
     page-break-after: always;
     break-after: page;
     background: #ffffff;
   }
 
+  .printPage > * + * {
+    margin-top: 5mm;
+  }
+
   .printPage:last-child {
     page-break-after: auto;
     break-after: auto;
+  }
+
+  .contentFlow {
+    display: block;
+  }
+
+  .contentFlow > * + * {
+    margin-top: 4mm;
   }
 }

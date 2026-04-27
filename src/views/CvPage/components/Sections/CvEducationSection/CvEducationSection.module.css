@@ -3,3 +3,13 @@
   display: grid;
   gap: 3.4mm;
 }
+
+@media print {
+  .root {
+    display: block;
+  }
+
+  .root > * + * {
+    margin-top: 3.4mm;
+  }
+}

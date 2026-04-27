@@ -7,3 +7,13 @@
 .itemTitle {
   font-size: var(--cv-font-size-meta);
 }
+
+@media print {
+  .root {
+    display: block;
+  }
+
+  .root > * + * {
+    margin-top: 4mm;
+  }
+}

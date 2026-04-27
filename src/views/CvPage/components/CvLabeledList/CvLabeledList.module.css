@@ -28,3 +28,13 @@
   font-size: var(--cv-font-size-meta);
   line-height: var(--cv-line-height-relaxed);
 }
+
+@media print {
+  .root {
+    display: block;
+  }
+
+  .root > * + * {
+    margin-top: 3.4mm;
+  }
+}

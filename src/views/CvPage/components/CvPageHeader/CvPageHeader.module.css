@@ -1,3 +1,6 @@
+.root {
+}
+
 .mainRow {
   display: flex;
   align-items: flex-start;
@@ -92,6 +95,7 @@
   gap: 2.4mm 5.4mm;
   max-width: 100%;
   margin: 0;
+  padding: 0;
 }
 
 .contactEntry {

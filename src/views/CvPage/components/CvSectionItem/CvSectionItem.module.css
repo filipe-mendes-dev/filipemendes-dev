@@ -90,3 +90,26 @@
   color: var(--cv-muted);
   text-align: right;
 }
+
+@media print {
+  .root {
+    display: block;
+  }
+
+  .root > * + * {
+    margin-top: 1.8mm;
+  }
+
+  .identity {
+    display: block;
+  }
+
+  .identity > * + * {
+    margin-top: 0.8mm;
+  }
+
+  .withBottomSeparator::after {
+    justify-self: auto;
+    margin-inline: auto;
+  }
+}

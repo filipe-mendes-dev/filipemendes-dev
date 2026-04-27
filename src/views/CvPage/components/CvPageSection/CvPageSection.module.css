@@ -25,12 +25,28 @@
 
 @media print {
   .root {
+    display: block;
     break-inside: auto;
     page-break-inside: auto;
   }
 
+  .root > * + * {
+    margin-top: 4mm;
+  }
+
   .content {
+    display: block;
     break-inside: auto;
     page-break-inside: auto;
+  }
+
+  .content > * + * {
+    margin-top: 1.8mm;
+  }
+
+  .withBottomSeparator::after {
+    justify-self: auto;
+    margin-top: 4mm;
+    margin-inline: auto;
   }
 }
