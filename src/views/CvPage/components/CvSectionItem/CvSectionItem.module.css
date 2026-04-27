@@ -61,10 +61,10 @@
   min-width: 0;
 }
 
-.subtitleSeparator {
+.identityInline .subtitle::before {
+  content: "·";
+  margin-right: 1.4mm;
   color: var(--cv-muted);
-  font-size: var(--cv-font-size-meta);
-  line-height: var(--cv-line-height-tight);
 }
 
 .title {

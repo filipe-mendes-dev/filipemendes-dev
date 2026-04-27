@@ -37,16 +37,7 @@ export const CvSectionItem = ({
     <div className={st.headerMain}>
       <div className={identityClassName}>
         {titleHeading}
-        {hasSubtitle && (
-          <>
-            {isInline && (
-              <span aria-hidden="true" className={st.subtitleSeparator}>
-                ·
-              </span>
-            )}
-            <p className={st.subtitle}>{subtitle}</p>
-          </>
-        )}
+        {hasSubtitle && <p className={st.subtitle}>{subtitle}</p>}
       </div>
     </div>
   );
