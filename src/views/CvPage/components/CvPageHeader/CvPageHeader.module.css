@@ -134,10 +134,6 @@
   letter-spacing: -0.005em;
 }
 
-.bioLine {
-  display: block;
-}
-
 .location {
   display: inline-flex;
   align-items: baseline;

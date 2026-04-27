@@ -72,8 +72,9 @@ export const CvPageHeader = (_props: CvPageHeaderProps): ReactElement => {
 
           {summaryLines !== undefined && (
             <p className={st.bio}>
-              <span className={st.bioLine}>{summaryLines[0]}</span>
-              <span className={st.bioLine}>{summaryLines[1]}</span>
+              {summaryLines[0]}
+              <br />
+              {summaryLines[1]}
             </p>
           )}
 
