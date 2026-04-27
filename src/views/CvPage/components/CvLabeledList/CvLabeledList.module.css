@@ -2,6 +2,8 @@
   list-style: none;
   display: grid;
   gap: 3.4mm;
+  margin: 0;
+  padding: 0;
 }
 
 .item {
@@ -17,7 +19,7 @@
   color: var(--cv-heading-ink);
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: var(--cv-font-size-title);
+  font-size: var(--cv-font-size-body);
   line-height: var(--cv-line-height-tight);
 }
 

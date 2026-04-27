@@ -1,23 +1,21 @@
 import type { ReactElement } from "react";
 
+import { CvLabeledList } from "../../CvLabeledList";
 import { CvPageSection } from "../../CvPageSection";
 import type { CvLanguagesSectionProps } from "./CvLanguagesSection.interfaces";
-import st from "./CvLanguagesSection.module.css";
 
 export const CvLanguagesSection = ({
   languages,
   hasBottomSeparator = false,
 }: CvLanguagesSectionProps): ReactElement => {
+  const entries = languages.map((language) => ({
+    label: language.name,
+    value: language.proficiency,
+  }));
+
   return (
     <CvPageSection title="Languages" hasBottomSeparator={hasBottomSeparator}>
-      <ul className={st.root}>
-        {languages.map((entry) => (
-          <li className={st.item} key={entry.name}>
-            <span className={st.name}>{entry.name}</span>
-            <span className={st.level}>{entry.proficiency}</span>
-          </li>
-        ))}
-      </ul>
+      <CvLabeledList entries={entries} />
     </CvPageSection>
   );
 };
