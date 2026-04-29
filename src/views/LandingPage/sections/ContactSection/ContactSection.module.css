@@ -134,6 +134,7 @@
 
 .socialLink {
   color: var(--moss);
+  padding-block: 0.5rem;
 }
 
 .socialIcon {

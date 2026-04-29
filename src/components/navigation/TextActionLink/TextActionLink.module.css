@@ -5,7 +5,6 @@
     width: fit-content;
     max-width: 100%;
     min-height: var(--control-height-md);
-    padding: 0.5rem 0;
     color: var(--moss);
     text-decoration: none;
     transition: color var(--transition);

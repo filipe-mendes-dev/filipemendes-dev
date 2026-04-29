@@ -134,8 +134,6 @@
   color: var(--moss);
   font-size: var(--font-size-sm);
   font-weight: 500;
-  min-height: unset;
-  padding: unset;
 }
 
 @media (hover: hover) and (pointer: fine) {
