@@ -1,18 +1,19 @@
 "use client";
 
-import { type ComponentProps, type ReactElement, useState } from "react";
-import { motion, type Variants } from "framer-motion";
+import { type ComponentProps, type ReactElement } from "react";
+import { motion } from "framer-motion";
 
 import {
   ExternalLinkIcon,
   GitHubMarkIcon,
   LinkedInIcon,
-} from "../../../../components/icons";
-import { TextActionLink } from "../../../../components/navigation/TextActionLink";
-import { LandingPageSection } from "../../../../components/ui/Section";
-import { SoftSurface } from "../../../../components/ui/SoftSurface";
-import { useSectionRevealMotion } from "../../../../shared/motion/useSectionRevealMotion";
-import su from "../../../../shared/styles/utilities.module.css";
+} from "@components/icons";
+import { TextActionLink } from "@components/navigation/TextActionLink";
+import { ClickToCopy } from "@components/ui/ClickToCopy";
+import { LandingPageSection } from "@components/ui/Section";
+import { SoftSurface } from "@components/ui/SoftSurface";
+import { useSectionRevealMotion } from "@shared/motion/useSectionRevealMotion";
+import su from "@shared/styles/utilities.module.css";
 import type { ContactSectionProps } from "./ContactSection.interfaces";
 import st from "./ContactSection.module.css";
 
@@ -20,30 +21,6 @@ interface ContactFormValues {
   message: string;
   name: string;
 }
-
-type CopyStatus = "copied" | "failed" | null;
-
-const copyFeedbackVariants: Variants = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: [0, 1, 1],
-    transition: {
-      duration: 1,
-      ease: "easeInOut",
-      times: [0, 0.05, 1],
-    },
-  },
-};
-
-const copyTextToClipboard = async (value: string): Promise<void> => {
-  if (!navigator.clipboard?.writeText) {
-    throw new Error("Clipboard API unavailable");
-  }
-
-  await navigator.clipboard.writeText(value);
-};
 
 const getFormFieldValue = (formData: FormData, fieldName: string): string => {
   const value = formData.get(fieldName);
@@ -91,7 +68,6 @@ export const ContactSection = ({
   isRevealEnabled,
 }: ContactSectionProps): ReactElement => {
   const revealMotion = useSectionRevealMotion();
-  const [copyStatus, setCopyStatus] = useState<CopyStatus>(null);
 
   const handleSubmit: NonNullable<ComponentProps<"form">["onSubmit"]> = (
     event
@@ -103,15 +79,6 @@ export const ContactSection = ({
     const body = encodeURIComponent(buildDraftBody(values));
 
     window.location.href = `mailto:${content.email}?subject=${subject}&body=${body}`;
-  };
-
-  const handleEmailCopy = async (): Promise<void> => {
-    try {
-      await copyTextToClipboard(content.email);
-      setCopyStatus("copied");
-    } catch {
-      setCopyStatus("failed");
-    }
   };
 
   return (
@@ -142,36 +109,7 @@ export const ContactSection = ({
                 Email & Elsewhere
               </h3>
               <p className={st.supportBody}>{content.availability}</p>
-              <div className={st.emailAction}>
-                <button
-                  type="button"
-                  className={st.copyEmailButton}
-                  disabled={copyStatus !== null}
-                  onClick={() => {
-                    void handleEmailCopy();
-                  }}
-                >
-                  {content.email}
-                </button>
-                <motion.div
-                  className={
-                    copyStatus === "failed"
-                      ? `${st.copyPill} ${st.copyPillError}`
-                      : st.copyPill
-                  }
-                  initial={false}
-                  variants={copyFeedbackVariants}
-                  animate={copyStatus === null ? "hidden" : "visible"}
-                  onAnimationComplete={() => {
-                    if (copyStatus !== null) {
-                      setCopyStatus(null);
-                    }
-                  }}
-                  aria-live="polite"
-                >
-                  {copyStatus === "failed" ? "Copy failed" : "Copied"}
-                </motion.div>
-              </div>
+              <ClickToCopy value={content.email} />
               <ul className={st.contactLinks}>
                 {content.socials.map((item) => (
                   <li key={item.label}>

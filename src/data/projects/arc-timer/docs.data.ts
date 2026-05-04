@@ -5,71 +5,94 @@ const lastUpdatedLabel = "Last updated · March 2026";
 
 export const projectDocs: ProjectDocsContent = {
   description:
-    "Release, privacy and operational policy documentation for the Arc Timer mobile app.",
+    "Documentation for Arc Timer app policies, support information and release-facing product details.",
   order: 1,
   documents: [
     {
       slug: "arc-timer-privacy-and-permissions-policy",
       order: 2,
       projectSlug: project.slug,
-      title: "Arc Timer Privacy and Permissions Policy",
-      summary:
-        "Policy for handling user data, device permissions and disclosure updates in a workout timer product built around low-friction usage.",
+      title: "Arc Timer Privacy Policy",
+      summary: "How Arc Timer handles your data, permissions and sharing.",
       lastUpdatedLabel,
       sections: [
         {
-          id: "data-minimization",
-          title: "Data Minimization",
+          id: "overview",
+          title: "Overview",
           content: [
             {
               kind: "paragraph",
-              text: "Arc Timer should collect the minimum information required to operate the product and improve reliability. The app is a focused timer experience, so data collection should never drift into broad behavioral tracking without clear product justification and explicit policy review.",
-            },
-            {
-              kind: "list",
-              items: [
-                "Collect only the data needed to support core workout timing, diagnostics and clearly defined product improvements.",
-                "Do not introduce new analytics events or identifiers without reviewing their retention, purpose and user-facing disclosure impact.",
-                "Avoid storing sensitive workout context unless it is necessary for a user-facing feature and documented in release planning.",
-              ],
+              text: "Arc Timer is designed to work without requiring personal data. The app does not require an account and does not collect personally identifiable information.",
             },
           ],
         },
         {
-          id: "permissions-and-device-access",
-          title: "Permissions and Device Access",
+          id: "data-storage",
+          title: "Data Storage",
           content: [
             {
               kind: "paragraph",
-              text: "Any permission prompt must be justified by a direct product need and explained in plain language. Permission requests should appear only when the related functionality is about to be used, not preemptively during onboarding.",
-            },
-            {
-              kind: "list",
-              items: [
-                "Audio, haptic, notification, or background-related capabilities must align with the actual user experience delivered by the app.",
-                "If a permission is optional, the app must remain usable in a degraded but understandable state when the user declines it.",
-                "Explanatory copy for permission prompts must describe the user benefit instead of relying on generic technical wording.",
-                "Any new permission or expanded device access requires a policy review before release sign-off.",
-              ],
+              text: "Workouts, settings and session history are stored locally on your device. This data is not transmitted to external servers.",
             },
           ],
         },
         {
-          id: "disclosures-and-change-control",
-          title: "Disclosures and Change Control",
+          id: "data-collection",
+          title: "Data Collection",
           content: [
             {
               kind: "paragraph",
-              text: "Store disclosures, privacy text and support-facing explanations must stay aligned with the shipped app behavior. Changes that affect data handling or permission usage should be treated as release-gating items rather than documentation follow-up.",
+              text: "Arc Timer does not collect personal data, tracking identifiers or analytics data.",
             },
+          ],
+        },
+        {
+          id: "permissions",
+          title: "Permissions",
+          content: [
             {
-              kind: "list",
-              items: [
-                "Update privacy disclosures before shipping changes to analytics, diagnostics, or permission-backed features.",
-                "Review store listing text and in-app explanations whenever permission behavior changes.",
-                "Brief support and product owners on any behavior that users may interpret as increased data collection or expanded background activity.",
-                "Block release approval if shipped behavior and public disclosures are materially inconsistent.",
-              ],
+              kind: "paragraph",
+              text: "Arc Timer may use device capabilities such as sound, haptics and notifications to support the workout experience. These capabilities are used only to deliver core app functionality and are not used for data collection.",
+            },
+          ],
+        },
+        {
+          id: "sharing",
+          title: "Sharing",
+          content: [
+            {
+              kind: "paragraph",
+              text: "Arc Timer allows you to export workouts as .arcw files. These files are shared only when you explicitly choose to export or share them.",
+            },
+          ],
+        },
+        {
+          id: "third-parties",
+          title: "Third Parties",
+          content: [
+            {
+              kind: "paragraph",
+              text: "Arc Timer does not share data with third parties.",
+            },
+          ],
+        },
+        {
+          id: "changes",
+          title: "Changes",
+          content: [
+            {
+              kind: "paragraph",
+              text: "If future updates introduce data collection, third-party sharing or new permissions, this policy will be updated accordingly.",
+            },
+          ],
+        },
+        {
+          id: "contact",
+          title: "Contact",
+          content: [
+            {
+              kind: "paragraph",
+              text: "If you have any questions about this policy, contact arctimer@filipemendes.dev.",
             },
           ],
         },

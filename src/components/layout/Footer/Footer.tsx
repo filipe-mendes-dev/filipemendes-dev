@@ -1,11 +1,6 @@
 import type { ReactElement } from "react";
 
-import {
-  GitHubMarkIcon,
-  LinkedInIcon,
-  NextJsDarkIcon,
-  NextJsLightIcon,
-} from "../../icons";
+import { GitHubMarkIcon, LinkedInIcon } from "../../icons";
 import type { FooterProps } from "./Footer.interfaces";
 import st from "./Footer.module.css";
 
@@ -28,18 +23,6 @@ export const Footer = ({
             <p className={st.footerName}>{name}</p>
             <p className={st.footerDescriptor}>{descriptor}</p>
             <p className={st.footerMeta}>
-              <span>Built with Next.js</span>
-              <span className={st.themeIcon} aria-hidden="true">
-                <NextJsDarkIcon
-                  className={`${st.metaIcon} ${st.iconLightTheme}`}
-                />
-                <NextJsLightIcon
-                  className={`${st.metaIcon} ${st.iconDarkTheme}`}
-                />
-              </span>
-              <span className={st.metaDivider} aria-hidden="true">
-                •
-              </span>
               <span>{copyrightLine}</span>
             </p>
           </div>

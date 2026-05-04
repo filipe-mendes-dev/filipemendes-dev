@@ -1,0 +1,131 @@
+.layoutContainer {
+  padding-block: 0;
+}
+
+.root {
+  padding-block: clamp(2.5rem, 4vw, 3.5rem);
+  display: grid;
+  gap: var(--space-4);
+}
+
+.header {
+  display: grid;
+  gap: var(--space-3);
+  align-items: start;
+  max-width: var(--content-max-readable-lg);
+}
+
+.titleRow {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-2);
+  align-items: stretch;
+  width: fit-content;
+  max-width: min(100%, var(--content-max-wide));
+}
+
+.projectLogo {
+  width: clamp(3.35rem, 6vw, 4.4rem);
+  aspect-ratio: 1;
+  border-radius: calc(var(--radius-md) * 0.92);
+  border: var(--line-strong) solid
+    color-mix(in srgb, var(--code-border) 44%, transparent);
+  display: grid;
+  place-items: center;
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--code-bg) 88%, var(--card-bg)) 0%,
+    color-mix(in srgb, var(--card-bg) 80%, transparent) 100%
+  );
+  box-shadow: inset 0 1px 0
+    color-mix(in srgb, var(--paper-raised) 10%, transparent);
+}
+
+.headerIntro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.eyebrow {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-caption);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--moss);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--font-size-title-md);
+  line-height: var(--line-height-title);
+  text-wrap: balance;
+}
+
+.headerContent {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.positioning {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: clamp(0.9rem, 1.4vw, 1rem);
+  text-wrap: pretty;
+  max-width: var(--content-max-readable);
+}
+
+.description {
+  margin: 0;
+  font-size: clamp(1rem, 1.4vw, 1.12rem);
+  text-wrap: pretty;
+  max-width: var(--content-max-readable);
+}
+
+.meta {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.metaRow {
+  display: grid;
+  grid-template-columns: minmax(6rem, 8rem) 1fr;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+
+.metaLabel {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-caption);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.metaValue {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-body);
+  color: var(--ink);
+  word-break: break-word;
+}
+
+@media (max-width: 30rem) {
+  .metaRow {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+}
+
+@media (min-width: 48rem) {
+  .layoutContainer {
+    width: var(--container);
+    margin-inline: auto;
+  }
+}

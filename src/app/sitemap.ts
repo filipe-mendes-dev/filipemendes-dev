@@ -11,7 +11,7 @@ import { siteMetadata } from "../data/site/site.metadata";
 
 const sitemap = (): MetadataRoute.Sitemap => {
   const currentDate = new Date();
-  const staticRoutes = ["/", "/curriculum-vitae", "/docs"];
+  const staticRoutes = ["/", "/curriculum-vitae", "/docs", "/arc-timer/support"];
   const projectRoutes = projectsData.map((project) => {
     return getProjectHref(project.slug);
   });

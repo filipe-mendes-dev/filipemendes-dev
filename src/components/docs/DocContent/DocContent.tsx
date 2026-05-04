@@ -49,7 +49,6 @@ export const DocContent = ({
       {doc.sections.map((section) => (
         <section key={section.id} id={section.id} className={st.section}>
           <div className={st.sectionHeader}>
-            <p className={st.sectionEyebrow}>{section.id}</p>
             <h2 className={st.sectionTitle}>{section.title}</h2>
           </div>
           <div className={st.sectionBody}>

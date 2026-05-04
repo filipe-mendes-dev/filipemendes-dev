@@ -2,6 +2,24 @@
   "compilerOptions": {
     "target": "ES2022",
     "module": "ESNext",
+    "baseUrl": ".",
+    "paths": {
+      "@app/*": [
+        "src/app/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@data/*": [
+        "src/data/*"
+      ],
+      "@shared/*": [
+        "src/shared/*"
+      ],
+      "@views/*": [
+        "src/views/*"
+      ]
+    },
     "lib": [
       "ES2022",
       "DOM",
