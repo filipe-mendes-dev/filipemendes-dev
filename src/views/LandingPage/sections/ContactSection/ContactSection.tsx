@@ -7,13 +7,13 @@ import {
   ExternalLinkIcon,
   GitHubMarkIcon,
   LinkedInIcon,
-} from "../../../../components/icons";
-import { TextActionLink } from "../../../../components/navigation/TextActionLink";
-import { ClickToCopy } from "../../../../components/ui/ClickToCopy";
-import { LandingPageSection } from "../../../../components/ui/Section";
-import { SoftSurface } from "../../../../components/ui/SoftSurface";
-import { useSectionRevealMotion } from "../../../../shared/motion/useSectionRevealMotion";
-import su from "../../../../shared/styles/utilities.module.css";
+} from "@components/icons";
+import { TextActionLink } from "@components/navigation/TextActionLink";
+import { ClickToCopy } from "@components/ui/ClickToCopy";
+import { LandingPageSection } from "@components/ui/Section";
+import { SoftSurface } from "@components/ui/SoftSurface";
+import { useSectionRevealMotion } from "@shared/motion/useSectionRevealMotion";
+import su from "@shared/styles/utilities.module.css";
 import type { ContactSectionProps } from "./ContactSection.interfaces";
 import st from "./ContactSection.module.css";
 

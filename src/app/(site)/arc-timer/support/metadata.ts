@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { createPageMetadata } from "../../../../shared/seo/createPageMetadata";
+import { createPageMetadata } from "@shared/seo/createPageMetadata";
 
 const title = `Arc Timer | Support`;
 const description =
