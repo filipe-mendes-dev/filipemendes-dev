@@ -1,11 +1,11 @@
 import type { ReactElement } from "react";
 
-import { LayoutContainer } from "../../components/layout/LayoutContainer";
-import { ProjectLogoMark } from "../../components/projects/ProjectLogoMark";
-import { ClickToCopy } from "../../components/ui/ClickToCopy";
-import { PageSectionSurface } from "../../components/ui/PageSectionSurface";
+import { LayoutContainer } from "../../../components/layout/LayoutContainer";
+import { ProjectLogoMark } from "../../../components/projects/ProjectLogoMark";
+import { ClickToCopy } from "../../../components/ui/ClickToCopy";
+import { PageSectionSurface } from "../../../components/ui/PageSectionSurface";
 import surface from "../../components/ui/PageSectionSurface/PageSectionSurface.module.css";
-import { project as arcTimerProject } from "../../data/projects/arc-timer/project.data";
+import { project as arcTimerProject } from "../../../data/projects/arc-timer/project.data";
 import st from "./ArcTimerSupportPage.module.css";
 
 const APP_VERSION = "1.0.0";
