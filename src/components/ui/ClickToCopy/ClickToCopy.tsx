@@ -76,6 +76,7 @@ export const ClickToCopy = ({
             setCopyStatus(null);
           }
         }}
+        aria-hidden={copyStatus === null}
         aria-live="polite"
       >
         {copyStatus === "failed" ? failedLabel : copiedLabel}
