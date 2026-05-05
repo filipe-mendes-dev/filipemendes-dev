@@ -207,7 +207,11 @@
   text-decoration: none;
 }
 
-.heroTertiaryActionMobile {
+.heroTertiaryAction.heroTertiaryActionDesktop {
+  display: inline-flex;
+}
+
+.heroTertiaryAction.heroTertiaryActionMobile {
   display: none;
 }
 
@@ -244,6 +248,14 @@
 
   .heroBody {
     max-width: none;
+  }
+
+  .heroTertiaryAction.heroTertiaryActionDesktop {
+    display: inline-flex;
+  }
+
+  .heroTertiaryAction.heroTertiaryActionMobile {
+    display: none;
   }
 }
 
@@ -297,11 +309,11 @@
     min-width: 0;
   }
 
-  .heroTertiaryActionDesktop {
+  .heroTertiaryAction.heroTertiaryActionDesktop {
     display: none;
   }
 
-  .heroTertiaryActionMobile {
+  .heroTertiaryAction.heroTertiaryActionMobile {
     display: inline-flex;
     flex: none;
     align-self: auto;
