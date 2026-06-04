@@ -23,8 +23,8 @@ export const cvPersonalInfo: Partial<CvPersonalInfo> = {
   title: "Frontend & Mobile Engineer",
   experienceSummary: "3+ years experience",
   summaryLines: [
-    "Engineering Physics graduate specialized in web and mobile development.",
-    "Currently expanding into end-to-end product development.",
+    "MSc in Engineering Physics with experience building web and mobile products.",
+    "Background across healthcare, banking and independent software development.",
   ],
 };
 
@@ -49,7 +49,7 @@ const mapProjectEntries = (): CvProjectEntry[] => {
               (item) =>
                 `${item.title}${
                   item.description !== undefined ? ` — ${item.description}` : ""
-                }`
+                }`,
             ) ??
           [],
         stack: override?.stack ?? detail?.techStack ?? [],
@@ -67,7 +67,14 @@ export const cvProjectOverrides: Record<string, CvProjectOverride> = {
       "State-based timer system with a 1Hz update cycle ensuring predictable execution under runtime constraints.",
       "UI-thread animations with React Reanimated avoiding JavaScript thread blocking.",
     ],
-    stack: ["React Native", "Expo Router", "React Reanimated", "TypeScript"],
+    stack: [
+      "React Native",
+      "Expo Router",
+      "React Reanimated",
+      "TypeScript",
+      "TanStack Query",
+      "Jest",
+    ],
   },
   "filipemendes-dev": {
     context:
@@ -82,15 +89,21 @@ export const cvProjectOverrides: Record<string, CvProjectOverride> = {
 };
 
 export const cvSkills: Record<string, string[]> = {
-  "Core Stack": ["React", "React Native", "Next.js", "TypeScript"],
-  Workflow: ["Cursor", "Codex", "Git"],
-  "Libraries & Tools": [
-    "React Reanimated",
-    "Framer Motion",
-    "GraphQL",
-    "REST APIs",
+  Frontend: [
+    "React",
+    "React Native",
+    "Next.js",
+    "TypeScript",
+    "JavaScript",
+    "HTML",
+    "CSS",
   ],
-  Other: ["Python", "TensorFlow", "OpenCV", "Figma"],
+  "State Management": ["Redux", "Zustand", "TanStack Query"],
+  "Data & APIs": ["GraphQL", "REST APIs", "Postman"],
+  Testing: ["Playwright", "Jest"],
+  "UI & Animation": ["Styled Components", "Framer Motion", "React Reanimated"],
+  Tools: ["Git", "Figma", "Cursor", "Codex"],
+  // Other: ["Python", "TensorFlow", "OpenCV"],
 };
 
 export const cvLanguages: CvLanguageEntry[] = [

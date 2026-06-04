@@ -13,27 +13,32 @@ export const experienceData: ExperienceItem[] = [
     organization: "Independent",
     timeframe: "Dec 2025 - Present",
     context:
-      "Designed, built and shipped products from scratch with ownership across the full development cycle.",
+      "Designed, built and shipped software products independently, covering product design, implementation, testing and release.",
     bullets: [
-      "Built Arc Timer, a React Native workout application across iOS and Android, currently in App Store and Google Play review.",
-      "Built and launched filipemendes.dev, a responsive portfolio platform with polished UI and motion-driven interactions.",
-      "Expanding into backend development and API architecture to deliver complete products end-to-end.",
+      "Launched Arc Timer, a React Native workout application for iOS and Android, covering planning, development, testing and store submission.",
+      "Built filipemendes.dev, a responsive portfolio platform showcasing projects, documentation and technical content.",
     ],
-    stack: ["React Native", "Next.js", "TypeScript"],
+    stack: ["React Native", "Next.js", "TypeScript", "TanStack Query", "Jest"],
   },
   {
     title: "Frontend Developer",
     organization: "ACIN group",
     timeframe: "Oct 2023 - Jul 2025",
     context:
-      "Contributed to migrating a legacy healthcare platform from server-rendered PHP to React, introducing API-driven workflows and establishing consistent behavior across devices.",
+      "Contributed to the migration of a healthcare management platform from server-rendered PHP to React, introducing API-driven workflows and supporting the transition to a modern frontend architecture.",
     bullets: [
-      "Built React interfaces for admin dashboards, patient records and medication workflows.",
-      "Implemented GraphQL queries and mutations for form submission, validation and pagination.",
+      "Built React interfaces for healthcare administration, patient management and medication workflows.",
+      "Integrated GraphQL APIs supporting form-driven workflows, validation and paginated data interfaces.",
       "Developed reusable form patterns and layout primitives for large, mobile-constrained workflows.",
       "Ported legacy PHP screens to React while maintaining parallel old and new interfaces.",
     ],
-    stack: ["React", "TypeScript", "GraphQL", "Styled Components"],
+    stack: [
+      "React",
+      "TypeScript",
+      "GraphQL",
+      "Styled Components",
+      "Playwright",
+    ],
   },
   {
     title: "Mobile Developer",
@@ -43,11 +48,11 @@ export const experienceData: ExperienceItem[] = [
       "Worked on mobile banking applications from initial development to release, covering core financial workflows under production constraints.",
     bullets: [
       "Built React Native interfaces across account management, transfers, payments and debit card features.",
-      "Integrated REST APIs handling authentication, request mapping, pagination and error states.",
-      "Improved flow modularity and shared component structure to reduce duplication across screens.",
+      "Integrated REST APIs supporting authentication, request mapping, pagination and error handling.",
+      "Improved application modularity through shared components and reusable screen patterns.",
       "Participated in App Store and Google Play release processes.",
     ],
-    stack: ["React Native", "TypeScript", "REST APIs"],
+    stack: ["React Native", "TypeScript", "REST APIs", "Postman"],
   },
   {
     title: "Software Engineer",
@@ -57,7 +62,7 @@ export const experienceData: ExperienceItem[] = [
       "Worked on applied computer vision research for infrared-based object detection and classification in surveillance systems.",
     bullets: [
       "Built an infrared-based detection system for identifying people, vehicles and deer.",
-      "Collected, labeled and curated datasets, including organizing on-site data acquisition.",
+      // "Collected, labeled and curated datasets, including organizing on-site data acquisition.",
       "Trained and evaluated models using TensorFlow and supported deployment into a C# inference application using OpenCV.",
     ],
     stack: ["Python", "TensorFlow", "CUDA", "OpenCV", "Computer Vision"],
