@@ -9,7 +9,7 @@ export interface ExperienceItem {
 
 export const experienceData: ExperienceItem[] = [
   {
-    title: "Product Development",
+    title: "Product Engineer",
     organization: "Independent",
     timeframe: "Dec 2025 - Present",
     context:
@@ -21,7 +21,7 @@ export const experienceData: ExperienceItem[] = [
     stack: ["React Native", "Next.js", "TypeScript", "TanStack Query", "Jest"],
   },
   {
-    title: "Frontend Developer",
+    title: "Frontend Engineer",
     organization: "ACIN group",
     timeframe: "Oct 2023 - Jul 2025",
     context:
