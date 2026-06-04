@@ -33,10 +33,10 @@ const CvSectionsContent = ({
       <CvProjectsSection entries={cvData.projects} hasBottomSeparator />
       <CvEducationSection entries={educationData} hasBottomSeparator />
       <CvSkillsSection skills={cvData.skills} hasBottomSeparator />
-      <CvPublicationsSection
+      {/* <CvPublicationsSection
         entries={publicationsData}
         hasBottomSeparator
-      />
+      /> */}
       <CvLanguagesSection languages={cvData.languages} />
     </div>
   );
