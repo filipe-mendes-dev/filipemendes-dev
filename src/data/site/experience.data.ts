@@ -9,13 +9,13 @@ export interface ExperienceItem {
 
 export const experienceData: ExperienceItem[] = [
   {
-    title: "Product Engineer",
+    title: "Product Development",
     organization: "Independent",
     timeframe: "Dec 2025 - Present",
     context:
       "Designed, built and shipped software products independently, covering product design, implementation, testing and release.",
     bullets: [
-      "Launched Arc Timer, a React Native workout application for iOS and Android, covering planning, development, testing and store submission.",
+      "Launched Arc Timer, a React Native workout application for iOS and Android, developed end-to-end from concept to store submission.",
       "Built filipemendes.dev, a responsive portfolio platform showcasing projects, documentation and technical content.",
     ],
     stack: ["React Native", "Next.js", "TypeScript", "TanStack Query", "Jest"],
