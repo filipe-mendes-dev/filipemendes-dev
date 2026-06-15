@@ -8,7 +8,7 @@ import surface from "@components/ui/PageSectionSurface/PageSectionSurface.module
 import { project as arcTimerProject } from "@data/projects/arc-timer/project.data";
 import st from "./ArcTimerSupportPage.module.css";
 
-const APP_VERSION = "1.0.0";
+const APP_VERSION = "1.1.1";
 const SUPPORT_EMAIL = "arctimer@filipemendes.dev";
 
 export const ArcTimerSupportPage = (): ReactElement => {
