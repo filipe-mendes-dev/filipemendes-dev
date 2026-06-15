@@ -74,22 +74,34 @@ export const projectDetail: ProjectDetailContent = {
   },
   keyFeatures: [
     {
-      title: "Custom workout creation",
+      title: "Custom training creation",
       description:
-        "Create workouts by defining exercises, intervals and durations.",
+        "Create workouts and gym plans with reusable exercises, intervals and target sets.",
     },
     {
       title: "Simple session controls",
       description:
-        "Pause, resume, skip or end a session with minimal interaction during workouts.",
+        "Pause, resume, skip or end a session with minimal interaction during training.",
+    },
+    {
+      title: "Training tracking",
+      description:
+        "Track completed sets, weights, reps and workout progress during sessions.",
     },
     {
       title: "Session history",
-      description: "Track completed workouts and review past sessions.",
+      description:
+        "Track completed sessions and review past training activity.",
     },
     {
-      title: "Workout import and export",
-      description: "Share and reuse workouts through file import and export.",
+      title: "Import and export",
+      description:
+        "Share and reuse workouts and gym plans through file import and export.",
+    },
+    {
+      title: "Exercise management",
+      description:
+        "Manage reusable exercises with personal records and training history.",
     },
     {
       title: "Multi-language support",
@@ -103,6 +115,11 @@ export const projectDetail: ProjectDetailContent = {
         "Workout phases run through a state machine, keeping transitions and session controls predictable.",
     },
     {
+      title: "SQLite persistence",
+      description:
+        "Workouts, gym plans, sessions and exercise data are stored locally using SQLite.",
+    },
+    {
       title: "1Hz engine cycle",
       description:
         "Second-level precision was sufficient for workouts, so the timer runs at 1Hz to reduce overhead.",
@@ -113,12 +130,19 @@ export const projectDetail: ProjectDetailContent = {
         "Animations run on the UI thread using Reanimated, avoiding load on the JavaScript thread.",
     },
     {
-      title: "File-based workout sharing",
+      title: "File-based sharing",
       description:
-        "Workouts serialize to files for import, export and reuse across devices.",
+        "Workouts and gym plans serialize to files for import, export and reuse across devices.",
     },
   ],
-  techStack: ["React Native", "Expo Router", "React Reanimated", "TypeScript"],
+  techStack: [
+    "React Native",
+    "Expo Router",
+    "React Reanimated",
+    "TypeScript",
+    "TanStack Query",
+    "Jest",
+  ],
   pageMetadata: createProjectPageMetadata(
     project.name,
     "HIIT timer application covering the full workout lifecycle.",
