@@ -13,6 +13,12 @@ export const projectDetail: ProjectDetailContent = {
     description:
       "Personal-use project evolved into a production-level application. It covers the full workout flow from setup to execution and tracking.",
     isMobileApp: true,
+    storeLinks: {
+      appStore:
+        "https://apps.apple.com/us/app/arc-timer-hiit-gym-tracker/id6766072019",
+      googlePlay:
+        "https://play.google.com/store/apps/details?id=dev.filipemendes.arctimer",
+    },
     links: [
       {
         label: "GitHub",
@@ -42,7 +48,8 @@ export const projectDetail: ProjectDetailContent = {
       {
         id: "arc-timer-workout-run-page",
         alt: "Active workout screen with interval timer, exercise name and session controls.",
-        caption: "Active session interface with interval progression and controls.",
+        caption:
+          "Active session interface with interval progression and controls.",
         url: "/images/projects/arc-timer/WorkoutRun_Page.png",
       },
       {
@@ -115,6 +122,6 @@ export const projectDetail: ProjectDetailContent = {
   pageMetadata: createProjectPageMetadata(
     project.name,
     "HIIT timer application covering the full workout lifecycle.",
-    project.slug
+    project.slug,
   ),
 };
