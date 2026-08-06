@@ -11,7 +11,7 @@ export const experienceData: ExperienceItem[] = [
   {
     title: "Product Development",
     organization: "Independent",
-    timeframe: "Dec 2025 - Present",
+    timeframe: "December 2025 - Present",
     context:
       "Designed, built and shipped software products independently, covering product design, implementation, testing and release.",
     bullets: [
@@ -23,41 +23,44 @@ export const experienceData: ExperienceItem[] = [
   {
     title: "Frontend Engineer",
     organization: "ACIN group",
-    timeframe: "Oct 2023 - Jul 2025",
+    timeframe: "October 2023 - July 2025",
     context:
-      "Contributed to the migration of a healthcare management platform from server-rendered PHP to React, introducing API-driven workflows and supporting the transition to a modern frontend architecture.",
+      "Modernized a healthcare management platform used by 10k+ users by migrating legacy PHP interfaces to React, introducing API-driven workflows and supporting the coexistence of legacy and modern systems.",
     bullets: [
-      "Built React interfaces for healthcare administration, patient management and medication workflows.",
-      "Integrated GraphQL APIs supporting form-driven workflows, validation and paginated data interfaces.",
-      "Developed reusable form patterns and layout primitives for large, mobile-constrained workflows.",
-      "Ported legacy PHP screens to React while maintaining parallel old and new interfaces.",
+      "Owned the frontend implementation of admin dashboards, patient management and prescription features.",
+      "Integrated GraphQL APIs supporting complex forms, validation and paginated data interfaces.",
+      "Implemented responsive, mobile-first interfaces optimized for data-dense healthcare applications.",
+      "Improved UI quality and consistency by collaborating with designers, proposing and implementing reusable UI primitives adopted throughout the application.",
     ],
     stack: [
       "React",
       "TypeScript",
       "GraphQL",
       "Styled Components",
+      "Zustand",
       "Playwright",
+      "Figma",
+      "Git",
     ],
   },
   {
     title: "Mobile Developer",
     organization: "Nearsoft",
-    timeframe: "Jan 2023 - Sep 2023",
+    timeframe: "January 2023 - September 2023",
     context:
-      "Worked on mobile banking applications from initial development to release, covering core financial workflows under production constraints.",
+      "Developed cross-platform mobile banking applications using React Native for Caixa Angola and Keve, each currently exceeding 10k downloads on Google Play alone.",
     bullets: [
-      "Built React Native interfaces across account management, transfers, payments and debit card features.",
+      "Owned the implementation of account management, transfers, payments and debit card features.",
       "Integrated REST APIs supporting authentication, request mapping, pagination and error handling.",
-      "Improved application modularity through shared components and reusable screen patterns.",
-      "Participated in App Store and Google Play release processes.",
+      "Built reusable components and screen patterns, including animated cards and progress indicators, to improve consistency and accelerate feature development.",
+      "Prepared production builds and contributed to App Store and Google Play release submissions.",
     ],
-    stack: ["React Native", "TypeScript", "REST APIs", "Postman"],
+    stack: ["React Native", "TypeScript", "REST APIs", "Postman", "Redux"],
   },
   {
     title: "Software Engineer",
     organization: "INOV",
-    timeframe: "Mar 2021 - Feb 2022",
+    timeframe: "March 2021 - February 2022",
     context:
       "Worked on applied computer vision research for infrared-based object detection and classification in surveillance systems.",
     bullets: [
