@@ -62,7 +62,14 @@ export const experienceData: ExperienceItem[] = [
       "Built reusable components and screen patterns, including animated cards and progress indicators, to improve consistency and accelerate feature development.",
       "Prepared production builds and contributed to App Store and Google Play release submissions.",
     ],
-    stack: ["React Native", "TypeScript", "REST APIs", "Postman", "Redux"],
+    stack: [
+      "React Native",
+      "TypeScript",
+      "REST APIs",
+      "Postman",
+      "Redux",
+      "Figma",
+    ],
   },
   {
     title: "Software Engineer",
