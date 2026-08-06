@@ -51,7 +51,7 @@ export const experienceData: ExperienceItem[] = [
     ],
   },
   {
-    title: "Mobile Developer",
+    title: "Mobile Engineer",
     organization: "Nearsoft",
     timeframe: "January 2023 - September 2023",
     context:
