@@ -59,9 +59,10 @@ export const experienceData: ExperienceItem[] = [
     context:
       "Developed cross-platform mobile banking applications using React Native and TypeScript for Caixa Angola and Keve, each exceeding 10k+ downloads on Google Play.",
     bullets: [
-      "Owned the implementation of account management, transfers, payments and debit card features.",
-      "Integrated REST APIs supporting authentication, request mapping, pagination and error handling.",
-      "Built reusable components and screen patterns, including animated cards and progress indicators, to improve consistency and accelerate feature development.",
+      "Built React Native and TypeScript features for account management, transfers, payments and debit cards, integrating REST APIs for authentication, transactions and error handling across mobile banking applications.",
+      "Implemented reusable React Native components and managed application state with Redux, improving UI consistency, simplifying data flow and accelerating feature development.",
+      "Collaborated with designers using Figma to translate designs into responsive mobile interfaces, ensuring consistent user experiences across iOS and Android.",
+      "Onboarded and mentored a frontend intern, introducing Git-based version control workflows and supporting day-to-day feature development.",
       "Prepared production builds and contributed to App Store and Google Play release submissions.",
     ],
     stack: [
@@ -80,9 +81,9 @@ export const experienceData: ExperienceItem[] = [
     context:
       "Worked on applied computer vision research for infrared-based object detection and classification in surveillance systems.",
     bullets: [
-      "Built an infrared-based detection system for identifying people, vehicles and deer.",
+      // "Built an infrared-based detection system for identifying people, vehicles and deer.",
       // "Collected, labeled and curated datasets, including organizing on-site data acquisition.",
-      "Trained and evaluated models using TensorFlow and supported deployment into a C# inference application using OpenCV.",
+      // "Trained and evaluated models using TensorFlow and supported deployment into a C# inference application using OpenCV.",
     ],
     stack: ["Python", "TensorFlow", "CUDA", "OpenCV", "Computer Vision"],
   },
