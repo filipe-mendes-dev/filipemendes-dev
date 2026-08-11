@@ -61,11 +61,11 @@ const mapProjectEntries = (): CvProjectEntry[] => {
 export const cvProjectOverrides: Record<string, CvProjectOverride> = {
   "arc-timer": {
     context:
-      "Designed and built a production-level mobile application covering the full workout lifecycle from setup to execution and tracking.",
+      "Launched Arc Timer, a cross-platform React Native workout application for iOS and Android, developed end-to-end from concept to App Store and Google Play release.",
     bullets: [
-      "Cross-platform mobile architecture with React Native and Expo Router enabling fast iteration and consistent behavior.",
-      "State-based timer system with a 1Hz update cycle ensuring predictable execution under runtime constraints.",
-      "UI-thread animations with React Reanimated avoiding JavaScript thread blocking.",
+      "Built the application using React Native, Expo Router and TypeScript, delivering a single codebase for iOS and Android.",
+      "Designed the application’s data layer using SQLite, Drizzle ORM and TanStack Query, enabling reliable local storage and efficient data management.",
+      "Owned the complete product lifecycle from feature planning to store release, validating database services with Jest to ensure reliable application behavior.",
     ],
     stack: [
       "React Native",
@@ -133,7 +133,7 @@ export const cvContactLinks: CvContactLink[] = [
   ...profileData.socials.map((entry) => ({
     label: entry.label,
     href: entry.href,
-    displayValue: entry.displayValue,
+    displayValue: entry.href.replace(/^https?:\/\//u, ""),
     kind: entry.kind,
   })),
 ];
