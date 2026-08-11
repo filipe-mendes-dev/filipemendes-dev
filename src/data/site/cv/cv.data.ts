@@ -78,13 +78,21 @@ export const cvProjectOverrides: Record<string, CvProjectOverride> = {
   },
   "filipemendes-dev": {
     context:
-      "Designed and built a portfolio platform for presenting projects, documentation and a developer profile.",
+      "Launched filipemendes.dev, a Next.js portfolio platform showcasing projects, technical documentation and my developer profile.",
     bullets: [
-      "Next.js App Router architecture with server-rendered pages for landing, project and documentation flows.",
-      "Motion-driven UI using Framer Motion for layout transitions and content sequencing across the platform.",
-      "Multi-surface structure combining projects, documentation and profile content within a single application.",
+      "Built the platform using Next.js, App Router, React Server Components and TypeScript, delivering server-rendered pages across the application.",
+      "Implemented responsive interfaces using CSS Modules and Framer Motion, creating smooth page transitions and interactive user experiences.",
+      "Managed production deployment with Vercel, configuring the custom domain, DNS records and professional webmail for a complete production setup.",
     ],
-    stack: ["Next.js", "TypeScript", "App Router", "CSS Modules"],
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "App Router",
+      "React Server Components",
+      "CSS Modules",
+      "Framer Motion",
+      "Vercel",
+    ],
   },
 };
 
