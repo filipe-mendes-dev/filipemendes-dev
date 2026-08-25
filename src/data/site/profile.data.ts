@@ -13,6 +13,7 @@ export interface ProfileWebsiteLink {
 export interface ProfileData {
   name: string;
   location: string;
+  phone: string;
   email: string;
   website: ProfileWebsiteLink;
   socials: ProfileSocialLink[];
@@ -21,6 +22,7 @@ export interface ProfileData {
 export const profileData: ProfileData = {
   name: "Filipe Mendes",
   location: "Madeira, Portugal",
+  phone: "+351 9XX XXX XXX",
   email: "contact@filipemendes.dev",
   website: {
     href: "https://filipemendes.dev",

@@ -17,6 +17,7 @@ export interface CvProjectOverride {
   context: string;
   bullets: string[];
   stack: string[];
+  timeframe: string;
 }
 
 export const cvPersonalInfo: Partial<CvPersonalInfo> = {
@@ -39,6 +40,7 @@ const mapProjectEntries = (): CvProjectEntry[] => {
       return {
         title: project.name,
         type: project.category,
+        timeframe: override?.timeframe,
         context:
           override?.context ?? detail?.hero.description ?? project.description,
         bullets:
@@ -60,6 +62,7 @@ const mapProjectEntries = (): CvProjectEntry[] => {
 
 export const cvProjectOverrides: Record<string, CvProjectOverride> = {
   "arc-timer": {
+    timeframe: "October 2025 - Present",
     context:
       "Launched Arc Timer, a cross-platform React Native workout application for iOS and Android, developed end-to-end from concept to App Store and Google Play release.",
     bullets: [
@@ -77,6 +80,7 @@ export const cvProjectOverrides: Record<string, CvProjectOverride> = {
     ],
   },
   "filipemendes-dev": {
+    timeframe: "February 2026 - Present",
     context:
       "Launched filipemendes.dev, a Next.js portfolio platform showcasing projects, technical documentation and my developer profile.",
     bullets: [
@@ -132,18 +136,18 @@ export const cvContactLinks: CvContactLink[] = [
     displayValue: profileData.email,
     kind: "email",
   },
-  {
-    label: "Website",
-    href: profileData.website.href,
-    displayValue: profileData.website.displayValue,
-    kind: "external",
-  },
   ...profileData.socials.map((entry) => ({
     label: entry.label,
     href: entry.href,
     displayValue: entry.href.replace(/^https?:\/\//u, ""),
     kind: entry.kind,
   })),
+  {
+    label: "Website",
+    href: profileData.website.href,
+    displayValue: profileData.website.displayValue,
+    kind: "external",
+  },
 ];
 
 export const cvData: CvDocumentData = {
@@ -151,6 +155,7 @@ export const cvData: CvDocumentData = {
     name: personData.name,
     title: cvPersonalInfo.title ?? "Frontend & Mobile Engineer",
     location: personData.location,
+    phone: profileData.phone,
     experienceSummary: cvPersonalInfo.experienceSummary,
     summaryLines: cvPersonalInfo.summaryLines,
   },
