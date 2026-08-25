@@ -11,6 +11,6 @@ export const educationData: EducationItem[] = [
     period: "2015 — 2021",
     details: "Instituto Superior Técnico, University of Lisbon",
     context:
-      "Programming-focused coursework in software engineering, machine learning and scientific computing.",
+      "Completed coursework in software engineering, machine learning and scientific computing.",
   },
 ];
