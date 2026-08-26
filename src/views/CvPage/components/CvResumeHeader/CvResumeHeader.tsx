@@ -1,5 +1,8 @@
+"use client";
+
 import type { ReactElement } from "react";
 
+import { useCvPhoneNumber } from "../CvPrintControls";
 import type { CvResumeHeaderProps } from "./CvResumeHeader.interfaces";
 import st from "./CvResumeHeader.module.css";
 
@@ -7,6 +10,8 @@ export const CvResumeHeader = ({
   contactLinks,
   personalInfo,
 }: CvResumeHeaderProps): ReactElement => {
+  const phoneNumber = useCvPhoneNumber();
+
   return (
     <header className={st.root}>
       <div className={st.identity}>
@@ -30,10 +35,14 @@ export const CvResumeHeader = ({
 
       <p className={st.location}>
         <span>{personalInfo.location}</span>
-        <span aria-hidden="true" className={st.separator}>
-          |
-        </span>
-        <span>{personalInfo.phone}</span>
+        {phoneNumber.length > 0 && (
+          <>
+            <span aria-hidden="true" className={st.separator}>
+              |
+            </span>
+            <span>{phoneNumber}</span>
+          </>
+        )}
       </p>
     </header>
   );

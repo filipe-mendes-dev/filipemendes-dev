@@ -31,7 +31,6 @@ interface CvProjectContentOverride {
 const cvPersonalInfo: Omit<CvPersonalInfo, "title"> = {
   name: personData.name,
   location: personData.location,
-  phone: profileData.phone,
   experienceSummary: "3+ years experience",
   summaryLines: [
     "MSc in Engineering Physics with experience building web and mobile products.",

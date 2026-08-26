@@ -7,7 +7,6 @@ export interface CvPersonalInfo {
   name: string;
   title: string;
   location: string;
-  phone: string;
   experienceSummary?: string;
   summaryLines?: [string, string];
 }
