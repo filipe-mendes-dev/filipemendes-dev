@@ -1,4 +1,7 @@
+export type ExperienceId = "acin" | "nearsoft" | "inov";
+
 export interface ExperienceItem {
+  id: ExperienceId;
   title: string;
   organization: string;
   timeframe: string;
@@ -28,6 +31,7 @@ export const experienceData: ExperienceItem[] = [
   //   ],
   // },
   {
+    id: "acin",
     title: "Frontend Engineer",
     organization: "ACIN group",
     timeframe: "October 2023 - July 2025",
@@ -53,6 +57,7 @@ export const experienceData: ExperienceItem[] = [
     ],
   },
   {
+    id: "nearsoft",
     title: "Mobile Engineer",
     organization: "Nearsoft",
     timeframe: "January 2023 - September 2023",
@@ -75,6 +80,7 @@ export const experienceData: ExperienceItem[] = [
     ],
   },
   {
+    id: "inov",
     title: "Software Engineer",
     organization: "INOV",
     timeframe: "March 2021 - February 2022",
