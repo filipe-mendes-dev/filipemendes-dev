@@ -15,10 +15,15 @@ export const CvEducationSection = ({
         {entries.map((entry) => (
           <CvSectionItem
             date={entry.period}
+            inlineSubtitle
             key={entry.title}
             subtitle={entry.details}
             title={entry.title}
-          />
+          >
+            {entry.context !== undefined && (
+              <p className={st.context}>{entry.context}</p>
+            )}
+          </CvSectionItem>
         ))}
       </ul>
     </CvPageSection>

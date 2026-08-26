@@ -17,6 +17,7 @@ export interface CvProjectOverride {
   context: string;
   bullets: string[];
   stack: string[];
+  timeframe: string;
 }
 
 export const cvPersonalInfo: Partial<CvPersonalInfo> = {
@@ -39,6 +40,7 @@ const mapProjectEntries = (): CvProjectEntry[] => {
       return {
         title: project.name,
         type: project.category,
+        timeframe: override?.timeframe,
         context:
           override?.context ?? detail?.hero.description ?? project.description,
         bullets:
@@ -60,12 +62,13 @@ const mapProjectEntries = (): CvProjectEntry[] => {
 
 export const cvProjectOverrides: Record<string, CvProjectOverride> = {
   "arc-timer": {
+    timeframe: "October 2025 - Present",
     context:
-      "Designed and built a production-level mobile application covering the full workout lifecycle from setup to execution and tracking.",
+      "Launched Arc Timer, a cross-platform React Native workout application for iOS and Android, developed end-to-end from concept to App Store and Google Play release.",
     bullets: [
-      "Cross-platform mobile architecture with React Native and Expo Router enabling fast iteration and consistent behavior.",
-      "State-based timer system with a 1Hz update cycle ensuring predictable execution under runtime constraints.",
-      "UI-thread animations with React Reanimated avoiding JavaScript thread blocking.",
+      "Built the application using React Native, Expo Router and TypeScript, delivering a single codebase for iOS and Android.",
+      "Designed the application’s data layer using SQLite, Drizzle ORM and TanStack Query, enabling reliable local storage and efficient data management.",
+      "Owned the complete product lifecycle from feature planning to store release, validating database services with Jest to ensure reliable application behavior.",
     ],
     stack: [
       "React Native",
@@ -77,14 +80,23 @@ export const cvProjectOverrides: Record<string, CvProjectOverride> = {
     ],
   },
   "filipemendes-dev": {
+    timeframe: "February 2026 - Present",
     context:
-      "Designed and built a portfolio platform for presenting projects, documentation and a developer profile.",
+      "Launched filipemendes.dev, a Next.js portfolio platform showcasing projects, technical documentation and my developer profile.",
     bullets: [
-      "Next.js App Router architecture with server-rendered pages for landing, project and documentation flows.",
-      "Motion-driven UI using Framer Motion for layout transitions and content sequencing across the platform.",
-      "Multi-surface structure combining projects, documentation and profile content within a single application.",
+      "Built the platform using Next.js, App Router, React Server Components and TypeScript, delivering server-rendered pages across the application.",
+      "Implemented responsive interfaces using CSS Modules and Framer Motion, creating smooth page transitions and interactive user experiences.",
+      "Managed production deployment with Vercel, configuring the custom domain, DNS records and professional webmail for a complete production setup.",
     ],
-    stack: ["Next.js", "TypeScript", "App Router", "CSS Modules"],
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "App Router",
+      "React Server Components",
+      "CSS Modules",
+      "Framer Motion",
+      "Vercel",
+    ],
   },
 };
 
@@ -124,18 +136,18 @@ export const cvContactLinks: CvContactLink[] = [
     displayValue: profileData.email,
     kind: "email",
   },
+  ...profileData.socials.map((entry) => ({
+    label: entry.label,
+    href: entry.href,
+    displayValue: entry.href.replace(/^https?:\/\//u, ""),
+    kind: entry.kind,
+  })),
   {
     label: "Website",
     href: profileData.website.href,
     displayValue: profileData.website.displayValue,
     kind: "external",
   },
-  ...profileData.socials.map((entry) => ({
-    label: entry.label,
-    href: entry.href,
-    displayValue: entry.displayValue,
-    kind: entry.kind,
-  })),
 ];
 
 export const cvData: CvDocumentData = {
@@ -143,6 +155,7 @@ export const cvData: CvDocumentData = {
     name: personData.name,
     title: cvPersonalInfo.title ?? "Frontend & Mobile Engineer",
     location: personData.location,
+    phone: profileData.phone,
     experienceSummary: cvPersonalInfo.experienceSummary,
     summaryLines: cvPersonalInfo.summaryLines,
   },

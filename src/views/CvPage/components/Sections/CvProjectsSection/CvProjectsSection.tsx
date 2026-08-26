@@ -16,6 +16,7 @@ export const CvProjectsSection = ({
       <ul className={st.root}>
         {entries.map((entry, index) => (
           <CvSectionItem
+            date={entry.timeframe}
             inlineSubtitle
             title={entry.title}
             subtitle={entry.type}
