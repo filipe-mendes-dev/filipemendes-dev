@@ -26,12 +26,13 @@ const CvSectionsContent = ({
 }: CvSectionsContentProps): ReactElement => {
   return (
     <div className={st.contentFlow}>
+      <CvEducationSection entries={educationData} hasBottomSeparator />
       <CvExperienceSection
         entries={experienceData}
         hasBottomSeparator={isPrint !== true}
       />
       <CvProjectsSection entries={cvData.projects} hasBottomSeparator />
-      <CvEducationSection entries={educationData} hasBottomSeparator />
+
       <CvSkillsSection skills={cvData.skills} hasBottomSeparator />
       {/* <CvPublicationsSection
         entries={publicationsData}
