@@ -1,12 +1,9 @@
 import type { ReactElement } from "react";
 
 import { LayoutContainer } from "../../components/layout/LayoutContainer";
-import { educationData } from "../../data/site/education.data";
-import { experienceData } from "../../data/site/experience.data";
-// import { publicationsData } from "../../data/site/publications.data";
-import { cvData } from "../../data/site/cv/cv.data";
 import { CvPaper } from "./components/CvPaper";
-import { CvPageHeader } from "./components/CvPageHeader";
+import { CvResumeHeader } from "./components/CvResumeHeader";
+import { CvShowcaseHeader } from "./components/CvShowcaseHeader";
 import {
   CvEducationSection,
   CvExperienceSection,
@@ -15,48 +12,72 @@ import {
   // CvPublicationsSection,
   CvSkillsSection,
 } from "./components/Sections";
+import type {
+  CvPageProps,
+  CvPresentation,
+} from "./CvPage.interfaces";
 import st from "./CvPage.module.css";
 
 interface CvSectionsContentProps {
+  data: CvPageProps["data"];
   isPrint: boolean;
 }
 
 const CvSectionsContent = ({
+  data,
   isPrint,
 }: CvSectionsContentProps): ReactElement => {
   return (
     <div className={st.contentFlow}>
-      <CvEducationSection entries={educationData} hasBottomSeparator />
+      <CvEducationSection entries={data.education} hasBottomSeparator />
       <CvExperienceSection
-        entries={experienceData}
+        entries={data.experience}
         hasBottomSeparator={isPrint !== true}
       />
-      <CvProjectsSection entries={cvData.projects} hasBottomSeparator />
+      <CvProjectsSection entries={data.projects} hasBottomSeparator />
 
-      <CvSkillsSection skills={cvData.skills} hasBottomSeparator />
-      {/* <CvPublicationsSection
-        entries={publicationsData}
-        hasBottomSeparator
-      /> */}
-      <CvLanguagesSection languages={cvData.languages} />
+      <CvSkillsSection skills={data.skills} hasBottomSeparator />
+      <CvLanguagesSection languages={data.languages} />
     </div>
   );
 };
 
-const CvPage = (): ReactElement => {
+const renderHeader = (
+  data: CvPageProps["data"],
+  presentation: CvPresentation,
+): ReactElement => {
+  const headerProps = {
+    contactLinks: data.contactLinks,
+    personalInfo: data.personalInfo,
+  };
+
+  if (presentation === "resume") {
+    return <CvResumeHeader {...headerProps} />;
+  }
+
+  return <CvShowcaseHeader {...headerProps} />;
+};
+
+const CvPage = ({ data, presentation }: CvPageProps): ReactElement => {
   return (
     <main className={st.root}>
       <LayoutContainer className={st.previewShell}>
         <CvPaper>
-          <div className={st.screenDocument}>
-            <CvPageHeader />
-            <CvSectionsContent isPrint={false} />
+          <div
+            className={st.screenDocument}
+            data-cv-presentation={presentation}
+          >
+            {renderHeader(data, presentation)}
+            <CvSectionsContent data={data} isPrint={false} />
           </div>
 
           <div className={st.printDocument}>
-            <section className={st.printPage}>
-              <CvPageHeader />
-              <CvSectionsContent isPrint />
+            <section
+              className={st.printPage}
+              data-cv-presentation={presentation}
+            >
+              {renderHeader(data, presentation)}
+              <CvSectionsContent data={data} isPrint />
             </section>
           </div>
         </CvPaper>
