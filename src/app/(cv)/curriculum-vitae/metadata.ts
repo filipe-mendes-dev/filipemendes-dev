@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
-import { siteMetadata } from "../../data/site/site.metadata";
-import { createPageMetadata } from "../../shared/seo/createPageMetadata";
+import { siteMetadata } from "../../../data/site/site.metadata";
+import { createPageMetadata } from "../../../shared/seo/createPageMetadata";
 
 const title = `Curriculum Vitae | ${siteMetadata.siteName}`;
 const description =
