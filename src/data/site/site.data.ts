@@ -14,7 +14,7 @@ export interface SiteData {
 
 export const siteData: SiteData = {
   siteTitle: "Filipe Mendes",
-  description: "Frontend & Mobile Engineer",
+  description: "Software Engineer",
   navigation: [
     { label: "Home", href: "/", sectionId: "home" },
     { label: "Projects", href: "/", sectionId: "projects" },

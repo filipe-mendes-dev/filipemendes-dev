@@ -12,7 +12,7 @@ export const projectDetail: ProjectDetailContent = {
     summary:
       "Portfolio platform presenting projects, documentation and a developer profile.",
     description:
-      "Designed and built to showcase frontend engineering work through project pages, technical docs and personal presentation.",
+      "Designed and built to showcase software engineering work through project pages, technical docs and personal presentation.",
     isMobileApp: false,
     links: [
       {

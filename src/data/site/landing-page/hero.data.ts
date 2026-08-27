@@ -42,7 +42,7 @@ const heroActions: HeroAction[] = [
 ];
 
 export const heroData: HeroData = {
-  kicker: "Frontend & Mobile Engineer",
+  kicker: "Software Engineer",
   name: personData.name,
   headline: "Building production-grade web and mobile products.",
   supportingText: "Careful implementation, reliable in real use.",

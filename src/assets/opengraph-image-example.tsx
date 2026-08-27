@@ -75,8 +75,8 @@ const OpenGraphImage = (): ImageResponse => {
                 color: "rgba(255, 255, 255, 0.84)",
               }}
             >
-              Frontend systems, mobile product work and implementation-focused
-              case studies.
+              Software products, technical documentation and
+              implementation-focused case studies.
             </div>
           </div>
           <div
