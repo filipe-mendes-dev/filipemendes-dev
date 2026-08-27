@@ -45,7 +45,7 @@ export const heroData: HeroData = {
   kicker: "Software Engineer",
   name: personData.name,
   headline: "Building production-grade web and mobile products.",
-  supportingText: "Careful implementation, reliable in real use.",
+  supportingText: "MSc in Engineering Physics",
   status: personData.location,
   photoAlt: personData.portrait.alt,
   photoUrl: personData.portrait.url,

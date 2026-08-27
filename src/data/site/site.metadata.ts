@@ -37,10 +37,10 @@ export const siteMetadata: SiteMetadataConfig = {
   description: "Building production-grade web and mobile solutions.",
   siteUrl: resolveSiteUrl(),
   openGraphImage: {
-    url: "/opengraph-image.png",
+    url: "/opengraph-image.jpg",
     width: 1200,
     height: 630,
     alt: `${personData.name} portfolio preview`,
   },
-  twitterImage: "/opengraph-image.png",
+  twitterImage: "/opengraph-image.jpg",
 };
