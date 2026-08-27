@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <img src="https://filipemendes.dev/opengraph-image.png" alt="Filipe Mendes portfolio preview" />
+  <img src="https://filipemendes.dev/opengraph-image.jpg" alt="Filipe Mendes portfolio preview" />
 </p>
 
 <p align="center">
