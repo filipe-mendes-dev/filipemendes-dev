@@ -282,7 +282,7 @@ export const frontendCvData: CvDocumentData = {
   ...sharedCvData,
   personalInfo: {
     ...cvPersonalInfo,
-    title: "Frontend & Mobile Engineer",
+    title: "Software Engineer",
   },
   experience: frontendExperienceData,
   projects: frontendProjectsData,

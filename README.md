@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <img src="https://filipemendes.dev/opengraph-image.png" alt="Filipe Mendes portfolio preview" />
+  <img src="https://filipemendes.dev/opengraph-image.jpg" alt="Filipe Mendes portfolio preview" />
 </p>
 
 <p align="center">
@@ -31,7 +31,7 @@
 
 ## Overview
 
-This repository powers a personal portfolio for Filipe Mendes, a frontend and mobile engineer. The site combines a section-based landing page, dedicated project pages and a docs workspace for project notes and reference material.
+This repository powers a personal portfolio for Filipe Mendes, a software engineer. The site combines a section-based landing page, dedicated project pages and a docs workspace for project notes and reference material.
 
 Content is data-driven. Site copy, project records, project detail content and docs entries live under `src/data`, then flow into thin route files and focused views.
 

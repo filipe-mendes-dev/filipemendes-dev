@@ -6,7 +6,7 @@ import { createPageMetadata } from "../../../shared/seo/createPageMetadata";
 const author = siteMetadata.siteName;
 const title = `${author} | CV`;
 const description =
-  "Print-ready resume focused on frontend and mobile engineering experience.";
+  "Print-ready Software Engineer resume focused on frontend and mobile engineering experience.";
 
 export const metadata: Metadata = {
   ...createPageMetadata({

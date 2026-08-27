@@ -33,14 +33,14 @@ const resolveSiteUrl = (): string => {
 
 export const siteMetadata: SiteMetadataConfig = {
   siteName: personData.name,
-  title: "Filipe Mendes | Frontend & Mobile Engineer",
-  description: "Building production-grade web and mobile products.",
+  title: "Filipe Mendes | Software Engineer",
+  description: "Building production-grade web and mobile solutions.",
   siteUrl: resolveSiteUrl(),
   openGraphImage: {
-    url: "/opengraph-image.png",
+    url: "/opengraph-image.jpg",
     width: 1200,
     height: 630,
     alt: `${personData.name} portfolio preview`,
   },
-  twitterImage: "/opengraph-image.png",
+  twitterImage: "/opengraph-image.jpg",
 };
