@@ -74,6 +74,11 @@
   line-height: var(--cv-line-height-tight);
 }
 
+:global([data-cv-presentation="resume"]) .title {
+  font-style: italic;
+  font-weight: 500;
+}
+
 .subtitle {
   color: var(--cv-body-ink);
   font-size: var(--cv-font-size-meta);
@@ -94,6 +99,17 @@
 @media print {
   .root {
     display: block;
+  }
+
+  .printBreakable {
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+
+  .printBreakable > .header,
+  .printBreakable > .header + * {
+    break-after: avoid-page;
+    page-break-after: avoid;
   }
 
   .root > * + * {

@@ -16,6 +16,16 @@
     display: block;
   }
 
+  .item {
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+
+  .item:last-child {
+    break-after: avoid-page;
+    page-break-after: avoid;
+  }
+
   .root > * + * {
     margin-top: 1mm;
   }

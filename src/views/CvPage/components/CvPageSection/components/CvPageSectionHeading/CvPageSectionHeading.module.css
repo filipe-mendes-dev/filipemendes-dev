@@ -23,6 +23,10 @@
   background: color-mix(in srgb, var(--cv-accent) 88%, transparent);
 }
 
+:global([data-cv-presentation="resume"]) .accent {
+  display: none;
+}
+
 @media print {
   .root {
     break-after: avoid;

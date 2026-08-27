@@ -17,7 +17,6 @@
   overflow: hidden;
 }
 
-/* Crops a wider source image and re-centers it inside the frame. */
 .portrait {
   width: 140%;
   height: 140%;

@@ -7,11 +7,10 @@ import {
   LocationIcon,
   WebsiteIcon,
 } from "../../../../components/icons";
-import { cvData } from "../../../../data/site/cv/cv.data";
 import type { CvContactLink } from "../../../../data/site/cv/cv.interfaces";
 import { personData } from "../../../../data/site/person.data";
-import type { CvPageHeaderProps } from "./CvPageHeader.interfaces";
-import st from "./CvPageHeader.module.css";
+import type { CvShowcaseHeaderProps } from "./CvShowcaseHeader.interfaces";
+import st from "./CvShowcaseHeader.module.css";
 
 const ICON_BY_KIND: Record<CvContactLink["kind"], typeof EmailIcon> = {
   email: EmailIcon,
@@ -25,10 +24,12 @@ const getContactIcon = (kind: CvContactLink["kind"]): ReactElement => {
   return <Icon className={st.contactIcon} />;
 };
 
-export const CvPageHeader = (_props: CvPageHeaderProps): ReactElement => {
-  const { contactLinks, personalInfo } = cvData;
+export const CvShowcaseHeader = ({
+  contactLinks,
+  personalInfo,
+}: CvShowcaseHeaderProps): ReactElement => {
   const { portrait } = personData;
-  const { summaryLines, experienceSummary } = personalInfo;
+  const { experienceSummary, summaryLines } = personalInfo;
 
   return (
     <header className={st.root}>

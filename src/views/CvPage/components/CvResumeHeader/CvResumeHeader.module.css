@@ -1,0 +1,110 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.8mm;
+}
+
+.root::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin-top: 2.2mm;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--cv-rule) 42%, transparent) 18%,
+    color-mix(in srgb, var(--cv-rule) 82%, transparent) 50%,
+    color-mix(in srgb, var(--cv-rule) 42%, transparent) 82%,
+    transparent 100%
+  );
+}
+
+.identity {
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+
+.name {
+  color: var(--cv-heading-ink);
+  font-size: var(--cv-font-size-resume-hero-title);
+  line-height: var(--cv-line-height-tight);
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+}
+
+.contacts {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2.4mm 0;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.contactEntry {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.contactEntry:not(:last-child)::after {
+  content: "|";
+  flex: none;
+  margin-inline: 2.4mm;
+  color: color-mix(in srgb, var(--cv-accent) 88%, transparent);
+  font-family: var(--font-body);
+  font-size: var(--cv-font-size-meta);
+  font-weight: 600;
+  line-height: var(--cv-line-height-normal);
+}
+
+.contactValue,
+.location {
+  color: var(--cv-body-ink);
+  font-family: var(--font-body);
+  font-size: var(--cv-font-size-meta);
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  line-height: var(--cv-line-height-normal);
+}
+
+.contactValue {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.location {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2.4mm;
+  width: fit-content;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.separator {
+  color: color-mix(in srgb, var(--cv-accent) 88%, transparent);
+  font-weight: 600;
+}
+
+@media print {
+  .root {
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+
+  .contactValue,
+  .location {
+    overflow-wrap: normal;
+  }
+}
