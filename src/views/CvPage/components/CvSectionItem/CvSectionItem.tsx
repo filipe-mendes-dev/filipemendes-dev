@@ -5,6 +5,7 @@ import st from "./CvSectionItem.module.css";
 
 export const CvSectionItem = ({
   title,
+  allowPrintBreak = false,
   titleClassName,
   subtitle,
   inlineSubtitle = false,
@@ -13,9 +14,17 @@ export const CvSectionItem = ({
   children,
   hasBottomSeparator = false,
 }: CvSectionItemProps): ReactElement => {
-  const rootClassName = hasBottomSeparator
-    ? `${st.root} ${st.withBottomSeparator}`
-    : st.root;
+  const rootClassNames = [st.root];
+
+  if (allowPrintBreak) {
+    rootClassNames.push(st.printBreakable);
+  }
+
+  if (hasBottomSeparator) {
+    rootClassNames.push(st.withBottomSeparator);
+  }
+
+  const rootClassName = rootClassNames.join(" ");
   const resolvedTitleClassName =
     titleClassName !== undefined && titleClassName.length > 0
       ? `${st.title} ${titleClassName}`

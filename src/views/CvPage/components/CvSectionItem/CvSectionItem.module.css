@@ -101,6 +101,17 @@
     display: block;
   }
 
+  .printBreakable {
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+
+  .printBreakable > .header,
+  .printBreakable > .header + * {
+    break-after: avoid-page;
+    page-break-after: avoid;
+  }
+
   .root > * + * {
     margin-top: 1.8mm;
   }

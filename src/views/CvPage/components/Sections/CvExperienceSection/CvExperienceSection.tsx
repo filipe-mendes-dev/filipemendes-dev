@@ -16,6 +16,7 @@ export const CvExperienceSection = ({
       <ol className={st.root}>
         {entries.map((entry, index) => (
           <CvSectionItem
+            allowPrintBreak
             inlineSubtitle
             date={entry.timeframe}
             hasBottomSeparator={index < entries.length - 1}
