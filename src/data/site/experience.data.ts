@@ -86,7 +86,7 @@ export const experienceData: ExperienceItem[] = [
     organization: "INOV",
     timeframe: "March 2021 - February 2022",
     context:
-      "Developed deep learning solutions in Python for real-time object detection and classification using infrared imagery, covering model development, training, evaluation and inference.",
+      "Developed deep learning solutions in Python to automate real-time object detection and classification in infrared video surveillance systems.",
     bullets: [
       // "Built an infrared-based detection system for identifying people, vehicles and deer.",
       // "Collected, labeled and curated datasets, including organizing on-site data acquisition.",

@@ -77,23 +77,49 @@ const fullStackExperienceOverrides: Partial<
 > = {
   acin: {
     bullets: [
-      "Integrated GraphQL APIs for authentication, form submission and paginated data workflows.",
-      "Collaborated with backend engineers to refine GraphQL schemas and reusable data contracts.",
-      "Built React and TypeScript interfaces for administration, patient and prescription workflows.",
+      "Collaborated with backend engineers to define and refine GraphQL schemas and API contracts, aligning API structure with frontend requirements.",
+      "Used and debugged a multi-service Docker Compose environment with Redis and MariaDB, inspecting logs, running commands and managing environment variables to troubleshoot development issues.",
+      "Queried and inspected relational data in MariaDB with SQL to validate application behavior and investigate data-related issues during development.",
+      "Built React and TypeScript interfaces for admin dashboards, patient management and prescription workflows, integrating GraphQL APIs for authentication, form submission and paginated data views.",
+    ],
+    stack: [
+      "React",
+      "TypeScript",
+      "GraphQL",
+      "Docker / Docker Compose",
+      "SQL",
+      "Redis",
+      "Playwright",
+      "Git",
     ],
   },
   nearsoft: {
     bullets: [
-      "Integrated REST APIs for authentication, transactions and structured error handling.",
-      "Managed application state with Redux across account, transfer and payment workflows.",
-      "Prepared production builds and contributed to App Store and Google Play releases.",
+      "Integrated REST APIs using OpenAPI specifications and Postman to validate API contracts and troubleshoot authentication, transaction and data-related issues.",
+      "Implemented authentication flows using JWT access and refresh tokens, handling authenticated requests, token renewal and session persistence through Redux Saga middleware.",
+      "Built React Native and TypeScript features for account management, transfers, payments and debit cards across mobile banking applications.",
+      "Onboarded and mentored a frontend intern, introducing Git-based version control workflows and supporting day-to-day feature development.",
+      "Prepared production builds and contributed to App Store and Google Play release submissions.",
+    ],
+    stack: [
+      "React Native",
+      "TypeScript",
+      "REST APIs",
+      "OpenAPI / Swagger",
+      "JWT",
+      "Redux Saga",
+      "Postman",
+      "Git",
     ],
   },
   inov: {
     bullets: [
-      "Built an infrared detection system for identifying people, vehicles and deer.",
-      "Trained TensorFlow models and supported C# inference integration using OpenCV.",
+      "Developed and trained neural networks with TensorFlow and Keras, experimenting with architectures, training configurations and hyperparameters to identify the best-performing models.",
+      "Prepared training, validation and test datasets through annotation, preprocessing and data augmentation to support model training and experimentation.",
+      "Evaluated model performance across different datasets, analyzing metrics, false predictions and generalization issues to compare models and guide further experimentation.",
+      "Exported trained models and adapted a C#/OpenCV application for real-time inference, benchmarking accuracy and latency to meet production performance requirements.",
     ],
+    stack: ["Python", "TensorFlow", "Keras", "CUDA", "C#", "OpenCV", "ONNX"],
   },
 };
 
@@ -167,9 +193,9 @@ const fullStackProjectOverrides: Partial<
     context:
       "Built and released a cross-platform workout application covering local persistence, stateful execution, testing and mobile delivery.",
     bullets: [
-      "Designed the local data layer with SQLite, Drizzle ORM and TanStack Query.",
-      "Structured persistence services and validated database workflows with Jest integration tests.",
-      "Implemented state-based workout execution and file sharing across stored training data.",
+      "Built the application using React Native, Expo Router and TypeScript, delivering a single codebase for iOS and Android.",
+      "Implemented state-based workout execution and UI-thread animations with React Reanimated.",
+      "Owned the complete product lifecycle from feature planning to store release, validating database services with Jest to ensure reliable application behavior.",
     ],
     stack: [
       "TypeScript",
@@ -184,9 +210,9 @@ const fullStackProjectOverrides: Partial<
     context:
       "Built and deployed a Next.js platform combining projects, technical documentation and shared site metadata.",
     bullets: [
-      "Built server-rendered routes with Next.js App Router and React Server Components.",
-      "Structured shared content sources for projects, documentation, metadata and sitemap generation.",
-      "Managed Vercel deployment, custom DNS and production webmail configuration.",
+      "Built the platform using Next.js, App Router, React Server Components and TypeScript, delivering server-rendered pages across the application.",
+      "Implemented responsive interfaces using CSS Modules and Framer Motion, creating smooth page transitions and interactive user experiences.",
+      "Managed production deployment with Vercel, configuring the custom domain, DNS records and professional webmail for a complete production setup.",
     ],
     stack: [
       "Next.js",
@@ -250,10 +276,7 @@ const sharedCvData = {
   contactLinks: cvContactLinks,
   education: educationData,
   languages: cvLanguages,
-} satisfies Pick<
-  CvDocumentData,
-  "contactLinks" | "education" | "languages"
->;
+} satisfies Pick<CvDocumentData, "contactLinks" | "education" | "languages">;
 
 export const frontendCvData: CvDocumentData = {
   ...sharedCvData,
