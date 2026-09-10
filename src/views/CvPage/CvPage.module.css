@@ -12,7 +12,7 @@
 .screenDocument,
 .printPage {
   display: grid;
-  gap: 5mm;
+  gap: var(--cv-separator-spacing);
 }
 
 .printDocument {
@@ -20,9 +20,12 @@
 }
 
 .introduction {
-  display: grid;
-  gap: 3mm;
+  display: block;
   break-inside: avoid-page;
+}
+
+.introduction > .summary {
+  margin-top: 3mm;
 }
 
 .introduction::after {
@@ -30,6 +33,7 @@
   display: block;
   width: 100%;
   height: 1px;
+  margin-top: var(--cv-separator-spacing);
   background: linear-gradient(
     90deg,
     transparent 0%,
@@ -49,7 +53,7 @@
 
 .contentFlow {
   display: grid;
-  gap: 4mm;
+  gap: var(--cv-separator-spacing);
 }
 
 @page {
@@ -95,7 +99,7 @@
   }
 
   .printPage > * + * {
-    margin-top: 5mm;
+    margin-top: var(--cv-separator-spacing);
   }
 
   .printPage:last-child {
@@ -108,6 +112,6 @@
   }
 
   .contentFlow > * + * {
-    margin-top: 4mm;
+    margin-top: var(--cv-separator-spacing);
   }
 }

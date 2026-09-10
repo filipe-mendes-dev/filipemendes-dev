@@ -7,6 +7,7 @@ export interface CvSectionItemProps {
   subtitle?: string;
   inlineSubtitle?: boolean;
   date?: string;
+  dateNote?: string;
   href?: string;
   children?: ReactNode;
   hasBottomSeparator?: boolean;

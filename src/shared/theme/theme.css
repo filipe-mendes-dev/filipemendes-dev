@@ -144,6 +144,7 @@
   --cv-font-size-body: 10pt;
   --cv-font-size-meta: 9pt;
   --cv-font-size-label: 8pt;
+  --cv-separator-spacing: 4mm;
   --cv-line-height-tight: 1.2;
   --cv-line-height-normal: 1.35;
   --cv-line-height-relaxed: 1.48;

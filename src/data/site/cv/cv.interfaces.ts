@@ -29,6 +29,7 @@ export interface CvProjectEntry {
   title: string;
   type?: string;
   timeframe?: string;
+  maintenanceNote?: string;
   location?: string;
   context: string;
   bullets: string[];

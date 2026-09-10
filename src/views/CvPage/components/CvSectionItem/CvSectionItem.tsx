@@ -10,6 +10,7 @@ export const CvSectionItem = ({
   subtitle,
   inlineSubtitle = false,
   date,
+  dateNote,
   href,
   children,
   hasBottomSeparator = false,
@@ -62,7 +63,14 @@ export const CvSectionItem = ({
           ) : (
             identity
           )}
-          {hasDate && <p className={st.date}>{date}</p>}
+          {hasDate && (
+            <p className={st.date}>
+              {date}
+              {dateNote !== undefined && (
+                <span className={st.dateNote}> · {dateNote}</span>
+              )}
+            </p>
+          )}
         </div>
       ) : (
         titleHeading

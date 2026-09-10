@@ -1,6 +1,6 @@
 .root {
   display: grid;
-  gap: 4mm;
+  gap: var(--cv-separator-spacing);
 }
 
 .content {
@@ -31,7 +31,7 @@
   }
 
   .root > * + * {
-    margin-top: 4mm;
+    margin-top: var(--cv-separator-spacing);
   }
 
   .content {
@@ -46,7 +46,7 @@
 
   .withBottomSeparator::after {
     justify-self: auto;
-    margin-top: 4mm;
+    margin-top: var(--cv-separator-spacing);
     margin-inline: auto;
   }
 }

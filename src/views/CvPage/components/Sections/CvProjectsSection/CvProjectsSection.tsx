@@ -17,6 +17,7 @@ export const CvProjectsSection = ({
         {entries.map((entry, index) => (
           <CvSectionItem
             date={entry.timeframe}
+            dateNote={entry.maintenanceNote}
             inlineSubtitle
             title={entry.title}
             subtitle={entry.type}
