@@ -25,7 +25,7 @@ export const CvExperienceSection = ({
             title={entry.title}
           >
             <p className={st.entrySummary}>{entry.context}</p>
-            {entry.bullets.length > 0 && <CvBulletList items={entry.bullets} />}
+            {entry.bullets.length > 0 && <CvBulletList items={entry.bullets} highlights={entry.bulletHighlights} />}
             {entry.stack.length > 0 && <CvStackLine items={entry.stack} />}
           </CvSectionItem>
         ))}
