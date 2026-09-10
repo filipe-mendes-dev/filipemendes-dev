@@ -12,11 +12,9 @@ import {
   // CvPublicationsSection,
   CvSkillsSection,
 } from "./components/Sections";
-import type {
-  CvPageProps,
-  CvPresentation,
-} from "./CvPage.interfaces";
+import type { CvPageProps, CvPresentation } from "./CvPage.interfaces";
 import st from "./CvPage.module.css";
+// import { publicationsData } from "@data/site/publications.data";
 
 interface CvSectionsContentProps {
   data: CvPageProps["data"];
@@ -37,6 +35,7 @@ const CvSectionsContent = ({
       <CvProjectsSection entries={data.projects} hasBottomSeparator />
 
       <CvSkillsSection skills={data.skills} hasBottomSeparator />
+      {/* <CvPublicationsSection entries={publicationsData}></CvPublicationsSection> */}
       <CvLanguagesSection languages={data.languages} />
     </div>
   );
