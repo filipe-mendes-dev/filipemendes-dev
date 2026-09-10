@@ -38,6 +38,8 @@ export interface CvProjectEntry {
 }
 
 export interface CvExperienceEntry extends ExperienceItem {
+  location: string;
+  workArrangement: string;
   bulletHighlights: string[][];
 }
 

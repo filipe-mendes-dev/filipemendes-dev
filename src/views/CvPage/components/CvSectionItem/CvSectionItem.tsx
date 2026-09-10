@@ -11,6 +11,7 @@ export const CvSectionItem = ({
   inlineSubtitle = false,
   date,
   dateNote,
+  location,
   href,
   children,
   hasBottomSeparator = false,
@@ -68,6 +69,9 @@ export const CvSectionItem = ({
               {date}
               {dateNote !== undefined && (
                 <span className={st.dateNote}> · {dateNote}</span>
+              )}
+              {location !== undefined && (
+                <span className={st.location}> · {location}</span>
               )}
             </p>
           )}

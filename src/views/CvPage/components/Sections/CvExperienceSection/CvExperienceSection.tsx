@@ -22,6 +22,7 @@ export const CvExperienceSection = ({
             hasBottomSeparator={index < entries.length - 1}
             key={`${entry.organization}-${entry.title}`}
             subtitle={entry.organization}
+            location={`${entry.location} · ${entry.workArrangement}`}
             title={entry.title}
           >
             <p className={st.entrySummary}>{entry.context}</p>
