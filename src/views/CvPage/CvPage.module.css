@@ -19,6 +19,34 @@
   display: none;
 }
 
+.introduction {
+  display: grid;
+  gap: 3mm;
+  break-inside: avoid-page;
+}
+
+.introduction::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--cv-rule) 42%, transparent) 18%,
+    color-mix(in srgb, var(--cv-rule) 82%, transparent) 50%,
+    color-mix(in srgb, var(--cv-rule) 42%, transparent) 82%,
+    transparent 100%
+  );
+}
+
+.summary {
+  color: var(--cv-body-ink);
+  font-size: var(--cv-font-size-body);
+  line-height: var(--cv-line-height-normal);
+  break-inside: avoid-page;
+}
+
 .contentFlow {
   display: grid;
   gap: 4mm;

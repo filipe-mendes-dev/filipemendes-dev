@@ -18,20 +18,18 @@ import st from "./CvPage.module.css";
 
 interface CvSectionsContentProps {
   data: CvPageProps["data"];
-  isPrint: boolean;
 }
 
 const CvSectionsContent = ({
   data,
-  isPrint,
 }: CvSectionsContentProps): ReactElement => {
   return (
     <div className={st.contentFlow}>
-      <CvEducationSection entries={data.education} hasBottomSeparator />
       <CvExperienceSection
         entries={data.experience}
-        hasBottomSeparator={isPrint !== true}
+        hasBottomSeparator
       />
+      <CvEducationSection entries={data.education} hasBottomSeparator />
       <CvProjectsSection entries={data.projects} hasBottomSeparator />
 
       <CvSkillsSection skills={data.skills} hasBottomSeparator />
@@ -51,7 +49,14 @@ const renderHeader = (
   };
 
   if (presentation === "resume") {
-    return <CvResumeHeader {...headerProps} />;
+    return (
+      <div className={st.introduction}>
+        <CvResumeHeader {...headerProps} />
+        {data.personalInfo.summary !== undefined && (
+          <p className={st.summary}>{data.personalInfo.summary}</p>
+        )}
+      </div>
+    );
   }
 
   return <CvShowcaseHeader {...headerProps} />;
@@ -67,7 +72,7 @@ const CvPage = ({ data, presentation }: CvPageProps): ReactElement => {
             data-cv-presentation={presentation}
           >
             {renderHeader(data, presentation)}
-            <CvSectionsContent data={data} isPrint={false} />
+            <CvSectionsContent data={data} />
           </div>
 
           <div className={st.printDocument}>
@@ -76,7 +81,7 @@ const CvPage = ({ data, presentation }: CvPageProps): ReactElement => {
               data-cv-presentation={presentation}
             >
               {renderHeader(data, presentation)}
-              <CvSectionsContent data={data} isPrint />
+              <CvSectionsContent data={data} />
             </section>
           </div>
         </CvPaper>
