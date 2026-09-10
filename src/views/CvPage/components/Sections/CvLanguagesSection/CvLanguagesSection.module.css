@@ -1,0 +1,33 @@
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 1.2mm 4mm;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2mm 5mm;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  color: var(--cv-body-ink);
+  font-size: var(--cv-font-size-meta);
+  line-height: var(--cv-line-height-normal);
+}
+
+.list > li {
+  color: var(--cv-body-ink);
+}
+
+@media print {
+  .root {
+    display: flex;
+    break-inside: avoid-page;
+  }
+
+  .root > * + * {
+    margin-top: 0;
+  }
+}
