@@ -106,23 +106,6 @@
   }
 
   .contentFlow > * + * {
-    margin-top: calc(2 * var(--cv-separator-spacing) + 1px);
-  }
-
-  .contentFlow > * + * > h2 {
-    display: block;
-  }
-
-  /* Keep the rule with its heading; clip it when the heading starts a page. */
-  .contentFlow > * + * > h2::before {
-    content: "";
-    display: block;
-    position: relative;
-    width: 100cqw;
-    margin-top: calc(-1 * var(--cv-separator-spacing));
-    margin-bottom: calc(var(--cv-separator-spacing) - 1px);
-    transform: translateY(-1px);
-    height: 1px;
-    background: var(--cv-separator-gradient);
+    margin-top: var(--cv-separator-spacing);
   }
 }

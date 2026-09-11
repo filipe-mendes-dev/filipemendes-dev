@@ -38,8 +38,4 @@
   .content > * + * {
     margin-top: 1.8mm;
   }
-
-  .withBottomSeparator::after {
-    display: none;
-  }
 }
