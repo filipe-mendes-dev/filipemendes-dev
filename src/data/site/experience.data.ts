@@ -67,7 +67,7 @@ export const experienceData: ExperienceItem[] = [
       "Built React Native and TypeScript features for account management, transfers, payments and debit cards, integrating REST APIs for authentication, transactions and error handling across mobile banking applications.",
       "Implemented reusable React Native components and managed application state with Redux, improving UI consistency, simplifying data flow and accelerating feature development.",
       "Collaborated with designers using Figma to translate designs into responsive mobile interfaces, ensuring consistent user experiences across iOS and Android.",
-      "Onboarded and mentored a frontend intern, introducing Git-based version control workflows and supporting day-to-day feature development.",
+      "Onboarded and mentored a frontend intern, introducing Git based version control workflows and supporting day-to-day feature development.",
       "Prepared production builds and contributed to App Store and Google Play release submissions.",
     ],
     stack: [
