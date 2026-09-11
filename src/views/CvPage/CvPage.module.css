@@ -34,14 +34,7 @@
   width: 100%;
   height: 1px;
   margin-top: var(--cv-separator-spacing);
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    color-mix(in srgb, var(--cv-rule) 42%, transparent) 18%,
-    color-mix(in srgb, var(--cv-rule) 82%, transparent) 50%,
-    color-mix(in srgb, var(--cv-rule) 42%, transparent) 82%,
-    transparent 100%
-  );
+  background: var(--cv-separator-gradient);
 }
 
 .summary {
@@ -109,6 +102,7 @@
 
   .contentFlow {
     display: block;
+    container-type: inline-size;
   }
 
   .contentFlow > * + * {
