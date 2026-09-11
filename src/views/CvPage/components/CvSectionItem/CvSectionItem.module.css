@@ -110,6 +110,14 @@
   display: none;
 }
 
+.location {
+  font-size: var(--cv-font-size-meta);
+  font-weight: 400;
+  line-height: var(--cv-line-height-normal);
+  letter-spacing: normal;
+  color: var(--cv-body-ink);
+}
+
 .dateNote {
   white-space: nowrap;
   font-size: var(--cv-font-size-label);

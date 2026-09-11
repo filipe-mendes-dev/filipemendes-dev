@@ -5,6 +5,10 @@
   gap: 1.2mm 4mm;
 }
 
+.root > * + * {
+  margin-top: 0;
+}
+
 .list {
   display: flex;
   flex-wrap: wrap;
