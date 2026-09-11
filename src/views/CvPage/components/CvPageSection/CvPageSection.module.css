@@ -40,8 +40,6 @@
   }
 
   .withBottomSeparator::after {
-    justify-self: auto;
-    margin-top: var(--cv-separator-spacing);
-    margin-inline: auto;
+    display: none;
   }
 }
