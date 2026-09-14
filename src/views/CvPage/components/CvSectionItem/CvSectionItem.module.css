@@ -75,8 +75,8 @@
 }
 
 :global([data-cv-presentation="resume"]) .title {
-  font-style: italic;
-  font-weight: 500;
+  font-style: normal;
+  font-weight: 600;
 }
 
 .subtitle {
@@ -94,6 +94,37 @@
   letter-spacing: 0.2mm;
   color: var(--cv-muted);
   text-align: right;
+}
+
+:global([data-cv-presentation="resume"]) .date {
+  font-size: var(--cv-font-size-meta);
+  letter-spacing: normal;
+  color: var(--cv-body-ink);
+}
+
+:global([data-cv-presentation="resume"]) .withBottomSeparator {
+  margin-bottom: 5mm;
+}
+
+:global([data-cv-presentation="resume"]) .withBottomSeparator::after {
+  display: none;
+}
+
+.location {
+  font-size: var(--cv-font-size-meta);
+  font-weight: 400;
+  line-height: var(--cv-line-height-normal);
+  letter-spacing: normal;
+  color: var(--cv-body-ink);
+}
+
+.dateNote {
+  white-space: nowrap;
+  font-size: var(--cv-font-size-label);
+  font-weight: 400;
+  line-height: var(--cv-line-height-normal);
+  letter-spacing: normal;
+  color: var(--cv-body-ink);
 }
 
 @media print {

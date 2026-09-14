@@ -9,6 +9,7 @@ export interface CvPersonalInfo {
   location: string;
   experienceSummary?: string;
   summaryLines?: [string, string];
+  summary?: string;
 }
 
 export interface CvContactLink {
@@ -28,6 +29,7 @@ export interface CvProjectEntry {
   title: string;
   type?: string;
   timeframe?: string;
+  maintenanceNote?: string;
   location?: string;
   context: string;
   bullets: string[];
@@ -35,11 +37,17 @@ export interface CvProjectEntry {
   href: string;
 }
 
+export interface CvExperienceEntry extends ExperienceItem {
+  location: string;
+  workArrangement: string;
+  bulletHighlights: string[][];
+}
+
 export interface CvDocumentData {
   personalInfo: CvPersonalInfo;
   contactLinks: CvContactLink[];
   education: EducationItem[];
-  experience: ExperienceItem[];
+  experience: CvExperienceEntry[];
   projects: CvProjectEntry[];
   skills: Record<string, string[]>;
   languages: CvLanguageEntry[];

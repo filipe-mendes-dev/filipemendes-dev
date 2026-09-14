@@ -12,16 +12,41 @@
 .screenDocument,
 .printPage {
   display: grid;
-  gap: 5mm;
+  gap: var(--cv-separator-spacing);
 }
 
 .printDocument {
   display: none;
 }
 
+.introduction {
+  display: block;
+  break-inside: avoid-page;
+}
+
+.introduction > .summary {
+  margin-top: 3mm;
+}
+
+.introduction::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin-top: var(--cv-separator-spacing);
+  background: var(--cv-separator-gradient);
+}
+
+.summary {
+  color: var(--cv-body-ink);
+  font-size: var(--cv-font-size-body);
+  line-height: var(--cv-line-height-normal);
+  break-inside: avoid-page;
+}
+
 .contentFlow {
   display: grid;
-  gap: 4mm;
+  gap: var(--cv-separator-spacing);
 }
 
 @page {
@@ -67,7 +92,7 @@
   }
 
   .printPage > * + * {
-    margin-top: 5mm;
+    margin-top: var(--cv-separator-spacing);
   }
 
   .printPage:last-child {
@@ -77,9 +102,10 @@
 
   .contentFlow {
     display: block;
+    container-type: inline-size;
   }
 
   .contentFlow > * + * {
-    margin-top: 4mm;
+    margin-top: var(--cv-separator-spacing);
   }
 }

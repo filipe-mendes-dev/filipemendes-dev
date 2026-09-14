@@ -144,6 +144,16 @@
   --cv-font-size-body: 10pt;
   --cv-font-size-meta: 9pt;
   --cv-font-size-label: 8pt;
+  --cv-separator-gradient: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--cv-rule) 42%, transparent) 18%,
+    color-mix(in srgb, var(--cv-rule) 82%, transparent) 50%,
+    color-mix(in srgb, var(--cv-rule) 42%, transparent) 82%,
+    transparent 100%
+  );
+  --cv-separator-spacing: 3mm;
+  --cv-section-heading-spacing: 2.5mm;
   --cv-line-height-tight: 1.2;
   --cv-line-height-normal: 1.35;
   --cv-line-height-relaxed: 1.48;

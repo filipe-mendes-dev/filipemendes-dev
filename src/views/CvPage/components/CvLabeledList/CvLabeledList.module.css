@@ -1,16 +1,15 @@
 .root {
   list-style: none;
   display: grid;
-  gap: 3.4mm;
+  gap: 1.2mm;
   margin: 0;
   padding: 0;
 }
 
 .item {
-  display: flex;
-  justify-content: space-between;
-  gap: 3.4mm;
-  align-items: baseline;
+  display: block;
+  font-size: var(--cv-font-size-meta);
+  line-height: var(--cv-line-height-relaxed);
   break-inside: avoid-page;
   page-break-inside: avoid;
 }
@@ -19,7 +18,7 @@
   color: var(--cv-heading-ink);
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: var(--cv-font-size-body);
+  font-size: var(--cv-font-size-meta);
   line-height: var(--cv-line-height-tight);
 }
 
@@ -35,6 +34,6 @@
   }
 
   .root > * + * {
-    margin-top: 3.4mm;
+    margin-top: 1.2mm;
   }
 }

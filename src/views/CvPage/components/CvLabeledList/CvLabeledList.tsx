@@ -10,7 +10,7 @@ export const CvLabeledList = ({
     <ul className={st.root}>
       {entries.map((entry) => (
         <li className={st.item} key={entry.label}>
-          <span className={st.label}>{entry.label}</span>
+          <span className={st.label}>{entry.label}:</span>{" "}
           <span className={st.value}>{entry.value}</span>
         </li>
       ))}

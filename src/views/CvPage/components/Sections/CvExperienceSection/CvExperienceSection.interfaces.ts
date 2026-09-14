@@ -1,6 +1,6 @@
-import type { ExperienceItem } from "../../../../../data/site/experience.data";
+import type { CvExperienceEntry } from "../../../../../data/site/cv/cv.interfaces";
 
 export interface CvExperienceSectionProps {
-  entries: ExperienceItem[];
+  entries: CvExperienceEntry[];
   hasBottomSeparator?: boolean;
 }
