@@ -200,6 +200,8 @@ Do not ignore failing checks.
 
 ## 18) Git and commits
 
+- Use `feature/` for new feature branches and `fix/` for bug fixes. Use a suitable descriptive prefix for other work. Never use `codex/`.
+
 - Use Conventional Commits:
 
   - `feat:`
