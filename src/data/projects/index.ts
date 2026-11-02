@@ -1,5 +1,6 @@
 import { projectModule as demoDocsProjectModule } from "./demo-docs";
 import { projectModule as arcTimerProjectModule } from "./arc-timer";
+import { projectModule as benchlineStatsProjectModule } from "./benchline-stats";
 import { projectModule as filipemendesDevProjectModule } from "./filipemendes-dev";
 import {
   type LandingProjectData,
@@ -26,6 +27,7 @@ export {
 export const projectModules: ProjectModule[] = [
   arcTimerProjectModule,
   filipemendesDevProjectModule,
+  benchlineStatsProjectModule,
   demoDocsProjectModule,
 ];
 
