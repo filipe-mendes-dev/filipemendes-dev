@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { type ReactElement, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
@@ -213,12 +214,13 @@ export const ProjectScreenshotsSection = ({
                       </>
                     )}
 
-                    <img
+                    <Image
                       src={selectedScreenshot.url}
                       alt={selectedScreenshot.alt}
                       className={st.modalImage}
-                      width="1600"
-                      height="1000"
+                      width={1600}
+                      height={1000}
+                      sizes="(min-width: 80rem) 76rem, 90vw"
                     />
                   </div>
                   <div className={st.modalMeta}>

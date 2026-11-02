@@ -59,8 +59,10 @@
 .modalPanel {
   position: relative;
   z-index: 1;
-  max-width: min(100%, 76rem);
+  width: min(100%, 76rem);
+  max-height: 100%;
   display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
   background: var(--screenshot-overlay-surface);
   border-radius: var(--radius-xl);
   overflow: hidden;
@@ -159,10 +161,6 @@
 }
 
 @media (max-width: 48rem) {
-  .modalPanel {
-    width: 100%;
-  }
-
   .modalControl {
     inline-size: 2.1rem;
     block-size: 2.1rem;
