@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { animate, motion, type PanInfo, useMotionValue } from "framer-motion";
 import {
   type CSSProperties,
@@ -217,15 +218,16 @@ export const ProjectScreenshotsCarousel = ({
                 aria-label={`Open screenshot ${itemIndex + 1}: ${item.alt}`}
               >
                 <span className={st.media}>
-                  <img
+                  <Image
                     src={item.url}
                     alt={item.alt}
                     className={st.image}
                     draggable={false}
                     onDragStart={(event) => event.preventDefault()}
                     loading="lazy"
-                    width="1200"
-                    height="750"
+                    width={1200}
+                    height={750}
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                   />
                 </span>
               </button>

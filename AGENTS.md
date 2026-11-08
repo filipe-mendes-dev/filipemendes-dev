@@ -200,6 +200,8 @@ Do not ignore failing checks.
 
 ## 18) Git and commits
 
+- Use `feature/` for new feature branches and `fix/` for bug fixes. Use a suitable descriptive prefix for other work. Never use `codex/`.
+
 - Use Conventional Commits:
 
   - `feat:`
@@ -210,3 +212,8 @@ Do not ignore failing checks.
   - `test:`
 
 - Keep commit messages specific and imperative.
+
+## 19) CV and resume copy
+
+- Before writing or reviewing CV/resume summaries, experience bullets, project entries or stack lines, read [CV writing guidelines](docs/content/cv-writing-guidelines.md).
+- Apply that guidance to both CV variants and shared experience content used by the CV. Prioritize its readability and keyword guidance over generic preferences for keyword density or technical detail.

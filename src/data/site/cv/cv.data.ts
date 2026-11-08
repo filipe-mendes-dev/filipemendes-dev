@@ -1,6 +1,6 @@
 import { getProjectHref } from "../../projects";
 import { project as arcTimerProject } from "../../projects/arc-timer/project.data";
-import { project as portfolioProject } from "../../projects/filipemendes-dev/project.data";
+import { project as benchlineStatsProject } from "../../projects/benchline-stats/project.data";
 import { educationData } from "../education.data";
 import { experienceData, type ExperienceId } from "../experience.data";
 import { personData } from "../person.data";
@@ -192,7 +192,7 @@ const frontendProjectsData: CvProjectEntry[] = [
     slug: "arc-timer",
     title: arcTimerProject.name,
     type: arcTimerProject.category,
-    timeframe: "February - June 2026",
+    timeframe: "February - November 2026",
     maintenanceNote: "Maintained",
     context:
       "Launched Arc Timer, a cross-platform React Native workout application for iOS and Android, developed end-to-end from concept to App Store and Google Play release.",
@@ -212,28 +212,29 @@ const frontendProjectsData: CvProjectEntry[] = [
     href: getProjectHref(arcTimerProject.slug),
   },
   {
-    slug: "filipemendes-dev",
-    title: portfolioProject.name,
-    type: portfolioProject.category,
-    timeframe: "February - April 2026",
-    maintenanceNote: "Maintained",
+    slug: "benchline-stats",
+    title: benchlineStatsProject.name,
+    type: "Web App / PWA",
+    timeframe: "October 2026 – Present",
     context:
-      "Launched filipemendes.dev, a Next.js portfolio platform showcasing projects, technical documentation and my developer profile.",
+      "Built and self-hosted Benchline Stats, a full-stack Next.js and TypeScript PWA for recording and analyzing rink-hockey matches, designed to work offline.",
     bullets: [
-      "Built the platform using Next.js, App Router, React Server Components and TypeScript, delivering server-rendered pages across the application.",
-      "Implemented responsive interfaces using CSS Modules and Framer Motion, creating smooth page transitions and interactive user experiences.",
-      "Managed production deployment with Vercel, configuring the custom domain, DNS records and professional webmail for a complete production setup.",
+      "Developed full-stack features using React, Next.js APIs and PostgreSQL, supporting authentication, team management and match recording.",
+      "Implemented offline-first functionality using service workers and IndexedDB, allowing users to record matches without internet access and synchronize data when reconnected.",
+      "Deployed the application on a Linux VPS using Docker and Nginx, configuring CI/CD with GitHub Actions to validate code and publish production Docker images.",
     ],
     stack: [
       "Next.js",
+      "React",
       "TypeScript",
-      "App Router",
-      "React Server Components",
-      "CSS Modules",
-      "Framer Motion",
-      "Vercel",
+      "PWA",
+      "PostgreSQL",
+      "IndexedDB",
+      "Docker",
+      "Nginx",
+      "GitHub Actions",
     ],
-    href: getProjectHref(portfolioProject.slug),
+    href: getProjectHref(benchlineStatsProject.slug),
   },
 ];
 
@@ -257,26 +258,15 @@ const fullStackProjectOverrides: Partial<
       "Jest",
     ],
   },
-  "filipemendes-dev": {
-    context:
-      "Built and deployed a Next.js platform combining projects, technical documentation and shared site metadata.",
-    bullets: [
-      "Built the platform using Next.js, App Router, React Server Components and TypeScript, delivering server-rendered pages across the application.",
-      "Implemented responsive interfaces using CSS Modules and Framer Motion, creating smooth page transitions and interactive user experiences.",
-      "Managed production deployment with Vercel, configuring the custom domain, DNS records and professional webmail for a complete production setup.",
-    ],
-    stack: [
-      "Next.js",
-      "TypeScript",
-      "App Router",
-      "React Server Components",
-      "Vercel",
-    ],
-  },
 };
 
-const fullStackProjectsData: CvProjectEntry[] = frontendProjectsData.map(
-  (entry) => {
+const fullStackProjectOrder: CvProjectEntry["slug"][] = [
+  "benchline-stats",
+  "arc-timer",
+];
+
+const fullStackProjectsData: CvProjectEntry[] = frontendProjectsData
+  .map((entry) => {
     const override = fullStackProjectOverrides[entry.slug];
 
     if (override === undefined) {
@@ -287,8 +277,12 @@ const fullStackProjectsData: CvProjectEntry[] = frontendProjectsData.map(
       ...entry,
       ...override,
     };
-  },
-);
+  })
+  .sort(
+    (first, second) =>
+      fullStackProjectOrder.indexOf(first.slug) -
+      fullStackProjectOrder.indexOf(second.slug),
+  );
 
 const frontendSkills: Record<string, string[]> = {
   "Web & Mobile": [
