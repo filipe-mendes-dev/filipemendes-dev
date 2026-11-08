@@ -19,6 +19,10 @@ export const projectDetail: ProjectDetailContent = {
         label: "Open app",
         href: "https://benchline.filipemendes.dev",
       },
+      {
+        label: "GitHub",
+        href: "https://github.com/filipe-mendes-dev/hockey-stats",
+      },
     ],
   },
   screenshots: {

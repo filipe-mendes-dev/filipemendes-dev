@@ -1,7 +1,7 @@
 import type { EducationItem } from "../education.data";
 import type { ExperienceItem } from "../experience.data";
 
-export type CvProjectSlug = "arc-timer" | "filipemendes-dev";
+export type CvProjectSlug = "arc-timer" | "benchline-stats";
 
 export interface CvPersonalInfo {
   name: string;
