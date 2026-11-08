@@ -192,7 +192,7 @@ const frontendProjectsData: CvProjectEntry[] = [
     slug: "arc-timer",
     title: arcTimerProject.name,
     type: arcTimerProject.category,
-    timeframe: "February - June 2026",
+    timeframe: "February - November 2026",
     maintenanceNote: "Maintained",
     context:
       "Launched Arc Timer, a cross-platform React Native workout application for iOS and Android, developed end-to-end from concept to App Store and Google Play release.",
