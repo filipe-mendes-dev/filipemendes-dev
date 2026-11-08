@@ -6,11 +6,15 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## [v1.1.0] - 2026-11-08
+
 ### Added
 
 - Added a branded email signature asset at `public/email/Signature.png` for future email-related use
-- Added a canonical `/curriculum-vitae` route with a print-ready CV document view
+- Added a canonical `/curriculum-vitae` route with a print-ready CV document view featuring Arc Timer and Benchline Stats project entries
 - Added a dedicated `filipemendes.dev` project page with branded logo assets, refined project copy and website screenshots
+- Added a Benchline Stats homepage entry and project page with desktop and mobile screenshots, app and GitHub links, feature descriptions and implementation details
+- Added CV writing guidelines covering recruiter readability, technical accuracy and keyword selection, linked from `AGENTS.md`
 
 ### Changed
 
@@ -19,6 +23,8 @@ All notable changes to this project will be documented in this file.
 - Updated the public contact email to `contact@filipemendes.dev`
 - Reworked the contact section so the primary email action copies the address with inline success and failure feedback
 - Centralized person, contact, hero, CV and metadata consumers around shared profile data
+- Updated shared project galleries to serve responsive optimized images and scale enlarged screenshots to the available viewport
+- Updated Arc Timer support information to display app version `1.2.0`
 
 ### Fixed
 
